@@ -108,7 +108,7 @@
 [what was the problem, what was done, and what are the results. ]
 % Do not include charts or tables in the abstract.
 
-Existing work done at TUT for delegated Homenet configuration
+Existing work done at TUT for delegated homenet configuration
 currently has preliminary authentication and access model using
 credentials and SSH-connection. It misses the bootstrap of 
 infrastructure i.e. the first trust. 
@@ -117,21 +117,24 @@ key with their SIM cards, but
 %Although mobile phone provides alternative authentication method with its SIM key, 
 usual methods to authenticate still are plain username-password combinations.  
 To benefit from mobile identification it is shown how authentication could be done
-using extendable authentication profile (EAP) with SIM-card. The technology 
-has been there for more than ten years and hardware and applications 
-already support it, but it is not yet widely used.
+using extendable authentication profile (EAP) with SIM-card. 
 
-Theoretical model using SIM-authentication is presented and simulated environment built, tested and analyzed.
-As a result it is shown, that SIM authentications benefits are strong authentication and existing user-base, while its disadvantages include dependency to mobile operator and challenges in keeping SIM's identity private and hidden.
 
-Principle on building model has been to reuse existing techniques when
-combining them to such new area as 
+Theoretical model using SIM-authentication is presented and simulated environment
+built, tested and analyzed.
+As a result it is shown, that SIM authentications benefits are strong
+authentication and existing user-base, while its disadvantages include
+dependency to mobile operator and challenges in keeping SIM's identity private and hidden.
+
+Principle % on building model
+has been to reuse existing techniques when combining them to such new area as 
 % homenet,  cloud, and delegated management.
 homenet and delegated management.
- For transporting authentication claims, WPA enterprise has been chosen. To further avoid complexity and granularity, we
+ For transporting authentication claims, WPA enterprise has been chosen. 
+To further avoid complexity and granularity, we
 use simple model of separate admin role available on
 management network. Getting in to management network is carried out at
-Homenet via SIM authentication and is the key element of the thesis.
+homenet via SIM authentication and it is the key element of the thesis.
 
 
 
@@ -167,6 +170,8 @@ että englanniksi.
 % PREFACE
 %
 \chapter*{Preface}
+
+TEMPLATE! SKIP.
 
 This document template conforms to Guide to Writing a Thesis at
 Tampere University of Technology (2014) and is based on the previous
@@ -460,12 +465,14 @@ Besides that, problems such as limited connectivity are studied.
 
 # Rationale:
 # Motivation factors to this work is 
-Why SIM-based methods are not in wider use is one motivator to
-this work. Could there exist a light method to use SIM?  Combining
-existing techniques, thesis presents one possible way to bind the trust
-to the SIM, which then would function as a trust anchor. To generally
-find ultimate trust it is only needed to verify trust chains until the
-chain reaches a trust anchor.
+Why SIM-based methods are not in wider use is one motivator to this
+work.  The technology has been there for more than ten years and
+hardware and applications already support it, but it still is not yet
+widely used.  Could there exist a light method to use SIM?  Combining
+existing techniques, thesis presents one possible way to bind the
+trust to the SIM, which then would function as a trust anchor. To
+generally find ultimate trust it is only needed to verify trust chains
+until the chain reaches a trust anchor.
 
 
 # Involved technology acronyms include RADIUS, EAP, Wi-Fi,
@@ -2304,10 +2311,18 @@ NETCONF from management network.
 
 ** EAP-SIM authentication test bed
 RADIUS server is located either on local network or hosted on remote
-server per scenarios in Scenario chapter. 
+server.
+#  per scenarios in Scenario chapter. 
 # "Here" needs reference, but it is already referenced in next chapter?
-Here it is shown  how EAP-SIM AuthN messages flow when using 
+
+Used physical devices are AP and laptop.  AP used is running OpenWRT
+firmware.  Laptop's software are WPA-supplicant for Wi-Fi access,
+hostapd for wired connected RADIUS server and hlr_auc_gw for MNO's
+HLR AuC. Laptop's role is also physically split-brain: It asks from itself for AA. 
+Figure[[eap-sim-testbed]] shows how EAP-SIM AuthN messages flow (dashed
+and solid arrowed lines) when using 
 simulated WPA-supplicant and Mobile Home Location Registry Authentication Center (HLR-AuC) as simulation environment.
+# Logically the model can be better described in figure[[eap-sim-testbed]].
 
 # #+begin_src ditaa :file demoinfra.png :cmdline -E -r -s 0.8
 # C-cC-c ajaa tästä kuvan fileen, C-cC-o näyttää preview:n
@@ -2325,50 +2340,34 @@ simulated WPA-supplicant and Mobile Home Location Registry Authentication Center
   |     |              |          ^                        |                          | 
   |    E|              |          |                        |        Simulated         |
   |    A| simulated    |          |RADIUS[EAP_SIM]         |   Mobile phone operator  |
-  |    P| smartphone  |          |                        |                          |
+  |    P| smartphone   |          |                        |                          |
   | +---+------------+ |          v                        |        +-------+         |
   | | WPA supplicant | |    +-----+-------------------+    |        | SIM DB|         |
   | |   EAP_SIM cPNK | |    | RADIUS  +---------------+    |        |cYEL{d}|         |
   | +--------------+ | |    | server  |EAP handlercPNK|    |        +---+---+         |
   | |SIM secrets{d}| | |    | c060    | +-------------+    |            |             |
   | |cYEL(IMSI,K_i)| | |    |(Authenti| |hlr_auc      |    |  +---------+-----------+ |
-  | |              | | |    |  cator) | | gateway cBLU+<----->+HLR AUC simulatorcBLU| |
+  | |              | | |    |  cator) | | gateway cBLU+<----->+HLR AuC simulatorcBLU| |
   +-+--------------+-+-+    +---------+-+-------------+    |  +---------------------+ |
                                                            \---------------------=----/
                                  
                      <-=-WiFi---=-> 
                      <---Wired---->      
 #+end_src
-#+CAPTION: EAP-SIM authentication test bed in simulation environment
+#+CAPTION: EAP-SIM AuthN messaging in simulation testbed
 #+NAME: eap-sim-testbed
 #+RESULTS:
 [[file:demoinfra.png]]
 
 
 
-
-# General descriptions for demonstration, what components are, why
-# just them, where they are used etc.
-
-# 1. Access point(s). Limited resources (mem/cpu/os). 
-Used physical devices are AP and laptop.
-AP used is running OpenWRT firmware.
-# , but almost any AP should work.
-
-Laptop computer's software has WPA-supplicant for Wi-Fi access,
-hostapd for wired connected RADIUS server and hlr_auc_gw for MNO's
-HLR. Laptop's role is also physically split-brain: It asks  from
-itself for AA. Logically the model can be better described in
-figure[[eap-sim-testbed]].
-
-# 2. laptop with SIM-simulator and hlr_auc-simulator
 # 3. smartphone with standard EAP-SIM, used for unsuccessful, full SIM
 # auth.
 #
 # 3) (smartphone with modded wpa-supplicant on JOLLA)
 # 2. (RPi)
 
-Jouni Malinen's software package /wpa/ can be thought as an reference
+Jouni Malinen's software package /HostAP/ can be thought as an reference
 implementation providing all necessary components: WPA-supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS replaces HLR in 3G/UMTS networks.
@@ -2731,7 +2730,7 @@ ks. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714
 :CUSTOM_ID: cha:discussion
 :END: 
 
-  CLOSED: [2015-04-10 pe 14:25]
+
 
 ** Deployment difficulty 
 
@@ -2772,7 +2771,7 @@ EAP-SIM always needs MNO for first authentication.
 
 # Ideally, SIM card could have also part that 
 # No one else h
-Idea: Divide secret for part that implements auth for own operator and
+Idea: Divide secret for part that implements AuthN for own operator and
 for part, that is free to use. What is the anatomy of SIM card?  How
 about MULTI-SIM cards? (Multi-SIM service = 2 cards with same IMEI,
 where Operator chains calls.)  For normal mobile phones, Dual-SIM

@@ -1,4 +1,4 @@
-% Created 2015-05-07 to 17:41
+% Created 2015-05-07 to 19:04
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -53,7 +53,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{6.5.2015 \{28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{7.5.2015 \{7.5 to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -132,7 +132,7 @@
 [what was the problem, what was done, and what are the results. ]
 % Do not include charts or tables in the abstract.
 
-Existing work done at TUT for delegated Homenet configuration
+Existing work done at TUT for delegated homenet configuration
 currently has preliminary authentication and access model using
 credentials and SSH-connection. It misses the bootstrap of 
 infrastructure i.e. the first trust. 
@@ -141,21 +141,24 @@ key with their SIM cards, but
 %Although mobile phone provides alternative authentication method with its SIM key, 
 usual methods to authenticate still are plain username-password combinations.  
 To benefit from mobile identification it is shown how authentication could be done
-using extendable authentication profile (EAP) with SIM-card. The technology 
-has been there for more than ten years and hardware and applications 
-already support it, but it is not yet widely used.
+using extendable authentication profile (EAP) with SIM-card. 
 
-Theoretical model using SIM-authentication is presented and simulated environment built, tested and analyzed.
-As a result it is shown, that SIM authentications benefits are strong authentication and existing user-base, while its disadvantages include dependency to mobile operator and challenges in keeping SIM's identity private and hidden.
 
-Principle on building model has been to reuse existing techniques when
-combining them to such new area as 
+Theoretical model using SIM-authentication is presented and simulated environment
+built, tested and analyzed.
+As a result it is shown, that SIM authentications benefits are strong
+authentication and existing user-base, while its disadvantages include
+dependency to mobile operator and challenges in keeping SIM's identity private and hidden.
+
+Principle % on building model
+has been to reuse existing techniques when combining them to such new area as 
 % homenet,  cloud, and delegated management.
 homenet and delegated management.
- For transporting authentication claims, WPA enterprise has been chosen. To further avoid complexity and granularity, we
+ For transporting authentication claims, WPA enterprise has been chosen. 
+To further avoid complexity and granularity, we
 use simple model of separate admin role available on
 management network. Getting in to management network is carried out at
-Homenet via SIM authentication and is the key element of the thesis.
+homenet via SIM authentication and it is the key element of the thesis.
 
 
 
@@ -191,6 +194,8 @@ että englanniksi.
 % PREFACE
 %
 \chapter*{Preface}
+
+TEMPLATE! SKIP.
 
 This document template conforms to Guide to Writing a Thesis at
 Tampere University of Technology (2014) and is based on the previous
@@ -421,12 +426,14 @@ SIM here means keys and application in SIM or USIM inside UICC card.
 Besides that, problems such as limited connectivity are studied. 
 
 
-Why SIM-based methods are not in wider use is one motivator to
-this work. Could there exist a light method to use SIM?  Combining
-existing techniques, thesis presents one possible way to bind the trust
-to the SIM, which then would function as a trust anchor. To generally
-find ultimate trust it is only needed to verify trust chains until the
-chain reaches a trust anchor.
+Why SIM-based methods are not in wider use is one motivator to this
+work.  The technology has been there for more than ten years and
+hardware and applications already support it, but it still is not yet
+widely used.  Could there exist a light method to use SIM?  Combining
+existing techniques, thesis presents one possible way to bind the
+trust to the SIM, which then would function as a trust anchor. To
+generally find ultimate trust it is only needed to verify trust chains
+until the chain reaches a trust anchor.
 
 
 
@@ -1763,28 +1770,22 @@ NETCONF from management network.
 \section{EAP-SIM authentication test bed}
 \label{sec-5-1}
 RADIUS server is located either on local network or hosted on remote
-server per scenarios in Scenario chapter. 
-Here it is shown  how EAP-SIM AuthN messages flow when using 
+server.
+
+Used physical devices are AP and laptop.  AP used is running OpenWRT
+firmware.  Laptop's software are WPA-supplicant for Wi-Fi access,
+hostapd for wired connected RADIUS server and hlr\_auc\_gw for MNO's
+HLR AuC. Laptop's role is also physically split-brain: It asks from itself for AA. 
+In figure\ref{eap-sim-testbed} it is shown how EAP-SIM AuthN messages flow when using 
 simulated WPA-supplicant and Mobile Home Location Registry Authentication Center (HLR-AuC) as simulation environment.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{demoinfra.png}
-\caption{\label{eap-sim-testbed}EAP-SIM authentication test bed in simulation environment}
+\caption{\label{eap-sim-testbed}EAP-SIM AuthN messaging in simulation testbed}
 \end{figure}
 
 
-
-
-
-Used physical devices are AP and laptop.
-AP used is running OpenWRT firmware.
-
-Laptop computer's software has WPA-supplicant for Wi-Fi access,
-hostapd for wired connected RADIUS server and hlr\_auc\_gw for MNO's
-HLR. Laptop's role is also physically split-brain: It asks  from
-itself for AA. Logically the model can be better described in
-figure\ref{eap-sim-testbed}.
 
 
 Jouni Malinen's software package \emph{wpa} can be thought as an reference
@@ -2071,6 +2072,7 @@ ks. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714
 \label{sec-6}
 
 
+
 \section{Deployment difficulty}
 \label{sec-6-1}
 
@@ -2110,7 +2112,7 @@ for GSM/3GPP/LTE authentication,
 EAP-SIM always needs MNO for first authentication.
 
 
-Idea: Divide secret for part that implements auth for own operator and
+Idea: Divide secret for part that implements AuthN for own operator and
 for part, that is free to use. What is the anatomy of SIM card?  How
 about MULTI-SIM cards? (Multi-SIM service = 2 cards with same IMEI,
 where Operator chains calls.)  For normal mobile phones, Dual-SIM
