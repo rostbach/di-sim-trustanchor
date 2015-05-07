@@ -1,0 +1,10 @@
+# no wireless functionality, only RADIUS/EAP  
+driver=none
+# RADIUS secrets for external AP
+radius_server_clients=hostapd.radius_clients
+# eap-handler enabled
+eap_server=1
+# mapping of eap credentials to SIM,AKA and AKA' protocols
+eap_user_file=./hostapd.eap_user
+# Inter-process communication with hlr_auc_gw process
+eap_sim_db=unix:/tmp/hlr_auc_gw.sock
