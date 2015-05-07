@@ -1,3 +1,10 @@
+# Generic
+*~
+.swp
+.blg
+.bbl
+
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
