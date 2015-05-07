@@ -1,4 +1,4 @@
-% Created 2015-05-07 to 19:04
+% Created 2015-05-07 to 19:44
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1776,7 +1776,8 @@ Used physical devices are AP and laptop.  AP used is running OpenWRT
 firmware.  Laptop's software are WPA-supplicant for Wi-Fi access,
 hostapd for wired connected RADIUS server and hlr\_auc\_gw for MNO's
 HLR AuC. Laptop's role is also physically split-brain: It asks from itself for AA. 
-In figure\ref{eap-sim-testbed} it is shown how EAP-SIM AuthN messages flow when using 
+Figure\ref{eap-sim-testbed} shows how EAP-SIM AuthN messages flow (dashed
+and solid arrowed lines) when using 
 simulated WPA-supplicant and Mobile Home Location Registry Authentication Center (HLR-AuC) as simulation environment.
 
 \begin{figure}[htb]
@@ -1788,56 +1789,53 @@ simulated WPA-supplicant and Mobile Home Location Registry Authentication Center
 
 
 
-Jouni Malinen's software package \emph{wpa} can be thought as an reference
+Jouni Malinen's software package \emph{HostAP} can be thought as an reference
 implementation providing all necessary components: WPA-supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS replaces HLR in 3G/UMTS networks.
+\cite{hostapd}.
 
-For more realistic test, OpenWRT AP is used instead of \emph{wpa's} hostapd
-and hostapd has provided only RADIUS server.
+For more realistic test, OpenWRT AP is used instead of \emph{hostapd}'s
+access point and \emph{hostapd} provides only RADIUS server.
 OpenWRT AP works as a RADIUS client connecting to RADIUS server. 
 It will not try to open EAP-messages or need
-to know about them, it just encapsulates them into RADIUS packet.
+to know about them; it just encapsulates them into RADIUS packet.
 
 \section{Detailed description of test runs}
 \label{sec-5-2}
 
 
 
-Test run with hostapd and simulated HLR\_auc\_gw [draw picture], did
-not go first as planned. First there was no indication of SIM method
+Test run with hostapd and simulated HLR\_auc\_gw
+did not go first as planned. First there was no indication of SIM method
 present in captures, only indication of security was open access.
 After some modifications, runs got to the authentication phase.
 Naturally, challenge-responses did not work 
 because simulated SIM and it's secrets were known. 
-Examples in appendix \ref{app:nosim}   
+Examples in appendix \ref{app:nosim}   [TBD]
 
 
 
 Test runs were made with diverse clients.
-\begin{itemize}
-\item Nokia phone with Symbian 60 Series OS (2006) with keyboard
-(wings model) had no SIM card. Despite that it took part in making
+Nokia phone with Symbian 60 Series OS (2006) with keyboard
+(wings model) had no registered SIM card. Despite that it took part in making
 primary traffic.
-\item Nokia e90 Symbian xx with registered SIM had better results. Traced
-sim2 sim3 and in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
-\verb~e90.sim.auth.pcapng~ and \verb~eap-1.pcapng~
-\item WPA-supplicant running on laptop had simulated SIM-card access
-with SIM/USIM protocols, respective EAP-SIM and EAP-AKA.  
-Information from software claimed that "Hostapd
-will send SIM/AKA authentication queries over a UNIX domain socket
-to an external program, e.g., \verb~hlr_auc_gw~." Appendix \ref{app:hlraucgw}
-shows that traffic.
-\end{itemize}
-\begin{itemize}
-\item Shell program\ref{app:fulleap} starts needed programs. It also records used configurations,
-logs, and traffic captures for later analysis.
-\end{itemize}
+Nokia e90 Symbian, with registered SIM had better results. Traces
+are in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
+  \verb~e90.sim.auth.pcapng~ and \verb~eap-1.pcapng~  [TBD]
+
+After WPA-supplicant run on laptop with simulated SIM-card access 
+with SIM/USIM protocols, respective EAP-SIM, logging 
+from software claimed that "Hostapd will send SIM/AKA authentication
+queries over a UNIX domain socket to an external \verb~hlr_auc_gw~ program.
+Appendix \ref{app:hlraucgw}   shows that traffic.
+Shell program (Appendix \ref{app:fulleap}) starts needed programs. It also records used
+configurations, logs, and traffic captures for later analysis.
 
 \section{Disconnecting the local controller and offline changes}
 \label{sec-5-3}
 [Limiting time and forced logout, for how long access provided to
-management operations, or use fast-auth on following accesses]
+management operations, or use fast-auth on following accesses TBD]
 
 After phone has been successfully connected to the management network,
 all changes coming from 
@@ -1866,18 +1864,24 @@ listen also that in addition of RADIUS UDP port 1812.
 
 
 
-Time limited access can perhaps made with session-timeout parameter
-in ACCESS-ACCEPT packet. (or ACCESS-CHALLENGE). Type field = "29":
-This parameter tells the authenticator how many second the supplicant
-can maximal have service. More specifically said "what action
-authenticator should do after termination becomes" and it has values
-of either 0 (default) or 1 (radius request), which would mean that
-authenticator may send new ACCESS-REQUEST to RADIUS server.  [check
-Delivery of RADIUS attributes section]
+[ Following AWAY. left from early phases]
 
-But that would eliminate direct auth-only RADIUS cases [ \emph{were there}
-\emph{any? I don't remember what I meant by this. Maybe that we needed only}
-/to have authentication for access which in turn enables modifications./]
+Time limited access can perhaps made with session-timeout parameter
+in ACCESS-ACCEPT (or ACCESS-CHALLENGE) packet using type field = "29".
+This parameter tells the authenticator how many second maximal the supplicant
+can have service. 
+
+[This cannot be type field 29!]  More specifically, what action
+authenticator should do after termination becomes. It has values of
+either 0 (default) or 1 (radius request), which would mean that
+authenticator may send new ACCESS-REQUEST to RADIUS server.
+
+But that would eliminate direct authenticate-only RADIUS cases
+  [ \emph{were there}
+ \emph{any? I don't remember what I meant}
+ \emph{by this. Maybe that we needed only}
+ \emph{to have authentication for access} 
+ \emph{which in turn enables modifications} ]
 Is it then that with value 0, authenticator does not send
 ACCESS-REQUEST to RADIUS server, but client still can automatically send it without 
 user's acceptance?
@@ -1888,13 +1892,17 @@ user's acceptance?
 portal [-> reference to \hyperref[text:nointernet]{No Internet connectivity} link is
 \end{itemize}
 
+
+
+
+
+
+
+
+[ Back in track: this can be left here ]
+
 Offline changes includes cases where smartphone is not at home or when
 there is no internet connection available.
-
-
-
-
-
 If connection to Internet is down, full SIM authentication will not
 work, because it needs co-operation from Internet, namely from MNO.
 Simple solution would be sending one-time password to predefined
@@ -1908,28 +1916,23 @@ Software would run in AP. Existing solutions for this are for example
 Chillisoft or NoCatAuth. That means open access to the
 portal site must be provided.
 
-[Full authentication vs. Fast re-authentication]
 
-[fast-reauth is one parameter on wpa-supplicant configuration: enable/disable]
-
-
-
-Full authentication uses IMSI which is the identity of phone's SIM.
+Full authentication uses IMSI, which is the identity of phone's SIM.
 Fast re-authentication would use temporal identity TMSI, which 
-could change each time request had been sent. Values
-are cached on authenticator and round-trip and handling at HLR is
-eliminated. 
+can change each time the AuthN request had been sent. Mapping
+is cached on authenticator and round-trip and handling at HLR is
+so eliminated. 
 IMSI is 14 or 15 digit long number and presented as a composition
-of strings belonging to MCC(2 digits), MNC(2-3) and MSIN(10),
-As for TMSI, it is composed of pseudonym and realm part.
+of digits belonging to MCC(2 digits), MNC(2-3 digits) and MSIN(10 digits),
+As for TMSI, it is composed of pseudonym and realm part and can be string..
 TMSI is used instead of IMSI to protect subscriber from being
 identified and also make life more difficult to radio interface
 eavesdroppers\cite{imsi-tmsi}.
 
 Fast reauth is usually used on
-local roaming[\cite{xxx}].
+local roaming[\cite{xxx}]. [TBD]
 Automatic login with fast-authentication means, that no HLR AuC
-is used. Instead, same K\_aut and K\_encr keys  that were used in full-auth are used  as Master Key to generate new Master Session key.\cite[30]{rfc4186}
+is used. Instead, same K\_aut and K\_encr keys  that were used in full-authentication are used  as Master Key to generate new Master Session key.\cite[p.30]{rfc4186}
 
 
 \section{Network traces (EAP, SIM, AUTH traffic analysis)}
@@ -1937,32 +1940,27 @@ is used. Instead, same K\_aut and K\_encr keys  that were used in full-auth are 
 Wireless capture between WPA-supplicant and AP was made on
 WPA-supplicant's end-point, before it left wireless card. Capture was
 not made in monitoring mode, so not all 802.11 details in
-data packets were captured.  Because the focus was not in the
+data packets were captured\cite{wireshark-capture}.  Because the focus was not in the
 radio channel but instead in the EAP messaging, that was not problem.
-\cite{wireshark-capture}
+
 
 [Captured wireshark sessions give insight here. Analyze them.
 Packet capture of successful SIM-authentication with corresponding
 parts of logs at WPA-supplicant, RADIUS server and packet captures 
-802.1X, RADIUS and HLR. Maybe also remote syslog from access point.]
+802.1X, RADIUS and HLR. ]
 
 \begin{itemize}
-\item flow of messages
-\item timing
-\item size
-\item attributes
+\item flow of messages,  timing,  size, attributes
 \end{itemize}
 
-Even, when authentication would no complete fully, authenticator
-receives identification claim from mobile which of course can 
-be false (see sequence, and explain why).
+Even, when authentication would not complete fully, authenticator
+still receives identification claim from mobile but that can be false
+ie forged.  
+(see sequence, and explain why) [TBD]
 
-\begin{itemize}
-\item 1st id claim comes already on second EAP message, from
-wpa-supplicant to AP, working set in simulated environment.
-\item date: 150123-155714
-\item source: testit/demot/ap-s150123-155714/
-\end{itemize}
+First time, IMSI is sent is already on second EAP message from 
+wpa-supplicant to AP (see figure\ref{fig:eap-sim-full}, message 2.)
+Same in tests made 150123-155714, source: testit/demot/ap-s150123-155714/
 \begin{verbatim}
 Frame 129: 15:57:17.983047
     Type: 802.1X Authentication (0x888e)
@@ -1989,15 +1987,12 @@ Frame 130: 15:57:17.983223
 \end{verbatim}
 
 Note: AP uses version 802.1X-2004 while WPA-supplicant responses with
-version 802.1X-2001. There should be no differences.
+version 802.1X-2001. Here it does not have any noticeable effect.
+Last: not shown here, but Identity is not coded as numerical but a string.
+That can lead to flexibility as identity can also include alphabets.
 
-Identity is filled in wpa-supplicant both
-in identity and cred section.
+[TBD: Check other examples, where  they are not the same!]
 
-TO DO: Check other examples, where  they are not the same!
-
-Last: not shown here, but Identity is not numerical but string.
-[Reminds me of encoding IP addresses as strings in DNS request instead of bytes.]
 
 \begin{verbatim}
 # EAP-SIM with a GSM SIM or USIM
@@ -2054,12 +2049,16 @@ Radius Protocol
 Interesting part is the EAP fragment, having
 Identity="1232010000000000", but
 also RADIUS message itself, where User-Name field has been set also 
-to "1232010000000000". Maybe this has something to do with identity
+to "1232010000000000". 
+Identity is filled in wpa-supplicant both in identity and cred
+section so which one is the correct one, or are they both needed?
+Maybe this has something to do with identity
 values above, or then AP just has followed conventions on converting
 EAP into RADIUS message. The last RADIUS Attribute Value Pair (AVP) is 
-Message-Authenticator, which presents limited safe against message 
+Message-Authenticator, which presents limited safety against message 
 corruption. Limited, because it uses MD5-hashing which is not safe
 against malicious use anymore.
+
 
 
 

@@ -2371,12 +2371,13 @@ Jouni Malinen's software package /HostAP/ can be thought as an reference
 implementation providing all necessary components: WPA-supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS replaces HLR in 3G/UMTS networks.
+\cite{hostapd}.
 
-For more realistic test, OpenWRT AP is used instead of /wpa's/ hostapd
-and hostapd has provided only RADIUS server.
+For more realistic test, OpenWRT AP is used instead of /hostapd/'s
+access point and /hostapd/ provides only RADIUS server.
 OpenWRT AP works as a RADIUS client connecting to RADIUS server. 
 It will not try to open EAP-messages or need
-to know about them, it just encapsulates them into RADIUS packet.
+to know about them; it just encapsulates them into RADIUS packet.
 
 
 # 1) RADIUS (WPA freeradius2, openradius?, hostapd?, wpa)
@@ -2397,38 +2398,40 @@ to know about them, it just encapsulates them into RADIUS packet.
 
 
 # kokemuksia
-Test run with hostapd and simulated HLR_auc_gw [draw picture], did
-not go first as planned. First there was no indication of SIM method
+Test run with hostapd and simulated HLR_auc_gw
+# [draw picture],
+did not go first as planned. First there was no indication of SIM method
 present in captures, only indication of security was open access.
 After some modifications, runs got to the authentication phase.
 Naturally, challenge-responses did not work 
 because simulated SIM and it's secrets were known. 
-Examples in appendix [[app:nosim]]   
+Examples in appendix [[app:nosim]]   [TBD]
 # [ need to check those internal ref-citings!]
 
 
 
 Test runs were made with diverse clients.
-+ Nokia phone with Symbian 60 Series OS (2006) with keyboard
-  (wings model) had no SIM card. Despite that it took part in making
-  primary traffic.
-+ Nokia e90 Symbian xx with registered SIM had better results. Traced
-  sim2 sim3 and in folder ~gitdocs/di/testit/~ files ~eap3.pcapng~,
-  ~e90.sim.auth.pcapng~ and ~eap-1.pcapng~
-+ WPA-supplicant running on laptop had simulated SIM-card access
-  with SIM/USIM protocols, respective EAP-SIM and EAP-AKA.  
-  Information from software claimed that "Hostapd
-  will send SIM/AKA authentication queries over a UNIX domain socket
-  to an external program, e.g., ~hlr_auc_gw~." Appendix [[app:hlraucgw]]
-  shows that traffic.
+Nokia phone with Symbian 60 Series OS (2006) with keyboard
+(wings model) had no registered SIM card. Despite that it took part in making
+primary traffic.
+Nokia e90 Symbian, with registered SIM had better results. Traces
+# sim2 sim3
+are in folder ~gitdocs/di/testit/~ files ~eap3.pcapng~,
+  ~e90.sim.auth.pcapng~ and ~eap-1.pcapng~  [TBD]
+
+After WPA-supplicant run on laptop with simulated SIM-card access 
+with SIM/USIM protocols, respective EAP-SIM, logging 
+from software claimed that "Hostapd will send SIM/AKA authentication
+queries over a UNIX domain socket to an external ~hlr_auc_gw~ program.
+Appendix [[app:hlraucgw]]   shows that traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
 # finally got AUTH-SUCCESS message from remote RADIUS.
-+ Shell program[[app:fulleap]] starts needed programs. It also records used configurations,
-  logs, and traffic captures for later analysis.
+Shell program (Appendix [[app:fulleap]]) starts needed programs. It also records used
+configurations, logs, and traffic captures for later analysis.
 
 ** Disconnecting the local controller and offline changes
 [Limiting time and forced logout, for how long access provided to
-management operations, or use fast-auth on following accesses]
+management operations, or use fast-auth on following accesses TBD]
 
 After phone has been successfully connected to the management network,
 all changes coming from 
@@ -2487,18 +2490,25 @@ listen also that in addition of RADIUS UDP port 1812.
 
 
 
-Time limited access can perhaps made with session-timeout parameter
-in ACCESS-ACCEPT packet. (or ACCESS-CHALLENGE). Type field = "29":
-This parameter tells the authenticator how many second the supplicant
-can maximal have service. More specifically said "what action
-authenticator should do after termination becomes" and it has values
-of either 0 (default) or 1 (radius request), which would mean that
-authenticator may send new ACCESS-REQUEST to RADIUS server.  [check
-Delivery of RADIUS attributes section]
+[ Following AWAY. left from early phases]
 
-But that would eliminate direct auth-only RADIUS cases [ /were there/
-/any? I don't remember what I meant by this. Maybe that we needed only/
-/to have authentication for access which in turn enables modifications./]
+Time limited access can perhaps made with session-timeout parameter
+in ACCESS-ACCEPT (or ACCESS-CHALLENGE) packet using type field = "29".
+This parameter tells the authenticator how many second maximal the supplicant
+can have service. 
+
+[This cannot be type field 29!]  More specifically, what action
+authenticator should do after termination becomes. It has values of
+either 0 (default) or 1 (radius request), which would mean that
+authenticator may send new ACCESS-REQUEST to RADIUS server.
+#  [check Delivery of RADIUS attributes section]
+
+But that would eliminate direct authenticate-only RADIUS cases
+  [ /were there/
+ /any? I don't remember what I meant/
+ /by this. Maybe that we needed only/
+ /to have authentication for access/ 
+ /which in turn enables modifications/ ]
 Is it then that with value 0, authenticator does not send
 ACCESS-REQUEST to RADIUS server, but client still can automatically send it without 
 user's acceptance?
@@ -2508,8 +2518,8 @@ user's acceptance?
   portal [-> reference to [[text:nointernet][No Internet connectivity]] link is
 # \ref{text:nointernet}. [avoid linking inside document, prefer linearity]
 
-Offline changes includes cases where smartphone is not at home or when
-there is no internet connection available.
+
+
 #  or  following:
 # - No phone at home
 # - no internet connectivity
@@ -2542,6 +2552,10 @@ there is no internet connection available.
 
 # [ No Internet connectivity ]
 #+LABEL: text:nointernet
+[ Back in track: this can be left here ]
+
+Offline changes includes cases where smartphone is not at home or when
+there is no internet connection available.
 If connection to Internet is down, full SIM authentication will not
 work, because it needs co-operation from Internet, namely from MNO.
 Simple solution would be sending one-time password to predefined
@@ -2555,20 +2569,17 @@ Software would run in AP. Existing solutions for this are for example
 Chillisoft or NoCatAuth. That means open access to the
 portal site must be provided.
 
-[Full authentication vs. Fast re-authentication]
+# [Full authentication vs. Fast re-authentication]
+# [fast-reauth is one parameter on wpa-supplicant configuration: enable/disable]
 
-[fast-reauth is one parameter on wpa-supplicant configuration: enable/disable]
-
-
-
-Full authentication uses IMSI which is the identity of phone's SIM.
+Full authentication uses IMSI, which is the identity of phone's SIM.
 Fast re-authentication would use temporal identity TMSI, which 
-could change each time request had been sent. Values
-are cached on authenticator and round-trip and handling at HLR is
-eliminated. 
+can change each time the AuthN request had been sent. Mapping
+is cached on authenticator and round-trip and handling at HLR is
+so eliminated. 
 IMSI is 14 or 15 digit long number and presented as a composition
-of strings belonging to MCC(2 digits), MNC(2-3) and MSIN(10),
-As for TMSI, it is composed of pseudonym and realm part.
+of digits belonging to MCC(2 digits), MNC(2-3 digits) and MSIN(10 digits),
+As for TMSI, it is composed of pseudonym and realm part and can be string..
 # #+BEGIN_QUOTE
 TMSI is used instead of IMSI to protect subscriber from being
 identified and also make life more difficult to radio interface
@@ -2578,9 +2589,9 @@ eavesdroppers\cite{imsi-tmsi}.
 Fast reauth is usually used on
 # for example when connection changes network ie. moving connection
 # and on
-local roaming[cite:xxx].
+local roaming[cite:xxx]. [TBD]
 Automatic login with fast-authentication means, that no HLR AuC
-is used. Instead, same K_aut and K_encr keys  that were used in full-auth are used  as Master Key to generate new Master Session key.\cite[30]{rfc4186}
+is used. Instead, same K_aut and K_encr keys  that were used in full-authentication are used  as Master Key to generate new Master Session key.\cite[p.30]{rfc4186}
 
 
 
@@ -2592,29 +2603,30 @@ is used. Instead, same K_aut and K_encr keys  that were used in full-auth are us
 Wireless capture between WPA-supplicant and AP was made on
 WPA-supplicant's end-point, before it left wireless card. Capture was
 not made in monitoring mode, so not all 802.11 details in
-data packets were captured.  Because the focus was not in the
+data packets were captured\cite{wireshark-capture}.  Because the focus was not in the
 radio channel but instead in the EAP messaging, that was not problem.
-\cite{wireshark-capture}
+
 # [cite:https://wiki.wireshark.org/CaptureSetup/WLAN]
 
 [Captured wireshark sessions give insight here. Analyze them.
 Packet capture of successful SIM-authentication with corresponding
 parts of logs at WPA-supplicant, RADIUS server and packet captures 
-802.1X, RADIUS and HLR. Maybe also remote syslog from access point.]
+802.1X, RADIUS and HLR. ]
+# Maybe also remote syslog from access point.]
 
-- flow of messages
-- timing
-- size
-- attributes 
+- flow of messages,  timing,  size, attributes 
   
-Even, when authentication would no complete fully, authenticator
-receives identification claim from mobile which of course can 
-be false (see sequence, and explain why).
+Even, when authentication would not complete fully, authenticator
+still receives identification claim from mobile but that can be false
+ie forged.  
+# which of course can  be false 
+(see sequence, and explain why) [TBD]
 
-- 1st id claim comes already on second EAP message, from
-  wpa-supplicant to AP, working set in simulated environment.
-- date: 150123-155714
-- source: testit/demot/ap-s150123-155714/
+First time, IMSI is sent is already on second EAP message from 
+# - 1st id claim comes already on second EAP message, from
+wpa-supplicant to AP (see figure[[fig:eap-sim-full]], message 2.)
+# , working set in simulated environment.
+Same in tests made 150123-155714, source: testit/demot/ap-s150123-155714/
 #+BEGIN_EXAMPLE
 Frame 129: 15:57:17.983047
     Type: 802.1X Authentication (0x888e)
@@ -2641,15 +2653,13 @@ Frame 130: 15:57:17.983223
 #+END_EXAMPLE
 
 Note: AP uses version 802.1X-2004 while WPA-supplicant responses with
-version 802.1X-2001. There should be no differences.
+version 802.1X-2001. Here it does not have any noticeable effect.
+Last: not shown here, but Identity is not coded as numerical but a string.
+That can lead to flexibility as identity can also include alphabets.
 
-Identity is filled in wpa-supplicant both
-in identity and cred section.
+[TBD: Check other examples, where  they are not the same!]
 
-TO DO: Check other examples, where  they are not the same!
-
-Last: not shown here, but Identity is not numerical but string.
-[Reminds me of encoding IP addresses as strings in DNS request instead of bytes.]
+# [Reminds me of encoding IP addresses as strings in DNS request instead of bytes.]
 
 # itz - 
 #+BEGIN_EXAMPLE
@@ -2707,12 +2717,16 @@ Radius Protocol
 Interesting part is the EAP fragment, having
 Identity="1232010000000000", but
 also RADIUS message itself, where User-Name field has been set also 
-to "1232010000000000". Maybe this has something to do with identity
+to "1232010000000000". 
+Identity is filled in wpa-supplicant both in identity and cred
+section so which one is the correct one, or are they both needed?
+Maybe this has something to do with identity
 values above, or then AP just has followed conventions on converting
 EAP into RADIUS message. The last RADIUS Attribute Value Pair (AVP) is 
-Message-Authenticator, which presents limited safe against message 
+Message-Authenticator, which presents limited safety against message 
 corruption. Limited, because it uses MD5-hashing which is not safe
 against malicious use anymore.
+
 
 # Frame4: 15:57:17.988949
 
@@ -2722,7 +2736,7 @@ against malicious use anymore.
 
 # 
 # 150123-155706 alkaa 2 identityllä
-ks. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714
+[see. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
 
 
 * Analysis, Results and Discussion
@@ -2747,22 +2761,25 @@ profiles, different SSID makes that separation possible.
 # settings=EAP, subtype of EAP=SIM, username from SIM-card.
 
 # ** time to authenticate vs. something else
-Local tests, with software back ends need < 20ms for EAP-RADIUS message
-exchange. 
-Add there scanning of Wi-Fi network, SIM card's computing
+Local tests, with software back ends need less than 20ms for one EAP-RADIUS message
+exchange between peers. There will be added time needed to scan Wi-Fi
+network for correct access point, SIM card's computing
 time [take reference on network authentication part on earlier
 tests. Timeout was 3 seconds for that part.]
 Some figures for authentication times can give comparison to eduroam
-or LANGATONWPA WPA network through couple RADIUS proxies in between home
+or LANGATONWPA network through some RADIUS proxies in between home
 organization's RADIUS service.
 
 ** Costs for end-user 
-- Cost per authentication from MNO. Mobiilivarmenne
-  currently is free for clients (personal use), but how about costs
-  for  service providers?
-- Hardware. Phones included.
-- Can EAP-SIM be used for other areas to divide costs?
+What are the costs per authentication from MNO? Mobiilivarmenne
+currently is free for clients if usage is personal, but how much it costs
+for service providers? Hardware costs can be eliminated, while users
+already have smartphones. For infrastructure costs, existing hardware
+can be used.
+# - Hardware. Phones included.
 
+
+Can EAP-SIM be used for other areas to divide costs?
 Because only MNO and SIM-card manufacturer know 
 what are SIM's K_i and used A3/A8 algorithm
 for GSM/3GPP/LTE authentication,
@@ -2771,9 +2788,13 @@ EAP-SIM always needs MNO for first authentication.
 
 # Ideally, SIM card could have also part that 
 # No one else h
-Idea: Divide secret for part that implements AuthN for own operator and
-for part, that is free to use. What is the anatomy of SIM card?  How
-about MULTI-SIM cards? (Multi-SIM service = 2 cards with same IMEI,
+It is difficult to see if any commercial provider would implement 
+SIM-key sharing so, that secret part were divided for part that implements AuthN for own operator and
+for part, that is free to use by some other operator.
+
+# . What is the anatomy of SIM card?
+How about MULTI-SIM cards? Multi-SIM service is service where user
+has two physical cards with same IMEI,
 where Operator chains calls.)  For normal mobile phones, Dual-SIM
 allows change of ID for example between work and private. Also:
 #+BEGIN_QUOTE
