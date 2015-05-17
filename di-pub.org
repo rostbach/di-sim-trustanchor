@@ -246,7 +246,7 @@ Teemu Teekkari
 %\chapter*{Lyhenteet ja merkinn<E4>t}
 \markboth{}{}                                % no headers
 
-% You don't have to align these with whitespaces, but it makes the
+% You do not have to align these with whitespaces, but it makes the
 % .tex file more readable
 \begin{termlist}
 % \item [CC license] Creative Commons license
@@ -616,18 +616,19 @@ one type of service provisioning. \cite{rfc5608}.
 # #+END_QUOTE
 
 
-AAA-protocols don't dictate policies, ie. who is granted access or
+AAA-protocols do not dictate policies, i.e., who is granted access or
 what operations user is allowed to do. They only transport these information
 between client and authenticator server.
 EAP[first mentioned here!] is used to transfer only authentication
-messages, instead   of session keys. 
+messages, instead of an authorization information or session keys needed
+in the following message transfer. 
 # Used EAPs include...
 # + configuration information using RFC 2865
 # + RADIUS analysis seq...
 # +  See RADIUS fixes cite:rfc5080.
 
 If there are multiple RADIUS servers, the messages are chained and
-proxied always to next RADIUS server ie. proxying RADIUS server.
+proxied always to next RADIUS server, i.e.,   proxying RADIUS server.
 # proxied from NAS via proxying RADIUS servers  to the end point which 
 # makes the true decision about Authenticity and Access (A-A).
 In the following Chapters it is discussed how proxying servers take 
@@ -713,9 +714,9 @@ responsible for opening access for EAP peer. This work uses EAP type of EAP-SIM.
   |    EAP     +<------------------------------->+     EAP      |
   | framework  |                                 |  framework   |
   |            |         +-------------+         |              |
-  |            |         |Authenticator|         |              |
-  +------------+         +-----+-------+         +--------------+
-  |            |  EAPOL  |     |       |  RADIUS |              |
+  |            |  EAP    |Authenticator|  EAP    |              |
+  +------------+ over LAN+-----+-------+  over   +--------------+
+  |            | (EAPOL) |     |       |  RADIUS |              |
   | supplicant +<------->+EAPOL|RADIUS +<------->+ RADIUS server|
   |            |         +-----+-------+         |              |
   +------------+                                 +--------------+
@@ -754,7 +755,7 @@ EAP-AKA, or EAP-AKA'(AKA-PRIME).
 EAP-SIM is the original type created for GSM networks. It is defined 
 in RFC4186 \cite{rfc4186}.
 It is challenge-response method and similar to AuthN used in GSM, 
-but EAP-SIM adds mutual AuthN ie. also the network is authenticated.
+but EAP-SIM adds mutual AuthN, i.e.,   also the network is authenticated.
 # before smartphone sends its first identification message.
 In EAP-SIM, client sends a nonce, which is by definition a
 value used only once, and that must be received back
@@ -891,6 +892,7 @@ message 7 whether RAND values from operator were digested with correct NONCE.
 # Network authenticates itself to EAP-client by sending correct
 # responses to client's challenge  and after that 
 # client tries to authenticate to network.
+[find the source or remove. ] 
 Yet some documents claim, that EAP-SIM does not provide mutual AuthN, so what
 can be the case? Perhaps they mean, that mutual AuthN is not provided between
 mobile and RADIUS servers. Another explanation is, that in AKA
@@ -973,7 +975,7 @@ really is the first layer to be fixed.
 #  certificates) without trust not possible.]
 
 
-Even without trust, some form of secure key-exchange is achievable
+Even without trust, some form of secure asymmetric key-exchange is achievable
 with Diffie-Hellman key-exchange \cite{diffie1976new}. Unfortunately, it is vulnerable
 to Man-in-the-middle(MitM) attacks, where protocol does not notice, 
 if messaging goes through third party, which inpersonates itself to 
@@ -983,7 +985,7 @@ read encrypted messages.
 # [explain or cite], but
 # without trust,
 # communicating devices are 
-With trust set between two devices, ie. if they can securely
+With trust set between two devices, i.e.,  if they can securely
 authenticate each other, secret communication is possible. 
 Secure network configuration and credential exchange is then possible.
 # [use citation of
@@ -1001,7 +1003,7 @@ authenticator  can deliver this information further and use it as a
 EAP-SIM derivatives provide strong AuthN which means here two-factor
 AuthN. Software certificates, while stronger than regular passwords,
 do not possess properties /non-copiable/ or /unique/, so they can only
-be considered as strong passwords and they don't full-fill 
+be considered as strong passwords and they do not full-fill 
 requirement for two-factor AuthN.
 If we nonetheless were using software certificates with method such as
 EAP-TLS, then the certificates (for CA and client) and the private key
@@ -1156,7 +1158,8 @@ the bootstrapping phase to setup the CA trust anchor.  The public key
 cryptography is processor intensive and its asymmetric keys are
 usually used just in the beginning of communication. There they can be
 used to securely negotiate symmetric keys which allow faster
-cryptography processing. [source?]
+cryptography processing. 
+# [source not needed. is well known fact]
 # Rest of gba:
 
 # *** Ticket based, separate authentication and authorization
@@ -1212,7 +1215,7 @@ if synchronizing algorithms such as Trickle  \cite{rfc6206}
 for code propagation are used in homenet.
 Configuration also includes configuring power level setting of devices to save electricity
 based on usage profile. For example at nights or when there are nobody
-home, some devices don't need to be working at their maximum
+home, some devices do not need to be working at their maximum
 capacity. Instead, we study interface of AAs.
 Main points here are existing infrastructure (phones, Internet access, Wi-Fi
 access points), strong authentication (two-factor), and existing
@@ -1302,7 +1305,7 @@ The smartphone connects
  with Wi-Fi link to access point (AP) in homenet.
  AP functions there as an authenticator.
 Trusted connection is needed between existing network and Local
-Controller ie. homenet and local controller need to trust each other.
+Controller, i.e.,   homenet and local controller need to trust each other.
 Smartphone will approve changes for homenet and is part of bootstrapping
 new infrastructure.
 
@@ -1351,7 +1354,7 @@ studied further in another work.
 
 Caller ID as an authentication method uses GSM-network's controlling
 channels. When a phone makes a call, the receiving end gets 
-to know callers phone number (ie. IMSI) before it answers the call.
+to know callers phone number (IMSI) before it answers the call.
 That information is called Caller ID and it has been is use
 successfully for some door locking implementations. 
 It does not cost anything for caller or responder,
@@ -1407,9 +1410,9 @@ by limiting which tele operators are allowed to connect.
 # *** fed services. VERY draft
 European Telecommunications Standards Institute (ETSI) defines
 standard for mobile signature services (MSS) in ETSI TS 102 204.
-MNO's in Finland have implemented this as a Mobiilivarmenne
-service. 
-For example, Sonera's brand for  it is ``Sonera ID'' while Elisa calls it
+MNO's in Finland have implemented this as a 
+service called ``Mobiilivarmenne``. 
+For example, MNO Sonera's brand for  it is ``Sonera ID'' while MNO Elisa calls it
 ``Elisa Mobiilivarmenne''.
 # No references (Open) available 
 #
@@ -1484,8 +1487,11 @@ Such a device could be sent direct to customer with pre-configured
 secrets and methods to take a place as a trust anchor. 
 That leads us again to key distribution problem.
 
-
-
+There is also lying NAS problem: the authenticator may present some 
+information to the authentication server and other to the EAP-peer.
+Mitigation for that is, that EAP-peer includes some 
+characteristics of the authenticator inside its EAP-message, which
+then the authentication server verifies \cite[rfc6677]{rfc6677}.
 
 
 # ***  How can trust be achieved with the phone?
@@ -1513,7 +1519,7 @@ has been distributed to many homes from the cable modem operator Elisa, was foun
 #  that use it as cable modem 
 # connectivity for cable TV and radio broadcasting. There Wi-Fi did 
 Additionally, managing user's SIM-card has to be registered as an admin user in homenet 
-configuration i.e. IMSI must belong to admin group.
+configuration, i.e. IMSI must belong to admin group.
 In this implementation, no extra application is needed in smartphone
 for primitive trust, but later for more serious use some application is needed.
 For added functionality, for example for logging admins out, OpenWRT
@@ -1891,6 +1897,7 @@ AuthN, and AuthZ are marked as (I) for internal or (E) for external.
 
 
 # [Protocol analysis with help of BAN-logic?]
+
 
 # *** Scenario I: AuthN from MNO, which uses BaaS for AuthZ
 <<scenario-i>>
@@ -2668,7 +2675,7 @@ authenticator may send new ACCESS-REQUEST to RADIUS server.
 
 But that would eliminate direct authenticate-only RADIUS cases
   [ /were there/
- /any? I don't remember what I meant/
+ /any? I do not remember what I meant/
  /by this. Maybe that we needed only/
  /to have authentication for access/ 
  /which in turn enables modifications/ ]
@@ -3222,7 +3229,7 @@ RADIUS-protocol itself provides some integrity checks.
 RADIUS messages are protected from basic message injection without
 previous knowledge by those integrity checks, which use session
 secrets, hashes and exclusive OR-function (XOR).
-#  [source here, don't invent or explain RADIUS if not needed]
+#  [source here, do not invent or explain RADIUS if not needed]
 # See RADIUS fixes (rfc5080 cite:rfc5080.)
 
 
@@ -3433,8 +3440,66 @@ authenticated identity.
 
 
 # how the Sections below belong to discussion?  
-# * [MISC to be added on right places]
-# ** facts TBD.
+* [MISC to be added on right places]
+** facts TBD.
+- "most EAP authentication protocols lack two features: identity
+  protection and withstanding man- in-the-middle attacks. "
+source :
+
+Yuh-Min Tseng Department of Mathematics, National Changhua University of Education,
+Jin-De Campus, Chag-Hua City 500, Taiwan, ROC.
+
+"USIM-based EAP-TLS authentication protocol for
+wireless local area networks" 
+and 
+
+Wireless (In)Security www-page, where 
+EAP table shows that PEAP has MiTM.
+http://networking.ringofsaturn.com/Security/WirelessInSecurity.php
+
+- re-auth for long-lived sessions or if there is cost for disrupting them
+- APs provide different authentication suites for different 
+SSIDs 
+#+BEGIN_EXAMPLE
+
+essid="nurkka"
+          IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+essid="simtest"
+          IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : 802.1x
+
+
+#+END_EXAMPLE
+** using EAP for other than network access, i.e., for application auth.
+- http://www.rfc-editor.org/rfc/rfc7057.txt
+ - EAP
+- application as an EAP peer
+- RFC6677: Channel-Binding Support for Extensible Authentication Protocol (EAP)
+- channel binding must be used 
+
+** eap-psk rfc4764.txt
+- other limitations than identity protection are password support and Perfect Forward Secrecy (PFS).
+- eap-psk
+- only 3 standards track EAP methods per IETF terminology,
+but all of them are deprecated (md5,OTP,GTC ja?)
+- some EAP- o  Essentially require additional infrastructure, e.g., EAP-SIM [24],
+      EAP-AKA [12], or OTP/token card methods like [31].
+
+
+** eap-sim acts similar than any other EAP challenge method (or not?)
+- compare eap-sim with other method and point out differences.
+- privacy already shown
+- user defined passwd? 
+- how many messages needed? In eap-sim 6+1 (success/failure)
+- to do comparison, I have to study how EAP in general works
+- authenticator for example can use either local method or
+  pass-through the authentication to external backend, still keeping
+  EAP-message in tact(sp?) as of  rfc4137
 # - EAP-SIM symmetric vs asymmetric parts 
 # - Can dual-SIM card be used? It has two physical devices, both ring
 #  at the same time, do they have mobiilivarmenne?
