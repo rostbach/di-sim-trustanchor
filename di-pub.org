@@ -126,16 +126,16 @@ Smartphone with its SIM card and existing key infrastructure to mobile network o
 % usual methods to authenticate still are plain username-password combinations.  
 
 
-Theory, how SIM-authentication works is presented and simulated environment
+A theory, how SIM-authentication works is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
-As a result it is shown, that SIM authentications benefits are strong
+As a result it is shown, that SIM authentication's benefits are strong
 authentication and existing user-base, while its disadvantages include
 dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications.
 
-Principle has been to reuse existing techniques when combining them to such new area as homenet and delegated management.
+Principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA enterprise has been chosen, which includes RADIUS environment.
 To further avoid complexity and granularity, we
-only use simple model of management network. Getting in to management network is carried out at homenet via EAP-SIM authentication and it is the key element of the thesis.
+only use a simple model of management network. Getting in to management network is carried out at homenet via EAP-SIM authentication and it is the key element of the thesis.
 
 
 
@@ -357,23 +357,23 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 
 
 Earlier it was sufficient to make just minimal settings at home to
-modem (cable, phone or radio) and connect it to
-the home computer. That enabled fully working home network
+a modem (cable, phone or radio) and connect it to
+the home computer. That enabled a fully working home network
 with Internet connectivity.  Now homenet has expanded with countless
 devices available.
 Already entertainment centers (AV-amplifiers, media players, gameconsoles),
 manageable network devices (switches/routers), and mobile phones
-present new devices beside computers and printer.
+present new devices beside computers and printers.
  
 # Configuration of the devices 
-Connecting these to the net have become more complex, even at home.
-Persons, who are allowed to make configuration changes are often
-limited only by simple password authentication and physical precence
-near configured network device.
+Connecting these devices to the net has become more complex, even at home.
+Persons, who are allowed to make configuration changes, are often
+authenticated only by simple password  and physical precence
+near the configured network device.
  Sensor and controller devices from Internet of Things domain bring
 their own increment to the device count and their owner may not
-necessarily be the same than the home owner so there will be a need to
-delegate management of homenet to multiple owners.  
+necessarily be the same than the home owner, so there will be a need to
+delegate management of the homenet to multiple owners.  
 
 
 # same thing, other words:
@@ -393,18 +393,17 @@ delegate management of homenet to multiple owners.
 
 # CLOUD away
 There will be a market for an external consultant service, which could
-remotely operate the homenet for example through service in the cloud. 
-
+remotely operate the homenet for example through a service in a cloud. 
 # That delegation is planned to be provided from outside the home as a
 # service running in the Internet, and it is often referenced as a cloud
 # service.  
 The service provider therefore does not need to have direct data
-access to home but only to the cloud based service for to be able to
+access to home but only to the cloud based service in order to be able to
 manage homenet devices.
 Consultant service is not the only possible delegation for homenet.
 Homenet can be divided to multiple segments that each have
 their own administrative parties. For example electricity company may
-have sensor and controller network physically inside the homenet, but
+have a sensor and controller network physically inside the homenet, but
 logically separated from other parts of homenet. It is then
 important to keep track of who is allowed to access which part of the homenet.
 Eliminating the need for 
@@ -434,31 +433,35 @@ regarding security, not only to overcome firewalls, NATs, and disconnections.
 # from \cite{hav-doc}.
 Those security issues must be solved before delegation in the cloud can
 happen. One of them is the authentication and authorization 
-from the cloud to homenet.
-To secure the connection from cloud service (controller)
+from the cloud to the homenet.
+To secure the connection from the cloud service (controller)
 to the homenet, there needs to be a common trust between each end
 point and the research problem here is how to enable the trust between the
 controller and the homenet.  
 
 Any encryption between devices needs trusted key exchange
-beforehand and finding and establishing trust is needed for that.
-Human aspect and usability also are important. Proposed model should
-take people less effort than current methods of distributing user
+beforehand, and finding and establishing trust is needed for that.
+Human aspect and usability also are important. The proposed model should
+require less effort than the current methods of distributing user
 credentials, finding the place where they can be inserted, and
-ensuring that they are written correctly. [write more clear and
-mention key distribution problem.]
+ensuring that they are written correctly. 
+[write more clear and mention key distribution problem.]
 The place where trust is not anymore derived or built upon other 
 fact, but assumed to be present is called a trust anchor.
+The trust can be derived from facts that already are known.
+The trust anchor is the fact, state or place, where derivation is
+done no more, but accepted per se.
+
 #  Anchoring must be set somewhere, 
 # is When Trust can be anchored to an entity 
 
-Main focus is on authentication and authorization part of
-homenet management with smart phone as trust anchor.
+The main focus is on authentication and authorization part of
+the homenet management with smart phone as trust anchor.
 # Trust anchor is 
 Trust model, which benefits from smartphone's unique,
-existing secret keys inside smart card Subscriber Identify Module
-(SIM) is proposed. 
-SIM here means keys and application in SIM or USIM inside UICC card. 
+existing secret keys inside the smart card Subscriber Identify Module
+(SIM), is proposed. 
+SIM here means the keys and the application in SIM or USIM inside UICC card. 
 Besides that, problems such as limited connectivity are studied. 
 
 # although the correct term were SIM card with application and keys on
@@ -470,8 +473,8 @@ Besides that, problems such as limited connectivity are studied.
 Why SIM-based methods are not in wider use is one motivator to this
 work.  The technology has been there for more than ten years and
 hardware and applications already support it, but it still is not yet
-widely used.  Could there exist a light method to use SIM?  Combining
-existing techniques, thesis presents one possible way to bind the
+widely used.  Could there exist a light method to use the SIM?  Combining
+existing techniques, this thesis presents one possible way to bind the
 trust to the SIM, which then would function as a trust anchor. To
 generally find ultimate trust it is only needed to verify trust chains
 until the chain reaches a trust anchor.
@@ -481,7 +484,7 @@ until the chain reaches a trust anchor.
 # HRL-AUC-Gateway, OpenWRT, and WPA.
 
 
-Thesis is divided as follows: Chapter [[#cha:aaa]] explains Authentication-Authorization model.
+The thesis is structured as follows: Chapter [[#cha:aaa]] explains the authentication-authorization model.
 Chapter [[#cha:management]] describes security in current homenet architecture and 
 current practices for configuring it.
 # used configuration model of homenet and
@@ -489,17 +492,17 @@ current practices for configuring it.
 # Used roles and ways to change between them are presented in Chapter
 # [[#cha:roles]].
  Chapter [[#cha:design]]
-discusses methods to bring trust anchor in the homenet and explains
+discusses methods to bring a trust anchor in the homenet and explains
 the chosen method.
 # different scenarios for authorization.  
-One specially crafted problem is how any scenario presented can be
+One specially crafted problem is how the scenarios presented here can be
 tested without knowing SIM card's secret keys and without real phone
 operator involved.  Those experiments are described in Chapter
 [[#cha:simu]].
 # [Simulation of authentication between SIM-card and mobile operator
 # is shown and analyzed on Chapter [[#cha:simu]].
 # Security analysis is
-Results are discussed on Chapter  [[#cha:discussion]] and Chapter [[#cha:conclusion]] concludes the
+Results are discussed on Chapter [[#cha:discussion]] and Chapter [[#cha:conclusion]] concludes the
 thesis.
 
 
@@ -512,7 +515,7 @@ thesis.
 
 # ------------------------------------------------
 # AAA 
-* Authentication, Authorization, and Trust.  
+* Authentication, Authorization, and Trust
 # [Theory Chapter: AAA]
 :PROPERTIES:
 :CUSTOM_ID: cha:aaa
@@ -531,17 +534,17 @@ thesis.
 Authentication, authorization, and accounting services (AAA) are
 components for access management. Of these only first two A's are used
 here and later described as AA services. Authentication (AuthN)
-answers how to identify users and proof that they really are
+answers how to identify users and prove that they really are
 who they claim to be. Authorization (AuthZ) answers what operations
-identified users are allowed to do and forces usage policy. The rest of the thesis uses
+the identified users are allowed to do and forces usage policy. The rest of the thesis uses
 shortened terms AuthN and AuthZ.
 
 On very small environments AA service is built on static backend such
-as file on protected target that object wants to access. There AuthN
-is checked against credentials file and authorization from service
+as file on protected target that the object wants to access. There AuthN
+is checked against a credentials file and authorization from a service
 specific policy file. 
 #  Examples include ...
-To be more exact, identification preceding authentication is part,
+To be more exact, identification preceding authentication is the part,
 # of the access control process. Identification is part of AuthN
 # and it is the process
 where entity claims and presents its identity to 
@@ -560,8 +563,8 @@ point is called a trust anchor.
 control.
  Network access through specific port is
 restricted (controlled) from client (called Supplicant) before
-client has successfully performed AA. 802.1X device, where controlled ports
-are located, is called an authenticator. Third part in 802.1X is an
+client has successfully performed AA. The 802.1X device, where the  controlled ports
+are located, is called an authenticator. Third party in 802.1X is an
 authentication server. Authenticator may consult external RADIUS
 server for authentication requests. 
 
@@ -583,8 +586,7 @@ authentication server handles AA processes.
 ** RADIUS 
 <<sec:radius>>
 RADIUS is the most popular provider for
-AAA-services \cite[p.75]{radius-popular}.  It was used first for
-with remote terminal and dial-up modem users, hence the name Remote
+AAA-services \cite[p.75]{radius-popular}.  It was used first with remote terminal and dial-up modem users, hence the name Remote
 Authentication Dial-In User Service. Later is was used as centralized AAA
 for networking devices such as switches and routers.  Currently its
 main environment at home and SMEs (Small and Medium-sized Enterprises) is
@@ -597,12 +599,12 @@ networks.
 # authentication server. Of those, 
 
 Here RADIUS-server takes role of authentication server.
-RADIUS-protocol is stateless, request-response type client-server
+RADIUS-protocol is a stateless, request-response type client-server
 protocol.  RADIUS messages used for ACCESS are (ACCESS-REQUEST,
 ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). ACCESS
 messaging-flow includes AuthN and AuthZ. When both AuthN and AuthZ
 succeeds, ACCESS-ACCEPT message is sent back to Authenticator and
-access is granted to protected port.  Besides authentication, other
+access is granted to the protected port.  Besides authentication, other
 service parameters such as provisioning can be included in
 ACCESS-ACCEPT message. In essence, AuthZ part itself can be thought as
 one type of service provisioning. \cite{rfc5608}.
@@ -647,7 +649,7 @@ places \cite{rfc2607}.
 ** WPA
 
 Wireless protected access (WPA) protects traffic in wireless,
-shared media, where everyone can simple listen the traffic on
+shared media, where everyone can simply listen the traffic on
 radio waves. It allows both authenticated access and message
 encryption.
 # WPA consist of client (WPA-supplicant), Authenticator, and Authentication Server.
@@ -690,7 +692,7 @@ extended with modular Extensible Authentication Protocol (EAP)
 framework \cite{rfc5247}. EAP has types for example for hashed
 passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
 
-It must be noted that EAP tells only messaging form, so it needs
+It must be noted that EAP tells only the messaging form, so it needs
 to be encapsulated inside another protocol.  In Wi-Fi, between
 smartphone and access point, EAP is encapsulated into 802.1X protocol
 (EAPOL) or into TLS protected PEAP (Protected EAP) \cite{peap} before
@@ -737,32 +739,30 @@ responsible for opening access for EAP peer. This work uses EAP type of EAP-SIM.
 
 ** SIM-based authentication
 <<sec:sim-based-auth>>
-MNO and SIM trusts mutual each other.
+MNO and SIM trust mutually each other.
 There is still need for separate access credentials for Wi-Fi and
-that was the reason of developing EAP-SIM and later derivatives
+that was the reason of developing EAP-SIM and later the derivatives
 EAP-AKA and EAP-AKA'.
 The goal was to combine in a secure way existing GSM keys for Wi-Fi
 access. Existing general purpose EAP-methods in 2004 were not
 compatible with GSM protocols for this purpose. \cite[p.93]{hav-doc}
-
 # [More security stuff, operator-specific parts in AKA', explained here
 # if not already compared earlier. Just clarify the main points,
 # compare weaknesses with strengths]
-
 # SIM can be used via EAP-types EAP-SIM \cite{rfc4186},
 # EAP-AKA \cite{rfc4187} or EAP-AKA'(AKA-PRIME) \cite{rfc5448}.  
 # [ Write out this list]
 SIM can be used via EAP-types EAP-SIM,
 EAP-AKA, or EAP-AKA'(AKA-PRIME).
 
-EAP-SIM is the original type created for GSM networks. It is defined 
+EAP-SIM is the original type created for GSM networks and defined 
 in RFC4186 \cite{rfc4186}.
-It is challenge-response method and similar to AuthN used in GSM, 
-but EAP-SIM adds mutual AuthN, i.e.,   also the network is authenticated.
+It is a challenge-response method and similar to AuthN used in GSM, 
+but adds mutual AuthN, i.e., also the network is authenticated.
 # before smartphone sends its first identification message.
 In EAP-SIM, client sends a nonce, which is by definition a
 value used only once, and that must be received back
-in correct form in network's  signature response. 
+in a correct form in a network's signature response. 
 
 Authentication server generates challenge with aid of
 triplet from MNO.
@@ -802,18 +802,18 @@ in the key derivation function. Additionally, digests use SHA-256
 function instead of SHA-1.
 
 
-  Using EAP-SIM means using secret key inside SIM card with A3/A8
+  Using EAP-SIM means using the secret key inside SIM card with A3/A8
 algorithms to generate valid responses for challenges coming from MNO
-and to derive session keys.  Algorithms used (A3/A8) and their
+and to derive session keys.  The algorithms used (A3/A8) and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
-interest in this work besides the point that they are mobile operator
+interest in this work beside the point that they are mobile operator
 specific or known reference algorithms.
 #  (algorithms not explained here further) 
-Algorithm used in demo was internal GSM-Milenage for EAP-SIM,
+The algorithm used in the demo was internal GSM-Milenage for EAP-SIM,
 #  A3/A8, although it was possible to use
 # also newer algorithm MILENAGE,
 # A3/A8 algorithm used in demo is called MILENAGE, 
-which is a reference implementation and as such suitable for  operators who do not 
+which is a reference implementation and as such suitable for operators, who do not 
 want to invent their own security algorithms. 
 # In configuration files,
 # parameters for MILENAGE can be seen, but they were not used.
@@ -825,14 +825,14 @@ want to invent their own security algorithms.
 
 # Using EAP-SIM is in many parts simpler to mobile client.  
 In many parts, SIM variants in EAP are simpler, than other EAP
-variants to mobile client.  Table[[table-peapsim]] compares setup of Wi-Fi
-in clients of one some existing organization compared to EAP-SIM. It
+variants to mobile client.  Table[[table-peapsim]] compares the setup of Wi-Fi
+in clients of one existing organization compared to EAP-SIM. It
 is noteworthy, that plain EAP-SIM will not support identity hiding and
 that will be later be discussed further. If we add PEAP \cite{peap}
 also to EAP-SIM, comparison will be more fair.
 # . [combine this to identity privacy text].  
-As can be seen from table, leaving certificates out from environment
-makes client setup easier with price of revealing smartphone user's
+As can be seen from the table, leaving certificates out from the environment
+makes client setup easier with the price of revealing smartphone user's
 identity.  
 
 
@@ -878,17 +878,16 @@ Unique identifier for SIM is IMSI (International Mobile Subscriber
 Identity, 15 digits long, more familiar user's phone number.
 From the diagram we can see, that IMSI is
 revealed in message 2 in plain-text. Later, after session has been
-set, IMSI may be left out and temporal IMSI (TMSI) can be used,
+set, IMSI may be left out and a temporal IMSI (TMSI) can be used,
 to hide client's identity.
 #  client can use pseudonym to
 # hide its identity.
 
 All EAP-SIM derivatives provide mutual authentication. Without NONCE
-in message 4, that would not be possible. NONCE is by definition, once
-used random string or number.
+in message 4, that would not be possible. 
  Client challenges the network by
-sending NONCE during start of the negotiation phase. It later checks in
-message 7 whether RAND values from operator were digested with correct NONCE.
+sending NONCE during the start of the negotiation phase. It later checks in
+message 7 whether RAND values from the operator were digested with correct NONCE.
 
 # Network sends 
 # Client send to network 
@@ -898,9 +897,9 @@ message 7 whether RAND values from operator were digested with correct NONCE.
 [find the source or remove. ] 
 Yet some documents claim, that EAP-SIM does not provide mutual AuthN, so what
 can be the case? Perhaps they mean, that mutual AuthN is not provided between
-mobile and RADIUS servers. Another explanation is, that in AKA
-and AKA' network is authenticated in very early phase with help of operator specific
-symmetric keys, which are also inside SIM.
+the mobile client  and RADIUS servers. Another explanation is, that in AKA
+and AKA' the network is authenticated in a very early phase with the
+help of operator specific symmetric keys, which are also inside SIM.
 
 # #+BEGIN_LaTeX
 # \vfill
@@ -963,10 +962,11 @@ symmetric keys, which are also inside SIM.
 # sections)
 ** Trust
 
-Trust is the base.
-Secure communication has many layers. On its base lies trust. Without
-trust there is little help with any added encryption or
-secrecy. Setting trust is usually not an easy task, but only after
+# Trust is the base.
+Secure communication has many layers and on its base lies trust. Without
+trust, any added encryption or secrecy loses its value. 
+# there is little help with any added encryption or secrecy. 
+Setting trust is usually not an easy task, but only after
 completing that phase it is meaningful to complete the other security
 layers.
 For example, secret keys enable encrypted communication, but the keys need to be
@@ -1005,7 +1005,7 @@ authenticator  can deliver this information further and use it as a
 
 EAP-SIM derivatives provide strong AuthN which means here two-factor
 AuthN. Software certificates, while stronger than regular passwords,
-do not possess properties /non-copiable/ or /unique/, so they can only
+do not possess the properties /non-copiable/ or /unique/, so they can only
 be considered as strong passwords and they do not full-fill 
 requirement for two-factor AuthN.
 If we nonetheless were using software certificates with method such as
@@ -1017,8 +1017,8 @@ to achieve.
 ** Need for Security bootstrapping -> in Chapter 
  [removed, NOT YET trust anchor methods HERE!!! ]
 
-# Bootstrapping protocols are used to bring first trust anchor in an
-# environment and use that device to attach other devices to same trust
+# Bootstrapping protocols are used to bring the first trust anchor in an
+# environment and use that device to attach other devices to the same trust
 # circle.
 
 #  [Evaluating and comparing bootstrapping methods and authentication.
