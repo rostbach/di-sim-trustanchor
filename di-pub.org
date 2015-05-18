@@ -108,7 +108,13 @@
 [what was the problem, what was done, and what are the results. ]
 % Do not include charts or tables in the abstract.
 
-Existing work done at TUT for delegated homenet configuration
+% To benefit from mobile identification
+To benefit from mobile identification ist is shown how
+%It is discussed and shown how mobile authentication 
+it is done using extendable authentication profile (EAP) with SIM-card. 
+
+
+[Existing work done at TUT for delegated homenet configuration...]
 currently has preliminary authentication and access model using
 pre-defined credentials and SSH-connection from 
 controller device to configuration targets. It misses the bootstrap of 
@@ -118,9 +124,6 @@ Smartphone with its SIM card and existing key infrastructure to mobile network o
 %  preset trusted and secured  key distribution,  
 %Although mobile phone provides alternative authentication method with its SIM key, 
 % usual methods to authenticate still are plain username-password combinations.  
-% To benefit from mobile identification
-It is discussed and shown how mobile authentication is done
-using extendable authentication profile (EAP) with SIM-card. 
 
 
 Theory, how SIM-authentication works is presented and simulated environment
@@ -256,10 +259,10 @@ Teemu Teekkari
 \item [URL]    Uniform Resource Locator
 \item[3GPP] $3^{rd}$ Generation Partnership Project
 \item[AAA] Authentication, Authorization, Accounting
-\item[AKA] Authentication and Key Agreement, used in 3GPP mobile networks 
+\item[AKA] Authentication and Key Agreement %, used in 3GPP mobile networks 
 \item[AUC] AUthentication Center
-\item[CPE] Customer Premise Equipment, device physically located at customers home.
-\item[EAP] Extensible Authentication Protocol, extends 802.1X
+\item[CPE] Customer Premise Equipment %, device physically located at customers home.
+\item[EAP] Extensible Authentication Protocol %, extends 802.1X
 \item[GAA] Generic Authentication Architecture % (for SSO)
 \item[GBA] Generic Bootstrapping Architecture
 \item[GSM] Global System for Mobile Communication (earlier Groupe Spécial Mobile)
