@@ -126,16 +126,16 @@ Smartphone with its SIM card and existing key infrastructure to mobile network o
 % usual methods to authenticate still are plain username-password combinations.  
 
 
-Theory, how SIM-authentication works is presented and simulated environment
+A theory, how SIM-authentication works is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
-As a result it is shown, that SIM authentications benefits are strong
+As a result it is shown, that SIM authentication's benefits are strong
 authentication and existing user-base, while its disadvantages include
 dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications.
 
-Principle has been to reuse existing techniques when combining them to such new area as homenet and delegated management.
+Principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA enterprise has been chosen, which includes RADIUS environment.
 To further avoid complexity and granularity, we
-only use simple model of management network. Getting in to management network is carried out at homenet via EAP-SIM authentication and it is the key element of the thesis.
+only use a simple model of management network. Getting in to management network is carried out at homenet via EAP-SIM authentication and it is the key element of the thesis.
 
 
 
