@@ -962,10 +962,11 @@ help of operator specific symmetric keys, which are also inside SIM.
 # sections)
 ** Trust
 
-Trust is the base.
-Secure communication has many layers. On its base lies trust. Without
-trust there is little help with any added encryption or
-secrecy. Setting trust is usually not an easy task, but only after
+# Trust is the base.
+Secure communication has many layers and on its base lies trust. Without
+trust, any added encryption or secrecy loses its value. 
+# there is little help with any added encryption or secrecy. 
+Setting trust is usually not an easy task, but only after
 completing that phase it is meaningful to complete the other security
 layers.
 For example, secret keys enable encrypted communication, but the keys need to be
