@@ -1005,7 +1005,7 @@ authenticator  can deliver this information further and use it as a
 
 EAP-SIM derivatives provide strong AuthN which means here two-factor
 AuthN. Software certificates, while stronger than regular passwords,
-do not possess properties /non-copiable/ or /unique/, so they can only
+do not possess the properties /non-copiable/ or /unique/, so they can only
 be considered as strong passwords and they do not full-fill 
 requirement for two-factor AuthN.
 If we nonetheless were using software certificates with method such as
@@ -1017,8 +1017,8 @@ to achieve.
 ** Need for Security bootstrapping -> in Chapter 
  [removed, NOT YET trust anchor methods HERE!!! ]
 
-# Bootstrapping protocols are used to bring first trust anchor in an
-# environment and use that device to attach other devices to same trust
+# Bootstrapping protocols are used to bring the first trust anchor in an
+# environment and use that device to attach other devices to the same trust
 # circle.
 
 #  [Evaluating and comparing bootstrapping methods and authentication.
