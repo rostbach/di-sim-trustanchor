@@ -495,14 +495,14 @@ current practices for configuring it.
 discusses methods to bring a trust anchor in the homenet and explains
 the chosen method.
 # different scenarios for authorization.  
-One specially crafted problem is how any scenario presented can be
+One specially crafted problem is how the scenarios presented here can be
 tested without knowing SIM card's secret keys and without real phone
 operator involved.  Those experiments are described in Chapter
 [[#cha:simu]].
 # [Simulation of authentication between SIM-card and mobile operator
 # is shown and analyzed on Chapter [[#cha:simu]].
 # Security analysis is
-Results are discussed on Chapter  [[#cha:discussion]] and Chapter [[#cha:conclusion]] concludes the
+Results are discussed on Chapter [[#cha:discussion]] and Chapter [[#cha:conclusion]] concludes the
 thesis.
 
 
