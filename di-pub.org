@@ -515,7 +515,7 @@ thesis.
 
 # ------------------------------------------------
 # AAA 
-* Authentication, Authorization, and Trust.  
+* Authentication, Authorization, and Trust
 # [Theory Chapter: AAA]
 :PROPERTIES:
 :CUSTOM_ID: cha:aaa
@@ -534,17 +534,17 @@ thesis.
 Authentication, authorization, and accounting services (AAA) are
 components for access management. Of these only first two A's are used
 here and later described as AA services. Authentication (AuthN)
-answers how to identify users and proof that they really are
+answers how to identify users and prove that they really are
 who they claim to be. Authorization (AuthZ) answers what operations
-identified users are allowed to do and forces usage policy. The rest of the thesis uses
+the identified users are allowed to do and forces usage policy. The rest of the thesis uses
 shortened terms AuthN and AuthZ.
 
 On very small environments AA service is built on static backend such
-as file on protected target that object wants to access. There AuthN
-is checked against credentials file and authorization from service
+as file on protected target that the object wants to access. There AuthN
+is checked against a credentials file and authorization from a service
 specific policy file. 
 #  Examples include ...
-To be more exact, identification preceding authentication is part,
+To be more exact, identification preceding authentication is the part,
 # of the access control process. Identification is part of AuthN
 # and it is the process
 where entity claims and presents its identity to 
