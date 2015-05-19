@@ -357,8 +357,8 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 
 
 Earlier it was sufficient to make just minimal settings at home to
-modem (cable, phone or radio) and connect it to
-the home computer. That enabled fully working home network
+a modem (cable, phone or radio) and connect it to
+the home computer. That enabled a fully working home network
 with Internet connectivity.  Now homenet has expanded with countless
 devices available.
 Already entertainment centers (AV-amplifiers, media players, gameconsoles),
