@@ -692,7 +692,7 @@ extended with modular Extensible Authentication Protocol (EAP)
 framework \cite{rfc5247}. EAP has types for example for hashed
 passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
 
-It must be noted that EAP tells only messaging form, so it needs
+It must be noted that EAP tells only the messaging form, so it needs
 to be encapsulated inside another protocol.  In Wi-Fi, between
 smartphone and access point, EAP is encapsulated into 802.1X protocol
 (EAPOL) or into TLS protected PEAP (Protected EAP) \cite{peap} before
@@ -739,28 +739,26 @@ responsible for opening access for EAP peer. This work uses EAP type of EAP-SIM.
 
 ** SIM-based authentication
 <<sec:sim-based-auth>>
-MNO and SIM trusts mutual each other.
+MNO and SIM trust mutually each other.
 There is still need for separate access credentials for Wi-Fi and
-that was the reason of developing EAP-SIM and later derivatives
+that was the reason of developing EAP-SIM and later the derivatives
 EAP-AKA and EAP-AKA'.
 The goal was to combine in a secure way existing GSM keys for Wi-Fi
 access. Existing general purpose EAP-methods in 2004 were not
 compatible with GSM protocols for this purpose. \cite[p.93]{hav-doc}
-
 # [More security stuff, operator-specific parts in AKA', explained here
 # if not already compared earlier. Just clarify the main points,
 # compare weaknesses with strengths]
-
 # SIM can be used via EAP-types EAP-SIM \cite{rfc4186},
 # EAP-AKA \cite{rfc4187} or EAP-AKA'(AKA-PRIME) \cite{rfc5448}.  
 # [ Write out this list]
 SIM can be used via EAP-types EAP-SIM,
 EAP-AKA, or EAP-AKA'(AKA-PRIME).
 
-EAP-SIM is the original type created for GSM networks. It is defined 
+EAP-SIM is the original type created for GSM networks and defined 
 in RFC4186 \cite{rfc4186}.
-It is challenge-response method and similar to AuthN used in GSM, 
-but EAP-SIM adds mutual AuthN, i.e.,   also the network is authenticated.
+It is a challenge-response method and similar to AuthN used in GSM, 
+but adds mutual AuthN, i.e., also the network is authenticated.
 # before smartphone sends its first identification message.
 In EAP-SIM, client sends a nonce, which is by definition a
 value used only once, and that must be received back
@@ -804,18 +802,18 @@ in the key derivation function. Additionally, digests use SHA-256
 function instead of SHA-1.
 
 
-  Using EAP-SIM means using secret key inside SIM card with A3/A8
+  Using EAP-SIM means using the secret key inside SIM card with A3/A8
 algorithms to generate valid responses for challenges coming from MNO
-and to derive session keys.  Algorithms used (A3/A8) and their
+and to derive session keys.  The algorithms used (A3/A8) and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
-interest in this work besides the point that they are mobile operator
+interest in this work beside the point that they are mobile operator
 specific or known reference algorithms.
 #  (algorithms not explained here further) 
-Algorithm used in demo was internal GSM-Milenage for EAP-SIM,
+The algorithm used in the demo was internal GSM-Milenage for EAP-SIM,
 #  A3/A8, although it was possible to use
 # also newer algorithm MILENAGE,
 # A3/A8 algorithm used in demo is called MILENAGE, 
-which is a reference implementation and as such suitable for  operators who do not 
+which is a reference implementation and as such suitable for operators, who do not 
 want to invent their own security algorithms. 
 # In configuration files,
 # parameters for MILENAGE can be seen, but they were not used.
