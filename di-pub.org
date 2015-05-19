@@ -563,8 +563,8 @@ point is called a trust anchor.
 control.
  Network access through specific port is
 restricted (controlled) from client (called Supplicant) before
-client has successfully performed AA. 802.1X device, where controlled ports
-are located, is called an authenticator. Third part in 802.1X is an
+client has successfully performed AA. The 802.1X device, where the  controlled ports
+are located, is called an authenticator. Third party in 802.1X is an
 authentication server. Authenticator may consult external RADIUS
 server for authentication requests. 
 
@@ -586,8 +586,7 @@ authentication server handles AA processes.
 ** RADIUS 
 <<sec:radius>>
 RADIUS is the most popular provider for
-AAA-services \cite[p.75]{radius-popular}.  It was used first for
-with remote terminal and dial-up modem users, hence the name Remote
+AAA-services \cite[p.75]{radius-popular}.  It was used first with remote terminal and dial-up modem users, hence the name Remote
 Authentication Dial-In User Service. Later is was used as centralized AAA
 for networking devices such as switches and routers.  Currently its
 main environment at home and SMEs (Small and Medium-sized Enterprises) is
@@ -600,12 +599,12 @@ networks.
 # authentication server. Of those, 
 
 Here RADIUS-server takes role of authentication server.
-RADIUS-protocol is stateless, request-response type client-server
+RADIUS-protocol is a stateless, request-response type client-server
 protocol.  RADIUS messages used for ACCESS are (ACCESS-REQUEST,
 ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). ACCESS
 messaging-flow includes AuthN and AuthZ. When both AuthN and AuthZ
 succeeds, ACCESS-ACCEPT message is sent back to Authenticator and
-access is granted to protected port.  Besides authentication, other
+access is granted to the protected port.  Besides authentication, other
 service parameters such as provisioning can be included in
 ACCESS-ACCEPT message. In essence, AuthZ part itself can be thought as
 one type of service provisioning. \cite{rfc5608}.
