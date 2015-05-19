@@ -831,8 +831,8 @@ is noteworthy, that plain EAP-SIM will not support identity hiding and
 that will be later be discussed further. If we add PEAP \cite{peap}
 also to EAP-SIM, comparison will be more fair.
 # . [combine this to identity privacy text].  
-As can be seen from table, leaving certificates out from environment
-makes client setup easier with price of revealing smartphone user's
+As can be seen from the table, leaving certificates out from the environment
+makes client setup easier with the price of revealing smartphone user's
 identity.  
 
 
