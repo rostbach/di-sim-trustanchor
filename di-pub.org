@@ -825,8 +825,8 @@ want to invent their own security algorithms.
 
 # Using EAP-SIM is in many parts simpler to mobile client.  
 In many parts, SIM variants in EAP are simpler, than other EAP
-variants to mobile client.  Table[[table-peapsim]] compares setup of Wi-Fi
-in clients of one some existing organization compared to EAP-SIM. It
+variants to mobile client.  Table[[table-peapsim]] compares the setup of Wi-Fi
+in clients of one existing organization compared to EAP-SIM. It
 is noteworthy, that plain EAP-SIM will not support identity hiding and
 that will be later be discussed further. If we add PEAP \cite{peap}
 also to EAP-SIM, comparison will be more fair.
