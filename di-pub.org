@@ -884,11 +884,10 @@ to hide client's identity.
 # hide its identity.
 
 All EAP-SIM derivatives provide mutual authentication. Without NONCE
-in message 4, that would not be possible. NONCE is by definition, once
-used random string or number.
+in message 4, that would not be possible. 
  Client challenges the network by
-sending NONCE during start of the negotiation phase. It later checks in
-message 7 whether RAND values from operator were digested with correct NONCE.
+sending NONCE during the start of the negotiation phase. It later checks in
+message 7 whether RAND values from the operator were digested with correct NONCE.
 
 # Network sends 
 # Client send to network 
