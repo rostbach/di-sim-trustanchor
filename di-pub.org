@@ -649,7 +649,7 @@ places \cite{rfc2607}.
 ** WPA
 
 Wireless protected access (WPA) protects traffic in wireless,
-shared media, where everyone can simple listen the traffic on
+shared media, where everyone can simply listen the traffic on
 radio waves. It allows both authenticated access and message
 encryption.
 # WPA consist of client (WPA-supplicant), Authenticator, and Authentication Server.
