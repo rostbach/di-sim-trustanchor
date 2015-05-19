@@ -393,18 +393,17 @@ delegate management of the homenet to multiple owners.
 
 # CLOUD away
 There will be a market for an external consultant service, which could
-remotely operate the homenet for example through service in the cloud. 
-
+remotely operate the homenet for example through a service in a cloud. 
 # That delegation is planned to be provided from outside the home as a
 # service running in the Internet, and it is often referenced as a cloud
 # service.  
 The service provider therefore does not need to have direct data
-access to home but only to the cloud based service for to be able to
+access to home but only to the cloud based service in order to be able to
 manage homenet devices.
 Consultant service is not the only possible delegation for homenet.
 Homenet can be divided to multiple segments that each have
 their own administrative parties. For example electricity company may
-have sensor and controller network physically inside the homenet, but
+have a sensor and controller network physically inside the homenet, but
 logically separated from other parts of homenet. It is then
 important to keep track of who is allowed to access which part of the homenet.
 Eliminating the need for 
@@ -434,31 +433,35 @@ regarding security, not only to overcome firewalls, NATs, and disconnections.
 # from \cite{hav-doc}.
 Those security issues must be solved before delegation in the cloud can
 happen. One of them is the authentication and authorization 
-from the cloud to homenet.
-To secure the connection from cloud service (controller)
+from the cloud to the homenet.
+To secure the connection from the cloud service (controller)
 to the homenet, there needs to be a common trust between each end
 point and the research problem here is how to enable the trust between the
 controller and the homenet.  
 
 Any encryption between devices needs trusted key exchange
-beforehand and finding and establishing trust is needed for that.
-Human aspect and usability also are important. Proposed model should
-take people less effort than current methods of distributing user
+beforehand, and finding and establishing trust is needed for that.
+Human aspect and usability also are important. The proposed model should
+require less effort than the current methods of distributing user
 credentials, finding the place where they can be inserted, and
-ensuring that they are written correctly. [write more clear and
-mention key distribution problem.]
+ensuring that they are written correctly. 
+[write more clear and mention key distribution problem.]
 The place where trust is not anymore derived or built upon other 
 fact, but assumed to be present is called a trust anchor.
+The trust can be derived from facts that already are known.
+The trust anchor is the fact, state or place, where derivation is
+done no more, but accepted per se.
+
 #  Anchoring must be set somewhere, 
 # is When Trust can be anchored to an entity 
 
-Main focus is on authentication and authorization part of
-homenet management with smart phone as trust anchor.
+The main focus is on authentication and authorization part of
+the homenet management with smart phone as trust anchor.
 # Trust anchor is 
 Trust model, which benefits from smartphone's unique,
-existing secret keys inside smart card Subscriber Identify Module
-(SIM) is proposed. 
-SIM here means keys and application in SIM or USIM inside UICC card. 
+existing secret keys inside the smart card Subscriber Identify Module
+(SIM), is proposed. 
+SIM here means the keys and the application in SIM or USIM inside UICC card. 
 Besides that, problems such as limited connectivity are studied. 
 
 # although the correct term were SIM card with application and keys on
@@ -470,8 +473,8 @@ Besides that, problems such as limited connectivity are studied.
 Why SIM-based methods are not in wider use is one motivator to this
 work.  The technology has been there for more than ten years and
 hardware and applications already support it, but it still is not yet
-widely used.  Could there exist a light method to use SIM?  Combining
-existing techniques, thesis presents one possible way to bind the
+widely used.  Could there exist a light method to use the SIM?  Combining
+existing techniques, this thesis presents one possible way to bind the
 trust to the SIM, which then would function as a trust anchor. To
 generally find ultimate trust it is only needed to verify trust chains
 until the chain reaches a trust anchor.
@@ -481,7 +484,7 @@ until the chain reaches a trust anchor.
 # HRL-AUC-Gateway, OpenWRT, and WPA.
 
 
-Thesis is divided as follows: Chapter [[#cha:aaa]] explains Authentication-Authorization model.
+The thesis is structured as follows: Chapter [[#cha:aaa]] explains the authentication-authorization model.
 Chapter [[#cha:management]] describes security in current homenet architecture and 
 current practices for configuring it.
 # used configuration model of homenet and
@@ -489,7 +492,7 @@ current practices for configuring it.
 # Used roles and ways to change between them are presented in Chapter
 # [[#cha:roles]].
  Chapter [[#cha:design]]
-discusses methods to bring trust anchor in the homenet and explains
+discusses methods to bring a trust anchor in the homenet and explains
 the chosen method.
 # different scenarios for authorization.  
 One specially crafted problem is how any scenario presented can be
