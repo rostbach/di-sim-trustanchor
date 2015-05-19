@@ -363,17 +363,17 @@ with Internet connectivity.  Now homenet has expanded with countless
 devices available.
 Already entertainment centers (AV-amplifiers, media players, gameconsoles),
 manageable network devices (switches/routers), and mobile phones
-present new devices beside computers and printer.
+present new devices beside computers and printers.
  
 # Configuration of the devices 
-Connecting these to the net have become more complex, even at home.
-Persons, who are allowed to make configuration changes are often
-limited only by simple password authentication and physical precence
-near configured network device.
+Connecting these devices to the net has become more complex, even at home.
+Persons, who are allowed to make configuration changes, are often
+authenticated only by simple password  and physical precence
+near the configured network device.
  Sensor and controller devices from Internet of Things domain bring
 their own increment to the device count and their owner may not
-necessarily be the same than the home owner so there will be a need to
-delegate management of homenet to multiple owners.  
+necessarily be the same than the home owner, so there will be a need to
+delegate management of the homenet to multiple owners.  
 
 
 # same thing, other words:
