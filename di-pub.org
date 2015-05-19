@@ -897,9 +897,9 @@ message 7 whether RAND values from the operator were digested with correct NONCE
 [find the source or remove. ] 
 Yet some documents claim, that EAP-SIM does not provide mutual AuthN, so what
 can be the case? Perhaps they mean, that mutual AuthN is not provided between
-mobile and RADIUS servers. Another explanation is, that in AKA
-and AKA' network is authenticated in very early phase with help of operator specific
-symmetric keys, which are also inside SIM.
+the mobile client  and RADIUS servers. Another explanation is, that in AKA
+and AKA' the network is authenticated in a very early phase with the
+help of operator specific symmetric keys, which are also inside SIM.
 
 # #+BEGIN_LaTeX
 # \vfill
