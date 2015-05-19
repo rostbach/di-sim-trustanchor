@@ -762,7 +762,7 @@ but adds mutual AuthN, i.e., also the network is authenticated.
 # before smartphone sends its first identification message.
 In EAP-SIM, client sends a nonce, which is by definition a
 value used only once, and that must be received back
-in correct form in network's  signature response. 
+in a correct form in a network's signature response. 
 
 Authentication server generates challenge with aid of
 triplet from MNO.
