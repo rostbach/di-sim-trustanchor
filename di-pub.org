@@ -878,7 +878,7 @@ Unique identifier for SIM is IMSI (International Mobile Subscriber
 Identity, 15 digits long, more familiar user's phone number.
 From the diagram we can see, that IMSI is
 revealed in message 2 in plain-text. Later, after session has been
-set, IMSI may be left out and temporal IMSI (TMSI) can be used,
+set, IMSI may be left out and a temporal IMSI (TMSI) can be used,
 to hide client's identity.
 #  client can use pseudonym to
 # hide its identity.
