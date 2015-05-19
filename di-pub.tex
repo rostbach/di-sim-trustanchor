@@ -1,4 +1,4 @@
-% Created 2015-05-19 ti 17:34
+% Created 2015-05-19 ti 18:00
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -455,7 +455,7 @@ operator involved.  Those experiments are described in Chapter
 \ref{sec-5}.
 Results are discussed on Chapter \ref{sec-6} and Chapter \ref{sec-8} concludes the
 thesis.
-\chapter{Authentication, Authorization, and Trust.}
+\chapter{Authentication, Authorization, and Trust}
 \label{sec-2}
 
 [delete items after paragraphs ready]
@@ -476,16 +476,16 @@ authorization
 Authentication, authorization, and accounting services (AAA) are
 components for access management. Of these only first two A's are used
 here and later described as AA services. Authentication (AuthN)
-answers how to identify users and proof that they really are
+answers how to identify users and prove that they really are
 who they claim to be. Authorization (AuthZ) answers what operations
-identified users are allowed to do and forces usage policy. The rest of the thesis uses
+the identified users are allowed to do and forces usage policy. The rest of the thesis uses
 shortened terms AuthN and AuthZ.
 
 On very small environments AA service is built on static backend such
-as file on protected target that object wants to access. There AuthN
-is checked against credentials file and authorization from service
+as file on protected target that the object wants to access. There AuthN
+is checked against a credentials file and authorization from a service
 specific policy file. 
-To be more exact, identification preceding authentication is part,
+To be more exact, identification preceding authentication is the part,
 where entity claims and presents its identity to 
 access controlling system.
 
@@ -501,8 +501,8 @@ point is called a trust anchor.
 control.
  Network access through specific port is
 restricted (controlled) from client (called Supplicant) before
-client has successfully performed AA. 802.1X device, where controlled ports
-are located, is called an authenticator. Third part in 802.1X is an
+client has successfully performed AA. The 802.1X device, where the  controlled ports
+are located, is called an authenticator. Third party in 802.1X is an
 authentication server. Authenticator may consult external RADIUS
 server for authentication requests. 
 
@@ -519,8 +519,7 @@ authentication server handles AA processes.
 \label{sec-2-2}
 \label{sec:radius}
 RADIUS is the most popular provider for
-AAA-services \cite[p.75]{radius-popular}.  It was used first for
-with remote terminal and dial-up modem users, hence the name Remote
+AAA-services \cite[p.75]{radius-popular}.  It was used first with remote terminal and dial-up modem users, hence the name Remote
 Authentication Dial-In User Service. Later is was used as centralized AAA
 for networking devices such as switches and routers.  Currently its
 main environment at home and SMEs (Small and Medium-sized Enterprises) is
@@ -529,12 +528,12 @@ called Diameter which is newer than RADIUS and in use in 3GPP (4G?)
 networks. 
 
 Here RADIUS-server takes role of authentication server.
-RADIUS-protocol is stateless, request-response type client-server
+RADIUS-protocol is a stateless, request-response type client-server
 protocol.  RADIUS messages used for ACCESS are (ACCESS-REQUEST,
 ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). ACCESS
 messaging-flow includes AuthN and AuthZ. When both AuthN and AuthZ
 succeeds, ACCESS-ACCEPT message is sent back to Authenticator and
-access is granted to protected port.  Besides authentication, other
+access is granted to the protected port.  Besides authentication, other
 service parameters such as provisioning can be included in
 ACCESS-ACCEPT message. In essence, AuthZ part itself can be thought as
 one type of service provisioning. \cite{rfc5608}.
@@ -562,7 +561,7 @@ places \cite{rfc2607}.
 \label{sec-2-3}
 
 Wireless protected access (WPA) protects traffic in wireless,
-shared media, where everyone can simple listen the traffic on
+shared media, where everyone can simply listen the traffic on
 radio waves. It allows both authenticated access and message
 encryption.
 WPA-supplicant is client software for 802.1X and communicates with the authenticator.
@@ -595,7 +594,7 @@ extended with modular Extensible Authentication Protocol (EAP)
 framework \cite{rfc5247}. EAP has types for example for hashed
 passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
 
-It must be noted that EAP tells only messaging form, so it needs
+It must be noted that EAP tells only the messaging form, so it needs
 to be encapsulated inside another protocol.  In Wi-Fi, between
 smartphone and access point, EAP is encapsulated into 802.1X protocol
 (EAPOL) or into TLS protected PEAP (Protected EAP) \cite{peap} before
@@ -624,25 +623,23 @@ responsible for opening access for EAP peer. This work uses EAP type of EAP-SIM.
 \section{SIM-based authentication}
 \label{sec-2-5}
 \label{sec:sim-based-auth}
-MNO and SIM trusts mutual each other.
+MNO and SIM trust mutually each other.
 There is still need for separate access credentials for Wi-Fi and
-that was the reason of developing EAP-SIM and later derivatives
+that was the reason of developing EAP-SIM and later the derivatives
 EAP-AKA and EAP-AKA'.
 The goal was to combine in a secure way existing GSM keys for Wi-Fi
 access. Existing general purpose EAP-methods in 2004 were not
 compatible with GSM protocols for this purpose. \cite[p.93]{hav-doc}
-
-
 SIM can be used via EAP-types EAP-SIM,
 EAP-AKA, or EAP-AKA'(AKA-PRIME).
 
-EAP-SIM is the original type created for GSM networks. It is defined 
+EAP-SIM is the original type created for GSM networks and defined 
 in RFC4186 \cite{rfc4186}.
-It is challenge-response method and similar to AuthN used in GSM, 
-but EAP-SIM adds mutual AuthN, i.e.,   also the network is authenticated.
+It is a challenge-response method and similar to AuthN used in GSM, 
+but adds mutual AuthN, i.e., also the network is authenticated.
 In EAP-SIM, client sends a nonce, which is by definition a
 value used only once, and that must be received back
-in correct form in network's  signature response. 
+in a correct form in a network's signature response. 
 
 Authentication server generates challenge with aid of
 triplet from MNO.
@@ -662,25 +659,25 @@ in the key derivation function. Additionally, digests use SHA-256
 function instead of SHA-1.
 
 
-  Using EAP-SIM means using secret key inside SIM card with A3/A8
+  Using EAP-SIM means using the secret key inside SIM card with A3/A8
 algorithms to generate valid responses for challenges coming from MNO
-and to derive session keys.  Algorithms used (A3/A8) and their
+and to derive session keys.  The algorithms used (A3/A8) and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
-interest in this work besides the point that they are mobile operator
+interest in this work beside the point that they are mobile operator
 specific or known reference algorithms.
-Algorithm used in demo was internal GSM-Milenage for EAP-SIM,
-which is a reference implementation and as such suitable for  operators who do not 
+The algorithm used in the demo was internal GSM-Milenage for EAP-SIM,
+which is a reference implementation and as such suitable for operators, who do not 
 want to invent their own security algorithms. 
 
 
 In many parts, SIM variants in EAP are simpler, than other EAP
-variants to mobile client.  Table\ref{table-peapsim} compares setup of Wi-Fi
-in clients of one some existing organization compared to EAP-SIM. It
+variants to mobile client.  Table\ref{table-peapsim} compares the setup of Wi-Fi
+in clients of one existing organization compared to EAP-SIM. It
 is noteworthy, that plain EAP-SIM will not support identity hiding and
 that will be later be discussed further. If we add PEAP \cite{peap}
 also to EAP-SIM, comparison will be more fair.
-As can be seen from table, leaving certificates out from environment
-makes client setup easier with price of revealing smartphone user's
+As can be seen from the table, leaving certificates out from the environment
+makes client setup easier with the price of revealing smartphone user's
 identity.  
 
 
@@ -725,22 +722,21 @@ Unique identifier for SIM is IMSI (International Mobile Subscriber
 Identity, 15 digits long, more familiar user's phone number.
 From the diagram we can see, that IMSI is
 revealed in message 2 in plain-text. Later, after session has been
-set, IMSI may be left out and temporal IMSI (TMSI) can be used,
+set, IMSI may be left out and a temporal IMSI (TMSI) can be used,
 to hide client's identity.
 
 All EAP-SIM derivatives provide mutual authentication. Without NONCE
-in message 4, that would not be possible. NONCE is by definition, once
-used random string or number.
+in message 4, that would not be possible. 
  Client challenges the network by
-sending NONCE during start of the negotiation phase. It later checks in
-message 7 whether RAND values from operator were digested with correct NONCE.
+sending NONCE during the start of the negotiation phase. It later checks in
+message 7 whether RAND values from the operator were digested with correct NONCE.
 
 [find the source or remove. ] 
 Yet some documents claim, that EAP-SIM does not provide mutual AuthN, so what
 can be the case? Perhaps they mean, that mutual AuthN is not provided between
-mobile and RADIUS servers. Another explanation is, that in AKA
-and AKA' network is authenticated in very early phase with help of operator specific
-symmetric keys, which are also inside SIM.
+the mobile client  and RADIUS servers. Another explanation is, that in AKA
+and AKA' the network is authenticated in a very early phase with the
+help of operator specific symmetric keys, which are also inside SIM.
 
 
 
@@ -754,10 +750,9 @@ symmetric keys, which are also inside SIM.
 \section{Trust}
 \label{sec-2-6}
 
-Trust is the base.
-Secure communication has many layers. On its base lies trust. Without
-trust there is little help with any added encryption or
-secrecy. Setting trust is usually not an easy task, but only after
+Secure communication has many layers and on its base lies trust. Without
+trust, any added encryption or secrecy loses its value. 
+Setting trust is usually not an easy task, but only after
 completing that phase it is meaningful to complete the other security
 layers.
 For example, secret keys enable encrypted communication, but the keys need to be
@@ -786,7 +781,7 @@ authenticator  can deliver this information further and use it as a
 
 EAP-SIM derivatives provide strong AuthN which means here two-factor
 AuthN. Software certificates, while stronger than regular passwords,
-do not possess properties \emph{non-copiable} or \emph{unique}, so they can only
+do not possess the properties \emph{non-copiable} or \emph{unique}, so they can only
 be considered as strong passwords and they do not full-fill 
 requirement for two-factor AuthN.
 If we nonetheless were using software certificates with method such as
