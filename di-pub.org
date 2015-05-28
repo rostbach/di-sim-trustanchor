@@ -3393,6 +3393,7 @@ range limits, but even shorter.
 
 ** Discussion
 
+[don't jump in with so short flash messages. This looks like conclusion.] 
 The environment is modern complex home network management.
 Configuration management tools are 
 external in the cloud. Trust between homenet and cloud is searched.
@@ -3436,6 +3437,17 @@ authentication often precedes ad hoc AuthZ if nothing is demanded.
 EAP-SIM handles this part, but for AuthZ something else is needed
 and so some methods has been presented to add right role to 
 authenticated identity.
+
+There are many attributes in RADIUS vocabulary, which could be 
+used to carry extra information in AuthZ phase. Exactly what 
+of them is used remains to implementers decisision.
+
+Regarding provisioning, it can mean adding users to home with correct
+attributes including authentication method and identification.
+There pre-existing binding between user and SIM card is carried out
+already. 
+It also can mean later identifying users and giving them 
+dynamically more attributes and access rights.
 # - [Each component does only limited part of the job.]
 # - EAP does only AuthN, not AuthZ 
 # - [It is difficult to have control over one's own SIM card ]
