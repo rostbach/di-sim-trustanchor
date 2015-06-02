@@ -349,7 +349,7 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 <<cha:intro>>
 
 # theory Chapter: Introduction  (what should be covered)
-#  - Quick background of home networks, network management,
+#  - Quick background of home networks, main focus on network management,
 # security problems
 # - Explain structure of the thesis
 # Makupaloja tulevasta ja rakenne
@@ -366,9 +366,11 @@ manageable network devices (switches/routers), and mobile phones
 present new devices beside computers and printers.
  
 # Configuration of the devices 
-Connecting these devices to the net has become more complex, even at home.
+# connecting is not difficult, managing
+Connecting these devices to the net remains easy, but managing them afterwards
+has become complex, even at home.
 Persons, who are allowed to make configuration changes, are often
-authenticated only by simple password  and physical precence
+authenticated only by simple password and physical precence
 near the configured network device.
  Sensor and controller devices from Internet of Things domain bring
 their own increment to the device count and their owner may not
@@ -390,6 +392,8 @@ delegate management of the homenet to multiple owners.
 #
 # [Those are authenticity and and authorization: how to identify remote
 # modifier and what operations are allowed for them.]
+
+# ## management and background from the cloud
 
 # CLOUD away
 There will be a market for an external consultant service, which could
