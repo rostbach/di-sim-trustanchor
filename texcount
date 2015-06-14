@@ -1,65 +1,65 @@
-
-[1;31m!!! Environment \begin{otherlanguage} ended with \end{document}. !!![0m
-
-[1;31m!!! Reached end of file while waiting for \end. !!![0m
-
-[1;31m!!! Environment ended while waiting for nd{document}. !!![0m
-File: proj/di-sim-trustanchor/di-pub.tex
+File: di-pub.tex
 Encoding: utf8
-Words in text: 13029
-Words in headers: 208
-Words outside text (captions, etc.): 70
-Number of headers: 53
+Words in text: 13761
+Words in headers: 246
+Words outside text (captions, etc.): 79
+Number of headers: 59
 Number of floats/tables/figures: 10
 Number of math inlines: 2
-Number of math displayed: 1
+Number of math displayed: 0
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
-  29+20+0 (3/0/0/0) _top_
-  223+1+0 (1/0/0/0) Chapter: Abstract
-  37+1+0 (1/0/0/0) Chapter: Tiivistelmä
-  240+1+0 (1/0/0/0) Chapter: Preface
-  166+5+0 (1/0/1/0) Chapter: List of abbreviations and symbols
+  33+20+0 (3/0/0/0) _top_
+  248+1+0 (1/0/0/0) Chapter: Abstract
+  45+1+0 (1/0/0/0) Chapter: Tiivistelmä
+  241+1+0 (1/0/0/0) Chapter: Preface
+  133+5+0 (1/0/1/0) Chapter: List of abbreviations and symbols
   103+1+0 (1/0/0/0) Chapter: Terminology
-  655+1+0 (1/0/0/0) Chapter: Introduction
-  193+4+0 (1/0/0/0) Chapter: Authentication, Authorization, and Trust.
-  115+1+0 (1/0/0/0) Section: 802.1X
-  263+1+0 (1/0/0/0) Section: RADIUS
+  777+1+0 (1/0/0/0) Chapter: Introduction
+  202+4+0 (1/0/0/0) Chapter: Authentication, Authorization, and Trust
+  122+1+0 (1/0/0/0) Section: 802.1X
+  278+1+0 (1/0/0/0) Section: RADIUS
   83+1+6 (1/1/0/0) Section: WPA
-  151+1+2 (1/1/0/0) Section: EAP
-  532+2+16 (1/2/0/0) Section: SIM-based authentication
-  137+1+0 (1/0/0/0) Section: Trust
-  253+2+0 (1/0/0/0) Section: Security bootstrapping
-  0+3+0 (1/0/0/0) Chapter: Managing Home Networks
-  695+5+0 (1/0/0/0) Section: Home network architecture and IETF
-  166+4+0 (1/0/0/0) Section: Centralization trends in management
-  160+6+0 (1/0/0/0) Chapter: Design of home network trust anchor
-  871+9+0 (1/0/0/0) Section: Alternative methods for introducing trust anchor into the homenet
-  671+5+0 (1/0/0/0) Section: Flow of design (already above)
-  708+5+0 (1/0/0/0) Section: Chosen Design and why (Rationale)
-  346+8+0 (1/0/0/0) Section: Access methods to Wi-Fi with only one SSID
-  813+4+40 (1/5/0/0) Section: Scenarios for authorization (AuthZ)
-  437+5+0 (1/0/0/0) Section: Ways to modify RADIUS messages
-  676+10+0 (1/0/0/0) Section: Privacy of smartphone user's identity (IMSI) [-> to secur. on cha\ref{sec-6} ]
-  312+4+0 (1/0/0/0) Section: Similarities with Lock-and-Key method
-  40+2+0 (1/0/0/0) Chapter: Implemented Solution
-  175+4+6 (1/1/0/0) Section: EAP-SIM authentication test bed
-  165+5+0 (1/0/0/0) Section: Detailed description of test runs
-  650+7+0 (1/0/0/0) Section: Disconnecting the local controller and offline changes
-  315+7+0 (1/0/0/0) Section: Network traces (EAP, SIM, AUTH traffic analysis)
+  152+1+2 (1/1/0/0) Section: EAP
+  633+2+16 (1/2/0/0) Section: SIM-based authentication
+  293+1+0 (1/0/0/0) Section: Trust
+  34+6+0 (1/0/0/0) Section: Need for Security bootstrapping -> in Chapter
+  0+7+0 (1/0/0/0) Chapter: Managing Home Networks [or Home network architecture]
+  766+5+0 (1/0/0/0) Section: Home network architecture and IETF
+  176+4+0 (1/0/0/0) Section: Centralization trends in management
+  163+6+0 (1/0/0/0) Chapter: Design of home network trust anchor
+  926+9+0 (1/0/0/0) Section: Alternative methods for introducing trust anchor into the homenet
+  677+5+0 (1/0/0/0) Section: Flow of design (already above)
+  688+5+0 (1/0/0/0) Section: Chosen design and why (Rationale)
+  232+8+0 (1/0/0/0) Section: Access methods to Wi-Fi with only one SSID
+  175+8+0 (1/0/0/0) Subsection: HS2.0 [If deleted, remember also from conclusion! TBD]
+  999+4+40 (1/5/0/0) Section: Scenarios for authorization (AuthZ)
+  404+5+0 (1/0/1/0) Section: Ways to modify RADIUS messages
+  546+10+0 (1/0/0/0) Section: Privacy of smartphone user's identity (IMSI) [-> to secur. on cha\ref{sec-6} ]
+  136+4+0 (1/0/0/0) Section: Similarities with Lock-and-Key method
+  207+8+0 (1/0/0/0) Section: Chosen solution [OR Summary of the chosen solution]
+  45+2+0 (1/0/0/0) Chapter: Implemented Solution
+  174+4+6 (1/1/0/0) Section: EAP-SIM authentication test bed
+  223+5+0 (1/0/0/0) Section: Detailed description of test runs
+  628+7+0 (1/0/0/0) Section: Disconnecting the local controller and offline changes
+  354+7+0 (1/0/0/0) Section: Network traces (EAP, SIM, AUTH traffic analysis)
   0+4+0 (1/0/0/0) Chapter: Analysis, Results and Discussion
-  150+2+0 (1/0/0/0) Section: Deployment difficulty
-  201+3+0 (1/0/0/0) Section: Costs for end-user
-  416+10+0 (1/0/1/1) Section: Platform specific issues: eg memory requirements, hardware requirements, computation requirements
-  272+1+0 (1/0/0/0) Section: Discussion
-  229+2+0 (1/0/0/0) Section: Security considerations
-  130+4+0 (1/0/0/0) Section: Accessibility, DoS and Scalability
-  435+8+0 (1/0/0/0) Section: RADIUS weaknesses and strengths in limited use cases
-  383+2+0 (1/0/0/0) Section: Mitigation methods
+  95+2+0 (1/0/0/0) Section: Deployment difficulty
+  75+5+0 (1/0/0/0) Section: Estimating time to authenticate EAP-SIM
+  288+3+0 (1/0/0/0) Section: Costs for end-user
+  234+3+0 (1/0/0/0) Section: Platform specific issues
+  321+2+0 (1/0/0/0) Section: Security considerations
+  132+4+0 (1/0/0/0) Subsection: Accessibility, DoS and Scalability
+  174+8+0 (1/0/0/0) Subsection: RADIUS weaknesses and strengths in limited use cases
+  258+6+0 (1/0/0/0) Subsection: Replay, Re-use, Re-auth, and brute-force challenges
+  401+2+0 (1/0/0/0) Subsection: Mitigation methods
+  356+1+0 (1/0/0/0) Section: Discussion
   0+7+0 (1/0/0/0) Chapter: [MISC to be added on right places]
-  50+6+0 (1/0/0/0) Section: More attacks from literature, not categorized
-  20+10+0 (1/0/0/0) Section: Second option for multirealms is using EAP-SIM or relatives (PEAP)
-  322+1+0 (1/0/0/0) Chapter: Conclusion
+  78+2+0 (1/0/0/0) Section: facts TBD.
+  23+11+0 (1/0/0/0) Section: using EAP for other than network access, i.e., for application auth.
+  49+2+9 (1/0/0/0) Section: eap-psk rfc4764.txt
+  61+11+0 (1/0/0/0) Section: eap-sim acts similar than any other EAP challenge method (or not?)
+  279+1+0 (1/0/0/0) Chapter: Conclusion
   14+0+0 (1/0/0/0) Chapter: \appA
   4+3+0 (1/0/0/0) Section: shell, logging options
   16+2+0 (1/0/0/0) Section: wpa-supplicant creds
@@ -67,4 +67,3 @@ Subcounts:
   0+2+0 (1/0/0/0) Section: hlr auc
   5+2+0 (1/0/0/0) Section: No sim
 
-(errors:3)
