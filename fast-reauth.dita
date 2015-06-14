@@ -1,0 +1,39 @@
+       Peer                                             Authenticator
+	  |							  |
+          |                               EAP‐Request/Identity    |
+          +<------------------------------------------------------+
+          |                                                       |
+          | EAP‐Response/Identity                                 :
+          | (Includes a fast re‐authentication identity)          |
+          +------------------------------------------------------>+
+          |                                                       |
+          |                          +----------------------------+---+
+          |                          | Server recognizes the identity |
+          |                          | and agrees to use fast         |
+          |                          | re‐authentication              |
+          |                          +----------------------------+---+
+          |                                                       |
+          |  EAP‐Request/SIM/Re‐authentication                    |
+          |  (AT_IV, AT_ENCR_DATA, *AT_COUNTER,                   |
+          |   *AT_NONCE_S, *AT_NEXT_REAUTH_ID, AT_MAC)            |
+          |<------------------------------------------------------+
+          |                                                       |
+     +----+------------------------------------------+            |
+     | Peer verifies AT_MAC and the freshness of     |            |
+     | the counter. Peer MAY store the new fast re‐  |            |
+     | authentication identity for next re‐auth.     |            |
+     +----+------------------------------------------+            |
+          |                                                       |
+          | EAP-Response/SIM/Re‐authentication                    |
+          | (AT_IV, AT_ENCR_DATA, *AT_COUNTER with same value,    |
+          |  AT_MAC)                                              |
+          +------------------------------------------------------>|
+          |                          +----------------------------+---+
+          |                          | Server verifies AT_MAC and     |
+          |                          | the counter                    |
+          |                          +----------------------------+---+
+          |                                                       |
+          |                                          EAP‐Success  |
+          |<------------------------------------------------------+
+
+
