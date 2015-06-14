@@ -1,0 +1,28 @@
+*** bits/bytes in chapter 5
+We often  notice in communication protocol designs, that they have not been
+fully  optimized. For example 
+name to IP requests in Domain name system (DNS) encode IPv4 address as
+16 byte string instead of 4 byte integers.
+Here it would not take much space to save  IMSI which is 15 digits at
+most. As $2^{50} = 1125899906842624$,
+# #+BEGIN_LaTeX
+# \begin{equation}
+# \end{equation}
+# #+END_LaTeX
+then 50 is smallest amount of bits needed to encode smallest, 16 digit long
+decimal in binary. 15 digits therefore can be encoded with
+50 bits,  and it takes no more than seven bytes (not 15) to save that
+information as can be seen in equation\ref{eq:encoding}.
+In reality, such optimization, while saves some bytes, merely leads to misunderstandings.
+
+#+BEGIN_LaTeX
+\begin{equation}
+ \label{eq:encoding}
+  \left \lceil \frac{50}8 \right \rceil \frac{bits}{bits/bytes} = \\
+   \left \lceil 6.25 \right \rceil bytes = 7~{}bytes
+\end{equation}
+#+END_LaTeX
+# bytes is needed.
+
+
+[TBD: Check other examples, where  they are not the same!]
