@@ -1,4 +1,4 @@
-% Created 2015-06-14 su 22:23
+% Created 2015-06-14 su 23:25
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -112,7 +112,7 @@
 \pagenumbering{roman}
 \setcounter{page}{0} % Start numbering from zero because command 'chapter*' does page break
 
-\begin{otherlanguage}{english} %  Following text in in 2nd language
+%%% \begin{otherlanguage}{english} %  Following text in in 2nd language
 \chapter*{Abstract}
 
 \begin{spacing}{1.0}
@@ -163,7 +163,7 @@ only use a simple model of management network. Getting in to management network 
 
 
 
-\end{otherlanguage} % End on 2nd language part
+%%%\end{otherlanguage} % End on 2nd language part
 %---------------------------------------------------------
 %   T I I V I S T E L M Ä 
 
@@ -187,7 +187,7 @@ Kirjoita, kun english versio on hyvä(ksytty).
 \end{otherlanguage} % End on 2nd language part
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
-\begin{otherlanguage}{english} %  Following text in in 2nd language
+%%% \begin{otherlanguage}{english} %  Following text in in 2nd language
 \makeatother % Make the @ a special symbol again, as \@author and \@title are not neded after this
 
 %
@@ -1605,7 +1605,7 @@ ACCESS-REQUEST message but the Response Authenticator for it is achieved
 by one-way MD5 digestion function. 
 The digest is taken from concatenation of Code, ID, Length, corresponding
 Request\-Auth, Attributes, and a Secret and can look like 
-$3fef65608\ldots 2a79}$. 
+$3fef65608\ldots 2a79$. 
 \begin{verbatim}
  Response Authenticator = 
      MD5(Code |ID |Length |Request Authenticator |Attributes |Secret)
@@ -1619,9 +1619,10 @@ If the user password was to be transmitted on wire, it would be run
 through exclusive OR function (XOR) together with MD5 digested Requst
 Authenticator and Secret and put in to User-Password attribute.  In
 other words
-{\center\tt 
-User-Password = XOR(password, MD5(Request Authenticator, Secret))
-\end{center}}
+\begin{center}
+{\tt 
+User-Password = XOR(password, MD5(Request Authenticator, Secret))}
+\end{center}
 
 
 
@@ -2305,38 +2306,38 @@ Authenticators as described in Section \ref{sec:radius-macs}.
 
 
 
-In scenario III(Figure\ref{fig:scenario-III}),  there was proxying RADIUS between authenticator
+In scenario III(Figure\ref{fig:scenario-III}),  there was a proxying RADIUS between authenticator
 and MNO.  When MNO notifies authenticator
 that a smart phone has been authenticated, then authenticator (AP, functioning
-as a RADIUS-client) hooks that message and usually just grants smart
-phone access to the network. After giving access rights, other
+as a RADIUS-client) hooks that message and usually just grants
+smartphone the access to the network. After giving access rights, other
 provisioning parameters can be sent with RADIUS messages, for example
-Session Time-out,
+session time-out,
 current admin user list, state of OTP list, or VLAN id.
 
 
 \subsection{Replay, Re-use, Re-auth, and brute-force challenges}
 \label{sec-6-5-3}
 Earlier in RADIUS analysis, prevention of replied messages was
-mentioned. Reusing same secret in different security context is also
+mentioned. Reusing the same secret in different security context is also
 considered bad.  Mixing secrets between usage
 domains weakens them.  In GSM networks, IMSI identifies subscriber on
 first contact, later TMSI is used for call and SMS.  In EAP-SIM those
-values are also used. IMSI naturally is same, but TMSI should be
+values are also used. IMSI naturally is the same, but TMSI should be
 different for call and EAP.  Haverinen \cite{hav-doc} explains how
-special RAND numbers can be used to differentiate use of 3GPP and LAN
+special RAND numbers can be used to differentiate the use of 3GPP and LAN
 contexts.
 
 Re-authentication and termination can bring unexpected results.
-If SSID changing, which was introduced in mitigation Section(\ref{tag:hidessid}) was in use, fast re-authentication
+If SSID changing introduced in mitigation Section(\ref{tag:hidessid}) was in use, fast re-authentication
 should be forbidden \cite[p.11]{rfc5448}.
 Even, when sessions can be terminated, the client side have 
 option to login automatically, transparent and without users control.
 Automatic re-authentication after disconnection  must be considered
 here as harmful as well as automatic login. For example,
-Swiss mobile operator Swisscom provided two networks for its customer:
-``Mobile'' and ``Mobile Eapsim''. The latter network did not ask customer
-for connection and used smart phones SIM automatically. Unfortunately,
+Swiss mobile operator Swisscom provided two networks for its customers:
+``Mobile'' and ``Mobile Eapsim''. The latter network did not ask customers
+for connection and used smartphones' SIMs automatically. Unfortunately,
 it also charged users for using Wi-Fi connections without their 
 knowledge. \cite{swisscom}
 
@@ -2345,11 +2346,11 @@ knowledge. \cite{swisscom}
 
 
 If one can read and write data through SIM card's API,
-he could try to get information (SRES, K\_c) by brute-force. 
+one could try to get information (SRES, K\_c) by brute-force. 
 Fortunately SRES and K\_c are never sent in clear, but inside
 a digested MAC.
  Additionally SIM card can be programmed to answer only
-limited amount of challenge request, for example 65535, which in
+limited number of challenge request, for example 65535, which in
 normal usage would be enough, but in brute-force challenges 
 it would soon be exhausted and not function anymore.
 
@@ -2367,7 +2368,7 @@ then? Then there were less networks for users to choose from.
 Enabling management network could be programmed through OpenWRT router's 
 lUCI-interface but preliminary tests showed, that it also 
 disconnects existing Wi-Fi connections and may even restart AP,
-which certainly would not be wanted. Some other methods needs to
+which certainly would not be wanted. Some other methods need to
 be invented to avoid denial-of service.
 
 \label{tag:hidessid}
@@ -2383,22 +2384,23 @@ Does disabling or hiding the management network bring real security or
 is it just security by obscurity?  Security by obscurity means here,
 that hiding network would be the only security method.
 Disabling or hiding  merely gives one security layer more so it is not
-real security method.
+a real security method.
 
 When the usage here is to always renew SSID name then
 hiding actually could add security. AP does not reveal any information
 before the client has tried to connect to it, so at least 
 the time window for attacks is minimized. Indeed hiding can have
-privacy enhancing effects: Lindqvist \cite{hidden-wlan} uses hidden APs
-to protect privacy of clients who actively probe for visited APs and
-would otherwise reveal their visited places.
+privacy enhancing effects: Lindqvist \cite{hidden-wlan} presents usage
+of hidden APs to protect privacy of client, who otherwise would
+reveal its earlier visited places when its Wi-Fi connection probes for
+AP names, that were earlier in its Wi-Fi connection range.
 
 
 Regarding boundaries of homenet, the Wi-Fi coverage gives 
 one natural limit, which is 50 meters indoors or 100 meters outdoors,
 when no extenders (i.e. repeaters) are in use.
 Proximity so brings a minimal extra layer for preventing attacks
-just like network cloaking as attacker must be physically within those limits.
+just like network cloaking as the attacker must be physically within those limits.
 
 
 This can be considered as an added factor in multifactor
@@ -2426,7 +2428,7 @@ Always in the beginning, AuthN lies outside homenet, but
 later it can use local point. AuthZ may be located more freely.
 RADIUS directs user into own virtual LAN segment (VLAN),
 and there management of homenet devices is allowed.
-That procedure activates the management port as of 802.1X standard
+That procedure activates the management port as 802.1X standard
 specifies.
 Thesis thus uses old, yet simple method for problem risen in modern environment homenet.
 
@@ -2551,34 +2553,33 @@ mobile phone.
 
 
 Complexity of existing models in interworking was one motivator for
-the work. Research work on subject did reveal some of the reasons 
+the work. Research work on the subject did reveal some of the reasons 
 for the complexity, that are difficult to overcome with simplistic 
-methods without in the same time losing some of security.
+methods without in the same time losing security.
 
 
 As results, a real working EAP-SIM test bed with fake credentials and
 fake mobile operator representing EAP-SIM authentication flow has been
-shown.  A dual-role model, which binds smartphone to homenet and
-grants right to make changes has been proposed.  Working with
+shown.  A dual-role model, which binds a smartphone to the homenet and
+grants rights to make changes has been proposed.  Working with
 management network is indirect way to approve changes.  [or: An
-indirect way to approve changes is achieved by binding authorized
-access to management network.]
+indirect way to approve changes is achieved by binding the authorized
+access to the management network.]
 
 
-There are some obvious weakness in proposed solution. Possible usage
+There are some obvious weakness in the proposed solution. Possible usage
 must carefully check the safety limits even when RADIUS-protocol still
-has strengths in security today. Thesis only scratches bootstrapping
-problems and work on bootstrapping the homenet needs to be studied
+has strengths in security today. The thesis only scratches bootstrapping
+problems and issues in bootstrapping the homenet needsto be studied
 more thoroughly. One could use tickets in Kerberized way as in GBA.
 Software implementation as app is needed to the smartphone.
 
-With proposed technique, provisioning of users at homenets would
+With the proposed technique, provisioning of users at homenets would
 minimize, as users already own an identifiable object, smartphone. As
 a positive side effect, two-factor AuthN strengthens existing security.
-Studying HS2.0 few steps further would bring mobile phone internet
+Developing HS2.0 a few steps further would bring mobile phone internet
 off-loading on Wi-Fi networks and that would be the missing link in
 interworking between two worlds.
-
 
 \newpage
 \bibliographystyle{IEEEtranS}   % already on org header 

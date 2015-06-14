@@ -88,7 +88,7 @@
 \pagenumbering{roman}
 \setcounter{page}{0} % Start numbering from zero because command 'chapter*' does page break
 
-\begin{otherlanguage}{english} %  Following text in in 2nd language
+%%% \begin{otherlanguage}{english} %  Following text in in 2nd language
 \chapter*{Abstract}
 
 \begin{spacing}{1.0}
@@ -139,7 +139,7 @@ only use a simple model of management network. Getting in to management network 
 
 
 
-\end{otherlanguage} % End on 2nd language part
+%%%\end{otherlanguage} % End on 2nd language part
 %---------------------------------------------------------
 %   T I I V I S T E L M Ä 
 
@@ -163,7 +163,7 @@ Kirjoita, kun english versio on hyvä(ksytty).
 \end{otherlanguage} % End on 2nd language part
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
-\begin{otherlanguage}{english} %  Following text in in 2nd language
+%%% \begin{otherlanguage}{english} %  Following text in in 2nd language
 \makeatother % Make the @ a special symbol again, as \@author and \@title are not neded after this
 
 %
@@ -2199,7 +2199,7 @@ by one-way MD5 digestion function.
 The digest is taken from concatenation of Code, ID, Length, corresponding
 Request\-Auth, Attributes, and a Secret and can look like 
 #+BEGIN_LaTeX
-$3fef65608\ldots 2a79}$. 
+$3fef65608\ldots 2a79$. 
 \begin{verbatim}
  Response Authenticator = 
      MD5(Code |ID |Length |Request Authenticator |Attributes |Secret)
@@ -2215,9 +2215,10 @@ through exclusive OR function (XOR) together with MD5 digested Requst
 Authenticator and Secret and put in to User-Password attribute.  In
 other words
 #+BEGIN_LaTeX
-{\center\tt 
-User-Password = XOR(password, MD5(Request Authenticator, Secret))
-\end{center}}
+\begin{center}
+{\tt 
+User-Password = XOR(password, MD5(Request Authenticator, Secret))}
+\end{center}
 #+END_LaTeX
 
 # they would be MD5 digested and run through
