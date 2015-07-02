@@ -302,17 +302,17 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 - Access point :: Wi-Fi client connects access point (AP) on 802.11
                    layer. AP knows EAP client and encapsulates EAP-message
                    to RADIUS-message and forwards that to
-                   authenticator.
+                   Authenticator.
 # - BaaS :: Backend as a Service. Type of cloud service, which focuses
 #           on mobile backend.
- - authenticator :: local entity, who makes authentication (and
+ - Authenticator :: local entity, who makes authentication (and
                     authorization) decision for client based on local and remote
                     claims, part of 802.1X standard.
 #  - cloud :: here, BaaS (Parse) service running Internet
  - mobile-operator :: knows connection between SIM-owner and SIM
 #  - Parse :: one BaaS-cloud provider
  - proxying RADIUS :: RADIUS server standing between RADIUS
-      client and authentication server, part of RADIUS server chain.
+      client and Authentication server, part of RADIUS server chain.
 # - proxying RADIUS operator :: forwards RADIUS message to target based
 #      on hints on user realm. For example it has
 #      connections to diverse MNOs as its backend. Knows
@@ -321,7 +321,7 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 #      to user.
 
 #  - RADIUS chains :: RADIUS servers between AuthN center (for example
-#                    MNO) and authenticator
+#                    MNO) and Authenticator
 
 
 #+begin_latex
@@ -375,6 +375,7 @@ First, the configuration choices in networking devices takes some
 amount of expertise what is not necessarily present in every
 home. Secondly, one needs to have some form of control to let only
 authorized operators to configure those devices. 
+# or Together, these problems.. Or invent third problem.
 These problems combined gives us the delegated network
 management problem.
 # 2. authentication part, who is authorized, how it is done today, why
@@ -408,11 +409,14 @@ there will be a need to delegate the management of the home network to multiple 
 # modifier and what operations are allowed for them.]
 
 # ## management and background from the cloud
+# 20150624: start with inner bootstrap, not the cloud.
 
 # CLOUD away or if let here, then explain the background.
 # Here mentioned delegation of management. This paper should
 # concentrate on management part, but if delegated management would be
 # noticed, then it need some more detailed background.
+
+
 There will be a market for an external consultant service, which could
 remotely operate the homenet for example through a service in a cloud. 
 # That delegation is planned to be provided from outside the home as a
@@ -546,19 +550,25 @@ thesis.
 [delete items after paragraphs ready]
 + 1) Different technologies for access control, authentication,
    authorization
-1.5) wireless (authenticator, authentication server, supplicant)
+1.5) wireless (Authenticator, Authentication server, supplicant)
 + 2) RADIUS, diameter, (tacacs+)
 + 3) SIM-based authentication
 [(4) Feature comparison, eg role-based access, time-based access etc]
 5) GBA and Security bootstrapping
 
 Authentication, authorization, and accounting services (AAA) are
-components for access management. Of these only first two A's are used
-here and later described as AA services. Authentication (AuthN)
-answers how to identify users and prove that they really are
-who they claim to be. Authorization (AuthZ) answers what operations
-the identified users are allowed to do and forces usage policy. The rest of the thesis uses
-shortened terms AuthN and AuthZ.
+components for access management.  AAA-protocols do not dictate
+policies, i.e., who is granted access or what operations user is
+allowed to do. They only transport this information between client
+who needs them and server providing them.
+# client and Authenticator server.
+
+Here, only first two A's are used and later described as AA
+services. Authentication (AuthN) answers how to identify users and
+prove that they really are who they claim to be. Authorization (AuthZ)
+answers what operations the identified users are allowed to do and
+forces usage policy. The rest of the thesis uses shortened terms AuthN
+and AuthZ.
 
 On very small environments AA service is built on static backend such
 as file on protected target that the object wants to access. There AuthN
@@ -581,57 +591,85 @@ point is called a trust anchor.
 ** 802.1X
 
 802.1X \cite{8021X} is an IEEE standard protocol for port based access
-control. 
+control. Ports are on physical layer, not on Layer-4 such as TCP/UDP ports.
 # explain physical vs. virtual port and source
 # Port means logical port instead of physical port can be .
  Network access through a specific physical port is
 restricted (controlled) from a client (called Supplicant) before
 the client has successfully performed an AA. The 802.1X device, where the  controlled ports
-are located, is called an authenticator. Third party in 802.1X is an
-authentication server. Authenticator may consult external RADIUS
-server for authentication requests. 
+are located, is called an Authenticator. Third party in 802.1X is an
+Authentication server. 
+
+Authenticator may consult external RADIUS server for authentication
+requests. 
+
 # picture?
 
 # TO THE WPA Chapter 
-# It also can have internal authentication server, which is used for
+# It also can have internal Authentication server, which is used for
 # groups having pre-shared key as a proof of trust
 # (PSK-mode). [pre-shared key]
 
 # include it inside  and it can function as RADIUS client to
 # consult RADIUS-server for AuthN. 
-In homenets authenticator usually is inside the access point.
-On large enterprise networks, authenticator can be centralized 
-and access points function only as radio stations.
-It is easy to mix here terms /authenticator/ and /authentication
-server/, but their roles are different: authenticator works as a
+It is easy to mix here terms /Authenticator/ and /Authentication
+server/, but their roles are different: Authenticator works as a
 gate-keeper to ports between supplicant and network, while
-authentication server handles AA processes.
+Authentication server handles AA processes.
+At home, Authenticator usually lies inside the access point, but 
+on large enterprise networks, Authenticator can be a centralized unit 
+and multiple access points function only as radio stations.
+Here RADIUS-server takes a role of an Authentication server.
+
 
 ** RADIUS 
 <<sec:radius>>
 RADIUS is the most popular provider for
 AAA-services \cite[p.75]{radius-popular}.  It was used first with remote terminal and dial-up modem users, hence the name Remote
-Authentication Dial-In User Service. Later is was used as centralized AAA
+Authentication Dial-In User Service. Later it was used as centralized AAA
 for networking devices such as switches and routers.  Currently its
-main environment at home and SMEs (Small and Medium-sized Enterprises) is
+main environment at community  (education and city)home and SMEs (Small and Medium-sized Enterprises) is
 wireless connections (Wi-Fi).  Besides RADIUS, there exists similar protocol
 called Diameter which is newer than RADIUS and in use in 3GPP (4G?)
 networks. 
 #  and also TACACS(+)
 # [see rfc2989 for summaries for network access -20150413].
-# Wireless environments include supplicant, authenticator, and
-# authentication server. Of those, 
+# Wireless environments include supplicant, Authenticator, and
+# Authentication server. Of those, 
 
-Here RADIUS-server takes role of authentication server.
+
 RADIUS-protocol is a stateless, request-response type client-server
-protocol.  RADIUS messages used for ACCESS are (ACCESS-REQUEST,
-ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). ACCESS
-messaging-flow includes AuthN and AuthZ. When both AuthN and AuthZ
-succeeds, ACCESS-ACCEPT message is sent back to Authenticator and
-access is granted to the protected port.  Besides authentication, other
+protocol. RADIUS messages used for AA are of type ACCESS  (ACCESS-REQUEST,
+ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). 
+Messaging-flow includes both AuthN and AuthZ. When they have
+succeeded, an ACCESS-ACCEPT message is sent back to the client.
+
+
+## Tämä designiin, 
+# by Authentication Server to the Authenticator
+which then can negotiate WPA session keys and open access for the
+smartphone to the protected port.  Besides authentication, other
 service parameters such as provisioning can be included in
 ACCESS-ACCEPT message. In essence, AuthZ part itself can be thought as
-one type of service provisioning. \cite{rfc5608}.
+one type of service provisioning \cite{rfc5608}.
+
+In the first prototype it is enough to identify authorized
+smartphone's SIM.
+Smartphone holding the SIM is granted the access to the parts of the
+management network and is authenticated strong. 
+User management is outsourced to MNO, which already has provided SIM
+cards to users. What remains, is the adding of the user's IMSI to
+the authorized users' list. That list can be located on diverse place, 
+as can be seen in xxx
+
+
+# explain provisioning? 20150702
+
+At this point, Authenticator has opened port to the smartphone for
+configuration changes. It has negotiated session keys ...
+
+Local RADIUS has trails of successful
+authentication and knows .-..
 
 
 # #+BEGIN_QUOTE
@@ -646,12 +684,7 @@ one type of service provisioning. \cite{rfc5608}.
 
 # depending on style, i.e. does not need postfix \ ( "i.e.\," to
 # prevent unnecessary space
-AAA-protocols do not dictate policies, i.e., who is granted access or
-what operations user is allowed to do. They only transport these information
-between client and authenticator server.
-EAP[first mentioned here!] is used to transfer only authentication
-messages, instead of an authorization information or session keys needed
-in the following message transfer. 
+
 # Used EAPs include...
 # + configuration information using RFC 2865
 # + RADIUS analysis seq...
@@ -678,7 +711,7 @@ shared media, where everyone can simply listen the traffic on
 radio waves. It allows both authenticated access and message
 encryption.
 # WPA consist of client (WPA-supplicant), Authenticator, and Authentication Server.
-WPA-supplicant is client software for 802.1X and communicates with the authenticator.
+WPA-supplicant is client software for 802.1X and communicates with the Authenticator.
 
 WPA has two protected modes: one for groups with common, pre-shared
 key (WPA-PSK also known as WPA-Personal) and one for individuals
@@ -713,27 +746,27 @@ complicated than on WPA-PSK, as seen on table[[psk-enterprise]].
 # phone's SIM card.
 
 Instead of bringing new AuthN methods into 802.1X, it was 
-extended with modular Extensible Authentication Protocol (EAP) 
-framework \cite{rfc5247}. EAP has types for example for hashed
-passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
+extended with  modular framework called 
+ EAP (Extensible Authentication Protocol) \cite{rfc5247}. 
+EAP describes only the messaging form, so EAP messages needs to
+be encapsulated inside another protocol.  In Wi-Fi, between smartphone
+and access point, EAP is encapsulated into 802.1X protocol (EAPOL) or
+into TLS protected PEAP (Protected EAP) \cite{peap} before sending
+into wire. In wired net, RADIUS encapsulates EAP
+messages.
 
-It must be noted that EAP tells only the messaging form, so it needs
-to be encapsulated inside another protocol.  In Wi-Fi, between
-smartphone and access point, EAP is encapsulated into 802.1X protocol
-(EAPOL) or into TLS protected PEAP (Protected EAP) \cite{peap} before
-sending into wire. In wired net, RADIUS encapsulates EAP
-messages. Encapsulation is described in Figure[[fig:eap-layers]]
-and there it can be seen, that 
-EAP messaging happens logically between EAP peer and authentication
-server but on lower, transport layer there is EAP authenticator in
-between them, which transfers EAPOL messaging into RADIUS message.
-In the end (not shown in the Figure[[fig:eap-layers]]) authenticator is
-responsible for opening access for EAP peer. This work uses EAP type of EAP-SIM.
+The encapsulation is described in Figure[[fig:eap-layers]] where it
+can be seen, that EAP messaging happens logically between  EAP peer and
+Authentication server, but on lower transport layer there is  EAP
+Authenticator in between them, which transfers EAPOL messaging into
+RADIUS message.  In the end (not shown in the Figure[[fig:eap-layers]])
+Authenticator is responsible for opening access for EAP peer. 
+
 
 
 # layer it is interrupted on transport layer protocol.
-# Supplicant and EAP authenticator communicate with 802.1X protocol
-# (EAPOL), while EAP authenticator and RADIUS server communicate with
+# Supplicant and EAP Authenticator communicate with 802.1X protocol
+# (EAPOL), while EAP Authenticator and RADIUS server communicate with
 # RADIUS protocol. This is shown in 
 
 #+begin_src ditaa :file eap-layer.png :cmdline -E -r -s 2
@@ -747,7 +780,7 @@ responsible for opening access for EAP peer. This work uses EAP type of EAP-SIM.
   |            |  EAP    |Authenticator|  EAP    |              |
   +------------+ over LAN+-----+-------+  over   +--------------+
   |            | (EAPOL) |     |       |  RADIUS |              |
-  | supplicant +<------->+EAPOL|RADIUS +<------->+ RADIUS server|
+  | Supplicant +<------->+EAPOL|RADIUS +<------->+ RADIUS server|
   |            |         +-----+-------+         |              |
   +------------+                                 +--------------+
 
@@ -758,9 +791,22 @@ responsible for opening access for EAP peer. This work uses EAP type of EAP-SIM.
 [[file:eap-layer.png]]
 
 
+Further, EAP is used to transfer authentication
+messages only.
+# , which happen between the Supplicant and the Authentication Server.
+It does not include AuthZ information or session keys.
+# needed in the following message transfer.
+Of those, RADIUS delivers AuthZ (and also encapsulated AuthN)
+and WPA is used to negotiate session keys for encrypting the traffic
+between the smartphone and AP.
+
+Different authentication methods can be used,  for example hashed
+# methods or types? 20150702
+passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
+This work uses EAP type of EAP-SIM.
 
 
-   
+
 
 ** SIM-based authentication
 <<sec:sim-based-auth>>
@@ -863,7 +909,7 @@ makes client setup easier with the price of revealing smartphone user's
 identity.  
 
 
-# "Unless your authentication server is set to accept anonymous
+# "Unless your Authentication server is set to accept anonymous
 # connections, ignore that setting." means what?
 
 #+CAPTION: Setup tasks in  WPA2-Enterprise with EAP-PEAP-MSCHAPv2 and EAP-SIM
@@ -890,8 +936,8 @@ identity.
 
 
 
-Sequence diagram of full EAP-SIM authentication supplicant (here
-smartphone) and authenticator (in AP) is shown in
+Sequence diagram of full EAP-SIM authentication Supplicant (here
+smartphone) and Authenticator (in AP) is shown in
 Figure[[fig:eap-sim-full]]. 
 
 [EXPLAIN what are used ]
@@ -1026,8 +1072,8 @@ Secure network configuration and credential exchange is then possible.
 As mentioned earlier, the smart phone and MNO trust each other hence
 mutual authentication between them is possible.  Now, how this could be used
 to include other components under same trust circle in the homenet? 
-As AuthN-AuthZ at home proceeds through authenticator, maybe
-authenticator  can deliver this information further and use it as a
+As AuthN-AuthZ at home proceeds through Authenticator, maybe
+Authenticator  can deliver this information further and use it as a
  derivation function to extend trust.
 
 EAP-SIM derivatives provide strong AuthN which means here two-factor
@@ -1335,7 +1381,7 @@ phone network.
 The smartphone connects
 # wireless to homenet
  with a Wi-Fi link to an access point (AP) in the homenet.
- AP functions there as an authenticator.
+ AP functions there as an Authenticator.
 Trusted connection is needed between existing network and local
 controller, i.e., homenet and local controller need to trust each other.
 Smartphone will approve changes for homenet and is part of bootstrapping
@@ -1487,7 +1533,7 @@ separate homenets, which need authentication service.
 # #+END_QUOTE
 # source:https://wiki.moonshot.ja.net/display/HOME/Home
 Project Moonshot, if worked and used together with MSSP, may offer
-SIM-based SSH-access to authenticator. Modifications are then needed 
+SIM-based SSH-access to Authenticator. Modifications are then needed 
 both in SSH server and client. Additionally EAP must be used through
 tunneling, for example as an inner protocol of EAP-TTLS. \cite{moonshot}
 # end of fed services.
@@ -1524,18 +1570,18 @@ Such a device could be sent direct to customer with pre-configured
 secrets and methods to take a place as a trust anchor. 
 That leads us again to the key distribution problem.
 
-There is also lying NAS problem: the authenticator may present some 
-information to the authentication server and other to the EAP-peer.
+There is also lying NAS problem: the Authenticator may present some 
+information to the Authentication server and other to the EAP-peer.
 Mitigation for that is, that EAP-peer includes some 
-characteristics of the authenticator inside its EAP-message, which
-then the authentication server verifies \cite[rfc6677]{rfc6677}.
+characteristics of the Authenticator inside its EAP-message, which
+then the Authentication server verifies \cite[rfc6677]{rfc6677}.
 
 
 # ***  How can trust be achieved with the phone?
 
 The phone brings trust to the homenet by completing full EAP-SIM AuthN through
-the local authenticator. SIM's identity is verified by HLR AuC at the phone
-operator's end. The verification leaves a trail on the local authenticator and
+the local Authenticator. SIM's identity is verified by HLR AuC at the phone
+operator's end. The verification leaves a trail on the local Authenticator and
 opens a trust channel for a limited period of time for changes from the phone.
 [This was the most important paragraph of whole work. Thanks for
 reading it.]
@@ -1658,9 +1704,9 @@ There are three planned ways to distribute changes.
 The smartphone may receive the authentication token with 
 # (not authorization, but)
 a message explaining what is going to happen in the change.
-As the CPE and the authenticator may be separate devices, approving
+As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
-management network where the authenticator gives access.
+management network where the Authenticator gives access.
 
 It must be noted, that the smartphone can already have an association
 to a non-management network with Wi-Fi. If that is the case, it first
@@ -1755,7 +1801,7 @@ When homenet needs secure binding to the smartphone, earlier
 mentioned trust is the first one needed.  The trust is achieved by
 checking whether the smartphone can access home management
 network using only its trusted SIM-card, which provides AuthN. AuthZ in
-turn is compared to existing roles of IMSI in the authenticator.
+turn is compared to existing roles of IMSI in the Authenticator.
 
 
 [This has been explained in 802.1X Section in the begin. TBD]
@@ -1765,7 +1811,7 @@ Technically we use in Wi-Fi connection IEEE 802.11i (also known as WPA2), which 
 authentication, authorization, and cryptography key agreement.
  It uses 
 Extensible Authentication Protocol (EAP) which selects specific
-authentication mechanism \cite[p.3]{rfc5247}, after authenticator
+authentication mechanism \cite[p.3]{rfc5247}, after Authenticator
 requests smartphone to identify itself as in Figure xxx is shown
 Messages are carried over 802.1X or RADIUS depending on transport
 medium as of Figure[[fig:eap-layers]].
@@ -1784,7 +1830,7 @@ if standard RADIUS messages do not suffice.  VSAs allow vendor to use
 extra 255 attributes as they wish, but also currently
 there exists RADIUS extensions for directing user into VLAN. 
 # [cite rfcXXX].  
-That way (3rd party) authentication server can divide areas of home
+That way (3rd party) Authentication server can divide areas of home
 network in to the segments. In our case, admin users are put in to
 the management network.
   Yet, usually RADIUS ACCESS-ACCEPT message which means AuthN and
@@ -1808,8 +1854,8 @@ end, but after checking device's Vendor certificates, cloud provider
 gives device a ticket of authorization like in Needham-Schröder or
 Kerberos implementations. Device presents that ticket to CPE which
 finally can decide, whether it allows change. 
-Instead, here the authentication server can be external RADIUS server,
-but usually the final decision point lies at the authenticator in CPE.
+Instead, here the Authentication server can be external RADIUS server,
+but usually the final decision point lies at the Authenticator in CPE.
 # [?]
 
 
@@ -1825,7 +1871,7 @@ To enable EAP-SIM method, it is necessary to use WPA-Enterprise mode
 an as such, to use RADIUS server.
 
 # Two SSID, rationale
-It was not found, how authenticator could use the same network with
+It was not found, how Authenticator could use the same network with
 both WPA-PSK (or open access) and WPA-Enterprise, so
 separate SSID for management network was technically needed.
 # , while only management network is
@@ -1835,7 +1881,7 @@ If Wi-Fi was limited to only have one SSID, then we would need another
 way to separate access requests to management net.  Access to Wi-Fi
 can be separated by multiple realms (different username domains),
 different authentication methods, or user's role
-given by authentication server. Management through Wi-Fi has then three
+given by Authentication server. Management through Wi-Fi has then three
 options.  Without RADIUS, access is open and the only checking comes
 from the used management protocol and its access control.
 
@@ -2097,12 +2143,12 @@ place within homenet.
 Similar to first scenario is scenario III (Figure[[fig:scenario-III]]), 
 but this time there is SP between CPE and MNO, so AA is fully outsourced:
 local AP communicates with RADIUS-protocol to the external
-authentication server. That in turn gets AuthN from MNO via its
+Authentication server. That in turn gets AuthN from MNO via its
 hlr-auc-gateway and AuthZ from BaaS.
 #  by CPE.
 Locally there is a cache for roles in case of network disconnectivity.
 
-Here benefit is, that 3rd party authentication server may have direct
+Here benefit is, that 3rd party Authentication server may have direct
 contracts to many MNOs, so user does not need to find and choose
 them. As a bonus,  MNOs already delegate requests to right operator, if
 they happen to get AuthN request which does not belong to them.
@@ -2115,7 +2161,7 @@ This is similar to federated service.
            +---=----+  :
                        v
   +------+         +---+---------------------------+
-  | BaaS1+<-AuthZ->+3rd party authentication server+<---+ 
+  | BaaS1+<-AuthZ->+3rd party Authentication server+<---+ 
   +---+--+         +---+------------------+--------+    :(Alt. AuthN)
       |                ^                  ^             v
       |                |RADIUS            |AuthN       ++-----=------+
@@ -2184,7 +2230,7 @@ RADIUS messages are not protected from eavesdropping, but they have
 integrity fields to notice if tampering has been done.  
 Integrity field is called a Message Authenticator.
 Notice the use of the term /Authenticator/ in different context here, not
-meaning 802.1X's authenticator.
+meaning 802.1X's Authenticator.
 When using RADIUS to AuthN and AuthZ, Requests can only belong to ACCESS-REQUEST messages while
 Responses can be any of ACCESS-ACCEPT, ACCESS-REJECT, or ACCESS-CHALLENGE message.
 The Message Authenticator field is sent as last Attribute Value Pair (AVP)
@@ -2209,15 +2255,15 @@ The Secret is the shared secret which has been configured between RADIUS servers
 and it protects some parts of traffic. 
 Different RADIUS clients may have different
 secrets and RADIUS server must separate them by client's IP address to
-manage proxied RADIUS requests. \cite{radiusbook}
+manage proxied RADIUS requests \cite{radiusbook}.
 If the user password was to be transmitted on wire, it would be run
-through exclusive OR function (XOR) together with MD5 digested Requst
-Authenticator and Secret and put in to User-Password attribute.  In
-other words
+through exclusive OR function (XOR) together with MD5 digested Secret
+and Request
+Authenticator.
 #+BEGIN_LaTeX
 \begin{center}
 {\tt 
-User-Password = XOR(password, MD5(Request Authenticator, Secret))}
+User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 \end{center}
 #+END_LaTeX
 
@@ -2242,13 +2288,18 @@ from MNO to AuthZ decision from elsewhere.
 
 
 
-RFC2865 \cite{rfc2865} says, that forwarding proxy may alter the packet
+RFC2865 \cite{rfc2865} says, that the forwarding RADIUS proxy may alter the packet
 as it passes it.
 # , so at least it can insert something.
-Because change invalidates the packet's signature, proxy has to
-re-sign it. Later, RFC6929 \cite{rfc6929} reminds, that even when
-proxying RADIUS does not understand all AVPs inside RADIUS message, it
-must deliver those values. That allows us to use larger set of AVPs 
+By adding AVPs inside the authorization packet,  we achieve extra
+information about validity of the access request.
+
+Because a change will invalidate the packet's signature, the proxy has to
+re-sign the packet.
+#
+RFC6929 \cite{rfc6929} reminds, that even when
+the proxy does not understand all AVPs inside RADIUS message, it
+must deliver those values and that allows us to use larger set of AVPs 
 than is in all RADIUS servers' vocabulary.
 
 # RFC2865 \cite{rfc2865} says, that: [TBD, digest this]
@@ -2341,16 +2392,16 @@ AuthN should work for any mobile that has existing contract with
 their MNO. 
 # When everything works between mobile and MNO via chain of components, 
 # AuthN works for any mobile.
-It still is the responsibility of the authenticator to 
+It still is the responsibility of the Authenticator to 
 check AuthZ  and let only admin mobile access the management network.
 
 # AuthZ provides that information
-# and authenticator model includes authorized roles.
+# and Authenticator model includes authorized roles.
 #
 # Only admin mobile will pass the AuthZ phase, so even when
 # AuthN  works for others, as should, when everything works well between
 # mobile and MNO via chain of components, it still is responsibility of
-# authenticator to decide about access to management net.
+# Authenticator to decide about access to management net.
 
 
 # decide about access to management net.
@@ -2373,10 +2424,10 @@ what you can mine from the authentication message is the used operator.''
 #+END_QUOTE
 
 So proxying RADIUS server cannot know for sure anything but the
-originating server (operator) if TMSI is used. The authenticator does
+originating server (operator) if TMSI is used. The Authenticator does
 know the original user, but needs to get AuthZ information. It can get
 AuthZ either from the remote operator which would be easier for the
-authenticator or there might be a proxying RADIUS, which inserts that
+Authenticator or there might be a proxying RADIUS, which inserts that
 knowledge into ACCESS-ACCEPT packet. The latter has issues with
 temporal identities. 
 
@@ -2413,7 +2464,7 @@ Operator or proxying RADIUS
 # , on the other hand, 
 does not necessary know about roles without BaaS, so a link
 is needed between them to get role information inside RADIUS packet.
-# Although authenticator can map TMSI to ...
+# Although Authenticator can map TMSI to ...
 # Even when AuthN succeeds, then how to map that to real user,
 # when only temporary identity is available and that changes every
 # time. Can RADIUS server choose who gets which role? 
@@ -2422,7 +2473,7 @@ EAP-SIM AuthN, when IMSI still is available, and in some way
 that map must be forwarded to the proxying RADIUS servers.
 # [order - do we already know here the design?]
 These issues are fully avoided only in that scenario presented in Chapter
-[[#cha:design]], where there is local authentication server in homenet.
+[[#cha:design]], where there is local Authentication server in homenet.
 Partly avoidance can be reached, when only Full Authentication is
 used, i.e., authentication is always checked from MNO and no fast
 re-authentication is used.
@@ -2446,24 +2497,26 @@ and uses dynamic access list to implement it. \cite[p.117]{lockandkeybook}
 # [cite this or find Basic manual: [[http://www.getnetworking.net/acl/dynamic-access-list-configuration]]]
 
 Difference here is that 802.1X protects access to the
-network. Smartphone does not have any access to the network before AA, while in Lock-and-key
+network. Smartphone has only limited access to the network before AA
+has completed,
+while in the Lock-and-key
 # authenticate to get access at all and then through
 # authorization get right access to management network.
 # In Lock-and-key,  
-access is already open to the network and successful login to the router opens
-access to another segments through it.
-Both methods can have RADIUS as an authentication server.
-# controlling access to authenticator while
+the other parts of network are already open and successful login to the router opens
+access to even more segments through it.
+Both methods can have RADIUS as an Authentication server.
+# controlling access to Authenticator while
 #  in Lock-and-key access is
 # already allowed to router, but actual login there remains  must be 
 # RADIUS instead although also Lock-and-Key allows usage of RADIUS.
-# to log in to router (here authenticator) 
+# to log in to router (here Authenticator) 
 # but instead of using access network it uses 
 # management  network segment. Further, 
 
 If Lock-and-key method was used instead of EAP-SIM RADIUS, then
 separate management LAN would not be needed. Roles were given at
-authenticator or designated router after mobile has done login to it
+Authenticator or designated router after mobile has done login to it
 via normal access network.
 
 #  [To more simplify, access mobile should try access Authenticator
@@ -2490,9 +2543,9 @@ phone) only /approves/ changes,
 # which are already delivered 
 and delivers them to /one, central CPE/, 
 which handles distribution of changes to other CPEs.
-Furthermore, the authenticator is presented as the access point and
+Furthermore, the Authenticator is presented as the access point and
 RADIUS client (in scenarios I-V), which receives RADIUS messages from
-authentication server, even when there would be a separate local RADIUS server
+Authentication server, even when there would be a separate local RADIUS server
 running as a proxy.
 Lastly, a variation of the design is, that not every change needs to go
  through  the local controller and so the process does not always need
@@ -2540,12 +2593,12 @@ for example with NETCONF from the management network.
 Used physical devices are two smartphones, an AP and a laptop.
 The smartphones are Nokia E70-1 and Nokia E90, both capable of EAP-SIM.
 The AP is running OpenWRT firmware.  
-Laptop's software are WPA-supplicant for Wi-Fi 802.1X access,
+Laptop's software are WPA-Supplicant for Wi-Fi 802.1X access,
 hostapd for wired connected RADIUS server and hlr_auc_gw for MNO's
 HLR-AuC. Laptop's role is therefore physically split-brain: It asks from itself for AA. 
 Figure[[eap-sim-testbed]] shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
-simulated WPA-supplicant and HLR-AuC as simulation environment.
+simulated WPA-Supplicant and HLR-AuC as simulation environment.
 # Logically the model can be better described in figure[[eap-sim-testbed]].
 
 # #+begin_src ditaa :file demoinfra.png :cmdline -E -r -s 0.8
@@ -2566,7 +2619,7 @@ simulated WPA-supplicant and HLR-AuC as simulation environment.
   |    A| simulated    |          |RADIUS[EAP_SIM]         |   Mobile phone operator  |
   |    Pv smartphone   |          |                        |                          |
   | +---+------------+ |          v                        |        +-------+         |
-  | | WPA supplicant | |   +------+-------------------+    |        | SIM DB|         |
+  | | WPA Supplicant | |   +------+-------------------+    |        | SIM DB|         |
   | |   EAP_SIM cPNK | |   |  RADIUS  +---------------+    |        |cYEL{d}|         |
   | +--------------+ | |   | c060     |EAP handlercPNK|    |        +---+---+         |
   | |SIM secrets{d}| | |   |Authenti- | +-------------+    |            |             |
@@ -2592,7 +2645,7 @@ simulated WPA-supplicant and HLR-AuC as simulation environment.
 # 2. (RPi)
 
 Jouni Malinen's software package /HostAP/ can be thought as a reference
-implementation providing all necessary components: WPA-supplicant, Wireless
+implementation providing all necessary components: WPA-Supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS would replace HLR in 3G/UMTS networks.
  \cite{hostapd}.
@@ -2658,7 +2711,7 @@ and therefor ends conversation as should be regarding protocol-document [EAP-SIM
 #  simulated SIM and it's secrets were known. 
 At this point, physical phones were put aside and simulated SIM-card
 was used.
-After WPA-supplicant run on laptop with simulated SIM-card access 
+After WPA-Supplicant run on laptop with simulated SIM-card access 
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software claimed that ``Hostapd will send SIM/AKA authentication
 queries over a UNIX domain socket to an external ~hlr_auc_gw~ program.''
@@ -2713,7 +2766,7 @@ Disconnection Message(DM), have later been brought in \cite{rfc5176}
 to the protocol by diverse vendors, but they may not all be implemented on
 every device.
 #  [rfc5176]
-Disconnect-Request is sent to UDP port 3799, so authenticator should
+Disconnect-Request is sent to UDP port 3799, so Authenticator should
 listen also that in addition to RADIUS UDP port 1812.
 
 # [This reverse path forwarding not needed ?]
@@ -2734,13 +2787,13 @@ listen also that in addition to RADIUS UDP port 1812.
 
 Time limited access can perhaps made with session-timeout parameter
 in ACCESS-ACCEPT (or ACCESS-CHALLENGE) packet using type field = "29".
-This parameter tells the authenticator how many second maximal the supplicant
+This parameter tells the Authenticator how many second maximal the Supplicant
 can have service. 
 
 [This cannot be type field 29!]  More specifically, what action
-authenticator should do after termination becomes. It has values of
+Authenticator should do after termination becomes. It has values of
 either 0 (default) or 1 (radius request), which would mean that
-authenticator may send new ACCESS-REQUEST to RADIUS server.
+Authenticator may send new ACCESS-REQUEST to RADIUS server.
 #  [check Delivery of RADIUS attributes Section]
 
 But that would eliminate direct authenticate-only RADIUS cases
@@ -2749,7 +2802,7 @@ But that would eliminate direct authenticate-only RADIUS cases
  /by this. Maybe that we needed only/
  /to have authentication for access/ 
  /which in turn enables modifications/ ]
-Is it then that with value 0, authenticator does not send
+Is it then that with value 0, Authenticator does not send
 ACCESS-REQUEST to RADIUS server, but client still can automatically send it without 
 user's acceptance?
 - forced logout, like in captive portals, where RADIUS is not used.
@@ -2819,7 +2872,7 @@ Therefore open access to the portal site must be provided without
 Full authentication uses IMSI, which is the identity of the phone's SIM.
 Fast re-authentication would use temporal identity TMSI, which 
 can change each time the AuthN request had been sent. Mapping
-is cached on the  authenticator and the round-trip and handling at HLR is
+is cached on the  Authenticator and the round-trip and handling at HLR is
 so eliminated. 
 
 IMSI is 14 or 15 digit long number and presented as a composition
@@ -2832,8 +2885,8 @@ IMSI number (or =IMSI@...…operator.domain=) as an identity.
 
 
 ** Network traces (EAP, SIM, AUTH traffic analysis)
-Wireless capture between WPA-supplicant and AP was made on
-WPA-supplicant's end-point, before it left the wireless card. Capture was
+Wireless capture between WPA-Supplicant and AP was made on
+WPA-Supplicant's end-point, before it left the wireless card. Capture was
 not made in monitoring mode, so not all 802.11 details in
 data packets were captured.
   Because the focus was not in the
@@ -2843,20 +2896,20 @@ radio channel but instead in the EAP messaging, that was not problem.
 
 [Captured wireshark sessions give insight here. Analyze them.
 Packet capture of successful SIM-authentication with corresponding
-parts of logs at WPA-supplicant, RADIUS server and packet captures 
+parts of logs at WPA-Supplicant, RADIUS server and packet captures 
 802.1X, RADIUS and HLR. ]
 # Maybe also remote syslog from access point.]
 
 - flow of messages,  timing,  size, attributes 
   
 Even when authentication conversation would not complete fully,
-authenticator still receives identification claim from mobile. Yet, as
+Authenticator still receives identification claim from mobile. Yet, as
 there is no AuthN, no proof of identity exists in that case.
 # (see sequence, and explain why) [TBD]
 
 IMSI is sent first time already on the second EAP message from 
 # - 1st id claim comes already on second EAP message, from
-WPA-supplicant to AP (see Figure[[fig:eap-sim-full]], message 2.)
+WPA-Supplicant to AP (see Figure[[fig:eap-sim-full]], message 2.)
 # , working set in simulated environment.
 Same in tests made 150123-155714, source:
 testit/demot/ap-s150123-155714/
@@ -2890,7 +2943,7 @@ Frame 130: 15:57:17.983223
 #+END_EXAMPLE
 #+CAPTION: EAP client's response to identity request
 
-We note here, that AP uses version 802.1X-2004 while WPA-supplicant responses with
+We note here, that AP uses version 802.1X-2004 while WPA-Supplicant responses with
 version 802.1X-2001. Here it does not have any noticeable effect.
 The identity field's length is not shown here.
 It is not coded as a numerical but a string.
@@ -2904,7 +2957,7 @@ if context gets lost.
 # [Reminds me of encoding IP addresses as strings in DNS request instead of bytes.]
 
 
-EAP client's identity is transformed at authenticator (Figure[[fig:eap-layers]]) from 802.1X's 
+EAP client's identity is transformed at Authenticator (Figure[[fig:eap-layers]]) from 802.1X's 
 EAPOL format  into RADIUS format and
 sent to RADIUS server:
 #+BEGIN_EXAMPLE
@@ -2938,7 +2991,7 @@ Interesting part is the EAP fragment, having
 Identity="1232010000000000", but
 also RADIUS message itself, where User-Name field has been set also 
 to "1232010000000000". 
-Identity is filled in WPA-supplicant both in identity and credential
+Identity is filled in WPA-Supplicant both in identity and credential
 section so which one is the correct one, or are they both needed?
 Maybe this has something to do with identity
 values above, or then AP just has followed conventions on converting
@@ -3075,7 +3128,7 @@ unless EAP-PEAP is used.
 There are smartphones, that do not have EAP-SIM yet available.
 For example support for
 #  Android starts  although 
-# -  Considering WPA-supplicant + Hardware access to SIM,
+# -  Considering WPA-Supplicant + Hardware access to SIM,
 #    at least few years ago there were not support for Android + SIM
 #   auth cite:android-sim, although
 EAP-SIM (and -AKA) methods starts in Android from version 4.x and in
@@ -3192,8 +3245,8 @@ weak encryption thus revealing all data, calls, and
 texts \cite{imsi-heise}. Mitigation for IMSI-catching would be to
 disable GSM (2G) usage altogether from phone if that is possible.
 
-After first full authentication, client and authenticator 
-know TMSI and can use it in further communication: authenticator 
+After first full authentication, client and Authenticator 
+know TMSI and can use it in further communication: Authenticator 
 is responsible to convert TMSI to IMSI if it later needs to 
 ask for full authentication from the MNO.
 
@@ -3246,7 +3299,7 @@ small and middle size companies?
 To answer this we can remember that backends (cloud and operator) are
 designed for thousands or even millions of concurrent users, so 
 they hardly are limiting factors. Instead, local
-authenticator might suffer from inefficiency, which
+Authenticator might suffer from inefficiency, which
 comes from processing loads \cite{2009-lin-simefficiency}.
 
 
@@ -3280,7 +3333,7 @@ its signatures for integrity checking of packet payload.
 RADIUS-protocol itself provides some integrity checks with Message
 Authenticators as described in Section [[sec:radius-macs]].
 #  [earlier described MACs, no need to mention it here ] 
-# Without message authenticators  which use session secrets, hashes and
+# Without message Authenticators  which use session secrets, hashes and
 #  exclusive OR-function (XOR), it would be easy for MitM to modify
 # RADIUS messages.
 # RADIUS messages are protected from basic message injection, which
@@ -3293,9 +3346,9 @@ Authenticators as described in Section [[sec:radius-macs]].
 
 # provisioning as Delivery of RADIUS attributes in proxying
 # --------------------------------------------------------
-In scenario III(Figure[[fig:scenario-III]]),  there was a proxying RADIUS between authenticator
-and MNO.  When MNO notifies authenticator
-that a smart phone has been authenticated, then authenticator (AP, functioning
+In scenario III(Figure[[fig:scenario-III]]),  there was a proxying RADIUS between Authenticator
+and MNO.  When MNO notifies Authenticator
+that a smart phone has been authenticated, then Authenticator (AP, functioning
 as a RADIUS-client) hooks that message and usually just grants
 smartphone the access to the network. After giving access rights, other
 provisioning parameters can be sent with RADIUS messages, for example
@@ -3391,6 +3444,7 @@ be invented to avoid denial-of service.
 One could also think of hiding the network by disabling the
 advertisement of management network SSID. That is called ``network
 cloaking''.  Smartphone would then need to know the exact target SSID name.
+# always changing vs. hidden
 The SSID could also be renamed always, in essence
 to implement one-time-only network, but then the smartphone would
 need to get that secret somewhere, perhaps via an SMS, and then again
@@ -3402,14 +3456,19 @@ that hiding network would be the only security method.
 Disabling or hiding  merely gives one security layer more so it is not
 a real security method.
 
-When the usage here is to always renew SSID name then
-hiding actually could add security. AP does not reveal any information
-before the client has tried to connect to it, so at least 
-the time window for attacks is minimized. Indeed hiding can have
-privacy enhancing effects: Lindqvist \cite{hidden-wlan} presents usage
-of hidden APs to protect privacy of client, who otherwise would
-reveal its earlier visited places when its Wi-Fi connection probes for
-AP names, that were earlier in its Wi-Fi connection range.
+When the usage here is to always renew SSID name then hiding actually
+could add security. If the client knows beforehand the name of SSID
+(and maybe also AP MAC), then AP does not reveal any information,
+before the client has tried to connect to it and that would minimize
+the time window for attacks.  Hiding can also have privacy enhancing
+effects: Lindqvist's study \cite{hidden-wlan} presents usage of hidden
+APs to protect privacy of clients. While Wi-Fi client's normal action is to
+probe for SSIDs of lately learned APs, analyzing those probes can reveal client's
+earlier locations.
+
+# while 
+# reveal its earlier visited places when its Wi-Fi connection probes for
+# AP names, that were earlier in its Wi-Fi connection range.
 # actively probe for visited APs and
 # would otherwise reveal their visited places.
 
@@ -3572,7 +3631,7 @@ but all of them are deprecated (md5,OTP,GTC ja?)
 - user defined passwd? 
 - how many messages needed? In eap-sim 6+1 (success/failure)
 - to do comparison, I have to study how EAP in general works
-- authenticator for example can use either local method or
+- Authenticator for example can use either local method or
   pass-through the authentication to external backend, still keeping
   EAP-message in tact(sp?) as of  rfc4137
 # - EAP-SIM symmetric vs asymmetric parts 
@@ -3586,7 +3645,7 @@ but all of them are deprecated (md5,OTP,GTC ja?)
 # - key size 128 or 64? (see paper on key size ``only 64bit, not 192bit'')
 # - VLAN itself has attack vector and some methods exists, but also
 #  mitigation for them. 
-# - rad authenticator, TLS, RADSEC etc
+# - rad Authenticator, TLS, RADSEC etc
 # - Easily physically accessible devices are vulnerable to physical attacks.
 
 # ** Second option for multirealms 
@@ -3607,23 +3666,24 @@ but all of them are deprecated (md5,OTP,GTC ja?)
 
 
 Homenet's future needs in configuration management have been
-described. As an example, change of authority and delegation of
-control to third parties are needs that have been presented.  A method to approve
-changes indirectly has been proposed. The approval follows from
-successful authentication and authorization with EAP-SIM method by
-mobile phone. 
+described.
+# have they? thoroughly? or just the AA? How about delegation.
+ As an example, the change of authority and the delegation of
+control to third parties are needs that have been presented.  
+A method to approve changes indirectly has been proposed. The approval
+follows from successful authentication and authorization with EAP-SIM
+method by mobile phone.
 
 # [ Connection to research work done on TUT pervasive department's IoT
 # project on homenets has also been presented. :TBD]
 
-
+# MOTIVATION
 Complexity of existing models in interworking was one motivator for
 the work. Research work on the subject did reveal some of the reasons 
 for the complexity, that are difficult to overcome with simplistic 
 methods without in the same time losing security.
 
-# [Benefits and disadvantages]
-
+# WHAT HAS BEEN DONE
 As results, a real working EAP-SIM test bed with fake credentials and
 fake mobile operator representing EAP-SIM authentication flow has been
 shown.  A dual-role model, which binds a smartphone to the homenet and
@@ -3632,7 +3692,7 @@ management network is indirect way to approve changes.  [or: An
 indirect way to approve changes is achieved by binding the authorized
 access to the management network.]
  
-
+# [Benefits and disadvantages]
 There are some obvious weakness in the proposed solution. Possible usage
 must carefully check the safety limits even when RADIUS-protocol still
 has strengths in security today. The thesis only scratches bootstrapping
