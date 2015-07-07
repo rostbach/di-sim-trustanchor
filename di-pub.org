@@ -565,7 +565,7 @@ Authentication, authorization, and accounting services (AAA) are
 components for access management.  AAA-protocols do not dictate
 policies, i.e., who is granted access or what operations user is
 allowed to do. They only transport this information between client
-who needs them and server providing them.
+who needs them and server authorized to provide them.
 # client and Authenticator server.
 Often, the last 'A' which stands for accounting has been neglected
 and also here only first two A's are used and later described as AA
@@ -590,6 +590,7 @@ those facts are verified. AuthZ involves checking, which rights are
 available for authenticated entity. 
 # [[access control]]
 # explain TRUST
+
 AA services need to trust some entity endpoint. From that point, a trust
 can be chained all the way to the access decision point. The trust
 entity endpoint is called a trust anchor.
