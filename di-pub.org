@@ -693,7 +693,6 @@ cases, where AuthN and AuthZ are provided from different places
 clients domain in the federation.
 # for "Proxy Chaining and Policy in Roaming,June 1999]
 
-
 *** -> to the RADIUS design part
 
 # by Authentication Server to the Authenticator
