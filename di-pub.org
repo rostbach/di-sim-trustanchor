@@ -585,9 +585,10 @@ To be more exact, identification preceding authentication is the part,
 # and it is the process
 where entity claims and presents its identity to 
 access controlling system. That can involve sending username, login
-name or other identifier.
+name or other identifier. Authentication in turn is the part where
+those facts are verified. AuthZ involves checking, which rights are 
+available for authenticated entity. 
 # [[access control]]
-
 # explain TRUST
 AA services need to trust some entity endpoint. From that point, a trust
 can be chained all the way to the access decision point. The trust
