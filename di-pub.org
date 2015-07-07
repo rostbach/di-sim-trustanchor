@@ -596,7 +596,7 @@ can be chained all the way to the access decision point. The trust
 entity endpoint is called a trust anchor.
 
 Before we can introduce SIM-based authentication used throughout the
-thesis, protocols WPA, EAP and RADIUS is described in the following Sections.
+thesis, protocols 802.1X, WPA, EAP and RADIUS is described in the following Sections.
 
 ** 802.1X
 
@@ -675,8 +675,12 @@ succeeded, an ACCESS-ACCEPT message is sent back to the client.
 # + RADIUS analysis seq... (WHERE? 20150703)
 # +  See RADIUS fixes cite:rfc5080.
 
+RADIUS servers can be chained to form a distributed net.
+The reasons for the chaining are load balancing and high availability, 
+centralization of locally distant servers, and federation of different
+domains. 
 If there are multiple RADIUS servers, the messages are chained and
-proxied always to next RADIUS server, i.e.,   proxying RADIUS server.
+proxied always to next RADIUS server, i.e.,  proxying RADIUS server.
 # proxied from NAS via proxying RADIUS servers to the end point which
 # makes the true decision about Authenticity and Access (A-A).
 In the following Chapters it is discussed how proxying servers take 
@@ -713,7 +717,6 @@ At this point, Authenticator has opened port to the smartphone for
 configuration changes. It has negotiated session keys ...
 Local RADIUS has trails of successful
 authentication and knows .-..
-
 
 ** WPA
 
@@ -814,7 +817,6 @@ Different authentication methods can be used,  for example hashed
 # methods or types? 20150702
 passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
 This work uses EAP type of EAP-SIM.
-
 
 
 
