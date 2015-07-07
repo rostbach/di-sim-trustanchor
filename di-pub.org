@@ -689,7 +689,8 @@ part in AA decisions. Of main interest is, if it is possible
 # study, is it possible
 to inject or modify AuthZ information in those proxying RADIUSes in
 cases, where AuthN and AuthZ are provided from different places
-\cite{rfc2607}.
+\cite{rfc2607}. Secondary goal is to universally divide AA regarding 
+clients domain in the federation.
 # for "Proxy Chaining and Policy in Roaming,June 1999]
 
 
