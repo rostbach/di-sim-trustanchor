@@ -738,7 +738,7 @@ complicated than on WPA-PSK, as seen on table[[psk-enterprise]].
 | for groups                   | x       |                |
 | for individual               |         | x              |
 | client setup                 | easy    | intermediate   |
-| individual client revocation | -       | x              |
+| individual client revocation |         | x              |
 |------------------------------+---------+----------------|
 
 # [Explain WPA(1,2) and their authentication usage modes: simple group
