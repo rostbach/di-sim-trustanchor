@@ -164,6 +164,7 @@ Kirjoita, kun english versio on hyvä(ksytty).
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
 %%% \begin{otherlanguage}{english} %  Following text in in 2nd language
+\begin{otherlanguage}{english} %  Following text in in 2nd language
 \makeatother % Make the @ a special symbol again, as \@author and \@title are not neded after this
 
 %
@@ -372,7 +373,7 @@ Connecting these devices to the net remains easy, but managing them afterwards
 has become complex, even at home.
 # 1. Something about knowledge, who knows how to configure.
 First, the configuration choices in networking devices takes some
-amount of expertise what is not necessarily present in every
+amount of expertise what is not necessarily present at every
 home. Secondly, one needs to have some form of control to let only
 authorized operators to configure those devices. 
 # or Together, these problems.. Or invent third problem.
@@ -444,7 +445,7 @@ regarding security, not only to overcome firewalls, NATs, and disconnections.
 # What security problems there are
 #  - key distribution
 #  - weakness of cred.based 
-#  - computer-human interaction, usability
+#  + computer-human interaction, usability
 
 # complexity - already said
 
@@ -456,8 +457,8 @@ regarding security, not only to overcome firewalls, NATs, and disconnections.
 # cloud or device?
 # The ideas for interoperatibility between 3GPP- and IP-networks are influenced
 # from \cite{hav-doc}.
-Those security issues must be solved before delegation in the cloud can
-happen. One of them is the authentication and authorization 
+
+One of the security issues is the authentication and authorization 
 from the cloud to the homenet.
 To secure the connection from the cloud service (controller)
 to the homenet, there needs to be a common trust between each end
@@ -476,6 +477,10 @@ fact, but assumed to be present is called a trust anchor.
 The trust can be derived from facts that already are known.
 The trust anchor is the fact, state or place, where derivation is
 done no more, but accepted per se.
+
+Those security issues must be solved before delegation in the cloud can
+happen. 
+
 
 #  Anchoring must be set somewhere, 
 # is When Trust can be anchored to an entity 
@@ -562,8 +567,8 @@ policies, i.e., who is granted access or what operations user is
 allowed to do. They only transport this information between client
 who needs them and server providing them.
 # client and Authenticator server.
-
-Here, only first two A's are used and later described as AA
+Often, the last 'A' which stands for accounting has been neglected
+and also here only first two A's are used and later described as AA
 services. Authentication (AuthN) answers how to identify users and
 prove that they really are who they claim to be. Authorization (AuthZ)
 answers what operations the identified users are allowed to do and
@@ -579,29 +584,30 @@ To be more exact, identification preceding authentication is the part,
 # of the access control process. Identification is part of AuthN
 # and it is the process
 where entity claims and presents its identity to 
-access controlling system.
+access controlling system. That can involve sending username, login
+name or other identifier.
 # [[access control]]
 
 # explain TRUST
-AA services need to trust some entity endpoint. From that point, trust
-can be chained all the way to the access decision point. The trust end
-point is called a trust anchor.
+AA services need to trust some entity endpoint. From that point, a trust
+can be chained all the way to the access decision point. The trust
+entity endpoint is called a trust anchor.
 
+Before we can introduce SIM-based authentication used throughout the
+thesis, protocols WPA, EAP and RADIUS is described in the following Sections.
 
 ** 802.1X
 
 802.1X \cite{8021X} is an IEEE standard protocol for port based access
-control. Ports are on physical layer, not on Layer-4 such as TCP/UDP ports.
+control. Ports are physical layer ports, not Layer-4 ports such as TCP/UDP ports.
 # explain physical vs. virtual port and source
 # Port means logical port instead of physical port can be .
  Network access through a specific physical port is
 restricted (controlled) from a client (called Supplicant) before
-the client has successfully performed an AA. The 802.1X device, where the  controlled ports
-are located, is called an Authenticator. Third party in 802.1X is an
+the client has successfully performed an AA. A 802.1X device, where
+the ports are located, is called the Authenticator. Third party in 802.1X is an
 Authentication server. 
 
-Authenticator may consult external RADIUS server for authentication
-requests. 
 
 # picture?
 
@@ -619,11 +625,13 @@ Authentication server handles AA processes.
 At home, Authenticator usually lies inside the access point, but 
 on large enterprise networks, Authenticator can be a centralized unit 
 and multiple access points function only as radio stations.
-Here RADIUS-server takes a role of an Authentication server.
+Authenticator may consult external RADIUS server for authentication
+requests. 
 
 
 ** RADIUS 
 <<sec:radius>>
+# Here RADIUS-server takes a role of an Authentication server.
 RADIUS is the most popular provider for
 AAA-services \cite[p.75]{radius-popular}.  It was used first with remote terminal and dial-up modem users, hence the name Remote
 Authentication Dial-In User Service. Later it was used as centralized AAA
@@ -641,35 +649,10 @@ networks.
 RADIUS-protocol is a stateless, request-response type client-server
 protocol. RADIUS messages used for AA are of type ACCESS  (ACCESS-REQUEST,
 ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). 
-Messaging-flow includes both AuthN and AuthZ. When they have
+Messaging flow includes both AuthN and AuthZ. When they have
 succeeded, an ACCESS-ACCEPT message is sent back to the client.
 
 
-## Tämä designiin, 
-# by Authentication Server to the Authenticator
-which then can negotiate WPA session keys and open access for the
-smartphone to the protected port.  Besides authentication, other
-service parameters such as provisioning can be included in
-ACCESS-ACCEPT message. In essence, AuthZ part itself can be thought as
-one type of service provisioning \cite{rfc5608}.
-
-In the first prototype it is enough to identify authorized
-smartphone's SIM.
-Smartphone holding the SIM is granted the access to the parts of the
-management network and is authenticated strong. 
-User management is outsourced to MNO, which already has provided SIM
-cards to users. What remains, is the adding of the user's IMSI to
-the authorized users' list. That list can be located on diverse place, 
-as can be seen in xxx
-
-
-# explain provisioning? 20150702
-
-At this point, Authenticator has opened port to the smartphone for
-configuration changes. It has negotiated session keys ...
-
-Local RADIUS has trails of successful
-authentication and knows .-..
 
 
 # #+BEGIN_QUOTE
@@ -685,37 +668,63 @@ authentication and knows .-..
 # depending on style, i.e. does not need postfix \ ( "i.e.\," to
 # prevent unnecessary space
 
-# Used EAPs include...
+# +Used EAPs include...
 # + configuration information using RFC 2865
-# + RADIUS analysis seq...
+# + RADIUS analysis seq... (WHERE? 20150703)
 # +  See RADIUS fixes cite:rfc5080.
 
 If there are multiple RADIUS servers, the messages are chained and
 proxied always to next RADIUS server, i.e.,   proxying RADIUS server.
-# proxied from NAS via proxying RADIUS servers  to the end point which 
+# proxied from NAS via proxying RADIUS servers to the end point which
 # makes the true decision about Authenticity and Access (A-A).
 In the following Chapters it is discussed how proxying servers take 
 part in AA decisions. Of main interest is, if it is possible 
 # If RADIUS has been chained, it was not clear in the beginning of this
 # study, is it possible
-to inject or modify AuthZ information in those proxying RADIUSes in cases, 
-where AuthN and AuthZ are provided from different
-places \cite{rfc2607}.
+to inject or modify AuthZ information in those proxying RADIUSes in
+cases, where AuthN and AuthZ are provided from different places
+\cite{rfc2607}.
 # for "Proxy Chaining and Policy in Roaming,June 1999]
+
+
+*** -> to the RADIUS design part
+
+# by Authentication Server to the Authenticator
+...which then can negotiate WPA session keys and open access for the
+smartphone to the protected port.  Besides authentication, other
+service parameters such as provisioning can be included in
+ACCESS-ACCEPT message. In essence, AuthZ part itself can be thought as
+one type of service provisioning \cite{rfc5608}.
+
+In the first prototype it is enough to identify authorized
+smartphone's SIM.
+Smartphone holding the SIM is granted the access to the parts of the
+management network and is authenticated strong. 
+User management is outsourced to MNO, which already has provided SIM
+cards to users. What remains, is the adding of the user's IMSI to
+the authorized users' list. That list can be located on diverse place, 
+as can be seen in xxx
+# ### 
+
+# explain provisioning? 20150702
+At this point, Authenticator has opened port to the smartphone for
+configuration changes. It has negotiated session keys ...
+Local RADIUS has trails of successful
+authentication and knows .-..
 
 
 ** WPA
 
 Wireless protected access (WPA) protects traffic in wireless,
 shared media, where everyone can simply listen the traffic on
-radio waves. It allows both authenticated access and message
+radio waves. It enables both authenticated access and message
 encryption.
 # WPA consist of client (WPA-supplicant), Authenticator, and Authentication Server.
-WPA-supplicant is client software for 802.1X and communicates with the Authenticator.
+Client software for 802.1X is called WPA-Supplicant and it communicates with the Authenticator.
 
 WPA has two protected modes: one for groups with common, pre-shared
 key (WPA-PSK also known as WPA-Personal) and one for individuals
-(WPA-RADIUS a.k.a. WPA-Enterprise).  With WPA-RADIUS, revoking
+(WPA-RADIUS also known as  WPA-Enterprise).  With WPA-RADIUS, revoking
 individual access is easier, but client setup slightly more
 complicated than on WPA-PSK, as seen on table[[psk-enterprise]].
 
@@ -752,8 +761,7 @@ EAP describes only the messaging form, so EAP messages needs to
 be encapsulated inside another protocol.  In Wi-Fi, between smartphone
 and access point, EAP is encapsulated into 802.1X protocol (EAPOL) or
 into TLS protected PEAP (Protected EAP) \cite{peap} before sending
-into wire. In wired net, RADIUS encapsulates EAP
-messages.
+into wire. In wired net, EAP messages are encapsulated into RADIUS.
 
 The encapsulation is described in Figure[[fig:eap-layers]] where it
 can be seen, that EAP messaging happens logically between  EAP peer and
@@ -3782,3 +3790,8 @@ string ``[REMOVED]''.
 :END: 
 #+NAME: app:nosim
 Here capture + analysis from nosim
+
+
+#+BEGIN_LaTeX
+\end{otherlanguage} % End on 2nd language part (figures)
+#+END_LaTeX
