@@ -2659,9 +2659,9 @@ simulated WPA-Supplicant and HLR-AuC as simulation environment.
   |     v              |    |WiFi AP(Authenticator)|
   |  +--+---------+    |    +----------------------+
   |  | WiFidriver |    |    |        c060          |      /------=-------------------\
-  |  +--+---------+    |    +-----+----------------+      |  +--------------------+  | 
-  |     ^              |          ^                       |  | Simulated MNO      |  |
-  |    E|              |          |                       |  +--------------------+  |
+  |  +--+---------+    |    +-----+----------------+      |   +-----------------+    | 
+  |     ^              |          ^                       |   |  Simulated MNO  |    |
+  |    E|              |          |                       |   +-----------------+    |
   |    A| simulated    |          |RADIUS[EAP_SIM]        |                          |
   |    Pv smartphone   |          |                       |        +-------+         |
   | +---+------------+ |          v                       |        | SIM DB|         |
