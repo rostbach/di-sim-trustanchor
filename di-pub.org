@@ -926,8 +926,7 @@ function instead of SHA-1.\cite{rfc5448}.
 algorithms to generate valid responses for challenges coming from MNO
 and to derive session keys.  The algorithms used (A3/A8) and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
-interest in this work beside the point that they are mobile operator
-specific or known reference algorithms.
+interest in this work beside the point that they are MNO specific or known reference algorithms.
 #  (algorithms not explained here further) 
 The algorithm used in the demo was internal GSM-Milenage for EAP-SIM,
 #  A3/A8, although it was possible to use
