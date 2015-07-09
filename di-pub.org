@@ -637,14 +637,18 @@ and dial-up modem users, hence the name Remote Authentication Dial-In
 User Service. Later it was used as centralized AAA for networking
 devices such as switches and routers.  Currently its main environment
 beside networking managing is wireless connections (Wi-Fi) in
-enterprises and nation wide community federations as the Authenticator
+enterprises and nation wide community federations.
+
+ as the Authenticator
 in 802.1X may consult external RADIUS server for authentication
 requests.
 
-Federations started as local WLAN groups
-such  as SparkNet or LangatonTampere 
-which had their own uniform SSID (Service Set IDentifier, published
-network name). Later, those groups agreed to allow network visiting
+Federations started as local WLAN groups such as SparkNet or
+LangatonTampere. Their users could use network anywhere, where there
+was the same uniform SSID
+(Service Set IDentifier) seen as published Wi-Fi network name.
+
+ Later, those groups agreed to allow network visiting
 (roaming) from local group to another and so federations were born.
 
 
