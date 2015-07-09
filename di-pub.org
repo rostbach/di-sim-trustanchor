@@ -2636,12 +2636,12 @@ for example with NETCONF from the management network.
 #  per scenarios in Scenario Chapter. 
 # "Here" needs reference, but it is already referenced in next Chapter?
 
-Used physical devices are two smartphones, an AP and a laptop.
+Used physical devices were two smartphones, an AP and a laptop.
 The smartphones were Nokia E70-1 and Nokia E90, both capable of EAP-SIM.
-The AP is running OpenWRT firmware.  
-Laptop's software are WPA-Supplicant for Wi-Fi 802.1X access,
+The AP was running OpenWRT firmware.  
+Laptop's software were WPA-Supplicant for Wi-Fi 802.1X access,
 hostapd for wired connected RADIUS server and hlr_auc_gw for MNO's
-HLR-AuC. Laptop's role is therefore physically split-brain: It asks from itself for AA. 
+HLR-AuC. Laptop's role was therefore physically split-brain: It asked from itself for AA. 
 Figure[[eap-sim-testbed]] shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA-Supplicant and HLR-AuC as simulation environment.
