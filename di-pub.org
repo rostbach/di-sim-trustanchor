@@ -2659,20 +2659,20 @@ simulated WPA-Supplicant and HLR-AuC as simulation environment.
   |     v              |    |WiFi AP(Authenticator)|
   |  +--+---------+    |    +----------------------+
   |  | WiFidriver |    |    |        c060          |
-  |  +--+---------+    |    +-----+----------------+       /------=-------------------\
-  |     ^              |          ^                        |        Simulated         | 
-  |    E|              |          |                        |          MNO's           |
-  |    A| simulated    |          |RADIUS[EAP_SIM]         |      AuthN Center(AuC)   |
-  |    Pv smartphone   |          |                        |        +-------+         |
-  | +---+------------+ |          v                        |        | SIM DB|         |
-  | | WPA Supplicant | |   +------+-------------------+    |        |cYEL{d}|         |
-  | |   EAP_SIM cPNK | |   |  RADIUS  +---------------+    |        +---+---+         |
-  | +--------------+ | |   | c060     |EAP handlercPNK|    |            |             |
-  | |SIM secrets{d}| | |   |Authenti- | +-------------+    |  +---------+-----------+ |
-  | |cYEL(IMSI,K_i)| | |   |cation    | |hlr_auc      +<----->+HLR AuC simulatorcBLU| |
-  | |              | | |   | server   | | gateway cBLU|    |  +---------------------+ |
-  +-+--------------+-+-+   +----------+-+-------------+    |                          |
-                                                           \---------------------=----/
+  |  +--+---------+    |    +-----+----------------+      /------=-------------------\
+  |     ^              |          ^                       |        Simulated         | 
+  |    E|              |          |                       |          MNO's           |
+  |    A| simulated    |          |RADIUS[EAP_SIM]        |      AuthN Center(AuC)   |
+  |    Pv smartphone   |          |                       |        +-------+         |
+  | +---+------------+ |          v                       |        | SIM DB|         |
+  | | WPA Supplicant | |   +------+------------------+    |        |cYEL{d}|         |
+  | |   EAP_SIM cPNK | |   |  RADIUS  +--------------+    |        +---+---+         |
+  | +--------------+ | |   | c060     |EAPhandlercPNK|    |            |             |
+  | |SIM secrets{d}| | |   |Authenti- | +------------+    |  +---------+-----------+ |
+  | |cYEL(IMSI,K_i)| | |   |cation    | |hlr_auc     +<----->+HLR AuC simulatorcBLU| |
+  | |              | | |   | server   | | gatewaycBLU|    |  +---------------------+ |
+  +-+--------------+-+-+   +----------+-+------------+    |                          |
+                                                          \---------------------=----/
                                  
                      <-=-WiFi---=-> 
                      <---Wired---->      
