@@ -639,14 +639,12 @@ devices such as switches and routers.  Currently its main environment
 beside networking managing is wireless connections (Wi-Fi) in
 enterprises and nation wide community federations.
 
- as the Authenticator
-in 802.1X may consult external RADIUS server for authentication
-requests.
 
 Federations started as local WLAN groups such as SparkNet or
-LangatonTampere. Their users could use network anywhere, where there
-was the same uniform SSID
-(Service Set IDentifier) seen as published Wi-Fi network name.
+LangatonTampere.  Authenticator in 802.1X enables users in those group
+to consult external, central RADIUS server for authentication
+requests. As so, the users could use network anywhere, where the same
+uniform SSID (Service Set IDentifier) as a Wi-Fi network name was seen.
 
  Later, those groups agreed to allow network visiting
 (roaming) from local group to another and so federations were born.
