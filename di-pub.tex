@@ -1,4 +1,4 @@
-% Created 2015-07-09 to 11:24
+% Created 2015-07-09 to 11:44
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -760,8 +760,7 @@ function instead of SHA-1.\cite{rfc5448}.
 algorithms to generate valid responses for challenges coming from MNO
 and to derive session keys.  The algorithms used (A3/A8) and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
-interest in this work beside the point that they are mobile operator
-specific or known reference algorithms.
+interest in this work beside the point that they are MNO specific or known reference algorithms.
 The algorithm used in the demo was internal GSM-Milenage for EAP-SIM,
 which is a reference implementation and as such suitable for operators, who do not 
 want to invent their own security algorithms. 
@@ -1904,12 +1903,12 @@ for example with NETCONF from the management network.
 
 
 
-Used physical devices are two smartphones, an AP and a laptop.
-The smartphones are Nokia E70-1 and Nokia E90, both capable of EAP-SIM.
-The AP is running OpenWRT firmware.  
-Laptop's software are WPA-Supplicant for Wi-Fi 802.1X access,
+Used physical devices were two smartphones, an AP and a laptop.
+The smartphones were Nokia E70-1 and Nokia E90, both capable of EAP-SIM.
+The AP was running OpenWRT firmware.  
+Laptop's software were WPA-Supplicant for Wi-Fi 802.1X access,
 hostapd for wired connected RADIUS server and hlr\_auc\_gw for MNO's
-HLR-AuC. Laptop's role is therefore physically split-brain: It asks from itself for AA. 
+HLR-AuC. Laptop's role was therefore physically split-brain: It asked from itself for AA. 
 Figure\ref{eap-sim-testbed} shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA-Supplicant and HLR-AuC as simulation environment.
@@ -2050,7 +2049,7 @@ portal [-> reference to \hyperref[text:nointernet]{No Internet connectivity} lin
 
 [ Back in track: this can be left here ]
 
-Offline changes includes cases where smartphone is not available
+Offline changes include cases where the smartphone is not available
  or when internet connection is down.
 If connection to internet is down, full SIM authentication will not
 work, because it needs co-operation from internet, namely from MNO.
