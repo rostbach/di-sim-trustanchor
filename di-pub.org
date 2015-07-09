@@ -2662,8 +2662,8 @@ simulated WPA-Supplicant and HLR-AuC as simulation environment.
   |  +--+---------+    |    +-----+----------------+       /------=-------------------\
   |     ^              |          ^                        |                          | 
   |    E|              |          |                        |        Simulated         |
-  |    A| simulated    |          |RADIUS[EAP_SIM]         |   Mobile phone operator  |
-  |    Pv smartphone   |          |                        |                          |
+  |    A| simulated    |          |RADIUS[EAP_SIM]         |  Mobile phone operator's |
+  |    Pv smartphone   |          |                        |Authentication Center(AuC)|
   | +---+------------+ |          v                        |        +-------+         |
   | | WPA Supplicant | |   +------+-------------------+    |        | SIM DB|         |
   | |   EAP_SIM cPNK | |   |  RADIUS  +---------------+    |        |cYEL{d}|         |
@@ -2895,7 +2895,7 @@ user's acceptance?
 #+LABEL: text:nointernet
 [ Back in track: this can be left here ]
 
-Offline changes includes cases where smartphone is not available
+Offline changes include cases where the smartphone is not available
 # not at home
  or when internet connection is down.
 If connection to internet is down, full SIM authentication will not
