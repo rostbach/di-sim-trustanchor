@@ -960,22 +960,23 @@ identity.
 
 #+CAPTION: Setup tasks in  WPA2-Enterprise with EAP-PEAP-MSCHAPv2 and EAP-SIM
 #+NAME: table-peapsim
-|                                          | EAP-PEAP | EAP-SIM | EAP-PEAP |
-| Task:                                    | with     |         | with     |
-| (x)=``needed'', (N/A)= ``not available'' | MSCHAPv2 |         | EAP-SIM  |
-|------------------------------------------+----------+---------+----------|
-| choose CA                                | x        |         | x        |
-| tell CA to clients                       | x        |         | x        |
-| if CA not known, distribute it /secure/  | x        |         | x        |
-| set used EAP-method                      | x        | x       | x        |
-| set validating of RADIUS server          | x        |         | x        |
-| set encapsulation (WPA/802.1X)           | x        |         |          |
-| set outer identity                       | x        |         | x        |
-| set inner identity                       | x        |         |          |
-| set password                             | x        |         |          |
-| identity hiding:                         |          | N/A     |          |
-| enable PEAP                              | x        | N/A     | x        |
-|------------------------------------------+----------+---------+----------|
+|                                          | EAP-PEAP     | EAP-SIM | EAP-PEAP |
+| Task:                                    | with         |         | with     |
+| (x)=``needed'', (N/A)= ``not available'' | MSCHAPv2     |         | EAP-SIM  |
+|------------------------------------------+--------------+---------+----------+
+| choose CA                                | x            |         | x        |
+| tell CA to clients                       | x            |         | x        |
+| if CA not known, distribute it /secure/  | x            |         | x        |
+| set used EAP-method                      | x            | x       | x        |
+| set validating of RADIUS server          | x            |         | x        |
+| set encapsulation (WPA/802.1X)           | x            |         |          |
+|                                          | set password | x       |          |
+| identity hiding:                         |              | N/A     |          |
+|  enable PEAP                             | x            | N/A     | x        |
+|  set outer identity                      | x            |         | x        |
+|  set inner identity                      | x            |         |          |
+|                                          |              |         |          |
+|------------------------------------------+--------------+---------+----------+
 
 
 # EAP-SIM was invented to eliminate separate Wi-Fi credentials and
