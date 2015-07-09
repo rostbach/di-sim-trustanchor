@@ -970,7 +970,7 @@ identity.
 | set used EAP-method                      | x            | x       | x        |
 | set validating of RADIUS server          | x            |         | x        |
 | set encapsulation (WPA/802.1X)           | x            |         |          |
-|                                          | set password | x       |          |
+| set password                             | x            | x (PIN) |          |
 | identity hiding:                         |              | N/A     |          |
 |  enable PEAP                             | x            | N/A     | x        |
 |  set outer identity                      | x            |         | x        |
