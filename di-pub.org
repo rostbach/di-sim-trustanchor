@@ -2660,18 +2660,18 @@ simulated WPA-Supplicant and HLR-AuC as simulation environment.
   |  +--+---------+    |    +----------------------+
   |  | WiFidriver |    |    |        c060          |
   |  +--+---------+    |    +-----+----------------+       /------=-------------------\
-  |     ^              |          ^                        |                          | 
-  |    E|              |          |                        |        Simulated         |
-  |    A| simulated    |          |RADIUS[EAP_SIM]         |          MNO's           |
-  |    Pv smartphone   |          |                        |      AuthN Center(AuC)   |
-  | +---+------------+ |          v                        |        +-------+         |
-  | | WPA Supplicant | |   +------+-------------------+    |        | SIM DB|         |
-  | |   EAP_SIM cPNK | |   |  RADIUS  +---------------+    |        |cYEL{d}|         |
-  | +--------------+ | |   | c060     |EAP handlercPNK|    |        +---+---+         |
-  | |SIM secrets{d}| | |   |Authenti- | +-------------+    |            |             |
-  | |cYEL(IMSI,K_i)| | |   |cation    | |hlr_auc      |    |  +---------+-----------+ |
-  | |              | | |   | server   | | gateway cBLU+<----->+HLR AuC simulatorcBLU| |
-  +-+--------------+-+-+   +----------+-+-------------+    |  +---------------------+ |
+  |     ^              |          ^                        |        Simulated         | 
+  |    E|              |          |                        |          MNO's           |
+  |    A| simulated    |          |RADIUS[EAP_SIM]         |      AuthN Center(AuC)   |
+  |    Pv smartphone   |          |                        |        +-------+         |
+  | +---+------------+ |          v                        |        | SIM DB|         |
+  | | WPA Supplicant | |   +------+-------------------+    |        |cYEL{d}|         |
+  | |   EAP_SIM cPNK | |   |  RADIUS  +---------------+    |        +---+---+         |
+  | +--------------+ | |   | c060     |EAP handlercPNK|    |            |             |
+  | |SIM secrets{d}| | |   |Authenti- | +-------------+    |  +---------+-----------+ |
+  | |cYEL(IMSI,K_i)| | |   |cation    | |hlr_auc      +<----->+HLR AuC simulatorcBLU| |
+  | |              | | |   | server   | | gateway cBLU|    |  +---------------------+ |
+  +-+--------------+-+-+   +----------+-+-------------+    |                          |
                                                            \---------------------=----/
                                  
                      <-=-WiFi---=-> 
