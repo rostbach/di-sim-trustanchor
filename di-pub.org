@@ -643,11 +643,10 @@ enterprises and nation wide community federations.
 Federations started as local WLAN groups such as SparkNet or
 LangatonTampere.  Authenticator in 802.1X enables users in those group
 to consult external, central RADIUS server for authentication
-requests. As so, the users could use network anywhere, where the same
+requests. As so, the users could use network anywhere (roaming), where the same
 uniform SSID (Service Set IDentifier) as a Wi-Fi network name was seen.
-
- Later, those groups agreed to allow network visiting
-(roaming) from local group to another and so federations were born.
+ Later, there were agreements between different groups to allow 
+roaming also from group to group and so federations were born.
 
 
 In addition to RADIUS, there  exists similar protocol called Diameter
