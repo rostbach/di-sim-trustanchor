@@ -2662,8 +2662,8 @@ simulated WPA-Supplicant and HLR-AuC as simulation environment.
   |  +--+---------+    |    +-----+----------------+       /------=-------------------\
   |     ^              |          ^                        |                          | 
   |    E|              |          |                        |        Simulated         |
-  |    A| simulated    |          |RADIUS[EAP_SIM]         |  Mobile phone operator's |
-  |    Pv smartphone   |          |                        |Authentication Center(AuC)|
+  |    A| simulated    |          |RADIUS[EAP_SIM]         |          MNO's           |
+  |    Pv smartphone   |          |                        |      AuthN Center(AuC)   |
   | +---+------------+ |          v                        |        +-------+         |
   | | WPA Supplicant | |   +------+-------------------+    |        | SIM DB|         |
   | |   EAP_SIM cPNK | |   |  RADIUS  +---------------+    |        |cYEL{d}|         |
