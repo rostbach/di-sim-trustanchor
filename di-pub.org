@@ -344,7 +344,7 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 # END OF COMMON stuff, now begins thesis' first chapter (after
 # abstract and ToC)
 # -----------------------------------------------------------------
-
+ 
 * Introduction 
 # (write last)
 <<cha:intro>>
@@ -491,7 +491,6 @@ the homenet management with smart phone as trust anchor.
 Trust model, which benefits from smartphone's unique,
 existing secret keys inside the smart card's  Subscriber Identify Module
 (SIM), is proposed. 
-SIM here means the keys and the application in SIM or USIM inside UICC card. 
 Besides that, problems such as limited connectivity are studied. 
 
 # although the correct term were SIM card with application and keys on
@@ -596,12 +595,12 @@ can be chained all the way to the access decision point. The trust
 entity endpoint is called a trust anchor.
 
 Before we can introduce SIM-based authentication used throughout the
-thesis, protocols 802.1X, WPA, EAP and RADIUS is described in the following Sections.
+thesis, protocols 802.1X, WPA, EAP and RADIUS are described in the following Sections.
 
 ** 802.1X
 
 802.1X \cite{8021X} is an IEEE standard protocol for port based access
-control. Ports are physical layer ports, not Layer-4 ports such as TCP/UDP ports.
+control. Ports are physical layer ports, not to be mixed to Layer-4 ports such as TCP/UDP ports.
 # explain physical vs. virtual port and source
 # Port means logical port instead of physical port can be .
  Network access through a specific physical port is
@@ -609,7 +608,6 @@ restricted (controlled) from a client (called Supplicant) before
 the client has successfully performed an AA. A 802.1X device, where
 the ports are located, is called the Authenticator. Third party in 802.1X is an
 Authentication server. 
-
 
 # picture?
 
@@ -627,21 +625,35 @@ Authentication server handles AA processes.
 At home, Authenticator usually lies inside the access point, but 
 on large enterprise networks, Authenticator can be a centralized unit 
 and multiple access points function only as radio stations.
-Authenticator may consult external RADIUS server for authentication
-requests. 
+
 
 
 ** RADIUS 
 <<sec:radius>>
 # Here RADIUS-server takes a role of an Authentication server.
-RADIUS is the most popular provider for
-AAA-services \cite[p.75]{radius-popular}.  It was used first with remote terminal and dial-up modem users, hence the name Remote
-Authentication Dial-In User Service. Later it was used as centralized AAA
-for networking devices such as switches and routers.  Currently its
-main environment at community  (education and city)home and SMEs (Small and Medium-sized Enterprises) is
-wireless connections (Wi-Fi).  Besides RADIUS, there exists similar protocol
-called Diameter which is newer than RADIUS and in use in 3GPP (4G?)
-networks. 
+RADIUS is the most popular provider for AAA-services
+\cite[p.75]{radius-popular}.  It was used first with remote terminal
+and dial-up modem users, hence the name Remote Authentication Dial-In
+User Service. Later it was used as centralized AAA for networking
+devices such as switches and routers.  Currently its main environment
+beside networking managing is wireless connections (Wi-Fi) in
+enterprises and nation wide community federations as the Authenticator
+in 802.1X may consult external RADIUS server for authentication
+requests.
+
+Federations started as local WLAN groups
+such  as SparkNet or LangatonTampere 
+which had their own uniform SSID (Service Set IDentifier, published
+network name). Later, those groups agreed to allow network visiting
+(roaming) from local group to another and so federations were born.
+
+
+In addition to RADIUS, there  exists similar protocol called Diameter
+which is newer than RADIUS and in use in 3GPP (and 4G)
+networks\cite{diameter}.  
+
+
+
 #  and also TACACS(+)
 # [see rfc2989 for summaries for network access -20150413].
 # Wireless environments include supplicant, Authenticator, and
@@ -679,8 +691,9 @@ RADIUS servers can be chained to form a distributed net.
 The reasons for the chaining are load balancing and high availability, 
 centralization of locally distant servers, and federation of different
 domains. 
-If there are multiple RADIUS servers, the messages are chained and
-proxied always to next RADIUS server, i.e.,  proxying RADIUS server.
+In RADIUS trees, the messages are chained and
+proxied to next RADIUS server,
+depending on the settings on the proxying RADIUS server.
 # proxied from NAS via proxying RADIUS servers to the end point which
 # makes the true decision about Authenticity and Access (A-A).
 In the following Chapters it is discussed how proxying servers take 
@@ -744,10 +757,6 @@ complicated than on WPA-PSK, as seen on table[[psk-enterprise]].
 | individual client revocation |         | x              |
 |------------------------------+---------+----------------|
 
-# [Explain WPA(1,2) and their authentication usage modes: simple group
-# shared secret (PSK) and full 802.1X/EAP to RADIUS server.
-# -> revoking possible in full mode but very difficult in PSK, because
-# of burden to revoke all users's pwds.]
 
 ** EAP
 # Mechanism to extend 802.1X protocol authentication methods is achieved
@@ -764,7 +773,7 @@ extended with  modular framework called
  EAP (Extensible Authentication Protocol) \cite{rfc5247}. 
 EAP describes only the messaging form, so EAP messages needs to
 be encapsulated inside another protocol.  In Wi-Fi, between smartphone
-and access point, EAP is encapsulated into 802.1X protocol (EAPOL) or
+and access point, EAP is encapsulated into 802.1X protocol (as EAPOL) or
 into TLS protected PEAP (Protected EAP) \cite{peap} before sending
 into wire. In wired net, EAP messages are encapsulated into RADIUS.
 
@@ -823,11 +832,35 @@ This work uses EAP type of EAP-SIM.
 ** SIM-based authentication
 <<sec:sim-based-auth>>
 # explain MNO 
+SIM here means the secret keys and the application in mobile phone's
+SIM or USIM inside UICC(Universal Integrated Circuit Card).
+The secret keys are hardware protected and only usable to SIM card.
+  The SIM's
+storage also includes a unique serial number (ICCID) and  a unique IMSI
+(International Mobile Subcriber Identity).  SIM card usage can be
+controlled by two passwords: PIN and PUK.  PUK is used as a remedy, if
+PIN has been inserted wrong too many times.  If the card has other
+applications, they may have different keys and codes, for example
+mobile electrical signature application Mobiilivarmenne uses an own
+PIN.
+
+MNO (Mobile Network operator) distributes SIM card and
+provides mobile network connectivity to its customers.
+The secret keys are used for authenticating the IMSI to MNO
+which enables MNO's to identify their customer in the network and
+charge them correspondingly.
+
+
+
+, which it
+identifies with above mentioned IMSI.
+
 MNO and SIM trust mutually each other.
 There is still need for separate access credentials for Wi-Fi and
 that was the reason of developing EAP-SIM and later the derivatives
 EAP-AKA and EAP-AKA'.
-The goal was to combine in a secure way existing GSM keys for Wi-Fi
+The goal was to combine in a secure way existing GSM (Global system
+for Mobile communication) keys for Wi-Fi
 access. Existing general purpose EAP-methods in 2004 were not
 compatible with GSM protocols for this purpose. \cite[p.93]{hav-doc}
 # [More security stuff, operator-specific parts in AKA', explained here
@@ -868,7 +901,7 @@ That procedure is later described in more detail.
 
 Upwards from 3GPP network, types EAP-AKA and AKA' can be used.
 EAP-AKA is defined in RFC4187 \cite{rfc4187} and
- uses 3GPP's AKA (authentication and Key Agreement) protocol.
+ uses 3GPP's AKA (Authentication and Key Agreement) protocol.
 It differs from SIM by using additionally parameters from MNO to
 protect replay attacks. Otherwise the protocol messaging is same
 as in  GSM-SIM, only algorithms differ.
@@ -881,10 +914,11 @@ as in  GSM-SIM, only algorithms differ.
 #             used for that. Incrementing SQN values eliminates replay
 #             attacks.  This is not tested here.
 
-Last, there exists EAP-AKA' (AKA-PRIME) \cite{rfc5448}.
+Last, there exists EAP-AKA' (AKA-PRIME).
 Enhancement to AKA is to include Service Set name (SSID) 
-in the key derivation function. Additionally, digests use SHA-256
-function instead of SHA-1.
+in the key derivation function, which limits the possibility of using
+compromised network's nodes and keys. Additionally, digests use SHA-256
+function instead of SHA-1.\cite{rfc5448}.
 
 
   Using EAP-SIM means using the secret key inside SIM card with A3/A8
@@ -1081,7 +1115,7 @@ Secure network configuration and credential exchange is then possible.
 # ]
 
 
-As mentioned earlier, the smart phone and MNO trust each other hence
+As mentioned earlier, the SIM and MNO trust each other hence
 mutual authentication between them is possible.  Now, how this could be used
 to include other components under same trust circle in the homenet? 
 As AuthN-AuthZ at home proceeds through Authenticator, maybe
@@ -2770,8 +2804,10 @@ kept in mind when the final implementation is made.
 
 Terminating a session is not included in the original RADIUS protocol.
 The root cause is, that messages originating from the RADIUS server
-are not defined in the protocol and so AP as RADIUS client cannot
-receive RADIUS server initiated disconnection messages. Additional
+are not defined in the RADIUS protocol and so AP as RADIUS client cannot
+receive RADIUS server initiated disconnection messages. 
+As a side note, Diameter protocol provides server initiated messaging.
+Additional
 extensions such as Disconnect and Change-of-Authorization (CoA)
 packets, also known as RADIUS Dynamic Authorization or RADIUS
 Disconnection Message(DM), have later been brought in \cite{rfc5176}
@@ -3320,7 +3356,9 @@ light weightiness. UDP misses reliability, but retransmission in UDP is
 tolerable, because user is ready to wait several seconds for
 authentication to complete. Today, RADIUS can also run over TCP, which
 has generally more aggressive retransmission
-rate \cite[Section 2.2.1]{rfc5080}. On the other hand, adding an
+rate \cite[Section 2.2.1]{rfc5080}. 
+# explain this. 
+On the other hand, adding an
 alternative UDP RADIUS server can answer faster than waiting for TCP's reliable delivery.
 # adding an alternative RADIUS server can server better in congested
 # network. (But is homenet congested?)
