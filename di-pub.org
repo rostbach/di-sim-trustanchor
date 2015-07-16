@@ -508,8 +508,8 @@ require less effort than the current methods of distributing user
 credentials, finding the place where they can be inserted, and
 ensuring that they are written correctly. 
 [write more clear and mention key distribution problem.]
-The place where trust is not anymore derived or built upon other 
-fact, but assumed to be present is called a trust anchor.
+The place, where trust is not anymore derived or built upon other 
+fact but assumed to be present, is called a trust anchor.
 The trust can be derived from facts that already are known.
 The trust anchor is the fact, state or place, where derivation is
 done no more, but accepted per se.
