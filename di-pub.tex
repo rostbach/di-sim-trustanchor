@@ -1,4 +1,4 @@
-% Created 2015-07-09 to 11:45
+% Created 2015-07-16 to 14:07
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -68,6 +68,14 @@
  \hypersetup{  
  pdfkeywords={authentication, authorization, AAA, homenet, smartphone, trust anchor, EAP-SIM, RADIUS}
 }
+\chapter*{Terminology}
+%\chapter*{Lyhenteet ja merkinn<E4>t}
+\markboth{}{}                                % no headers
+
+If not already on vocabulary, expansion of the most important terms like
+authentication, key-exchange, integrity, replay, algorithms, SIM,\ldots{}
+[from Cryptoprotocol-course, check that key exchange with 8 different methods)]
+
 \newpage             % Added 2015-02-22
 
  \pagenumbering{Roman}
@@ -132,12 +140,22 @@
 [what was the problem, what was done, and what are the results. ]
 % Do not include charts or tables in the abstract.
 
+
+Home network devices can be configured by different means but usually one needs 
+to have some knowledge how to login to those devices. For that, 
+some beforehand set provisioning and distribution of authentication keys is needed.
+
+As there already exists an infrastructure within mobile phone subscribers,
+that is used in the study as a trusted base.
 % To benefit from mobile identification
-To benefit from mobile identification ist is shown how
+To benefit from mobile identification it is shown how
 %It is discussed and shown how mobile authentication 
-it is done using extendable authentication profile (EAP) with SIM-card. 
+%it is done using extendable authentication profile (EAP) with SIM-card. 
+ authentication  is done using extendable authentication profile (EAP) with SIM-card
+and authorization checked with RADIUS protocol.
 
 
+% to the introduction?
 [Existing work done at TUT for delegated homenet configuration...]
 currently has preliminary authentication and access model using
 pre-defined credentials and SSH-connection from 
@@ -154,7 +172,8 @@ A theory, how SIM-authentication works is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
 As a result it is shown, that SIM authentication's benefits are strong
 authentication and existing user-base, while its disadvantages include
-dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications.
+dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications. 
+% [or: balancing the re-authentication]
 
 Principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA enterprise has been chosen, which includes RADIUS environment.
@@ -310,14 +329,6 @@ Teemu Teekkari
 % list in alphabetical order. In addition, they are explained upon
 % first usage in the text.
 
-\chapter*{Terminology}
-%\chapter*{Lyhenteet ja merkinn<E4>t}
-\markboth{}{}                                % no headers
-
-If not already on vocabulary, expansion of the most important terms like
-authentication, key-exchange, integrity, replay, algorithms, SIM,\ldots{}
-[from Cryptoprotocol-course, check that key exchange with 8 different methods)]
-
 \begin{description}
 \item[{802.1X}] port based access control standard
 \item[{Access point}] Wi-Fi client connects access point (AP) on 802.11
@@ -359,24 +370,31 @@ client and Authentication server, part of RADIUS server chain.
 \label{cha:intro}
 
 
-
+Managing computer and network devices can be hard.
+Modern homes have become similar to small offices regarding 
+the equipment present there.
 Earlier it was sufficient to make just minimal settings at home to
 a modem (cable, phone or radio) and connect it to
-the home computer. That enabled a fully working home network
+the home computer to get a fully working home network
 with internet connectivity.  Now home network has expanded with countless
 devices available.
 Already entertainment centers (AV-amplifiers, media players, gameconsoles),
 manageable network devices (switches/routers), and mobile phones
 present new devices and network segments beside computers and printers.
 
-Connecting these devices to the net remains easy, but managing them afterwards
-has become complex, even at home.
+Connecting these devices to the net remains easy, but managing the
+network afterwards has become challenging and complex.
 First, the configuration choices in networking devices takes some
 amount of expertise what is not necessarily present at every
-home. Secondly, one needs to have some form of control to let only
-authorized operators to configure those devices. 
-These problems combined gives us the delegated network
-management problem.
+home. Secondly, if external help would be bought, one needs to have
+some form of control to let only authorized operators to configure
+those devices. Lastly, it is challenging to find a common 
+trusted entity upon which every actor could base their trust.
+The problems are a delegated network management, remote provisioning,
+and trust finding. On its roots, it is an authentication and
+authorization problem.
+
+
 Persons, who are allowed to make configuration changes, are today often
 authenticated only by simple password and physical precence
 near the configured network device.
@@ -384,7 +402,8 @@ near the configured network device.
 For example, sensor and controller devices from Internet of Things
 domain bring their own increment to the device count at home. Their
 owner may not necessarily be the same than the home owner. As such
-there will be a need to delegate the management of the home network to multiple owners. 
+there will be a need to delegate the management of the home network to 
+multiple owners. 
 
 
 
@@ -392,16 +411,33 @@ there will be a need to delegate the management of the home network to multiple 
 
 
 There will be a market for an external consultant service, which could
-remotely operate the homenet for example through a service in a cloud. 
-The service provider therefore does not need to have direct data
-access to home but only to the cloud based service in order to be able to
+remotely operate the home network for example through a service in a
+cloud. 
+
+One model of that is to separate the management and control function 
+away from the connectivity and routing issues\cite{ifip2015}.
+The configuration model of devices at a home is mirrored to the cloud 
+(Figure x.1) and changes can be planned ahead at cloud and committed
+later to the home via a local controller point which lies at home.
+(Figure x.2). The cloud have already verified  the operators in the
+cloud, but the question remains, how to connect the cloud service to
+the home network.
+
+The cloud service has a connection to local controller at home, which 
+would approve the changes and operates as bridge and access control between cloud and home
+network. See figure x.x. as possible connection point.
+
+
+The service provider therefore does not need to have a direct data
+access to the home but only to the cloud based service in order to be able to
 manage homenet devices.
-Consultant service is not the only possible delegation for homenet.
-Homenet can be divided to multiple segments that each have
+Consultant service is not the only possible delegation for home network.
+Home network can be divided to multiple segments that each have
 their own administrative parties. For example electricity company may
-have a sensor and controller network physically inside the homenet, but
-logically separated from other parts of homenet. It is then
-important to keep track of who is allowed to access which part of the homenet.
+have a sensor and controller network physically inside the home network, but
+logically separated from other parts of home network. It is then
+important to keep track of who is allowed to access which part of the
+home network.
 Eliminating the need for 
 physical precence at home reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and disconnections.
@@ -414,7 +450,7 @@ regarding security, not only to overcome firewalls, NATs, and disconnections.
 
 
 One of the security issues is the authentication and authorization 
-from the cloud to the homenet.
+from the cloud to the home net.
 To secure the connection from the cloud service (controller)
 to the homenet, there needs to be a common trust between each end
 point and the research problem here is how to enable the trust between the
@@ -786,16 +822,18 @@ identity.
 Task: & with &  & with\\
 (x)=``needed'', (N/A)= ``not available'' & MSCHAPv2 &  & EAP-SIM\\
 \hline
-choose CA & x &  & x\\
+choose CA for the RADIUS & x &  & x\\
 tell CA to clients & x &  & x\\
-if CA not known, distribute it \emph{secure} & x &  & x\\
-enable PEAP & x & N/A & x\\
+if CA not known, distribute it \emph{securely} & x &  & x\\
 set used EAP-method & x & x & x\\
 set validating of RADIUS server & x &  & x\\
 set encapsulation (WPA/802.1X) & x &  & \\
+set password & x & x(PIN) & \\
+identity hiding: &  & N/A & \\
+enable PEAP & x & N/A & x\\
 set outer identity & x &  & x\\
-set inner creds & x &  & \\
-hide identity &  & N/A & \\
+set inner identity & x &  & \\
+ &  &  & \\
 \hline
 \end{tabular}
 \end{table}
@@ -907,8 +945,10 @@ What is needed? How GBA could be used here?]
 Home network is a computer network located at person's home. It consists
 of devices and their connections, either wired or wireless.  This
 thesis denotes home network as homenet, although the name 'homenet'
-is reserved to Internet Engineering Task Force Working Group (IETF WG) homenet.
-IETF is responsible for the most Internet technology standards.
+is reserved to Internet Engineering Task Force Working Group's (IETF
+WG) homenet.
+IETF is responsible for the most Internet technology standards and 
+WG homenet was started in year 2011.
 Current drive in homenet management is towards IPv6 environment
  as it allows future  addressing and routing needs. As old technology
 cannot be forgotten, homenets will be heterogenous having both
