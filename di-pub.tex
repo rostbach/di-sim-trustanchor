@@ -1,4 +1,4 @@
-% Created 2015-07-16 to 14:07
+% Created 2015-07-23 to 17:10
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -155,17 +155,6 @@ To benefit from mobile identification it is shown how
 and authorization checked with RADIUS protocol.
 
 
-% to the introduction?
-[Existing work done at TUT for delegated homenet configuration...]
-currently has preliminary authentication and access model using
-pre-defined credentials and SSH-connection from 
-controller device to configuration targets. It misses the bootstrap of 
-infrastructure i.e. the first trust. 
-Smartphone with its SIM card and existing key infrastructure to mobile network operator eliminates the need for additional credential distribution.
-% present solution for
-%  preset trusted and secured  key distribution,  
-%Although mobile phone provides alternative authentication method with its SIM key, 
-% usual methods to authenticate still are plain username-password combinations.  
 
 
 A theory, how SIM-authentication works is presented and a simulated environment
@@ -382,7 +371,7 @@ Already entertainment centers (AV-amplifiers, media players, gameconsoles),
 manageable network devices (switches/routers), and mobile phones
 present new devices and network segments beside computers and printers.
 
-Connecting these devices to the net remains easy, but managing the
+Connecting these devices to the net remains trivial, but managing the
 network afterwards has become challenging and complex.
 First, the configuration choices in networking devices takes some
 amount of expertise what is not necessarily present at every
@@ -410,12 +399,10 @@ multiple owners.
 
 
 
-There will be a market for an external consultant service, which could
+There could exist a market for an external consultant service, which would
 remotely operate the home network for example through a service in a
-cloud. 
-
-One model of that is to separate the management and control function 
-away from the connectivity and routing issues\cite{ifip2015}.
+cloud. One model of that is to separate the management and control function 
+away from the connectivity and routing issues\cite{silverajan2015collaborative}.
 The configuration model of devices at a home is mirrored to the cloud 
 (Figure x.1) and changes can be planned ahead at cloud and committed
 later to the home via a local controller point which lies at home.
@@ -454,28 +441,46 @@ from the cloud to the home net.
 To secure the connection from the cloud service (controller)
 to the homenet, there needs to be a common trust between each end
 point and the research problem here is how to enable the trust between the
-controller and the homenet.  
+controller and the homenet as the controller lies at the edge of the
+home network.
+
+Existing work done at TUT for delegated home network management
+currently has preliminary authentication and access model using
+pre-defined credentials and SSH-connection from the local controller device to
+configuration targets\cite[Chapter IV]{silverajan2015collaborative}. 
+That work does not yet handle the bootstrap of the infrastructure
+i.e. the first trust is thought as given. 
+Smartphone with its SIM card and existing key infrastructure to mobile
+network operator eliminates the requirement for an additional credential
+distribution and is studied here.
+Although mobile phone provides alternative
+authentication method with its SIM key, usual methods to
+authenticate still are plain username-password combinations.
 
 Any encryption between devices needs trusted key exchange
 beforehand, and finding and establishing trust is needed for that.
+That is called the key-distribution problem. Public keys solve 
+key exchange part, but only partially, because the trust must still
+be found somewhere.
+
+
+
+The place, where trust is not anymore derived or built upon other 
+fact but assumed to be present, is called a trust anchor.
+The trust can be derived from facts that already are known.
+The trust anchor is the fact, state or place, where derivation is
+done no more, but accepted per se. 
+
 Human aspect and usability also are important. The proposed model should
 require less effort than the current methods of distributing user
 credentials, finding the place where they can be inserted, and
 ensuring that they are written correctly. 
-[write more clear and mention key distribution problem.]
-The place where trust is not anymore derived or built upon other 
-fact, but assumed to be present is called a trust anchor.
-The trust can be derived from facts that already are known.
-The trust anchor is the fact, state or place, where derivation is
-done no more, but accepted per se.
+
 
 Those security issues must be solved before delegation in the cloud can
-happen. 
-
-
-
+happen.  
 The main focus is on authentication and authorization part of
-the homenet management with smart phone as trust anchor.
+the home net management with smart phone as trust anchor.
 Trust model, which benefits from smartphone's unique,
 existing secret keys inside the smart card's  Subscriber Identify Module
 (SIM), is proposed. 
@@ -495,7 +500,7 @@ until the chain reaches a trust anchor.
 
 
 The thesis is structured as follows: Chapter \ref{sec-2} explains the authentication-authorization model.
-Chapter \ref{sec-3} describes security in current homenet architecture and 
+Chapter \ref{sec-3} describes security in current home net architecture and 
 current practices for configuring it.
  Chapter \ref{sec-4}
 discusses methods to bring a trust anchor in the homenet and explains
@@ -509,16 +514,6 @@ thesis.
 \chapter{Authentication, Authorization, and Trust}
 \label{sec-2}
 
-[delete items after paragraphs ready]
-\begin{itemize}
-\item 1) Different technologies for access control, authentication,
-authorization
-\end{itemize}
-1.5) wireless (Authenticator, Authentication server, supplicant)
-\begin{itemize}
-\item 2) RADIUS, diameter, (tacacs+)
-\item 3) SIM-based authentication
-\end{itemize}
 [(4) Feature comparison, eg role-based access, time-based access etc]
 \begin{enumerate}
 \item GBA and Security bootstrapping
@@ -646,7 +641,7 @@ In the first prototype it is enough to identify authorized
 smartphone's SIM.
 Smartphone holding the SIM is granted the access to the parts of the
 management network and is authenticated strong. 
-User management is outsourced to MNO, which already has provided SIM
+User management is outsourced to Mobile Network Operator(MNO), which already has provided SIM
 cards to users. What remains, is the adding of the user's IMSI to
 the authorized users' list. That list can be located on diverse place, 
 as can be seen in xxx
@@ -695,7 +690,7 @@ extended with  modular framework called
 EAP describes only the messaging form, so EAP messages needs to
 be encapsulated inside another protocol.  In Wi-Fi, between smartphone
 and access point, EAP is encapsulated into 802.1X protocol (as EAPOL) or
-into TLS protected PEAP (Protected EAP) \cite{peap} before sending
+into protected EAP(PEAP)\cite{peap} before sending
 into wire. In wired net, EAP messages are encapsulated into RADIUS.
 
 The encapsulation is described in Figure\ref{fig:eap-layers} where it
@@ -743,11 +738,10 @@ applications, they may have different keys and codes, for example
 mobile electrical signature application Mobiilivarmenne uses an own
 PIN.
 
-MNO (Mobile Network operator) distributes SIM card and
-provides mobile network connectivity to its customers.
-The secret keys are used for authenticating the IMSI to MNO
-which enables MNO's to identify their customer in the network and
-charge them correspondingly.
+MNO distributes SIM card and provides mobile network connectivity to
+its customers.  The secret keys are used for authenticating the IMSI
+to MNO which enables MNO's to identify their customer in the network
+and charge them correspondingly.
 
 
 
@@ -976,8 +970,6 @@ exists \cite{iptvtr069} for CPEs such as ADSL broadband routers or
 set-top boxes. TR-069 has been used to implement self-configuration
 archi\-tecture in
 homenets \cite{tr069rachidi2011}.
-On these days research is done with Light-weight Machine to Machine
-(LWM2M) processes. 
 
 
 RFC7368 about IPv6 Home Networking Architecture Principles from
@@ -1061,20 +1053,19 @@ the process by utilizing a central management device, not least to prevent human
 errors for repetitive tasks.  Yet, at home networks devices often are
 too heterogeneous, bought at different times from different vendors
 and so incompatible with each other to fully benefit from
-centralization. To help moving the management to the more centralized
+centralization. 
+
+To help moving the management to the more centralized
 model, smartphone is set here as a central and managing local
 controller.
-
-
-Users already have one phone, which can be considered as
-'smart' and most smartphones have Wi-Fi capabilities and are so
+Usually, home users already have one phone, which can be considered as
+'smart' and most smartphones have Wi-Fi capabilities and so are
 suitable as being the local controller.
 When we choose smartphone to be the management point, the other benefits are
-numerous:  management software can be delivered and
+numerous:  a management software can be delivered and
 updated from cloud to diverse smartphone types, and existing user
-base is enormous.
-Operator located user databases in  
-Home Location Registry Authentication Center (HLR-AuC) still have orders of
+base is enormous. The users are located in operators' user databases
+inHome Location Registry Authentication Center (HLR-AuC), which still have orders of
 magnitude more users available than any other organization. 
 
 
@@ -1091,7 +1082,7 @@ Key distribution problem is solved at SIM-card distribution phase.
 SIM card authentication is strong: there is physical SIM and secret PIN for it.
 Smartphone then belongs to same category as (intelligent) USB-dongle,
 RSA-ID or Secure-ID hardware devices.  They are part of ``what you own''.
-Trust exists to mobile operator, and that is later shown as an
+Trust exists between SIM and MNO, and that is later shown as an
 important factor. 
 
 
@@ -1200,7 +1191,7 @@ tunneling, for example as an inner protocol of EAP-TTLS. \cite{moonshot}
 At this point question might rise, why these external service
 providers are needed. Is it not easier and simpler to just send 
 an SMS with password code to the smart phone, when access confirmation is needed?
-Mobile SIM provides two-way AuthN part as discussed earlier.
+Mobile SIM provides two-way AuthN part as discussed earlier.l
 Without need for strong AuthN, that model would indeed be 
 simpler, but using SIM also solves initial key distribution problem.
 Additionally, mutual AuthN problem would still need to be solved:
@@ -1305,37 +1296,43 @@ this with the team.]
 
 
 
-Changes could be marked some way, so that they need approving.
-When CPE of homenet is about to input configuration
-changes which would change balance of authors or roles,
-it will first need to ask for permission. 
-It does it by asking from trusted point, here mobile SIM. 
 
-[How is this PULL asking triggered? In reality it is not asked, but
-changes are accepted from admin roles. How admin role is checked?]
+When CPE of homenet is about to input configuration changes which
+would change balance of authors or roles (if role-based authorization
+in use), it needs to check if that is permitted.  Permission would 
+need to be asked from trusted point, here mobile SIM but instead of
+that the CPE checks from its state database, 
+whethere mobile SIM has been given access to management network.
 
-CPE wants to verify if the changes authorized. They are, if currently
+
+CPE wants to verify, if the changes are authorized. They are, if currently
 smartphone user is logged in management network (i.e. management is allowed).
-Additionally, there could be a  specific change-approval message,
-which must be sent through  management network, maybe
-including digest of change message as a verification and.
+
+
+
+Alternative method is that the changes could be marked some way, so that they need
+approving and then there could be a specific change-approval message,
+which must be sent through management network, perhaps including digest
+of change message as a verification.
 
 Because smartphone is not actively listening the CPE, how it could
 input that request? 
+
 There are three planned ways to distribute changes.
 
 \begin{enumerate}
 \item Changes are delivered normally from cloud to CPE (CPEs) without
-interaction  from the smartphone. Such changes would not need
-AA at all.
+interaction from the smartphone. Such changes would not need
+AA at all or changes include credentials to login to targets.
 
 \item Changes are delivered from cloud to CPE functioning as a central
-management station without interaction from the smartphone. 
-Digest of what is going to happen would be sent to smartphone from
-BaaS. Smartphone would authenticate (if not already ) in to
-management network and send through it the digest token it received from cloud 
-as an approval message to central management station
-inside homenet, which then forwards configuration changes to other devices.
+management station without interaction from the smartphone.  Digest
+of what is going to happen would be sent to smartphone from BaaS
+over the air (OtA). Smartphone would authenticate in to management
+network (if not already there) and send through it the digest token
+it received from cloud as an approval message to central management
+station inside homenet, which then forwards configuration changes
+to other devices.
 
 \item Changes are delivered from cloud to smartphone, which after
 authenticating into management net, forwards them through management
@@ -1991,7 +1988,7 @@ Examples in appendix \ref{app:nosim}   [TBD]
 First tests 
 did not go as planned. There was no indication of SIM method
 present in captures, the only indication of security was message
-``Open access'' in application logs.
+``Open access'' in application logs. 
 Nokia E90, with a registered SIM had better results. Traces
 are in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
   \verb~e90.sim.auth.pcapng~ and \verb~eap-1.pcapng~  [TBD]
@@ -2673,7 +2670,9 @@ EAP-AKA \footnote{DEFINITION NOT FOUND.}, or OTP/token card methods like \footno
 \item Authenticator for example can use either local method or
 pass-through the authentication to external backend, still keeping
 EAP-message in tact(sp?) as of  rfc4137
+\item WPA package's hostapd from JM does not perhaps provide EAP-PEAPv0 SIM but
 \end{itemize}
+wpa-supplicant supports.
 
 
 \chapter{Conclusion}
