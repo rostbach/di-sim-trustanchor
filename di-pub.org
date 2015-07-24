@@ -3178,17 +3178,12 @@ authenticity. Accessibility is also discussed.
 # *** Confidentiality (privacy)
 The purpose of message confidentiality in authentication phase here is
 to hide the identity of smartphone and possible delivered secrets from
-eavesdroppers. EAP-SIM cannot be considered confidential for identity
-during first message exchanges, but later the identity can be hidden
-using temporal identity (TMSI). Unfortunately, the TMSI is not used in
-this thesis for AuthN. Yet, EAP-SIM protocol provides secure way to
-generate session parameters to WPA-session.
-# ,
-# which was shown in Chapter #design. 
+eavesdroppers. 
 
-If SIM is used as the only EAP without EAP-PEAP, then 
-there is no mitigation for revealing the IMSI on the first message
-and it leads to privacy issue.
+Recall from Section [[sec:sim-based-auth]], that IMSI is sent in clear 
+during the start phase of 802.1X authentication and that is a privacy 
+issue, because TMSI, which hides IMSI cannot be used before a session has been set up. \cite[p.66]{rfc4186}.
+
 This can be compared to regular GSM network identity revealing: IMSI
 catching is a concept of listening radio network for phones that are
 powered on and register themselves to operator via GSM network.  
@@ -3201,13 +3196,55 @@ When mobile phone tries to attach to a fake base station, it reveals its
 IMSI number. Further, because the base station is responsible for chosen
 encryption, it can order the phone to not encrypt traffic or to use only
 weak encryption thus revealing all data, calls, and
-texts \cite{imsi-heise}. Mitigation for IMSI-catching would be to
-disable GSM (2G) usage altogether from phone if that is possible.
+texts. Mitigation for IMSI-catching would be to
+disable GSM (2G) usage altogether from phone if that is possible.\cite{imsi-heise}.
 
 After first full authentication, client and Authenticator 
 know TMSI and can use it in further communication: Authenticator 
 is responsible to convert TMSI to IMSI if it later needs to 
 ask for full authentication from the MNO.
+
+
+If SIM is used as the only EAP without EAP-PEAP, then 
+there is no mitigation for revealing the IMSI on the first message
+and it leads to privacy issue.
+
+Most(if not all) EAP methods do not provide identity protection
+themselves. Protected versions
+# EAP methods do not provide identity protection. Protection
+use separate  inner and outer identities and that can be achieved with
+PEAP (Protected  EAP) or TTLS, which chains different EAP-methods together and
+protects the inner EAP with an outer EAP. For example 
+EAP-MSCHAPv2 (Microsoft's Challenge Handshake Authentication Protocol,
+version 2) can be used inside PEAP.
+The outer identity tells just the realm, where AuthN can be checked
+ and inner identity reveals the real identity.
+The inner identity is encapsulated inside the outer identity which
+functions as an envelope. [TBD: speak more with protocol terms?]
+
+
+Used method to authenticate depends on the inability to fake IMSI.
+EAP-SIM would provide identity protection, if it were used together
+with PEAP which protects the outer identification  and
+then EAP-SIM were used in inner authentication.
+Currently it is not known for the author that implementations exists for
+EAP-SIM  except Tseng's proposition \cite{tseng-usim} for  new EAP type
+EAP-USIM, which extends EAP-TLS type.
+# Yuh-Min Tseng
+
+If it were possible to use anonymous identity on outer EAP
+authentication, then EAP-SIM AuthZ must also be done at HLR AuC.
+AuthZ cannot else be connected to the corresponding
+identity and AuthN itself is not enough because it only defines the users'
+authenticity, not their admin roles and so 
+AuthN should work for any mobile that has existing contract with
+their MNO. 
+# When everything works between mobile and MNO via chain of components, 
+# AuthN works for any mobile.
+It still is the responsibility of the Authenticator to 
+check AuthZ  and let only admin mobile access the management network.
+
+
 
 # but fortunately for privacy
 # If client uses pseudonyms. [Check also that - written in privacy Section 16.4.2015]
@@ -3238,6 +3275,19 @@ ask for full authentication from the MNO.
 #  - replay attack, see Section "MitM, Reused secrets, Reply attacks"
 
 
+Based on those facts, EAP-SIM cannot be considered confidential for identity
+during first message exchanges, but later the identity can be hidden
+using temporal identity (TMSI). Unfortunately, the TMSI is not used in
+this thesis for AuthN. 
+On the other hand, EAP-SIM protocol, as do most of the other
+EAP-variants, provides a secure way to
+generate session parameters to WPA-session.
+# ,
+# which was shown in Chapter #design. 
+
+
+
+ 
 # Integrity
 # 
 Integrity issues were handled in RADIUS Section [[sec:radius]].
@@ -3483,13 +3533,9 @@ range limits, but even shorter.
 #  temporal IMSI (TMSI) can be used,
 # so identity is hidden on following connections.
 
-Recall from Section [[sec:sim-based-auth]], that IMSI is sent in clear 
-during the start phase of 802.1X authentication and that is a privacy 
-issue, because TMSI, which hides IMSI cannot be used before a session has been set up. \cite[p.66]{rfc4186}
 # The IMSI's authenticity
 # fig:eap-sim-full
-# However, 
-# There is privacy issue, because IMSI is sent in clear
+
 # will be challenged later.
 # [check user preferences and user domain]
 
@@ -3497,39 +3543,6 @@ issue, because TMSI, which hides IMSI cannot be used before a session has been s
 # [Remember IMSI-catcher \cite{imsi}. Last chapter might have a Section
 # about this.]
 
-Most(if not all) EAP methods do not provide identity protection themselves. Protection
-# EAP methods do not provide identity protection. Protection
-uses separate  inner and outer identities and it can be achieved with
-PEAP (Protected  EAP) or TTLS, which chains different EAP-methods together and
-protects the inner EAP with an outer EAP. For example 
-EAP-MSCHAPv2 (Microsoft's Challenge Handshake Authentication Protocol,
-version 2) can be used inside PEAP.
-The outer identity tells just the realm, where AuthN can be checked
- and inner identity reveals the real identity.
-The inner identity is encapsulated inside the outer identity which
-functions as an envelope. [TBD: speak more with protocol terms?]
-
-
-Used method to authenticate depends on the inability to fake IMSI.
-EAP-SIM would provide identity protection, if it were used together
-with PEAP which protects the outer identification  and
-then EAP-SIM were used in inner authentication.
-Currently it is not known for the author that implementations exists for
-EAP-SIM  except Tseng's proposition \cite{tseng-usim} for  new EAP type
-EAP-USIM, which extends EAP-TLS type.
-# Yuh-Min Tseng
-
-If it were possible to use anonymous identity on outer EAP
-authentication, then EAP-SIM AuthZ must also be done at HLR AuC.
-AuthZ cannot else be connected to the corresponding
-identity and AuthN itself is not enough because it only defines the users'
-authenticity, not their admin roles and so 
-AuthN should work for any mobile that has existing contract with
-their MNO. 
-# When everything works between mobile and MNO via chain of components, 
-# AuthN works for any mobile.
-It still is the responsibility of the Authenticator to 
-check AuthZ  and let only admin mobile access the management network.
 
 # AuthZ provides that information
 # and Authenticator model includes authorized roles.
