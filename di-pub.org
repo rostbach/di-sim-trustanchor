@@ -1469,32 +1469,36 @@ IP network is used instead of mobile
 phone network.
 
 The smartphone connects
-# wireless to homenet
  with a Wi-Fi link to an access point (AP) in the homenet.
  AP functions there as an Authenticator.
 The smartphone and the AP must trust each other.
 # Trusted connection is needed between existing network and local
 # controller, i.e., homenet and local controller need to trust each other.
 The Smartphone will approve changes for homenet and is part of bootstrapping
-new infrastructure.
+new infrastructure. 
+So, we need to change the management paradigma to central configured
+model, set trust between the smartphone and the homenet, and 
+resolve the work-flow of change management.
 
 ** Alternative methods for introducing trust anchor into the homenet
 
 Before fully explaining our chosen method, we introduce some
 alternative approaches for trust anchor. Trust anchor is part of
 bootstrapping. Trust information, may it then be a secret or some
-evidence, can be delivered to trust device via physical
+other evidence, can be delivered to trust device via physical
 transport. Traditional way to do that is with password inside sealed
-envelope or one-time password list what online banks today use. Secret
-can also be sent as an SMS.
+envelope or one-time password list that for example online banks today
+use. Secret can also be sent as an SMS.
 
-Trust can be requested with the help of trust anchor's unique
- properties. Some new devices have vendor certificates inside them which
-brings public key infrastructure as one possible alternative. Device
-presents itself with a certificate, which has been issued by a trusted
-vendor.  Keys are then in the device's trusted hardware store.
-Vendor-trust is needed for checking the issued certificates. Root CAs, 
-trust anchors also, can be read from the device's read-only store. 
+Trust can also be requested with the help of (upcoming) trust anchor's unique
+ properties. Some new devices have vendor certificates inside them[cite] which
+brings public key infrastructure as one possible alternative. 
+Device proves its identity by presenting a certificate, which has been issued by a trusted
+vendor.  Private keys are in the device's trusted hardware store.
+Vendor-trust is needed for checking the issued certificates and so the
+trust verification is merely transferred from individual devices
+ to widely accepted vendors.
+Root CAs, trust anchors also, can be read from the device's read-only store. 
 CPE could use vendor certificate for AuthN of some earlier unknown device.
 If keys are stored in SIM as here, external operator support is needed. 
 
