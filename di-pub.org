@@ -3497,7 +3497,7 @@ issue, because TMSI, which hides IMSI cannot be used before a session has been s
 # [Remember IMSI-catcher \cite{imsi}. Last chapter might have a Section
 # about this.]
 
-Most EAP methods do not provide identity protection themselves. Protection
+Most(if not all) EAP methods do not provide identity protection themselves. Protection
 # EAP methods do not provide identity protection. Protection
 uses separate  inner and outer identities and it can be achieved with
 PEAP (Protected  EAP) or TTLS, which chains different EAP-methods together and
