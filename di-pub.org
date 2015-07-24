@@ -1432,7 +1432,7 @@ When we choose smartphone to be the management point, the other benefits are
 numerous:  a management software can be delivered and
 updated from cloud to diverse smartphone types, and existing user
 base is enormous. The users are located in operators' user databases
-inHome Location Registry Authentication Center (HLR-AuC), which still have orders of
+in Home Location Registry Authentication Center (HLR-AuC), which still has orders of
 magnitude more users available than any other organization. 
 
 
@@ -1477,9 +1477,10 @@ The smartphone connects
 # wireless to homenet
  with a Wi-Fi link to an access point (AP) in the homenet.
  AP functions there as an Authenticator.
-Trusted connection is needed between existing network and local
-controller, i.e., homenet and local controller need to trust each other.
-Smartphone will approve changes for homenet and is part of bootstrapping
+The smartphone and the AP must trust each other.
+# Trusted connection is needed between existing network and local
+# controller, i.e., homenet and local controller need to trust each other.
+The Smartphone will approve changes for homenet and is part of bootstrapping
 new infrastructure.
 
 ** Alternative methods for introducing trust anchor into the homenet
