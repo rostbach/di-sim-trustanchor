@@ -3189,7 +3189,7 @@ catching is a concept of listening radio network for phones that are
 powered on and register themselves to operator via GSM network.  
 
 The
-fault lies there, that GSM specification does not require network to
+fault lies there, that GSM specifi9cation does not require network to
 authenticate itself to the phone in thus GSM allows man in the middle
 attack device called IMSI-catcher to fake as being a base station.
 When mobile phone tries to attach to a fake base station, it reveals its
