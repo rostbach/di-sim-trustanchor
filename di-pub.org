@@ -1467,11 +1467,6 @@ Using smartphone may cost money, either to client or to service
 provider, although costs could be lower than using SMS, because 
 IP network is used instead of mobile
 phone network.
-# Some disadvantages are
-# - dependent on mobile operator (and Internet connection, must be
-#  prepared for disconnections [ later on discussion this]
-# - may cost, 
-
 
 The smartphone connects
 # wireless to homenet
