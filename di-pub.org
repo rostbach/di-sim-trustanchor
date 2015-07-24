@@ -1502,6 +1502,7 @@ Root CAs, trust anchors also, can in the same way be read from the device's read
 CPE could use vendor issued certificate for AuthN of some earlier unknown device.
 If keys are stored in SIM as here, external operator support is needed. 
 
+[Picture]
 
 # *** Other SIM methods 
 # mobiilivarmenne
