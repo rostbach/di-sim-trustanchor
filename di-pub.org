@@ -1139,7 +1139,7 @@ Mobile phone                           Authenticator (AP)
   |                                             | 5. RADIUS(EAP Request/SIM/Start     |
   |                                             +<------------------------------------+
   | 6. EAP Request/SIM/Start                    |                                     |
-  |<--------------------------------------------+                     |
+  |<--------------------------------------------+                                     |
   | 7. EAP Response/SIM/Start                   |                                     |
   +-------------------------------------------->|                                     |
   |                                             | 8. RADIUS(EAP Response/SIM/Start)   |  
@@ -1154,17 +1154,24 @@ Mobile phone                           Authenticator (AP)
   |                                             |<------------------------------------+
   | 11. EAP Request/SIM/Start                   |                                     |
   |<--------------------------------------------+                                     |
-  |                                             |
-+-+------------------------------------+        |
-|run GSM algorithms, verify H(RAND)    |        |
-|with NONCE, derive sess. key Kc*,     |        |
-|decrypt and save pseudonym X with Kc* |        |
-+-+------------------------------------+        |
-  |                                             |
-  |12. EAP Response/SIM/Challenge (H(SRES))     |
-  +-------------------------------------------->| 13. RADIUS(EAP Response/SIM/Challenge (H(SRES))                  |                                    |
-  |                                             +------------------------------------> |     
-  |         
+  |                                             |                                     |
++-+------------------------------------+        |                                     |
+|run GSM algorithms, verify H(RAND)    |        |                                     |
+|with NONCE, derive sess. key Kc*,     |        |                                     |
+|decrypt and save pseudonym X with Kc* |        |                                     |
++-+------------------------------------+        |                                     |
+  |                                             |                                     |
+  |12. EAP Response/SIM/Challenge (H(SRES))     |                                     |
+  +-------------------------------------------->| 13. RADIUS(EAP Response/SIM/Challenge (H(SRES))
+  |                                             +------------------------------------>| 
+  |                                             |                               +-----+--------+
+  |                                             |                               | compare with |
+  |                                             |                               | own SRES     |
+  |                                             |                               +-----+--------+
+  |                                             | 14. RADIUS(EAP Success)             | 
+  |                                             |<------------------------------------+
+  |                                EAP Success) |
+  |<--------------------------------------------+         
 #+end_src
 #+CAPTION: EAP-SIM full authentication with RADIUS
 #+NAME:   fig:eap-sim-radius
