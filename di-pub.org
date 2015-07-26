@@ -1,4 +1,4 @@
-  #+DATE: 
+ #+DATE: 
 # +BIND:  (setq org-export-allow-BIND t)
 
 # # Export ditaa silent, moved to org-custom-inittiin
@@ -1077,6 +1077,8 @@ help of operator specific symmetric keys, which are also inside SIM.
 
 #+begin_src ditaa :file eap-sim-full.png :cmdline -E -r -s 4
        Mobile phone                                          Authenticator (AP)
+           | 0. EAPOL Start                                           |
+           +--------------------------------------------------------->|
            |                                                          |
            | 1.                                 EAP Request/Identity  |
            |<---------------------------------------------------------+
@@ -1119,6 +1121,37 @@ help of operator specific symmetric keys, which are also inside SIM.
 #+RESULTS:
 [[file:eap-sim-full.png]]
 
+
+#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 4
+
+ | 0-1,                        |
+ :<--------------------------->:
+
+Mobile phone              Authenticator (AP)
+ | 3. EAP Response/Identity    |                               Authentication Server
+ +---------------------------->| 4. RADIUS(EAP Response/Identity)    |
+ |                             +------------------------------------>|
+ |                             + 5. RADIUS(EAP Request/SIM/Start     |
+ |                             +<------------------------------------+
+ | 6. EAP Request/SIM/Start    |                                     |
+ |<----------------------------+                                     |
+ | 7. EAP Response/SIM/Start   |                                     |
+ +---------------------------->|                                     |
+ |                             | 8. RADIUS(EAP Response/SIM/Start)   |  
+ |                             +------------------------------------>|
+ |                             |                                     |  (N times: Req.   
+ |                             |                                     |9. IMSI's triplets) MNO
+ |                             |                                     +-------------------->|
+ |                             |                                     |    (RAND,SRES,Kc)   |
+ |                             |    N times                          |<--------------------+
+ |                             |10. RADIUS(EAP Request/SIM/Challenge)| 
+ |                             |       (RAND,H(RAND),[X]Kc*)         |
+
+#+end_src
+#+CAPTION: EAP-SIM full authentication with RADIUS
+#+NAME:   fig:eap-sim-radius
+#+RESULTS:
+[[file:eap-sim-radius.png]]
 
 
 
@@ -1436,7 +1469,7 @@ in Home Location Registry Authentication Center (HLR-AuC), which still has order
 magnitude more users available than any other organization. 
 
 
-
+ 
 * Design of home network trust anchor and separation of change management
 :PROPERTIES:
 :CUSTOM_ID: cha:design
@@ -1992,7 +2025,7 @@ options.  Without RADIUS, access is open and the only checking comes
 from the used management protocol and its access control.
 
 [2015/05/11 NEW! This must be told everywhere, devices still have their own access
-control! Or do they use RADIUS? Now RADIUS is used to get into access
+control! Or do they use RADIUS? Now RADIUS is used to carry on EAP auth to get into access
 network, why not use it also to get in device? ]
 
 With WPA2, PSK is used, but no EAP or RADIUS as backend.  With EAP,
@@ -2440,26 +2473,62 @@ because duplicate hashes are easy to compute today  \cite{xie2013fast}.
 
 
 
-** Similarities with Lock-and-Key method
+** Similarities with Lock-and-Key method			     :ATTACH:
+   :PROPERTIES:
+   :Attachments: %20http://www.cisco.com/c/dam/en/us/td/i/100001-200000/170001-180000/170001-171000/170847.ps/_jcr_content/renditions/170847.jpg 170847.jpg
+   :ID:       19566a1f-899f-487c-b14e-4b8dd10b1ee1
+   :END:
+# 802.1x method or what?
 The method is very similar to the concept used on routers to dynamically enable
 access to certain parts of network by first letting the user to log in
-to the router.  
+to the router.  As in Figure[[fig:cisco-802.1x]]
 # [ONLINE cites, choose one that most fits or ask for permission to
 # use picture.]  
+
+# file:ditaa-simpleboxes.png
+
+#+CAPTION: Cisco's view of 802.1x auth
+#+LABEL: fig:cisco-802.1x
+#+ATTR_LaTeX: width=5cm,angle=90
+file:~/gitdocs/di/images/170847.jpg
+
+# source: [[http://www.cisco.com/c/dam/en/us/td/i/100001-200000/170001-180000/170001-171000/170847.ps/_jcr_content/renditions/170847.jpg]]
+# voisi myös laittaa thumbnailin näin
+#      [[file:highres.jpg][file:thumb.jpg]  + sulku kiinni
+
+
+
+#+CAPTION: Cisco's view of lock-and-view auth
+#+LABEL: fig:lock-and-view
+#+ATTR_LaTeX: width=5cm,angle=90
+file:~/gitdocs/di/images/170847.jpg
+
+# source: [[http://www.cisco.com/c/dam/en/us/td/i/100001-200000/170001-180000/170001-171000/170847.ps/_jcr_content/renditions/170847.jpg]]
+
+
+
+
+
+
 Device provider Cisco calls this ``Lock-and-Key'' access
 and uses dynamic access list to implement it. \cite[p.117]{lockandkeybook}
 # [cite this or find Basic manual: [[http://www.getnetworking.net/acl/dynamic-access-list-configuration]]]
 
 Difference here is that 802.1X protects access to the
 network. Smartphone has only limited access to the network before AA
-has completed,
-while in the Lock-and-key
+has completed, while in the Lock-and-key
 # authenticate to get access at all and then through
 # authorization get right access to management network.
 # In Lock-and-key,  
 the other parts of network are already open and successful login to the router opens
-access to even more segments through it.
-Both methods can have RADIUS as an Authentication server.
+access to even more segments through it. In other words, Lock-and-Key
+protects IP-access in layer-3 , while 802.1x protects layer-2.
+Both methods can have RADIUS as an Authentication server. 
+When RADIUS is not available, for example because internet is down,
+there almost always exist as a failover a local password method in the configurable 
+router.
+
+
 # controlling access to Authenticator while
 #  in Lock-and-key access is
 # already allowed to router, but actual login there remains  must be 
@@ -2470,14 +2539,20 @@ Both methods can have RADIUS as an Authentication server.
 
 If Lock-and-key method was used instead of EAP-SIM RADIUS, then
 separate management LAN would not be needed. Roles were given at
-Authenticator or designated router after mobile has done login to it
+Authentication server or designated router after mobile has done login to it
 via normal access network.
 
 #  [To more simplify, access mobile should try access Authenticator
 #  directly. Authenticator's role then is merely to allow login and
 #  roles within it.]
 
-
+1. clent -> AP (as RADIUS client) -> ROUTER(with Lock-and-key) 
+2. client telnets(or ssh)  in the ROUTER and gives passwd
+3. ROUTER(as RADIUS client) checks authorization from...AP(working as
+   proxy) 
+4. AP knows what? Wants to give access, but can it map this request to
+   earlier?
+ 
 # using trust with phone
 # + tokens
 ** Chosen solution [OR Summary of the chosen solution]
@@ -2693,7 +2768,11 @@ the changes has been applied. Originally it was thought, that the session
 would stay open only for a limited time, after which the phone would be forced to
 logout or thrown away from the management network and that idea should be
 kept in mind when the final implementation is made.
-# Later it was learned, that it's but later 
+
+# meraki SIM disconnection graph
+# [[https://documentation.meraki.com/@api/deki/files/2026/=f4df21ff-0c9b-4b50-b6c2-fdf51ab8b876?revision=1]]
+
+
 # it was learned, that there are no 
 # [First version, merge these disconnections and CoAs ]
 
@@ -2712,8 +2791,7 @@ kept in mind when the final implementation is made.
 # #+END_QUOTE
 # [end of merge part 1 of CoA]
 
-
-Terminating a session is not included in the original RADIUS protocol.
+Later it was learned, that terminating a session is not included in the original RADIUS protocol.
 The root cause is, that messages originating from the RADIUS server
 are not defined in the RADIUS protocol and so AP as RADIUS client cannot
 receive RADIUS server initiated disconnection messages. 
@@ -2727,6 +2805,7 @@ every device.
 #  [rfc5176]
 Disconnect-Request is sent to UDP port 3799, so Authenticator should
 listen also that in addition to RADIUS UDP port 1812.
+# [[http://wiki.freeradius.org/protocol/Disconnect-Messages]]
 
 # [This reverse path forwarding not needed ?]
 # [from RFC5176 (2008) 
