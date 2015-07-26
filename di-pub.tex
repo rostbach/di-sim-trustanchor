@@ -1,4 +1,4 @@
-% Created 2015-07-23 to 17:10
+% Created 2015-07-26 su 17:33
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,13 +47,13 @@
 \title{Smartphone as a trust anchor for delegated homenet configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-11.5.2015 Master of Science thesis}
+\thesistype{draft-23.7.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{11.5.2015  \{7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{23.7.2015  \{11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -800,8 +800,8 @@ In many parts, SIM variants in EAP are simpler, than other EAP
 variants to mobile client.  Table\ref{table-peapsim} compares the setup of Wi-Fi
 in clients of one existing organization compared to EAP-SIM. It
 is noteworthy, that plain EAP-SIM will not support identity hiding and
-that will be later be discussed further. If we add PEAP \cite{peap}
-also to EAP-SIM, comparison will be more fair.
+that will be later be discussed further. If we added PEAP \cite{peap}
+also to EAP-SIM, comparison would be more fair.
 As can be seen from the table, leaving certificates out from the environment
 makes client setup easier with the price of revealing smartphone user's
 identity.  
@@ -874,6 +874,13 @@ help of operator specific symmetric keys, which are also inside SIM.
 \centering
 \includegraphics[width=.9\linewidth]{eap-sim-full.png}
 \caption{\label{fig:eap-sim-full}EAP-SIM full authentication sequence diagram, based on RFC4186}
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{eap-sim-radius.png}
+\caption{\label{fig:eap-sim-radius}EAP-SIM full authentication with RADIUS}
 \end{figure}
 \section{Trust}
 \label{sec-2-6}
@@ -965,11 +972,11 @@ about public keys and is secure enough when used correctly.
 
 
 Management of devices on the border of homenet and operator has 
-been done already earlier. For example TR-069 standard
-exists \cite{iptvtr069} for CPEs such as ADSL broadband routers or
-set-top boxes. TR-069 has been used to implement self-configuration
+been done already earlier. For example, TR-069 standard
+\cite{iptvtr069} for CPEs such as ADSL broadband routers or
+set-top boxes has been used to implement self-configuration
 archi\-tecture in
-homenets \cite{tr069rachidi2011}.
+home networks \cite{tr069rachidi2011}.
 
 
 RFC7368 about IPv6 Home Networking Architecture Principles from
@@ -1065,12 +1072,12 @@ When we choose smartphone to be the management point, the other benefits are
 numerous:  a management software can be delivered and
 updated from cloud to diverse smartphone types, and existing user
 base is enormous. The users are located in operators' user databases
-inHome Location Registry Authentication Center (HLR-AuC), which still have orders of
+in Home Location Registry Authentication Center (HLR-AuC), which still has orders of
 magnitude more users available than any other organization. 
 
 
 
-\chapter{Design of home network trust anchor}
+\chapter{Design of home network trust anchor and separation of change management}
 \label{sec-4}
 
 
@@ -1094,14 +1101,15 @@ provider, although costs could be lower than using SMS, because
 IP network is used instead of mobile
 phone network.
 
-
 The smartphone connects
  with a Wi-Fi link to an access point (AP) in the homenet.
  AP functions there as an Authenticator.
-Trusted connection is needed between existing network and local
-controller, i.e., homenet and local controller need to trust each other.
-Smartphone will approve changes for homenet and is part of bootstrapping
-new infrastructure.
+The smartphone and the AP must trust each other.
+The Smartphone will approve changes for homenet and is part of bootstrapping
+new infrastructure. 
+So, we need to change the management paradigm to central configured
+model, set trust between the smartphone and the homenet, and 
+resolve the work-flow of change management.
 
 \section{Alternative methods for introducing trust anchor into the homenet}
 \label{sec-4-1}
@@ -1109,21 +1117,25 @@ new infrastructure.
 Before fully explaining our chosen method, we introduce some
 alternative approaches for trust anchor. Trust anchor is part of
 bootstrapping. Trust information, may it then be a secret or some
-evidence, can be delivered to trust device via physical
+other evidence, can be delivered to trust device via physical
 transport. Traditional way to do that is with password inside sealed
-envelope or one-time password list what online banks today use. Secret
-can also be sent as an SMS.
+envelope or one-time password list that for example online banks today
+use. Secret can also be sent as an SMS.
 
-Trust can be requested with the help of trust anchor's unique
- properties. Some new devices have vendor certificates inside them which
-brings public key infrastructure as one possible alternative. Device
-presents itself with a certificate, which has been issued by a trusted
-vendor.  Keys are then in the device's trusted hardware store.
-Vendor-trust is needed for checking the issued certificates. Root CAs, 
-trust anchors also, can be read from the device's read-only store. 
-CPE could use vendor certificate for AuthN of some earlier unknown device.
+Trust can also be requested with the help of (upcoming) trust anchor's unique
+ properties. Some new devices have vendor certificates inside them[cite] which
+brings public key infrastructure as one possible alternative. 
+Device proves its identity by presenting a certificate, which has been issued by a trusted
+vendor.  Private keys are in the device's trusted hardware store.
+Vendor-trust is needed for checking the issued certificates and so the
+trust verification is merely transferred from individual devices
+ to verification of vendor's trust.
+Root CAs, trust anchors also, can in the same way be read from the device's read-only store. 
+CPE could use vendor issued certificate for AuthN of some earlier unknown device.
 If keys are stored in SIM as here, external operator support is needed. 
 
+
+[Picture]
 
 Other techniques than EAP-SIM to use SIM's unique properties
 are for example 
@@ -1483,7 +1495,7 @@ options.  Without RADIUS, access is open and the only checking comes
 from the used management protocol and its access control.
 
 [2015/05/11 NEW! This must be told everywhere, devices still have their own access
-control! Or do they use RADIUS? Now RADIUS is used to get into access
+control! Or do they use RADIUS? Now RADIUS is used to carry on EAP auth to get into access
 network, why not use it also to get in device? ]
 
 With WPA2, PSK is used, but no EAP or RADIUS as backend.  With EAP,
@@ -1711,7 +1723,7 @@ store for admin IMSIs.
 
 In the last scenario (no figure), nothing has yet been configured. The bootstrapping
 is not done yet. The scenario can be any of I-IV, but no trust nor roles are present in CPE.
-\section{Ways to modify RADIUS messages}
+\section{Ways to modify RADIUS messages [perhaps to security integrity chapter?]}
 \label{sec-4-6}
 \label{sec:radius-macs}
 RADIUS messages are not protected from eavesdropping, but they have
@@ -1751,8 +1763,6 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 
 
 
-
-
 Our model would greatly benefit from modification of RADIUS messages in proxying
 RADIUS, if that is possible as was mentioned in Section \ref{sec:radius}(RADIUS).
 The modification is needed when proxying RADIUS combines AuthN message
@@ -1772,7 +1782,7 @@ re-sign the packet.
 RFC6929 \cite{rfc6929} reminds, that even when
 the proxy does not understand all AVPs inside RADIUS message, it
 must deliver those values and that allows us to use larger set of AVPs 
-than is in all RADIUS servers' vocabulary.
+than is in any RADIUS server's vocabulary.
 
 
 So at least Proxying RADIUS can insert something, but is that enough?
@@ -1787,113 +1797,67 @@ because duplicate hashes are easy to compute today  \cite{xie2013fast}.
 
 
 
-\section{Privacy of smartphone user's identity (IMSI) [-> to secur. on cha\ref{sec-6} ]}
+
+\section{Similarities with Lock-and-Key method\hfill{}\textsc{ATTACH}}
 \label{sec-4-7}
-
-
-Recall from Section \ref{sec:sim-based-auth}, that IMSI is sent in clear 
-during the start phase of 802.1X authentication and that is a privacy 
-issue. TMSI cannot be used before a session has been set up. \cite[p.66]{rfc4186}
-
-
-Most EAP methods do not provide identity protection themselves. Protection
-uses separate  inner and outer identities and it can be achieved with
-PEAP (Protected  EAP) or TTLS, which chains different EAP-methods together and
-protects the inner EAP with an outer EAP. For example 
-EAP-MSCHAPv2 (Microsoft's Challenge Handshake Authentication Protocol,
-version 2) can be used inside PEAP.
-The outer identity tells just the realm, where AuthN can be checked
- and inner identity reveals the real identity.
-The inner identity is encapsulated inside the outer identity which
-functions as an envelope. [TBD: speak more with protocol terms?]
-
-
-Used method to authenticate depends on the inability to fake IMSI.
-EAP-SIM would provide identity protection, if it were used together
-with PEAP which protects the outer identification  and
-then EAP-SIM were used in inner authentication.
-Currently it is not known for the author that implementations exists for
-EAP-SIM  except Tseng's proposition \cite{tseng-usim} for  new EAP type
-EAP-USIM, which extends EAP-TLS type.
-
-If it were possible to use anonymous identity on outer EAP
-authentication, then EAP-SIM AuthZ must also be done at HLR AuC.
-AuthZ cannot else be connected to the corresponding
-identity and AuthN itself is not enough because it only defines the users'
-authenticity, not their admin roles and so 
-AuthN should work for any mobile that has existing contract with
-their MNO. 
-It still is the responsibility of the Authenticator to 
-check AuthZ  and let only admin mobile access the management network.
-
-
-
-
-
-
-
-
-Email (2014/Sep) from Karri Huhtanen revealed another
-problem (translation by author):
-\begin{quote}
-``It is possible to add authorization message in-flight in to the
-ACCESS-ACCEPT.
-Problem is only that, if it is done in flight, you need some way to
-combine authentication messages to same identity. SIM auth makes it
-possible to use for example temporary identity and then the only thing
-what you can mine from the authentication message is the used operator.''
-\end{quote}
-
-So proxying RADIUS server cannot know for sure anything but the
-originating server (operator) if TMSI is used. The Authenticator does
-know the original user, but needs to get AuthZ information. It can get
-AuthZ either from the remote operator which would be easier for the
-Authenticator or there might be a proxying RADIUS, which inserts that
-knowledge into ACCESS-ACCEPT packet. The latter has issues with
-temporal identities. 
-
-
-
-
-
-
-When proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
-a beforehand known IMSI identity, there will be problem
-on inserting the admin role information in RADIUS message.
-Operator or proxying RADIUS 
-does not necessary know about roles without BaaS, so a link
-is needed between them to get role information inside RADIUS packet.
-It seems, that AuthZ data must be mapped during the first phase of
-EAP-SIM AuthN, when IMSI still is available, and in some way
-that map must be forwarded to the proxying RADIUS servers.
-These issues are fully avoided only in that scenario presented in Chapter
-\ref{sec-4}, where there is local Authentication server in homenet.
-Partly avoidance can be reached, when only Full Authentication is
-used, i.e., authentication is always checked from MNO and no fast
-re-authentication is used.
-
-\section{Similarities with Lock-and-Key method}
-\label{sec-4-8}
 The method is very similar to the concept used on routers to dynamically enable
 access to certain parts of network by first letting the user to log in
-to the router.  
+to the router.  As in Figure\ref{fig:cisco-802.1x}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{/home/itapuro/gitdocs/di/images/170847.jpg}
+\caption{\label{fig:cisco-802.1x}Cisco's view of 802.1x auth}
+\end{figure}
+
+
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{/home/itapuro/gitdocs/di/images/170847.jpg}
+\caption{\label{fig:lock-and-view}Cisco's view of lock-and-view auth}
+\end{figure}
+
+
+
+
+
+
+
 Device provider Cisco calls this ``Lock-and-Key'' access
 and uses dynamic access list to implement it. \cite[p.117]{lockandkeybook}
 
 Difference here is that 802.1X protects access to the
 network. Smartphone has only limited access to the network before AA
-has completed,
-while in the Lock-and-key
+has completed, while in the Lock-and-key
 the other parts of network are already open and successful login to the router opens
-access to even more segments through it.
-Both methods can have RADIUS as an Authentication server.
+access to even more segments through it. In other words, Lock-and-Key
+protects IP-access in layer-3 , while 802.1x protects layer-2.
+Both methods can have RADIUS as an Authentication server. 
+When RADIUS is not available, for example because internet is down,
+there almost always exist as a failover a local password method in the configurable 
+router.
+
+
 
 If Lock-and-key method was used instead of EAP-SIM RADIUS, then
 separate management LAN would not be needed. Roles were given at
-Authenticator or designated router after mobile has done login to it
+Authentication server or designated router after mobile has done login to it
 via normal access network.
+
+
+\begin{enumerate}
+\item clent -> AP (as RADIUS client) -> ROUTER(with Lock-and-key)
+\item client telnets(or ssh)  in the ROUTER and gives passwd
+\item ROUTER(as RADIUS client) checks authorization from\ldots{}AP(working as
+proxy)
+\item AP knows what? Wants to give access, but can it map this request to
+earlier?
+\end{enumerate}
 \section{Chosen solution [OR Summary of the chosen solution]}
-\label{sec-4-9}
+\label{sec-4-8}
 
 [wrap up of solution]
 
@@ -1963,7 +1927,8 @@ Jouni Malinen's software package \emph{HostAP} can be thought as a reference
 implementation providing all necessary components: WPA-Supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS would replace HLR in 3G/UMTS networks.
- \cite{hostapd}.
+ \cite{hostapd}. The version used in the tests was 2.2, while version
+2.4 was published on March 2015.
 
 For a more realistic test, OpenWRT AP is used instead of \emph{hostapd}'s
 access point and \emph{hostapd} provides only RADIUS server.
@@ -1988,7 +1953,8 @@ Examples in appendix \ref{app:nosim}   [TBD]
 First tests 
 did not go as planned. There was no indication of SIM method
 present in captures, the only indication of security was message
-``Open access'' in application logs. 
+``Open System'' in application logs, which means that no pre-shared
+key is used.
 Nokia E90, with a registered SIM had better results. Traces
 are in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
   \verb~e90.sim.auth.pcapng~ and \verb~eap-1.pcapng~  [TBD]
@@ -2030,7 +1996,9 @@ kept in mind when the final implementation is made.
 
 
 
-Terminating a session is not included in the original RADIUS protocol.
+
+
+Later it was learned, that terminating a session is not included in the original RADIUS protocol.
 The root cause is, that messages originating from the RADIUS server
 are not defined in the RADIUS protocol and so AP as RADIUS client cannot
 receive RADIUS server initiated disconnection messages. 
@@ -2328,10 +2296,10 @@ because a file was used instead of a SIM card.
 
 
 
-For platforms, if OpenWRT is used, the greatest problem is the size of
+If OpenWRT platform is used, one problem there is the size of
 memory which can be less than 32Mbytes.
 WPA software included in basic OpenWRT installation is small,
-but it does not include RADIUS server part nor EAP-SIM handling.
+but that does not yet include RADIUS server part or EAP-SIM handling.
 
 
 Software has other limitations. Freeradius2 is not included yet in OpenWRT.
@@ -2353,36 +2321,33 @@ portal can be used for offline authentication.
 
 
 There can be multiple ways to attack the described methods of
-homenet management delegation. The following paragraphs divide them into
+homenet management delegation. The following subsections divide them into
 confidentiality (privacy), integrity, and
 authenticity. Accessibility is also discussed.
-
-
+\subsection{Confidentiality (privacy)}
+\label{sec-6-5-1}
 The purpose of message confidentiality in authentication phase here is
 to hide the identity of smartphone and possible delivered secrets from
-eavesdroppers. EAP-SIM cannot be considered confidential for identity
-during first message exchanges, but later the identity can be hidden
-using temporal identity (TMSI). Unfortunately, the TMSI is not used in
-this thesis for AuthN. Yet, EAP-SIM protocol provides secure way to
-generate session parameters to WPA-session.
+eavesdroppers. 
 
-If SIM is used as the only EAP without EAP-PEAP, then 
-there is no mitigation for revealing the IMSI on the first message
-and it leads to privacy issue.
+Recall from Section \ref{sec:sim-based-auth}, that IMSI is sent in clear 
+during the start phase of 802.1X authentication and that is a privacy 
+issue, because TMSI, which hides IMSI cannot be used before a session has been set up. \cite[p.66]{rfc4186}.
+
 This can be compared to regular GSM network identity revealing: IMSI
 catching is a concept of listening radio network for phones that are
 powered on and register themselves to operator via GSM network.  
 
 The
-fault lies there, that GSM specification does not require network to
+fault lies there, that GSM specifi9cation does not require network to
 authenticate itself to the phone in thus GSM allows man in the middle
 attack device called IMSI-catcher to fake as being a base station.
 When mobile phone tries to attach to a fake base station, it reveals its
 IMSI number. Further, because the base station is responsible for chosen
 encryption, it can order the phone to not encrypt traffic or to use only
 weak encryption thus revealing all data, calls, and
-texts \cite{imsi-heise}. Mitigation for IMSI-catching would be to
-disable GSM (2G) usage altogether from phone if that is possible.
+texts. Mitigation for IMSI-catching would be to
+disable GSM (2G) usage altogether from phone if that is possible.\cite{imsi-heise}.
 
 After first full authentication, client and Authenticator 
 know TMSI and can use it in further communication: Authenticator 
@@ -2390,17 +2355,67 @@ is responsible to convert TMSI to IMSI if it later needs to
 ask for full authentication from the MNO.
 
 
+If SIM is used as the only EAP without EAP-PEAP, then 
+there is no mitigation for revealing the IMSI on the first message
+and it leads to privacy issue.
+
+Most(if not all) EAP methods do not provide identity protection
+themselves. Protected versions
+use separate  inner and outer identities and that can be achieved with
+PEAP (Protected  EAP) or TTLS, which chains different EAP-methods together and
+protects the inner EAP with an outer EAP. For example 
+EAP-MSCHAPv2 (Microsoft's Challenge Handshake Authentication Protocol,
+version 2) can be used inside PEAP.
+The outer identity tells just the realm, where AuthN can be checked
+ and inner identity reveals the real identity.
+The inner identity is encapsulated inside the outer identity which
+functions as an envelope. [TBD: speak more with protocol terms?]
+
+
+Used method to authenticate depends on the inability to fake IMSI.
+EAP-SIM would provide identity protection, if it were used together
+with PEAP which protects the outer identification  and
+then EAP-SIM were used in inner authentication.
+Currently it is not known for the author that implementations exists for
+EAP-SIM  except Tseng's proposition \cite{tseng-usim} for  new EAP type
+EAP-USIM, which extends EAP-TLS type.
+
+If it were possible to use anonymous identity on outer EAP
+authentication, then EAP-SIM AuthZ must also be done at HLR AuC.
+AuthZ cannot else be connected to the corresponding
+identity and AuthN itself is not enough because it only defines the users'
+authenticity, not their admin roles and so 
+AuthN should work for any mobile that has existing contract with
+their MNO. 
+It still is the responsibility of the Authenticator to 
+check AuthZ  and let only admin mobile access the management network.
 
 
 
 
 
+
+
+
+
+Based on those facts, EAP-SIM cannot be considered confidential for identity
+during first message exchanges, but later the identity can be hidden
+using temporal identity (TMSI). Unfortunately, the TMSI is not used in
+this thesis for AuthN. 
+On the other hand, EAP-SIM protocol, as do most of the other
+EAP-variants, provides a secure way to
+generate session parameters to WPA-session and those are not leaked
+outside, because they are created individually on both endpoints; 
+at smart phone and at AP.
+\subsection{Integrity}
+\label{sec-6-5-2}
 Integrity issues were handled in RADIUS Section \ref{sec:radius}.
 Message digestion codes provide integrity for RADIUS-protocol.
-If PEAP is used, it handles integrity through its usage of TLS \cite{peap}.
+If PEAP is used, it handles integrity through its usage of TLS
+\cite{peap}.
 
 \subsection{Accessibility, DoS and Scalability}
-\label{sec-6-5-1}
+\label{sec-6-5-3}
 Is homenet immune against (distributed) denial of service (DoS)
 attacks? Besides DoS, does the solution scale up from homenet to
 small and middle size companies?
@@ -2422,7 +2437,7 @@ alternative UDP RADIUS server can answer faster than waiting for TCP's reliable 
 
 
 \subsection{RADIUS weaknesses and strengths in limited use cases}
-\label{sec-6-5-2}
+\label{sec-6-5-4}
 
 
 RADIUS protocol itself is old and not very secure as of current
@@ -2451,7 +2466,7 @@ current admin user list, state of OTP list, or VLAN id.
 
 
 \subsection{Replay, Re-use, Re-auth, and brute-force challenges}
-\label{sec-6-5-3}
+\label{sec-6-5-5}
 Earlier in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
 considered bad.  Mixing secrets between usage
@@ -2490,8 +2505,8 @@ it would soon be exhausted and not function anymore.
 
 
 \subsection{Mitigation methods}
-\label{sec-6-5-4}
-To mitigate risks two methods are presented: hiding of
+\label{sec-6-5-6}
+To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
 
@@ -2546,6 +2561,60 @@ devices have.
 Also, if SIM-profile were used through Bluetooth, there were also
 range limits, but even shorter.
 
+
+\subsection{Decision point for adding role information [ move to design part]}
+\label{sec-6-5-7}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Email (2014/Sep) from Karri Huhtanen revealed another
+problem (translation by author):
+\begin{quote}
+``It is possible to add authorization message in-flight in to the
+ACCESS-ACCEPT.
+Problem is only that, if it is done in flight, you need some way to
+combine authentication messages to same identity. SIM auth makes it
+possible to use for example temporary identity and then the only thing
+what you can mine from the authentication message is the used operator.''
+\end{quote}
+
+So proxying RADIUS server cannot know for sure anything but the
+originating server (operator) if TMSI is used. The Authenticator does
+know the original user, but needs to get AuthZ information. It can get
+AuthZ either from the remote operator which would be easier for the
+Authenticator or there might be a proxying RADIUS, which inserts that
+knowledge into ACCESS-ACCEPT packet. The latter has issues with
+temporal identities. 
+
+
+
+
+
+
+When proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
+a beforehand known IMSI identity, there will be problem
+on inserting the admin role information in RADIUS message.
+Operator or proxying RADIUS 
+does not necessary know about roles without BaaS, so a link
+is needed between them to get role information inside RADIUS packet.
+It seems, that AuthZ data must be mapped during the first phase of
+EAP-SIM AuthN, when IMSI still is available, and in some way
+that map must be forwarded to the proxying RADIUS servers.
+These issues are fully avoided only in that scenario presented in Chapter
+\ref{sec-4}, where there is local Authentication server in homenet.
+Partly avoidance can be reached, when only Full Authentication is
+used, i.e., authentication is always checked from MNO and no fast
+re-authentication is used.
 
 \section{Discussion}
 \label{sec-6-6}
@@ -2673,6 +2742,12 @@ EAP-message in tact(sp?) as of  rfc4137
 \item WPA package's hostapd from JM does not perhaps provide EAP-PEAPv0 SIM but
 \end{itemize}
 wpa-supplicant supports.
+\begin{itemize}
+\item VLAN itself has an attack vector and some methods exists, but also
+mitigation for them.
+\item rad Authenticator, TLS, RADSEC etc, needs both client\&server in
+x509 certificate
+\end{itemize}
 
 
 \chapter{Conclusion}
