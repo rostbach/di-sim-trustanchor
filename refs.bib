@@ -17,7 +17,9 @@
   OPTmonth = 	 {Jul},
   OPTnote = 	 {},
   OPTannote = 	 {}
-}@INPROCEEDINGS{2009-lin-simefficiency,
+}
+
+@INPROCEEDINGS{2009-lin-simefficiency,
 author={Shen-Ho Lin and Jung-Hui Chiu and Sung-Shiou Shen},
 booktitle={INC, IMS and IDC, 2009. NCM '09. Fifth International Joint Conference on},
 title={Authentication Schemes Based on the EAP-SIM Mechanism in GSM-WLAN Heterogeneous Mobile Networks},
@@ -36,7 +38,6 @@ about 19\% authentication processing time for the proposed full authentication,
 and about 75\% authentication processing time for the proposed iterative fast
 authentication scheme.},
 keywords={authorisation;cellular radio;cryptography;mobile communication;network servers;telecommunication security;wireless LAN;EAP-SIM mechanism;GSM-WLAN;RADIUS server;heterogeneous mobile networks;iterative fast authentication scheme;3G mobile communication;Authentication;Data communication;Data security;GSM;Network servers;Radio access networks;WiMAX;Wireless LAN;Wireless networks;Access Point;Authentication;EAP-SIM;GSM-WLAN interworking;RADIUS Server},
-
 doi={10.1109/NCM.2009.259},
 }
 
@@ -314,15 +315,19 @@ month={Oct},
   ALTauthor = 	 {M. Pritikin and M. Behringer and S. Bjarnason},
   Author = 	 {M. Pritikin and M. Behringer and S. Bjarnason},
   ALTeditor = 	 {Network Working Group},
+  editor = 	 {Network Working Group},
   title = 	 {Bootstrapping Key Infrastructures},
   ALTyear = 	 {2014},
+  year = 	 {2014},
   ALTdate = 	 {},
   url = 	 {http://tools.ietf.org/id/draft-pritikin-bootstrapping-keyinfrastructures-01},
   OPTkey = 	 {draft-pritikin-bootstrap},
   OPTsubtitle =  {Internet-Draft},
+  subtitle =  {Internet-Draft},
   OPTtitleaddon = {draft-pritikin-bootstrapping-keyinfrastructures-01},
   OPTlanguage =  {},
   OPTversion = 	 {1},
+  version = 	 {1},
   OPTnote = 	 {},
   OPTorganization = {Cisco},
   OPTdate = 	 {26},
@@ -343,7 +348,7 @@ publisher = "Syngress",
 edition = "",
 address = "Burlington",
 year = "2007",
-pages = "65 - 104",
+pages = "65 - 104,75",
 series = "How to Cheat",
 isbn = "978-1-59749-231-7",
 doi = "http://dx.doi.org/10.1016/B978-159749231-7.50006-X",
@@ -361,7 +366,6 @@ g the transfer of messages between a user and an access point. Secure Shell cons
 ession encryption. It provides the ability to forward arbitrary ports over an encrypted connection. Security professionals have to find the balance between of
 fering users the ability to work from remote locations and ensuring that the network is protected. "
 }
-# s.75
 @misc{rfc2607,
   author="B. Aboba and J. Vollbrecht",
   title="{Proxy Chaining and Policy Implementation in Roaming}",
@@ -511,8 +515,32 @@ fering users the ability to work from remote locations and ensuring that the net
   month=mar,
     url="http://www.ietf.org/rfc/rfc6151.txt",
 }
-# kokeillaan techreport
-@techreport{rfc6929,
+@misc{rfc6206,
+  author="P. Levis and T. Clausen and J. Hui and O. Gnawali and J. Ko",
+  title="{The Trickle Algorithm}",
+  series="Request for Comments",
+  number="6206",
+  howpublished="RFC 6206 (Proposed Standard)",
+  publisher="IETF",
+  organization="Internet Engineering Task Force",
+  year=2011,
+  month=mar,
+    url="http://www.ietf.org/rfc/rfc6206.txt",
+}
+@misc{rfc6677,
+  author="S. Hartman and T. Clancy and K. Hoeper",
+  title="{Channel-Binding Support for Extensible Authentication Protocol (EAP) Methods}",
+  series="Request for Comments",
+  number="6677",
+  howpublished="RFC 6677 (Proposed Standard)",
+  publisher="IETF",
+  organization="Internet Engineering Task Force",
+  year=2012,
+  month=jul,
+    url="http://www.ietf.org/rfc/rfc6677.txt",
+}
+
+@misc{rfc6929,	
   author="A. DeKok and A. Lior",
   title="{{Remote Authentication Dial In User Service (RADIUS) Protocol Extensions}}",
   series="Request for Comments",
@@ -616,7 +644,6 @@ url="http://www.lteandbeyond.com/2012/02/imsi-tmsi-and-guti-how-they-are-created
 urldate={2015-02-02},
 }
 
-
 @misc{uninett-radproxy,
 author={S. Venaas},
 title={radsecproxy},
@@ -625,13 +652,12 @@ url="https://software.uninett.no/radsecproxy",
 urldate={2015-04-22},
 }
 
-
 @misc{hostapd,
-	author={Jouni Malinen},
-	title={Linux {WPA/WPA2/IEEE} {802.1X} {Supplicant}},
-	note={Accessed: 2015-05-07},
-	url="http://w1.fi/wpa_supplicant/"
-	urldate={2015-05-07},
+author={Jouni Malinen},
+title={Linux {WPA/WPA2/IEEE} {802.1X} {Supplicant}},
+note={Accessed: 2015-05-07},
+url="http://w1.fi/wpa_supplicant/",
+urldate={2015-05-07},
 }
 
 @misc{moonshot,
@@ -661,7 +687,7 @@ title={GSM - 28C3 public wiki},
 }
 
 @misc{smartjac-testsim,
-url ={http://www.smartjac.biz/webstore/samples-to-order/smartjac-test-sim-configurable-options}
+url ={http://www.smartjac.biz/webstore/samples-to-order/smartjac-test-sim-configurable-options},
 urldate={2015-05-10},
 note = {Accessed: 2015-05-10},
 title={Smartjac {TEST (U)SIM} card webshop},
@@ -672,8 +698,7 @@ author={ {Infocomm Development Authority of Singapore}},
 title={{SIM-based} Connection Guide},
 urldate={2015-05-10},
 note = {Accessed: 2015-05-10},
-}     
-
+}
 
 @misc{freeradius2,
 url= {https://github.com/FreeRADIUS/freeradius-server/blob/master/src/modules/rlm_eap/libeap/comp128.c},
@@ -681,5 +706,5 @@ author={Alan DeKok},
 title={{COMP128} implementation in {FreeRADIUS}},
 urldate={2015-05-10},
 note={Accessed: 2015-05-10},
-}    
+}
 
