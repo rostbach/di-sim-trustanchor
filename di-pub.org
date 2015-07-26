@@ -1124,6 +1124,17 @@ help of operator specific symmetric keys, which are also inside SIM.
 
 #+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 1
 
+Mobile phone                           Authenticator (AP)
+  | 0. EAPOL Start                              |
+  +-------------------------------------------->|
+  |                                             |
+  | 1.                      AP Request/Identity |
+  |<--------------------------------------------+
+  |                                             |
+  | 2. EAP Response/Identity(IMSI) [later X]    |
+  +-------------------------------------------->|
+
+
  | 0-1,                        |
  :<--------------------------->:
 
