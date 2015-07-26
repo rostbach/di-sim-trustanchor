@@ -1170,7 +1170,7 @@ Mobile phone                           Authenticator (AP)
   |                                             |                               +-----+--------+
   |                                             | 14. RADIUS(EAP Success)             | 
   |                                             |<------------------------------------+
-  |                                EAP Success) |
+  |                                EAP Success) |q
   |<--------------------------------------------+         
 #+end_src
 #+CAPTION: EAP-SIM full authentication with RADIUS
