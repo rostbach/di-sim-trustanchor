@@ -1162,15 +1162,15 @@ Mobile phone                           Authenticator (AP)
 +-+------------------------------------+        |                                     |
   |                                             |                                     |
   |12. EAP Response/SIM/Challenge (H(SRES))     |                                     |
-  +-------------------------------------------->| 13. RADIUS(EAP Response/SIM/Challenge (H(SRES))
+  +-------------------------------------------->|13. RADIUS(EAP Response/SIM/Challenge (H(SRES))
   |                                             +------------------------------------>| 
   |                                             |                               +-----+--------+
   |                                             |                               | compare with |
   |                                             |                               | own SRES     |
   |                                             |                               +-----+--------+
-  |                                             | 14. RADIUS(EAP Success)             | 
+  |                                             |              14. RADIUS(EAP Success)| 
   |                                             |<------------------------------------+
-  |                                EAP Success) |q
+  |                                EAP Success) |
   |<--------------------------------------------+         
 #+end_src
 #+CAPTION: EAP-SIM full authentication with RADIUS
