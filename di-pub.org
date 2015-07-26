@@ -1122,7 +1122,7 @@ help of operator specific symmetric keys, which are also inside SIM.
 [[file:eap-sim-full.png]]
 
 
-#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 1x
+#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 1
 
  | 0-1,                        |
  :<--------------------------->:
