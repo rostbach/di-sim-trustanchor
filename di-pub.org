@@ -1131,7 +1131,7 @@ Mobile phone              Authenticator (AP)
  | 3. EAP Response/Identity    |                               Authentication Server
  +---------------------------->| 4. RADIUS(EAP Response/Identity)    |
  |                             +------------------------------------>|
- |                             + 5. RADIUS(EAP Request/SIM/Start     |
+ |                             | 5. RADIUS(EAP Request/SIM/Start     |
  |                             +<------------------------------------+
  | 6. EAP Request/SIM/Start    |                                     |
  |<----------------------------+                                     |
@@ -1139,17 +1139,17 @@ Mobile phone              Authenticator (AP)
  +---------------------------->|                                     |
  |                             | 8. RADIUS(EAP Response/SIM/Start)   |  
  |                             +------------------------------------>|
- |                             |                                     |  (N times: Req.   
- |                             |                                     |9. IMSI's triplets) MNO
- |                             |                                     +-------------------->|
- |                             |                                     |    (RAND,SRES,Kc)   |
- |                             |    N times                          |<--------------------+
+ |                             |                                     |
+ |                             |                                     |9.(N*Req.IMSI triplets)  MNO
+ |                             |                                     +------------------------>|
+ |                             |                                     |    (RAND,SRES,Kc)       |
+ |                             |    N times                          |<------------------------+
  |                             |10. RADIUS(EAP Request/SIM/Challenge)| 
  |                             |     (RAND,H(RAND),[X]Kc*)           |
  |                             |<------------------------------------+
  | 11. EAP Request/SIM/Start   |                                     |
  |<----------------------------+                                     |
- |
+ |                             |
 ++-------------------------------------+                         |
 |run GSM algorithms, verify H(RAND)    |                         |
 |with NONCE, derive sess. key Kc*,     |                         |
@@ -1157,7 +1157,8 @@ Mobile phone              Authenticator (AP)
 ++-------------------------------------+                         |
  |                                                          |
  |12. EAP Response/SIM/Challenge (H(SRES))                  |
- +------------------------------------> |                                     |
+ +------------------------------------> | 13. RADIUS(EAP Response/SIM/Challenge (H(SRES))                  |                                    |
+ |                                       | +------------------------------------> |     
  |         
 #+end_src
 #+CAPTION: EAP-SIM full authentication with RADIUS
