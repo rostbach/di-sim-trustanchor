@@ -1147,6 +1147,18 @@ Mobile phone              Authenticator (AP)
  |                             |10. RADIUS(EAP Request/SIM/Challenge)| 
  |                             |     (RAND,H(RAND),[X]Kc*)           |
  |                             |<------------------------------------+
+ | 11. EAP Request/SIM/Start   |                                     |
+ |<----------------------------+                                     |
+ |
+++-------------------------------------+                         |
+|run GSM algorithms, verify H(RAND)    |                         |
+|with NONCE, derive sess. key Kc*,     |                         |
+|decrypt and save pseudonym X with Kc* |                         |
+++-------------------------------------+                         |
+ |                                                          |
+ |12. EAP Response/SIM/Challenge (H(SRES))                  |
+ +------------------------------------> |                                     |
+ |         
 #+end_src
 #+CAPTION: EAP-SIM full authentication with RADIUS
 #+NAME:   fig:eap-sim-radius
@@ -3228,7 +3240,7 @@ portal can be used for offline authentication.
 ** Security considerations
 :PROPERTIES:
 :CUSTOM_ID: cha:security
-:END: 
+:END:      
 
 #  System safety, can be  defined as  regarding [source: TTJ 2012/09/12]
 #
@@ -3360,7 +3372,9 @@ using temporal identity (TMSI). Unfortunately, the TMSI is not used in
 this thesis for AuthN. 
 On the other hand, EAP-SIM protocol, as do most of the other
 EAP-variants, provides a secure way to
-generate session parameters to WPA-session.
+generate session parameters to WPA-session and those are not leaked
+outside, because they are created individually on both endpoints; 
+at smart phone and at AP.
 # ,
 # which was shown in Chapter #design. 
 
