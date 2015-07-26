@@ -1476,7 +1476,7 @@ The smartphone and the AP must trust each other.
 # controller, i.e., homenet and local controller need to trust each other.
 The Smartphone will approve changes for homenet and is part of bootstrapping
 new infrastructure. 
-So, we need to change the management paradigma to central configured
+So, we need to change the management paradigm to central configured
 model, set trust between the smartphone and the homenet, and 
 resolve the work-flow of change management.
 
@@ -2329,7 +2329,7 @@ is not done yet. The scenario can be any of I-IV, but no trust nor roles are pre
 
 
 # ** What prevents modifications of RADIUS messages? Securing message integrity.
-** Ways to modify RADIUS messages
+** Ways to modify RADIUS messages [perhaps to security integrity chapter?]
 <<sec:radius-macs>>
 # [Analysis of RADIUS, RADIUS Proxies..
 RADIUS messages are not protected from eavesdropping, but they have
@@ -2377,8 +2377,6 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 # with those RADIUS shared secrets.
 
 
-
-
 Our model would greatly benefit from modification of RADIUS messages in proxying
 RADIUS, if that is possible as was mentioned in Section [[sec:radius]](RADIUS).
 The modification is needed when proxying RADIUS combines AuthN message
@@ -2406,7 +2404,7 @@ re-sign the packet.
 RFC6929 \cite{rfc6929} reminds, that even when
 the proxy does not understand all AVPs inside RADIUS message, it
 must deliver those values and that allows us to use larger set of AVPs 
-than is in all RADIUS servers' vocabulary.
+than is in any RADIUS server's vocabulary.
 
 # RFC2865 \cite{rfc2865} says, that: [TBD, digest this]
 # #+BEGIN_QUOTE
@@ -2604,7 +2602,8 @@ Jouni Malinen's software package /HostAP/ can be thought as a reference
 implementation providing all necessary components: WPA-Supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS would replace HLR in 3G/UMTS networks.
- \cite{hostapd}.
+ \cite{hostapd}. The version used in the tests was 2.2, while version
+2.4 was published on March 2015.
 
 For a more realistic test, OpenWRT AP is used instead of /hostapd/'s
 access point and /hostapd/ provides only RADIUS server.
@@ -2646,7 +2645,8 @@ First tests
 # [draw picture],
 did not go as planned. There was no indication of SIM method
 present in captures, the only indication of security was message
-``Open access'' in application logs. 
+``Open System'' in application logs, which means that no pre-shared
+key is used.
 # Olisiko Open ollutkin 802.11 Open System ilmoitus?
 Nokia E90, with a registered SIM had better results. Traces
 # sim2 sim3
@@ -3114,12 +3114,12 @@ because a file was used instead of a SIM card.
 # (source t.j.c peremen (Jan 27 '14)"
 
 
-For platforms, if OpenWRT is used, the greatest problem is the size of
+If OpenWRT platform is used, one problem there is the size of
 memory which can be less than 32Mbytes.
 # - OpenWRT is environment for embedded system.
 #   When software is not fully optimized, memory is one of the limits which come first.
 WPA software included in basic OpenWRT installation is small,
-but it does not include RADIUS server part nor EAP-SIM handling.
+but that does not yet include RADIUS server part or EAP-SIM handling.
 #  is less than 128k, but 
  
 #   To compile and install RADIUS server package into OpenWRT .   
@@ -3169,13 +3169,13 @@ portal can be used for offline authentication.
 # and use sources as for the rest.]
 
 There can be multiple ways to attack the described methods of
-homenet management delegation. The following paragraphs divide them into
+homenet management delegation. The following subsections divide them into
 confidentiality (privacy), integrity, and
 authenticity. Accessibility is also discussed.
 
 
 # ** Confidentiality, Integrity, and Authenticity
-# *** Confidentiality (privacy)
+*** Confidentiality (privacy)
 The purpose of message confidentiality in authentication phase here is
 to hide the identity of smartphone and possible delivered secrets from
 eavesdroppers. 
@@ -3288,11 +3288,14 @@ generate session parameters to WPA-session.
 
 
  
-# Integrity
+
 # 
+***  Integrity
 Integrity issues were handled in RADIUS Section [[sec:radius]].
 Message digestion codes provide integrity for RADIUS-protocol.
-If PEAP is used, it handles integrity through its usage of TLS \cite{peap}.
+If PEAP is used, it handles integrity through its usage of TLS
+\cite{peap}.
+# is supplicant--AP traffic EAPOl or EAP over TLS?
 
 # - identification ::  separates different users and makes  claim about users identity
 # [=tunnistus]
@@ -3431,7 +3434,7 @@ it would soon be exhausted and not function anymore.
   
 
 *** Mitigation methods
-To mitigate risks two methods are presented: hiding of
+To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
 
@@ -3521,7 +3524,7 @@ range limits, but even shorter.
 # - benefit instead of presented model.
 
 
-*** Privacy of smartphone user's identity (IMSI) [ moved from design chapter ]
+*** Decision point for adding role information [ move to design part]
 
 # Unique identifier for SIM is IMSI (International Mobile Subscriber
 # Identity, 15 digits long[ALREADY analyzed in scenario-II!], more
@@ -3766,13 +3769,13 @@ wpa-supplicant supports.
 #  at the same time, do they have mobiilivarmenne?
 # no clouds here
 # ** Cloud‐based services
-
 # ** More attacks from literature, not categorized 
 # - dictionary and brute force not valid in EAP-AKA (rfc4187)
 # - key size 128 or 64? (see paper on key size ``only 64bit, not 192bit'')
-# - VLAN itself has attack vector and some methods exists, but also
-#  mitigation for them. 
-# - rad Authenticator, TLS, RADSEC etc
+ - VLAN itself has an attack vector and some methods exists, but also
+  mitigation for them. 
+ - rad Authenticator, TLS, RADSEC etc, needs both client&server in
+   x509 certificate
 # - Easily physically accessible devices are vulnerable to physical attacks.
 
 # ** Second option for multirealms 
