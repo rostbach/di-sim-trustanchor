@@ -1164,7 +1164,7 @@ Mobile phone                           Authenticator (AP)
 +-+------------------------------------+        |                                     |
   |                                             |                                     |
   |12. EAP Response/SIM/Challenge (H(SRES))     |                                     |
-  +-------------------------------------------->|13. RADIUS(EAP Response/SIM/Challenge (H(SRES))
+  +-------------------------------------------->|13. RADIUS(EAP Response/SIM/Challenge|(H(SRES))
   |                                             +------------------------------------>|
   |                                             |                               +-----+--------+ 
   |                                             |                               | compare with |
