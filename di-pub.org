@@ -1132,7 +1132,7 @@ Mobile phone                           Authenticator (AP)
   |<--------------------------------------------+
   |                                             |
   | 2. EAP Response/Identity(IMSI) [later X]    |
-  +-------------------------------------------->|
+  +-------------------------------------------->|                                     RADIUS
   | 3. EAP Response/Identity                    |                               Authentication Server
   +-------------------------------------------->| 4. RADIUS(EAP Response/Identity)    |
   |                                             +------------------------------------>|
