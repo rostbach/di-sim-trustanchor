@@ -1145,8 +1145,8 @@ Mobile phone              Authenticator (AP)
  |                             |                                     |    (RAND,SRES,Kc)   |
  |                             |    N times                          |<--------------------+
  |                             |10. RADIUS(EAP Request/SIM/Challenge)| 
- |                             |       (RAND,H(RAND),[X]Kc*)         |
-
+ |                             |     (RAND,H(RAND),[X]Kc*)           |
+ |                             |<------------------------------------+
 #+end_src
 #+CAPTION: EAP-SIM full authentication with RADIUS
 #+NAME:   fig:eap-sim-radius
