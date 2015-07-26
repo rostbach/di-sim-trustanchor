@@ -1174,8 +1174,8 @@ Mobile phone                           Authenticator (AP)
   |                                             |<------------------------------------+ 
   | 15.EAP Success)                             |                                    _|_
   |<--------------------------------------------+
-  |                                            _+_ 
-  |                                            
+  |                                             | 
+  |                                            _+_
 #+end_src
 #+CAPTION: EAP-SIM full authentication with RADIUS
 #+NAME:   fig:eap-sim-radius
