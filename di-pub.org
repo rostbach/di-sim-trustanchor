@@ -13,7 +13,7 @@
 # Toinen tarpeellinen ehkä reftexiä varten
 # \bibliography{refs.bib}
 #+LATEX_HEADER: \author{Riku Itäpuro}
-#+LATEX_HEADER: \title{Smartphone as a trust anchor for delegated homenet configuration management}
+#+LATEX_HEADER: \title{Smartphone as a trust anchor for delegated home net configuration management}
 #+LATEX_HEADER: \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 
 #+LATEX_HEADER: % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
@@ -43,6 +43,7 @@
 
 #+end_latex
 # Tämä näyttäisi nyt tulevan sisällön jälkeen..
+# 31.7.2015 tämä tuleekin ennen kansilehteä..
 #+begin_latex
 \chapter*{Terminology}
 %\chapter*{Lyhenteet ja merkinn<E4>t}
@@ -357,49 +358,58 @@ Teemu Teekkari
 # Makupaloja tulevasta ja rakenne
 # Home 
 
-Managing computer and network devices can be hard.
-Modern homes have become similar to small offices regarding 
-the equipment present there.
-Earlier it was sufficient to make just minimal settings at home to
-a modem (cable, phone or radio) and connect it to
-the home computer to get a fully working home network
-with internet connectivity.  Now home network has expanded with countless
-devices available.
-Already entertainment centers (AV-amplifiers, media players, gameconsoles),
+Managing computer and network devices can be hard.  Modern homes have
+become similar to small offices regarding the equipment present there.
+Earlier it was sufficient to make just minimal settings at home to a
+modem (cable, phone or radio) and connect it to the home computer to
+get a fully working home network with internet connectivity.  Now home
+network has expanded with countless devices available.  Already
+entertainment centers (AV-amplifiers, media players, gameconsoles),
 manageable network devices (switches/routers), and mobile phones
-present new devices and network segments beside computers and printers.
+present new devices and network segments beside computers and
+printers. Sensors and controller devices from Internet of Things
+domain bring their own increment to the device count at home.
  
 # Configuration of the devices 
 # connecting is not difficult, managing is 
 Connecting these devices to the net remains trivial, but managing the
 network afterwards has become challenging and complex.
+There might be separate areas in homes that have different needs regarding
+connectivity, resources, and access. Not only that, but devices in
+separate segments might not belong to the home owner anymore.
+So there will be a need to delegate the management of the home network to 
+multiple owners. 
+
+
 #  even at home.
 # 1. Something about knowledge, who knows how to configure.
-First, the configuration choices in networking devices takes some
+The configuration choices in networking devices takes some
 amount of expertise what is not necessarily present at every
-home. Secondly, if external help would be bought, one needs to have
-some form of control to let only authorized operators to configure
-those devices. Lastly, it is challenging to find a common 
+home. There could exist a market for an external consultant service, which would
+remotely operate the home network.
+# 2. authentication part, who is authorized, how it is done today, why
+# that is problem? 
+# 3. exporting managing, i.e., delegated configuration
+Persons, who are allowed to make configuration changes, are today
+often authenticated only by simple password and physical precence near
+the configured network device. What then, when the person is note
+present physically, but tries to connect remotely?  If external help
+would be bought, one needs to have some form of control in allowing
+only authorized operators to configure those devices.
+
+
+# Secondly, 
+Lastly, it is challenging to find a common 
 trusted entity upon which every actor could base their trust.
 The problems are a delegated network management, remote provisioning,
 and trust finding. On its roots, it is an authentication and
 authorization problem.
 
  
-# 2. authentication part, who is authorized, how it is done today, why
-# that is problem? 
-# 3. exporting managing, i.e., delegated configuration
-Persons, who are allowed to make configuration changes, are today often
-authenticated only by simple password and physical precence
-near the configured network device.
+
+
 # count of devices part: move up to (2) , but owner part to delegation
 # (3)
-
-For example, sensor and controller devices from Internet of Things
-domain bring their own increment to the device count at home. Their
-owner may not necessarily be the same than the home owner. As such
-there will be a need to delegate the management of the home network to 
-multiple owners. 
 
 
 # same thing, other words:
@@ -426,37 +436,44 @@ multiple owners.
 # noticed, then it need some more detailed background.
 
 
-There could exist a market for an external consultant service, which would
-remotely operate the home network for example through a service in a
-cloud. One model of that is to separate the management and control function 
-away from the connectivity and routing issues\cite{silverajan2015collaborative}.
-The configuration model of devices at a home is mirrored to the cloud 
-(Figure x.1) and changes can be planned ahead at cloud and committed
-later to the home via a local controller point which lies at home.
-(Figure x.2). The cloud have already verified  the operators in the
-cloud, but the question remains, how to connect the cloud service to
-the home network.
+One model to solve these problems is to separate the management and
+control function away from the connectivity and routing
+issues. Silverajan et al.\cite{silverajan2015collaborative} proposes
+model where management is achieved through a service in a cloud. The
+configuration model of devices at a home is mirrored to the cloud as a
+resource graph ( Figure x.1) and changes can be planned ahead at cloud
+and committed (Pushed) later to the home via a local controller point
+which lies at home using configuration tools CoAP and RESTCONF.
+(Figure x.2).
 
-The cloud service has a connection to local controller at home, which 
-would approve the changes and operates as bridge and access control between cloud and home
-network. See figure x.x. as possible connection point.
+The cloud have already verified the operators in the cloud, but the
+question remains, how to connect the cloud service to the home network
+through the local controller securely. The local controller at home
+would approve the changes and a smartphone is assumed to function in
+local controller role. It will have an application which operates as a
+bridge and an access control between the cloud and the home network.
+See Figure[[fig:localcontroller]] for design of this architecture.
+
+#+CAPTION: Local Controller and Collaborative Management Design
+#+LABEL: fig:localcontroller
+#+ATTR_LaTeX: width=5cm,angle=90
+file:~/gitdocs/di/images/localcontroller.png
 
 
 # That delegation is planned to be provided from outside the home as a
 # service running in internet, and it is often referenced as a cloud
 # service.  
-The service provider therefore does not need to have a direct data
+The delegated service provider therefore does not need to have a direct data
 access to the home but only to the cloud based service in order to be able to
 manage homenet devices.
 Consultant service is not the only possible delegation for home network.
 Home network can be divided to multiple segments that each have
-their own administrative parties. For example electricity company may
-have a sensor and controller network physically inside the home network, but
+their own administrative parties. For example an electricity company may
+have a sensor and controller network physically using  the home network, but
 logically separated from other parts of home network. It is then
 important to keep track of who is allowed to access which part of the
 home network.
-Eliminating the need for 
-# 3rd party consultants or ser
+Eliminating the need for  
 physical precence at home reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and disconnections.
 
@@ -489,55 +506,53 @@ point and the research problem here is how to enable the trust between the
 controller and the homenet as the controller lies at the edge of the
 home network.
 
-Existing work done at TUT for delegated home network management
-currently has preliminary authentication and access model using
-pre-defined credentials and SSH-connection from the local controller device to
-configuration targets\cite[Chapter IV]{silverajan2015collaborative}. 
+
+Any encryption between devices needs trusted key exchange beforehand,
+and finding and establishing trust is needed for that.  That is called
+the key-distribution problem. Public keys solve key exchange part, but
+only partially, because the trust must still be found somewhere.
+Above mentioned cloud solution at TUT for delegated home network
+management currently has preliminary authentication and access model
+using pre-defined credentials and SSH-connection from the local
+controller device to configuration
+targets\cite[Chap.4]{silverajan2015collaborative}.
 # while the communication between the cloud and the local controller
 # happens with REST
-That work does not yet handle the bootstrap of the infrastructure
-i.e. the first trust is thought as given. 
-Smartphone with its SIM card and existing key infrastructure to mobile
-network operator eliminates the requirement for an additional credential
-distribution and is studied here.
 # % present solution for 
 # % preset trusted and secured key distribution,
 # %
+That work does not yet handle the bootstrap of the infrastructure
+i.e. the first trust is thought as given.  Smartphone with its SIM
+card and existing key infrastructure to mobile network operator would
+later eliminate the requirement for an additional credential
+distribution and that issue is studied in this thesis.
 Although mobile phone provides alternative
 authentication method with its SIM key, usual methods to
 authenticate still are plain username-password combinations.
 
-Any encryption between devices needs trusted key exchange
-beforehand, and finding and establishing trust is needed for that.
-That is called the key-distribution problem. Public keys solve 
-key exchange part, but only partially, because the trust must still
-be found somewhere.
-
 
 # [write more clear and mention key distribution problem.]
 
-The place, where trust is not anymore derived or built upon other 
-fact but assumed to be present, is called a trust anchor.
-The trust can be derived from facts that already are known.
-The trust anchor is the fact, state or place, where derivation is
-done no more, but accepted per se. 
 
-Human aspect and usability also are important. The proposed model should
-require less effort than the current methods of distributing user
-credentials, finding the place where they can be inserted, and
-ensuring that they are written correctly. 
 
 
 Those security issues must be solved before delegation in the cloud can
 happen.  
 #  Anchoring must be set somewhere, 
 # is When Trust can be anchored to an entity 
-The main focus is on authentication and authorization part of
+The main focus here is on authentication and authorization part of
 the home net management with smart phone as trust anchor.
 Trust model, which benefits from smartphone's unique,
 existing secret keys inside the smart card's  Subscriber Identify Module
 (SIM), is proposed. 
-Besides that, problems such as limited connectivity are studied. 
+Besides that, problems such as limited connectivity are studied.
+
+Human aspect and usability also are important, although the focus will
+not be there. The proposed model should nevertheless require less
+effort distributing user credentials, finding the place where they can
+be inserted, and ensuring that they are written correctly than the
+current used methods.
+ 
 
 # although the correct term were SIM card with application and keys on
 # older smart cards and USIM with SIM-application running inside USIM
@@ -547,9 +562,15 @@ Besides that, problems such as limited connectivity are studied.
 # Motivation factors to this work is 
 Why SIM-based methods are not in wider use is one motivator to this
 work.  The technology has been there for more than ten years and
-the hardware and the applications already support it, but it still is not yet
-widely used.  Could there exist a light method to use the SIM?  Combining
-existing techniques, this thesis presents one possible way to bind the
+the hardware and the applications mostly support it, but it still is not yet
+widely used.  Could there exist a light method to use the SIM?  
+
+The trust can be derived from facts that already are known.
+The place, where a trust is not anymore derived or built upon other 
+fact but assumed to be present, is called a trust anchor.
+[OR: The trust anchor is then the fact, state or place, where derivation is
+done no more, but accepted per se. ]
+Combining existing techniques, this thesis presents one possible way to bind the
 trust to the SIM, which then would function as a trust anchor. To
 generally find ultimate trust it is only needed to verify trust chains
 until the chain reaches a trust anchor.
@@ -603,8 +624,10 @@ thesis.
 # 1.5) wireless (Authenticator, Authentication server, supplicant)
 # + 2) RADIUS, diameter, (tacacs+)
 # + 3) SIM-based authentication
-[(4) Feature comparison, eg role-based access, time-based access etc]
-5) GBA and Security bootstrapping
+[TBD 4) Feature comparison, eg role-based access, time-based access
+etc]
+
+[TBD 5) GBA and Security bootstrapping]
 
 Authentication, authorization, and accounting services (AAA) are
 components for access management.  AAA-protocols do not dictate
@@ -681,23 +704,7 @@ RADIUS is the most popular provider for AAA-services
 \cite[p.75]{radius-popular}.  It was used first with remote terminal
 and dial-up modem users, hence the name Remote Authentication Dial-In
 User Service. Later it was used as centralized AAA for networking
-devices such as switches and routers.  Currently its main environment
-beside networking managing is wireless connections (Wi-Fi) in
-enterprises and nation wide community federations.
-
-
-Federations started as local WLAN groups such as SparkNet or
-LangatonTampere.  Authenticator in 802.1X enables users in those group
-to consult external, central RADIUS server for authentication
-requests. As so, the users could use network anywhere (roaming), where the same
-uniform SSID (Service Set IDentifier) as a Wi-Fi network name was seen.
- Later, there were agreements between different groups to allow 
-roaming also from group to group and so federations were born.
-
-
-In addition to RADIUS, there  exists similar protocol called Diameter
-which is newer than RADIUS and in use in 3GPP (and 4G)
-networks\cite{diameter}.  
+devices such as switches and routers.  
 
 
 
@@ -706,15 +713,11 @@ networks\cite{diameter}.
 # Wireless environments include supplicant, Authenticator, and
 # Authentication server. Of those, 
 
-
 RADIUS-protocol is a stateless, request-response type client-server
 protocol. RADIUS messages used for AA are of type ACCESS  (ACCESS-REQUEST,
 ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). 
 Messaging flow includes both AuthN and AuthZ. When they have
 succeeded, an ACCESS-ACCEPT message is sent back to the client.
-
-
-
 
 # #+BEGIN_QUOTE
 #  Access-Accept messages are populated with one or more service
@@ -734,7 +737,28 @@ succeeded, an ACCESS-ACCEPT message is sent back to the client.
 # + RADIUS analysis seq... (WHERE? 20150703)
 # +  See RADIUS fixes cite:rfc5080.
 
-RADIUS servers can be chained to form a distributed net.
+# In addition to RADIUS, there  exists similar protocol called Diameter
+
+RADIUS today has some shortcomings and fixing them is not anymore reasonable
+as developing has shifted to another AAA protocol called Diameter,
+which is already in use in 3GPP and 4G networks\cite{diameter}. 
+Nevertheless, as RADIUS is so wide-spread, it is still used in 
+AAA-solutions instead of Diameter.
+Currently the main environment of  RADIUS 
+besides network managing is wireless connections (Wi-Fi) in
+enterprises and nation wide community federations.
+
+Federations in Finland started as local WLAN groups such as ``SparkNet'' or
+``Langaton Tampere''.  Authenticator in 802.1X enabled users in those group
+to consult external, central RADIUS server for authentication
+requests. As so, the users could use network anywhere, where the same
+uniform SSID (Service Set IDentifier) as a Wi-Fi network name was
+seen, i.e., roaming  outside one's own network became possible.
+Later, there were agreements between different local groups to allow 
+roaming also from group to group and so federations were born.
+
+As seen in federated WLAN grousp, RADIUS servers can be chained to
+form a tree.
 The reasons for the chaining are load balancing and high availability, 
 centralization of locally distant servers, and federation of different
 domains. 
@@ -753,45 +777,28 @@ cases, where AuthN and AuthZ are provided from different places
 clients domain in the federation.
 # for "Proxy Chaining and Policy in Roaming,June 1999]
 
-*** -> to the RADIUS design part
 
-# by Authentication Server to the Authenticator
-...which then can negotiate WPA session keys and open access for the
-smartphone to the protected port.  Besides authentication, other
-service parameters such as provisioning can be included in
-ACCESS-ACCEPT message. In essence, AuthZ part itself can be thought as
-one type of service provisioning \cite{rfc5608}.
 
-In the first prototype it is enough to identify authorized
-smartphone's SIM.
-Smartphone holding the SIM is granted the access to the parts of the
-management network and is authenticated strong. 
-User management is outsourced to Mobile Network Operator(MNO), which already has provided SIM
-cards to users. What remains, is the adding of the user's IMSI to
-the authorized users' list. That list can be located on diverse place, 
-as can be seen in xxx
-# ### 
 
-# explain provisioning? 20150702
-At this point, Authenticator has opened port to the smartphone for
-configuration changes. It has negotiated session keys ...
-Local RADIUS has trails of successful
-authentication and knows .-..
 
 ** WPA
 
-Wireless protected access (WPA) protects traffic in wireless,
+Wireless protected access (WPA or WPA2) protects traffic in wireless,
 shared media, where everyone can simply listen the traffic on
 radio waves. It enables both authenticated access and message
-encryption.
+encryption. WPA was an early subset of then upcoming 802.11i standard,
+while WPA2 is the full implementation.
 # WPA consist of client (WPA-supplicant), Authenticator, and Authentication Server.
-Client software for 802.1X is called WPA-Supplicant and it communicates with the Authenticator.
+Client software for 802.11i is called a WPA-Supplicant and it is used
+in wireless clients to communicate with the Authenticator. The rest of
+the work will not make a difference between WPA and WPA2 versions, but
+simply denotes them as ''WPA''.
 
 WPA has two protected modes: one for groups with common, pre-shared
-key (WPA-PSK also known as WPA-Personal) and one for individuals
-(WPA-RADIUS also known as  WPA-Enterprise).  With WPA-RADIUS, revoking
+key (WPA-PSK, also known as WPA-Personal) and one for individuals
+(WPA-RADIUS, also known as  WPA-Enterprise).  With WPA-RADIUS, revoking
 individual access is easier, but client setup slightly more
-complicated than on WPA-PSK, as seen on table[[psk-enterprise]].
+complicated than on WPA-PSK, as seen on Table[[psk-enterprise]].
 
 # [Maybe comparing in table] 
 #+CAPTION: Comparison of WPA-PSK and WPA-ENTERPRISE modes
@@ -816,20 +823,27 @@ complicated than on WPA-PSK, as seen on table[[psk-enterprise]].
 # phone's SIM card.
 
 Instead of bringing new AuthN methods into 802.1X, it was 
-extended with  modular framework called 
+extended with a modular framework called 
  EAP (Extensible Authentication Protocol) \cite{rfc5247}. 
+Different authentication methods can be used with EAP,  for example hashed
+# methods or types? 20150702
+passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
+This work uses EAP-SIM authentication method.
+
+
 EAP describes only the messaging form, so EAP messages needs to
-be encapsulated inside another protocol.  In Wi-Fi, between smartphone
-and access point, EAP is encapsulated into 802.1X protocol (as EAPOL) or
+be encapsulated inside another protocol.  In Wi-Fi, between a smartphone
+and an AP, EAP is encapsulated into 802.1X protocol (as EAPOL) or
 into protected EAP(PEAP)\cite{peap} before sending
-into wire. In wired net, EAP messages are encapsulated into RADIUS.
+into air. In wired net EAP messages are encapsulated into RADIUS.
 
 The encapsulation is described in Figure[[fig:eap-layers]] where it
-can be seen, that EAP messaging happens logically between  EAP peer and
-Authentication server, but on lower transport layer there is  EAP
+can be seen, that EAP messaging happens logically between the EAP peer
+and the
+Authentication server, but on a lower transport layer there is an EAP
 Authenticator in between them, which transfers EAPOL messaging into
 RADIUS message.  In the end (not shown in the Figure[[fig:eap-layers]])
-Authenticator is responsible for opening access for EAP peer. 
+Authenticator is responsible for opening access for EAP peer as 802.1x dictates.
 
 
 
@@ -865,15 +879,10 @@ messages only.
 # , which happen between the Supplicant and the Authentication Server.
 It does not include AuthZ information or session keys.
 # needed in the following message transfer.
-Of those, RADIUS delivers AuthZ (and also encapsulated AuthN)
+Of those, RADIUS is responsible of delivering AuthZ (and also
+encapsulated AuthN) to the Authenticator (AP)
 and WPA is used to negotiate session keys for encrypting the traffic
 between the smartphone and AP.
-
-Different authentication methods can be used,  for example hashed
-# methods or types? 20150702
-passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
-This work uses EAP type of EAP-SIM.
-
 
 
 ** SIM-based authentication
@@ -894,12 +903,10 @@ PIN.
 MNO distributes SIM card and provides mobile network connectivity to
 its customers.  The secret keys are used for authenticating the IMSI
 to MNO which enables MNO's to identify their customer in the network
-and charge them correspondingly.
-
-
-
-, which it
-identifies with above mentioned IMSI.
+and charge them correspondingly. It is assumed, that SIM card present
+its owner. In reality nothing prevents an identity thief to steal
+someone's SIM card. Although 4-digit PIN tries to prevent the usage of 
+stolen SIM, that is considered as a weak safe\cite[31]{aaa-nakhjiri2005}.
 
 MNO and SIM trust mutually each other.
 There is still need for separate access credentials for Wi-Fi and
@@ -923,13 +930,17 @@ in RFC4186 \cite{rfc4186}.
 It is a challenge-response method and similar to AuthN used in GSM, 
 but adds mutual AuthN, i.e., also the network is authenticated.
 # before smartphone sends its first identification message.
-In EAP-SIM, client sends a nonce, which is by definition a
-value used only once, and that must be received back
-in a correct form in a network's signature response. 
+Network authentication is achieved, if 
+network is able to response correctly to a client sent nonce,
+#  when client sends a nonce, 
+which by definition is a value used only once. The nonce can
+be thought as  client's challenge to network.
+# , and network must response to that nonce in
+# in a correct form.
 # OR in a correct form in the network's signature response. 
 
-Authentication server generates challenge with aid of
-triplet from MNO.
+The client is authenticated in turn, when the Authentication server
+generates a challenge with aid of triplet from MNO.
 # as a authentication backend
 # generates challenge using triplet (IMSI, Ki, OPc).
 That procedure is later described in more detail.
@@ -972,19 +983,7 @@ algorithms to generate valid responses for challenges coming from MNO
 and to derive session keys.  The algorithms used (A3/A8) and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
 interest in this work beside the point that they are MNO specific or known reference algorithms.
-#  (algorithms not explained here further) 
-The algorithm used in the demo was internal GSM-Milenage for EAP-SIM,
-#  A3/A8, although it was possible to use
-# also newer algorithm MILENAGE,
-# A3/A8 algorithm used in demo is called MILENAGE, 
-which is a reference implementation and as such suitable for operators, who do not 
-want to invent their own security algorithms. 
-# In configuration files,
-# parameters for MILENAGE can be seen, but they were not used.
-# source:  "3GPP TS 55.205 V6.0.0 (2002-12)"
-# for AuthN challenge coming from MNO, which has copy of SIM cards
-# information. Note, no public-key cryptography is used here.
-# [ ?ipmobile]]
+
 
 
 # Using EAP-SIM is in many parts simpler to mobile client.  
@@ -1042,10 +1041,13 @@ corresponding IMSI (RAND, SRES, Kc).
 # Not shown are the Authentication server, but 
 Unique identifier for SIM is IMSI (International Mobile Subscriber
 Identity, 15 digits long, more familiar user's phone number.
-From the diagram we can see, that IMSI, which is client's identity, is
+From the Figure[[fig:eap-sim-full]] we can see, that IMSI, which is client's identity, is
 revealed in message 2 in plain-text. Later, after session has been
 set, IMSI may be left out and a temporal IMSI (TMSI) can be used,
-to hide client's identity.
+to hide client's identity. It must be noted,that this TMSI differs from
+TMSI in 3GPP network. It is good to have context separation [cite?].
+
+
 #  client can use pseudonym to
 # hide its identity.
 
@@ -1073,6 +1075,49 @@ help of operator specific symmetric keys, which are also inside SIM.
 
 
 # - identity 
+
+
+#+begin_src ditaa :file eap-sim-simple.png :cmdline -E -r -s 4
+  Mobile phone           Authenticator (AP)          Authentication server      MNO(HLR_AuC)
+      |      EAP TRAFFIC      |                                  |                   |
+      +<--------------------->|                                  |                   |
+      |                       |  RADIUS (EAP)                    |                   |
+      |                       +--------------------------------->|                   |
+      |                       |                                  |  MAP/SS7          |
+      |                       |                                  |   IMSI, N         | 
+      |                       |                                  +------------------>|
+      |                       |                                  |  N (RAND,SRES,Kc) |
+      |                       |                                  |<------------------+
+      |                       |                                  |                   |
+      |                       | RADIUS(Challenge EAP-SIM client) |                    
+      |                       |<---------------------------------+
+      |  Challenge EAP-SIM    |                                  |
+      |<----------------------+                                  |
+      |                       |                                  |
++-----+--------------------+  |                                  |    
+|verify MNO, derive session|  |                                  |    
+|keys, decrypt pseudonym,  |  |                                  |    
+|digest challenge          |  |                                  |    
++-----+--------------------+  |                                  |    
+      |                       |                                  |
+      | Response              |                                  |
+      +---------------------->|  RADIUS(Response)                |
+      |                       +--------------------------------->|
+      |                       |                            +-----+------------+
+      |                       |                            | compare Response |
+      |                       |                            | with  SRES       |
+      |                       |                            +-----+------------+
+      |                       |  RADIUS(EAP Success (or Failure))| 
+      |                       |<---------------------------------+
+      |<----------------------+                                  |
+      |                       |                                  |
+#+end_src
+#+CAPTION: EAP-SIM simplified sequence diagram, based on RFC4186
+#+NAME:   fig:eap-sim-simple
+#+RESULTS:
+[[file:eap-sim-simple.png]]
+
+
 
 
 #+begin_src ditaa :file eap-sim-full.png :cmdline -E -r -s 4
@@ -1116,7 +1161,7 @@ help of operator specific symmetric keys, which are also inside SIM.
            |<---------------------------------------------------------+
            |                                                          |
 #+end_src
-#+CAPTION: EAP-SIM full authentication sequence diagram, based on RFC4186
+#+CAPTION: EAP-SIM authentication sequence diagram, without RADIUS, based on RFC4186
 #+NAME:   fig:eap-sim-full
 #+RESULTS:
 [[file:eap-sim-full.png]]
@@ -1242,30 +1287,7 @@ should still be provisioned first, which would defeat what we wanted
 to achieve.
 
 
-** Need for Security bootstrapping -> in Chapter 
- [removed, NOT YET trust anchor methods HERE!!! ]
 
-# Bootstrapping protocols are used to bring the first trust anchor in an
-# environment and use that device to attach other devices to the same trust
-# circle.
-
-#  [Evaluating and comparing bootstrapping methods and authentication.
-# Evaluation missing, so comparing difficult too.]
-
-[Description of General Bootstrapping architecture (GBA) vs. yet
-another custom architecture. Maybe parts of architecture
-such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
-What is needed? How GBA could be used here?]
-# Any other authentication methods such as CallerID
-# as a primary identification (bootstrap) and later as identification?]*
-
-# [SIM card's anatomy: it has private key, MNO
-# also has the same key in its database and that is used to derive
-# other keys based on input received.]
-
-
-
-# * Theory Chapter: Managing Home Networks 
 * Managing Home Networks [or Home network architecture]
 :PROPERTIES:
 :CUSTOM_ID: cha:management
@@ -1481,7 +1503,7 @@ model, smartphone is set here as a central and managing local
 controller.
 # cloud service of type Backend-as-a-Service (BaaS) is used here for
 # configurations. The smartphone can be thought as an extension of the
-# BaaS and it will have an application which configures home network
+# BaaS and it will have an application which configureEAPs home network
 # devices.  The smartphone is called a local controller and it is the
 # central management device for the homenet.
 Usually, home users already have one phone, which can be considered as
@@ -1730,7 +1752,7 @@ Such a device could be sent direct to customer with pre-configured
 secrets and methods to take a place as a trust anchor. 
 That leads us again to the key distribution problem.
 
-There is also lying NAS problem: the Authenticator may present some 
+There is also fraudulent Authenticator problem: the Authenticator may present some 
 information to the Authentication server and other to the EAP-peer.
 Mitigation for that is, that EAP-peer includes some 
 characteristics of the Authenticator inside its EAP-message, which
@@ -1977,10 +1999,9 @@ turn is compared to existing roles of IMSI in the Authenticator.
 Technically we use in Wi-Fi connection IEEE 802.11i (also known as WPA2), which includes
 802.1X as port based access protocol.  802.11i defines there
 authentication, authorization, and cryptography key agreement.
- It uses 
-Extensible Authentication Protocol (EAP) which selects specific
-authentication mechanism \cite[p.3]{rfc5247}, after Authenticator
-requests smartphone to identify itself as in Figure xxx is shown
+ It uses EAP for selecting authentication 
+# explained already in Chapter (cha:aaa EAP)
+mechanism, after Authenticator requests smartphone to identify itself as in Figure xxx is shown
 Messages are carried over 802.1X or RADIUS depending on transport
 medium as of Figure[[fig:eap-layers]].
 
@@ -1990,31 +2011,71 @@ When AP forwards authentication request to next RADIUS server, it can
 ask or receive, beside AuthN and AuthZ, other service parameters, such
 as provisioning. That would allow the smartphone to connect to
 specific management network access either via CLI or SNMP or similar
- \cite[p.4]{rfc5608}.  RADIUS can bring extra attributes in its
-ACCESS-ACCEPT message.  Specific VLAN attributes can be delivered via
-Vendor Specified Attributes (VSA),
+ \cite[p.4]{rfc5608}.  RADIUS can carry extra attributes in its
+ACCESS-ACCEPT message.   In essence, AuthZ part itself can be thought as
+one type of service provisioning. 
+
+
+# Specific VLAN attributes can alternatively be delivered via
 #  or similar ``getting into VLAN'' attribute
-if standard RADIUS messages do not suffice.  VSAs allow vendor to use
-extra 255 attributes as they wish, but also currently
-there exists RADIUS extensions for directing user into VLAN. 
+# if standard RADIUS messages do not suffice.  VSAs allow a vendor to use
+# extra 255 attributes as they wish. 
+There exists RADIUS attribute types for directing user into specific
+VLAN. If those do not suffice, there is also special Vendor Specified
+Attributes (VSA). VSAs allow vendors to define up to 255 own
+attributes that can be used in provisioning in homogeneous environment. 
+
+
 # [cite rfcXXX].  
-That way (3rd party) Authentication server can divide areas of home
-network in to the segments. In our case, admin users are put in to
-the management network.
-  Yet, usually RADIUS ACCESS-ACCEPT message which means AuthN and
-AuthZ were successful, already puts the user in to wanted network. As
-for other provisioning parameters, not all end devices support them.
+That way (3rd party) Authentication server can decide which network
+segment the device would be put.  In our case, admin users are put in
+to the management network.  Yet, usually RADIUS ACCESS-ACCEPT message,
+which means AuthN and AuthZ were successful,  puts the user in
+default network, i.e., just gives it basic access. As for other
+provisioning parameters, not all end devices support them.
 
-# [ VLAN membership could be given during AuthZ to mark belonging to the
-# MGMT-VLAN.]  
+In the first prototype it is enough to identify authorized
+smartphone's SIM.  Smartphone holding the SIM is granted the access to
+the parts of the management network and is authenticated strong.  User
+management is outsourced to Mobile Network Operator(MNO), which
+already has provided SIM cards to users. What remains, is the adding
+of the user's IMSI to the authorized users' list. That list can be
+located on diverse place, as can be seen in xxx
+# ### 
 
-#   When we already have AA service at local network, then after
-# successful authentication, authorization phase of 
+# explain provisioning? 20150702
+
+After authentication and authorization has succeeded, session key
+creation occurs (WPA session) between AP and the smart phone. 
+The Authenticator has opened port to the smartphone for
+configuration changes. 
+The Local RADIUS (if existing) has trails of successful
+authentication and knows which IMSI has successfully authenticated in
+the home net. It also knows mapping between IMSI and temporal IMSI for
+cases where the smart phone later would need  re-authentication.
 
 
-# - [Separate Standard RADIUS attributes and VSAs
-# - support with Authenticators? (RADIUS clients here).
 
+** [Need for Security bootstrapping]  
+ [removed, NOT YET trust anchor methods HERE!!! ]
+
+# Bootstrapping protocols are used to bring the first trust anchor in an
+# environment and use that device to attach other devices to the same trust
+# circle.
+
+#  [Evaluating and comparing bootstrapping methods and authentication.
+# Evaluation missing, so comparing difficult too.]
+
+[Description of General Bootstrapping architecture (GBA) vs. yet
+another custom architecture. Maybe parts of architecture
+such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
+What is needed? How GBA could be used here?]
+# Any other authentication methods such as CallerID
+# as a primary identification (bootstrap) and later as identification?]*
+
+# [SIM card's anatomy: it has private key, MNO
+# also has the same key in its database and that is used to derive
+# other keys based on input received.]
 
 In Behringers work-in-progress  bootstrapping \cite{draft-behringer-bootstrap},
 AuthZ happens likewise first at cloud provider's
@@ -2025,6 +2086,11 @@ finally can decide, whether it allows change.
 Instead, here the Authentication server can be external RADIUS server,
 but usually the final decision point lies at the Authenticator in CPE.
 # [?]
+
+
+
+
+# * Theory Chapter: Managing Home Networks 
 
 
 ** Access methods to Wi-Fi with only one SSID
@@ -2260,7 +2326,7 @@ from authentication network.
    already proceed on propagating those
    changes.  Otherwise, after certain timeout, CPE must stop waiting
    for phone's approval and drop changes. [this was the question
-   somewhere, "triggering"]
+   somewhere, ``triggering'']
 
 
 This simplification has pitfalls. If mobile stays in management
@@ -2502,7 +2568,7 @@ because duplicate hashes are easy to compute today  \cite{xie2013fast}.
 
 
 
-** Similarities with Lock-and-Key method			     :ATTACH:
+** Similarities with Lock-and-Key method			     
    :PROPERTIES:
    :Attachments: %20http://www.cisco.com/c/dam/en/us/td/i/100001-200000/170001-180000/170001-171000/170847.ps/_jcr_content/renditions/170847.jpg 170847.jpg
    :ID:       19566a1f-899f-487c-b14e-4b8dd10b1ee1
@@ -2510,7 +2576,7 @@ because duplicate hashes are easy to compute today  \cite{xie2013fast}.
 # 802.1x method or what?
 The method is very similar to the concept used on routers to dynamically enable
 access to certain parts of network by first letting the user to log in
-to the router.  As in Figure[[fig:cisco-802.1x]]
+to the router.  
 # [ONLINE cites, choose one that most fits or ask for permission to
 # use picture.]  
 
@@ -2527,10 +2593,27 @@ file:~/gitdocs/di/images/170847.jpg
 
 
 
-#+CAPTION: Cisco's view of lock-and-view auth
-#+LABEL: fig:lock-and-view
+
+
 #+ATTR_LaTeX: width=5cm,angle=90
-file:~/gitdocs/di/images/170847.jpg
+
+
+# C-cC-c ajaa tästä kuvan fileen, C-cC-o näyttää preview:n
+# :exports none lukee vain tuotetun filen.
+# se ei kuitenkaan toiminut oikein hyvin aina.
+#+begin_src ditaa :file lockandkey.png :cmdline -E -r -s 0.8
++----------+    +--+     +--------------+     +------------------+
+|smartphone+----+AP+-----+(ssh login)   +<--->+management network|
++----------+    +--+     |lock and key  |     +------------------+
+                         +--------------+
+#+end_src
+#+CAPTION: Cisco's view of lock-and-view auth
+#+NAME:  fig:lock-and-view
+#+LABEL: eap-sim-testbe
+#+RESULTS:
+[[file:lockandkey.png]]
+file:lockandkey.png
+
 
 # source: [[http://www.cisco.com/c/dam/en/us/td/i/100001-200000/170001-180000/170001-171000/170847.ps/_jcr_content/renditions/170847.jpg]]
 
@@ -2540,11 +2623,14 @@ file:~/gitdocs/di/images/170847.jpg
 
 
 Device provider Cisco calls this ``Lock-and-Key'' access
-and uses dynamic access list to implement it. \cite[p.117]{lockandkeybook}
+and uses dynamic access list to implement it.\cite[p.117]{lockandkeybook}
 # [cite this or find Basic manual: [[http://www.getnetworking.net/acl/dynamic-access-list-configuration]]]
+Difference here is that 802.1X protects access to the network in Layer
+2 while Lock-and-Key needs to have working Layer 3 to conduct
+authentication phase.
+Figure[[fig:cisco-802.1x]] reminds us, how 802.1X works.
 
-Difference here is that 802.1X protects access to the
-network. Smartphone has only limited access to the network before AA
+ Smartphone has only limited access to the network before AA
 has completed, while in the Lock-and-key
 # authenticate to get access at all and then through
 # authorization get right access to management network.
@@ -2575,7 +2661,7 @@ via normal access network.
 #  directly. Authenticator's role then is merely to allow login and
 #  roles within it.]
 
-1. clent -> AP (as RADIUS client) -> ROUTER(with Lock-and-key) 
+1. client <-> AP (as RADIUS client) <-> ROUTER(with Lock-and-key) 
 2. client telnets(or ssh)  in the ROUTER and gives passwd
 3. ROUTER(as RADIUS client) checks authorization from...AP(working as
    proxy) 
@@ -2715,6 +2801,23 @@ OpenWRT AP works as a RADIUS client connecting to RADIUS server.
 It will not try to open EAP-messages or need
 to know about them; it just encapsulates them into RADIUS packet.
 
+#  (algorithms not explained here further) 
+The algorithm used in the demo was internal GSM-Milenage,
+which handles beside EAP-AKA also EAP-SIM.
+#  A3/A8, although it was possible to use
+# also newer algorithm MILENAGE,
+# A3/A8 algorithm used in demo is called MILENAGE, 
+Milenage is a reference implementation and as such suitable for operators, who do not 
+want to invent their own security algorithms. OPc and Seq numbers,
+which are needed in when using EAP-AKA, were not used.
+
+# In configuration files,
+# parameters for MILENAGE can be seen, but they were not used.
+# source:  "3GPP TS 55.205 V6.0.0 (2002-12)"
+# for AuthN challenge coming from MNO, which has copy of SIM cards
+# information. Note, no public-key cryptography is used here.
+# [ ?ipmobile]]
+
 
 # 1) RADIUS (WPA freeradius2, openradius?, hostapd?, wpa)
 # 2) hostapd (wpa)
@@ -2853,7 +2956,7 @@ listen also that in addition to RADIUS UDP port 1812.
 [ Following AWAY. left from early phases]
 
 Time limited access can perhaps made with session-timeout parameter
-in ACCESS-ACCEPT (or ACCESS-CHALLENGE) packet using type field = "29".
+in ACCESS-ACCEPT (or ACCESS-CHALLENGE) packet using type field = ``29''.
 This parameter tells the Authenticator how many second maximal the Supplicant
 can have service. 
 
@@ -3055,9 +3158,9 @@ Radius Protocol
         AVP: l=18 t=Message-Authenticator(80): 04ea7e507d72bdb1acf515ef19ac9527
 #+END_EXAMPLE
 Interesting part is the EAP fragment, having
-Identity="1232010000000000", but
+Identity=``1232010000000000'', but
 also RADIUS message itself, where User-Name field has been set also 
-to "1232010000000000". 
+to ``1232010000000000''. 
 Identity is filled in WPA-Supplicant both in identity and credential
 section so which one is the correct one, or are they both needed?
 Maybe this has something to do with identity
@@ -3494,7 +3597,7 @@ domains weakens them.  In GSM networks, IMSI identifies subscriber on
 first contact, later TMSI is used for call and SMS.  In EAP-SIM those
 values are also used. IMSI naturally is the same, but TMSI should be
 different for call and EAP.  Haverinen \cite{hav-doc} explains how
-special RAND numbers can be used to differentiate the use of 3GPP and LAN
+special RAND numbers can be used to differentiate the use of TMSI in 3GPP and LAN
 contexts.
 
 # termination and re-login
@@ -3814,15 +3917,15 @@ dynamically more attributes and access rights.
 # how the Sections below belong to discussion?  
 * [MISC to be added on right places]
 ** facts TBD.
-- "most EAP authentication protocols lack two features: identity
-  protection and withstanding man- in-the-middle attacks. "
+- ``most EAP authentication protocols lack two features: identity
+  protection and withstanding man- in-the-middle attacks. ''
 source :
 
 Yuh-Min Tseng Department of Mathematics, National Changhua University of Education,
 Jin-De Campus, Chag-Hua City 500, Taiwan, ROC.
 
-"USIM-based EAP-TLS authentication protocol for
-wireless local area networks" 
+``USIM-based EAP-TLS authentication protocol for
+wireless local area networks''
 and 
 
 Wireless (In)Security www-page, where 
@@ -3927,8 +4030,10 @@ methods without in the same time losing security.
 As results, a real working EAP-SIM test bed with fake credentials and
 fake mobile operator representing EAP-SIM authentication flow has been
 shown.  A dual-role model, which binds a smartphone to the homenet and
-grants rights to make changes has been proposed.  Working with
-management network is indirect way to approve changes.  [or: An
+grants rights to make changes has been proposed.  
+# Working with management network is indirect way to approve changes.  
+# [or:
+An
 indirect way to approve changes is achieved by binding the authorized
 access to the management network.]
  
@@ -3936,7 +4041,7 @@ access to the management network.]
 There are some obvious weakness in the proposed solution. Possible usage
 must carefully check the safety limits even when RADIUS-protocol still
 has strengths in security today. The thesis only scratches bootstrapping
-problems and issues in bootstrapping the homenet needsto be studied
+problems and issues in bootstrapping the homenet needs to be studied
 more thoroughly. One could use tickets in Kerberized way as in GBA.
 # More roles and multiuser cases could be added. 
 Software implementation as app is needed to the smartphone.
