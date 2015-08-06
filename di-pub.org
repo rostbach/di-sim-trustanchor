@@ -893,7 +893,7 @@ messages only.
 # , which happen between the Supplicant and the Authentication Server.
 It does not include AuthZ information, which is RADIUS's responsibility
 or session keys, which are negotiated by WPA.
-
+d
 # or session keys.  needed in the following message transfer. Of
 # those, RADIUS is responsible of delivering AuthZ (and also
 # encapsulated AuthN) to the Authenticator (AP) and WPA is used to
@@ -2391,7 +2391,7 @@ place within homenet.
 
 Similar to first scenario is scenario III (Figure[[fig:scenario-III]]), 
 but this time there is SP between CPE and MNO, so AA is fully outsourced:
-local AP communicates with RADIUS-protocol to the external
+local AP communicates with RADIUS protocol to the external
 Authentication server. That in turn gets AuthN from MNO via its
 hlr-auc-gateway and AuthZ from BaaS.
 #  by CPE.
@@ -3516,7 +3516,7 @@ at smart phone and at AP.
 # 
 ***  Integrity
 Integrity issues were handled in RADIUS Section [[sec:radius]].
-Message digestion codes provide integrity for RADIUS-protocol.
+Message digestion codes provide integrity for RADIUS protocol.
 If PEAP is used, it handles integrity through its usage of TLS
 \cite{peap}.
 # is supplicant--AP traffic EAPOl or EAP over TLS?
@@ -3568,7 +3568,7 @@ MD5 hashing (MD5Attack \cite{rfc5176}), the transport needs additional
 protection like tunneling or IPsec. TLS can be used for encryption and
 its signatures for integrity checking of packet payload.
 #  Inside RADIUS-packet, there are also
-RADIUS-protocol itself provides some integrity checks with Message
+RADIUS protocol itself provides some integrity checks with Message
 Authenticators as described in Section [[sec:radius-macs]].
 #  [earlier described MACs, no need to mention it here ] 
 # Without message Authenticators  which use session secrets, hashes and
