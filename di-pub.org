@@ -548,7 +548,7 @@ happen.
 
 Human aspect and usability are important, although the focus will
 still be on authentication and authorization part of the home net
-management with smart phone as trust anchor.  The proposed model
+management with smartphone as trust anchor.  The proposed model
 should nevertheless require less effort than the current used methods
 on distributing user credentials, finding right place for them to be
 inserted, and ensuring that they are written correctly.
@@ -719,11 +719,6 @@ devices such as switches and routers.
 # Wireless environments include supplicant, Authenticator, and
 # Authentication server. Of those, 
 
-RADIUS-protocol is a stateless, request-response type client-server
-protocol. RADIUS messages used for AA are of type ACCESS  (ACCESS-REQUEST,
-ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). 
-Messaging flow includes both AuthN and AuthZ. When they have
-succeeded, an ACCESS-ACCEPT message is sent back to the client.
 
 # #+BEGIN_QUOTE
 #  Access-Accept messages are populated with one or more service
@@ -753,6 +748,13 @@ AAA-solutions instead of Diameter.
 Currently the main environment of  RADIUS 
 besides network managing is wireless connections (Wi-Fi) in
 enterprises and nation wide community federations.
+
+RADIUS protocol is a stateless, request-response type client-server
+protocol. RADIUS messages used for AA are of type ACCESS  (ACCESS-REQUEST,
+ACCESS-RESPONSE, ACCESS-ACCEPT, or ACCESS-REJECT). 
+Messaging flow includes both AuthN and AuthZ. When they have
+succeeded, an ACCESS-ACCEPT message is sent back to the client.
+
 
 Federations in Finland started as local WLAN groups such as ``SparkNet'' or
 ``Langaton Tampere''.  Authenticator in 802.1X enabled users in those group
@@ -792,7 +794,7 @@ clients domain in the federation.
 Wireless protected access (WPA or WPA2) protects traffic in wireless,
 shared media, where everyone can simply listen the traffic on
 radio waves. It enables both authenticated access and message
-encryption between the smart phone and AP by negotiating session keys
+encryption between the smartphone and AP by negotiating session keys
 after 802.1X has opened the virtual port in AP for the smartphone.
 
  WPA was an early subset of then upcoming 802.11i standard,
@@ -801,7 +803,7 @@ while WPA2 is the full implementation.
 Client software for 802.11i is called a WPA-Supplicant and it is used
 in wireless clients to communicate with the Authenticator. The rest of
 the work will not make a difference between WPA and WPA2 versions, but
-simply denotes them as ''WPA''.
+simply denotes them as ``WPA''.
 
 WPA has two protected modes: one for groups with common, pre-shared
 key (WPA-PSK, also known as WPA-Personal) and one for individuals
@@ -907,22 +909,21 @@ d
 SIM here means the secret keys and the application in mobile phone's
 SIM or USIM inside UICC(Universal Integrated Circuit Card).
 The secret keys are hardware protected and only usable to SIM card.
-  The SIM's
-storage also includes a unique serial number (ICCID) and  a unique IMSI
-(International Mobile Subcriber Identity).  SIM card usage can be
-controlled by two passwords: PIN and PUK.  PUK is used as a remedy, if
-PIN has been inserted wrong too many times.  If the card has other
-applications, they may have different keys and codes, for example
-mobile electrical signature application Mobiilivarmenne uses an own
-PIN.
+The SIM's storage also includes a unique serial number (ICCID) and a
+unique IMSI (International Mobile Subcriber Identity).  SIM card usage
+can be controlled by two passwords: PIN and PUK.  PUK is used as a
+remedy, if PIN has been inserted wrong too many times.  If the card
+has other applications, for example mobile electrical signature
+application Mobiilivarmenne, they may have different keys and codes.
+
 
 MNO distributes SIM card and provides mobile network connectivity to
-its customers.  The secret keys are used for authenticating the IMSI
+its customer.  The secret keys are used for authenticating the IMSI
 to MNO which enables MNO's to identify their customer in the network
-and charge them correspondingly. It is assumed, that SIM card present
-its owner. In reality nothing prevents an identity thief to steal
+and charge them correspondingly. It is assumed, that SIM card represent
+its owner but in reality nothing prevents an identity thief to steal
 someone's SIM card. Although 4-digit PIN tries to prevent the usage of 
-stolen SIM, that is considered as a weak safe\cite[31]{aaa-nakhjiri2005}.
+stolen SIM, that is considered as a weak safe\cite[p.31]{aaa-nakhjiri2005}.
 
 MNO and SIM trust mutually each other.
 There is still need for separate access credentials for Wi-Fi and
@@ -936,7 +937,11 @@ compatible with GSM protocols for this purpose. \cite[p.93]{hav-doc}
 # if not already compared earlier. Just clarify the main points,
 # compare weaknesses with strengths]
 # SIM can be used via EAP-types EAP-SIM \cite{rfc4186},
-# EAP-AKA \cite{rfc4187} or EAP-AKA'(AKA-PRIME) \cite{rfc5448}.  
+# EAP-AKA \cite{rfc4187} or EAP-AKA'(AKA-PRIME) \cite{rfc5448}.  215
+# insert-char 2022 •
+# tai
+# C-x 8 ENTER  2022
+# •
 # [ Write out this list]
 SIM can be used via EAP-types EAP-SIM,
 EAP-AKA, or EAP-AKA'(AKA-PRIME).
@@ -972,10 +977,10 @@ That procedure is later described in more detail.
 #             session key. Test cases on this work.
 # based on right triplets. [Does not check AuthN Request itself??]
 
-Upwards from 3GPP network, types EAP-AKA and AKA' can be used.
-EAP-AKA is defined in RFC4187 \cite{rfc4187} and
+Beginning from 3GPP networks, new types EAP-AKA and AKA' can be used.
+EAP-AKA is defined in RFC4187 \cite{rfc4187} and 
  uses 3GPP's AKA (Authentication and Key Agreement) protocol.
-It differs from SIM by using additionally parameters from MNO to
+It differs from EAP-SIM by using additionally parameters from MNO to
 protect replay attacks. Otherwise the protocol messaging is same
 as in  GSM-SIM, only algorithms differ.
 # , and it increments after each invocation. AMF is used for authentication. 
@@ -986,11 +991,10 @@ as in  GSM-SIM, only algorithms differ.
 #             EAP-request/AKA-Challenge. Values SQN and AMF from SIM
 #             used for that. Incrementing SQN values eliminates replay
 #             attacks.  This is not tested here.
-
-Last, there exists EAP-AKA' (AKA-PRIME).
-Enhancement to AKA is to include Service Set name (SSID) 
-in the key derivation function, which limits the possibility of using
-compromised network's nodes and keys. Additionally, digests use SHA-256
+Last, there exists EAP-AKA' that enhances AKA by including Service Set name (SSID) 
+in the key derivation function, which limits the possibility of using possibly
+compromised network's nodes and keys. Additionally, requests have
+sequencenumbering preventing replay attacks and its digests use SHA-256
 function instead of SHA-1.\cite{rfc5448}.
 
 
@@ -1059,9 +1063,10 @@ Unique identifier for SIM is IMSI (International Mobile Subscriber
 Identity, 15 digits long, more familiar user's phone number.
 From the Figure[[fig:eap-sim-full]] we can see, that IMSI, which is client's identity, is
 revealed in message 2 in plain-text. Later, after session has been
-set, IMSI may be left out and a temporal IMSI (TMSI) can be used,
-to hide client's identity. It must be noted,that this TMSI differs from
-TMSI in 3GPP network. It is good to have context separation [cite?].
+set, IMSI may be left out and instead a temporal IMSI (TMSI) can be used
+to hide client's identity. It must be noted, that this TMSI differs from
+TMSI used in 3GPP network. Those context must not be mixed, otherwise
+the security they bring may lose its power.
 
 
 #  client can use pseudonym to
@@ -1078,12 +1083,13 @@ message 7 whether RAND values from the operator were digested with correct NONCE
 # Network authenticates itself to EAP-client by sending correct
 # responses to client's challenge  and after that 
 # client tries to authenticate to the network.
-[find the source or remove. ] 
-Yet some documents claim, that EAP-SIM does not provide mutual AuthN, so what
-can be the case? Perhaps they mean, that mutual AuthN is not provided between
-the mobile client  and RADIUS servers. Another explanation is, that in AKA
-and AKA' the network is authenticated in a very early phase with the
-help of operator specific symmetric keys, which are also inside SIM.
+
+# [find the source or remove. ] 
+# Yet some documents claim, that EAP-SIM does not provide mutual AuthN, so what
+# can be the case? Perhaps they mean, that mutual AuthN is not provided between
+# the mobile client  and RADIUS servers. Another explanation is, that in AKA
+# and AKA' the network is authenticated in a very early phase with the
+# help of operator specific symmetric keys, which are also inside SIM.
 
 # #+BEGIN_LaTeX
 # \vfill
@@ -1128,7 +1134,7 @@ help of operator specific symmetric keys, which are also inside SIM.
       |<----------------------+                                  |
       |                       |                                  |
 #+end_src
-#+CAPTION: EAP-SIM simplified sequence diagram, based on RFC4186
+#+CAPTION: Detailed EAP-SIM simplified sequence diagram, source RFC4186
 #+NAME:   fig:eap-sim-simple
 #+RESULTS:
 [[file:eap-sim-simple.png]]
@@ -1206,23 +1212,23 @@ Mobile phone                           Authenticator (AP)
   |7. EAP Response/SIM/Start                    |                                     |
   +-------------------------------------------->|                                     |
   |                                             |8. RADIUS(EAP Response/SIM/Start)    |  
-  |                                             +------------------------------------>|
-  |                                             |                                     |                          MNO
-  |                                             |                                     |9.(N*Req.IMSI triplets)  |
+  |                                             +------------------------------------>|                        MNO
+  |                                             |                                     |                         |
+  |                                             |                                     |9.(N∗Req.IMSI triplets)  |
   |                                             |                                     +------------------------>|
   |                                             |                                     |    (RAND,SRES,Kc)       |
   |                                             |    N times                          |<------------------------+
   |                                             |10. RADIUS(EAP Request/SIM/Challenge)| 
-  |                                             |     [N*(RAND,H(RAND),[X]Kc*)        |
+  |                                             |     [N∗(RAND,H(RAND),[X]Kc∗)        |
   |                                             |<------------------------------------+
   | 11. EAP Request/SIM/Challenge()             |                                     |
   |<--------------------------------------------+                                     |
   |                                             |                                     |
-+-+------------------------------------+        |                                     |
-|run GSM algorithms, verify H(RAND)    |        |                                     |
-|with NONCE, derive sess. key Kc*,     |        |                                     |
-|decrypt and save pseudonym X with Kc* |        |                                     |
-+-+------------------------------------+        |                                     |
++-+--------------------------------------+      |                                     |
+|run GSM algorithms, verify H(RAND) with |      |                                     |
+|NONCE, derive sess. key Kc∗, decrypt and|      |                                     |
+|save pseudonym X with Kc∗               |      |                                     |
++-+--------------------------------------+      |                                     |
   |                                             |                                     |
   |12. EAP Response/SIM/Challenge (H(SRES))     |                                     |
   +-------------------------------------------->|13. RADIUS(EAP Response/SIM/Challenge|(H(SRES))
@@ -1252,15 +1258,15 @@ Mobile phone                           Authenticator (AP)
 ** Trust
 
 # Trust is the base.
-Secure communication has many layers and on its base lies trust. Without
-trust, any added encryption or secrecy loses its value. 
+Secure communication has many layers and on its base lies trust. 
+# Without trust, any added encryption or secrecy loses its value. 
 # there is little help with any added encryption or secrecy. 
-Setting trust is usually not an easy task, but only after
-completing that phase it is meaningful to complete the other security
-layers.
-For example, secret keys enable encrypted communication, but the keys need to be
-delivered through an trusted channel, and so it can be seen that trust
-really is the first layer to be fixed. 
+# Setting trust is usually not an easy task, but only after
+Only after completing trust setting phase it is meaningful to complete
+the other security layers. For example, secret keys enable encrypted
+communication, but the keys need to be delivered through an trusted
+channel, and so it can be seen that trust really is the first layer to
+be fixed.
 
 # [ Trusted communication works, but need FIRST to nail trust
 #   somewhere.  Distribution of secret keys (ie passwords or
@@ -1271,8 +1277,9 @@ Even without trust, some form of secure asymmetric key-exchange is achievable
 with Diffie-Hellman key-exchange \cite{diffie1976new}. Unfortunately, it is vulnerable
 to Man-in-the-middle(MitM) attacks, where protocol does not notice, 
 if messaging goes through third party, which inpersonates itself to 
-both ends as being the corresponding messaging partner and can
-read encrypted messages.
+both ends as being the corresponding messaging partner. MitM can
+read and decrypt encrypted messages and forward possibly changed message with
+correct looking signature.
 #  [MiTM discussed on IMSI-catching section]
 # [explain or cite], but
 # without trust,
@@ -1349,8 +1356,9 @@ about public keys and is secure enough when used correctly.
 # - protocol-based (SNMP, NETCONF, etc.)
 
 Management of devices on the border of homenet and operator has 
-been done already earlier. For example, TR-069 standard
-\cite{iptvtr069} for CPEs such as ADSL broadband routers or
+been done already earlier. For example, TR-069 
+# lähde ehkä ei ihan kerro TR-069 perusasioita..
+standard\cite{iptvtr069} for CPEs such as ADSL broadband routers or
 set-top boxes has been used to implement self-configuration
 archi\-tecture in
 home networks \cite{tr069rachidi2011}.
@@ -1367,24 +1375,9 @@ home networks \cite{tr069rachidi2011}.
 RFC7368 about IPv6 Home Networking Architecture Principles from
 Arkko \cite{rfc7368} defines the borders of the homenet and states that
 internal borders in homenet should possibly be automatically
-discovered but continues by saying that limiting borders to specific
+discovered. Limiting those borders to specific
 interface type makes it difficult to connect different realms locally.
-# #+BEGIN_QUOTE
-#  "A homenet will most likely
-#  also have internal borders between internal realms, e.g. a guest
-# realm or a corporate network extension realm.  It should be possible
-#  to automatically discover these borders."
-# #+END_QUOTE
-# /Auto-discovery is outside of scope here/ but 
-# #+BEGIN_QUOTE
-# "Simple approaches, such as terminating a homenet on a particular
-# interface type do not easily allow for devices from different
-# administrative realms to be locally connected."
-# 
-# #+END_QUOTE
 The same document continues stating
-# RFC738 "IPv6 Home Networking Architecture Principles" from Arkko(2014)
-# cite:rfc7368 states further
 that while homenet should self-configure and self-organize itself as
 far as possible, self-configuring unintended devices should be
 avoided and let homenet user decide whether device becomes trusted.
@@ -1401,22 +1394,27 @@ external configuration even with the proposed automation aids.
 # #+END_QUOTE
 
 
-
 # C-c C-x [,  
 # cite{draft-behringer-bootstrap},
 # There are proposed techniques for that for example in Internet-draft
 # draft-behringer-bootstrap \cite{draft-behringer-bootstrap} where 
 # Authentication (may) need some # bootstrapping of trust for start.
 
-Homenet WG proposes the use of Public Key Infrastructure (PKI) at the home. To use PKI, bootstrapping
-protocols are first needed for trust anchoring and AuthN.  
-Despite the etymology  of name bootstrapping, ``Lift oneself by his own bootstraps'', 
-bootstrapping usually needs some input from outside. 
+Homenet WG proposes the use of Public Key Infrastructure (PKI) at the
+home. The public key cryptography is processor intensive and its
+asymmetric keys are usually used just in the beginning of
+communication. There they can be used to securely negotiate symmetric
+keys which allow faster cryptography processing.
+# [source not needed. is well known fact]
 
+To use PKI, bootstrapping protocols are first needed for trust
+anchoring and AuthN.  Despite the etymology of name bootstrapping,
+``Lift oneself by his own bootstraps'', bootstrapping usually needs
+some input from outside.
 For that Behringer's draft \cite{draft-behringer-bootstrap} proposes,
 that first one device is chosen for the trust anchor and trust is
 built upon that anchor. This anchor device then becomes homenet's
-Certificate Authority service. In the end, rest of the homenet will be
+Certificate Authority (CA) service. In the end, rest of the homenet will be
 imported into homenet through CA, which returns their certificate
 requests signed.
 
@@ -1424,14 +1422,8 @@ requests signed.
 # Regarding
 Key creation, key exchange and their usage is explained in similar
 draft from Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. There is also discussion about using
-manufacturer provided device certificates as trust anchor.  If EAP-SIM
-was applied in such environment, it would be used only once, namely in
-the bootstrapping phase to setup the CA trust anchor.  The public key
-cryptography is processor intensive and its asymmetric keys are
-usually used just in the beginning of communication. There they can be
-used to securely negotiate symmetric keys which allow faster
-cryptography processing. 
-# [source not needed. is well known fact]
+manufacturer provided device certificates as trust anchor.  
+
 # Rest of gba:
 
 # *** Ticket based, separate authentication and authorization
@@ -1440,8 +1432,6 @@ This model could also be expanded to a full ticket enabled
 Kerberos-style network, where time-limited tickets (tokens) exist for
 both authentication and authorization for different services. Trusted
 Third Party authentication center would be setup with the help of MNO.
-# [cite:kerberos].
-# same, with other words 
 # One could also model homenet to use separate authentication 
 # and authorization service in style of Kerberos. That would help
 # on limiting access based on time, role, service and user to name few.
@@ -1454,11 +1444,11 @@ One service would then authenticate an entity, here smartphone, and
 give it a time-limited ticket as a proof that the entity has been authenticated.
 # With this [...] (Ticket-Granting-Ticket) together with TGS session key.
 When the entity wants to connect to the service, it asks from the central 
-server again ticket but this time for the service by presenting
-the authentication ticket. In return it receives a service ticket and that
-it can present to the wanted service.
-# Moved here from later Chapter before attest method. [ Maybe leave
-# this out altogether or move it to behringer-bootstrap paragraphs.]
+server again for ticket, but this time for the service by presenting
+the authentication ticket. In return it receives a service ticket which
+it can present to the wanted service. 
+If EAP-SIM was applied in such environment, it would be used only once, namely in
+the bootstrapping phase to setup the CA trust anchor.  
 
 
 # IMS multimedia + GBA
@@ -1483,21 +1473,20 @@ it is desirable, that changes in homenet are done only through
 local controller, not at local device because of
 synchronization issues, even 
 # but that will rise question for further studies
-if synchronizing algorithms such as Trickle  \cite{rfc6206}
-for code propagation are used in homenet.
-Configuration also includes configuring power level setting of devices to save electricity
-based on usage profile. For example at nights or when there is nobody
-home, some devices do not need to be working at their maximum
-capacity. Instead, we study interface of AAs.
-Main points here are existing infrastructure (phones, internet access, Wi-Fi
-access points), strong authentication (two-factor), and existing
-authentication methods (EAP-SIM, EAP-AKA, EAP-AKA').
+if synchronizing algorithms such as Trickle\cite{rfc6206} are used in
+homenet for code propagation. Configuration also includes configuring
+power level setting of devices to save electricity based on usage
+profile. For example at nights or when there is nobody home, some
+devices do not need to be working at their maximum capacity. Instead,
+we study interface of AAs.  Main points here are an existing
+infrastructure (phones, internet access, Wi-Fi access points),  a strong
+authentication (two-factor), and existing authentication methods
+(EAP-SIM, EAP-AKA, EAP-AKA').
 
 # This  work does not dive That is the case even when synchronizing
 # protocol such as  Trickle algorithms were used in homenet.
 # Cloud or controller software in smartphone needs to recognize
 # commands, that need EAP-SIM AuthN. Authenticator will not know that.
-
 
 
 # [See security Chapter]
@@ -1522,16 +1511,16 @@ controller.
 # BaaS and it will have an application which configureEAPs home network
 # devices.  The smartphone is called a local controller and it is the
 # central management device for the homenet.
-Usually, home users already have one phone, which can be considered as
-'smart' and most smartphones have Wi-Fi capabilities and so are
+Usually, home users already have a phone, which can be considered as
+`smart'. Most smartphones have Wi-Fi capabilities and so are
 suitable as being the local controller.
 # Maybe adding "between cloud and homenet."
 #
 # Here we want to set the smartphone as management point between cloud and homenet.
-When we choose smartphone to be the management point, the other benefits are
+When we choose a smartphone to be the management point, the other benefits are
 numerous:  a management software can be delivered and
 updated from cloud to diverse smartphone types, and existing user
-base is enormous. The users are located in operators' user databases
+base having smartphones is enormous. The users are located in operators' user databases
 in Home Location Registry Authentication Center (HLR-AuC), which still has orders of
 magnitude more users available than any other organization. 
 
@@ -1738,7 +1727,7 @@ tunneling, for example as an inner protocol of EAP-TTLS. \cite{moonshot}
 # Did'nt I just explain these external providers are needed?
 At this point question might rise, why these external service
 providers are needed. Is it not easier and simpler to just send 
-an SMS with password code to the smart phone, when access confirmation is needed?
+an SMS with password code to the smartphone, when access confirmation is needed?
 Mobile SIM provides two-way AuthN part as discussed earlier.l
 Without need for strong AuthN, that model would indeed be 
 simpler, but using SIM also solves initial key distribution problem.
@@ -2061,13 +2050,13 @@ located on diverse place, as can be seen in xxx
 # explain provisioning? 20150702
 
 After authentication and authorization has succeeded, session key
-creation occurs (WPA session) between AP and the smart phone. 
+creation occurs (WPA session) between AP and the smartphone. 
 The Authenticator has opened port to the smartphone for
 configuration changes. 
 The Local RADIUS (if existing) has trails of successful
 authentication and knows which IMSI has successfully authenticated in
 the home net. It also knows mapping between IMSI and temporal IMSI for
-cases where the smart phone later would need  re-authentication.
+cases where the smartphone later would need  re-authentication.
 
 
 
@@ -2597,7 +2586,7 @@ to the router.
 
 # file:ditaa-simpleboxes.png
 
-#+CAPTION: Cisco's view of 802.1x auth
+#+CAPTION: Cisco's view of 802.1x auth [To be removed from final]
 #+LABEL: fig:cisco-802.1x
 #+ATTR_LaTeX: width=5cm,angle=90
 file:~/gitdocs/di/images/170847.jpg
@@ -3505,7 +3494,7 @@ On the other hand, EAP-SIM protocol, as do most of the other
 EAP-variants, provides a secure way to
 generate session parameters to WPA-session and those are not leaked
 outside, because they are created individually on both endpoints; 
-at smart phone and at AP.
+at smartphone and at AP.
 # ,
 # which was shown in Chapter #design. 
 
@@ -3586,7 +3575,7 @@ Authenticators as described in Section [[sec:radius-macs]].
 # --------------------------------------------------------
 In scenario III(Figure[[fig:scenario-III]]),  there was a proxying RADIUS between Authenticator
 and MNO.  When MNO notifies Authenticator
-that a smart phone has been authenticated, then Authenticator (AP, functioning
+that a smartphone has been authenticated, then Authenticator (AP, functioning
 as a RADIUS-client) hooks that message and usually just grants
 smartphone the access to the network. After giving access rights, other
 provisioning parameters can be sent with RADIUS messages, for example
@@ -4050,7 +4039,7 @@ access to the management network.]
  
 # [Benefits and disadvantages]
 There are some obvious weakness in the proposed solution. Possible usage
-must carefully check the safety limits even when RADIUS-protocol still
+must carefully check the safety limits even when RADIUS protocol still
 has strengths in security today. The thesis only scratches bootstrapping
 problems and issues in bootstrapping the homenet needs to be studied
 more thoroughly. One could use tickets in Kerberized way as in GBA.
