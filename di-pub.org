@@ -792,7 +792,10 @@ clients domain in the federation.
 Wireless protected access (WPA or WPA2) protects traffic in wireless,
 shared media, where everyone can simply listen the traffic on
 radio waves. It enables both authenticated access and message
-encryption. WPA was an early subset of then upcoming 802.11i standard,
+encryption between the smart phone and AP by negotiating session keys
+after 802.1X has opened the virtual port in AP for the smartphone.
+
+ WPA was an early subset of then upcoming 802.11i standard,
 while WPA2 is the full implementation.
 # WPA consist of client (WPA-supplicant), Authenticator, and Authentication Server.
 Client software for 802.11i is called a WPA-Supplicant and it is used
@@ -889,9 +892,7 @@ Further, EAP is used to transfer authentication
 messages only.
 # , which happen between the Supplicant and the Authentication Server.
 It does not include AuthZ information, which is RADIUS's responsibility
-or session keys, which are negotiated by WPA and used 
-to  encrypting the traffic
-between the smartphone and AP.
+or session keys, which are negotiated by WPA.
 
 # or session keys.  needed in the following message transfer. Of
 # those, RADIUS is responsible of delivering AuthZ (and also
