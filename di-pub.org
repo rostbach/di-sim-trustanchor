@@ -375,38 +375,47 @@ domain bring their own increment to the device count at home.
 Connecting these devices to the net remains trivial, but managing the
 network afterwards has become challenging and complex.
 
-# issue of separate areas 
+# 1. issue of separate areas 
 There might be separate areas in homes that have different needs regarding
 connectivity, resources, and access. Not only that, but devices in
 separate segments might not belong to the home owner anymore, hence needing
-# Home network can be divided to multiple segments that each have
+# 2.Home network can be divided to multiple segments that each have
 their own administrative parties. For example an electricity company may
 have a sensor and controller network, which physically uses the home network, but
 logical is separated from other parts of home network. It is then
 important to keep track of who is allowed to access which part of the
-home network. So there will be a need to delegate the management of
-the home network to  multiple owners. 
+home network. 
+
 
 #  even at home.
-# 1. Something about knowledge, who knows how to configure.
+# 3. Something about knowledge, who knows how to configure.
 The configuration choices in networking devices takes some
 amount of expertise what is not necessarily present at every
 home. There could exist a market for an external consultant service, which would
 remotely operate the home network.
-# 2. authentication part, who is authorized, how it is done today, why
+# 4. authentication part, who is authorized, how it is done today, why
 # that is problem? 
-# 3. exporting managing, i.e., delegated configuration
-Eliminating the need for  
-physical precence at home reduces external actors' costs, but adds many questions
+# 5. exporting managing, i.e., delegated configuration
+# physical presence
+Remote operation eliminates consultant's 
+physical precence at home and so reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and disconnections.
 Persons, who are allowed to make configuration changes, are today
 often authenticated only by simple password and physical precence near
-the configured network device. What then, when the person is not
-physically present, but tries to connect remotely?  If external help
-would be bought, one needs to have some form of control in allowing
-only authorized operators to configure those devices.
+the configured network device. 
+# , and if physical precence would 
+be away 
+#  What then, when the person is not
+# physically present, but tries to connect remotely?
+If external help
+would be present, one needs to have some form of control in allowing
+only authorized operators without physical precence to configure
+devices at home.
 
 
+
+So there will be a need to delegate the management of
+the home network to multiple owners. 
 
 
 
