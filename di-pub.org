@@ -401,26 +401,25 @@ Remote operation eliminates consultant's
 physical precence at home and so reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and disconnections.
 Persons, who are allowed to make configuration changes, are today
-often authenticated only by simple password and physical precence near
-the configured network device. 
+often authenticated only by simple password and physical precence at home.
 # , and if physical precence would be away 
 #  What then, when the person is not
 # physically present, but tries to connect remotely?
-If external help were present, home owner would need more control
-control in allowing only authorized operators in, because earlier used
+If external help were present, home owner would need more 
+control allowing only authorized operators in, because earlier used
 physical precence protection is missing.
 
 
-
-So there will be a need to delegate the management of
-the home network to multiple owners. 
 
 
 
 # Secondly, 
 Lastly, it is challenging to find a common 
 trusted entity upon which every actor could base their trust.
-The problems are a delegated network management, remote provisioning,
+# So there will be a need to delegate the management of
+# the home network to multiple owners. 
+
+Summarized the problems are a delegated network management, remote provisioning,
 and trust finding. On its roots, it is an authentication and
 authorization problem.
 
