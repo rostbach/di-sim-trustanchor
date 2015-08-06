@@ -418,8 +418,8 @@ safely.
 # the home network to multiple owners. 
 
 Summarized the problems are a delegated network management, remote
-provisioning, and trust finding. On its roots, it is an authentication and
-authorization problem.
+provisioning, and trust finding. On its roots, it is an authentication
+and authorization problem.
 
  
 
@@ -831,6 +831,12 @@ complicated than on WPA-PSK, as seen on Table[[psk-enterprise]].
 Instead of bringing new AuthN methods into 802.1X, it was 
 extended with a modular framework called 
  EAP (Extensible Authentication Protocol) \cite{rfc5247}. 
+Ramification of using EAP is considered good among researchers, as it
+provides flexibility, indepence of underlying technology, whether
+wireless or wired,  and integration with AAA infrastructures, although
+it takes some amount of time to
+proceed. \cite{pereniguez-2010_Privacy}.
+# re-auth method to solve "amount of time" problem
 Different authentication methods can be used with EAP,  for example hashed
 # methods or types? 20150702
 passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
