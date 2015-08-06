@@ -390,12 +390,18 @@ remotely operate the home network.
 # 2. authentication part, who is authorized, how it is done today, why
 # that is problem? 
 # 3. exporting managing, i.e., delegated configuration
+Eliminating the need for  
+physical precence at home reduces external actors' costs, but adds many questions
+regarding security, not only to overcome firewalls, NATs, and disconnections.
 Persons, who are allowed to make configuration changes, are today
 often authenticated only by simple password and physical precence near
 the configured network device. What then, when the person is not
 physically present, but tries to connect remotely?  If external help
 would be bought, one needs to have some form of control in allowing
 only authorized operators to configure those devices.
+
+
+
 
 
 # Secondly, 
@@ -474,10 +480,7 @@ have a sensor and controller network physically using  the home network, but
 logically separated from other parts of home network. It is then
 important to keep track of who is allowed to access which part of the
 home network.
-# phys precence 
-Eliminating the need for  
-physical precence at home reduces external actors' costs, but adds many questions
-regarding security, not only to overcome firewalls, NATs, and disconnections.
+# phys precence moved to earlier part
 
 
 # Cloud here means external software running in internet.
