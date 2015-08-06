@@ -392,8 +392,8 @@ remotely operate the home network.
 # 3. exporting managing, i.e., delegated configuration
 Persons, who are allowed to make configuration changes, are today
 often authenticated only by simple password and physical precence near
-the configured network device. What then, when the person is note
-present physically, but tries to connect remotely?  If external help
+the configured network device. What then, when the person is not
+physically present, but tries to connect remotely?  If external help
 would be bought, one needs to have some form of control in allowing
 only authorized operators to configure those devices.
 
@@ -467,12 +467,14 @@ The delegated service provider therefore does not need to have a direct data
 access to the home but only to the cloud based service in order to be able to
 manage homenet devices.
 Consultant service is not the only possible delegation for home network.
+# toisen kerran jo..
 Home network can be divided to multiple segments that each have
 their own administrative parties. For example an electricity company may
 have a sensor and controller network physically using  the home network, but
 logically separated from other parts of home network. It is then
 important to keep track of who is allowed to access which part of the
 home network.
+# phys precence 
 Eliminating the need for  
 physical precence at home reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and disconnections.
@@ -529,29 +531,23 @@ distribution and that issue is studied in this thesis.
 Although mobile phone provides alternative
 authentication method with its SIM key, usual methods to
 authenticate still are plain username-password combinations.
-
-
-# [write more clear and mention key distribution problem.]
-
-
-
-
 Those security issues must be solved before delegation in the cloud can
 happen.  
 #  Anchoring must be set somewhere, 
 # is When Trust can be anchored to an entity 
-The main focus here is on authentication and authorization part of
-the home net management with smart phone as trust anchor.
-Trust model, which benefits from smartphone's unique,
-existing secret keys inside the smart card's  Subscriber Identify Module
-(SIM), is proposed. 
-Besides that, problems such as limited connectivity are studied.
 
-Human aspect and usability also are important, although the focus will
-not be there. The proposed model should nevertheless require less
-effort distributing user credentials, finding the place where they can
-be inserted, and ensuring that they are written correctly than the
-current used methods.
+
+
+
+Human aspect and usability are important, although the focus will
+still be on authentication and authorization part of the home net
+management with smart phone as trust anchor.  The proposed model
+should nevertheless require less effort than the current used methods
+on distributing user credentials, finding right place for them to be
+inserted, and ensuring that they are written correctly.
+Besides those, problems such as limited connectivity are
+studied.
+
  
 
 # although the correct term were SIM card with application and keys on
@@ -560,36 +556,39 @@ current used methods.
 
 # Rationale:
 # Motivation factors to this work is 
-Why SIM-based methods are not in wider use is one motivator to this
-work.  The technology has been there for more than ten years and
-the hardware and the applications mostly support it, but it still is not yet
-widely used.  Could there exist a light method to use the SIM?  
 
-The trust can be derived from facts that already are known.
-The place, where a trust is not anymore derived or built upon other 
-fact but assumed to be present, is called a trust anchor.
-[OR: The trust anchor is then the fact, state or place, where derivation is
-done no more, but accepted per se. ]
-Combining existing techniques, this thesis presents one possible way to bind the
-trust to the SIM, which then would function as a trust anchor. To
+One motivator to this work is to find why SIM-based methods are not in
+wider use.  The technology has been there for more than ten years and
+the hardware and the applications mostly support it, but it still is
+not yet widely used.  Could there exist a light method to use the SIM?
+
+
+SIM, which then would function as a trust anchor. To
 generally find ultimate trust it is only needed to verify trust chains
 until the chain reaches a trust anchor.
+
+
+The trust can be derived from facts that already are known.  The
+place, where a trust is not anymore derived or built upon other fact
+but assumed to be present, is called a trust anchor.  [OR: The trust
+anchor is then the fact, state or place, where derivation is done no
+more, but accepted per se. ] Combining existing techniques, this
+thesis presents one possible way to bind the trust to the smartphone's
+unique, existing secret keys inside the smart card's Subscriber
+Identify Module (SIM).
+
+
 
 
 # Involved technology acronyms include RADIUS, EAP, Wi-Fi,
 # HRL-AUC-Gateway, OpenWRT, and WPA.
 
 
-The thesis is structured as follows: Chapter [[#cha:aaa]] explains the authentication-authorization model.
-Chapter [[#cha:management]] describes security in current home net architecture and 
-current practices for configuring it.
-# used configuration model of homenet and
-# parts of it that this thesis extends.  
-# Used roles and ways to change between them are presented in Chapter
-# [[#cha:roles]].
- Chapter [[#cha:design]]
-discusses methods to bring a trust anchor in the homenet and explains
-the chosen method.
+The thesis is structured as follows: Chapter [[#cha:aaa]] explains the
+authentication-authorization model.  Chapter [[#cha:management]] describes
+security in current home net architecture and current practices for
+configuring it.  Chapter [[#cha:design]] discusses methods to bring a
+trust anchor in the homenet and explains the chosen method.
 # different scenarios for authorization.  
 One specially crafted problem is how the scenarios presented here can be
 tested without knowing SIM card's secret keys and without real phone
@@ -1591,9 +1590,8 @@ If keys are stored in SIM as here, external operator support is needed.
 
 # *** Other SIM methods 
 # mobiilivarmenne
-Other techniques than EAP-SIM to use SIM's unique properties
-are for example 
-Bluetooth SIM Access Profile(Bluetooth  SAP), 
+Other techniques  to use SIM's unique properties besides EAP-SIM
+are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
 direct connection through PC/SC (Personal\-Computer/Smart\- Card),
 CallerID service from phone network, and
 Mobile signature service such as ``Mobiilivarmenne'' in Finland.
@@ -2611,15 +2609,10 @@ file:~/gitdocs/di/images/170847.jpg
 #+NAME:  fig:lock-and-view
 #+LABEL: eap-sim-testbe
 #+RESULTS:
-[[file:lockandkey.png]]
 file:lockandkey.png
 
 
 # source: [[http://www.cisco.com/c/dam/en/us/td/i/100001-200000/170001-180000/170001-171000/170847.ps/_jcr_content/renditions/170847.jpg]]
-
-
-
-
 
 
 Device provider Cisco calls this ``Lock-and-Key'' access
@@ -2788,11 +2781,12 @@ simulated WPA-Supplicant and HLR-AuC as simulation environment.
 # 3) (smartphone with modded wpa-supplicant on JOLLA)
 # 2. (RPi)
 
-Jouni Malinen's software package /HostAP/ can be thought as a reference
+Jouni Malinen's software package /HostAP/\cite{hostapd} can be thought
+ as a reference
 implementation providing all necessary components: WPA-Supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS would replace HLR in 3G/UMTS networks.
- \cite{hostapd}. The version used in the tests was 2.2, while version
+The version used in the tests was 2.2, while version
 2.4 was published on March 2015.
 
 For a more realistic test, OpenWRT AP is used instead of /hostapd/'s
