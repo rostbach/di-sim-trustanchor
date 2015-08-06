@@ -1,4 +1,4 @@
-% Created 2015-08-06 to 16:02
+% Created 2015-08-06 to 16:11
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -660,7 +660,10 @@ clients domain in the federation.
 Wireless protected access (WPA or WPA2) protects traffic in wireless,
 shared media, where everyone can simply listen the traffic on
 radio waves. It enables both authenticated access and message
-encryption. WPA was an early subset of then upcoming 802.11i standard,
+encryption between the smart phone and AP by negotiating session keys
+after 802.1X has opened the virtual port in AP for the smartphone.
+
+ WPA was an early subset of then upcoming 802.11i standard,
 while WPA2 is the full implementation.
 Client software for 802.11i is called a WPA-Supplicant and it is used
 in wireless clients to communicate with the Authenticator. The rest of
@@ -697,8 +700,7 @@ extended with a modular framework called
 Ramification of using EAP is considered good among researchers, as it
 provides flexibility, indepence of underlying technology, whether
 wireless or wired,  and integration with AAA infrastructures, although
-it takes some amount of time to
-proceed.\cite{pereniguez10}.
+it adds some amount of time for authentication.\cite{pereniguez10}.
 Different authentication methods, for example hashed passwords, TLS
  certificates, or SIM/AKA using smartphone's SIM card,  can
 be used with EAP.
@@ -731,11 +733,9 @@ Authenticator is responsible for opening access for EAP peer as 802.1x dictates.
 
 Further, EAP is used to transfer authentication
 messages only.
-It does not include AuthZ information or session keys.
-Of those, RADIUS is responsible of delivering AuthZ (and also
-encapsulated AuthN) to the Authenticator (AP)
-and WPA is used to negotiate session keys for encrypting the traffic
-between the smartphone and AP.
+It does not include AuthZ information, which is RADIUS's responsibility
+or session keys, which are negotiated by WPA.
+
 
 
 \section{SIM-based authentication}
