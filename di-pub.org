@@ -384,9 +384,8 @@ their own administrative parties. For example an electricity company may
 have a sensor and controller network, which physically uses the home network, but
 logical is separated from other parts of home network. It is then
 important to keep track of who is allowed to access which part of the
-home network.
-So there will be a need to delegate the management of the home network to 
-multiple owners. 
+home network. So there will be a need to delegate the management of
+the home network to  multiple owners. 
 
 #  even at home.
 # 1. Something about knowledge, who knows how to configure.
