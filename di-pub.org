@@ -412,6 +412,8 @@ physical precence protection is missing.
 # Secondly, 
 Lastly, it is challenging to find a common 
 trusted entity upon which every actor could base their trust.
+Common trust is needed to join before unknown parties together
+safely. 
 # So there will be a need to delegate the management of
 # the home network to multiple owners. 
 
