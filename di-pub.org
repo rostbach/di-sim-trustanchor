@@ -835,7 +835,7 @@ Ramification of using EAP is considered good among researchers, as it
 provides flexibility, indepence of underlying technology, whether
 wireless or wired,  and integration with AAA infrastructures, although
 it takes some amount of time to
-proceed. \cite{pereniguez-2010_Privacy}.
+proceed. \cite{pereniguez10}.
 # re-auth method to solve "amount of time" problem
 Different authentication methods, for example hashed passwords, TLS
  certificates, or SIM/AKA using smartphone's SIM card,  can
