@@ -409,10 +409,6 @@ If external help were present, home owner would need more
 control allowing only authorized operators in, because earlier used
 physical precence protection is missing.
 
-
-
-
-
 # Secondly, 
 Lastly, it is challenging to find a common 
 trusted entity upon which every actor could base their trust.
