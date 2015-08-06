@@ -837,9 +837,9 @@ wireless or wired,  and integration with AAA infrastructures, although
 it takes some amount of time to
 proceed. \cite{pereniguez-2010_Privacy}.
 # re-auth method to solve "amount of time" problem
-Different authentication methods can be used with EAP,  for example hashed
-# methods or types? 20150702
-passwords, TLS certificates, or SIM/AKA using smartphone's SIM card.
+Different authentication methods, for example hashed passwords, TLS
+ certificates, or SIM/AKA using smartphone's SIM card,  can
+be used with EAP.
 This work uses EAP-SIM authentication method.
 
 
