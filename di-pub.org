@@ -888,12 +888,16 @@ Authenticator is responsible for opening access for EAP peer as 802.1x dictates.
 Further, EAP is used to transfer authentication
 messages only.
 # , which happen between the Supplicant and the Authentication Server.
-It does not include AuthZ information or session keys.
-# needed in the following message transfer.
-Of those, RADIUS is responsible of delivering AuthZ (and also
-encapsulated AuthN) to the Authenticator (AP)
-and WPA is used to negotiate session keys for encrypting the traffic
+It does not include AuthZ information, which is RADIUS's responsibility
+or session keys, which are negotiated by WPA and used 
+to  encrypting the traffic
 between the smartphone and AP.
+
+# or session keys.  needed in the following message transfer. Of
+# those, RADIUS is responsible of delivering AuthZ (and also
+# encapsulated AuthN) to the Authenticator (AP) and WPA is used to
+# negotiate session keys for
+
 
 
 ** SIM-based authentication
