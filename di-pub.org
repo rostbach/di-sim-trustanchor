@@ -403,11 +403,9 @@ regarding security, not only to overcome firewalls, NATs, and disconnections.
 Persons, who are allowed to make configuration changes, are today
 often authenticated only by simple password and physical precence near
 the configured network device. 
-# , and if physical precence would 
-be away 
+# , and if physical precence would be away 
 #  What then, when the person is not
 # physically present, but tries to connect remotely?
-
 If external help were present, home owner would need more control
 control in allowing only authorized operators in, because earlier used
 physical precence protection is missing.
