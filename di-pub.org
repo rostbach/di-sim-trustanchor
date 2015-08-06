@@ -417,8 +417,8 @@ safely.
 # So there will be a need to delegate the management of
 # the home network to multiple owners. 
 
-Summarized the problems are a delegated network management, remote provisioning,
-and trust finding. On its roots, it is an authentication and
+Summarized the problems are a delegated network management, remote
+provisioning, and trust finding. On its roots, it is an authentication and
 authorization problem.
 
  
