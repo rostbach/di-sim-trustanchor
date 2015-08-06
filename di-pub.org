@@ -407,10 +407,10 @@ the configured network device.
 be away 
 #  What then, when the person is not
 # physically present, but tries to connect remotely?
-If external help
-would be present, one needs to have some form of control in allowing
-only authorized operators without physical precence to configure
-devices at home.
+
+If external help were present, home owner would need more control
+control in allowing only authorized operators in, because earlier used
+physical precence protection is missing.
 
 
 
