@@ -1,4 +1,4 @@
-% Created 2015-08-09 su 18:45
+% Created 2015-08-12 ke 12:27
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,13 +47,13 @@
 \title{Smartphone as a trust anchor for delegated home net configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-7.8.2015 Master of Science thesis}
+\thesistype{draft-11.8.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{7.8.2015  \{27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{11.8.2015  \{27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -523,8 +523,8 @@ studied.
 
 
 
-The thesis is structured as follows: Chapter \ref{sec-2} explains the
-authentication-authorization model.  Chapter \ref{sec-3} describes
+The thesis is structured as follows: in Chapter \ref{sec-2} the
+authentication--authorization model is explained.  Chapter \ref{sec-3} describes
 security in current home net architecture and current practices for
 configuring it.  Chapter \ref{sec-4} discusses methods to bring a
 trust anchor in the homenet and explains the chosen method.
@@ -799,16 +799,14 @@ That procedure is later described in more detail.
 
 Beginning from 3GPP networks, new types EAP-AKA and AKA' can be used.
 EAP-AKA is defined in RFC4187\cite{rfc4187} and 
- uses 3GPP's AKA (Authentication and Key Agreement) protocol.
-It differs from EAP-SIM by using additionally parameters from MNO to
-protect replay attacks. Otherwise the protocol messaging is same
-as in  GSM-SIM, only algorithms differ.
-
+uses 3GPP's AKA (Authentication and Key Agreement) protocol.
+It differs from EAP-SIM by using additionally parameters such as
+sequence numbering from MNO to protect replay attacks. 
+Additionally, digests use SHA-256 function instead of SHA-1.\cite{rfc5448}.
+Otherwise the protocol messaging is same as in  GSM-SIM, only algorithms differ.
 Last, there exists EAP-AKA' that enhances AKA by including Service Set name (SSID) 
 in the key derivation function, which limits the possibility of using possibly
-compromised network's nodes and keys. Additionally, requests have
-sequence numbering preventing replay attacks and its digests use SHA-256
-function instead of SHA-1.\cite{rfc5448}.
+compromised network's nodes and keys. 
 
 
   Using EAP-SIM means using the secret key inside SIM card with A3/A8
@@ -1627,7 +1625,7 @@ could just trust the 3rd party service's AuthZ message, which is
 RADIUS message of either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
 
 
-Here are presented 5 scenarios for possible locations of AuthN and 
+Here are  5 scenarios presented for possible locations of AuthN and 
 AuthZ points. Authenticator is the entity which gives the final decision 
 about access. In most cases it is located in the
 local AP, but it can also be external, like in scenario V in 
@@ -1971,7 +1969,9 @@ Authentication server, even when there would be a separate local RADIUS server
 running as a proxy.
 Lastly, a variation of the design is, that not every change needs to go
  through  the local controller and so the process does not always need
-interaction from the user.
+interaction from the user. For example, if 3rd party has been given 
+a right to switch on and off its sensor network, it would not be 
+necessary for home owner to accept those changes every time they occur.
 
 
 
@@ -2349,7 +2349,7 @@ To further divide possible costs for EAP-SIM usage
 is difficult.
 EAP-SIM always needs MNO for first authentication,
 because only MNO and SIM-card manufacturer know 
-what are SIM's K\_i and the used A3/A8 algorithm
+what are SIM's K\_i and the used A3/A8 algorithm variation
 for GSM/3GPP/LTE authentication.
 
 It is difficult to see if any commercial provider would implement
@@ -2362,14 +2362,14 @@ specific prefix code before call, alternate SIM card can be chosen
 without booting the phone.
 Dual-SIM thus allows change of ID and IMSI without removing SIM card.
 
-There exists also private GSM networks.
-Interesting use case have been Chaos Computer Club's international 
+There exists also private GSM networks. An interesting use case
+of them  has been Chaos Computer Club's international 
 CCC-camps\cite{ccc}, where organizers 
 provide private GSM network for attendees of conference
-by distributing them separate SIM cards for 2 euros.
-Even, when GSM network used 1.8GHz radio channel, of interest here is
-only that GSM encryption could be used and SIM-card secrets were known to
-the organizing operator.
+by distributing them separate SIM cards for 2 euros.  Even, when GSM
+network used 1.8GHz radio channel under an experimental spectrum
+licence,  GSM encryption also could be used, because the SIM-card secrets were known
+to the organizing, private operator.
 On the other hand, empty GSM cards for testing can cost as much as 
 18 euros a piece (webshop-quote\cite{smartjac-testsim}).
 
@@ -2378,25 +2378,26 @@ On the other hand, empty GSM cards for testing can cost as much as
 \label{sec-6-4}
 
 For clients, there is no need for public key infrastructure (PKI) 
-unless EAP-PEAP is used.
+unless EAP-PEAP is used. Under PEAP there are either server
+certificate or additionally client certificate present.
 There are smartphones, that do not have EAP-SIM yet available.
 For example support for
-EAP-SIM (and -AKA) methods starts in Android from version 4.x and in
+EAP-SIM (and -AKA) methods starts in Android only from version 4.x and in
 iOS from version 5.x.\cite{sim-support}.
 
 
 Generally, what is  needed to bring EAP-SIM support to open source
 smartphone is \emph{pcsc-lite} for accessing SIM card, wpa\_supplicant for
 wpa client, and possible used connection manager (\emph{connman} or
-\emph{wicd}). This is in line, what was done in testing, without pcsc-lite
-because a file was used instead of a SIM card.
+\emph{wicd}). This is in line, what was done in testing without pcsc-lite,
+because a file backend was used instead of a SIM card.
 
 
 
 
 
-If OpenWRT platform is used, one problem there is the size of
-memory which can be less than 32Mutt's.
+If OpenWRT platform  is used for CPE, one problem there is the size of
+memory which can be less than 32 MBytes.
 WPA2 software included in basic OpenWRT installation is small,
 but that does not yet include RADIUS server part or EAP-SIM handling.
 
@@ -2404,9 +2405,10 @@ but that does not yet include RADIUS server part or EAP-SIM handling.
 Software has other limitations. Freeradius2 is not included yet in OpenWRT.
 It would also be based heavily on current Perl environment which
 itself may be a space hog. 
-Currently, as of 1.7.2014, there is no support for EAP-AKA on
-freeradius2 even when there was support on version 1.1.4. \cite{freeradius2}.
-EAP-SIM is supported.
+Currently, as of 9.8.2015, Freeradius is running on version 3 and
+EAP-AKA is supported through a module from hostapd project.
+COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
+algorithms, is  supported\cite{freeradius2}, and so EAP-SIM.
 Yet, Freeradius can be used as Authentication Center (AuC).
 Diameter (freeDiameter) can be compiled in OpenWRT. That is good,
 because on 3GPP networks Diameter protocol has more support than RADIUS.
@@ -2771,34 +2773,30 @@ dynamically more attributes and access rights.
 
 
 
-Homenet's future needs in configuration management have been
-described.
- As an example, the change of authority and the delegation of
-control to third parties are needs that have been presented.  
+Homenet's future needs, for example  the change of authority and the
+delegation of configuration management have been described.
 A method to approve changes indirectly has been proposed. The approval
 follows from successful authentication and authorization with EAP-SIM
-method by mobile phone.
+method by mobile phone and that also sets smartphone to a trust anchor.
 
+
+For testing purposes, a real working EAP-SIM test bed with fake credentials and
+fake mobile operator representing EAP-SIM authentication flow was
+built. A dual-role model, which binds a smartphone to the homenet and
+grants rights to make changes, has been proposed.  
+An indirect way to approve changes is achieved by binding the authorized
+access to the management network.
 
 Complexity of existing models in interworking was one motivator for
 the work. Research work on the subject did reveal some of the reasons 
 for the complexity, that are difficult to overcome with simplistic 
-methods without in the same time losing security.
-
-As results, a real working EAP-SIM test bed with fake credentials and
-fake mobile operator representing EAP-SIM authentication flow has been
-shown.  A dual-role model, which binds a smartphone to the homenet and
-grants rights to make changes has been proposed.  
-An
-indirect way to approve changes is achieved by binding the authorized
-access to the management network.]
-
+methods without at the same time losing security.
 There are some obvious weakness in the proposed solution. Possible usage
 must carefully check the safety limits even when RADIUS protocol still
 has strengths in security today. The thesis only scratches bootstrapping
-problems and issues in bootstrapping the homenet needs to be studied
+problems and issues in bootstrapping the homenet need to be studied
 more thoroughly. One could use tickets in Kerberized way as in GBA.
-Software implementation as app is needed to the smartphone.
+Software implementation as an application is needed to the smartphone.
 
 With the proposed technique, provisioning of users at homenets would
 minimize, as users already own an identifiable object, smartphone. As
