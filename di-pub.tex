@@ -1,4 +1,4 @@
-% Created 2015-08-12 ke 12:27
+% Created 2015-08-13 to 14:41
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -167,7 +167,7 @@ dependency to mobile operator. Additionally, there will remain challenges in kee
 Principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA2 enterprise has been chosen, which includes RADIUS environment.
 To further avoid complexity and granularity, we
-only use a simple model of management network. Getting in to management network is carried out at homenet via EAP-SIM authentication and it is the key element of the thesis.
+only use a simple model of management network. Getting in to management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
 
 
 
@@ -371,7 +371,6 @@ manageable network devices (switches/routers), and mobile phones
 present new devices and network segments beside computers and
 printers. Sensors and controller devices from Internet of Things
 domain bring their own increment to the device count at home.
-
 Connecting these devices to the net remains trivial, but managing the
 network afterwards has become challenging and complex.
 
@@ -402,9 +401,8 @@ Lastly, it is challenging to find a common,
 trusted entity, upon which every actor could base their trust.
 Common trust is needed to join before unknown parties together
 safely. 
-
-Summarized the problems are a delegated network management, remote
-provisioning, and trust finding. On its roots, it is an authentication
+Summarized the problems are delegated network management, remote
+provisioning, and trust finding. On its roots, this is an authentication
 and authorization problem.
 
 
@@ -419,19 +417,18 @@ and authorization problem.
 One model to solve these problems is to separate the management and
 control function away from the connectivity and routing
 issues. Silverajan et al.\cite{silverajan2015collaborative} proposes
-model where management is achieved through a service in a cloud. The
+a model where the management is achieved through a service in a cloud. The
 configuration model of devices at a home is mirrored to the cloud as a
-resource graph ( Figure x.1) and changes can be planned ahead at cloud
+resource graph ( Figure x.1 TBD) and changes can be planned ahead at cloud
 and committed (Pushed) later to the home via a local controller point
 which lies at home using configuration tools CoAP and RESTCONF.
-(Figure x.2).
 
-The cloud have already verified the operators in the cloud, but the
-question remains, how to connect the cloud service to the home network
+The managers operate in the cloud with the configuration data and the
+cloud verifies those managers,
+but the question remains, how to connect the cloud service to the home network
 through the local controller securely. The local controller at home
 would approve the changes and a smartphone is assumed to function in
-local controller role. It will have an application which operates as a
-bridge and an access control between the cloud and the home network.
+local controller role. It will operate as a bridge between the cloud and the home network.
 See Figure\ref{fig:localcontroller} for design of this architecture.
 
 \begin{figure}[htb]
@@ -443,7 +440,7 @@ See Figure\ref{fig:localcontroller} for design of this architecture.
 
 The delegated service provider therefore does not need to have a direct data
 access to the home but only to the cloud based service in order to be able to
-manage homenet devices.
+manage home network devices.
 Consultant service is not the only possible delegation for home network.
 
 
@@ -453,12 +450,12 @@ Consultant service is not the only possible delegation for home network.
 
 
 
-One of the security issues is the authentication and authorization 
+One of the security issues are the authentication and authorization 
 from the cloud to the home net.
 To secure the connection from the cloud service (controller)
-to the homenet, there needs to be a common trust between each end
+to the home network, there needs to be a common trust between each end
 point and the research problem here is how to enable the trust between the
-controller and the homenet as the controller lies at the edge of the
+controller and the home network as the controller lies at the edge of the
 home network.
 
 
@@ -466,25 +463,21 @@ Any encryption between devices needs trusted key exchange beforehand,
 and finding and establishing trust is needed for that.  That is called
 the key distribution problem. Public keys solve key exchange part, but
 only partially, because the trust must still be found somewhere.
-Above mentioned cloud solution at TUT for delegated home network
+Above mentioned cloud solution for delegated home network
 management currently has preliminary authentication and access model
 using pre-defined credentials and SSH-connection from the local
 controller device to configuration
 targets\cite[Chap.4]{silverajan2015collaborative}.
-That work does not yet handle the bootstrap of the infrastructure
-i.e. the first trust is thought as given.  Smartphone with its SIM
-card and existing key infrastructure to mobile network operator would
-later eliminate the requirement for an additional credential
-distribution and that issue is studied in this thesis.
-Although mobile phone provides alternative
-authentication method with its SIM key, usual methods to
-authenticate still are plain username-password combinations.
-Those security issues must be solved before delegation in the cloud can
-happen.  
+That does not yet handle the bootstrap of the infrastructure
+i.e. the first trust is thought as given. 
 
-
-
-
+The smartphone with its SIM card and an existing key infrastructure to mobile
+network operator would later eliminate the requirement for an
+additional credential distribution and that issue is studied in this
+thesis.  Although the smartphone provides alternative authentication
+method with its SIM key, usual methods to authenticate still are plain
+username-password combinations.  Those security issues must be solved
+before delegation in the cloud can happen.
 
 
 
@@ -492,12 +485,10 @@ happen.
 One motivator to this work is to find why SIM-based methods are not in
 wider use.  The technology has been there for more than ten years and
 the hardware and the applications mostly support it, but it still is
-not yet widely used.  Could there exist a light method to use the SIM?
+not yet widely used. What prevents us using the SIM?
 
 
-
-
-The trust can be derived from facts that already are known.  The
+The trust can be derived from the facts that already are known.  The
 place, where a trust is not anymore derived or built upon other fact
 but assumed to be present, is called a trust anchor.  
 [OR: \emph{The trust anchor is then the fact, state or place,
@@ -527,7 +518,7 @@ The thesis is structured as follows: in Chapter \ref{sec-2} the
 authentication--authorization model is explained.  Chapter \ref{sec-3} describes
 security in current home net architecture and current practices for
 configuring it.  Chapter \ref{sec-4} discusses methods to bring a
-trust anchor in the homenet and explains the chosen method.
+trust anchor in the home network and explains the chosen method.
 One specially crafted problem is how the scenarios presented here can be
 tested without knowing SIM card's secret keys and without real phone
 operator involved.  Those experiments are described in Chapter
@@ -569,7 +560,7 @@ available for authenticated entity.
 
 Before we introduce SIM-based authentication used throughout the
 thesis, protocols 802.1X, WPA2, EAP and RADIUS are described in the
-following Sections.
+following Sections. [sections?]. Last, we expand the term trust.
 
 \section{802.1X}
 \label{sec-2-1}
@@ -616,8 +607,8 @@ RADIUS protocol is a stateless, request-response type client-server
 protocol. 
 There are four types of RADIUS messages defined in RFC 2865 that are
 used in AA. ACCESS-REQUEST and ACCESS-CHALLENGE cover both AuthN and
-AuthZ. As a result, the final RADIUS message will be either
-ACCESS-ACCEPT or ACCESS-REJECT sent to the RADIUS client, based on the
+AuthZ messaging while final RADIUS message is either
+ACCESS-ACCEPT or ACCESS-REJECT, based on the
 result given by the RADIUS authentication server.
 
 Today, RADIUS has some shortcomings and fixing them is not anymore
@@ -909,7 +900,7 @@ plain text, namely in message 2.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{eap-sim-simple.png}
-\caption{\label{fig:eap-sim-simple}Detailed EAP-SIM simplified sequence diagram, source RFC4186}
+\caption{\label{fig:eap-sim-simple}Simplified EAP-SIM sequence diagram, source RFC4186}
 \end{figure}
 
 
@@ -959,7 +950,7 @@ Key distribution problem mentioned in Chapter\ref{cha:intro} is solved
 already at SIM-card distribution phase. 
 
 Now, how this trust could be used to include other components under
-same trust circle in the homenet?  As AuthN-AuthZ at home proceeds
+same trust circle in the home network?  As AuthN-AuthZ at home proceeds
 through Authenticator, maybe Authenticator can deliver this
 information further and use it as a derivation function to extend
 trust.
@@ -971,7 +962,8 @@ on the other hand do not possess the properties \emph{non-copiable} or
 do not full-fill requirement for two-factor AuthN.  If we nonetheless
 were using software certificates with method such as EAP-TLS, then the
 certificates (for CA and client) and the private key should still be
-provisioned first, which would defeat what we wanted to achieve.
+provisioned first, which would defeat what we wanted to achieve in
+easy user experience.
 
 
 
@@ -984,23 +976,24 @@ provisioned first, which would defeat what we wanted to achieve.
 
 
 Home network is a computer network located at person's home. It consists
-of devices and their connections, either wired or wireless.  This
-thesis denotes home network as homenet, although the name 'homenet'
-is reserved to Internet Engineering Task Force Working Group's (IETF
-WG) homenet.
-IETF is responsible for the most Internet technology standards and 
+of devices and their connections, either wired or wireless.
+
+This thesis avoids using term \emph{homenet} when meaning network at home,
+because  it is  reserved to 
+Internet Engineering Task Force Working Group's (IETF
+WG) homenet. IETF is responsible for the most Internet technology standards and 
 WG homenet was started in year 2011.
 Current drive in homenet management is towards IPv6 environment
  as it allows future  addressing and routing needs. As old technology
-cannot be forgotten, homenets will be heterogeneous having both
+cannot be forgotten, home networks will be heterogeneous having both
 old and new technology, and their interoperatibility is important in
-planning future homenets. Segmenting home in multiple subnets will belong
-to homenets and will include areas for home members, guests,
+planning future home networks. Segmenting home in multiple subnets will belong
+to home networks and will include areas for home members, guests,
 and management.
 
 
 
-Securing homenet and its router's configuration can be done for
+Securing home network and its router's configuration can be done for
 example first limiting access to their administrative ports
 with static or dynamic access control lists (ACL) in
 routers. To get through administrative ports, i.e., to login and make
@@ -1011,27 +1004,26 @@ use for over 30 years and is well supported in routers. Yet there are
 multiple version for this protocol. While earlier versions (v1, v2)
 did not provide any encryption of messages, version 3 knows for example
 about public keys and is secure enough when used correctly.
-NETCONF is\ldots{}
 
 
-CPEs (Customer-Premises Equipment) such as ADSL broadband routers or
-set-top boxes, connect customer's network to operators network.
-Management of CPEs on the border of homenet and operator has 
-been done already earlier.For example, TR-069 standard\cite{iptvtr069} for CPEs
+Customer Premises Equipments (CPE) such as ADSL broadband routers or
+set-top boxes, connect customer's network to operator's network.
+Management of CPEs on the border of home network and operator has 
+existing protocols. For example, TR-069 standard\cite{iptvtr069} for CPEs
 has been used to implement self-configuration archi\-tecture in
 home networks\cite{tr069rachidi2011}.
 
 
 RFC7368 about IPv6 Home Networking Architecture Principles from
-Arkko\cite{rfc7368} defines the borders of the homenet and states that
-internal borders in homenet should possibly be automatically
+Arkko\cite{rfc7368} defines the borders of the home network and states that
+internal borders in home network should possibly be automatically
 discovered. Limiting those borders to specific
 interface type makes it difficult to connect different realms locally.
 The same document continues stating
-that while homenet should self-configure and self-organize itself as
+that while home network should self-configure and self-organize itself as
 far as possible, self-configuring unintended devices should be
-avoided and let homenet user decide whether device becomes trusted.
-So, these statements reveal us that homenet environment still needs
+avoided and let home network user decide whether device becomes trusted.
+So, these statements reveal us that home network environment still needs
 external configuration even with the proposed automation aids.
 
 
@@ -1115,11 +1107,14 @@ for them is possible even with only little knowledge.
 When we choose a smartphone to be the management point, the other benefits are
 numerous:  a management software can be delivered and
 updated from cloud to diverse smartphone types, existing user
-base having smartphones is enormous, and as the most important fact, the trust anchor can be set to the smartphone.
+base having smartphones is orders of magnitude more than in any single
+organization, and as the most important fact, the trust anchor can be set to the smartphone.
 
-The users are located in operators' user databases
-in Home Location Registry Authentication Center (HLR-AuC), which still has orders of
-magnitude more users available than any other organization. 
+The users are already located centrally in operators' user databases
+in Home Location Registry Authentication Center (HLR-AuC).  To be able
+to achieve the management paradigm change to a central configured one,
+we still need to bridge homenet to that model with a trusted local controller
+and resolve the work-flow of change management.
 
 
 \chapter{Design of home network trust anchor and separation of change management}
@@ -1128,37 +1123,34 @@ magnitude more users available than any other organization.
 
 
 
-[Chapters contents here]
-So, we need to change the management paradigm to central configured
-model, bridge homenet to that model with a local controller 
-and resolve the  work-flow of change management.
+This chapter describes, how the change management can flow after the
+home network has received a trust anchor.  Before fully explaining our
+chosen method, we introduce some alternative approaches for a trust
+anchor, which is part of bootstrapping.  Bootstrapping is needed
+because although the smartphone and MNO already trust each other, the
+trust between the smartphone and AP, and thus the management network
+at home, is not yet clear in the beginning.
 
-
-
-
-
-
-
-The smartphone connects with a Wi-Fi link to an access point (AP) in
- the homenet.  AP functions there as an Authenticator.  The smartphone
- and the AP must trust each other.
-For the configuration\ldots{}
-The smartphone will approve changes for homenet and is part of bootstrapping
-new infrastructure. 
+On its simplest, the smartphone connects with a Wi-Fi link to an
+access point (AP) in the home network and authenticates with SIM-card.
+That brings a trust relationship between smartphone (local controller)
+and home network (managed devices) and configuration changes can
+happen as long as the smartphone is present.
 
 \section{Alternative methods for introducing trust anchor into the homenet}
 \label{sec-4-1}
 
-Before fully explaining our chosen method, we introduce some
-alternative approaches for a trust anchor. The trust anchor is part of
-bootstrapping. Trust information, may it then be a secret or some
+
+
+
+ Trust information, may it then be a secret or some
 other evidence, can be delivered to a trust device via physical
 transport channel separate from the actual communicating channel.
 Traditional way to do that is with a password inside a sealed
 envelope or a one-time password list that for example online banks 
 use today. The secret can also be sent as an SMS.
 
-Trust can also be requested with the help of (upcoming) trust anchor's
+Trust can also be requested with the help of device's
 unique properties. Recently there has been devices on the market that
 have vendor certificates inside them[cite] which brings public key
 infrastructure as one possible alternative.  The device proves its
@@ -1291,38 +1283,14 @@ based software can be used, although those functions have not yet been
 implemented. Disconnection issues are explained in Section
 \ref{sec:disconnections}.
 
-\section{Flow of design (already above)}
+\section{Flow of design [TBD already above, FIX THIS section]}
 \label{sec-4-2}
 
-Wanted: 
-\begin{itemize}
-\item separate MGMT net exists
-\item SIM authentication to MGMT net is proven
-\item changes are authorized if they come from MGMT net
-\item log-out from MGMT net
-\end{itemize}
-(- spare connection, if internet link down)
-(- fast-reauth, without MNO
-
-Implications are, that when someone has access to MGMT channel,
-everything is permitted. No security limiting as default 
-
-[Basically 2. and 3. is like traditional corporate network with firewall.]
-
-a. AuthN is proven
-
-b. AuthZ decision has challenges
-
-c. Change approving has three cases:
-\begin{enumerate}
-\item Changes are allowed, when port is open
-\item Confirmation message from MGMT-net authorizes changes.
-Message must belong to configuration and can be example a digested signature.
-\item FULL: changes may come only from MGMT net.
-\end{enumerate}
 
 
-Use-case for adding admin user:
+
+To demonstrate how the model works, we present the case of adding a
+new admin user.
 
 Let's first suppose, for case of simplicity, that the homenet has been
 already configured(bootstrapped) and it is functioning properly.  The
@@ -1333,9 +1301,9 @@ in to the production in homenet. There is no magic here, plain
 configuration change, just this time externally initiated.
 
 Now, let's think what happens, when the cloud operator (or owner of
-homenet) tries to modify attributes, which give access to new actors,
-such as new operators, who would want to have access to separate
-segments of homenet.  First we need to have that segment separation
+homenet) tries to modify attributes, which give access to a new actor,
+such as a new operator, who would want to have access to separate
+segments of home network.  First we need to have that segment separation
 change approved and after that we want to allow the newcomer account
 to have access to that segment and only to that. For the first part,
 which is normal operation, approving would perhaps yet not be
@@ -1352,22 +1320,16 @@ in use), it needs to check if that is permitted.  Permission would
 need to be asked from trusted point, here mobile SIM but instead of
 that the CPE checks from its state database, 
 whether mobile SIM has been given access to management network.
-
-
 CPE wants to verify, if the changes are authorized. They are, if currently
-smartphone user is logged in management network (i.e. management is allowed).
-
-
+smartphone user is logged in management network, i.e. management is allowed.
 
 Alternative method is that the changes could be marked some way, so that they need
 approving and then there could be a specific change-approval message,
 which must be sent through management network, perhaps including digest
 of change message as a verification.
 
-Because smartphone is not actively listening the CPE, how it could
-input that request? 
-
-There are three planned ways to distribute changes.
+Because smartphone is not actively listening the CPE, it cannot input
+those request. There are three planned ways to distribute changes.
 
 \begin{enumerate}
 \item Changes are delivered normally from cloud to CPE (CPEs) without
@@ -1412,7 +1374,7 @@ First, there is normal access network which provides
 connectivity. Second, there is network through which devices are
 managed, so each device need to have at least two connections: one for
 access and one for management. It is not defined, if those connections
-are physical or virtual (VLAN's etc). 
+are physical or virtual (VLAN, Virtual LAN). 
 Analogy to real world would be public access corridors and doors for
 customers separate from privileged doors for service personnel.
 
@@ -1545,10 +1507,10 @@ but usually the final decision point lies at the Authenticator in CPE.
 
 Today, homenets usually consists of only one Service Set ID (SSID)
 Wi-Fi network though it is possible to define multiple SSIDs in
-an access point. Having multiple SSIDs enable us to dedicate one of them
+an access point. Having multiple SSIDs enables us to dedicate one of them
 to management network. 
 To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
-an as such, to use RADIUS server.
+and thus RADIUS server.
 
 It was not found, how Authenticator could use the same network with
 both WPA2-PSK (or open access) and WPA2-Enterprise, so
@@ -1608,26 +1570,27 @@ select Service Set ID (SSID)
 \end{itemize}
 
 
-\section{Scenarios for authorization (AuthZ)}
+\section{Scenarios for choosing the AuthZ location}
 \label{sec-4-6}
 
-[Place of Authorization decision  ]
 
-AuthZ decision usually happens at home.
+AuthZ decision usually happens at home and the Authenticator gives
+anyway the final decision about access.
 If the decision is made on remote AuthN server, 3rd party, 
-then that server needs to have access to 
-cloud service's AuthZ data. 
-Further it seems inevitable, that just like the homenet model
+then that server needs to have either local data or access to 
+cloud service's AuthZ data.
+Further it seems inevitable, that just like the home network model
 having AuthZ data of eligible IMSI accounts is in the cloud, 
-then also delegating AuthZ to cloud would simplify homenet
+then also delegating AuthZ to cloud would simplify home network 
 functions. Instead of putting logic on CPE for AuthZ, CPE
-could just trust the 3rd party service's AuthZ message, which is 
-RADIUS message of either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
+could just trust the 3rd party service's AuthZ message, which in case
+of RADIUS is either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
 
 
-Here are  5 scenarios presented for possible locations of AuthN and 
-AuthZ points. Authenticator is the entity which gives the final decision 
-about access. In most cases it is located in the
+Here are  5 scenarios presented for possible location points of AuthN and 
+AuthZ. Authenticator is the entity which gives the final decision 
+about access regardless of location of AA.
+In most cases it is located in the
 local AP, but it can also be external, like in scenario V in 
 table \ref{table-scenarios}, where locations for Authenticator (AA),
 AuthN, and AuthZ are marked as (I) for internal or (E) for external.
@@ -1664,7 +1627,7 @@ information of allowed users from Cloud (BaaS [def.])
 [ Maybe replace BaaS with CLOUD] 
 
 
-[ alt. presentation of flow number I, list ] 
+[ alternative presentation of the flow, list ] 
 
 \begin{enumerate}
 \item The model has been changed in the BaaS (1).
@@ -1684,14 +1647,14 @@ MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if user is both known
 \item CPE receives this ACCEPT or REJECT. If there were other RADIUSes
 between CPE and MNO, they would have acted
 as proxy RADIUS servers.
-\item IF ACCEPTed, then mobile is both authenticated and authorized (8) and
+\item IF ACCEPTed, then the smartphone is both authenticated and authorized (8) and
 can send configuration change message to CPE, which recognizes it
 coming from authentication network.
 \end{enumerate}
 
 
 
-[ alt. presentation of flow number II, paragraph ] 
+[ alternative presentation of flow, textual paragraph. Which one is better? ] 
 
 The model has been changed in the BaaS (1). BaaS send changes to CPE
 (2).  If changes are privileged, they need to be approved by phone
@@ -1700,28 +1663,26 @@ authenticate itself to the management network.  Phone user starts
 authentication process to management network using EAP-SIM and reveals
 its IMSI(4).  CPE (AP) forwards authentication to MNO's RADIUS server
 with RADIUS protocol (5).  MNO have RADIUS server running and it
-authenticates IMSI user with its HLR-AuC (6).  MNO also asks from
-BaaS, whether IMSI user has admin-role (AuthZ). [how long does it take
-to ask?]  MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if
+authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
+BaaS, whether IMSI user has admin-role (AuthZ). 
+MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if
 user is both known AND has admin role or \emph{ACCESS-REJECT} (7).  CPE
 receives this ACCEPT or REJECT. If there were other RADIUSes between
 CPE and MNO, they would have acted as proxy RADIUS servers.  IF
-ACCEPTed, then mobile is both authenticated and authorized (8) and can
+ACCEPTed, then the smartphone is both authenticated and authorized (8) and can
 send configuration change message to CPE, which recognizes it coming
 from authentication network.
 
-While changes has been already sent to CPE direct and only let it
+While changes already have been  sent direct to the CPE and only let it
 wait for approval, then when CPE receives ACCESS-ACCEPT, it could
-already proceed on propagating those
-changes.  Otherwise, after certain timeout, CPE must stop waiting
-for phone's approval and drop changes. [this was the question
-somewhere, ``triggering'']
+proceed on propagating those changes.  Otherwise, after certain timeout, CPE must stop waiting
+for phone's approval and drop changes.
 
 
-This simplification has pitfalls. If mobile stays in management
-network continuously, how are upcoming changes separated? Mobile should
+This simplification has pitfalls. If the smartphone stays in management
+network continuously, how upcoming changes are separated? The smartphone should
 either be dropped out from management network right away after changes or
-after predefined timeout period.  If on the other hand, mobile must
+after predefined timeout period.  If on the other hand, the smartphone must
 send changes itself, then it would be possible that access in the
 management network has short period of time, when phone 
 holds that status or acceptance token. For example for 10 minutes connection
@@ -1755,7 +1716,7 @@ hlr-auc-gateway and AuthZ from BaaS.
 Locally there is a cache for roles in case of network disconnectivity.
 
 Here benefit is, that 3rd party Authentication server may have direct
-contracts to many MNOs, so user does not need to find and choose
+contracts to many alternative MNOs, so user does not need to find and choose
 them. As a bonus,  MNOs already delegate requests to right operator, if
 they happen to get AuthN request which does not belong to them.
 This is similar to federated service.
@@ -1777,9 +1738,9 @@ there should be no problem.
 \label{scenario-iv} 
 
 
-Scenario IV (Figure\texttt{fig:scenario-IV)} is almost like scenario II, but
-AuthZ is always checked from BaaS. If there are no connection to
-cloud, fall-back is to work as II. So also this scenario needs local
+Scenario IV (Figure\ref{fig:scenario-IV}) is similar to scenario I, but
+now AuthZ is checked by CPE instead of MNO from BaaS. If there are no connection to
+cloud, fall-back is to work just like II. So also this scenario needs local
 store for admin IMSIs.
 
 \begin{figure}[htb]
@@ -1833,33 +1794,33 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 Our model would greatly benefit from modification of RADIUS messages in proxying
 RADIUS, if that is possible as was mentioned in Section \ref{sec:radius}(RADIUS).
 The modification is needed when proxying RADIUS combines AuthN message
-from MNO to AuthZ decision from elsewhere.
+from MNO to AuthZ decision received from elsewhere.
 
 
 
 
 
-RFC2865\cite{rfc2865} says, that the forwarding RADIUS proxy may alter the packet
-as it passes it.
-By adding AVPs inside the authorization packet,  we achieve extra
-information about validity of the access request.
 
-Because a change will invalidate the packet's signature, the proxy has to
-re-sign the packet.
 RFC6929\cite{rfc6929} reminds, that even when
-the proxy does not understand all AVPs inside RADIUS message, it
+the proxies do not understand all AVPs inside RADIUS message, they
 must deliver those values and that allows us to use larger set of AVPs 
-than is in any RADIUS server's vocabulary.
+than is in any (proxying) RADIUS server's vocabulary.
+By adding AVPs inside the authorization packet, we achieve extra
+information about validity of the access request.
+RFC2865\cite{rfc2865} says, that the forwarding RADIUS proxy may alter
+the packet as it passes it, but because an alteration would invalidate the
+packet's signature, the proxy has to re-sign the packet.
+
+
 
 
 So at least Proxying RADIUS can insert something, but is that enough?
 If a malicious actor imitates RADIUS Proxy (i.e. Man in the
-middle, MiTM) and tries
-to inject untruthful messages, Message Authenticators might help in detecting
+middle, MiTM) and tries to inject untruthful messages, Message Authenticators might help in detecting
 that. Unfortunately MD5 hashes were first time broken by brute force
 already 20 years ago and today they can only be used as data error
-detection \cite[p.2]{rfc6151}. MD5 can not be thought as computationally secure,
-because duplicate hashes are easy to compute today\cite{xie2013fast}. 
+detection\cite[p.2]{rfc6151}. MD5 can not be thought as
+computationally secure, because duplicate hashes are easy to compute today\cite{xie2013fast}. 
 
 
 
@@ -1875,7 +1836,7 @@ to the router.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{/home/itapuro/gitdocs/di/images/170847.jpg}
-\caption{\label{fig:cisco-802.1x}Cisco's view of 802.1x access control with EAP [To be removed from final]}
+\caption{\label{fig:cisco-802.1x}802.1x access control with EAP [TBD deleted?]. Source Cisco.}
 \end{figure}
 
 
@@ -1886,12 +1847,7 @@ to the router.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{lockandkey.png}
-\caption{\label{eap-sim-testbe}Cisco's view of Lock-and-key access}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width=.9\linewidth]{lockandkey.png}
-\caption{\label{eap-sim-testbe}Cisco's view of Lock-and-key access}
+\caption{\label{fig:lock-and-view}Cisco's view of Lock-and-key access}
 \end{figure}
 
 
@@ -1903,7 +1859,8 @@ access and uses dynamic access list to implement it.
 Difference here is that 802.1X protects access to the network in Layer
 2 while Lock-and-Key needs to have a functional Layer 3 to conduct
 authentication phase.
-Figure\ref{fig:cisco-802.1x} reminds us, how 802.1X works.
+Figure \ref{fig:cisco-802.1x} reminds us again how 802.1X works with respects to
+Lock-and-key in Figure\ref{fig:lock-and-view}.
 
  Smartphone has only limited access to the network before AA
 has completed, while in the Lock-and-key
@@ -1922,7 +1879,7 @@ router.
 
 If Lock-and-key method was used instead of EAP-SIM RADIUS, then
 separate management LAN would not be needed. Roles were given at
-Authentication server or designated router after mobile has done login to it
+Authentication server or designated router after the smartphone has done login to it
 via normal access network.
 
 
@@ -2080,6 +2037,12 @@ Tests were run with a shell program (Appendix \ref{app:fulleap}), which
 started the needed programs. It also recorded the used configurations, logs,
 and traffic captures for later analysis.
 
+[Analyze configuration script here]
+
+scan\_ssid: When set to 1, this will add the SSID to the probe
+requests, in case you're connecting to a hidden network or an AP with
+\uline{multiple} SSIDs.
+
 \section{Disconnecting the local controller and offline changes}
 \label{sec-5-3}
 \label{sec:disconnections}
@@ -2205,14 +2168,14 @@ parts of logs at WPA2-Supplicant, RADIUS server and packet captures
 \end{itemize}
 
 Even when authentication conversation would not complete fully,
-Authenticator still receives identification claim from mobile. Yet, as
+Authenticator still receives identification claim from the smartphone. Yet, as
 there is no AuthN, no proof of identity exists in that case.
 
 IMSI is sent first time already on the second EAP message from 
 WPA2-Supplicant to AP (see Figure\ref{fig:eap-sim-full}, message 2.)
 Same in tests made 150123-155714, source:
 testit/demot/ap-s150123-155714/
-Capture is from the mobile client, when it has received the first EAP
+Capture is from the the smartphone client, when it has received the first EAP
 packet from AP.
 
 \begin{verbatim}
@@ -2344,7 +2307,7 @@ Regarding hardware, costs can mostly be eliminated, while users
 already have smartphones and for infrastructure, existing hardware
 such as APs can be used.
 
-Using SIM to local Wi-Fi AA adds value to mobile ecosystem.
+Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
 To further divide possible costs for EAP-SIM usage
 is difficult.
 EAP-SIM always needs MNO for first authentication,
@@ -2443,7 +2406,7 @@ The
 fault lies there, that GSM specification does not require network to
 authenticate itself to the phone in thus GSM allows man in the middle
 attack device called IMSI-catcher to fake as being a base station.
-When mobile phone tries to attach to a fake base station, it reveals its
+When the smartphone tries to attach to a fake base station, it reveals its
 IMSI number. Further, because the base station is responsible for chosen
 encryption, it can order the phone to not encrypt traffic or to use only
 weak encryption thus revealing all data, calls, and
@@ -2486,7 +2449,7 @@ authentication, then EAP-SIM AuthZ must also be done at HLR AuC.
 AuthZ cannot else be connected to the corresponding
 identity and AuthN itself is not enough because it only defines the users'
 authenticity, not their admin roles and so 
-AuthN should work for any mobile that has existing contract with
+AuthN should work for any  smartphone that has existing contract with
 their MNO. 
 It still is the responsibility of the Authenticator to 
 check AuthZ  and let only admin mobile access the management network.
@@ -2612,47 +2575,55 @@ wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
 
 
-Recall that the management network is needed only then when changes
+Recall that the access to management network from the smartphone is
+ needed only then when changes
 are challenged. Why then not just enable management radio network
-then? Then there were less networks for users to choose from.
-Enabling management network could be programmed through OpenWRT router's 
-lUCI-interface but preliminary tests showed, that it also 
+during those times? Then there were less networks for users to choose from.
+Enabling management network could be programmed through 
+LuCI-interface, which is a web user interface to the Unified
+ Configuration Interface used in OpenWRT routers.
+Preliminary tests showed, that activating new networks in AP also 
 disconnects existing Wi-Fi connections and may even restart AP,
 which certainly would not be wanted. Some other methods need to
-be invented to avoid denial-of service.
+be invented to avoid denial-of service, when intruder tries to 
+connect by that method and causes continuous AP outages.
 
 \label{tag:hidessid}
 One could also think of hiding the network by disabling the
 advertisement of management network SSID. That is called ``network
 cloaking''.  Smartphone would then need to know the exact target SSID name.
-The SSID could also be renamed always, in essence
-to implement one-time-only network, but then the smartphone would
-need to get that secret somewhere, perhaps via an SMS, and then again
-that would defeat the purpose of easy access.
-
 Does disabling or hiding the management network bring real security or
 is it just security by obscurity?  Security by obscurity means here,
-that hiding network would be the only security method.
+that hiding network 
+as a security method would filter out only some casual crackers, while
+at the same time it still is trivial for any serious crackers.
 Disabling or hiding  merely gives one security layer more so it is not
 a real security method.
 
-When the usage here is to always renew SSID name then hiding actually
-could add security. If the client knows beforehand the name of SSID
-(and maybe also AP MAC), then AP does not reveal any information,
+The SSID could also be renamed always, in essence to implement
+one-time-only network, but then the smartphone would need to get that
+secret somewhere, perhaps via an SMS and that would defeat the purpose
+of easy access.  If that method nevertheless would be used, then
+hiding the one-time-only network name actually could add security. 
+If the client knows beforehand the name of SSID
+(and maybe also checks AP's MAC), then AP does not reveal any information,
 before the client has tried to connect to it and that would minimize
-the time window for attacks.  Hiding can also have privacy enhancing
-effects: Lindqvist's study\cite{hidden-wlan} presents usage of hidden
-APs to protect privacy of clients. While Wi-Fi client's normal action is to
-probe for SSIDs of lately learned APs, analyzing those probes can reveal client's
-earlier locations.
+the time window for attacks.
+
+ Hiding can also have privacy enhancing effects.
+While Wi-Fi client's normal action is to probe for SSIDs of lately visited
+and learned APs, analyzing those probes anyone can reveal client's earlier
+locations without further effort.
+Lindqvist's study\cite{hidden-wlan} presents usage of hidden
+APs in protecting privacy of clients and  preventing that scenario.
 
 
 
 Regarding boundaries of homenet, the Wi-Fi coverage gives 
 one natural limit, which is 50 meters indoors or 100 meters outdoors,
-when no extenders (i.e. repeaters) are in use.
-Proximity so brings a minimal extra layer for preventing attacks
-just like network cloaking as the attacker must be physically within those limits.
+when no extenders (i.e. Wi-Fi repeaters) are in use.
+Proximity so brings a minimal extra layer just like network cloaking 
+for preventing attacks, as the attacker must be physically within those limits.
 
 
 This can be considered as an added factor in multifactor
@@ -2777,7 +2748,7 @@ Homenet's future needs, for example  the change of authority and the
 delegation of configuration management have been described.
 A method to approve changes indirectly has been proposed. The approval
 follows from successful authentication and authorization with EAP-SIM
-method by mobile phone and that also sets smartphone to a trust anchor.
+method by the smartphone and that also sets smartphone to a trust anchor.
 
 
 For testing purposes, a real working EAP-SIM test bed with fake credentials and
@@ -2801,7 +2772,7 @@ Software implementation as an application is needed to the smartphone.
 With the proposed technique, provisioning of users at homenets would
 minimize, as users already own an identifiable object, smartphone. As
 a positive side effect, two-factor AuthN strengthens existing security.
-Developing HS2.0 a few steps further would bring mobile phone internet
+Developing HS2.0 a few steps further would bring mobile internet
 off-loading on Wi-Fi networks and that would be the missing link in
 interworking between two worlds.
 
@@ -2845,13 +2816,13 @@ the body text, remember this! ]
 \section{shell, logging options}
 \label{sec-7-1}
 \label{app:fulleap}
-\lstset{columns=fullflexible}
+\lstset{basicstyle=\ttfamily,columns=fixed}
 # % \lstinputlisting[language=bash]
 \lstinputlisting[language=bash]{./testit/apd-tty.clean}
 
 
 
-\section{wpa-supplicant creds}
+\section{wpa-supplicant settings (wpa-simtest-owrt2.conf)}
 \label{sec-7-2}
 [already in text]
 If KEYS have been excluded from log files, there as placeholder stays
