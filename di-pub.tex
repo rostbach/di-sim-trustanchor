@@ -1,4 +1,4 @@
-% Created 2015-08-13 to 14:41
+% Created 2015-08-13 to 16:20
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -417,7 +417,9 @@ and authorization problem.
 One model to solve these problems is to separate the management and
 control function away from the connectivity and routing
 issues. Silverajan et al.\cite{silverajan2015collaborative} proposes
-a model where the management is achieved through a service in a cloud. The
+a model where the management is achieved through a service in a cloud.
+The service if of type Backend as-a-Service (BaaS) which is suited
+well for mobile app usage. The
 configuration model of devices at a home is mirrored to the cloud as a
 resource graph ( Figure x.1 TBD) and changes can be planned ahead at cloud
 and committed (Pushed) later to the home via a local controller point
@@ -858,43 +860,11 @@ Identity hiding: &  &  &  & \\
 \end{table}
 
 
-
-
-
-Unique identifier for SIM is IMSI (International Mobile Subscriber
-Identity, 15 digits long, more familiar user's phone number.
-Important parameters for this work are IMSI, NONCE, and triplet values
-corresponding IMSI (RAND, SRES, Kc).
-
-Sequence diagram of full EAP-SIM authentication between Supplicant (here
-smartphone) and Authenticator (in AP) is shown in
-Figure\ref{fig:eap-sim-full} . 
-There we can see that IMSI is used in message 2. IMSI is the
-identity, which Authentication server would next try to challenge and
-for which the AuthZ would be checked.
-
-
-
-All EAP-SIM derivatives provide mutual authentication.
-An operator is authenticated, when the client challenges it by sending
-a NONCE value during the start of the negotiation phase in the
-message 4. The client later checks in the process 7., whether RAND
-values from the operator were digested with the correct NONCE.
-
-After session has been set, IMSI may be left out and instead a
-temporal IMSI (TMSI) can be used to hide client's identity, for
-example in re-authentication case. It must be noted, that this TMSI
-differs from TMSI used in 3GPP network. Those context must not be
-mixed, otherwise the security that they bring may reduce.
-Unfortunately, IMSI has at that point already been exposed once in
-plain text, namely in message 2.
-
-
-
-
-
-
-
+Bird's eye view to the EAP-SIM messaging between the smartphone, AP,
+Authentication server and MNO is described in Figure\ref{fig:eap-sim-simple}.
+The traffic is EAP on the left, RADIUS  in
+the middle, and the MAP/SS7, which is cellular telephony
+application, on the right.
 
 
 \begin{figure}[htb]
@@ -906,11 +876,47 @@ plain text, namely in message 2.
 
 
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=.9\linewidth]{eap-sim-full.png}
-\caption{\label{fig:eap-sim-full}EAP-SIM authentication sequence diagram, without RADIUS, based on RFC4186}
-\end{figure}
+
+
+Unique identifier for SIM is IMSI (International Mobile Subscriber
+Identity, 15 digits long, more familiar user's phone number.
+Important parameters for this work are IMSI, NONCE, and triplet values
+corresponding IMSI (RAND, SRES, Kc).
+Sequence diagram of full EAP-SIM authentication between Supplicant (here
+smartphone) and Authenticator (in AP) is shown in
+Figure\ref{fig:eap-sim-radius}. 
+There we can see that IMSI is used in message 2. IMSI is the
+identity, which Authentication server would next try to challenge and
+for which the AuthZ would be checked.
+
+
+
+
+
+
+
+All EAP-SIM derivatives provide mutual authentication.
+An operator is authenticated, when the client challenges it by sending
+a NONCE value during the start of the negotiation phase in the
+message 4. The client later checks in the process 7., whether RAND
+values from the operator were digested with the correct NONCE.
+
+After session has been set, IMSI may be left out and a temporal IMSI
+(TMSI) instead can be used to hide client's identity, for example in
+re-authentication case to reduce the risk of exposing the client's
+IMSI unnecessarily. Unfortunately, at that point, IMSI has already
+been exposed once in plain text, namely in message 2.
+It must be noted, that TMSI used here differs from TMSI used in 3GPP
+networks. Those context must not be mixed, otherwise the security that
+they bring may reduce, i.e. one must not use the same TMSI in 3GPP and
+EAP-SIM contexts.
+
+
+
+
+
+
+
 
 
 \begin{figure}[htb]
@@ -1040,14 +1046,12 @@ To use PKI, bootstrapping protocols are first needed for trust
 anchoring and AuthN.  Despite the etymology of name bootstrapping,
 ``Lift oneself by his own bootstraps'', bootstrapping usually needs
 some input from outside.
-For that Behringer's draft\cite{draft-behringer-bootstrap} proposes,
-that first one device is chosen for the trust anchor and trust is
-built upon that anchor. This anchor device then becomes homenet's
-Certificate Authority (CA) service. In the end, rest of the homenet will be
-imported into homenet through CA, which returns their certificate
-requests signed.
-
-
+For that, draft from Behringer\cite{draft-behringer-bootstrap} proposes,
+that one device is first chosen as a trust anchor and trust is
+built upon that anchor. This anchored device then becomes homenet's
+Certificate Authority (CA) service. In the end, the rest of the homenet 
+devices need to apply for certificates from that CA to get under same
+trust circle.
 Key creation, key exchange and their usage is explained in similar
 draft from Pritikin\cite{draft-pritikin-bootstrap}. There is also discussion about using
 manufacturer provided device certificates as trust anchor.  
@@ -1055,8 +1059,8 @@ manufacturer provided device certificates as trust anchor.
 
 
 This model could also be expanded to a full ticket enabled
-Kerberos-style network, where time-limited tickets (tokens) exist for
-both authentication and authorization for different services. Trusted
+Kerberos style network, where time-limited tickets (tokens) for
+both authentication and authorization exist for different services. Trusted
 Third Party authentication center would be setup with the help of MNO.
 One service would then authenticate an entity, here smartphone, and
 give it a time-limited ticket as a proof that the entity has been authenticated.
@@ -1077,14 +1081,16 @@ For example,
 it is desirable, that changes in homenet are done only through
 local controller, not at local device because of
 synchronization issues, even 
-if synchronizing algorithms such as Trickle\cite{rfc6206} are used in
-homenet for code propagation. Configuration also includes configuring
-power level setting of devices to save electricity based on usage
+if synchronizing algorithms such as Trickle\cite{rfc6206} were used in
+homenet for configuration propagation. As another example,
+configuration also includes
+power level settings of devices to save electricity based on usage
 profile. For example at nights or when there is nobody home, some
-devices do not need to be working at their maximum capacity. Instead,
-we study interface of AAs.  Main points here are an existing
+devices do not need to be working at their maximum capacity. 
+
+Instead, we study interfaces of AA.  Main points here are an existing
 infrastructure (phones, internet access, Wi-Fi access points),  a strong
-authentication (two-factor), and existing authentication methods
+authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 \section{Centralization trends in management}
 \label{sec-3-2}
@@ -1099,7 +1105,7 @@ and so incompatible with each other to fully benefit from
 centralization. 
 
 To help moving the management to a more centralized
-model, smartphone is set here as a central managing local
+model, the home network will see smartphone a central managing local
 controller.
 Usually, home users already have a phone, which can be considered as
 `smart'. Most smartphones have Wi-Fi capabilities and writing programs
@@ -1124,17 +1130,18 @@ and resolve the work-flow of change management.
 
 
 This chapter describes, how the change management can flow after the
-home network has received a trust anchor.  Before fully explaining our
-chosen method, we introduce some alternative approaches for a trust
-anchor, which is part of bootstrapping.  Bootstrapping is needed
-because although the smartphone and MNO already trust each other, the
-trust between the smartphone and AP, and thus the management network
-at home, is not yet clear in the beginning.
+home network has received a trust anchor in the smartphone.  Before
+fully explaining our chosen method, we introduce some alternative
+approaches for a trust anchor, which is part of bootstrapping.
+Bootstrapping is needed because although the smartphone and MNO
+already trust each other, the trust between the smartphone and AP, and
+thus the management network at home, is not yet clear in the
+beginning.
 
 On its simplest, the smartphone connects with a Wi-Fi link to an
-access point (AP) in the home network and authenticates with SIM-card.
+AP in the home network and authenticates with SIM-card.
 That brings a trust relationship between smartphone (local controller)
-and home network (managed devices) and configuration changes can
+and home network (managed devices) so that the configuration changes can
 happen as long as the smartphone is present.
 
 \section{Alternative methods for introducing trust anchor into the homenet}
@@ -1920,7 +1927,7 @@ device. On this work, it is assumed that the local controller (smart
 phone) only \emph{approves} changes,
 and delivers them to \emph{one, central CPE}, 
 which handles distribution of changes to other CPEs.
-Furthermore, the Authenticator is presented as the access point and
+Furthermore, the Authenticator is presented as the AP and
 RADIUS client (in scenarios I-V), which receives RADIUS messages from
 Authentication server, even when there would be a separate local RADIUS server
 running as a proxy.
@@ -1982,7 +1989,7 @@ The version used in the tests was 2.2, while version
 2.4 was published on March 2015.
 
 For a more realistic test, OpenWRT AP is used instead of \emph{hostapd}'s
-access point and \emph{hostapd} provides only RADIUS server.
+AP and \emph{hostapd} provides only RADIUS server.
 OpenWRT AP works as a RADIUS client connecting to RADIUS server. 
 It will not try to open EAP-messages or need
 to know about them; it just encapsulates them into RADIUS packet.
@@ -2172,7 +2179,7 @@ Authenticator still receives identification claim from the smartphone. Yet, as
 there is no AuthN, no proof of identity exists in that case.
 
 IMSI is sent first time already on the second EAP message from 
-WPA2-Supplicant to AP (see Figure\ref{fig:eap-sim-full}, message 2.)
+WPA2-Supplicant to AP (see Figure\ref{fig:eap-sim-radius}, message 2.)
 Same in tests made 150123-155714, source:
 testit/demot/ap-s150123-155714/
 Capture is from the the smartphone client, when it has received the first EAP
@@ -2289,7 +2296,7 @@ profiles  Different SSID makes that separation possible.
 \label{sec-6-2}
 Local tests, with software back ends need less than 20ms for one EAP-RADIUS message
 exchange between peers. There will be added time needed to scan Wi-Fi
-network for correct access point and SIM card's computing
+network for correct AP and SIM card's computing
 time.
  [Take reference on network authentication part on earlier
 tests. Timeout was 3 seconds for that part.]
