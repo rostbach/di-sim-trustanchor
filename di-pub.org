@@ -120,8 +120,11 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 % Do not include charts or tables in the abstract.
 
 
-Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device.
-If that is done remotely, those requirements need adjustment.
+Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. 
+Today, home networks have become more complex and home owner 
+does not necessarily want to administer all aspects of it.
+If configuration is out-sourced to external parties and 
+done remotely, those requirements need adjustment.
 Access to the end device must be provided from outside. Login credentials must be shared to operator and trustful operator must be hired to make configuration changes.
 
  provided to  and  be configured remotely, if one has by different means but usually one needs 
