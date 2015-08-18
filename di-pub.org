@@ -520,8 +520,8 @@ home network.
 
 Any encryption between devices needs trusted key exchange beforehand,
 and finding and establishing trust is needed for that.  That is called
-the key distribution problem. Public keys solve key exchange part, but
-only partially, because the trust must still be found somewhere.
+the key distribution problem. Public and privat keys solve the key exchange part, but
+only partially, because the trust still must be found somewhere.
 Above mentioned cloud solution for delegated home network
 management currently has preliminary authentication and access model
 using pre-defined credentials and SSH-connection from the local
