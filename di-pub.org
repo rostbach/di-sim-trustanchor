@@ -125,14 +125,11 @@ Configuring home network devices does not differ much from configuring enterpris
 If configuration is out-sourced to external parties and 
 done remotely, those requirements need adjustment.
 Access to the end device must be provided from outside. Login credentials must be shared to operator and trustful operator must be hired to make configuration changes.
-
+For that,  some beforehand set provisioning and distribution of authentication % keys is needed.
 % provided to  and  be configured remotely, if one has by
 % different  means but usually one needs 
-% to have some knowledge how to login to those devices. For that, 
-% some beforehand set provisioning and distribution of authentication % keys is needed.
-
-As there already exists an infrastructure within mobile phone subscribers,
-that is used in the study as a trusted base.
+% to have some knowledge how to login to those devices. 
+As there already exists an infrastructure within mobile phone subscribers, that is used in the study as a trusted base.
 % To benefit from mobile identification
 To benefit from mobile identification it is shown how
 %It is discussed and shown how mobile authentication 
