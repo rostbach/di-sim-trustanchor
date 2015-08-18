@@ -1,4 +1,4 @@
-% Created 2015-08-18 ti 18:04
+% Created 2015-08-18 ti 18:39
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -140,30 +140,21 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,\ldots{}
 [what was the problem, what was done, and what are the results. ]
 % Do not include charts or tables in the abstract.
 
-
-Home network devices can be configured by different means but usually one needs 
-to have some knowledge how to login to those devices. For that, 
-some beforehand set provisioning and distribution of authentication keys is needed.
-
-As there already exists an infrastructure within mobile phone subscribers,
-that is used in the study as a trusted base.
-% To benefit from mobile identification
+Today, home networks have become more complex and home owner 
+does not necessarily want to administer all aspects of it.
+Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If configuration is out-sourced to external parties and 
+done remotely, those requirements need adjustment.
+Access to the end device must be provided from outside. Login credentials must be shared to operator and trustful operator must be hired to make configuration changes.
+For that,  some beforehand set provisioning and distribution of authentication keys is needed.
+As there already exists an infrastructure within mobile phone subscribers, that is used in the study as a trusted base.
 To benefit from mobile identification it is shown how
-%It is discussed and shown how mobile authentication 
-%it is done using extendable authentication profile (EAP) with SIM-card. 
- authentication  is done using extendable authentication profile (EAP) with SIM-card
+authentication is done using extendable authentication profile (EAP) with SIM-card
 and authorization checked with RADIUS protocol.
-
-
-
-
 A theory, how SIM-authentication works is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
 As a result it is shown, that SIM authentication's benefits are strong
 authentication and existing user-base, while its disadvantages include
-dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications. 
-% [or: balancing the re-authentication]
-
+dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications. % [or: balancing the re-authentication]
 Principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA2 enterprise has been chosen, which includes RADIUS environment.
 To further avoid complexity and granularity, we
@@ -463,8 +454,8 @@ home network.
 
 Any encryption between devices needs trusted key exchange beforehand,
 and finding and establishing trust is needed for that.  That is called
-the key distribution problem. Public keys solve key exchange part, but
-only partially, because the trust must still be found somewhere.
+the key distribution problem. Public and privat keys solve the key exchange part, but
+only partially, because the trust still must be found somewhere.
 Above mentioned cloud solution for delegated home network
 management currently has preliminary authentication and access model
 using pre-defined credentials and SSH-connection from the local
@@ -483,13 +474,6 @@ before delegation in the cloud can happen.
 
 
 
-
-One motivator to this work is to find why SIM-based methods are not in
-wider use.  The technology has been there for more than ten years and
-the hardware and the applications mostly support it, but it still is
-not yet widely used. What prevents us using the SIM?
-
-
 The trust can be derived from the facts that already are known.  The
 place, where a trust is not anymore derived or built upon other fact
 but assumed to be present, is called a trust anchor.  
@@ -501,6 +485,13 @@ secret keys inside the smart card's Subscriber Identify Module (SIM),
 which then would function as a trust anchor. To generally find
 ultimate trust it is only needed to verify trust chains until the
 chain reaches a trust anchor.
+
+
+One motivator to this work is to find why SIM-based methods are not in
+wider use.  The technology has been there for more than ten years and
+the hardware and the applications mostly support it, but it still is
+not yet widely used. What prevents us using the SIM?
+
 
 
 Human aspect and usability are important, although the focus will
@@ -530,10 +521,9 @@ thesis.
 \chapter{Authentication, Authorization, and Trust}
 \label{sec-2}
 
-[TBD 4) Feature comparison, eg role-based access, time-based access
+[TBD? 4) Feature comparison, eg role-based access, time-based access
 etc]
 
-[TBD 5) GBA and Security bootstrapping]
 
 Authentication, authorization, and accounting services (AAA) are
 components for access management.  AAA-protocols do not dictate
