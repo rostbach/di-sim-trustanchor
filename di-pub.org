@@ -120,7 +120,13 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 % Do not include charts or tables in the abstract.
 
 
-Home network devices can be configured by different means but usually one needs 
+Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device.
+If that is done remotely, those requirements need adjustment.
+Access 
+Credentials: provision of credentials 
+Knowledge: hire a service person.
+
+ provided to  and  be configured remotely, if one has by different means but usually one needs 
 to have some knowledge how to login to those devices. For that, 
 some beforehand set provisioning and distribution of authentication keys is needed.
 
