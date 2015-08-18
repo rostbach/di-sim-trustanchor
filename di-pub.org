@@ -626,7 +626,7 @@ thesis.
 # 1.5) wireless (Authenticator, Authentication server, supplicant)
 # + 2) RADIUS, diameter, (tacacs+)
 # + 3) SIM-based authentication
-[TBD 4) Feature comparison, eg role-based access, time-based access
+[TBD? 4) Feature comparison, eg role-based access, time-based access
 etc]
 
 # [TBD 5) GBA and Security bootstrapping]
