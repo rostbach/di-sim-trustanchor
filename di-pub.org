@@ -550,15 +550,6 @@ before delegation in the cloud can happen.
 # older smart cards and USIM with SIM-application running inside USIM
 # card on newer smart cards.
 
-# Rationale:
-# Motivation factors to this work is 
-
-One motivator to this work is to find why SIM-based methods are not in
-wider use.  The technology has been there for more than ten years and
-the hardware and the applications mostly support it, but it still is
-not yet widely used. What prevents us using the SIM?
-
-
 The trust can be derived from the facts that already are known.  The
 place, where a trust is not anymore derived or built upon other fact
 but assumed to be present, is called a trust anchor.  
@@ -570,6 +561,15 @@ secret keys inside the smart card's Subscriber Identify Module (SIM),
 which then would function as a trust anchor. To generally find
 ultimate trust it is only needed to verify trust chains until the
 chain reaches a trust anchor.
+
+# Rationale:
+# Motivation factors to this work is 
+
+One motivator to this work is to find why SIM-based methods are not in
+wider use.  The technology has been there for more than ten years and
+the hardware and the applications mostly support it, but it still is
+not yet widely used. What prevents us using the SIM?
+
 
 
 Human aspect and usability are important, although the focus will
@@ -629,7 +629,7 @@ thesis.
 [TBD 4) Feature comparison, eg role-based access, time-based access
 etc]
 
-[TBD 5) GBA and Security bootstrapping]
+# [TBD 5) GBA and Security bootstrapping]
 
 Authentication, authorization, and accounting services (AAA) are
 components for access management.  AAA-protocols do not dictate
