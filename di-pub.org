@@ -131,9 +131,10 @@ For that,  some beforehand set provisioning and distribution of authentication %
 % to have some knowledge how to login to those devices. 
 As there already exists an infrastructure within mobile phone subscribers, that is used in the study as a trusted base.
 % To benefit from mobile identification
-To benefit from mobile identification it is shown how
 %It is discussed and shown how mobile authentication 
-%it is done using extendable authentication profile (EAP) with SIM-card. 
+%it is done using extendable authentication profile (EAP)
+% with SIM-card. 
+To benefit from mobile identification it is shown how
  authentication  is done using extendable authentication profile (EAP) with SIM-card
 and authorization checked with RADIUS protocol.
 
