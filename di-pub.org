@@ -141,8 +141,7 @@ A theory, how SIM-authentication works is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
 As a result it is shown, that SIM authentication's benefits are strong
 authentication and existing user-base, while its disadvantages include
-dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications. 
-% [or: balancing the re-authentication]
+dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications. % [or: balancing the re-authentication]
 Principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA2 enterprise has been chosen, which includes RADIUS environment.
 To further avoid complexity and granularity, we
