@@ -1362,8 +1362,8 @@ to homenets and will include areas for home members, guests,
 and management. Lastly, end-to-end access, is in their
 agenda. End-to-End access, i.e., restriction-free access was the key
 element for the Internet's success and it enabled many new
-applications, but has then suffered from misbehaving programs and
-internet citizens.
+applications in the past, but has then had difficulties because of
+firewalls and NATs.
 
 
 # Home Network consists of devices and their interconnects in home. There
