@@ -135,7 +135,7 @@ As there already exists an infrastructure within mobile phone subscribers, that 
 %it is done using extendable authentication profile (EAP)
 % with SIM-card. 
 To benefit from mobile identification it is shown how
- authentication  is done using extendable authentication profile (EAP) with SIM-card
+authentication is done using extendable authentication profile (EAP) with SIM-card
 and authorization checked with RADIUS protocol.
 
 
