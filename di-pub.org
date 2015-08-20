@@ -922,7 +922,7 @@ a composition of digits belonging to Mobile Country Code(MCC, 2
 digits), Mobile Network Code(MNC,2-3 digits) and Mobile Subscriber
 Identification Number(MSIN, 10 digits at most).
 More familiar, it is the user's phone number.
-# 
+[ More detailed SIM architecture? Java Card, CPU,?]
 
 
 SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
