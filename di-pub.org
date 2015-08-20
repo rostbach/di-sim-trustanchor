@@ -1169,7 +1169,7 @@ correct NONCE.
 
 After session has been set, IMSI may be left out and a temporal IMSI
 (TMSI) can be used instead to hide client's identity, for example in
-re-authentication case to reduce the risk of exposing the client's
+fast re-authentication case to reduce the risk of exposing the client's
 IMSI unnecessarily. Unfortunately, at that point, IMSI has already
 been exposed once in plain text, namely in message 2.
 It must be noted, that TMSI used here differs from TMSI used in 3GPP
@@ -2126,7 +2126,7 @@ configuration changes.
 The Local RADIUS (if existing) has trails of successful
 authentication and knows which IMSI has successfully authenticated in
 the home net. It also knows mapping between IMSI and temporal IMSI for
-cases where the smartphone later would need  re-authentication.
+cases where the smartphone later would need re-authentication.
 
 
 
