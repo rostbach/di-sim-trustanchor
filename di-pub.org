@@ -1036,7 +1036,7 @@ In many parts, SIM variants in EAP are simpler, than other EAP
 variants to mobile client.  Table[[table-peapsim]] compares the setup of Wi-Fi
 in clients of one existing organization compared to EAP-SIM. It
 is noteworthy, that plain EAP-SIM will not support identity hiding and
-that will be later be discussed further. If we added PEAP
+that will be later discussed further. If we added PEAP
 also to EAP-SIM (in last column of Table[[table-peapsim]]), comparison would be more fair.
 # . [combine this to identity privacy text].  
 As can be seen from the table, leaving certificates out from the environment
