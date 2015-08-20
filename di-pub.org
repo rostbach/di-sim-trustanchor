@@ -972,7 +972,7 @@ It is a challenge-response method and similar to AuthN used in GSM,
 but adds mutual AuthN, i.e., also the network is authenticated.
 # before smartphone sends its first identification message.
 Network authentication is achieved, if 
-network is able to response correctly to a client sent nonce,
+network is able to correctly respond to a client sent nonce,
 #  when client sends a nonce, 
 which by definition is a value used only once. The nonce can
 be thought as  client's challenge to network.
