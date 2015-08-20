@@ -1162,9 +1162,10 @@ All EAP-SIM derivatives provide mutual authentication.
 #  using a NONCE value.
 # in message 4, that would not be possible.
 An operator is authenticated, when the client challenges it by sending
-a NONCE value during the start of the negotiation phase in the
-message 4. The client later checks in the process 7., whether RAND
-values from the operator were digested with the correct NONCE.
+a NONCE value during the start of the negotiation phase in the message
+4 (Figure[[fig:eap-sim-radius]]). The client later checks in the process
+7., whether RAND values from the operator were digested with the
+correct NONCE.
 
 After session has been set, IMSI may be left out and instead a temporal IMSI
 (TMSI) can be used to hide client's identity, for example in
