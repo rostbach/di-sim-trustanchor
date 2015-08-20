@@ -1315,7 +1315,7 @@ Secure network configuration and credential exchange is then possible.
 As mentioned earlier, the SIM and MNO trust each other hence mutual
 authentication between them is possible and that is later shown to be
 an important factor.  
-Key distribution problem mentioned in Chapter[[cha:intro]] is solved
+Also the key distribution problem mentioned in Chapter[[cha:intro]] is  solved
 already at SIM-card distribution phase. 
 
 Now, how this trust could be used to include other components under
