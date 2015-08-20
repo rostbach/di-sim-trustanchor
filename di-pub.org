@@ -933,7 +933,7 @@ application Mobiilivarmenne, they may have different keys and codes.
 
 MNO distributes SIM card and provides mobile network connectivity to
 its customer.  The secret keys are used for authenticating the IMSI
-to MNO which enables MNOs to identify their customer in the network
+to MNO and that enables MNOs to identify their customer in the network
 and charge them correspondingly. It is assumed, that SIM card represent
 its owner but in reality nothing prevents an identity thief to steal
 someone's SIM card. Although 4-digit PIN tries to prevent the usage of 
