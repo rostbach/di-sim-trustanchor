@@ -2696,7 +2696,6 @@ file:~/gitdocs/di/images/170847.jpg
 #+LABEL: fig:lock-and-view
 #+RESULTS:
 [[file:lockandkey.png]]
-file:lockandkey.png
 
 
 # source: [[http://www.cisco.com/c/dam/en/us/td/i/100001-200000/170001-180000/170001-171000/170847.ps/_jcr_content/renditions/170847.jpg]]
