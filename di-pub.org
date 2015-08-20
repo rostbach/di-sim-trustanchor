@@ -1176,6 +1176,7 @@ It must be noted, that TMSI used here differs from TMSI used in 3GPP
 networks. Those context must not be mixed, otherwise the security that
 they bring may reduce, i.e. one must not use the TMSI received from
 3GPP as TMSI in EAP-SIM.
+
 TMSI is composed of pseudonym and realm part and can be a
 string. So, one can send 
 =my-string-which-can-change@…operator.domain= instead of 
