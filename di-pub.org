@@ -925,10 +925,11 @@ More familiar, it is the user's phone number.
 # 
 
 
-  SIM card usage can be controlled by two passwords: PIN and PUK.  PUK is used as a
-remedy, if PIN has been inserted wrong too many times.  If the card
-has other applications, for example mobile electrical signature
-application Mobiilivarmenne, they may have different keys and codes.
+SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
+is used as a remedy, if PIN has been inserted wrong too many times.
+If the card has other applications, for example mobile electrical
+signature application Mobiilivarmenne, they may have different keys
+and codes.
 
 
 MNO distributes SIM card and provides mobile network connectivity to
