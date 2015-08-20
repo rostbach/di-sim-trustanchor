@@ -3436,7 +3436,7 @@ itself needs a lot of space.
 Currently, as of 9.8.2015, Freeradius is running on version 3 and
 EAP-AKA is supported through a module from hostapd project.
 COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
-algorithms, is  supported\cite{freeradius2}, and so is EAP-SIM.
+algorithms, is  supported\cite{freeradius2}, and so EAP-SIM is available.
 Yet, Freeradius can be used as Authentication Center (AuC).
 Diameter (freeDiameter) can be compiled in OpenWRT. That is good,
 because on 3GPP networks Diameter protocol has more support than RADIUS.
