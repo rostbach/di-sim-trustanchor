@@ -3499,7 +3499,7 @@ The
 fault lies there, that GSM specification does not require the mobile network to
 authenticate itself to the phone and thus GSM allows man in the middle
 attack device called IMSI-catcher to fake as being a base station.
-When the smartphone tries to attach to a fake base station, it reveals its
+When the smartphone tries to attach to a fake base station, the smartphone reveals its
 IMSI number. Further, because the base station is responsible for chosen
 encryption, it can order the phone to not encrypt traffic or to use only
 weak encryption thus revealing all data, calls, and
