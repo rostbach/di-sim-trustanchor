@@ -853,7 +853,7 @@ into air. In wired net those EAP messages are translated and encapsulated into R
 The encapsulation is described in Figure[[fig:eap-layers]] where it
 can be seen, that EAP messaging happens logically between the EAP peer
 and the
-Authentication server, but on a lower transport layer there is an EAP
+Authentication server. On a lower transport layer there is an EAP
 Authenticator in between them, which transfers EAPOL messaging into
 RADIUS message.
 
