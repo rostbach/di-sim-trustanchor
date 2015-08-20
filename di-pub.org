@@ -1323,7 +1323,7 @@ same trust circle in the home network?  As AuthN-AuthZ at home proceeds
 through Authenticator, maybe Authenticator can deliver this
 information further and use it as a derivation function to extend
 trust.
-# explain this
+# explain this....[TBD]
 
 EAP-SIM derivatives provide strong AuthN which means here two-factor
 AuthN. Software certificates, while stronger than regular passwords,
