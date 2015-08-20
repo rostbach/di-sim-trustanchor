@@ -833,7 +833,7 @@ complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 Instead of bringing new AuthN methods into 802.1X, it was 
 extended with a modular framework called 
  EAP (Extensible Authentication Protocol)\cite{rfc5247}. 
-Ramification of using EAP is considered good among researchers, as it
+Justification of using EAP is considered good among researchers, as it
 provides flexibility, indepence of underlying technology, whether
 wireless or wired,  and integration with AAA infrastructures, although
 it adds some amount of time for authentication.\cite{pereniguez10}.
