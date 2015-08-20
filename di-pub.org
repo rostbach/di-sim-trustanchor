@@ -3295,8 +3295,8 @@ WPA2 mode to WPA2-enterprise, IP-address of RADIUS server providing
 AA, and corresponding shared secret.
 For client, Wi-Fi profile must be added: used management SSID,
 protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
-Smartphone modifications can exist together with other
-profiles  Different SSID makes that separation possible.
+Smartphone can have different profiles, also with under same SSID, but
+then user need to choose manually, which profile he wanted to use.
 # settings=EAP, subtype of EAP=SIM, username from SIM-card.
 
 ** Estimating time to authenticate EAP-SIM
