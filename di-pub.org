@@ -1012,7 +1012,8 @@ Otherwise the protocol messaging is same as in  GSM-SIM, only algorithms differ.
 #             EAP-request/AKA-Challenge. Values SQN and AMF from SIM
 #             used for that. Incrementing SQN values eliminates replay
 #             attacks.  This is not tested here.
-Last, there exists EAP-AKA' that enhances AKA by including Service Set name (SSID) 
+Last, there exists EAP-AKA' that enhances AKA by including Service Set
+Identifier (SSID) 
 in the key derivation function, which limits the possibility of using possibly
 compromised network's nodes and keys. 
 
