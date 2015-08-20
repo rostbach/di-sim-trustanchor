@@ -887,7 +887,7 @@ RADIUS message.
 [[file:eap-layer.png]]
 
 
-Further, EAP is used to transfer authentication messages only.
+Further, EAP is used to transfer AuthN messages only.
 # , which happen between the Supplicant and the Authentication Server.
 It does not include AuthZ information, which is RADIUS's
 responsibility or session keys, which are negotiated by WPA2.  In the
