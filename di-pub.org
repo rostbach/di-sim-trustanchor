@@ -1117,7 +1117,7 @@ application, on the right.
       |                  |                          | compare Response |
       |                  |                          | with  SRES       |
       |                  |                          +-----+------------+
-      |                  |RADIUS(Access--Accept or --Deny) | 
+      |                  |RADIUS(Access--Accept or --Deny)| 
       |                  |<-------------------------------+
       |<-----------------+                                |
       |                  |                                |
