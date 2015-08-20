@@ -3432,7 +3432,7 @@ but that does not yet include RADIUS server part or EAP-SIM handling.
 
 Software has other limitations. Freeradius2 is not yet included  in OpenWRT.
 and if it were, it would also be based heavily on current Perl environment which
-itself may be a space hog. 
+itself needs a lot of space.
 Currently, as of 9.8.2015, Freeradius is running on version 3 and
 EAP-AKA is supported through a module from hostapd project.
 COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
