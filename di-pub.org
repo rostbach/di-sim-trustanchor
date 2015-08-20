@@ -3496,8 +3496,8 @@ catching is a concept of listening radio network for phones that are
 powered on and register themselves to operator via GSM network.  
 
 The
-fault lies there, that GSM specification does not require network to
-authenticate itself to the phone in thus GSM allows man in the middle
+fault lies there, that GSM specification does not require the mobile network to
+authenticate itself to the phone and thus GSM allows man in the middle
 attack device called IMSI-catcher to fake as being a base station.
 When the smartphone tries to attach to a fake base station, it reveals its
 IMSI number. Further, because the base station is responsible for chosen
@@ -3516,7 +3516,7 @@ If SIM is used as the only EAP without EAP-PEAP, then
 there is no mitigation for revealing the IMSI on the first message
 and it leads to privacy issue.
 
-Most(if not all) EAP methods do not provide identity protection
+Most  EAP methods do not provide identity protection
 themselves. Protected versions
 # EAP methods do not provide identity protection. Protection
 use separate  inner and outer identities and that can be achieved with
