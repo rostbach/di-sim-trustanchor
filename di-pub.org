@@ -889,8 +889,8 @@ RADIUS message.
 
 Further, EAP is used to transfer AuthN messages only.
 # , which happen between the Supplicant and the Authentication Server.
-It does not include AuthZ information, which is RADIUS's
-responsibility or session keys, which are negotiated by WPA2.  In the
+It included neither AuthZ information, which is RADIUS's
+responsibility nor session keys, which are negotiated by WPA2.  In the
 end (not shown in the Figure[[fig:eap-layers]]) of EAP messaging,
 Authenticator is responsible for opening access for EAP peer as 802.1x
 dictates.
