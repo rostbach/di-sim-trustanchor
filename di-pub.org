@@ -947,7 +947,7 @@ to open access to mobile networks.
 # From that point, a trust can be chained all the way to the access decision point. 
 # The trust entity endpoint is called a trust anchor.
 # MNO and SIM trust mutually each other.
-There is still need for separate access credentials for Wi-Fi access
+Separate access credentials for Wi-Fi access were still needed
 and that was the reason of developing EAP-SIM and later the
 derivatives EAP-AKA and EAP-AKA'.  The goal was to combine in a secure
 way existing keys used in  GSM (Global system for Mobile communication)
