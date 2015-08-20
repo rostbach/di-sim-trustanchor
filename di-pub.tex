@@ -1,4 +1,4 @@
-% Created 2015-08-18 ti 19:50
+% Created 2015-08-20 to 12:13
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -464,8 +464,8 @@ targets\cite[Chap.4]{silverajan2015collaborative}.
 That does not yet handle the bootstrap of the infrastructure
 i.e. the first trust is thought as given. 
 
-The smartphone with its SIM card and an existing key infrastructure to mobile
-network operator would later eliminate the requirement for an
+The smartphone with its Subscriber Identity Module (later SIM) and an existing key infrastructure to mobile
+network operator (MNO) would later eliminate the requirement for an
 additional credential distribution and that issue is studied in this
 thesis.  Although the smartphone provides alternative authentication
 method with its SIM key, usual methods to authenticate still are plain
@@ -651,7 +651,7 @@ Wireless protected access (WPA or WPA2) protects traffic in wireless,
 shared media, where everyone otherwise can simple listen all the radio traffic.
 It enables both authenticated access and message
 encryption between the smartphone and wireless access point (AP) by negotiating session keys
-after 802.1X has opened the virtual port in AP for the smartphone.
+after 802.1X has opened the virtual port in AP for the Supplicant.
 
 WPA (version 1)  was an early subset of then upcoming 802.11i standard,
 while WPA2 is the full implementation, also noted as IEEE
@@ -686,8 +686,8 @@ individual client revocation &  & x\\
 Instead of bringing new AuthN methods into 802.1X, it was 
 extended with a modular framework called 
  EAP (Extensible Authentication Protocol)\cite{rfc5247}. 
-Ramification of using EAP is considered good among researchers, as it
-provides flexibility, indepence of underlying technology, whether
+Researchers justify using EAP, as it
+provides flexibility independent from underlying technology, whether
 wireless or wired,  and integration with AAA infrastructures, although
 it adds some amount of time for authentication.\cite{pereniguez10}.
 Different authentication methods, for example hashed passwords, TLS
@@ -700,12 +700,12 @@ EAP describes only the messaging form, so EAP messages needs to
 be encapsulated inside another protocol.  In Wi-Fi, between a smartphone
 and an AP, EAP is encapsulated into 802.1X protocol (as EAPOL) or
 into protected EAP(PEAP)\cite{peap} before sending
-into air. In wired net EAP messages are encapsulated into RADIUS.
+into air. In wired net those EAP messages are translated and encapsulated into RADIUS.
 
 The encapsulation is described in Figure\ref{fig:eap-layers} where it
 can be seen, that EAP messaging happens logically between the EAP peer
 and the
-Authentication server, but on a lower transport layer there is an EAP
+Authentication server. On a lower transport layer there is an EAP
 Authenticator in between them, which transfers EAPOL messaging into
 RADIUS message.
 
@@ -720,11 +720,11 @@ RADIUS message.
 \end{figure}
 
 
-Further, EAP is used to transfer authentication messages only.
-It does not include AuthZ information, which is RADIUS's
-responsibility or session keys, which are negotiated by WPA2.  In the
-end (not shown in the Figure\ref{fig:eap-layers}) of EAP messaging,
-Authenticator is responsible for opening access for EAP peer as 802.1x
+Further, EAP is used to transfer AuthN messages only.
+It included neither AuthZ information, which is RADIUS's
+responsibility nor session keys, which are negotiated by WPA2.  In the
+end,
+the Authenticator is the responsible for opening access for EAP peer as 802.1x
 dictates.
 
 
@@ -733,7 +733,7 @@ dictates.
 \label{sec-2-5}
 \label{sec:sim-based-auth}
 SIM associates a physical card used in smartphones to
-a subscriber of the mobile network operator.
+a subscriber of the Mobile Network Operator (MNO).
 SIM here means the secret keys and the application in mobile phone's
 SIM or USIM inside UICC(Universal Integrated Circuit Card).
 The secret keys are hardware protected and only usable to applications
@@ -747,15 +747,16 @@ Identification Number(MSIN, 10 digits at most).
 More familiar, it is the user's phone number.
 
 
-  SIM card usage can be controlled by two passwords: PIN and PUK.  PUK is used as a
-remedy, if PIN has been inserted wrong too many times.  If the card
-has other applications, for example mobile electrical signature
-application Mobiilivarmenne, they may have different keys and codes.
+SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
+is used as a remedy, if PIN has been inserted wrong too many times.
+If the card has other applications, for example mobile electrical
+signature application Mobiilivarmenne, they may have different keys
+and codes.
 
 
 MNO distributes SIM card and provides mobile network connectivity to
 its customer.  The secret keys are used for authenticating the IMSI
-to MNO which enables MNO's to identify their customer in the network
+to MNO and that enables MNOs to identify their customer in the network
 and charge them correspondingly. It is assumed, that SIM card represent
 its owner but in reality nothing prevents an identity thief to steal
 someone's SIM card. Although 4-digit PIN tries to prevent the usage of 
@@ -1224,7 +1225,7 @@ by limiting which tele operators are allowed to connect.
 
 European Telecommunications Standards Institute (ETSI) defined a
 standard for mobile signature services (MSS) in ETSI TS 102 204.
-MNO's in Finland have implemented this as a 
+MNOs in Finland have implemented this as a 
 service called ``Mobiilivarmenne``. 
 For example, MNO Sonera's brand for  it is ``Sonera ID'' while MNO Elisa calls it
 ``Elisa Mobiilivarmenne''.
@@ -1479,7 +1480,7 @@ provisioning parameters, not all end devices support them.
 In the first prototype it is enough to identify authorized
 smartphone's SIM.  Smartphone holding the SIM is granted the access to
 the parts of the management network and is authenticated strong.  User
-management is outsourced to Mobile Network Operator(MNO), which
+management is outsourced to MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
 located on diverse place, as can be seen in xxx
