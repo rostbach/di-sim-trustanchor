@@ -3420,8 +3420,8 @@ because a file backend was used instead of a SIM card.
 # (source t.j.c peremen (Jan 27 '14)"
 
 
-If OpenWRT platform  is used for CPE, one problem there is the size of
-memory which can be less than 32 MBytes.
+If OpenWRT platform  is used for CPE, the memory size (32MB) restricts some
+use.
 # - OpenWRT is environment for embedded system.
 #   When software is not fully optimized, memory is one of the limits which come first.
 WPA2 software included in basic OpenWRT installation is small,
