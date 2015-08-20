@@ -526,7 +526,7 @@ targets\cite[Chap.4]{silverajan2015collaborative}.
 That does not yet handle the bootstrap of the infrastructure
 i.e. the first trust is thought as given. 
 
-The smartphone with its SIM card and an existing key infrastructure to mobile
+The smartphone with its Subscriber Identity Module (later SIM) and an existing key infrastructure to mobile
 network operator would later eliminate the requirement for an
 additional credential distribution and that issue is studied in this
 thesis.  Although the smartphone provides alternative authentication
