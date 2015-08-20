@@ -3495,21 +3495,28 @@ This can be compared to regular GSM network identity revealing: IMSI
 catching is a concept of listening radio network for phones that are
 powered on and register themselves to operator via GSM network.  
 
-The
-fault lies there, that GSM specification does not require the mobile network to
-authenticate itself to the phone and thus GSM allows man in the middle
-attack device called IMSI-catcher to fake as being a base station.
-When the smartphone tries to attach to a fake base station, the smartphone reveals its
-IMSI number. Further, because the base station is responsible for chosen
-encryption, it can order the phone to not encrypt traffic or to use only
-weak encryption thus revealing all data, calls, and
-texts. Mitigation for IMSI-catching would be to
-disable GSM (2G) usage altogether from phone if that is possible.\cite{imsi-heise}.
+The fault lies there, that GSM specification does not require the
+mobile network to authenticate itself to the phone and so GSM allows
+man in the middle attack device called IMSI-catcher to fake as being a
+base station.  When the smartphone tries to attach to a fake base
+station, the smartphone reveals its IMSI number. Further, because the
+base station is responsible for chosen encryption, the base station
+can order the phone to not encrypt traffic at all or to use only weak
+encryption thus revealing all data, calls, and texts. Mitigation for
+IMSI-catching would be to disable GSM (2G) usage altogether from phone
+if that is possible.\cite{imsi-heise}.
 
 After first full authentication, client and Authenticator 
 know TMSI and can use it in further communication: Authenticator 
 is responsible to convert TMSI to IMSI if it later needs to 
 ask for full authentication from the MNO.
+
+#+begin_src ditaa :file imsi-tmsi..png :cmdline -E -r -s 2
+
+   Mobile        AP
+    IMSI +----->+
+    
+    TMSI <===> 
 
 
 If SIM is used as the only EAP without EAP-PEAP, then 
