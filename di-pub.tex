@@ -1,4 +1,4 @@
-% Created 2015-08-20 to 12:40
+% Created 2015-08-20 to 12:53
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -778,7 +778,7 @@ EAP-AKA'(AKA-PRIME).
 EAP-SIM is the original type created for GSM networks and defined 
 in RFC4186\cite{rfc4186}.
 It is a challenge-response method and similar to AuthN used in GSM, 
-but adds mutual AuthN, i.e., also the network is authenticated.
+but it adds mutual AuthN, i.e., also the network is authenticated.
 Network authentication is achieved, if 
 network is able to correctly respond to a client sent nonce,
 which by definition is a value used only once. The nonce can
@@ -796,7 +796,8 @@ It differs from EAP-SIM by using additionally parameters such as
 sequence numbering from MNO to protect replay attacks. 
 Additionally, digests use SHA-256 function instead of SHA-1.\cite{rfc5448}.
 Otherwise the protocol messaging is same as in  GSM-SIM, only algorithms differ.
-Last, there exists EAP-AKA' that enhances AKA by including Service Set name (SSID) 
+Last, there exists EAP-AKA' that enhances AKA by including Service Set
+Identifier (SSID) 
 in the key derivation function, which limits the possibility of using possibly
 compromised network's nodes and keys. 
 
@@ -818,7 +819,7 @@ In many parts, SIM variants in EAP are simpler, than other EAP
 variants to mobile client.  Table\ref{table-peapsim} compares the setup of Wi-Fi
 in clients of one existing organization compared to EAP-SIM. It
 is noteworthy, that plain EAP-SIM will not support identity hiding and
-that will be later be discussed further. If we added PEAP
+that will be later discussed further. If we added PEAP
 also to EAP-SIM (in last column of Table\ref{table-peapsim}), comparison would be more fair.
 As can be seen from the table, leaving certificates out from the environment
 makes client setup easier with the price of revealing smartphone user's
