@@ -1,4 +1,4 @@
-% Created 2015-08-20 to 13:00
+% Created 2015-08-20 to 13:05
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -897,12 +897,13 @@ for which the AuthZ would be checked.
 
 All EAP-SIM derivatives provide mutual authentication.
 An operator is authenticated, when the client challenges it by sending
-a NONCE value during the start of the negotiation phase in the
-message 4. The client later checks in the process 7., whether RAND
-values from the operator were digested with the correct NONCE.
+a NONCE value during the start of the negotiation phase in the message
+4 (Figure\ref{fig:eap-sim-radius}). The client later checks in the process
+7, whether RAND values from the operator were digested with the
+correct NONCE.
 
-After session has been set, IMSI may be left out and instead a temporal IMSI
-(TMSI) can be used to hide client's identity, for example in
+After session has been set, IMSI may be left out and a temporal IMSI
+(TMSI) can be used instead to hide client's identity, for example in
 re-authentication case to reduce the risk of exposing the client's
 IMSI unnecessarily. Unfortunately, at that point, IMSI has already
 been exposed once in plain text, namely in message 2.
@@ -910,6 +911,7 @@ It must be noted, that TMSI used here differs from TMSI used in 3GPP
 networks. Those context must not be mixed, otherwise the security that
 they bring may reduce, i.e. one must not use the TMSI received from
 3GPP as TMSI in EAP-SIM.
+
 TMSI is composed of pseudonym and realm part and can be a
 string. So, one can send 
 \texttt{my-string-which-can-change@…operator.domain} instead of 
