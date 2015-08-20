@@ -1365,7 +1365,7 @@ planning future home networks.
 Segmenting home in multiple subnets will also belong
 to homenets and will include areas for home members, guests,
 and management. Lastly, end-to-end access, is in their
-agenda. End-to-End access, i.e., restriction-free access was the key
+agenda. End-to-end access, i.e., restriction-free access was the key
 element for the Internet's success and it enabled many new
 applications in the past, but has then had difficulties because of
 firewalls and NATs.
