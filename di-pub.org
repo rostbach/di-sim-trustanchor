@@ -1324,6 +1324,7 @@ deliver this information further and use it as a derivation function
 to extend trust.
 # explain this....[TBD]
 
+*** to somewhere else, is not trust property
 EAP-SIM derivatives provide strong AuthN which means here two-factor
 AuthN. Software certificates, while stronger than regular passwords,
 on the other hand do not possess the properties /non-copiable/ or
