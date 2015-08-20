@@ -3490,9 +3490,7 @@ eavesdroppers.
 Recall from Section [[sec:sim-based-auth]], that IMSI is sent in clear 
 during the start phase of 802.1X authentication and that is a privacy 
 issue, because TMSI, which hides IMSI cannot be used before a session
-has been set
- up.\cite[p.66]{rfc4186}.
-
+has been set up.\cite[p.66]{rfc4186}.
 This can be compared to regular GSM network identity revealing: IMSI
 catching is a concept of listening radio network for phones that are
 powered on and register themselves to operator via GSM network.  
