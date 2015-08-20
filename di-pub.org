@@ -3513,10 +3513,28 @@ ask for full authentication from the MNO.
 
 #+begin_src ditaa :file imsi-tmsi.png :cmdline -E -r -s 2
 
-   Mobile        AP
-    IMSI +----->+
-    
-    TMSI <===> 
+       Mobile        AP     Auth server
+         | IMSI      |       |
+         +---------->+ IMSI  |
+         |           +------>+
+         |           |       |
+         |           | TMSI  |
+         |  TMSI     +<------+
+         +<----------+ 
+         |           |
+         |           |
+TMSI change?+------->+
+         |           |
+         new TMSI    |
+         +<----------+
+         |           |
+         |           |
+TMSI change?+------—>+
+         |           |
+    yet another TMSI |
+         +<----------+
+                   
+   
 #+end_src
 #+CAPTION: Using TMSI 
 #+NAME:   fig:tmsi
