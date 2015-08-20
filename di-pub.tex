@@ -1,4 +1,4 @@
-% Created 2015-08-20 to 13:09
+% Created 2015-08-20 to 13:28
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -956,18 +956,19 @@ authenticate each other, secret communication is possible.
 Secure network configuration and credential exchange is then possible.
 
 
-As mentioned earlier, the SIM and MNO trust each other hence mutual
-authentication between them is possible and that is later shown to be
-an important factor.  
-Key distribution problem mentioned in Chapter\ref{cha:intro} is solved
-already at SIM-card distribution phase. 
 
 Now, how this trust could be used to include other components under
-same trust circle in the home network?  As AuthN-AuthZ at home proceeds
-through Authenticator, maybe Authenticator can deliver this
-information further and use it as a derivation function to extend
-trust.
+same trust circle in the home network? As mentioned earlier, the SIM
+and MNO trust each other hence mutual authentication between them is
+possible and that is later shown to be an important factor.  Also the
+key distribution problem mentioned in Chapter\ref{cha:intro} is solved
+already at SIM-card distribution phase.  As AuthN-AuthZ at home
+proceeds through the Authenticator, maybe the Authenticator can
+deliver this information further and use it as a derivation function
+to extend trust.
 
+\subsection{to somewhere else, is not trust property}
+\label{sec-2-6-1}
 EAP-SIM derivatives provide strong AuthN which means here two-factor
 AuthN. Software certificates, while stronger than regular passwords,
 on the other hand do not possess the properties \emph{non-copiable} or
