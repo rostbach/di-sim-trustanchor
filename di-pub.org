@@ -1438,7 +1438,7 @@ external configuration even with the proposed automation aids.
 # draft-behringer-bootstrap \cite{draft-behringer-bootstrap} where 
 # Authentication (may) need some # bootstrapping of trust for start.
 
-Homenet WG proposes the use of Public Key Infrastructure (PKI) at the
+Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
 home. The public key cryptography is processor intensive and its
 asymmetric keys are usually used just in the beginning of
 communication. There they can be used to securely negotiate symmetric
