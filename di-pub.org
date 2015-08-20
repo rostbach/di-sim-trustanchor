@@ -834,7 +834,7 @@ Instead of bringing new AuthN methods into 802.1X, it was
 extended with a modular framework called 
  EAP (Extensible Authentication Protocol)\cite{rfc5247}. 
 Researchers justify using EAP, as it
-provides flexibility, indepence of underlying technology, whether
+provides flexibility independent from underlying technology, whether
 wireless or wired,  and integration with AAA infrastructures, although
 it adds some amount of time for authentication.\cite{pereniguez10}.
 # re-auth method to solve "amount of time" problem
