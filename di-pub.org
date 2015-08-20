@@ -3511,13 +3511,17 @@ know TMSI and can use it in further communication: Authenticator
 is responsible to convert TMSI to IMSI if it later needs to 
 ask for full authentication from the MNO.
 
-#+begin_src ditaa :file imsi-tmsi..png :cmdline -E -r -s 2
+#+begin_src ditaa :file imsi-tmsi.png :cmdline -E -r -s 2
 
    Mobile        AP
     IMSI +----->+
     
     TMSI <===> 
-
+#+end_src
+#+CAPTION: Using TMSI 
+#+NAME:   fig:tmsi
+#+RESULTS:
+[[file:imsi-tmsi.png]]
 
 If SIM is used as the only EAP without EAP-PEAP, then 
 there is no mitigation for revealing the IMSI on the first message
