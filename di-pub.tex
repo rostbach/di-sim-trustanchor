@@ -1,4 +1,4 @@
-% Created 2015-08-20 to 14:34
+% Created 2015-08-20 to 14:40
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2344,29 +2344,29 @@ EAP-SIM (and -AKA) methods starts in Android only from version 4.x and in
 iOS from version 5.x.\cite{sim-support}.
 
 
-Generally, what is  needed to bring EAP-SIM support to open source
-smartphone is \emph{pcsc-lite} for accessing SIM card, wpa\_supplicant for
-wpa client, and possible used connection manager (\emph{connman} or
-\emph{wicd}). This is in line, what was done in testing without pcsc-lite,
+Generally, to support EAP-SIM  with open source software in 
+smartphone is \emph{pcsc-lite} for accessing SIM card, \emph{wpa\_supplicant} for
+WPA2 client, and possible used connection manager (\emph{connman} or
+\emph{wicd}). This is in line, what was done in testing without \emph{pcsc-lite},
 because a file backend was used instead of a SIM card.
 
 
 
 
 
-If OpenWRT platform  is used for CPE, one problem there is the size of
-memory which can be less than 32 MBytes.
+If OpenWRT platform  is used for CPE, the memory size (32MB) restricts some
+use.
 WPA2 software included in basic OpenWRT installation is small,
 but that does not yet include RADIUS server part or EAP-SIM handling.
 
 
-Software has other limitations. Freeradius2 is not included yet in OpenWRT.
-It would also be based heavily on current Perl environment which
-itself may be a space hog. 
+Software has other limitations. Freeradius2 is not yet included  in OpenWRT.
+and if it were, it would also be based heavily on current Perl environment which
+itself needs a lot of space.
 Currently, as of 9.8.2015, Freeradius is running on version 3 and
 EAP-AKA is supported through a module from hostapd project.
 COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
-algorithms, is  supported\cite{freeradius2}, and so EAP-SIM.
+algorithms, is  supported\cite{freeradius2}, and so EAP-SIM is available.
 Yet, Freeradius can be used as Authentication Center (AuC).
 Diameter (freeDiameter) can be compiled in OpenWRT. That is good,
 because on 3GPP networks Diameter protocol has more support than RADIUS.
