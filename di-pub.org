@@ -4048,7 +4048,7 @@ dynamically more attributes and access rights.
 
 [compare with future usage, such as embedded SIMs, and past technology 
 failures WiMax, which had no technical problems, but wifi and good
-cellular networks overtook it]
+cellular networks overtook it.]
 One motivator to this work is to find why SIM-based methods are not in
 wider use.  The technology has been there for more than ten years and
 the hardware and the applications mostly support it, but it still is
