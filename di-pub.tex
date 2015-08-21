@@ -1,4 +1,4 @@
-% Created 2015-08-20 to 14:40
+% Created 2015-08-21 pe 11:21
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -323,7 +323,7 @@ authorization) decision for client based on local and remote
 claims, part of 802.1X standard.
 \end{description}
 \begin{description}
-\item[{mobile-operator}] knows connection between SIM-owner and SIM
+\item[{mobile-operator}] MNO, knows connection between SIM-owner and SIM
 \end{description}
 \begin{description}
 \item[{proxying RADIUS}] RADIUS server standing between RADIUS
@@ -378,8 +378,8 @@ home network.
 The configuration choices in networking devices takes some
 amount of expertise what is not necessarily present at every
 home. There could exist a market for an external consultant service, which would
-remotely operate the home network.
-Remote operation eliminates consultant's 
+remotely manage the home network.
+Remote management eliminates consultant's 
 physical precence at home and so reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and disconnections.
 Persons, who are allowed to make configuration changes, are today
@@ -487,10 +487,6 @@ ultimate trust it is only needed to verify trust chains until the
 chain reaches a trust anchor.
 
 
-One motivator to this work is to find why SIM-based methods are not in
-wider use.  The technology has been there for more than ten years and
-the hardware and the applications mostly support it, but it still is
-not yet widely used. What prevents us using the SIM?
 
 
 
@@ -745,6 +741,7 @@ a composition of digits belonging to Mobile Country Code(MCC, 2
 digits), Mobile Network Code(MNC,2-3 digits) and Mobile Subscriber
 Identification Number(MSIN, 10 digits at most).
 More familiar, it is the user's phone number.
+[ More detailed SIM architecture? Java Card, CPU,?]
 
 
 SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
@@ -904,7 +901,7 @@ correct NONCE.
 
 After session has been set, IMSI may be left out and a temporal IMSI
 (TMSI) can be used instead to hide client's identity, for example in
-re-authentication case to reduce the risk of exposing the client's
+fast re-authentication case to reduce the risk of exposing the client's
 IMSI unnecessarily. Unfortunately, at that point, IMSI has already
 been exposed once in plain text, namely in message 2.
 It must be noted, that TMSI used here differs from TMSI used in 3GPP
@@ -1497,7 +1494,7 @@ configuration changes.
 The Local RADIUS (if existing) has trails of successful
 authentication and knows which IMSI has successfully authenticated in
 the home net. It also knows mapping between IMSI and temporal IMSI for
-cases where the smartphone later would need  re-authentication.
+cases where the smartphone later would need re-authentication.
 
 
 
@@ -2280,7 +2277,7 @@ protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
 Smartphone can have different profiles, also with under same SSID, but
 then user need to choose manually, which profile he wanted to use.
 
-\section{Estimating time to authenticate EAP-SIM}
+\section{Estimating time to authenticate EAP-SIM [TO BE REMOVED]}
 \label{sec-6-2}
 Local tests, with software back ends need less than 20ms for one EAP-RADIUS message
 exchange between peers. There will be added time needed to scan Wi-Fi
@@ -2392,35 +2389,38 @@ eavesdroppers.
 Recall from Section \ref{sec:sim-based-auth}, that IMSI is sent in clear 
 during the start phase of 802.1X authentication and that is a privacy 
 issue, because TMSI, which hides IMSI cannot be used before a session
-has been set
- up.\cite[p.66]{rfc4186}.
-
+has been set up.\cite[p.66]{rfc4186}.
 This can be compared to regular GSM network identity revealing: IMSI
 catching is a concept of listening radio network for phones that are
 powered on and register themselves to operator via GSM network.  
 
-The
-fault lies there, that GSM specification does not require network to
-authenticate itself to the phone in thus GSM allows man in the middle
-attack device called IMSI-catcher to fake as being a base station.
-When the smartphone tries to attach to a fake base station, it reveals its
-IMSI number. Further, because the base station is responsible for chosen
-encryption, it can order the phone to not encrypt traffic or to use only
-weak encryption thus revealing all data, calls, and
-texts. Mitigation for IMSI-catching would be to
-disable GSM (2G) usage altogether from phone if that is possible.\cite{imsi-heise}.
+The fault lies there, that GSM specification does not require the
+mobile network to authenticate itself to the phone and so GSM allows
+man in the middle attack device called IMSI-catcher to fake as being a
+base station.  When the smartphone tries to attach to a fake base
+station, the smartphone reveals its IMSI number. Further, because the
+base station is responsible for chosen encryption, the base station
+can order the phone to not encrypt traffic at all or to use only weak
+encryption thus revealing all data, calls, and texts. Mitigation for
+IMSI-catching would be to disable GSM (2G) usage altogether from phone
+if that is possible.\cite{imsi-heise}.
 
 After first full authentication, client and Authenticator 
 know TMSI and can use it in further communication: Authenticator 
 is responsible to convert TMSI to IMSI if it later needs to 
 ask for full authentication from the MNO.
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{imsi-tmsi.png}
+\caption{\label{fig:tmsi}Using TMSI}
+\end{figure}
 
 If SIM is used as the only EAP without EAP-PEAP, then 
 there is no mitigation for revealing the IMSI on the first message
 and it leads to privacy issue.
 
-Most(if not all) EAP methods do not provide identity protection
+Most  EAP methods do not provide identity protection
 themselves. Protected versions
 use separate  inner and outer identities and that can be achieved with
 PEAP (Protected  EAP) or TTLS, which chains different EAP-methods together and
@@ -2735,6 +2735,14 @@ There pre-existing binding between user and SIM card is carried out
 already. 
 It also can mean later identifying users and giving them 
 dynamically more attributes and access rights.
+
+[compare with future usage, such as embedded SIMs, and past technology 
+failures WiMax, which had no technical problems, but wifi and good
+cellular networks overtook it.]
+One motivator to this work is to find why SIM-based methods are not in
+wider use.  The technology has been there for more than ten years and
+the hardware and the applications mostly support it, but it still is
+not yet widely used. What prevents us using the SIM?
 
 
 \chapter{Conclusion}
