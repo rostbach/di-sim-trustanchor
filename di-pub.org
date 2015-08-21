@@ -383,12 +383,12 @@ home network.
 The configuration choices in networking devices takes some
 amount of expertise what is not necessarily present at every
 home. There could exist a market for an external consultant service, which would
-remotely operate the home network.
+remotely manage the home network.
 # 4. authentication part, who is authorized, how it is done today, why
 # that is problem? 
 # 5. exporting managing, i.e., delegated configuration
 # physical presence
-Remote operation eliminates consultant's 
+Remote management eliminates consultant's 
 physical precence at home and so reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and disconnections.
 Persons, who are allowed to make configuration changes, are today
@@ -556,10 +556,6 @@ chain reaches a trust anchor.
 # Rationale:
 # Motivation factors to this work is 
 
-One motivator to this work is to find why SIM-based methods are not in
-wider use.  The technology has been there for more than ten years and
-the hardware and the applications mostly support it, but it still is
-not yet widely used. What prevents us using the SIM?
 
 
 
@@ -593,6 +589,7 @@ operator involved.  Those experiments are described in Chapter
 # Security analysis is
 Results are discussed on Chapter [[#cha:discussion]] and Chapter [[#cha:conclusion]] concludes the
 thesis.
+
 
 
 
@@ -3299,7 +3296,7 @@ Smartphone can have different profiles, also with under same SSID, but
 then user need to choose manually, which profile he wanted to use.
 # settings=EAP, subtype of EAP=SIM, username from SIM-card.
 
-** Estimating time to authenticate EAP-SIM
+** Estimating time to authenticate EAP-SIM [TO BE REMOVED]
 Local tests, with software back ends need less than 20ms for one EAP-RADIUS message
 exchange between peers. There will be added time needed to scan Wi-Fi
 network for correct AP and SIM card's computing
@@ -4048,6 +4045,14 @@ dynamically more attributes and access rights.
 # - [Each component does only limited part of the job.]
 # - EAP does only AuthN, not AuthZ 
 # - [It is difficult to have control over one's own SIM card ]
+
+[compare with future usage, such as embedded SIMs, and past technology 
+failures WiMax, which had no technical problems, but wifi and good
+cellular networks overtook it]
+One motivator to this work is to find why SIM-based methods are not in
+wider use.  The technology has been there for more than ten years and
+the hardware and the applications mostly support it, but it still is
+not yet widely used. What prevents us using the SIM?
 
 
 
