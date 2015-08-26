@@ -2022,8 +2022,10 @@ There is also a segment for devices management.
 An analogy to the real world would be public access corridors and doors for
 customers separate from privileged doors for service personnel.
 
-Access to the network segments is checked in routers with access control lists
-(ACL), where decision is made based on current configuration or user's
+
+Routers control access to the segments with aid of 
+# Access to the network segments is checked in routers with
+access control lists (ACL), where decision is made based on current configuration or user's
 role.  Once user has been authorized into management network, access
 stays open for him, at least for a (predefined) limited time.
 
