@@ -1090,7 +1090,8 @@ identity.
 Bird's eye view to the EAP-SIM messaging between the smartphone, AP,
 Authentication server and MNO is described in Figure[[fig:eap-sim-simple]].
 The traffic is EAP on the left, RADIUS  in
-the middle, and MAP/SS7, which is cellular telephony
+the middle, and MAP/SS7, which is an application running over signaling system used in cellular networks,
+telephony connections
 application, on the right.
 
 
@@ -3314,20 +3315,19 @@ against malicious use anymore.
 # 150123-155706 alkaa 2 identityllä
 [see. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
 
-Meanwhile, HLR simulator has been started to listen requests from EAP-handler 
-through local socket.
+Meanwhile, HLR simulator was listening requests from Authentication
+server's internal EAP-handler through a local socket.
 # #+LATEX: \scriptsize
 #  #+BEGIN_EXAMPLE
 # Listening for requests on /tmp/hlr_auc_gw.sock
 # #+END_EXAMPLE
 # #+LATEX: \normalsize
-It receives from internal EAP-handler the AuthN request
-(SIM-REQ-AUTH), which in production version would go to real HLR-AuC.
-In the message is included the IMSI and parameter "3", which 
-indicates, that requester wants three triplets. One triplet equals one
-64-bit key used for challenges, so three will make
-the key 192 bit long. [theoretically.. see the article smwhere].
-Format of triplet received is RAND:SRES:Kc.
+The AuthN request (SIM-REQ-AUTH), which in production version would go
+to real HLR-AuC, included the IMSI and parameter
+"3", which indicates, that the requester wants three triplets. 
+While one triplet would equal 64-bit key used for challenges, three
+triplets will make the key 192 bit long. [theoretically.. see the
+article smwhere].  Format of triplet received is RAND:SRES:Kc.
 
 #+LATEX: \scriptsize
 #+BEGIN_EXAMPLE
@@ -3381,7 +3381,7 @@ While no service yet exists from MNOs, we estimate their costs based on
 Mobiilivarmenne. Using Mobiilivarmenne 
 is currently free for clients, if usage is personal, but costs
 for service providers are unknown. 
-Regarding hardware, costs can mostly be eliminated, while users
+Hardware costs can mostly be eliminated, while users
 already have smartphones and for infrastructure, existing hardware
 such as APs can be used.
 # - Hardware. Phones included.
@@ -3711,7 +3711,10 @@ If PEAP is used, it handles integrity through its usage of
  TLS\cite{peap}.
 Above mentioned RadSec allows other digesting functions than MD5 such
 as SHA and is open for negotiating more secure ciphersuites that later
-versions of TLS might in the future require\cite{rfc6614}.
+versions of TLS might in the future require\cite{rfc6614}. This is
+even more important, as it already has been noted in 2005, that SHA1 can be
+broken
+
 # is supplicant--AP traffic EAPOl or EAP over TLS?
 
 # - identification ::  separates different users and makes  claim about users identity
@@ -4070,9 +4073,9 @@ re-authentication is used.
 ** Discussion
 
 [don't jump in with so short flash messages. This looks like conclusion.] 
-The environment is modern complex home network management.
-Configuration management tools are 
-external in the cloud. Trust between home network and cloud is searched.
+The environment descried is a modern complex home network management, whose configuration
+management tools are external in the cloud. Trust issues between the
+home network and the cloud is searched.
 Smartphone lies in the intersection of both domains 
 and possess properties to simplify binding of that trust.
 SIM card of smartphone, used together with Wi-Fi access to home network 
@@ -4086,10 +4089,9 @@ later it can use local point. AuthZ may be located more freely.
 # RADIUS protocol is here not used for 
 # allowing user into service, which is the traditional way to use
 # RADIUS, but opening access to separated network. 
-RADIUS directs user into own virtual LAN segment (VLAN),
-and there management of home network devices is allowed.
-That procedure activates the management port as 802.1X standard
-specifies.
+802.1X standard activates the management port and
+RADIUS directs smartphone traffic into own virtual LAN segment (VLAN),
+where management of home network devices is allowed.
 # Similar use case is traditional separate user to own network segment
 # based on RADIUS message.
 # is used to open management port. 
@@ -4115,25 +4117,30 @@ and so some methods has been presented to add right role to
 authenticated identity.
 
 There are many attributes in RADIUS vocabulary, which could be 
-used to carry extra information in AuthZ phase. Exactly what 
-of them is used remains to implementer's  decision.
+used to carry extra information in AuthZ phase. Exactly which
+of them are used remains to implementer's  decision.
 
-Regarding provisioning, it can mean adding users to home with correct
+# jump to term "provisioning"
+Term /provisioning/ can mean adding users to home network with correct
 attributes including authentication method and identification.
-There pre-existing binding between user and SIM card is carried out
-already. 
-It also can mean later identifying users and giving them 
+The binding between user and SIM card is pre-existing.
+It also can mean identifying users later and giving them 
 dynamically more attributes and access rights.
 # - [Each component does only limited part of the job.]
-# - EAP does only AuthN, not AuthZ 
 # - [It is difficult to have control over one's own SIM card ]
 
 [compare with future usage, such as embedded SIMs, and past technology 
 failures WiMax, which had no technical problems, but wifi and good
 cellular networks overtook it.]
-One motivator to this work is to find why SIM-based methods are not in
-wider use.  The technology has been there for more than ten years and
-the hardware and the applications mostly support it, but it still is
+# One question rose during this work is to find 
+
+Although the core technology has been there for more than ten years and
+the hardware and the applications mostly support it, 
+There can be many reasons why SIM-based methods are not in wider use. 
+They may be the similar to WiMax technologies, that  reasons could
+be studied further. Are they the same than were for example 
+
+but it still is
 not yet widely used. What prevents us using the SIM?
 
 
