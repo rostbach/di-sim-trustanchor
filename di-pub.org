@@ -1090,9 +1090,8 @@ identity.
 Bird's eye view to the EAP-SIM messaging between the smartphone, AP,
 Authentication server and MNO is described in Figure[[fig:eap-sim-simple]].
 The traffic is EAP on the left, RADIUS  in
-the middle, and MAP/SS7, which is an application running over signaling system used in cellular networks,
-telephony connections
-application, on the right.
+the middle, and MAP/SS7, which is an mobile connection  application running over signaling system used in cellular networks,
+on the right.
 
 
 #+begin_src ditaa :file eap-sim-simple.png :cmdline -E -r -s 4
