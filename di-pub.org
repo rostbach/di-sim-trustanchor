@@ -4328,6 +4328,8 @@ essid="simtest"
 - RFC6677: Channel-Binding Support for Extensible Authentication Protocol (EAP)
 - channel binding must be used 
 
+** SS7 flaws
+
 ** eap-psk rfc4764.txt
 - other limitations than identity protection are password support and Perfect Forward Secrecy (PFS).
 - eap-psk
