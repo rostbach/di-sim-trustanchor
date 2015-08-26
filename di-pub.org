@@ -4329,7 +4329,9 @@ essid="simtest"
 - channel binding must be used 
 
 ** SS7 flaws
-
+German researchers discover a flaw that could let anyone listen to
+your cell calls 
+Washigtonpost.com 2014/12/18
 ** eap-psk rfc4764.txt
 - other limitations than identity protection are password support and Perfect Forward Secrecy (PFS).
 - eap-psk
