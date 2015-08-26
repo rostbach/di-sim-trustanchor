@@ -1923,6 +1923,42 @@ whether mobile SIM has been given access to management network.
 CPE wants to verify, if the changes are authorized. They are, if currently
 smartphone user is logged in management network, i.e. management is allowed.
 
+# In production, some changes in cloud are propagated to home network via
+# management network without need for extra authentication phase.  
+
+In production, some changes in local controller are propagated to home network
+via management network without need for an extra authentication phase.
+The local controller does not interact there. An example of change is
+a modification in network segment, which does not change network topology of other domains.
+# Cha 4. last Section, "Lastly, variation of design is, that not
+# every change needs to go
+Those changes or alternatively changes that do need authorization
+should be enumerated, which ever would be smaller set.  
+# Q:Why enumeration needed? Why smaller set? 
+# A: To explicit tell, when authorization is needed and rest can be
+# left out. Alternatively, if free changes are only minimal (what are
+# those? Invent. 
+# I) Case: segment (device) owner makes modification inside own domain. No need
+# to ask authentication from Network owner.
+# II) CasE: segment owner wants to modify network topology change,
+# which would add network segment belonging to someone else.
+# )In our case the latter is smaller.
+# Q: if almost every change needs to have authentication, then 
+# free changes
+# - enumeration ::  complete, ordered listing of all the items in a
+#  collection.
+
+In our model, only initial bootstrap needs the authentication with
+smartphone as well as change of admin roles and some dangerous
+combination of commands.
+
+[ sync. part to misc Section ?]
+
+
+
+
+
+
 Alternative method is that the changes could be marked some way, so that they need
 approving and then there could be a specific change-approval message,
 which must be sent through management network, perhaps including digest
@@ -1975,12 +2011,14 @@ possible 3G data link still may stay operational.
 ** Chosen design and why (Rationale)
 <<sec:chosendesign>>   
 # segments
-Network can be divided into separate segments. 
-First, there is normal access network which provides
-connectivity. Second, there is network through which devices are
-managed, so each device need to have at least two connections: one for
-access and one for management. It is not defined, if those connections
-are physical or virtual (VLAN, Virtual LAN). 
+Network can be divided into separate segments based on user role and
+needs, such as guest or home members segment. The segments provide
+base connectivity layer and simple separation. Different
+services, like disk storage, can force their own policy on application
+level.
+It is not defined, if the segmentation is made 
+physical or virtual (VLAN, Virtual LAN). 
+There is also a segment for devices management. 
 An analogy to the real world would be public access corridors and doors for
 customers separate from privileged doors for service personnel.
 
@@ -2021,37 +2059,6 @@ inside networks.
 # it plays no role, where traffic comes,  from inside or outside 
 # organization, it is always checked and authenticated.
 # [;login; 2014 Dec. Vol. 39, No. 6(2014), pp. 6-11].
-
-# In production, some changes in cloud are propagated to home network via
-# management network without need for extra authentication phase.  
-
-In production, some changes in local controller are propagated to home network
-via management network without need for an extra authentication phase.
-The local controller does not interact there. An example of change is
-a modification in network segment, which does not change network topology of other domains.
-# Cha 4. last Section, "Lastly, variation of design is, that not
-# every change needs to go
-Those changes or alternatively changes that do need authorization
-should be enumerated, which ever would be smaller set.  
-# Q:Why enumeration needed? Why smaller set? 
-# A: To explicit tell, when authorization is needed and rest can be
-# left out. Alternatively, if free changes are only minimal (what are
-# those? Invent. 
-# I) Case: segment (device) owner makes modification inside own domain. No need
-# to ask authentication from Network owner.
-# II) CasE: segment owner wants to modify network topology change,
-# which would add network segment belonging to someone else.
-# )In our case the latter is smaller.
-# Q: if almost every change needs to have authentication, then 
-# free changes
-# - enumeration ::  complete, ordered listing of all the items in a
-#  collection.
-
-In our model, only initial bootstrap needs the authentication with
-smartphone as well as change of admin roles and some dangerous
-combination of commands.
-
-[ sync. part to misc Section ?]
 
 
 
