@@ -4,8 +4,8 @@ My master of science thesis
 Source is made with emacs org-mode and exported to
 LaTeX, but don't worry, it is readable on any editor!
 org-mode just helps me on organizing stuff.
-Pictures are made with ditaa(in java), rendered pictures 
-and pdf are included.
+Pictures are made with ditaa(in ASCII) and rendered with Java.
+Rendered pictures and pdfs are included.
 
 # Commenting
 
