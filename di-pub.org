@@ -352,14 +352,14 @@ Teemu Teekkari
 
 Managing computer and network devices can be hard.  Modern homes have
 become similar to small offices regarding the equipment present there.
-Earlier it was sufficient to make just minimal settings at home to a
+Earlier, it was sufficient to make just minimal settings at home to a
 modem (cable, phone or radio) and connect it to the home computer to
-get a fully working home network with internet connectivity.  Now home
-network has expanded with countless devices available.  Already
-entertainment centers (AV-amplifiers, media players, gameconsoles),
+get a fully working home network with internet connectivity.  Now, home
+network has expanded with countless devices available. 
+Entertainment centers (AV-amplifiers, media players, game consoles),
 manageable network devices (switches/routers), and mobile phones
-present new devices and network segments beside computers and
-printers. Sensors and controller devices from Internet of Things
+represent new devices and network segments beside computers and
+printers. Sensors and controller devices from the Internet of Things
 domain bring their own increment to the device count at home.
 # Configuration of the devices 
 # connecting is not difficult, managing is 
@@ -371,48 +371,55 @@ There might be separate areas in homes that have different needs regarding
 connectivity, resources, and access. Not only that, but devices in
 separate segments might not belong to the home owner anymore, hence needing
 # 2.Home network can be divided to multiple segments that each have
-their own administrative parties. For example an electricity company may
+their own administrative parties. For example, an electricity company may
 have a sensor and controller network, which physically uses the home network, but
-logical is separated from other parts of home network. It is then
+is logically separated from the other parts of the home network. It is therefore
 important to keep track of who is allowed to access which part of the
 home network. 
 
 
 #  even at home.
 # 3. Something about knowledge, who knows how to configure.
-The configuration choices in networking devices takes some
-amount of expertise what is not necessarily present at every
+The configuration choices in networking devices take some
+amount of expertise that is not necessarily present at every
 home. There could exist a market for an external consultant service, which would
 remotely manage the home network.
 # 4. authentication part, who is authorized, how it is done today, why
 # that is problem? 
 # 5. exporting managing, i.e., delegated configuration
 # physical presence
-Remote management eliminates consultant's 
+Remote management eliminates the consultant's 
 physical precence at home and so reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and disconnections.
-Persons, who are allowed to make configuration changes, are today
-often authenticated only by simple password and physical precence at home.
+Persons who are allowed to make configuration changes are today
+often authenticated only by a simple password and physical precence at home.
 # , and if physical precence would be away 
 #  What then, when the person is not
 # physically present, but tries to connect remotely?
-If external help were present, home owner would need more 
-control allowing only authorized operators in, because earlier used
-physical precence protection is missing.
+If external help was present, the home owner would need more 
+control allowing only authorized operators in, because the 
+# physical presence 
+protection used earlier would be missing.
 
 # Secondly, 
-Lastly, it is challenging to find a common, 
+# Lastly,
+Finally, it is challenging to find a common, 
 trusted entity, upon which every actor could base their trust.
-Common trust is needed to join before unknown parties together
+# Common trust
+Mutual trust
+ is needed to join the formerly unknown parties together
 safely. 
-# So there will be a need to delegate the management of
-# the home network to multiple owners. 
-Summarized the problems are delegated network management, remote
-provisioning, and trust finding. On its roots, this is an authentication
+# 
+# Mieti olisko joku muu sana kuin summarized,. in a nutshell käy
+Summarized, the problems are the delegated network management, remote
+provisioning, and trust finding. At its roots, this is an authentication
 and authorization problem.
 
- 
-
+# 1. delegation part with a)management, b) provisioning  prob.
+# 2. AA prob.
+# Can also be used for local authentication; Full Auth vs re-auth
+# (offline) vs. ?  When local authentication has been solved, describe the
+# management interface.
 
 # count of devices part: move up to (2) , but owner part to delegation
 # (3)
@@ -443,25 +450,27 @@ and authorization problem.
 
 
 One model to solve these problems is to separate the management and
-control function away from the connectivity and routing
+control functions from the connectivity and routing
 issues. Silverajan et al.\cite{silverajan2015collaborative} proposes
 a model where the management is achieved through a service in a cloud.
-The cloud service is of type Backend as-a-Service (BaaS) which is suited
+The cloud service is of type Backend-as-a-Service (BaaS) which is suited
 well for mobile app usage. The
-configuration model of devices at a home is mirrored to the cloud as a
-resource graph ( Figure x.1 TBD). Changes can be planned ahead at cloud
-and committed (Pushed) later to the home  using configuration tools
-CoAP and RESTCONF via a local controller point which lies at home.
+configuration model of devices in a home is mirrored to the cloud as a
+resource graph ( Figure x.1 TBD). Changes can be planned ahead in the cloud
+and committed (Pushed) later to the home  using configuration 
+tools CoAP and RESTCONF
+# tool Restconf
+ via a local controller point located at home.
 # (Figure[[fig:localcontroller]]).
 
 The managers operate in the cloud with the configuration data and the
 cloud verifies those managers,
 # The cloud has already verified the operators in the cloud
-but the question remains, how to connect the cloud service to the home network
+but the question that remains, is how to connect the cloud service to the home network
 through the local controller securely. The local controller at home
 would approve the changes and a smartphone is assumed to function in
 local controller role. It will operate as a bridge between the cloud and the home network.
-See Figure[[fig:localcontroller]] for design of this architecture.
+See Figure[[fig:localcontroller]] for the design of this architecture.
 
 #+CAPTION: Local Controller and Collaborative Management Design
 #+LABEL: fig:localcontroller
@@ -475,7 +484,7 @@ file:localcontroller.png
 # service.  
 The delegated service provider therefore does not need to have a direct data
 access to the home but only to the cloud based service in order to be able to
-manage home network devices.
+manage the home network devices.
 Consultant service is not the only possible delegation for home network.
 # toisen kerran jo..
 # phys precence moved to earlier part
@@ -501,11 +510,11 @@ Consultant service is not the only possible delegation for home network.
 # The ideas for interoperatibility between 3GPP- and IP-networks are influenced
 # from \cite{hav-doc}.
 
-One of the security issues are the authentication and authorization 
+One of the security issues is the authentication and authorization 
 from the cloud to the home net.
 To secure the connection from the cloud service (controller)
-to the home network, there needs to be a common trust between each end
-point and the research problem here is how to enable the trust between the
+to the home network, there needs to be a mutual trust between the end
+points, and the research problem here is how to enable the trust between the
 controller and the home network as the controller lies at the edge of the
 home network.
 
@@ -514,7 +523,7 @@ Any encryption between devices needs trusted key exchange beforehand,
 and finding and establishing trust is needed for that.  That is called
 the key distribution problem. Public and privat keys solve the key exchange part, but
 only partially, because the trust still must be found somewhere.
-Above mentioned cloud solution for delegated home network
+The above mentioned cloud solution for delegated home network
 management currently has preliminary authentication and access model
 using pre-defined credentials and SSH-connection from the local
 controller device to configuration
@@ -524,12 +533,13 @@ targets\cite[Chap.4]{silverajan2015collaborative}.
 # % present solution for 
 # % preset trusted and secured key distribution,
 # %
-That does not yet handle the bootstrap of the infrastructure
-i.e. the first trust is thought as given. 
+That does not yet handle the bootstrap of the infrastructure, 
+i.e., the first trust is taken as given. 
 
-The smartphone with its Subscriber Identity Module (later SIM) and an existing key infrastructure to mobile
+The smartphone with its Subscriber Identity Module (later SIM) and an
+existing key infrastructure to the mobile
 network operator (MNO) would later eliminate the requirement for an
-additional credential distribution and that issue is studied in this
+additional credential distribution. That issue is studied in this
 thesis.  Although the smartphone provides alternative authentication
 method with its SIM key, usual methods to authenticate still are plain
 username-password combinations.  Those security issues must be solved
@@ -543,16 +553,25 @@ before delegation in the cloud can happen.
 # card on newer smart cards.
 
 The trust can be derived from the facts that already are known.  The
-place, where a trust is not anymore derived or built upon other fact
-but assumed to be present, is called a trust anchor.  
-[OR: /The trust anchor is then the fact, state or place,
+place where a trust is no longe derived or built upon any other fact
+but is assumed to be present is called a trust anchor.  
+[OR: /A trust anchor is the fact, state or place,
 where derivation is done no more, but accepted per se./ ]
 Combining existing techniques, this thesis presents one possible way
-to bind home network's trust to the smartphone's unique, existing
+to bind the home network's trust to the smartphone's unique, existing
 secret keys inside the smart card's Subscriber Identify Module (SIM),
-which then would function as a trust anchor. To generally find
-ultimate trust it is only needed to verify trust chains until the
-chain reaches a trust anchor.
+which then would function as a trust anchor. 
+The ultimate trust can be achieved by verifying the trust chains 
+until the chain reaches a trust anchor.
+
+# To generally find
+# ultimate trust it is only needed to verify trust chains until the
+# chain reaches a trust anchor.
+
+
+# To generally find
+# ultimate trust it is only needed to verify trust chains until the
+# chain reaches a trust anchor.
 
 # Rationale:
 # Motivation factors to this work is 
@@ -560,11 +579,11 @@ chain reaches a trust anchor.
 
 
 
-Human aspect and usability are important, although the focus will
+The Human aspect and usability are important, but the focus will
 still be on authentication and authorization part of the home net
-management with smartphone as trust anchor.  The proposed model
-should nevertheless require less effort than the current used methods
-on distributing user credentials, finding right place for them to be
+management with smartphone as a trust anchor.  The proposed model
+should nevertheless require less effort than the currently used methods
+on distributing user credentials, finding the right place for them to be
 inserted, and ensuring that they are written correctly.
 Besides those, problems such as limited connectivity are
 studied.
@@ -575,14 +594,14 @@ studied.
 # HRL-AUC-Gateway, OpenWRT, and WPA2.
 
 
-The thesis is structured as follows: in Chapter [[#cha:aaa]] the
-authentication--authorization model is explained.  Chapter [[#cha:management]] describes
+The thesis is structured as follows: Chapter [[#cha:aaa]] explains the
+authentication--authorization model.  Chapter [[#cha:management]] describes
 security in current home net architecture and current practices for
 configuring it.  Chapter [[#cha:design]] discusses methods to bring a
 trust anchor in the home network and explains the chosen method.
 # different scenarios for authorization.  
 One specially crafted problem is how the scenarios presented here can be
-tested without knowing SIM card's secret keys and without real phone
+tested without knowing the SIM card's secret keys and without real phone
 operator involved.  Those experiments are described in Chapter
 [[#cha:simu]].
 # [Simulation of authentication between SIM-card and mobile operator
@@ -866,17 +885,17 @@ RADIUS message.
 #+begin_src ditaa :file eap-layer.png :cmdline -E -r -s 2
 
       EAP peer                                Authentication server
-  +------------+                                 +--------------+
-  |            |      logical EAP messaging      |              |
-  |    EAP     +<------------------------------->+     EAP      |
-  | framework  |                                 |  framework   |
-  |            |         +-------------+         |              |
-  |            |  EAP    |Authenticator|  EAP    |              |
-  +------------+ over LAN+-----+-------+  over   +--------------+
-  |            | (EAPOL) |     |       |  RADIUS |              |
-  | Supplicant +<------->+EAPOL|RADIUS +<------->+ RADIUS server|
-  |            |         +-----+-------+         |              |
-  +------------+                                 +--------------+
+ +-------------+                                  +------------+
+ |             |      logical EAP messaging       |            |
+ |    EAP      +<-------------------------------->+     EAP    |
+ | framework   |                                  |  framework |
+ |             |         +--------------+         |            |
+ |             | EAP     |Authenticator |  EAP    |            |
+ +-------------+ over LAN+------+-------+  over   +------------+
+ |802.1x client| (EAPOL) |      |RADIUS |  RADIUS | RADIUS     |
+ |(Supplicant) +<------->+EAPOL |client +<------->+ server     |
+ |             |         |      |       |         |            |
+ +-------------+         +------+-------+         +------------+            
 
 #+end_src
 #+CAPTION: EAP-logical layering 
@@ -970,7 +989,7 @@ It is a challenge-response method and similar to AuthN used in GSM,
 but it adds mutual AuthN, i.e., also the network is authenticated.
 # before smartphone sends its first identification message.
 Network authentication is achieved, if 
-network is able to correctly respond to a client sent nonce,
+the network is able to correctly respond to a client sent nonce,
 #  when client sends a nonce, 
 which by definition is a value used only once. The nonce can
 be thought as  client's challenge to network.
@@ -979,8 +998,8 @@ be thought as  client's challenge to network.
 # OR in a correct form in the network's signature response. 
 
 The client in  turn is authenticated, when the Authentication server
-generates a challenge with aid of triplet from MNO and the client
-responses to it correctly.
+generates a challenge with an aid of a triplet from the MNO and the
+client responses to it correctly.
 # as a authentication backend
 # generates challenge using triplet (IMSI, Ki, OPc).
 That procedure is later described in more detail.
@@ -999,10 +1018,10 @@ That procedure is later described in more detail.
 Beginning from 3GPP networks, new types EAP-AKA and AKA' can be used.
 EAP-AKA is defined in RFC4187\cite{rfc4187} and 
 uses 3GPP's AKA (Authentication and Key Agreement) protocol.
-It differs from EAP-SIM by using additionally parameters such as
+It differs from EAP-SIM by using additional parameters such as
 sequence numbering from MNO to protect replay attacks. 
 Additionally, digests use SHA-256 function instead of SHA-1.\cite{rfc5448}.
-Otherwise the protocol messaging is same as in  GSM-SIM, only algorithms differ.
+Otherwise the protocol messaging is same as in  EAP-SIM, only algorithms differ.
 # , and it increments after each invocation. AMF is used for authentication. 
 # - EAP-AKA :: EAP for UMTS Authentication and Key Agreement
 #              RFC4187. 3GPP-AKA protocol, mutual AuthN and network's
@@ -1017,18 +1036,25 @@ compromised network's nodes and keys.
 
 
   Using EAP-SIM means using the secret key inside SIM card with A3/A8
-algorithms to generate valid responses for challenges coming from MNO
-and to derive session keys.  The algorithms used (A3/A8) and their
+algorithms to generate valid responses for the challenges coming from 
+MNO and to derive session keys.  The algorithms used (A3/A8) and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
 interest in this work beside the point that they are MNO specific or known reference algorithms.
 
 
 EAP-SIM derivatives provide strong AuthN which means here two-factor
-AuthN. Comparing to software based certificates, while stronger than regular passwords,
+AuthN. A one factor  is something you own (physical SIM) while  
+another
+is  something you know (SIM card's PIN). Biometric factor, i.e., what you are,
+is not used here, but would be third different possible factor.
+# No need to explain strong authN, i.e., what you own, what you know,
+# what you are. well known fact?
+Comparing these to
+software based certificates, while stronger than regular passwords,
 on the other hand do not possess the properties /non-copiable/ or
 /unique/, so they can only be considered as strong passwords and 
-do not full-fill requirement for two-factor AuthN.  If we nonetheless
-were using software certificates with method such as EAP-TLS, then the
+do not full-fill the requirements for two-factor AuthN.  If we nonetheless
+were using software certificates with a method such as EAP-TLS, then the
 certificates (for CA and client) and the private key should still be
 provisioned first, which would defeat what we wanted to achieve in
 easy user experience.
@@ -1037,8 +1063,8 @@ easy user experience.
 Disadvantages with SIM is dependency on mobile operator and internet
 connection, although disconnectivity issues are later addressed partly.
 Using smartphone may cost money, either to client or to service
-provider, although costs could be lower than using SMS, because 
-IP network is used instead of mobile phone network.
+provider, but costs could be lower than using SMS, because 
+the network  used is IP network instead of mobile phone network.
 
 # Using EAP-SIM is in many parts simpler to mobile client.  
 In many parts, SIM variants in EAP are simpler, than other EAP
@@ -1077,7 +1103,7 @@ identity.
 |   | Other settings:                             |          |         |          |   |
 |   | - set used EAP-method                       | x        | x       | x        |   |
 |   | - set validation of RADIUS server's name    | x        |         | x        |   |
-|   | - set encapsulation (WPA2/802.1X)            | x        |         |          |   |
+|   | - set encapsulation (WPA2/802.1X)           | x        |         |          |   |
 |   | - set password                              | x        | x(PIN)  |          |   |
 |---+---------------------------------------------+----------+---------+----------+---|
 |   | Identity hiding:                            |          |         |          |   |
@@ -1576,7 +1602,7 @@ and resolve the work-flow of change management.
 
 # 3. trust again
 
- 
+
 * Design of home network trust anchor and separation of change management
 :PROPERTIES:
 :CUSTOM_ID: cha:design
@@ -1590,8 +1616,11 @@ and resolve the work-flow of change management.
 
 This chapter describes, how the change management can flow after the
 home network has received a trust anchor in the smartphone.  Before
-fully explaining our chosen method, we introduce some alternative
+fully explaining our chosen method, we introduce some 
+# real number, instead of some?
+alternative
 approaches for a trust anchor, which is part of bootstrapping.
+# need to explain bootstrapping more?
 Bootstrapping is needed because although the smartphone and MNO
 already trust each other, the trust between the smartphone and AP, and
 thus the management network at home, is non-existing in the
@@ -1600,9 +1629,15 @@ beginning.
 On its simplest, the smartphone connects with a Wi-Fi link to an
 AP in the home network and authenticates with SIM-card.
 # AP functions here as an Authenticator. 
-That brings a trust relationship between smartphone (local controller)
-and home network (managed devices) so that the configuration changes can
-happen as long as the smartphone is present.
+The resulting authorized connection brings a trust relationship
+between the smartphone (local controller)
+and the home network (managed devices) so that the 
+# configuration changes
+management can happen. 
+#  as long as the smartphone is present. 
+In essence, the precence of the smartphone at home
+opens the gate for the management, though it needs a little
+interaction on behalf the user.
 
 
 
@@ -1666,8 +1701,9 @@ external operator support is needed.
 Other techniques  to use SIM's unique properties besides EAP-SIM
 are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
 direct connection through PC/SC (Personal\-Computer/Smart\- Card),
-CallerID service from phone network, and
-Mobile signature service such as ``Mobiilivarmenne'' in Finland.
+CallerID service from phone network, or
+Mobile signing service.
+#  such as ``Mobiilivarmenne'' in Finland.
 
 # Finnish certificate based mobile app running in the SIM card
 # (brand name "Mobiilivarmenne") providing
@@ -1682,7 +1718,7 @@ download  a controlling application
 in the beginning for advanced use, so these techniques could be
 studied further in another work.
 
-Caller ID as an authentication method uses GSM network's controlling
+Caller ID as an authentication method uses cellular network's controlling
 channels. When a phone makes a call, the receiving end gets 
 to know callers phone number (IMSI) before it answers the call.
 That information is called Caller ID and it has been in use
@@ -1795,7 +1831,7 @@ tunneling, for example as an inner protocol of EAP-TTLS.\cite{moonshot}
 At this point question might rise, why these external service
 providers are needed. Is it not easier and simpler to just send 
 an SMS with password code to the smartphone, when access confirmation is needed?
-Mobile SIM provides two-way AuthN part as discussed earlier.l
+Mobile SIM provides two-way AuthN part as discussed earlier.
 Without need for strong AuthN, that model would indeed be 
 simpler, but using SIM also solves initial key distribution problem.
 Additionally, mutual AuthN problem would still need to be solved:
