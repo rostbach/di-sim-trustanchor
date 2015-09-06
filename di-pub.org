@@ -3477,13 +3477,12 @@ then user need to choose manually, which profile he wanted to use.
 
 ** Costs for end-user 
 # What are the costs per authentication from MNO?
-While no service yet exists from MNOs, we estimate their costs based on
-Mobiilivarmenne. Using Mobiilivarmenne 
-is currently free for clients, if usage is personal, but costs
-for service providers are unknown. 
-Hardware costs can mostly be eliminated, while users
-already have smartphones and for infrastructure, existing hardware
-such as APs can be used.
+While no service yet exists from MNOs, we estimate their costs based
+on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
+clients, if usage is personal, but costs for service providers are
+unknown.  Hardware costs can mostly be eliminated, while users already
+have smartphones and for infrastructure, existing hardware such as APs
+can be used.
 # - Hardware. Phones included.
 
 Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
