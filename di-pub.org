@@ -3466,8 +3466,7 @@ Smartphone can have different profiles, also with under same SSID, but
 then user need to choose manually, which profile he wanted to use.
 # settings=EAP, subtype of EAP=SIM, username from SIM-card.
 
-** Estimating time to authenticate EAP-SIM [TO BE REMOVED]
-
+# ** Estimating time to authenticate EAP-SIM [TO BE REMOVED]
 # Local tests, with software back ends need less than 20ms for one
 # EAP-RADIUS message exchange between peers. There will be added time
 # needed to scan Wi-Fi network for correct AP and SIM card's computing
