@@ -1,4 +1,4 @@
-% Created 2015-09-04 pe 15:55
+% Created 2015-09-16 ke 16:07
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -136,7 +136,7 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,\ldots{}
 
 %---------------------------------------------------------
 %   A B S T R A C T
-% [The abstract is a concise 1-page description of the work: 
+% [The abstract is a concise 1-page descriptionof the work: 
 [what was the problem, what was done, and what are the results. ]
 % Do not include charts or tables in the abstract.
 
@@ -747,7 +747,7 @@ and a unique IMSI (International Mobile Subscriber Identity). IMSI is
 a composition of digits belonging to Mobile Country Code(MCC, 2
 digits), Mobile Network Code(MNC,2-3 digits) and Mobile Subscriber
 Identification Number(MSIN, 10 digits at most).
-More familiar, it is the user's phone number.
+More familiar, it is the user's full international phone number.
 [ More detailed SIM architecture? Java Card, CPU,?]
 
 
@@ -1705,31 +1705,28 @@ information of allowed users from Cloud (BaaS [def.])
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{scenI.png}
-\caption{\label{fig:scenario-I}Scenario I with 3 separate domains: BaaS, MNO and home net}
+\caption{\label{fig:scenario-I}Scenario I with 3 separate domains: Cloud, MNO and home net}
 \end{figure}
 
-[ Maybe replace BaaS with CLOUD] 
 
 
-[ alternative presentation of the flow, list ] 
+[ alternative presentation of the flow, I: list ] 
 
 \begin{enumerate}
 \item The model has been changed in the BaaS (1).
-\item BaaS send changes to CPE (2).
-\item If changes are privileged, they need to be approved by phone user.
-Changes are sent also to the phone(3) and phone user must authenticate
-itself to the management network.
+\item Cloud send the changes to CPE (2).
+\item If the changes are privileged, they need to be approved by the phone user.
+The changes are sent also to the phone(3) and the user must
+authenticate  itself to the management network.
 \item Phone user starts authentication process to management
 network using EAP-SIM and reveals its IMSI(4).
-\item CPE  (AP) forwards authentication to MNO's RADIUS server with
+\item CPE  (AP) forwards authentication to MNO's RADIUS server using
 RADIUS protocol (5).
 \item MNO have RADIUS server running and it authenticates IMSI user with
   its HLR-AuC (6).
-MNO also asks from BaaS, whether IMSI user has admin-role (AuthZ).
-\end{enumerate}
+MNO also asks from the Cloud, whether IMSI user has an admin role (AuthZ). 
 MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if user is both known AND has admin role 
   or \emph{ACCESS-REJECT} (7).
-\begin{enumerate}
 \item CPE receives this ACCEPT or REJECT. If there were other RADIUSes
 between CPE and MNO, they would have acted
 as proxy RADIUS servers.
@@ -1740,17 +1737,17 @@ coming from authentication network.
 
 
 
-[ alternative presentation of flow, textual paragraph. Which one is better? ] 
+[ alternative presentation of flow, II: textual paragraph. Which one is better? ] 
 
-The model has been changed in the BaaS (1). BaaS send changes to CPE
+The model has been changed in the Cloud (1). Cloud sends changes to CPE
 (2).  If changes are privileged, they need to be approved by phone
 user.  Changes are sent also to the phone(3) and phone user must
 authenticate itself to the management network.  Phone user starts
 authentication process to management network using EAP-SIM and reveals
 its IMSI(4).  CPE (AP) forwards authentication to MNO's RADIUS server
-with RADIUS protocol (5).  MNO have RADIUS server running and it
+using RADIUS protocol (5).  MNO have RADIUS server running and it
 authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
-BaaS, whether IMSI user has admin-role (AuthZ). 
+the Cloud, whether IMSI user has admin-role (AuthZ). 
 MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if
 user is both known AND has admin role or \emph{ACCESS-REJECT} (7).  CPE
 receives this ACCEPT or REJECT. If there were other RADIUSes between
@@ -1893,8 +1890,8 @@ must deliver those values and that allows us to use larger set of AVPs
 than is in any (proxying) RADIUS server's vocabulary.
 By adding AVPs inside the authorization packet, we achieve extra
 information about validity of the access request.
-That information may include VLAN separation or time of forced
-logout, basically what the access point and smartphone would later need.
+That information may include VLAN parameter or time of forced
+logout.
 RFC2865\cite{rfc2865} says, that the forwarding RADIUS proxy may alter
 the packet as it passes it, but because an alteration would invalidate the
 packet's signature, the proxy has to re-sign the packet.
@@ -1904,9 +1901,9 @@ packet's signature, the proxy has to re-sign the packet.
 
 So at least Proxying RADIUS can insert something, but that is not
 enough.  If a malicious actor imitates RADIUS Proxy (i.e. Man in the
-middle, MiTM) and tries to inject untruthful messages, Message
-Authenticator with MD5 digesting might help in detecting
-that. 
+middle, MiTM), it can try to inject untruthful messages. 
+Message Authenticator with MD5 digesting
+might help in detecting those attacks,
 Unfortunately MD5 can not be thought computationally
 secure, because duplicate hashes are easy to compute
 today\cite{xie2013fast}.
@@ -2213,22 +2210,33 @@ For that to success, the WWW-portal would need also an open access without
 
 \section{Network traces (EAP, SIM, AUTH traffic analysis)}
 \label{sec-5-4}
-Wireless capture between WPA2-Supplicant and AP was made on
-WPA2-Supplicant's end-point, before it left the wireless card. Capture was
-not made in monitoring mode, so not all 802.11 details in
-data packets were captured\cite{wireshark-capture}.
+Wireless capture between WPA2-Supplicant and AP was made at
+WPA2-Supplicant, before it left the wireless card. Capture was
+not made in monitoring mode, so all 802.11 details in
+data packets were not captured\cite{wireshark-capture}.
 That was not a problem, because the focus was 
 in the EAP messaging instead of radio channel details.
-
-[Captured wireshark sessions give insight here. Analyze them.
-Packet capture of successful SIM-authentication with corresponding
-parts of logs at WPA2-Supplicant, RADIUS server and packet captures 
-802.1X, RADIUS and HLR. ]
-
 Whole conversation is given first here and afterwards analyzed more
 thoroughly.
 
-[normalization?]
+[normalization of frame numbers?]
+
+
+[Captured wireshark sessions give insight here. Analyze them.
+\begin{enumerate}
+\item Capture of first part of SIM without secrets
+\item Packet capture of successful SIM-authentication with corresponding
+\end{enumerate}
+parts of logs at WPA2-Supplicant, RADIUS server and packet captures 
+802.1X, RADIUS and HLR. ]
+
+[This part demonstrates use of unknown SIM physical phone]  
+Even when authentication conversation would not complete fully,
+Authenticator still receives a claim of identification from the
+smartphone. Yet, as there is no AuthN, no proof of identity exists in
+that case.
+
+
 
 \scriptsize
 \begin{center}
@@ -2260,9 +2268,7 @@ No. & Time & Source & Destination & Protocol & Length & Info\\
 \normalsize
 
 
-Even when authentication conversation would not complete fully,
-Authenticator still receives a claim of identification from the smartphone. Yet, as
-there is no AuthN, no proof of identity exists in that case.
+
 
 IMSI is sent first time already on the second EAP message from 
 WPA2-Supplicant to AP (see Figure\ref{fig:eap-sim-radius}, message 2.)
@@ -2406,27 +2412,14 @@ protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
 Smartphone can have different profiles, also with under same SSID, but
 then user need to choose manually, which profile he wanted to use.
 
-\section{Estimating time to authenticate EAP-SIM [TO BE REMOVED]}
-\label{sec-6-2}
-Local tests, with software back ends need less than 20ms for one EAP-RADIUS message
-exchange between peers. There will be added time needed to scan Wi-Fi
-network for correct AP and SIM card's computing
-time.
- [Take reference on network authentication part on earlier
-tests. Timeout was 3 seconds for that part.]
-[Some Figures for authentication times can give comparison to eduroam
-or LANGATONWPA2 network through some RADIUS proxies in between home
-organization's RADIUS service.]
-
 \section{Costs for end-user}
-\label{sec-6-3}
-While no service yet exists from MNOs, we estimate their costs based on
-Mobiilivarmenne. Using Mobiilivarmenne 
-is currently free for clients, if usage is personal, but costs
-for service providers are unknown. 
-Hardware costs can mostly be eliminated, while users
-already have smartphones and for infrastructure, existing hardware
-such as APs can be used.
+\label{sec-6-2}
+While no service yet exists from MNOs, we estimate their costs based
+on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
+clients, if usage is personal, but costs for service providers are
+unknown.  Hardware costs can mostly be eliminated, while users already
+have smartphones and for infrastructure, existing hardware such as APs
+can be used.
 
 Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
 To further divide possible costs for EAP-SIM usage
@@ -2459,7 +2452,7 @@ On the other hand, empty GSM cards for testing can cost as much as
 
 
 \section{Platform specific issues}
-\label{sec-6-4}
+\label{sec-6-3}
 
 For clients, there is no need for public key infrastructure (PKI) 
 unless EAP-PEAP is used. Under PEAP there are either server
@@ -2501,7 +2494,7 @@ portal can be used for offline authentication.
 
 
 \section{Security considerations}
-\label{sec-6-5}
+\label{sec-6-4}
 
 
 
@@ -2510,7 +2503,7 @@ the home network management delegation. Following subsections divide them into
 confidentiality (privacy), integrity, and
 authenticity. Accessibility is also discussed.
 \subsection{Confidentiality (privacy)}
-\label{sec-6-5-1}
+\label{sec-6-4-1}
 
 The purpose of the message confidentiality in authentication phase is
 to hide the identity of the smartphone and possible the delivered
@@ -2541,7 +2534,7 @@ can order the phone to not encrypt traffic at all or to use only weak
 encryption thus revealing all data, calls, and texts. Mitigation for
 IMSI-catching would be to disable GSM (2G) usage altogether from phone
 if that is possible\cite{imsi-heise}. Some development has been done to detect 
-IMSI-catchers, most notably the project AIMSICD\cite{aimcid}.
+IMSI-catchers, most notably by the project AIMSICD\cite{aimcid}.
 
 
 \begin{figure}[htb]
@@ -2617,7 +2610,7 @@ For other parameters, EAP-SIM is confidential.
 Thus, this paper does not consider TMSI in the Implementation Chapter
 \texttt{cha:simu}.
 \subsection{Integrity}
-\label{sec-6-5-2}
+\label{sec-6-4-2}
 The integrity issues were handled in Section \ref{sec:radius-macs} describing
 RADIUS message modification.
 Message digestion codes provide integrity for RADIUS protocol.
@@ -2630,7 +2623,7 @@ even more important, as it already has been noted in 2005, that SHA1 can be
 broken
 
 \subsection{Accessibility, DoS and Scalability}
-\label{sec-6-5-3}
+\label{sec-6-4-3}
 
 Is home network immune against (distributed) denial of service (DoS)
 attacks? Besides DoS, does the solution scale up from home network to
@@ -2653,7 +2646,7 @@ alternative UDP RADIUS server can answer faster than waiting for TCP's reliable 
 
 
 \subsection{RADIUS weaknesses and strengths in limited use cases}
-\label{sec-6-5-4}
+\label{sec-6-4-4}
 
 
 RADIUS protocol itself is old and not very secure as of current
@@ -2682,7 +2675,7 @@ current admin user list, state of OTP list, or VLAN id.
 
 
 \subsection{Replay, Re-use, Re-auth, and brute-force challenges}
-\label{sec-6-5-5}
+\label{sec-6-4-5}
 Earlier in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
 considered bad.  Mixing secrets between usage
@@ -2721,7 +2714,7 @@ it would soon be exhausted and not function anymore.
 
 
 \subsection{Mitigation methods}
-\label{sec-6-5-6}
+\label{sec-6-4-6}
 To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
@@ -2789,7 +2782,7 @@ directed antenna\cite{SANS-bluetooth-2007}.
 
 
 \subsection{Decision point for adding role information [ move to design part]}
-\label{sec-6-5-7}
+\label{sec-6-4-7}
 
 
 
@@ -2843,7 +2836,7 @@ used, i.e., the authentication is always checked from MNO and no Fast
 Re-authentication is used.
 
 \section{Discussion}
-\label{sec-6-6}
+\label{sec-6-5}
 
 
 [do not jump in with so short flash messages. This looks like conclusion.] 

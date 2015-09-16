@@ -115,7 +115,7 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 
 %---------------------------------------------------------
 %   A B S T R A C T
-% [The abstract is a concise 1-page description of the work: 
+% [The abstract is a concise 1-page descriptionof the work: 
 [what was the problem, what was done, and what are the results. ]
 % Do not include charts or tables in the abstract.
 
@@ -2427,10 +2427,10 @@ information of allowed users from Cloud (BaaS [def.])
 # C-c C-c to evaluate , C-c C-o to preview  images
 # #+begin_src ditaa :file cloud.png :cmdline -E -r 
 #+begin_src ditaa :file scenI.png :cmdline -E -r -s 4
-                                         6+------+
-       +----+       +-------------------+-+{s}HLR|
-     1 |BaaS+<----->+MNO (RADIUS server)| +------+
-       ++-+-+       +-----------+-------+
+                                          6+-------+
+      +-----+       +-------------------+--+{s}HLR |
+    1 |Cloud+<----->+MNO (RADIUS server)|  +-------+
+      +-+-+-+       +-----------+-------+
         | |     2             5 ^
         | +-----(conf)------+   |RADIUS AA
   +-----|----------=--------|-=-|-------+ 
@@ -2440,29 +2440,28 @@ information of allowed users from Cloud (BaaS [def.])
   |  +-----+8             4+-------+    |
   +=------------------------------------+
 #+end_src
-#+CAPTION: Scenario I with 3 separate domains: BaaS, MNO and home net
+#+CAPTION: Scenario I with 3 separate domains: Cloud, MNO and home net
 #+NAME:   fig:scenario-I
 #+RESULTS:
 [[file:scenI.png]]
 
-[ Maybe replace BaaS with CLOUD] 
+# [ Maybe replace BaaS with CLOUD] 
 
 
-[ alternative presentation of the flow, list ] 
+[ alternative presentation of the flow, I: list ] 
 
 1. The model has been changed in the BaaS (1).
-2. BaaS send changes to CPE (2).
-3. If changes are privileged, they need to be approved by phone user.
-   Changes are sent also to the phone(3) and phone user must authenticate
-   itself to the management network.
+2. Cloud send the changes to CPE (2).
+3. If the changes are privileged, they need to be approved by the phone user.
+   The changes are sent also to the phone(3) and the user must
+   authenticate  itself to the management network.
 4. Phone user starts authentication process to management
    network using EAP-SIM and reveals its IMSI(4).
-5. CPE  (AP) forwards authentication to MNO's RADIUS server with
+5. CPE  (AP) forwards authentication to MNO's RADIUS server using
    RADIUS protocol (5).
 6. MNO have RADIUS server running and it authenticates IMSI user with
    its HLR-AuC (6).
- MNO also asks from BaaS, whether IMSI user has admin-role (AuthZ). 
-# [how long does it take to ask?]
+ MNO also asks from the Cloud, whether IMSI user has an admin role (AuthZ). 
  MNO returns in RADIUS message either /ACCESS-ACCEPT/, if user is both known AND has admin role 
    or /ACCESS-REJECT/ (7).
 7. CPE receives this ACCEPT or REJECT. If there were other RADIUSes
@@ -2474,17 +2473,17 @@ information of allowed users from Cloud (BaaS [def.])
 
 
 
-[ alternative presentation of flow, textual paragraph. Which one is better? ] 
+[ alternative presentation of flow, II: textual paragraph. Which one is better? ] 
 
-The model has been changed in the BaaS (1). BaaS send changes to CPE
+The model has been changed in the Cloud (1). Cloud sends changes to CPE
 (2).  If changes are privileged, they need to be approved by phone
 user.  Changes are sent also to the phone(3) and phone user must
 authenticate itself to the management network.  Phone user starts
 authentication process to management network using EAP-SIM and reveals
 its IMSI(4).  CPE (AP) forwards authentication to MNO's RADIUS server
-with RADIUS protocol (5).  MNO have RADIUS server running and it
+using RADIUS protocol (5).  MNO have RADIUS server running and it
 authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
-BaaS, whether IMSI user has admin-role (AuthZ). 
+the Cloud, whether IMSI user has admin-role (AuthZ). 
 # [how long does it take to ask?]  
 MNO returns in RADIUS message either /ACCESS-ACCEPT/, if
 user is both known AND has admin role or /ACCESS-REJECT/ (7).  CPE
@@ -2702,8 +2701,9 @@ must deliver those values and that allows us to use larger set of AVPs
 than is in any (proxying) RADIUS server's vocabulary.
 By adding AVPs inside the authorization packet, we achieve extra
 information about validity of the access request.
-That information may include VLAN separation or time of forced
-logout, basically what the access point and smartphone would later need.
+That information may include VLAN parameter or time of forced
+logout.
+# that the access point and smartphone would later need.
 RFC2865\cite{rfc2865} says, that the forwarding RADIUS proxy may alter
 the packet as it passes it, but because an alteration would invalidate the
 packet's signature, the proxy has to re-sign the packet.
@@ -2731,9 +2731,9 @@ packet's signature, the proxy has to re-sign the packet.
 
 So at least Proxying RADIUS can insert something, but that is not
 enough.  If a malicious actor imitates RADIUS Proxy (i.e. Man in the
-middle, MiTM) and tries to inject untruthful messages, Message
-Authenticator with MD5 digesting might help in detecting
-that. 
+middle, MiTM), it can try to inject untruthful messages. 
+Message Authenticator with MD5 digesting
+might help in detecting those attacks,
 Unfortunately MD5 can not be thought computationally
 secure, because duplicate hashes are easy to compute
 today\cite{xie2013fast}.
@@ -3252,24 +3252,33 @@ For that to success, the WWW-portal would need also an open access without
 
 
 ** Network traces (EAP, SIM, AUTH traffic analysis)
-Wireless capture between WPA2-Supplicant and AP was made on
-WPA2-Supplicant's end-point, before it left the wireless card. Capture was
-not made in monitoring mode, so not all 802.11 details in
-data packets were captured\cite{wireshark-capture}.
+Wireless capture between WPA2-Supplicant and AP was made at
+WPA2-Supplicant, before it left the wireless card. Capture was
+not made in monitoring mode, so all 802.11 details in
+data packets were not captured\cite{wireshark-capture}.
 That was not a problem, because the focus was 
 in the EAP messaging instead of radio channel details.
+Whole conversation is given first here and afterwards analyzed more
+thoroughly.
+
+[normalization of frame numbers?]
+
 # [cite:https://wiki.wireshark.org/CaptureSetup/WLAN]
 
 [Captured wireshark sessions give insight here. Analyze them.
-Packet capture of successful SIM-authentication with corresponding
+1. Capture of first part of SIM without secrets 
+2. Packet capture of successful SIM-authentication with corresponding
 parts of logs at WPA2-Supplicant, RADIUS server and packet captures 
 802.1X, RADIUS and HLR. ]
 # Maybe also remote syslog from access point.]
 
-Whole conversation is given first here and afterwards analyzed more
-thoroughly.
+[This part demonstrates use of unknown SIM physical phone]  
+Even when authentication conversation would not complete fully,
+Authenticator still receives a claim of identification from the
+smartphone. Yet, as there is no AuthN, no proof of identity exists in
+that case.
 
-[normalization?]
+
 
 #+LATEX: \scriptsize
 | No. |            Time | Source     | Destination | Protocol | Length | Info                                 |
@@ -3297,10 +3306,8 @@ thoroughly.
 #+LATEX: \normalsize
 
 # - flow of messages,  timing,  size, attributes 
-  
-Even when authentication conversation would not complete fully,
-Authenticator still receives a claim of identification from the smartphone. Yet, as
-there is no AuthN, no proof of identity exists in that case.
+
+ 
 # (see sequence, and explain why) [TBD]
 
 IMSI is sent first time already on the second EAP message from 
@@ -3440,6 +3447,8 @@ Send: SIM-RESP-AUTH 232010000000000
  832475ad3e7bea2b:3fe28cc8:1be8b4f1ab247ec732d15cf63ad57390 \
 #+END_EXAMPLE
 #+LATEX: \normalsize
+#+CAPTION: HLR-AuC's IMSI triplet answer.
+#+NAME: hlrauc
 
 # Signal 2 - terminate
 
