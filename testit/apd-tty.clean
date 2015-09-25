@@ -1,11 +1,11 @@
 #!/bin/sh -x 
 # Shell to start programs needed to demonstrate EAP-SIM authentication
 # on environment, where PHONE and HLR AUC are simulated.
-# Used programs, all from wpa (v2.3) reference package 
+# All used programs are from wpa (v2.3) reference package 
 # - wpa-supplicant 
 # - RADIUS-server  
 # - HLR-AuC
-# External WPA2-RADIUS AP hw used  
+# External WPA2-RADIUS AP hardware is used 
 #
 # options:
 # -t more timestamps to xxx...
@@ -17,34 +17,30 @@
 
 # root directory for programs and logs
 BASE=/home/itapuro/gitdocs/di/testit
-
 # Client (supplicant) parameters
 WPASUPPLICANT=$BASE/wpa_supplicant
 # hostapd as RADIUS role NOT AP-role
 HOSTAPD=$BASE/hostapd
 # Mobile operator (Home location register authentication centre)
 HLR=$BASE/hlr_auc_gw
-# if only cred part is in, does not work
+# if here is only cred part, then authentication does not work
 WPASUPPLICANTCONF=$BASE/wpa-simtest-owrt2.conf
-
 # HLR_AUC_GW parameters
 # sim triplets, when EAP-SIM used
 SIM=$BASE/hostapd.sim_db
 #  Milenage parameters, when AKA used
 MILENAGE=$BASE/hlr_auc_gw.milenage_db
-
 # HOSTAPD parameters
 # settings for hostapd include wired, eap_server, eap-handler
 HOSTAPDCONF=$BASE/hostapd-jmdemo.conf
-
 # timestamped logs and  confs into safe
 TIMESTAMP=`date +s%y%m%d-%H%M%S`
 TARGET=$BASE/demot/ap-$TIMESTAMP
+
 mkdir $TARGET
 cp $0 $HOSTAPDCONF $SIM $MILENAGE $TARGET 
-# reset programs, if still running. 
+# reset programs, if still running and clean up some locks and sockets
 pkill hlr_auc_gw; pkill wpa_supplicant; pkill hostapd
-# Killing does not clean up some locks and sockets
 if [ -S /tmp/hlr_auc_gw.sock ] ; then
   rm -f /tmp/hlr_auc_gw.sock
 fi
@@ -52,7 +48,7 @@ if [ -S ./eth0 ] ; then
   rm -f ./eth0
 fi
 
-## 1. HLR_AUC 
+### 1. HLR_AUC 
 # startup using SIM-triplet
 # $HLR -g $SIM  >  $TARGET/hlr-debug &
 # startup using MILENAGE. Works also with SIM
@@ -80,15 +76,14 @@ echo starting analyze..
 cd  $BASE/demot
 cd `ls -d ap-*|tail -1`/
 sleep 1 
-# follow 3 log files, with color coding set in multitail.conf
+# follow 3 log files, with color coding set separately in file multitail.conf
 multitail -F ../multitail.conf -N 10000  -CS eap-sim -ts host*debug -i  wpa*debug 
 
 # alternatively, start this in own window 
 # xterm -e $BASE/demot/anamulti & 
 
-# tests won't take 15 mins..
+# tests won't take 15 mins, but if they did,somebody had fallen in sleep. Commit logs.
 sleep 900
-# if they did, somebody had fallen in sleep.  Commit logs.
 pkill tshark
 git add $TARGET
 git commit -m "apd-tty tests $TIMESTAMP "

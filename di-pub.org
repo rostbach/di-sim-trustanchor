@@ -1,3 +1,4 @@
+# -*- mode: org; coding: utf-8; -*-
  #+DATE: 
 # +BIND:  (setq org-export-allow-BIND t)
 
@@ -1385,7 +1386,7 @@ WG) homenet. IETF is responsible for the most Internet technology standards and
 WG homenet was started in year 2011.
 Current drive in homenet management is towards IPv6 environment
  as it allows future  addressing and routing needs. 
-Homenet has 5 tasks to solve at home networks: service discovery, network security, 
+Homenet has five tasks to solve at home networks: service discovery, network security, 
 prefix configuration for routers, routing management and name
 resolution.\cite{homenet-charter}.
 As old technology cannot be forgotten, home networks will be heterogeneous having both
@@ -1393,7 +1394,10 @@ old and new technology, and their interoperatibility is important in
 planning future home networks. 
 Segmenting home in multiple subnets will also belong
 to homenets and will include areas for home members, guests,
-and management. Lastly, end-to-end access, is in their
+and management. It will also not be so uncommon to have a cheap second
+network operator for backup purposes at home, so issues about
+multihoming are added to homenet.
+Lastly, end-to-end access, is in their
 agenda. End-to-end access, i.e., restriction-free access was the key
 element for the Internet's success and it enabled many new
 applications in the past, but has then had difficulties because of
@@ -2279,17 +2283,16 @@ explained in Section [[sec:chosendesign]].
  
 *** HS2.0 [If deleted, remember also from conclusion! TBD]
 
-It is well known, that the usability of the Kiosk-mode Wi-Fi
- networks is burden, because a user needs to go through 
+It is well known, that the usability of the captive-portal Wi-Fi
+ network is burden, because a user needs to go through 
 a web portal logins with a username-password authentication 
 procedure and those are different for every network.
-Additionally, the users are often required to switch 
-their data access between cellular and  Wi-Fi when 
-they change their location.
+Additionally, the user is often required to switch 
+between cellular and  Wi-Fi data access when they change their location.
 
 An industry brand  Hotspot 2.0 addresses those issues and tries to
 simplify user's switch between Wi-Fi and cellular to automate the
-roaming experience.  
+roaming experience.  Hotspot 2.0 is driven by two alliances:
 Wi-Fi Alliance has a certification program (Passpoint)
 for Hotspot 2.0 compatible devices, while the Wireless Broadband
 Alliance has a program called Next Generation Hotspot (NGH), targeted
@@ -2315,32 +2318,30 @@ transmission.
 # - performance ::  speed and latency
 
 
-
-
-
-
 In 2012 Ericsson's technology journal ``Review'', their 
-HS2.0 goals were to smooth roaming between Wi-Fi and 3GPP/LTE networks
-and bring operator-grade to Wi-Fi by putting control in operators side. More
-than offloading traffic, plans are to bring other services also to Wi-Fi.\cite{er-seamless}
+HS2.0 goals were to make roaming between Wi-Fi and 3GPP/LTE networks smoother
+and to bring operator-grade to Wi-Fi by putting control in operators side. More
+than offloading traffic, plans were to bring other services also to Wi-Fi.\cite{er-seamless}
 
-In Hotspot 2.0, the cellular network may signal the smartphone to
-switch to Wi-Fi. The smartphone then tries to find HS2.0 capable
+In Hotspot 2.0, the cellular network may signal the smartphone and
+propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
 access point and continue using Wi-Fi instead of cellular network.
-In similar way, the smartphone could receive signal from the cellular
+In a similar way, the smartphone could receive signal from the cellular
 network, when controlling changes need to be approved. The smartphone
-would then   make some tests to proof the local AP's suitability for 
-HS2.0. If it can, then the cellular network continues and orders the 
+would then make some tests to proof the local AP's suitability for 
+HS2.0. If those succeed, then the cellular network would continue and order the 
 phone to make a switch to the Wi-Fi network, authenticate there with 
 EAP-SIM (or -AKA) and transfer services to Wi-Fi not forgetting 
-the put it to the management network.
+the transfer in to the management network. This scenario could be 
+studied further.
 
 
 If HS2.0 was used here to automate the part, where
 the smartphone needs to change from cellular to local
 management Wi-Fi network and back, we probably would
 miss the user decision part. The user, not the operator,
- must to give his consent to access the management network.
+ must give his consent to access the management network, so
+it is important, that the switch would not be automatic or forced.
 In a way, operator aided roaming between Wi-Fi and cellular
 works in a different level than here described trust-anchor method.
 The operator is interested on the access network, while
@@ -2348,15 +2349,15 @@ we are interested in the side result of getting access, namely
 the achieved trusted access point.
 
 
-[TO DO: check 802.11u features and what they add to 802.11-2007]
+# [TO DO: check 802.11u features and what they add to 802.11-2007]
 #  + interworking with ext networks
 # + hs2.0 is extended 802.11u
 # + next generation Hotspot 
 # + advertises external networks /before/ association. no need to
 #   select Service Set ID (SSID)
 # - access network type, roaming consortium support and venue information
- - some QoS mapping
- - emergency services (not in HS2.0)
+# - some QoS mapping
+# - emergency services (not in HS2.0)
 
 
 ** Scenarios for choosing the AuthZ location
@@ -2450,38 +2451,43 @@ information of allowed users from Cloud (BaaS [def.])
 
 [ alternative presentation of the flow, I: list ] 
 
-1. The model has been changed in the BaaS (1).
-2. Cloud send the changes to CPE (2).
+1. The model has been changed in the Cloud (1).
+2. The Cloud send the changes to CPE (AP) (2).
 3. If the changes are privileged, they need to be approved by the phone user.
-   The changes are sent also to the phone(3) and the user must
-   authenticate  itself to the management network.
-4. Phone user starts authentication process to management
-   network using EAP-SIM and reveals its IMSI(4).
-5. CPE  (AP) forwards authentication to MNO's RADIUS server using
+   The changes are sent also to the phone(3) and the phone user must
+   authenticate to the management network.
+4. The phone user starts the authentication process to management
+   network using EAP-SIM and reveals the IMSI(4).
+5. CPE (AP) forwards the authentication to MNO's RADIUS server using
    RADIUS protocol (5).
-6. MNO have RADIUS server running and it authenticates IMSI user with
-   its HLR-AuC (6).
- MNO also asks from the Cloud, whether IMSI user has an admin role (AuthZ). 
- MNO returns in RADIUS message either /ACCESS-ACCEPT/, if user is both known AND has admin role 
-   or /ACCESS-REJECT/ (7).
+6. MNO has RADIUS server which uses HLR-AuC for authentication
+   triplets (6). 
+   (AuthZ). This RADIUS continues the authentication process until to
+   the end. 
+ MNO also asks from the Cloud, whether IMSI user has an admin role.
+ MNO returns in RADIUS message either /ACCESS-ACCEPT/, if user is both
+   known AND has admin role  or /ACCESS-REJECT/ if either property
+   fails (7).
 7. CPE receives this ACCEPT or REJECT. If there were other RADIUSes
    between CPE and MNO, they would have acted
    as proxy RADIUS servers.
-8. IF ACCEPTed, then the smartphone is both authenticated and authorized (8) and
+8. IF ACCEPTed, then the smartphone is both authenticated and
+   authorized (8) and it now 
    can send configuration change message to CPE, which recognizes it
-   coming from authentication network.
+   coming from authorized  network.
 
 
 
-[ alternative presentation of flow, II: textual paragraph. Which one is better? ] 
+[ alternative presentation of flow, II: textual paragraph. Which one
+is better? Remember to unify content below and above.] 
 
 The model has been changed in the Cloud (1). Cloud sends changes to CPE
-(2).  If changes are privileged, they need to be approved by phone
-user.  Changes are sent also to the phone(3) and phone user must
-authenticate itself to the management network.  Phone user starts
+(2).  If the changes are privileged, they need to be approved by phone
+user. The changes are sent also to the phone(3) and the phone user must
+authenticate  to the management network.  The phone user starts the
 authentication process to management network using EAP-SIM and reveals
-its IMSI(4).  CPE (AP) forwards authentication to MNO's RADIUS server
-using RADIUS protocol (5).  MNO have RADIUS server running and it
+the IMSI(4).  CPE (AP) forwards  the authentication to MNO's RADIUS server
+using RADIUS protocol (5).  MNO has RADIUS server running and it
 authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
 the Cloud, whether IMSI user has admin-role (AuthZ). 
 # [how long does it take to ask?]  
@@ -2491,25 +2497,8 @@ receives this ACCEPT or REJECT. If there were other RADIUSes between
 CPE and MNO, they would have acted as proxy RADIUS servers.  IF
 ACCEPTed, then the smartphone is both authenticated and authorized (8) and can
 send configuration change message to CPE, which recognizes it coming
-from authentication network.
+from authorized network.
 
-   While changes already have been  sent direct to the CPE and only let it
-   wait for approval, then when CPE receives ACCESS-ACCEPT, it could
-   proceed on propagating those changes.  Otherwise, after certain timeout, CPE must stop waiting
-   for phone's approval and drop changes.
-#   [this was the question somewhere, ``triggering'']
-
-
-This simplification has pitfalls. If the smartphone stays in management
-network continuously, how upcoming changes are separated? The smartphone should
-either be dropped out from management network right away after changes or
-after predefined timeout period.  If on the other hand, the smartphone must
-send changes itself, then it would be possible that access in the
-management network has short period of time, when phone 
-holds that status or acceptance token. For example for 10 minutes connection
-would be open for changes. Then changes would not go directly to CPE
-but instead to , but they would include some token to phone, which is
-needed for approval message.
 
 
 # *** Scenario II: AuthZ from own tables, AuthN from MNO
@@ -2628,7 +2617,57 @@ is not done yet. The scenario can be any of I-IV, but no trust nor roles are pre
 
 
 
+*** discussion about chosen model, simplification and further variations
+[# variation for sending changes direct to CPE]
+
+The simple way to propagate changes is make them come from the phone,
+where an application takes care of sending them right to the end
+devices. 
+
+This simplification has pitfalls. If the smartphone continuosly stays
+in the management network, how would later upcoming changes be
+separated from currently approved.
+# , i.e., the smart phone now is part of the trusted management network, but 
+If we understood that the change approval belongs to the AA-process, then
+the later approvals would also need an AA.
+
+ The smartphone should either be dropped out from the management
+network right away after the changes has been sent or after a
+predefined timeout period during which more changes can be send.
+That period can be called a management session.
+
+The session time and the logout can be handled in AP directly with
+an timer. After a specific time AP simple drops the connection
+(WPA2-session) to the phone. This needs modification to the AP
+software, if there already is not such method.
+Other solution would be for AP to listen for a command from an external
+AuthZ server, where similar timer would trigger a notification event.
+
+If GBA architecture was chosen, then the smartphone would hold a 
+token with validity time and must present that when accessing
+services, here the management network. 
+# If, on the other hand, the smartphone must send the changes itself, then it
+# would be possible that the access in to the management network has short
+# period of time, when phone holds that status or acceptance token. For
+# example, during 10 minutes the connection would be open for changes. Then
+# changes would not go directly to CPE but instead to X, but they would
+# include some token to phone, which is needed for approval message.
+
+
+
+# see automatic re-login issues
+*** model of sending changes both to CPE and to the phone, which approves them
+ While changes already have been  sent direct to the CPE and only let it
+wait for approval, then when CPE receives ACCESS-ACCEPT, it could
+proceed on propagating those changes.  Otherwise, after certain
+timeout, CPE must stop waiting for phone's approval and drop changes.
+#   [this was the question somewhere, ``triggering'']
+
+
+
+
 # ** What prevents modifications of RADIUS messages? Securing message integrity.
+
 ** Ways to modify RADIUS messages [perhaps to security integrity chapter?]
 <<sec:radius-macs>>
 # [Analysis of RADIUS, RADIUS Proxies..
@@ -2742,11 +2781,6 @@ already 20 years ago and today they can only be used as data error
 detection tool\cite[p.2]{rfc6151}. 
 
 
-# , which must be remembered.
-
-
-
-
 
 ** Similarities with Lock-and-Key method			     
    :PROPERTIES:
@@ -2756,7 +2790,10 @@ detection tool\cite[p.2]{rfc6151}.
 # 802.1x method or what?
 The method is very similar to the concept used on routers to dynamically enable
 access to certain parts of network by first letting the user to log in
-to the router.
+to the router. If the access succeeds, the router dynamically adds
+route to the management (or other restricted) part from the 
+users network.
+
 # [ONLINE cites, choose one that most fits or ask for permission to
 # use picture.]  
 
@@ -2786,9 +2823,9 @@ file:~/gitdocs/di/images/170847.jpg
                                       
 +----------+  telnet  +-------+ +--------------=+
 |smartphone+<-------->+'lock  | |  +----------+ |
-|          |          | and   | |  |management| |
-|          |  all     | key'  | |  +          | |
-|          +----------+       +--->+network   | |
+|   or     |          | and   | |  |management| |
+| general  |  all     | key'  | |  |          | |
+| terminal +----------+       +-=->+ network  | |
 +----------+          | router| |  |          | |
                       +-------+ |  +----------+ |
                                 +---------------+
@@ -2807,12 +2844,8 @@ Device provider Cisco calls this
  ``Lock-and-Key''\cite[p.117]{lockandkeybook}
 access and uses dynamic access list to implement it.
 # [cite this or find Basic manual: [[http://www.getnetworking.net/acl/dynamic-access-list-configuration]]]
-Difference here is that 802.1X protects access to the network in Layer
-2 while Lock-and-Key needs to have a functional Layer 3 to conduct
-authentication phase.
-Figure [[fig:cisco-802.1x]] reminds us again how 802.1X works with respects to
-Lock-and-key in Figure[[fig:lock-and-view]].
-
+Figure [[fig:cisco-802.1x]] reminds us again how 802.1X works. 
+Lock-and-key is presented on Figure[[fig:lock-and-view]].
  Smartphone has only limited access to the network before AA
 has completed, while in the Lock-and-key
 # authenticate to get access at all and then through
@@ -2820,8 +2853,15 @@ has completed, while in the Lock-and-key
 # In Lock-and-key,  
 the other parts of network are already open and successful login to the router opens
 access to even more segments through it. In other words, Lock-and-Key
-protects IP-access in layer-3 , while 802.1x protects layer-2.
-Both methods can have RADIUS as an Authentication server. 
+protects IP-access in layer-3 and though needs IP addressing, while
+802.1x's protection starts already at layer-2 between the smart phone
+and AP. Captive portals are similar to Lock-And-Key.
+# Difference here is that 802.1X protects access to the network already in Layer
+# 2 while Lock-and-Key needs to first have a functional Layer 3 to conduct
+# authentication phase. 
+
+
+Both methods, 802.1X and Lock-and-Key (and captive portals) can have RADIUS as an Authentication server. 
 When RADIUS is not available, for example because internet is down,
 there almost always exist as a failover a local password method in the configurable 
 router.
@@ -2845,8 +2885,23 @@ via normal access network.
 
 
 
-This thesis suggest a mix of these methods: EAP-SIM 802.1x WPA2 for
-getting in the management segment ...
+This thesis suggests a mix of these methods: EAP-SIM 802.1x WPA2 for
+authenticating in the local network with SIM and
+Lock-and-key type modification in the AP to further access the 
+management network. Finally, RADIUS protocol is used to transfer 
+parameters, that the smartphone would need in communicating with 
+devices in need of changes.
+
+
+smartphone  enc   AP                proxy or provider knows admin
+ (sp)       ----->    
+ IMSIs              < ---------->
+                  AP trusts sp 
+           ?mgmt-> 
+                      ------->     >  <-  
+
+register itself to registrar or function as registrar itself!
+software for that
 
 # From the beginning of the chapter, now fully described
 
@@ -4387,7 +4442,9 @@ the body text, remember this! ]
 #+BEGIN_LaTex
 \lstset{basicstyle=\ttfamily,columns=fixed}
 # % \lstinputlisting[language=bash]
+\scriptsize
 \lstinputlisting[language=bash]{./testit/apd-tty.clean}
+\normalsize
 #+END_Latex
 
 
@@ -4397,15 +4454,27 @@ the body text, remember this! ]
 If KEYS have been excluded from log files, there as placeholder stays
 string ``[REMOVED]''.
 #+BEGIN_LaTeX
+\scriptsize
 \lstinputlisting[language=sh]{testit/wpa-simtest-owrt2.conf.clean}
+\normalsize
 #+END_LaTeX
 
 ** RADIUS server conf
 #+BEGIN_LaTeX
+\scriptsize
 \lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
+\normalsize
 #+END_LaTeX
 ** hlr auc
+
 <<app:hlraucgw>>
+#+BEGIN_LaTeX
+\scriptsize
+\lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
+\normalsize
+#+END_LaTeX
+TBD
+\scriptsize
 #+NAME: app:hlraucgw
 
 ** No sim
