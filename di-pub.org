@@ -2367,47 +2367,58 @@ the achieved trusted access point.
 
 # [Place of Authorization decision  ]
 
-AuthZ decision usually happens at home and the Authenticator gives
-anyway the final decision about access.
-If the decision is made on remote AuthN server, 3rd party, 
+The AA components and the Authenticators can appear in 
+diverse location combinations. Here the AuthN component 
+always is located outside the home, as AuthN is the MNO.
+The Authenticator or the AuthZ on the other hand
+may be placed in the home or at the external provider.
+
+# Analyzing the locations
+AuthZ is usually checked from sources outside home, 
+although the Authenticator is the one, who
+gives the final decision about the access.
+
+If the AuthZ-decision is made on remote AuthN server, 3rd party, 
 then that server needs to have either local data or access to 
-cloud service's AuthZ data.
+cloud service's AuthZ data (scenario III, external Authenticator).
 Further it seems inevitable, that just like the home network model
-having AuthZ data of eligible IMSI accounts is in the cloud, 
-then also delegating AuthZ to cloud would simplify home network 
-functions. Instead of putting logic on CPE for AuthZ, CPE
+in the cloud has  AuthZ data of eligible IMSI accounts,
+then also delegating AuthZ function to the cloud would simplify home network 
+management: instead of putting logic on CPE for AuthZ, CPE
 could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
 
 
+[Put the table after the scenarios?]
+
 # This Chapter presents 5 scenarios for possible locations of AuthN and 
-Here are  5 scenarios presented for possible location points of AuthN and 
-AuthZ. Authenticator is the entity which gives the final decision 
-about access regardless of location of AA.
-In most cases it is located in the
-local AP, but it can also be external, like in scenario V in 
-table [[table-scenarios]], where locations for Authenticator (AA),
-AuthN, and AuthZ are marked as (I) for internal or (E) for external.
+Table [[table-scenarios]] represents the locations for Authenticator (AA),
+AuthN, and AuthZ in five scenarios. The locations are marked as (I)
+for internal or (E) for external in the table and the scenarios are
+described after that in detail. Authenticator is the entity which
+gives the final decision about access regardless of location of AA.
+In most cases it is located in the local AP, but it can also be
+external, like in scenario III. 
 
 :PROPERTIES:
 :Custom_ID: table-scenarios
 :END:
 #+CAPTION: Location of AA, AuthN and AuthZ in scenarios I-V
 #+NAME: table-scenarios
-| scene.no: | AA | AuthN | AuthZ              |
-|-----------+----+-------+--------------------|
-| I         | I  | E     | E                  |
-| II        | I  | E     | I                  |
-| III       | E  | E     | E                  |
-| IV        | I  | E     | E[fn:baasprovides] |
-| V         | -  | -     | -                  |
-[fn:baasprovides] BaaS provides
+| scene no: | Authenticator | AuthN | AuthZ              |
+|-----------+---------------+-------+--------------------|
+| I         | I             | E     | E                  |
+| II        | I             | E     | I                  |
+| III       | E             | E     | E                  |
+| IV        | I             | E     | E[fn:baasprovides] |
+| V         | -             | -     | -                  |
+[fn:baasprovides] Cloud provides
 
 
 # [Protocol analysis with the help of BAN-logic?]
 
 
-# *** Scenario I: AuthN from MNO, which uses BaaS for AuthZ
+# *** Scenario I: AuthN from MNO, which uses cloud for AuthZ
 <<scenario-i>>
 The first AA-scenario is presented here thoroughly as an example.
 The goal is to make trusted configuration change. 
@@ -2515,7 +2526,7 @@ place within home network.
 # #+begin_src ditaa :file scenII.png :cmdline -E -r -s 1.2
 #+begin_src ditaa :file scenII.png :cmdline -E -r -s 3
  +-------+      +-------------------+
- | BaaS  |      |MNO (RADIUS server)|
+ | Cloud |      |MNO (RADIUS server)|
  +---+---+      +-----+-------------+
      |                ^ 
      |                |AuthN
@@ -2538,7 +2549,7 @@ Similar to first scenario is scenario III (Figure[[fig:scenario-III]]),
 but this time there is SP between CPE and MNO, so AA is fully outsourced:
 local AP communicates with RADIUS protocol to the external
 Authentication server. That in turn gets AuthN from MNO via its
-hlr-auc-gateway and AuthZ from BaaS.
+hlr-auc-gateway and AuthZ from the cloud.
 #  by CPE.
 Locally there is a cache for roles in case of network disconnectivity.
 
@@ -2551,12 +2562,12 @@ This is similar to federated service.
 # #+begin_src ditaa :file scenIII.png :cmdline -E -r -s 0.8
 #+begin_src ditaa :file scenIII.png  :cmdline -E -r  -s 4
            +--------+                     +------=------+
-           | BaaS2  +<-+  (Alt. AuthN) +->+MNO2(HLR_AuC)|
+           |cloud2  +<-+  (Alt. AuthN) +->+MNO2(HLR_AuC)|
            +---=----+  :               :  +-------------+
                        :               :
                        v               v
  +-------+         +---+---------------+-----------+
- | BaaS1 +<-AuthZ->+3rd party Authentication server|
+ |cloud1 +<-AuthZ->+3rd party Authentication server|
  +----+--+         +---+------------------+--------+
       |                ^                  ^         
       |                |RADIUS            |AuthN 
@@ -2571,7 +2582,7 @@ This is similar to federated service.
 #+RESULTS:
 [[file:scenIII.png]]
 
-Allowed users are verified from BaaS's registries and specific IMSI is
+Allowed users are verified from the cloud's registries and specific IMSI is
 authenticated from MNO.  It may need some preparation, if SIM
 identities are temporary i.e. TMSI is used.  Still, IMSI is carried out at first message
 of full authentication. Later, the server would need to have mapping
@@ -2587,15 +2598,15 @@ there should be no problem.
 
 
 Scenario IV (Figure[[fig:scenario-IV]]) is similar to scenario I, but
-now AuthZ is checked by CPE instead of MNO from BaaS. If there are no connection to
-cloud, fall-back is to work just like II. So also this scenario needs local
-store for admin IMSIs.
+now AuthZ is checked by CPE instead of MNO from the Cloud. If there are no connection to
+the cloud, the fall-back is to work just like II. So also this scenario needs local
+store for caching admin IMSIs (Roles).
 
 # #+begin_src ditaa :file scenIV.png :cmdline -E -r -s 0.8
 # preview : C-cC-o
 #+begin_src ditaa :file scenIV.png :cmdline -E -r -s 3
       +------------+   +--------------+
-      |    BaaS    |   |MNO (HLR_AuC) |
+      |  Cloud     |   |MNO (HLR_AuC) |
       ++----------++   ++-------------+
        |          ^     ^
        |     AuthZ|     |AuthN
@@ -2606,7 +2617,7 @@ store for admin IMSIs.
                  +-------+--------+
 
 #+end_src
-#+CAPTION: Scenario IV, AuthZ from BaaS, AuthN from home network
+#+CAPTION: Scenario IV, AuthZ from the Cloud, AuthN from MNO
 #+NAME:   fig:scenario-IV
 #+RESULTS:
 [[file:scenIV.png]]
@@ -2968,6 +2979,50 @@ extensions for homeworkers instead of office.
 
 # division of 
 
+*** discussion about chosen model, simplification and further variations
+[# variation for sending changes direct to CPE]
+
+The simple way to propagate changes is make them come from the phone,
+where an application takes care of sending them right to the end
+devices. 
+
+This simplification has pitfalls. If the smartphone continuosly stays
+in the management network, how would later upcoming changes be
+separated from currently approved.
+# , i.e., the smart phone now is part of the trusted management network, but 
+If we understood that the change approval belongs to the AA-process, then
+the later approvals would also need an AA.
+
+ The smartphone should either be dropped out from the management
+network right away after the changes has been sent or after a
+predefined timeout period during which more changes can be send.
+That period can be called a management session.
+
+The session time and the logout can be handled in AP directly with
+an timer. After a specific time AP simple drops the connection
+(WPA2-session) to the phone. This needs modification to the AP
+software, if there already is not such method.
+Other solution would be for AP to listen for a command from an external
+AuthZ server, where similar timer would trigger a notification event.
+
+If GBA architecture was chosen, then the smartphone would hold a 
+token with validity time and must present that when accessing
+services, here the management network. 
+# If, on the other hand, the smartphone must send the changes itself, then it
+# would be possible that the access in to the management network has short
+# period of time, when phone holds that status or acceptance token. For
+# example, during 10 minutes the connection would be open for changes. Then
+# changes would not go directly to CPE but instead to X, but they would
+# include some token to phone, which is needed for approval message.
+
+# see automatic re-login issues
+*** model of sending changes both to CPE and to the phone, which approves them
+ While changes already have been  sent direct to the CPE and only let it
+wait for approval, then when CPE receives ACCESS-ACCEPT, it could
+proceed on propagating those changes.  Otherwise, after certain
+timeout, CPE must stop waiting for phone's approval and drop changes.
+#   [this was the question somewhere, ``triggering'']
+
 
 * Implemented Solution
 :PROPERTIES:
@@ -2981,9 +3036,13 @@ extensions for homeworkers instead of office.
 # - Network traces etc
 
 To prove that the proposed model works, empirical tests have been done.
-First it is shown how EAP-SIM authentication works. Then a use case for
-adding an admin user is reported. Changes are in the end done 
-for example with NETCONF from the management network.
+First it is shown how EAP-SIM authentication works in a simulated
+environment.
+ Then a use case for disconnection is reported and network traces analyzed.
+# for adding an admin user is reported.
+ Changes are in the end done 
+# for example (with SSH or)
+with NETCONF from the management network.
 
 ** EAP-SIM authentication test bed
 # RADIUS server is located either on local network or hosted on remote
@@ -3053,13 +3112,16 @@ implementation providing all necessary components: WPA2-Supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS would replace HLR in 3G/UMTS networks.
 The version used in the tests was 2.2, while version
-2.4 was published on March 2015.
+2.4 was published on March 2015. RADIUS part used configuration file
+Appendix [[app:radius-conf]].
 
-For a more realistic test, OpenWRT AP is used instead of /hostapd/'s
+
+For a more realistic test, additional hardware OpenWRT AP was used instead of /hostapd/'s
 AP and /hostapd/ provides only RADIUS server.
 OpenWRT AP works as a RADIUS client connecting to RADIUS server. 
 It will not try to open EAP-messages or need
 to know about them; it just encapsulates them into RADIUS packet.
+
 
 #  (algorithms not explained here further) 
 The algorithm used in the demo was internal GSM-Milenage,
@@ -3307,10 +3369,10 @@ For that to success, the WWW-portal would need also an open access without
 
 
 ** Network traces (EAP, SIM, AUTH traffic analysis)
-Wireless capture between WPA2-Supplicant and AP was made at
-WPA2-Supplicant, before it left the wireless card. Capture was
-not made in monitoring mode, so all 802.11 details in
-data packets were not captured\cite{wireshark-capture}.
+Wireless capture of traffic between WPA2-Supplicant and AP was made at
+WPA2-Supplicant on the wireless card. Capture was
+not made in monitoring mode, so not all 802.11 details in
+data packets were captured\cite{wireshark-capture}.
 That was not a problem, because the focus was 
 in the EAP messaging instead of radio channel details.
 Whole conversation is given first here and afterwards analyzed more
@@ -3319,12 +3381,9 @@ thoroughly.
 [normalization of frame numbers?]
 
 # [cite:https://wiki.wireshark.org/CaptureSetup/WLAN]
-
-[Captured wireshark sessions give insight here. Analyze them.
+# [Captured wireshark sessions give insight here. Analyze them.
 1. Capture of first part of SIM without secrets 
-2. Packet capture of successful SIM-authentication with corresponding
-parts of logs at WPA2-Supplicant, RADIUS server and packet captures 
-802.1X, RADIUS and HLR. ]
+2. Packet capture of successful SIM-authentication with corresponding parts of logs at WPA2-Supplicant, RADIUS server and packet captures 802.1X, RADIUS and HLR. ]
 # Maybe also remote syslog from access point.]
 
 [This part demonstrates use of unknown SIM physical phone]  
@@ -3336,28 +3395,28 @@ that case.
 
 
 #+LATEX: \scriptsize
-| No. |            Time | Source     | Destination | Protocol | Length | Info                                 |
-| 129 | 15:57:17.983047 | AP-802.1x  | smartphone  | EAP      |     23 | Request, Identity                    |
-| 130 | 15:57:17.983223 | smartphone | AP-802.1x   | EAP      |     39 | Response, Identity                   |
-| 131 | 15:57:17.988716 | AP-wired   | RADIUS-srv  | RADIUS   |    235 | Access-Request(1) (id=162, l=193)    |
-| 132 | 15:57:17.988949 | RADIUS-srv | AP-wired    | RADIUS   |    108 | Access-Challenge(11) (id=162, l=66)  |
-| 133 | 15:57:17.990884 | AP-802.1x  | smartphone  | EAP      |     38 | Request, GSM Subscriber Identity     |
-|     |                 |            |             |          |        | Modules EAP (EAP-SIM)                |
-| 134 | 15:57:17.992497 | smartphone | AP-802.1x   | EAP      |     70 | Response, GSM Subscriber Identity    |
-|     |                 |            |             |          |        | Modules EAP (EAP-SIM)                |
-| 135 | 15:57:17.994547 | AP-wired   | RADIUS-srv  | RADIUS   |    272 | Access-Request(1) (id=163, l=230)    |
-| 136 | 15:57:18.002416 | RADIUS-srv | AP-wired    | RADIUS   |    256 | Access-Challenge(11) (id=163, l=214) |
-| 137 | 15:57:18.004054 | AP-802.1x  | smartphone  | EAP      |    186 | Request, GSM Subscriber Identity     |
-|     |                 |            |             |          |        | Modules EAP (EAP-SIM)                |
-| 138 | 15:57:18.004398 | smartphone | AP-802.1x   | EAP      |     46 | Response, GSM Subscriber Identity    |
-|     |                 |            |             |          |        | Modules EAP (EAP-SIM)                |
-| 139 | 15:57:18.006323 | AP-wired   | RADIUS-srv  | RADIUS   |    248 | Access-Request(1) (id=164, l=206)    |
-| 140 | 15:57:18.006513 | RADIUS-srv | AP-wired    | RADIUS   |    202 | Access-Accept(2) (id=164, l=160)     |
-| 141 | 15:57:18.011044 | AP-802.1x  | smartphone  | EAP      |     22 | Success                              |
-| 142 | 15:57:18.011213 | AP-802.1x  | smartphone  | EAPOL    |    135 | Key (Message 1 of 4)                 |
-| 143 | 15:57:18.012353 | smartphone | AP-802.1x   | EAPOL    |    135 | Key (Message 2 of 4)                 |
-| 144 | 15:57:18.016163 | AP-802.1x  | smartphone  | EAPOL    |    169 | Key (Message 3 of 4)                 |
-| 145 | 15:57:18.016344 | smartphone | AP-802.1x   | EAPOL    |    113 | Key (Message 4 of 4)                 |
+| No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
+| 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
+| 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                   |
+| 131 | 15:57:17.9887 | AP-wired   | RADIUS-srv | RADIUS | 235 | Access-Request(1) (id=162, l=193)    |
+| 132 | 15:57:17.9889 | RADIUS-srv | AP-wired   | RADIUS | 108 | Access-Challenge(11) (id=162, l=66)  |
+| 133 | 15:57:17.9908 | AP-802.1x  | smartphone | EAP    |  38 | Request, GSM Subscriber Identity     |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
+| 134 | 15:57:17.9924 | smartphone | AP-802.1x  | EAP    |  70 | Response, GSM Subscriber Identity    |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
+| 135 | 15:57:17.9945 | AP-wired   | RADIUS-srv | RADIUS | 272 | Access-Request(1) (id=163, l=230)    |
+| 136 | 15:57:18.0024 | RADIUS-srv | AP-wired   | RADIUS | 256 | Access-Challenge(11) (id=163, l=214) |
+| 137 | 15:57:18.0040 | AP-802.1x  | smartphone | EAP    | 186 | Request, GSM Subscriber Identity     |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
+| 138 | 15:57:18.0043 | smartphone | AP-802.1x  | EAP    |  46 | Response, GSM Subscriber Identity    |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
+| 139 | 15:57:18.0063 | AP-wired   | RADIUS-srv | RADIUS | 248 | Access-Request(1) (id=164, l=206)    |
+| 140 | 15:57:18.0065 | RADIUS-srv | AP-wired   | RADIUS | 202 | Access-Accept(2) (id=164, l=160)     |
+| 141 | 15:57:18.0110 | AP-802.1x  | smartphone | EAP    |  22 | Success                              |
+| 142 | 15:57:18.0112 | AP-802.1x  | smartphone | EAPOL  | 135 | Key (Message 1 of 4)                 |
+| 143 | 15:57:18.0123 | smartphone | AP-802.1x  | EAPOL  | 135 | Key (Message 2 of 4)                 |
+| 144 | 15:57:18.0161 | AP-802.1x  | smartphone | EAPOL  | 169 | Key (Message 3 of 4)                 |
+| 145 | 15:57:18.0163 | smartphone | AP-802.1x  | EAPOL  | 113 | Key (Message 4 of 4)                 |
 #+LATEX: \normalsize
 
 # - flow of messages,  timing,  size, attributes 
@@ -3401,15 +3460,19 @@ Frame 130: 15:57:17.983223
 #+END_EXAMPLE
 #+LATEX: \normalsize
 
-We note here, that AP uses version 802.1X-2004 while WPA2-Supplicant
+We notice the difference on 802.1X versions; AP uses version
+802.1X-2004 in its request while the WPA2-Supplicant
 responses with version 802.1X-2001. Here it does not have any
-noticeable effect. The identity field's length cannot directly be
-seen, but when EAP message length 21 octets is reduced by space
-needed for Code(1), ID(1), Lenght(2), and Type(1), it yields 16 octets for
-the Identity. Therefore the Identity is not coded as a
-numeral but as a string and that brings flexibility as the identity can
-include alphabets too. It also minimizes misunderstandings, if context
-gets lost.
+noticeable effect. 
+
+The last line has the important identity field received from the SIM.
+Its length cannot directly be seen, but when EAP message's length (21
+octets) is reduced by fixed space needed for Code(1), ID(1),
+Lenght(2), and Type(1), it yields 16 octets for the
+identity. Therefore the identity is not coded as a 
+numeral but instead as a string and that brings more flexibility in
+the protocol as the Identity can include alphabets too. It also
+minimizes misunderstandings, if context gets lost.
 
 #  Other information is also needed, for example
 # time stamps and accounting logs so these calculations are not precise.
@@ -3418,12 +3481,16 @@ gets lost.
 # [Reminds me of encoding IP addresses as strings in DNS request instead of bytes.]
 
 
-EAP client's identity is transformed at Authenticator (Figure[[fig:eap-layers]]) from 802.1X's 
+EAP client's identity is transformed at Authenticator
+(Figure[[fig:eap-layers]], Chapter [[cha:aaa]]) from 802.1X's 
 EAPOL format  into RADIUS format and
-sent to RADIUS server. The capture between AP and Radius server:
+sent to RADIUS server. The capture between AP and Radius server is
+shown
+in Figure[[fig:capture]].
+
 
 #+LATEX: \scriptsize
-#+BEGIN_EXAMPLE
+#+begin_example
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
@@ -3449,19 +3516,24 @@ Radius Protocol
                 Type: Identity (1)
                 Identity: 1232010000000000
         AVP: l=18 t=Message-Authenticator(80): 04ea7e507d72bdb1acf515ef19ac9527
-#+END_EXAMPLE
+#+end_example
+#+CAPTION: capture between AP and RADIUS server
+#+NAME: fig:capture
 #+LATEX: \normalsize
+Here interesting part is the first RADIUS AVP.
+While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
+field, it was surprising that RADIUS has captured that field and 
+filled its User-Name field to the very same, ``1232010000000000''. 
 
-Interesting part is the EAP fragment, having
-Identity=``1232010000000000'', because
-RADIUS message itself has set User-Name field to very same, ``1232010000000000''. 
-Identity is also filled in WPA2-Supplicant configuration file both in identity and credential
-section but this might just be syntax issue.
+In WPA2-Supplicant configuration file (see Appendix [[app:wpa-conf]]) both the identity and
+credential section had the identity field, but that might 
+just be syntax issue.
 # Maybe this has something to do with identity
 # values above, or then 
 AP just has followed conventions on converting
 EAP into RADIUS message and put identity field into User-Name
 Attribute Value Pair (AVP).
+# why similar convention can be seen?
 Similar convention can be seen when analyzing EAP encapsulation and
 message size. The last RADIUS (AVP) is 
 Message-Authenticator, which presents limited safety against message 
@@ -4450,9 +4522,10 @@ the body text, remember this! ]
 
 
 ** wpa-supplicant settings (wpa-simtest-owrt2.conf)
-[already in text]
-If KEYS have been excluded from log files, there as placeholder stays
-string ``[REMOVED]''.
+<<app:wpa-conf>>
+# [already in text]
+If KEYS have been excluded from log or conf files, there will be
+string ``[REMOVED]''  as a placeholder.
 #+BEGIN_LaTeX
 \scriptsize
 \lstinputlisting[language=sh]{testit/wpa-simtest-owrt2.conf.clean}
@@ -4460,6 +4533,7 @@ string ``[REMOVED]''.
 #+END_LaTeX
 
 ** RADIUS server conf
+<<app:radius-conf>>
 #+BEGIN_LaTeX
 \scriptsize
 \lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
