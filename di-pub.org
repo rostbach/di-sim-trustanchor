@@ -1068,7 +1068,7 @@ connection, although disconnectivity issues are later addressed
 partly in Section [[sec:disconnections]].
 Using smartphone may cost money, either to client or to service
 provider, but costs could be lower than using SMS, because 
-the network  used is IP network instead of mobile phone network.
+the network  used is IP network instead of cellular phone network.
 
 # Using EAP-SIM is in many parts simpler to mobile client.  
 In many parts, SIM variants in EAP are simpler, than other EAP
