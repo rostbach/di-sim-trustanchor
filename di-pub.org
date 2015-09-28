@@ -3074,7 +3074,7 @@ Figure[[eap-sim-testbed]] shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
-#+CAPTION: Physical devices 
+#+CAPTION: Preliminary plan to benefit from SIM-authentication at home
 #+NAME: phone-soft-hlr
 #+RESULTS:
 [[file:phone-soft-hlr.png]]
