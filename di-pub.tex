@@ -1,4 +1,4 @@
-% Created 2015-09-28 ma 19:09
+% Created 2015-09-28 ma 19:12
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2122,7 +2122,9 @@ First it is shown how EAP-SIM authentication works in a simulated
 environment.
  Then a use case for disconnection is reported and network traces analyzed.
 Changes are in the end done 
-with NETCONF from the management network.
+via SSH or NETCONF from the local controller to the management network.
+
+
 
 \section{EAP-SIM authentication test bed}
 \label{sec-5-1}
@@ -2138,6 +2140,14 @@ HLR-AuC. Laptop's role was therefore physically split-brain: It asked from itsel
 Figure\ref{eap-sim-testbed} shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{phone-soft-hlr.png}
+\caption{\label{phone-soft-hlr}Physical devices}
+\end{figure}
+
+[ ] 
 
 \begin{figure}[htb]
 \centering
