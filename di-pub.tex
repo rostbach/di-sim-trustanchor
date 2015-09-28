@@ -1,4 +1,4 @@
-% Created 2015-09-28 ma 19:12
+% Created 2015-09-28 ma 19:20
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,13 +47,13 @@
 \title{Smartphone as a trust anchor for delegated home net configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-2.9.2015 Master of Science thesis}
+\thesistype{draft-28.9.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{2.9.2015  \{20.8.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{28.9.2015 \{2.9., 20.8.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -2131,9 +2131,9 @@ via SSH or NETCONF from the local controller to the management network.
 
 
 
-Used physical devices were two smartphones, an AP and a laptop.
-The smartphones were Nokia E70-1 and Nokia E90, both capable of EAP-SIM.
-The AP was running OpenWRT firmware.  
+Physical devices used in the tests  were two smartphones, an AP and a laptop.
+The smartphones were Nokia E70-1 and Nokia E90, both capable of
+EAP-SIM on factory software (Symbian). The AP was running OpenWRT firmware.  
 Laptop's software was WPA2-Supplicant for Wi-Fi 802.1X access,
 hostapd for wired connected RADIUS server and hlr\_auc\_gw for MNO's
 HLR-AuC. Laptop's role was therefore physically split-brain: It asked from itself for AA. 
@@ -2144,7 +2144,7 @@ simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{phone-soft-hlr.png}
-\caption{\label{phone-soft-hlr}Physical devices}
+\caption{\label{fig:sim-pre}Preliminary plan to benefit from SIM-authentication at home}
 \end{figure}
 
 [ ] 
