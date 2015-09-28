@@ -1086,10 +1086,6 @@ identity.
 # "Unless your Authentication server is set to accept anonymous
 # connections, ignore that setting." means what?
 
-
-
-
-
 #+attr_latex: :align=|c|c|c|c|
 #+CAPTION: Setup tasks for clients in WPA2-Enterprise with EAP-PEAP-MSCHAPv2 and EAP-SIM
 #+NAME: table-peapsim
