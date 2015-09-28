@@ -275,7 +275,7 @@ Teemu Teekkari
 \item[IEEE] Institute of Electrical and Electronics Engineers
 \item[IMSI] International Mobile Subscriber Identity
 \item[ISP] internet service provider
-\item[MNO] mobile network operator, owner of cellular network, knows SIM secrets
+\item[MNO] mobile network operator, knows SIM secrets
 \item[RADIUS] Remote Authentication Dial In User Service, protocol and server,  AAA service 
 \item[SIM]  Subscriber Identity Module, a smartcard. Also USIM program running in UICC card (UMTS networks)
 \item[SSID] Service Set Identifier, identifies Wi-Fi network
