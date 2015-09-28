@@ -3122,7 +3122,15 @@ implementation providing all necessary components: WPA2-Supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS would replace HLR in 3G/UMTS networks.
 The version used in the tests was 2.2, while version
-2.4 was published on March 2015. RADIUS paradius-conf>>
+2.4 was published on March 2015. 
+
+
+# insert here commit 17989d2dcc1f5449499ee912d9db4d363cedfb7a vv
+# 
+
+# insert here commit 17989d2dcc1f5449499ee912d9db4d363cedfb7a ^^ 
+
+RADIUS paradius-conf>>
 #+BEGIN_LaTeX
 \scriptsize
 \lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
