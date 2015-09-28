@@ -1065,8 +1065,7 @@ easy user experience.
 
 Disadvantages with SIM are dependency on mobile operator and internet
 connection, although disconnectivity issues are later addressed
-partly.
-# reference ?
+partly in Section [[sec:disconnections]].
 Using smartphone may cost money, either to client or to service
 provider, but costs could be lower than using SMS, because 
 the network  used is IP network instead of mobile phone network.
