@@ -675,7 +675,7 @@ available for authenticated entity.
 
 Before we introduce SIM-based authentication used throughout the
 thesis, protocols 802.1X, WPA2, EAP and RADIUS are described in the
-following Sections. [sections?]. Last, we expand the term trust.
+following Sections. [sections?]. Last, we expand the term ``trust''.
 
 ** 802.1X
 
