@@ -1630,7 +1630,7 @@ and resolve the work-flow of change management.
 # home network has received a trust anchor in the smartphone.  
 
 This chapter describes, how the smartphone becomes a trust anchor for
-the home network and how then the change management can flow.
+the home network and how the change management can flow after that.
 On its simplest, the smartphone connects with a Wi-Fi link to an
 AP in the home network and authenticates with SIM-card.
 # AP functions here as an Authenticator. 
