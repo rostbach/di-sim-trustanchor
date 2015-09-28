@@ -3073,6 +3073,12 @@ HLR-AuC. Laptop's role was therefore physically split-brain: It asked from itsel
 Figure[[eap-sim-testbed]] shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
+
+#+CAPTION: Physical devices 
+#+NAME: phone-soft-hlr
+#+RESULTS:
+[[file:phone-soft-hlr.png]]
+
 # Logically the model can be better described in figure[[eap-sim-testbed]].
 
 # #+begin_src ditaa :file demoinfra.png :cmdline -E -r -s 0.8
