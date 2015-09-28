@@ -282,7 +282,7 @@ Teemu Teekkari
 \item[TMSI] Temporal Mobile Subscriber Identity
 \item[Wi-Fi] Wireless local network, implements IEEE 802.11 standards
 \item[WPA] Wireless Protected Access version 1.
-\item[WPA2] Wireless Protected Access version 2, more secure than WPA
+\item[WPA2] Wireless Protected Access version 2
 \end{termlist} 
 
 
