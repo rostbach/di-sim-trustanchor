@@ -3079,6 +3079,7 @@ simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 #+RESULTS:
 [[file:phone-soft-hlr.png]]
 
+[ ] 
 # Logically the model can be better described in figure[[eap-sim-testbed]].
 
 # #+begin_src ditaa :file demoinfra.png :cmdline -E -r -s 0.8
