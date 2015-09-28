@@ -1626,10 +1626,26 @@ and resolve the work-flow of change management.
 
 
 # This chapter describes, how the change management can flow after the
-This chapter describes, how the smartphone becomes a trust anchor for
-the home network and how then the change management can flow.
 #  after the
 # home network has received a trust anchor in the smartphone.  
+
+This chapter describes, how the smartphone becomes a trust anchor for
+the home network and how then the change management can flow.
+On its simplest, the smartphone connects with a Wi-Fi link to an
+AP in the home network and authenticates with SIM-card.
+# AP functions here as an Authenticator. 
+The resulting authorized connection brings a trust relationship
+between the smartphone (a local controller)
+and the home network (managed devices) so that the 
+# configuration changes
+management can happen. 
+#  as long as the smartphone is present. 
+In essence, the precence of the smartphone at home
+opens the gate for the management, though it needs a little
+interaction on behalf the user.
+
+
+
 Before fully explaining our chosen method, we introduce some 
 # real number, instead of some?
 alternative
@@ -1642,18 +1658,6 @@ beginning.
 # kuva? 
 
 
-On its simplest, the smartphone connects with a Wi-Fi link to an
-AP in the home network and authenticates with SIM-card.
-# AP functions here as an Authenticator. 
-The resulting authorized connection brings a trust relationship
-between the smartphone (local controller)
-and the home network (managed devices) so that the 
-# configuration changes
-management can happen. 
-#  as long as the smartphone is present. 
-In essence, the precence of the smartphone at home
-opens the gate for the management, though it needs a little
-interaction on behalf the user.
 
 
 
