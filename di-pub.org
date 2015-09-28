@@ -3052,7 +3052,9 @@ environment.
 # for adding an admin user is reported.
  Changes are in the end done 
 # for example (with SSH or)
-with NETCONF from the management network.
+via SSH or NETCONF from the local controller to the management network.
+
+
 
 ** EAP-SIM authentication test bed
 # RADIUS server is located either on local network or hosted on remote
