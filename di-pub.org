@@ -1063,7 +1063,7 @@ provisioned first, which would defeat what we want to achieve in
 easy user experience.
 
 
-Disadvantages with SIM is dependency on mobile operator and internet
+Disadvantages with SIM are dependency on mobile operator and internet
 connection, although disconnectivity issues are later addressed partly.
 Using smartphone may cost money, either to client or to service
 provider, but costs could be lower than using SMS, because 
