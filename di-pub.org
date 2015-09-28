@@ -3064,8 +3064,9 @@ via SSH or NETCONF from the local controller to the management network.
 #  per scenarios in Scenario Chapter. 
 # "Here" needs reference, but it is already referenced in next Chapter?
 
-Used physical devices were two smartphones, an AP and a laptop.
-The smartphones were Nokia E70-1 and Nokia E90, both capable of EAP-SIM.
+Physical devices used in the tests  were two smartphones, an AP and a laptop.
+The smartphones were Nokia E70-1 and Nokia E90, both capable of
+EAP-SIM on factory software (Symbian).
 The AP was running OpenWRT firmware.  
 Laptop's software was WPA2-Supplicant for Wi-Fi 802.1X access,
 hostapd for wired connected RADIUS server and hlr_auc_gw for MNO's
