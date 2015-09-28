@@ -3127,9 +3127,11 @@ The version used in the tests was 2.2, while version
 
 
 For a more realistic test, additional hardware OpenWRT AP was used instead of /hostapd/'s
-AP and /hostapd/ provides only RADIUS server.
-OpenWRT AP works as a RADIUS client connecting to RADIUS server. 
-It will not try to open EAP-messages or need
+AP.
+
+OpenWRT AP works as a RADIUS client connecting to RADIUS server still
+provided by  /hostapd/.
+OpwnWRT will not try to open EAP-messages or need
 to know about them; it just encapsulates them into RADIUS packet.
 
 
@@ -3141,7 +3143,7 @@ which handles beside EAP-AKA also EAP-SIM.
 # A3/A8 algorithm used in demo is called MILENAGE, 
 Milenage is a reference implementation and as such suitable for operators, who do not 
 want to invent their own security algorithms. OPc and Seq numbers,
-which are needed in when using EAP-AKA, were not used.
+which are needed when using EAP-AKA, were not used.
 
 # In configuration files,
 # parameters for MILENAGE can be seen, but they were not used.
