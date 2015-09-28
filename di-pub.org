@@ -1656,6 +1656,10 @@ already trust each other, the trust between the smartphone and AP, and
 thus the management network at home, is non-existing in the
 beginning.
 # kuva? 
+#+CAPTION: Trust circles in the beginning.
+#+NAME:   fig:trustbegin
+#+RESULTS:
+file:trusted1.pdf
 
 
 
