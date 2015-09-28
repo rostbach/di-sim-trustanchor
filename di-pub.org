@@ -3035,7 +3035,8 @@ timeout, CPE must stop waiting for phone's approval and drop changes.
 
 * Implemented Solution
 :PROPERTIES:
-:CUSTOM_ID: cha:simu
+:C
+USTOM_ID: cha:simu
 :END: 
 
 # +  Setup and Test bed
