@@ -1625,17 +1625,22 @@ and resolve the work-flow of change management.
 #   management to app-style management) 
 
 
-This chapter describes, how the change management can flow after the
-home network has received a trust anchor in the smartphone.  Before
-fully explaining our chosen method, we introduce some 
+# This chapter describes, how the change management can flow after the
+This chapter describes, how the smartphone becomes a trust anchor for
+the home network and how then the change management can flow.
+#  after the
+# home network has received a trust anchor in the smartphone.  
+Before fully explaining our chosen method, we introduce some 
 # real number, instead of some?
 alternative
-approaches for a trust anchor, which is part of bootstrapping.
+approaches for a trust anchor. The trust anchor is part of bootstrapping,
 # need to explain bootstrapping more?
-Bootstrapping is needed because although the smartphone and MNO
+which is needed because although the smartphone and MNO
 already trust each other, the trust between the smartphone and AP, and
 thus the management network at home, is non-existing in the
 beginning.
+# kuva? 
+
 
 On its simplest, the smartphone connects with a Wi-Fi link to an
 AP in the home network and authenticates with SIM-card.
