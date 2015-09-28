@@ -3122,8 +3122,8 @@ implementation providing all necessary components: WPA2-Supplicant, Wireless
 Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
 or without RADIUS-server. HSS would replace HLR in 3G/UMTS networks.
 The version used in the tests was 2.2, while version
-2.4 was published on March 2015. RADIUS part used configuration file
-Appendix [[app:radius-conf]].
+2.4 was published on March 2015. RADIUS server used configuration file
+ can be seen in Appendix [[app:radius-conf]].
 
 
 For a more realistic test, additional hardware OpenWRT AP was used instead of /hostapd/'s
