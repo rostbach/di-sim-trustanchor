@@ -3142,8 +3142,8 @@ which handles beside EAP-AKA also EAP-SIM.
 # also newer algorithm MILENAGE,
 # A3/A8 algorithm used in demo is called MILENAGE, 
 Milenage is a reference implementation and as such suitable for operators, who do not 
-want to invent their own security algorithms. OPc and Seq numbers were not used,
-they are only needed when using EAP-AKA. 
+want to invent their own security algorithms. OPc and Seq numbers from
+Milenage were not used, they are only needed when using EAP-AKA. 
 
 # In configuration files,
 # parameters for MILENAGE can be seen, but they were not used.
