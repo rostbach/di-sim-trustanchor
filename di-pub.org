@@ -3075,7 +3075,7 @@ and solid arrowed lines) flow when using
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
 #+CAPTION: Preliminary plan to benefit from SIM-authentication at home
-#+NAME: phone-soft-hlr
+#+NAME: fig:sim-pre
 #+RESULTS:
 [[file:phone-soft-hlr.png]]
 
