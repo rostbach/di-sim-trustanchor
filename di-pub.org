@@ -1658,7 +1658,6 @@ beginning.
 # kuva? 
 #+CAPTION: Trust circles in the beginning.
 #+NAME:   fig:trustbegin
-#+RESULTS:
 file:trusted1.pdf
 
 
