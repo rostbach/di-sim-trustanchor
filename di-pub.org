@@ -1656,12 +1656,23 @@ already trust each other, the trust between the smartphone and AP, and
 thus the management network at home, is non-existing in the
 beginning.
 # kuva? 
-#+CAPTION: Trust circles in the beginning.
-#+NAME:   fig:trustbegin
-file:trusted1.pdf
+# #+CAPTION: 
+# #+NAME:   fig:trustbegin
+# file:trust.1.pdf_tex
 
+# must do this with svg export 
+# graphs exproted to pdf but text with latex
+#  inkscape -D -z --file=trusted1.svg --export-pdf=trust.1.pdf --export-latex
+#+BEGIN_LaTeX
+\begin{figure}
+  \centering
+%  \def\svgwidth{\columnwidth}
+  \input{trust.1.pdf_tex}
+  \caption{\label{fig:trustbegin}Trust circles in the beginning.}
+\end{figure}
+#+END_LaTeX
 
-
+# file:trusted1.pdf
 
 
 # Trusted connection is needed between existing network and local
