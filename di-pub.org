@@ -1864,7 +1864,7 @@ multiplied with number of the separate home networks  needing authentication ser
 # #+END_QUOTE
 # source:https://wiki.moonshot.ja.net/display/HOME/Home
 Project Moonshot\cite{moonshot}, if worked and used together with MSSP, may offer
-SIM-based SSH-access to Authenticator. Modifications are then needed 
+SIM-based SSH access to Authenticator. Modifications are then needed 
 both in SSH server and client. Additionally EAP must be used through
 tunneling, for example as an inner protocol of EAP-TTLS.
 # end of fed services.
