@@ -610,8 +610,7 @@ method.
 # different scenarios for authorization.  
 One specially crafted problem is how the scenarios presented here can be
 tested without knowing the SIM card's secret keys and without real phone
-operator involved.  Those experiments are described in Chapter
-[[#cha:simu]].
+operator involved.  Those experiments are described in Chapter[[cha:simu]].
 # [Simulation of authentication between SIM-card and mobile operator
 # is shown and analyzed on Chapter [[#cha:simu]].
 # Security analysis is
@@ -3022,8 +3021,7 @@ f
 
 * Implemented Solution
 :PROPERTIES:
-:C
-USTOM_ID: cha:simu
+:CUSTOM_ID: cha:simu
 :END: 
 
 # +  Setup and Test bed
