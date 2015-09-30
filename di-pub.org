@@ -1205,7 +1205,7 @@ The nonce is by definition a value used only once. The nonce can
 be thought as client's challenge to the network.
 The client challenges the operator by sending the nonce 
 during the start of the negotiation phase in the message
-7 in Figure[[fig:eap-sim-radius]).
+7 in Figure[[fig:eap-sim-radius]]).
  The client later checks in the process
 12, whether RAND values from the operator were digested with the
 correct nonce and so authenticates the operator.
