@@ -820,7 +820,7 @@ by negotiating session keys. This happens
 after 802.1X has opened the virtual port in AP for the Supplicant.
 
 WPA (version 1)  was an early subset of then upcoming 802.11i standard,
-while WPA2 is the full implementation, also noted as IEEE
+while WPA2 is the full implementation, also denoted as IEEE
 802.11i-2004, and the term WPA2 is used throughout the thesis.
 # WPA2 consist of client (WPA2-supplicant), Authenticator, and Authentication Server.
 Client software for 802.11i is called a WPA2-Supplicant and it is used
