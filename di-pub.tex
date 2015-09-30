@@ -1,4 +1,4 @@
-% Created 2015-09-30 ke 14:45
+% Created 2015-09-30 ke 14:53
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -882,7 +882,7 @@ Identity hiding: &  &  &  & \\
 Bird's eye view to the EAP-SIM messaging between the smartphone, AP,
 Authentication server and MNO is described in Figure\ref{fig:eap-sim-simple}.
 The traffic is EAP on the left, RADIUS  in
-the middle, and MAP/SS7, which is an mobile connection  application running over signaling system used in cellular networks,
+the middle, and MAP/SS7, which is an mobile connection  application running over signaling system(SS7) used in cellular networks,
 on the right.
 
 \begin{figure}[htb]
@@ -903,9 +903,9 @@ corresponding IMSI (RAND, SRES, Kc).
 Sequence diagram of full EAP-SIM authentication between Supplicant (here
 smartphone) and Authenticator (in AP) is shown in
 Figure\ref{fig:eap-sim-radius}. 
-There we can see that IMSI is used in message 2. IMSI is the
-identity, which Authentication server would next try to challenge and
-for which the AuthZ would be checked.
+There we can see that IMSI is used in message 3. IMSI is the
+identity, which Authentication server would next try to challenge as
+part of the AuthN and for which the AuthZ would be checked.
 
 
 
@@ -921,7 +921,7 @@ The client challenges the operator by sending the nonce
 during the start of the negotiation phase in the message
 7 in Figure\ref{fig:eap-sim-radius}).
  The client later checks in the process
-12, whether RAND values from the operator were digested with the
+13, whether RAND values from the operator were digested with the
 correct nonce and so authenticates the operator.
 The client in  turn is authenticated, when the Authentication server
 generates a challenge with an aid of a triplet from the MNO and the
@@ -970,19 +970,19 @@ Secure communication has many layers and on its base lies trust.
 Only after completing trust setting phase it is meaningful to complete
 the other security layers. For example, secret keys enable encrypted
 communication, but they need to be delivered first through an trusted
-channel. Same applies to public key infrastructure solution, when
-exchanging public parts of keys and so it can be seen that trust
+channel. Same applies to public key infrastructure solutions, when
+verifying the public keys and so it can be seen that trust
 really is the first layer to be fixed.
 
 
 
 Even without trust, some form of secure asymmetric key-exchange is achievable
 with Diffie-Hellman key-exchange\cite{diffie1976new}. Unfortunately, it is vulnerable
-to Man-in-the-middle(MitM) attacks, where protocol does not notice, 
-if messaging goes through third party, which impersonates itself to 
+to Man-in-the-middle(MitM) attacks, where the protocol does not notice, 
+if messaging has gone through a third party, which impersonates itself to 
 both ends as being the corresponding messaging partner. MitM can
 read and decrypt encrypted messages and forward possibly changed message with
-correct looking signature.
+a correct looking signature.
 With trust set between two devices, i.e.,  if they can securely
 authenticate each other, secret communication is possible. 
 Secure network configuration and credential exchange is then possible.
@@ -995,7 +995,7 @@ and MNO trust each other hence mutual authentication between them is
 possible and that is later shown to be an important factor.  Also the
 key distribution problem mentioned in Chapter\ref{cha:intro} is solved
 already at SIM-card distribution phase.  As AuthN-AuthZ at home
-proceeds through the Authenticator, maybe the Authenticator can
+proceeds through the Authenticator, then the Authenticator must
 deliver this information further and use it as a derivation function
 to extend trust.
 
