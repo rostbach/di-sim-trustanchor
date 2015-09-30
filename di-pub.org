@@ -878,12 +878,26 @@ and an AP, EAP can be encapsulated into 802.1X protocol (as EAPOL) or
 into protected EAP(PEAP)\cite{peap} before sending
 into air. In wired net those EAP messages are translated and encapsulated into RADIUS.
 
-The encapsulation is described in Figure[[fig:eap-layers]] where it
-can be seen, that EAP messaging happens logically between the EAP peer
-and the
-Authentication server. On a lower transport layer there is an EAP
-Authenticator in between them, which transfers EAPOL messaging into
+The encapsulation is described in Figure[[fig:eap-layers]] where it can be
+seen, that EAP messaging happens logically between the EAP peer and
+the Authentication server. On a lower transport layer between them
+there is an EAP Authenticator, which transfers EAPOL messaging into
 RADIUS message.
+
+Further, EAP is used to transfer AuthN messages only.
+# , which happen between the Supplicant and the Authentication Server.
+It included neither AuthZ information, which is RADIUS's
+responsibility nor session keys, which are negotiated by WPA2.  In the
+end,
+#  (not shown in the Figure[[fig:eap-layers]]) of EAP messaging,
+the Authenticator is the responsible for opening access for EAP peer as 802.1x
+dictates.
+
+# or session keys.  needed in the following message transfer. Of
+# those, RADIUS is responsible of delivering AuthZ (and also
+# encapsulated AuthN) to the Authenticator (AP) and WPA2 is used to
+# negotiate session keys for
+
 
 
 
@@ -909,25 +923,10 @@ RADIUS message.
  +-------------+         +------+-------+         +------------+            
 
 #+end_src
-#+CAPTION: EAP-logical layering 
+#+CAPTION: EAP-logical layering and encapsulation
 #+NAME:   fig:eap-layers
 #+RESULTS:
 [[file:eap-layer.png]]
-
-
-Further, EAP is used to transfer AuthN messages only.
-# , which happen between the Supplicant and the Authentication Server.
-It included neither AuthZ information, which is RADIUS's
-responsibility nor session keys, which are negotiated by WPA2.  In the
-end,
-#  (not shown in the Figure[[fig:eap-layers]]) of EAP messaging,
-the Authenticator is the responsible for opening access for EAP peer as 802.1x
-dictates.
-
-# or session keys.  needed in the following message transfer. Of
-# those, RADIUS is responsible of delivering AuthZ (and also
-# encapsulated AuthN) to the Authenticator (AP) and WPA2 is used to
-# negotiate session keys for
 
 
 
