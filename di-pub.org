@@ -1007,12 +1007,7 @@ but it adds mutual AuthN, i.e., also the network is authenticated.
 [Move mutual auth to next section; details]
 
 Network authentication is achieved, if 
-the network is able to correctly respond to a client sent nonce,
-which by definition is a value used only once. The nonce can
-be thought as  client's challenge to the network.
-The client in  turn is authenticated, when the Authentication server
-generates a challenge with an aid of a triplet from the MNO and the
-client responses to it correctly.
+the network is able to correctly respond to a client sent
 # as a authentication backend
 # generates challenge using triplet (IMSI, Ki, OPc).
 That procedure is later described in more detail.
@@ -1205,11 +1200,22 @@ for which the AuthZ would be checked.
 All EAP-SIM derivatives provide mutual authentication.
 #  using a NONCE value.
 # in message 4, that would not be possible.
-An operator (network) AuthN happens, when the client challenges it by sending
-a NONCE value during the start of the negotiation phase in the message
-4 in Figure[[fig:eap-sim-radius]). The client later checks in the process
+An operator (network) AuthN happens with help of a nonce.
+The nonce is by definition a value used only once. The nonce can
+be thought as client's challenge to the network.
+The client challenges the operator by sending the nonce 
+during the start of the negotiation phase in the message
+4 in Figure[[fig:eap-sim-radius]).
+ The client later checks in the process
 7, whether RAND values from the operator were digested with the
-correct NONCE.
+correct nonce and so authenticates the operator.
+The client in  turn is authenticated, when the Authentication server
+generates a challenge with an aid of a triplet from the MNO and the
+client responses to it correctly.
+
+
+
+
 
 After session has been set, IMSI may be left out and a temporal IMSI
 (TMSI) can be used instead to hide client's identity, for example in
