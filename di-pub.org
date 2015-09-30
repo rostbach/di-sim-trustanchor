@@ -996,8 +996,7 @@ compatible with GSM protocols for this purpose.\cite[p.93]{hav-doc}
 # C-x 8 ENTER  2022
 # •
 # [ Write out this list]
-The result of development was that today SIM can be used via EAP-types
-EAP-SIM, EAP-AKA, or EAP-AKA'(AKA-PRIME).
+The development resulted EAP-types EAP-SIM, EAP-AKA, or EAP-AKA'(AKA-PRIME).
 
 EAP-SIM is the original type created for GSM networks and defined 
 in RFC4186\cite{rfc4186}.
