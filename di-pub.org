@@ -857,7 +857,8 @@ complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 # server-side certificate protected password, or SIM/AKA using smart
 # phone's SIM card.
 
-Instead of bringing new AuthN methods into 802.1X, it was 
+New AuthN methods are invented all the time.
+Instead of implementing them into 802.1X, it was 
 extended with a modular framework called 
  EAP (Extensible Authentication Protocol)\cite{rfc5247}. 
 Researchers justify using EAP, as it
