@@ -1213,8 +1213,11 @@ The client in  turn is authenticated, when the Authentication server
 generates a challenge with an aid of a triplet from the MNO and the
 client responses to it correctly.
 
-
-
+After mutual authentication, the Authenticator receives either
+Access-Accept or Access-Deny RADIUS message. Accept message triggers
+802.1x protocol to open virtual port in AP and let the WPA2 process
+continue in exchanging WPA2 session keys. As both parties now have
+common trusted key, the derivation of secret session key is possible
 
 
 After session has been set, IMSI may be left out and a temporal IMSI
