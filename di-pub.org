@@ -3855,7 +3855,7 @@ IMSI-catchers, most notably by the project AIMSICD\cite{aimcid}.
          |           |
     
 #+end_src
-#+CAPTION: Using TMSI 
+#+CAPTION: Changing TMSI without MNO or Authentication server
 #+NAME:   fig:tmsi
 #+RESULTS:
 [[file:imsi-tmsi.png]]
