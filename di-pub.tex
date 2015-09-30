@@ -1,4 +1,4 @@
-% Created 2015-09-30 ke 14:09
+% Created 2015-09-30 ke 14:45
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -749,7 +749,6 @@ a composition of digits belonging to Mobile Country Code(MCC, 2
 digits), Mobile Network Code(MNC,2-3 digits) and Mobile Subscriber
 Identification Number(MSIN, 10 digits at most).
 More familiar, it is the user's full international phone number.
-[ More detailed SIM architecture? Java Card, CPU,?]
 
 
 SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
@@ -759,39 +758,41 @@ signature application Mobiilivarmenne (see Section\ref{sec:altmethods}),
 they may have different keys and codes.
 
 
-MNO distributes SIM card and provides mobile network connectivity to
-its customer.  The secret keys are used for authenticating the IMSI
-to MNO and that enables MNOs to identify their customer in the network
-and charge them correspondingly. It is assumed, that SIM card represent
-its owner but in reality nothing prevents an identity thief to steal
-someone's SIM card. Although 4-digit PIN tries to prevent the usage of 
-stolen SIM, that is considered as a weak safe\cite[p.31]{aaa-nakhjiri2005}.
+The passwords, keys and cards are distributed by the MNO.
+ and they 
+provide the mobile network connectivity to customers of the MNO.  The
+secret keys are used for authenticating the IMSI to MNO and that
+enables MNOs to identify their customer in the network and charge them
+correspondingly.  Client's identity is verified when SIM is delivered.
+It is assumed, that SIM card represent its owner, but in reality
+nothing prevents an identity thief to steal someone's SIM
+card. Although the 4-digit PIN tries to prevent the usage of the
+stolen SIM, that is considered weak safe\cite[p.31]{aaa-nakhjiri2005}.
+The most important outcome of this distribution is the achieved trust
+between the client and the MNO.
 
 
 AA services need to trust some entity endpoint and in case of MNO and
 SIM, they already mutually trust each other, and SIM can be used 
 to open access to mobile networks.
-Separate access credentials for Wi-Fi access was still needed
-and that was the reason of developing EAP-SIM and later the
-derivatives EAP-AKA and EAP-AKA'.  The goal was to combine in a secure
-way existing keys used in  GSM (Global system for Mobile communication)
-Wi-Fi access. Existing general purpose EAP-methods in 2004 were not
+Access to the Wi-Fi networks still needs a separate access credential
+and that was the reason for developing EAP-SIM and later the
+derivatives EAP-AKA and EAP-AKA'.  The goal was to combine 
+existing keys used in  GSM (Global system for Mobile communication)
+in a secure way to Wi-Fi access. Existing general purpose EAP-methods in 2004 were not
 compatible with GSM protocols for this purpose.\cite[p.93]{hav-doc}
-The result of development was that today SIM can be used via EAP-types
-EAP-SIM, EAP-AKA, or EAP-AKA'(AKA-PRIME).
+The results of that development gave us EAP-types EAP-SIM, EAP-AKA, or
+EAP-AKA'(AKA-PRIME).
 
 EAP-SIM is the original type created for GSM networks and defined 
 in RFC4186\cite{rfc4186}.
 It is a challenge-response method and similar to AuthN used in GSM, 
 but it adds mutual AuthN, i.e., also the network is authenticated.
-Network authentication is achieved, if 
-the network is able to correctly respond to a client sent nonce,
-which by definition is a value used only once. The nonce can
-be thought as  client's challenge to network.
 
-The client in  turn is authenticated, when the Authentication server
-generates a challenge with an aid of a triplet from the MNO and the
-client responses to it correctly.
+[Move mutual auth to next section; details]
+
+Network authentication is achieved, if 
+the network is able to correctly respond to a client sent
 That procedure is later described in more detail.
 
 Beginning from 3GPP networks, new types EAP-AKA and AKA' can be used.
@@ -913,17 +914,31 @@ for which the AuthZ would be checked.
 
 
 All EAP-SIM derivatives provide mutual authentication.
-An operator is authenticated, when the client challenges it by sending
-a NONCE value during the start of the negotiation phase in the message
-4 in Figure[[fig:eap-sim-radius]). The client later checks in the process
-7, whether RAND values from the operator were digested with the
-correct NONCE.
+An operator (network) AuthN happens with help of a nonce.
+The nonce is by definition a value used only once. The nonce can
+be thought as client's challenge to the network.
+The client challenges the operator by sending the nonce 
+during the start of the negotiation phase in the message
+7 in Figure\ref{fig:eap-sim-radius}).
+ The client later checks in the process
+12, whether RAND values from the operator were digested with the
+correct nonce and so authenticates the operator.
+The client in  turn is authenticated, when the Authentication server
+generates a challenge with an aid of a triplet from the MNO and the
+client responses to it correctly.
+
+After mutual authentication, the Authenticator receives either
+Access-Accept or Access-Deny RADIUS message. Accept message triggers
+802.1x protocol to open virtual port in AP and let the WPA2 process
+continue in exchanging WPA2 session keys. As both parties now have
+common trusted key, the derivation of secret session key is possible.
+
 
 After session has been set, IMSI may be left out and a temporal IMSI
 (TMSI) can be used instead to hide client's identity, for example in
 fast re-authentication case to reduce the risk of exposing the client's
 IMSI unnecessarily. Unfortunately, at that point, IMSI has already
-been exposed once in plain text, namely in message 2.
+been exposed once in plain text, namely in message 3.
 It must be noted, that TMSI used here differs from TMSI used in 3GPP
 networks. Those context must not be mixed, otherwise the security that
 they bring may reduce, i.e. one must not use the TMSI received from
@@ -1272,7 +1287,7 @@ multiplied with number of the separate home networks  needing authentication ser
 
 
 Project Moonshot\cite{moonshot}, if worked and used together with MSSP, may offer
-SIM-based SSH-access to Authenticator. Modifications are then needed 
+SIM-based SSH access to Authenticator. Modifications are then needed 
 both in SSH server and client. Additionally EAP must be used through
 tunneling, for example as an inner protocol of EAP-TTLS.
 
@@ -2078,6 +2093,9 @@ seen on the division of home network to guest and private network and
 extensions for homeworkers instead of office.
 
 
+
+
+f
 
 \chapter{Implemented Solution}
 \label{sec-5}
