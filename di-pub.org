@@ -1003,15 +1003,13 @@ EAP-SIM is the original type created for GSM networks and defined
 in RFC4186\cite{rfc4186}.
 It is a challenge-response method and similar to AuthN used in GSM, 
 but it adds mutual AuthN, i.e., also the network is authenticated.
-# before smartphone sends its first identification message.
+
+[Move mutual auth to next section]
+
 Network authentication is achieved, if 
 the network is able to correctly respond to a client sent nonce,
-#  when client sends a nonce, 
 which by definition is a value used only once. The nonce can
 be thought as  client's challenge to the network.
-# , and network must response to that nonce in
-# in a correct form.
-# OR in a correct form in the network's signature response. 
 The client in  turn is authenticated, when the Authentication server
 generates a challenge with an aid of a triplet from the MNO and the
 client responses to it correctly.
