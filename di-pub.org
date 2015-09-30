@@ -1186,7 +1186,7 @@ Figure[[fig:eap-sim-radius]].
 # sequence.  
 There we can see that IMSI is used in message 3. IMSI is the
 identity, which Authentication server would next try to challenge as
-part of AuthN and for which the AuthZ would be checked.
+part of the AuthN and for which the AuthZ would be checked.
 
 
 
