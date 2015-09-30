@@ -1121,7 +1121,7 @@ identity.
 Bird's eye view to the EAP-SIM messaging between the smartphone, AP,
 Authentication server and MNO is described in Figure[[fig:eap-sim-simple]].
 The traffic is EAP on the left, RADIUS  in
-the middle, and MAP/SS7, which is an mobile connection  application running over signaling system used in cellular networks,
+the middle, and MAP/SS7, which is an mobile connection  application running over signaling system(SS7) used in cellular networks,
 on the right.
 
 #+begin_src ditaa :file eap-sim-simple.png :cmdline -E -r -s 4
@@ -1184,9 +1184,9 @@ Figure[[fig:eap-sim-radius]].
 # Not shown are the Authentication server, but 
 #   Figure [[fig:eap-sim-radius]] describes the EAP-SIM authentication
 # sequence.  
-There we can see that IMSI is used in message 2. IMSI is the
-identity, which Authentication server would next try to challenge and
-for which the AuthZ would be checked.
+There we can see that IMSI is used in message 3. IMSI is the
+identity, which Authentication server would next try to challenge as
+part of AuthN and for which the AuthZ would be checked.
 
 
 
