@@ -864,7 +864,7 @@ extended with a modular framework called
 Researchers justify using EAP, as it
 provides flexibility independent from underlying technology, whether
 wireless or wired,  and integration with AAA infrastructures, although
-it adds some amount of time for authentication.\cite{pereniguez10}.
+it adds some overhead to AuthN.\cite{pereniguez10}.
 # re-auth method to solve "amount of time" problem
 Different authentication methods, for example hashed passwords, TLS
  certificates, or SIM/AKA using smartphone's SIM card,  can
