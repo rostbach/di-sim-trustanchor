@@ -3960,7 +3960,7 @@ using temporal identity (TMSI).
 For other parameters, EAP-SIM is confidential.
 # This paper does not observe TMSI's  usage 
 Thus, this paper does not consider TMSI in the implementation Chapter
-[[cha:simu]].
+[[#cha:simu]].
 
 # Unfortunately, the TMSI is not studied
 # experimentally here for AuthN.
