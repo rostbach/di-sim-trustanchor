@@ -1207,7 +1207,7 @@ The client challenges the operator by sending the nonce
 during the start of the negotiation phase in the message
 7 in Figure[[fig:eap-sim-radius]]).
  The client later checks in the process
-12, whether RAND values from the operator were digested with the
+13, whether RAND values from the operator were digested with the
 correct nonce and so authenticates the operator.
 The client in  turn is authenticated, when the Authentication server
 generates a challenge with an aid of a triplet from the MNO and the
