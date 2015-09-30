@@ -1,4 +1,4 @@
-% Created 2015-09-29 ti 22:15
+% Created 2015-09-30 ke 13:29
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -50,6 +50,7 @@
 \thesistype{draft-28.9.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
+\usepackage{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
@@ -478,17 +479,15 @@ before delegation in the cloud can happen.
 
 
 
-The trust can be derived from the facts that already are known.  The
-place where a trust is no longe derived or built upon any other fact
-but is assumed to be present is called a trust anchor.  
-[OR: \emph{A trust anchor is the fact, state or place,
-where derivation is done no more, but accepted per se.} ]
+The trust can be derived from the facts that already are known.  
+The ultimate trust can be achieved by verifying the trust chains 
+until the chain reaches a trust anchor.
+The trust anchor is the fact, state or place,
+where derivation of trust is done no more, but accepted per se.
 Combining existing techniques, this thesis presents one possible way
 to bind the home network's trust to the smartphone's unique, existing
 secret keys inside the smart card's Subscriber Identify Module (SIM),
 which then would function as a trust anchor. 
-The ultimate trust can be achieved by verifying the trust chains 
-until the chain reaches a trust anchor.
 
 
 
@@ -510,11 +509,12 @@ studied.
 
 
 
-The thesis is structured as follows: Chapter \ref{sec-2} explains the
-authentication--authorization model.  Chapter \ref{sec-3} describes
-security in current home net architecture and current practices for
-configuring it.  Chapter \ref{sec-4} discusses methods to bring a
-trust anchor in the home network and explains the chosen method.
+The thesis is structured as follows: authentication--authorization
+model is explained in Chapter \ref{sec-2}.  Chapter \ref{sec-3}
+describes security in current home net architecture and current
+practices for configuring it.  Chapter \ref{sec-4} discusses methods
+to bring a trust anchor in the home network and explains the chosen
+method.
 One specially crafted problem is how the scenarios presented here can be
 tested without knowing the SIM card's secret keys and without real phone
 operator involved.  Those experiments are described in Chapter
@@ -524,15 +524,13 @@ thesis.
 \chapter{Authentication, Authorization, and Trust}
 \label{sec-2}
 
-[TBD? 4) Feature comparison, eg role-based access, time-based access
-etc]
 
 
 Authentication, authorization, and accounting services (AAA) are
 components for access management.  AAA-protocols do not dictate
 policies, i.e., who is granted access or what operations user is
-allowed to do. They only transport this information between client
-who needs them and server authorized to provide them.
+allowed to do. They only transport this information between a client
+who needs them and a server authorized to provide them.
 Often, the last 'A' which stands for accounting has been neglected
 and also here only first two A's are used and later described as AA
 services. Authentication (AuthN) answers how to identify users and
@@ -541,12 +539,12 @@ answers what operations the identified users are allowed to do and
 forces usage policy. The rest of the thesis uses shortened terms AuthN
 and AuthZ.
 
-On very small environments AA service is built on static backend such
-as file on protected target that the object wants to access. There AuthN
-is checked against a credentials file and authorization from a service
+On very small environments AA service is built on a static backend such
+as a file on a protected target that an entity wants to access. There AuthN
+is checked against a credentials file and AuthZ from a service
 specific policy file. 
-To be more exact, identification preceding authentication is the part,
-where entity claims and presents its identity to 
+To be more exact, the identification preceding the authentication is the part,
+where the entity claims and presents its identity to 
 access controlling system. That can involve sending username, login
 name or other identifier. Authentication in turn is the part where
 those facts are verified. AuthZ involves checking, which rights are 
@@ -555,7 +553,7 @@ available for authenticated entity.
 
 Before we introduce SIM-based authentication used throughout the
 thesis, protocols 802.1X, WPA2, EAP and RADIUS are described in the
-following Sections. [sections?]. Last, we expand the term ``trust''.
+following Sections. [sections?]. Last, we expand the term \emph{trust}.
 
 \section{802.1X}
 \label{sec-2-1}
@@ -565,7 +563,7 @@ control. Ports are physical layer ports, not to be mixed to Layer-4 ports such a
  Network access through a specific physical port is
 restricted (controlled) from a client (called Supplicant) before
 the client has successfully performed an AA. A 802.1X device, where
-the ports are located, is called the Authenticator. Third party in 802.1X is an
+the ports are located, is called an Authenticator. Third party in 802.1X is an
 Authentication server. 
 
 
@@ -573,9 +571,9 @@ Authentication server.
 It is easy to mix here terms \emph{Authenticator} and \emph{Authentication
 server}, but their roles are different: Authenticator works as a
 gate-keeper to ports between supplicant and network, while
-Authentication server handles AA processes.
+Authentication server handles the AA processes.
 At home, Authenticator usually lies inside the access point, but 
-on large enterprise networks, Authenticator can be a centralized unit 
+on large enterprise networks, Authenticator may be a centralized unit 
 and multiple access points function only as radio stations.
 
 
@@ -611,7 +609,7 @@ reasonable as developing has shifted to another AAA protocol called
 Diameter, which is already in use in 3GPP and 4G
 networks\cite{diameter}.  Nevertheless, as RADIUS is so wide-spread,
 it is still used in lots of places instead of Diameter.  Currently,
-the main environment of RADIUS, besides network managing, is wireless
+the main environment of RADIUS, besides AA in network managing, is wireless
 connections (Wi-Fi) in enterprises and nationwide community
 federations.
 
@@ -619,21 +617,22 @@ federations.
 When local Wi-Fi groups in Finland such as ``SparkNet'', ``Langaton
 Tampere'', or ``Wippies'' started to form in around 2005, they used
 802.1X and RADIUS for AA. Those networks did still have as an
-alternative AA method a captive portal technique, where user
-first authenticates on WWW-page before getting an access.  802.1X and
-RADIUS enabled users in those group to consult external,
-central RADIUS server for authentication requests automatically,
-without burden that captive portal brings.  The members of Wi-Fi
-groups can use network anywhere, where the same uniform SSID (Service
-Set IDentifier) was seen, i.e., roaming
-became possible, if one found a familiar SSID outside home area.  Later, there were agreements between different local groups
-to allow roaming and so federations were born.
+alternative AA method a captive portal technique, where user had to
+first authenticate on WWW-page before getting an access.  802.1X and
+RADIUS brought an external, central RADIUS server for authentication
+requests automatically, without burden of the captive portal.
+
+The members of Wi-Fi groups could then use the network anywhere, where
+the same uniform SSID (Service Set IDentifier) was seen, i.e., roaming
+became possible, if one found a familiar SSID outside the home area.
+Later, there were agreements between different local groups to allow
+roaming and so federations were born.
 
 As seen from federated Wi-Fi groups, RADIUS servers can be chained to
 form a tree. The reasons for the chaining are load balancing and high
 availability, centralization of locally distant servers, and
 federation of different domains. In RADIUS trees, the messages are
-chained and proxied to next RADIUS server, depending on the settings
+can be proxied to next RADIUS server in the chain, depending on the settings
 on the proxying RADIUS server.
 
 
@@ -642,7 +641,7 @@ part in AA decisions. Of main interest there is, if it is possible
 to inject or modify AuthZ information in those proxying RADIUSes in
 cases, where AuthN and AuthZ are provided from different
  places\cite{rfc2607}. Secondary goal is to universally divide AA regarding 
-clients domain in the federation.
+client's domain in the federation.
 
 
 
@@ -650,21 +649,22 @@ clients domain in the federation.
 \section{WPA2}
 \label{sec-2-3}
 
-Wireless protected access (WPA or WPA2) protects traffic in wireless,
+Wireless protected access (WPA or WPA2) protects the traffic in a wireless,
 shared media, where everyone otherwise can simple listen all the radio traffic.
 It enables both authenticated access and message
-encryption between the smartphone and wireless access point (AP) by negotiating session keys
-after 802.1X has opened the virtual port in AP for the Supplicant.
+encryption between a client device and  a wireless access point (AP)
+by negotiating session keys. This happens 
+after 802.1X has opened the virtual port in AP for the client.
 
 WPA (version 1)  was an early subset of then upcoming 802.11i standard,
-while WPA2 is the full implementation, also noted as IEEE
+while WPA2 is the full implementation, also denoted as IEEE
 802.11i-2004, and the term WPA2 is used throughout the thesis.
 Client software for 802.11i is called a WPA2-Supplicant and it is used
 in wireless clients to communicate with the Authenticator. 
 
 WPA2 has two modes of protection: one for groups with common, pre-shared
 key (WPA2-PSK, also known as WPA2-Personal) and one for individuals
-(WPA2-RADIUS, also known as  WPA2-Enterprise).  With WPA2-RADIUS, revoking
+having own key (WPA2-RADIUS, also known as  WPA2-Enterprise).  With WPA2-RADIUS, revoking
 individual access is easier, but client setup slightly more
 complicated than on WPA2-PSK, as seen on Table\ref{psk-enterprise}.
 
@@ -674,10 +674,10 @@ complicated than on WPA2-PSK, as seen on Table\ref{psk-enterprise}.
 \begin{tabular}{l|l|l}
 Property & WPA2-PSK & WPA2-ENTERPRISE\\
 \hline
-for groups & x & \\
-for individual &  & x\\
-client setup & easy & intermediate\\
+suitable for groups & x & \\
+suitable for individual &  & x\\
 individual client revocation &  & x\\
+client setup & easy & intermediate\\
 \hline
 \end{tabular}
 \end{table}
@@ -686,13 +686,14 @@ individual client revocation &  & x\\
 \section{EAP}
 \label{sec-2-4}
 
-Instead of bringing new AuthN methods into 802.1X, it was 
+New AuthN methods are invented all the time.
+Instead of implementing them into 802.1X, it was 
 extended with a modular framework called 
  EAP (Extensible Authentication Protocol)\cite{rfc5247}. 
 Researchers justify using EAP, as it
 provides flexibility independent from underlying technology, whether
 wireless or wired,  and integration with AAA infrastructures, although
-it adds some amount of time for authentication.\cite{pereniguez10}.
+it adds some overhead to AuthN\cite{pereniguez10}.
 Different authentication methods, for example hashed passwords, TLS
  certificates, or SIM/AKA using smartphone's SIM card,  can
 be used with EAP.
@@ -701,16 +702,24 @@ This work uses EAP-SIM authentication method.
 
 EAP describes only the messaging form, so EAP messages needs to
 be encapsulated inside another protocol.  In Wi-Fi, between a smartphone
-and an AP, EAP is encapsulated into 802.1X protocol (as EAPOL) or
+and an AP, EAP can be encapsulated into 802.1X protocol (as EAPOL) or
 into protected EAP(PEAP)\cite{peap} before sending
 into air. In wired net those EAP messages are translated and encapsulated into RADIUS.
 
-The encapsulation is described in Figure\ref{fig:eap-layers} where it
-can be seen, that EAP messaging happens logically between the EAP peer
-and the
-Authentication server. On a lower transport layer there is an EAP
-Authenticator in between them, which transfers EAPOL messaging into
+The encapsulation is described in Figure\ref{fig:eap-layers} where it can be
+seen, that EAP messaging happens logically between the EAP peer and
+the Authentication server. On a lower transport layer between them
+there is an EAP Authenticator, which transfers EAPOL messaging into
 RADIUS message.
+
+Further, EAP is used to transfer AuthN messages only.
+It included neither AuthZ information, which is RADIUS's
+responsibility nor session keys, which are negotiated by WPA2.  In the
+end,
+the Authenticator is the responsible for opening access for EAP peer as 802.1x
+dictates.
+
+
 
 
 
@@ -719,16 +728,8 @@ RADIUS message.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{eap-layer.png}
-\caption{\label{fig:eap-layers}EAP-logical layering}
+\caption{\label{fig:eap-layers}EAP-logical layering and encapsulation}
 \end{figure}
-
-
-Further, EAP is used to transfer AuthN messages only.
-It included neither AuthZ information, which is RADIUS's
-responsibility nor session keys, which are negotiated by WPA2.  In the
-end,
-the Authenticator is the responsible for opening access for EAP peer as 802.1x
-dictates.
 
 
 
@@ -754,8 +755,8 @@ More familiar, it is the user's full international phone number.
 SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
 is used as a remedy, if PIN has been inserted wrong too many times.
 If the card has other applications, for example mobile electrical
-signature application Mobiilivarmenne, they may have different keys
-and codes.
+signature application Mobiilivarmenne (see Section\ref{sec:altmethods}),
+they may have different keys and codes.
 
 
 MNO distributes SIM card and provides mobile network connectivity to
@@ -776,8 +777,8 @@ derivatives EAP-AKA and EAP-AKA'.  The goal was to combine in a secure
 way existing keys used in  GSM (Global system for Mobile communication)
 Wi-Fi access. Existing general purpose EAP-methods in 2004 were not
 compatible with GSM protocols for this purpose.\cite[p.93]{hav-doc}
-The result of development was that today SIM can be used via EAP-types EAP-SIM, EAP-AKA, or
-EAP-AKA'(AKA-PRIME).
+The result of development was that today SIM can be used via EAP-types
+EAP-SIM, EAP-AKA, or EAP-AKA'(AKA-PRIME).
 
 EAP-SIM is the original type created for GSM networks and defined 
 in RFC4186\cite{rfc4186}.
@@ -997,13 +998,13 @@ to extend trust.
 Home network is a computer network located at person's home. It consists
 of devices and their connections, either wired or wireless.
 
-This thesis avoids using term \emph{homenet} when meaning network at home,
+This thesis avoids using term \emph{homenet} when meaning any network at home,
 because  it is  reserved to 
 Internet Engineering Task Force Working Group's (IETF
 WG) homenet. IETF is responsible for the most Internet technology standards and 
 WG homenet was started in year 2011.
 Current drive in homenet management is towards IPv6 environment
- as it allows future  addressing and routing needs. 
+ as it allows future addressing and routing needs. 
 Homenet has five tasks to solve at home networks: service discovery, network security, 
 prefix configuration for routers, routing management and name
 resolution.\cite{homenet-charter}.
@@ -1012,7 +1013,7 @@ old and new technology, and their interoperatibility is important in
 planning future home networks. 
 Segmenting home in multiple subnets will also belong
 to homenets and will include areas for home members, guests,
-and management. It will also not be so uncommon to have a cheap second
+and management. It will not be so uncommon to have a cheap second
 network operator for backup purposes at home, so issues about
 multihoming are added to homenet.
 Lastly, end-to-end access, is in their
@@ -1174,18 +1175,17 @@ approaches for a trust anchor. The trust anchor is part of bootstrapping,
 which is needed because although the smartphone and MNO
 already trust each other, the trust between the smartphone and AP, and
 thus the management network at home, is non-existing in the
-beginning.
+beginning as can be seen from Figure\ref{fig:trustbegin}.
 
-\begin{figure}
-  \centering
-%  \def\svgwidth{\columnwidth}
-  \input{trust.1.pdf_tex}
-  \caption{\label{fig:trustbegin}Trust circles in the beginning.}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{trustcircles.png}
+\caption{\label{fig:trustbegin}Trust circles in the beginning}
 \end{figure}
 
 \section{Alternative methods for introducing trust anchor into the home network}
 \label{sec-4-1}
-
+\label{sec:altmethods}
 
 
 
@@ -1197,21 +1197,20 @@ envelope or a one-time password list that for example online banks
 use today. The secret can also be sent as an SMS.
 
 Trust can also be requested with the help of device's
-unique properties. Recently there have appeared  devices on the market that
-have vendor certificates inside them[cite], which brings public key
+unique properties. Recently, there have appeared  devices on the market, that
+have vendor certificates inside them, which brings public key
 infrastructure as one possible alternative to learn trusted identity. 
 The device proves its identity by presenting a certificate, which has
 been issued by a trusted vendor.  Private keys are inside the device's
 trusted hardware store. Vendor-trust is needed for checking the issued certificates
-and so the trust verification is merely transferred from individual
-devices to trust verification of the vendor.  Root CAs are trust anchors
+and so the trust verification of individual devices is merely
+transferred to trust verification of the vendor.  Root CAs are trust anchors
 also and can in the same way be read from the device's read-only store.
 CPE could use vendor issued certificate for AuthN of some earlier
-unknown device.  If keys are stored in SIM as they here are, an
+unknown device.  If the keys are stored in SIM as they here are, an
 external operator support is needed.
 
 
-[Picture]
 
 Other techniques  to use SIM's unique properties besides EAP-SIM
 are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
@@ -1253,7 +1252,7 @@ by limiting which tele operators are allowed to connect.
 
 
 
-SIM card can also man electronic signatures.
+SIM card can also benefit from electronic signatures.
 European Telecommunications Standards Institute (ETSI) defined a
 standard for mobile signature services (MSS) in ETSI TS 102 204.
 MNOs in Finland have implemented this as a 
@@ -1272,10 +1271,10 @@ multiplied with number of the separate home networks  needing authentication ser
 
 
 
-Project Moonshot, if worked and used together with MSSP, may offer
+Project Moonshot\cite{moonshot}, if worked and used together with MSSP, may offer
 SIM-based SSH-access to Authenticator. Modifications are then needed 
 both in SSH server and client. Additionally EAP must be used through
-tunneling, for example as an inner protocol of EAP-TTLS.\cite{moonshot}
+tunneling, for example as an inner protocol of EAP-TTLS.
 
 At this point question might rise, why these external service
 providers are needed. Is it not easier and simpler to just send 
