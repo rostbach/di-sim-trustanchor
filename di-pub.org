@@ -1224,7 +1224,7 @@ After session has been set, IMSI may be left out and a temporal IMSI
 (TMSI) can be used instead to hide client's identity, for example in
 fast re-authentication case to reduce the risk of exposing the client's
 IMSI unnecessarily. Unfortunately, at that point, IMSI has already
-been exposed once in plain text, namely in message 2.
+been exposed once in plain text, namely in message 3.
 It must be noted, that TMSI used here differs from TMSI used in 3GPP
 networks. Those context must not be mixed, otherwise the security that
 they bring may reduce, i.e. one must not use the TMSI received from
