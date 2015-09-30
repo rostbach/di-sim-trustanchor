@@ -791,7 +791,7 @@ availability, centralization of locally distant servers, and
 federation of different domains. In RADIUS trees, the messages are
 # chained and 
 can be proxied to next RADIUS server in the chain, depending on the settings
-on the RADIUS server.
+on the proxying RADIUS server.
 # proxied from NAS via proxying RADIUS servers to the end point which
 # makes the true decision about Authenticity and Access (A-A).
 
