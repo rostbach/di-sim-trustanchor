@@ -830,7 +830,7 @@ in wireless clients to communicate with the Authenticator.
 
 WPA2 has two modes of protection: one for groups with common, pre-shared
 key (WPA2-PSK, also known as WPA2-Personal) and one for individuals
-(WPA2-RADIUS, also known as  WPA2-Enterprise).  With WPA2-RADIUS, revoking
+having own key (WPA2-RADIUS, also known as  WPA2-Enterprise).  With WPA2-RADIUS, revoking
 individual access is easier, but client setup slightly more
 complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 
@@ -840,10 +840,10 @@ complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 | Property                     | WPA2-PSK | WPA2-ENTERPRISE |
 |------------------------------+---------+----------------|
 | /                            | <       | <              |
-| for groups                   | x       |                |
-| for individual               |         | x              |
-| client setup                 | easy    | intermediate   |
+| suitable for groups          | x       |                |
+| suitable for individual      |         | x              |
 | individual client revocation |         | x              |
+| client setup                 | easy    | intermediate   |
 |------------------------------+---------+----------------|
 
 
