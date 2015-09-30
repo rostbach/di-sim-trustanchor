@@ -959,13 +959,18 @@ signature application Mobiilivarmenne (see Section[[sec:altmethods]]),
 they may have different keys and codes.
 
 
-MNO distributes SIM card and provides mobile network connectivity to
-its customer.  The secret keys are used for authenticating the IMSI
+The passwords, keys and cards are distributed by the MNO and they 
+# MNO distributes SIM card and
+provide the mobile network connectivity to customers of the MNO.
+The secret keys are used for authenticating the IMSI
 to MNO and that enables MNOs to identify their customer in the network
 and charge them correspondingly. It is assumed, that SIM card represent
-its owner but in reality nothing prevents an identity thief to steal
-someone's SIM card. Although 4-digit PIN tries to prevent the usage of 
-stolen SIM, that is considered as a weak safe\cite[p.31]{aaa-nakhjiri2005}.
+its owner, but in reality nothing prevents an identity thief to steal
+someone's SIM card. Although the 4-digit PIN tries to prevent the usage of 
+the stolen SIM, that is considered weak
+safe\cite[p.31]{aaa-nakhjiri2005}.
+The most important outcome of this distribution is the achieved trust 
+between the client and the MNO.
 
 
 AA services need to trust some entity endpoint and in case of MNO and
