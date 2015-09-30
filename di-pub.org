@@ -874,7 +874,7 @@ This work uses EAP-SIM authentication method.
 
 EAP describes only the messaging form, so EAP messages needs to
 be encapsulated inside another protocol.  In Wi-Fi, between a smartphone
-and an AP, EAP is encapsulated into 802.1X protocol (as EAPOL) or
+and an AP, EAP can be encapsulated into 802.1X protocol (as EAPOL) or
 into protected EAP(PEAP)\cite{peap} before sending
 into air. In wired net those EAP messages are translated and encapsulated into RADIUS.
 
