@@ -36,8 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-%    \setlength{\unitlength}{1245.99116861bp}%
-    \setlength{\unitlength}{800.99116861bp}%
+    \setlength{\unitlength}{1245.99116861bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,9 +49,7 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,0.40863382)%
-%    \put(0,0){\includegraphics[scale=0.5][width=\unitlength]{trust.1.pdf}}%
-%    \put(0,0){\includegraphics[scale=0.5]{trust.1.pdf}}%
-    \put(0,0){\includegraphics[width=4cm]{trust.1.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength]{trust.1.pdf}}%
     \put(0.43371671,0.31207958){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{NO trustbetweensmartphone and Homenetworkin the beginning}}}%
     \put(0.91580954,0.17038501){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Homenetwork'sTrust circle}}}%
     \put(0.74677514,0.07275075){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{managed dev. 2}}}%
