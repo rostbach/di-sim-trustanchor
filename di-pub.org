@@ -2655,7 +2655,7 @@ is not done yet. The scenario can be any of I-IV, but no trust nor roles are pre
 
 
 
-*** discussion about chosen model, simplification and further variations
+*** discussion about change management models, simplificated model and further variations
 [# variation for sending changes direct to CPE]
 
 The simple way to propagate changes is make them come from the phone,
@@ -3006,50 +3006,7 @@ extensions for homeworkers instead of office.
 
 # division of 
 
-*** discussion about chosen model, simplification and further variations
-[# variation for sending changes direct to CPE]
-
-The simple way to propagate changes is make them come from the phone,
-where an application takes care of sending them right to the end
-devices. 
-
-This simplification has pitfalls. If the smartphone continuosly stays
-in the management network, how would later upcoming changes be
-separated from currently approved.
-# , i.e., the smart phone now is part of the trusted management network, but 
-If we understood that the change approval belongs to the AA-process, then
-the later approvals would also need an AA.
-
- The smartphone should either be dropped out from the management
-network right away after the changes has been sent or after a
-predefined timeout period during which more changes can be send.
-That period can be called a management session.
-
-The session time and the logout can be handled in AP directly with
-an timer. After a specific time AP simple drops the connection
-(WPA2-session) to the phone. This needs modification to the AP
-software, if there already is not such method.
-Other solution would be for AP to listen for a command from an external
-AuthZ server, where similar timer would trigger a notification event.
-
-If GBA architecture was chosen, then the smartphone would hold a 
-token with validity time and must present that when accessing
-services, here the management network. 
-# If, on the other hand, the smartphone must send the changes itself, then it
-# would be possible that the access in to the management network has short
-# period of time, when phone holds that status or acceptance token. For
-# example, during 10 minutes the connection would be open for changes. Then
-# changes would not go directly to CPE but instead to X, but they would
-# include some token to phone, which is needed for approval message.
-
-# see automatic re-login issues
-*** model of sending changes both to CPE and to the phone, which approves them
- While changes already have been  sent direct to the CPE and only let it
-wait for approval, then when CPE receives ACCESS-ACCEPT, it could
-proceed on propagating those changes.  Otherwise, after certain
-timeout, CPE must stop waiting for phone's approval and drop changes.
-#   [this was the question somewhere, ``triggering'']
-
+f
 
 * Implemented Solution
 :PROPERTIES:

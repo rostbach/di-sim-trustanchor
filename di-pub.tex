@@ -1,4 +1,4 @@
-% Created 2015-09-30 ke 13:29
+% Created 2015-09-30 ke 14:09
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -713,7 +713,7 @@ there is an EAP Authenticator, which transfers EAPOL messaging into
 RADIUS message.
 
 Further, EAP is used to transfer AuthN messages only.
-It included neither AuthZ information, which is RADIUS's
+It includes neither AuthZ information, which is RADIUS's
 responsibility nor session keys, which are negotiated by WPA2.  In the
 end,
 the Authenticator is the responsible for opening access for EAP peer as 802.1x
@@ -1834,7 +1834,7 @@ is not done yet. The scenario can be any of I-IV, but no trust nor roles are pre
 
 
 
-\subsection{discussion about chosen model, simplification and further variations}
+\subsection{discussion about change management models, simplificated model and further variations}
 \label{sec-4-6-1}
 [\# variation for sending changes direct to CPE]
 
@@ -2077,41 +2077,6 @@ visitors, and also home network owner. Examples of the previous cases can first 
 seen on the division of home network to guest and private network and
 extensions for homeworkers instead of office.
 
-\subsection{discussion about chosen model, simplification and further variations}
-\label{sec-4-9-1}
-[\# variation for sending changes direct to CPE]
-
-The simple way to propagate changes is make them come from the phone,
-where an application takes care of sending them right to the end
-devices. 
-
-This simplification has pitfalls. If the smartphone continuosly stays
-in the management network, how would later upcoming changes be
-separated from currently approved.
-If we understood that the change approval belongs to the AA-process, then
-the later approvals would also need an AA.
-
- The smartphone should either be dropped out from the management
-network right away after the changes has been sent or after a
-predefined timeout period during which more changes can be send.
-That period can be called a management session.
-
-The session time and the logout can be handled in AP directly with
-an timer. After a specific time AP simple drops the connection
-(WPA2-session) to the phone. This needs modification to the AP
-software, if there already is not such method.
-Other solution would be for AP to listen for a command from an external
-AuthZ server, where similar timer would trigger a notification event.
-
-If GBA architecture was chosen, then the smartphone would hold a 
-token with validity time and must present that when accessing
-services, here the management network. 
-\subsection{model of sending changes both to CPE and to the phone, which approves them}
-\label{sec-4-9-2}
- While changes already have been  sent direct to the CPE and only let it
-wait for approval, then when CPE receives ACCESS-ACCEPT, it could
-proceed on propagating those changes.  Otherwise, after certain
-timeout, CPE must stop waiting for phone's approval and drop changes.
 
 
 \chapter{Implemented Solution}
