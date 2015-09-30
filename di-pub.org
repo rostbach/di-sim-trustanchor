@@ -815,9 +815,9 @@ Wireless protected access (WPA or WPA2) protects the traffic in a wireless,
 shared media, where everyone otherwise can simple listen all the radio traffic.
 # simply listen the traffic on radio waves. 
 It enables both authenticated access and message
-encryption between a client device (Supplicant) and  a wireless access point (AP)
+encryption between a client device and  a wireless access point (AP)
 by negotiating session keys. This happens 
-after 802.1X has opened the virtual port in AP for the Supplicant.
+after 802.1X has opened the virtual port in AP for the client.
 
 WPA (version 1)  was an early subset of then upcoming 802.11i standard,
 while WPA2 is the full implementation, also denoted as IEEE
