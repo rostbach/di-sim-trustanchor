@@ -1091,81 +1091,51 @@ identity.
 # connections, ignore that setting." means what?
 
 #+attr_latex: :align=|c|c|c|c|
-#+CAPTION: Setup tasks for clients in WPA2-Enterprise with EAP-PEAP-MSCHAPv2 and EAP-SIM
+#+CAPTION: WPA2-Enterprise client setup with EAP-PEAP-MSCHAPv2 and EAP-SIM
 #+NAME: table-peapsim
-|---+---------------------------------------------+----------+---------+----------+---|
-|   |                                             | EAP-PEAP | EAP-SIM | EAP-PEAP |   |
-|   | Task:                                       | with     |         | with     |   |
-|   | (x)=``needed'', (N/A)= ``not available''    | MSCHAPv2 |         | EAP-SIM  |   |
-| / | <                                           | <        | <       | <        | > |
-|---+---------------------------------------------+----------+---------+----------+---|
-|   | CA settings:                                |          |         |          |   |
-|   | - choose CA for the RADIUS                  | x        |         | x        |   |
-|   | - tell CA to clients                        | x        |         | x        |   |
-|   | - if CA not known, distribute it /securely/ | x        |         | x        |   |
-|---+---------------------------------------------+----------+---------+----------+---|
-|   | Other settings:                             |          |         |          |   |
-|   | - set used EAP-method                       | x        | x       | x        |   |
-|   | - set validation of RADIUS server's name    | x        |         | x        |   |
-|   | - set encapsulation (WPA2/802.1X)           | x        |         |          |   |
-|   | - set password                              | x        | x(PIN)  |          |   |
-|---+---------------------------------------------+----------+---------+----------+---|
-|   | Identity hiding:                            |          |         |          |   |
-|   | - enable PEAP                               | x        | N/A     | x        |   |
-|   | - set outer identity                        | x        | N/A     | x        |   |
-|   | - set inner identity                        | x        | N/A     |          |   |
-|---+---------------------------------------------+----------+---------+----------+---|
+|---+--------------------------------------------+----------+---------+----------+---|
+|   |                                            | EAP-PEAP | EAP-SIM | EAP-PEAP |   |
+|   | Task:                                      | with     |         | with     |   |
+|   | (x)=``needed'', (N/A)= ``not available''   | MSCHAPv2 |         | EAP-SIM  |   |
+| / | <                                          | <        | <       | <        | > |
+|---+--------------------------------------------+----------+---------+----------+---|
+|   | CA settings:                               |          |         |          |   |
+|   | - choose CA for the RADIUS                 | x        |         | x        |   |
+|   | - if CA-key not known, fetch /securely/    | x        |         | x        |   |
+|---+--------------------------------------------+----------+---------+----------+---|
+|   | Other settings:                            |          |         |          |   |
+|   | - used EAP-method                          | x        | x       | x        |   |
+|   | - validation of RADIUS server's name       | x        |         | x        |   |
+|   | - encapsulation (WPA2/802.1X)              | x        |         |          |   |
+|   | - password                                 | x        | x(PIN)  |          |   |
+|---+--------------------------------------------+----------+---------+----------+---|
+|   | Identity hiding:                           |          |         |          |   |
+|   | - enable PEAP                              | x        | N/A     | x        |   |
+|   | - outer identity                           | x        | N/A     | x        |   |
+|   | - inner identity                           | x        | N/A     |          |   |
+|---+--------------------------------------------+----------+---------+----------+---|
 
 ** Analysis of EAP-SIM protocol
-Bird's eye view to the EAP-SIM messaging between the smartphone, AP,
-Authentication server and MNO is described in Figure[[fig:eap-sim-simple]].
-The traffic is EAP on the left, RADIUS  in
-the middle, and MAP/SS7, which is an mobile connection  application running over signaling system(SS7) used in cellular networks,
-on the right.
+Bird's-eye view to the EAP-SIM protocol messaging between the
+smartphone, AP, Authentication server and MNO is described in
+Figure[[fig:eap-sim-bird]].  The traffic is EAP on the left, RADIUS in the
+middle, and MAP/SS7, which is an mobile connection application running
+over signaling system (SS7) used in cellular networks, on the right.
 
-#+begin_src ditaa :file eap-sim-simple.png :cmdline -E -r -s 4
-  Smartphone     Authenticator (AP)             Authentication server    
-      |                  |                                |          
-      |    EAP TRAFFIC   |                                |          
-      +<---------------->|                                |          
-      |                  |  RADIUS (EAP)                  |         MNO(HLR_AuC) 
-      |                  +------------------------------->|                  |
-      |                  |                                |                  |
-      |                  |                                | IMSI,N (MAP/SS7) | 
-      |                  |                                +----------------->|
-      |                  |                                |                  |
-      |                  |                                |  N∗(RAND,SRES,Kc)|
-      |                  |                                |<-----------------+
-      |                  |RADIUS(Challenge EAP-SIM client)|                    
-      |                  |<-------------------------------+
-      | Challenge EAP-SIM|                                |
-      |<-----------------+                                |
-      |                  |                                |
-+-----+------------+     |                                |    
-|verify MNO,       |     |                                |    
-|decrypt pseudonym,|     |                                | 
-|derive Kc,        |     |                                |       
-|digest challenge  |     |                                |    
-+-----+------------+     |                                |    
-      |                  |                                |
-      | Response         |                                |
-      +----------------->|RADIUS(Response)                |
-      |                  +------------------------------->|
-      |                  |                          +-----+------------+
-      |                  |                          | compare Response |
-      |                  |                          | with SRES        |
-      |                  |                          +-----+------------+
-      |                  |RADIUS(Access-Accept or -Deny)  | 
-      |                  |<-------------------------------+
-      |<-----------------+                                |
-      |                  |                                |
+
+#+begin_src ditaa :file eap-sim-bird.png :cmdline -E -r -s 4
+Smartphone    Authenticator (AP)     Authentication server    MNO(HLR_AuC) 
+    |             |                        |                        |
+    |             |                        |                        |
+    |    EAP      |      RADIUS (EAP)      |     MAP/SS7            |
+    +<----------->+<---------------------->+<---------------------->+
+    |             |                        |                        |             
+    |             |                        |                        |
 #+end_src
-#+CAPTION: Simplified EAP-SIM sequence diagram, source RFC4186
-#+NAME:   fig:eap-sim-simple
+#+CAPTION: Bird's-eye view to EAP-SIM components
+#+NAME:   fig:eap-sim-bird
 #+RESULTS:
-[[file:eap-sim-simple.png]]
-
-
+[[file:eap-sim-bird.png]]
 
 
 
@@ -1174,16 +1144,15 @@ on the right.
 # f240503075923
 
 
-
+Protocol analysis of full EAP-SIM authentication is described 
+in Figure[[fig:eap-sim-radius]].
 Important parameters for this work are IMSI, NONCE, and triplet values
-corresponding IMSI (RAND, SRES, Kc).
-Sequence diagram of full EAP-SIM authentication between Supplicant (here
-smartphone) and Authenticator (in AP) is shown in
-Figure[[fig:eap-sim-radius]]. 
+RAND, SRES, and Kc. 
 # Not shown are the Authentication server, but 
 #   Figure [[fig:eap-sim-radius]] describes the EAP-SIM authentication
 # sequence.  
-There we can see that IMSI is used in message 3. IMSI is the
+From traffic between Supplicant (here smartphone) and Authenticator (in AP)
+we can see that IMSI is used first in message 3. IMSI is the
 identity, which Authentication server would next try to challenge as
 part of the AuthN and for which the AuthZ would be checked.
 
@@ -1199,79 +1168,34 @@ part of the AuthN and for which the AuthZ would be checked.
 All EAP-SIM derivatives provide mutual authentication.
 #  using a NONCE value.
 # in message 4, that would not be possible.
-An operator (network) AuthN happens with help of a nonce.
-The nonce is by definition a value used only once. The nonce can
-be thought as client's challenge to the network.
-The client challenges the operator by sending the nonce 
-during the start of the negotiation phase in the message
-7 in Figure[[fig:eap-sim-radius]]).
- The client later checks in the process
-13, whether RAND values from the operator were digested with the
-correct nonce and so authenticates the operator.
-The client in  turn is authenticated, when the Authentication server
+An operator (network) is authenticated with help of a nonce,
+which is by definition a value used only once and can
+be thought as a client's challenge to the network.
+# The client challenges the operator by sending the nonce 
+# during the start of the negotiation phase in the message
+The nonce is transmitted in the message 7 in Figure[[fig:eap-sim-radius]].
+The client later checks in the process 13, whether RAND values from
+the operator were digested with the correct nonce and so authenticates
+the operator.
+
+The client in turn is authenticated, when the Authentication server
 generates a challenge with an aid of a triplet from the MNO and the
-client responses to it correctly.
-
-After mutual authentication, the Authenticator receives either
-Access-Accept or Access-Deny RADIUS message. Accept message triggers
-802.1x protocol to open virtual port in AP and let the WPA2 process
-continue in exchanging WPA2 session keys. As both parties now have
-common trusted key, the derivation of secret session key is possible.
-
-
-After session has been set, IMSI may be left out and a temporal IMSI
-(TMSI) can be used instead to hide client's identity, for example in
-fast re-authentication case to reduce the risk of exposing the client's
-IMSI unnecessarily. Unfortunately, at that point, IMSI has already
-been exposed once in plain text, namely in message 3.
-It must be noted, that TMSI used here differs from TMSI used in 3GPP
-networks. Those context must not be mixed, otherwise the security that
-they bring may reduce, i.e. one must not use the TMSI received from
-3GPP as TMSI in EAP-SIM.
-
-TMSI is composed of pseudonym and realm part and can be a
-string. So, one can send 
-=my-string-which-can-change@…operator.domain= instead of 
-IMSI number (or =IMSI@...…operator.domain=) as an identity. 
-# #+END_QUOTE
-
-
-
-
-# how networks authenticates client? 
-# Network sends 
-# Client send to the network 
-# Network authenticates itself to EAP-client by sending correct
-# responses to client's challenge  and after that 
-# client tries to authenticate to the network.
-
-# [find the source or remove. ] 
-# Yet some documents claim, that EAP-SIM does not provide mutual AuthN, so what
-# can be the case? Perhaps they mean, that mutual AuthN is not provided between
-# the mobile client  and RADIUS servers. Another explanation is, that in AKA
-# and AKA' the network is authenticated in a very early phase with the
-# help of operator specific symmetric keys, which are also inside SIM.
-
-# #+BEGIN_LaTeX
-# \vfill
-# #+END_LaTeX
-
-
-# - identity 
-
-
-#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 1
+client responses to the challenge correctly after processing it with
+its own /Ki/.  Correct answer would be SRES which the Authentication
+server received in message 10.
+#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 3
 
 Smartphone                           Authenticator (AP)
+  |                                             |
   | 1. EAPOL Start                              |
   +-------------------------------------------->|
   |                                             |
   |                       2.EAP Request/Identity|
   |<--------------------------------------------+
   |                                             |
-  |3.EAP Response/Identity(IMSI) [later TMSI]   |
-  +-------------------------------------------->|                                     RADIUS
-  |                                             |                               Authentication Server
+  |3.EAP Response/Identity(IMSI) [later TMSI]   |                                     RADIUS
+  +-------------------------------------------->|                               Authentication Server
+  |                                             |
   |                                             |4. RADIUS(EAP Response/Identity)     |
   |                                             +------------------------------------>|
   |                                             |                                     |  
@@ -1282,14 +1206,14 @@ Smartphone                           Authenticator (AP)
   |                                             |                                     |  
   |7. EAP Response/SIM/Start(NONCE,SELECTED_VER)|                                     |
   +-------------------------------------------->|                                     |
-  |                                             |8. RADIUS(EAP Response/SIM/Start)    |  
-  |                                             +------------------------------------>|                    MNO(HLR_AuC)
-  |                                             |                                     |                         |
-  |                                             |                                     |9.(N∗Req.IMSI triplets)  |
-  |                                             |                                     +------------------------>|
-  |                                             |                                     |10.   (RAND,SRES,Kc)     |
-  |                                             |                                     |<------------------------+
-  |                                             |11. RADIUS(EAP Request/SIM/Challenge)| 
+  |                                             |8. RADIUS(EAP Response/SIM/Start)    |                  MNO(HLR_AuC)  
+  |                                             +------------------------------------>|                       |
+  |                                             |                                     |                       |
+  |                                             |                                     |9.(N∗Req.IMSI triplets)|
+  |                                             |                                     +---------------------->|
+  |                                             |                                     |10.   (RAND,SRES,Kc)   |
+  |                                             |                                     |<----------------------+
+  |                                             |11. RADIUS(EAP Request/SIM/Challenge)|                       |
   |                                             |     [N∗(RAND,MAC,Kc)                |
   |                                             |<------------------------------------+
   | 12. EAP Request/SIM/Challenge(RAND,MAC)     |                                     |
@@ -1302,7 +1226,8 @@ Smartphone                           Authenticator (AP)
 +-+---------------------------------------+     |                                     |
   |                                             |                                     |
   |14. EAP Response/SIM/Challenge (H(SRES))     |                                     |
-  +-------------------------------------------->|15. RADIUS(EAP Response/SIM/Challenge|(H(SRES))
+  +-------------------------------------------->|15. RADIUS(EAP Response/SIM/         |
+  |                                             |             Challenge (H(SRES)) )   |
   |                                             +------------------------------------>|
   |                                             |                               +-----+--------+ 
   |                                             |                               | compare with |
@@ -1310,7 +1235,7 @@ Smartphone                           Authenticator (AP)
   |                                             |                               +-----+--------+ 
   |                                             | 17. RADIUS(EAP Success)             |
   |                                             |<------------------------------------+ 
-  | 18.EAP Success)                             |                                     
+  | 18.EAP Success                              |                                     |
   |<--------------------------------------------+
   |                                             | 
   |                                             |
@@ -1321,6 +1246,44 @@ Smartphone                           Authenticator (AP)
 [[file:eap-sim-radius.png]]
 
 
+
+After mutual authentication, the Authenticator receives either
+Access-Accept or Access-Deny RADIUS message. Accept triggers
+802.1x protocol to open a virtual port in AP and let the WPA2 process
+continue in exchanging WPA2 session keys. 
+
+Both parties have now retrieved the same trusted key /Kc/. The
+Authenticator has received it directly from RADIUS message 10 and the
+smartphone has generated it using its own secret /Ki/ key in
+process 13.
+Therefore the derivation of secret session key for WPA2 is possible.
+
+After the session has been set, IMSI may be left out and a temporal IMSI
+(TMSI) can be used instead to hide client's identity, for example in
+fast re-authentication case to reduce the risk of exposing the client's
+IMSI unnecessarily. Unfortunately, at that point, IMSI has already
+been exposed at least once in plain text, namely in message 3.
+
+TMSI is composed of a pseudonym and a realm part and can be a
+string. So, one can send 
+=my-string-which-can-change@…operator.domain= instead of 
+IMSI number as an identity. 
+It must be noted, that TMSI used here differs from TMSI used in 3GPP
+networks. Those context must not be mixed, otherwise the security that
+they bring may decrease, i.e. one must not use the TMSI received from
+3GPP as TMSI in EAP-SIM.
+
+
+# [find the source or remove. ] 
+# Yet some documents claim, that EAP-SIM does not provide mutual AuthN, so what
+# can be the case? Perhaps they mean, that mutual AuthN is not provided between
+# the mobile client  and RADIUS servers. Another explanation is, that in AKA
+# and AKA' the network is authenticated in a very early phase with the
+# help of operator specific symmetric keys, which are also inside SIM.
+
+# #+BEGIN_LaTeX
+# \vfill
+# #+END_LaTeX
 
 
 # 
@@ -1383,21 +1346,20 @@ to extend trust.
 :PROPERTIES:
 :CUSTOM_ID: cha:management
 :END:
-[ keep this security oriented, Forget sections & subsections style.]
+# [ keep this security oriented, Forget sections & subsections style.]
 
 ** Home network architecture and IETF
 
 # [home network also in Chapter [[#cha:management]] ]
 
-Home network is a computer network located at person's home. It consists
-of devices and their connections, either wired or wireless.
-
-This thesis avoids using term /homenet/ when meaning any network at home,
-because  it is  reserved to 
+While home network is any network located at person's home consisting
+of devices and their connections, either wired or wireless,
+this thesis avoids using term /homenet/ when meaning those networks
+because  homenet  is  reserved to 
 # denotes home network as homenet, although the name 'homenet'
 # is reserved  to
 Internet Engineering Task Force Working Group's (IETF
-WG) homenet. IETF is responsible for the most Internet technology standards and 
+WG) homenet. IETF is responsible for the most internet technology standards and 
 WG homenet was started in year 2011.
 Current drive in homenet management is towards IPv6 environment
  as it allows future addressing and routing needs. 
@@ -1414,7 +1376,7 @@ network operator for backup purposes at home, so issues about
 multihoming are added to homenet.
 Lastly, end-to-end access, is in their
 agenda. End-to-end access, i.e., restriction-free access was the key
-element for the Internet's success and it enabled many new
+element for the internet's success and it enabled many new
 applications in the past, but has then had difficulties because of
 firewalls and NATs.
 # 5 tasks:
@@ -1600,7 +1562,7 @@ model, the home network will see smartphone as a central managing local
 controller.
 # cloud service of type Backend-as-a-Service (BaaS) is used here for
 # configurations. The smartphone can be thought as an extension of the
-# BaaS and it will have an application which configureEAPs home network
+# BaaS and it will have an application which configure EAPs home network
 # devices.  The smartphone is called a local controller and it is the
 # central management device for the home network.
 Usually, home users already have a phone, which can be considered 
@@ -2284,21 +2246,37 @@ separate SSID for management network was technically needed.
 # configured to use external RADIUS.  
 # it was either WPA2-Enterprise (RADIUS) or WPA2-PSK for access.
 If Wi-Fi was limited to only have one SSID, then we would need another
-way to separate access requests to management net.  Access to Wi-Fi
-can be separated by multiple realms (different username domains),
-different authentication methods, or user's role
-given by Authentication server. Management through Wi-Fi has then three
+way to indicate that user wants to get in to management net. 
+Separation can be done at client's  end by using different realm on
+AuthN identity. It also can be done by adding hints to destination to
+username (username decoration) or using different authentication
+methods. 
+
+Management through Wi-Fi has then three
 options.  Without RADIUS, access is open and the only checking comes
 from the used management protocol and its access control.
-
-[2015/05/11 NEW! This must be told everywhere, devices still have their own access
-control! Or do they use RADIUS? Now RADIUS is used to carry on EAP auth to get into access
-network, why not use it also to get in device? ]
-
 With WPA2, PSK is used, but no EAP or RADIUS as a backend.  With EAP,
 RADIUS server is the one who returns correct values to get in the
 management network in ACCESS-ACCEPT message as was
 explained in Section [[sec:chosendesign]].
+
+Even, when AP has authenticated the smart home, managed devices still 
+can have their own access control.
+# [2015/05/11 NEW! This must be told everywhere, devices still have
+# their own access control! 
+
+They may consult local RADIUS server, whether there is currently
+authenticated smartphone present which indicated presence of 
+allowed changes. Then every change coming from management network
+would be allowed. Smartphone also could know the login credentials to
+devices through earlier received configuration information and use
+them after getting into management network.
+
+# If they were integrated to same RADIUS server as used earlier, then
+# smart AA could be consulted from Or do they use RADIUS? Now RADIUS
+# is used to carry on EAP auth to get into access
+# network, why not use it also to get in device? ]
+
 # - Normal access, no RADIUS or just plain backend.
 # - WPA2 Access, shared secret, no RADIUS 
 # - PEAP access with whatever EAP outer-inner encapsulation
@@ -3015,10 +2993,6 @@ extensions for homeworkers instead of office.
 
 
 
-# division of 
-
-f
-
 * Implemented Solution
 :PROPERTIES:
 :CUSTOM_ID: cha:simu
@@ -3030,13 +3004,17 @@ f
 # - Message sequences
 # - Network traces etc
 
-To prove that the proposed model works, empirical tests have been done.
-First it is shown how EAP-SIM authentication works in a simulated
+To prove that the proposed model works, empirical tests were done.
+A preliminary plan to benefit from SIM-authentication at home is
+presented in Figure [[fig:sim-pre]]. The real operator and its HLR was 
+planned to be replaced in gateway at home network and real phone
+with its simulator counterpart.
+
+First it was shown how EAP-SIM authentication works in a simulated
 environment.
- Then a use case for disconnection is reported and network traces analyzed.
+ Then a use case for disconnection was reported and network traces analyzed.
 # for adding an admin user is reported.
- Changes are in the end done 
-# for example (with SSH or)
+Changes were in the end done # for example (with SSH or)
 via SSH or NETCONF from the local controller to the management network.
 
 
@@ -3049,22 +3027,24 @@ via SSH or NETCONF from the local controller to the management network.
 #  per scenarios in Scenario Chapter. 
 # "Here" needs reference, but it is already referenced in next Chapter?
 
-Physical devices used in the tests  were two smartphones, an AP and a laptop.
+Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint and a laptop.
 The smartphones were Nokia E70-1 and Nokia E90, both capable of
 EAP-SIM on factory software (Symbian). The AP was running OpenWRT firmware.  
 Laptop's software was WPA2-Supplicant for Wi-Fi 802.1X access,
 hostapd for wired connected RADIUS server and hlr_auc_gw for MNO's
-HLR-AuC. Laptop's role was therefore physically split-brain: It asked from itself for AA. 
+HLR-AuC.
+Laptop's role was therefore physically split-brain representing all
+those components: It asked from itself for AA. 
 Figure[[eap-sim-testbed]] shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
-#+CAPTION: Preliminary plan to benefit from SIM-authentication at home
+#+CAPTION: Plan to benefit from SIM-authentication at home
 #+NAME: fig:sim-pre
 #+RESULTS:
 [[file:phone-soft-hlr.png]]
 
-[ ] 
+
 # Logically the model can be better described in figure[[eap-sim-testbed]].
 
 # #+begin_src ditaa :file demoinfra.png :cmdline -E -r -s 0.8
@@ -3347,11 +3327,9 @@ when internet connection is down.  Full authentication uses IMSI,
 which is the identity of the phone's SIM.  Lighter, fast
 re-authentication would use temporal identity TMSI, which can change
 each time the AuthN request had been sent. Mapping of TMSI is cached
-on the Authenticator and the round-trip to and handling at HLR is so
+on the Authenticator and the round-trip and handling at HLR can so be
 eliminated. Re-auth also works when there is no internet connectivity,
-but Full authentication does not work, because it needs MNO.
-
-
+but Full authentication would not work because of missing MNO.
 
 
 
@@ -3384,45 +3362,54 @@ in the EAP messaging instead of radio channel details.
 Whole conversation is given first here and afterwards analyzed more
 thoroughly.
 
-[normalization of frame numbers?]
+[TBD: normalization of frame numbers (change ids and timeformat). Capture points in picture.]
 
 # [cite:https://wiki.wireshark.org/CaptureSetup/WLAN]
 # [Captured wireshark sessions give insight here. Analyze them.
-1. Capture of first part of SIM without secrets 
-2. Packet capture of successful SIM-authentication with corresponding parts of logs at WPA2-Supplicant, RADIUS server and packet captures 802.1X, RADIUS and HLR. ]
+
+
 # Maybe also remote syslog from access point.]
 
-[This part demonstrates use of unknown SIM physical phone]  
-Even when authentication conversation would not complete fully,
+First capture shows tries with normal phones, when SIM secrets were
+not known. Even when authentication conversation would not complete fully,
 Authenticator still receives a claim of identification from the
 smartphone. Yet, as there is no AuthN, no proof of identity exists in
 that case.
 
+[Missing trace, demonstrating the use of unknown SIM physical phone,
+include first traces: TBD.]  
+
+
+Packet capture of successful SIM-authentication with corresponding
+parts of logs at WPA2-Supplicant, RADIUS server and packet captures
+802.1X, RADIUS and HLR is shown below.
 
 
 #+LATEX: \scriptsize
-| No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
-| 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
-| 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                   |
-| 131 | 15:57:17.9887 | AP-wired   | RADIUS-srv | RADIUS | 235 | Access-Request(1) (id=162, l=193)    |
-| 132 | 15:57:17.9889 | RADIUS-srv | AP-wired   | RADIUS | 108 | Access-Challenge(11) (id=162, l=66)  |
-| 133 | 15:57:17.9908 | AP-802.1x  | smartphone | EAP    |  38 | Request, GSM Subscriber Identity     |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
-| 134 | 15:57:17.9924 | smartphone | AP-802.1x  | EAP    |  70 | Response, GSM Subscriber Identity    |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
-| 135 | 15:57:17.9945 | AP-wired   | RADIUS-srv | RADIUS | 272 | Access-Request(1) (id=163, l=230)    |
-| 136 | 15:57:18.0024 | RADIUS-srv | AP-wired   | RADIUS | 256 | Access-Challenge(11) (id=163, l=214) |
-| 137 | 15:57:18.0040 | AP-802.1x  | smartphone | EAP    | 186 | Request, GSM Subscriber Identity     |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
-| 138 | 15:57:18.0043 | smartphone | AP-802.1x  | EAP    |  46 | Response, GSM Subscriber Identity    |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
-| 139 | 15:57:18.0063 | AP-wired   | RADIUS-srv | RADIUS | 248 | Access-Request(1) (id=164, l=206)    |
-| 140 | 15:57:18.0065 | RADIUS-srv | AP-wired   | RADIUS | 202 | Access-Accept(2) (id=164, l=160)     |
-| 141 | 15:57:18.0110 | AP-802.1x  | smartphone | EAP    |  22 | Success                              |
-| 142 | 15:57:18.0112 | AP-802.1x  | smartphone | EAPOL  | 135 | Key (Message 1 of 4)                 |
-| 143 | 15:57:18.0123 | smartphone | AP-802.1x  | EAPOL  | 135 | Key (Message 2 of 4)                 |
-| 144 | 15:57:18.0161 | AP-802.1x  | smartphone | EAPOL  | 169 | Key (Message 3 of 4)                 |
-| 145 | 15:57:18.0163 | smartphone | AP-802.1x  | EAPOL  | 113 | Key (Message 4 of 4)                 |
+| No. |          Time | Src        | Dest       | Proto  | Len | Info                                      |
+| 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                         |
+| 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                        |
+| 131 | 15:57:17.9887 | AP-wired   | RADIUS-srv | RADIUS | 235 | Access-Request(1) (id=162, l=193)         |
+| 132 | 15:57:17.9889 | RADIUS-srv | AP-wired   | RADIUS | 108 | Access-Challenge(11) (id=162, l=66)       |
+| 133 | 15:57:17.9908 | AP-802.1x  | smartphone | EAP    |  38 | Request, GSM Subscriber Identity          |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                     |
+| 134 | 15:57:17.9924 | smartphone | AP-802.1x  | EAP    |  70 | Response, GSM Subscriber Identity         |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                     |
+| 135 | 15:57:17.9945 | AP-wired   | RADIUS-srv | RADIUS | 272 | Access-Request(1) (id=163, l=230)         |
+|     |               | RADIUS-srv | HLR-AuC gw | socket |     | SIM-REQ-AUTH <IMSI> 3      |
+|     |               | HLR-AuC gw | RADIUS-srv | socket |     | SIM-RESP-AUTH <IMSI>, 3 triplets                |
+| 136 | 15:57:18.0024 | RADIUS-srv | AP-wired   | RADIUS | 256 | Access-Challenge(11) (id=163, l=214)      |
+| 137 | 15:57:18.0040 | AP-802.1x  | smartphone | EAP    | 186 | Request, GSM Subscriber Identity          |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                     |
+| 138 | 15:57:18.0043 | smartphone | AP-802.1x  | EAP    |  46 | Response, GSM Subscriber Identity         |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                     |
+| 139 | 15:57:18.0063 | AP-wired   | RADIUS-srv | RADIUS | 248 | Access-Request(1) (id=164, l=206)         |
+| 140 | 15:57:18.0065 | RADIUS-srv | AP-wired   | RADIUS | 202 | Access-Accept(2) (id=164, l=160)          |
+| 141 | 15:57:18.0110 | AP-802.1x  | smartphone | EAP    |  22 | Success                                   |
+| 142 | 15:57:18.0112 | AP-802.1x  | smartphone | EAPOL  | 135 | Key (Message 1 of 4)                      |
+| 143 | 15:57:18.0123 | smartphone | AP-802.1x  | EAPOL  | 135 | Key (Message 2 of 4)                      |
+| 144 | 15:57:18.0161 | AP-802.1x  | smartphone | EAPOL  | 169 | Key (Message 3 of 4)                      |
+| 145 | 15:57:18.0163 | smartphone | AP-802.1x  | EAPOL  | 113 | Key (Message 4 of 4)                      |
 #+LATEX: \normalsize
 
 # - flow of messages,  timing,  size, attributes 
@@ -3800,28 +3787,8 @@ during the starting phase of 802.1X authentication and that is a privacy
 issue, because TMSI which hides IMSI cannot be used before a session
 has been set up.\cite[p.66]{rfc4186}.
 After the first full authentication, the client and the Authenticator 
-know TMSI and can use it in further communication. The Authenticator 
-is responsible for converting  TMSI to IMSI if it later needs to 
-ask for full authentication from the MNO. During that time,
-IMSI can be caught using the device called IMSI-catcher.
-# explain full authentication in sim-based-auth?
-
-The very same happens also in a regular GSM network with non-EAP traffic.
-IMSI can be caught by listening the GSM network for phones that are
-registering themselves to the operator when they are powering on.
-The fault lies there, that GSM specification does not require the
-mobile network to authenticate itself to the phone and so GSM allows
-man in the middle attack. 
-The attack follows, when the IMSI-catcher impersonates itself as a
-(cellular) base station.  When the smartphone tries to attach to the fake base
-station, the smartphone reveals its IMSI number. Further, because the
-base station is responsible for chosen encryption, the base station
-can order the phone to not encrypt traffic at all or to use only weak
-encryption thus revealing all data, calls, and texts. Mitigation for
-IMSI-catching would be to disable GSM (2G) usage altogether from phone
-if that is possible\cite{imsi-heise}. Some development has been done to detect 
-IMSI-catchers, most notably by the project AIMSICD\cite{aimcid}.
-
+know TMSI and can use it in further communication. 
+TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi]].
 
 #+begin_src ditaa :file imsi-tmsi.png :cmdline -E -r -s 2
 
@@ -3859,6 +3826,31 @@ IMSI-catchers, most notably by the project AIMSICD\cite{aimcid}.
 #+NAME:   fig:tmsi
 #+RESULTS:
 [[file:imsi-tmsi.png]]
+
+
+
+
+The Authenticator 
+is responsible for converting  TMSI to IMSI if it later needs to 
+ask for full authentication from the MNO. During that time,
+IMSI can be caught using the device called IMSI-catcher.
+# explain full authentication in sim-based-auth?
+
+The very same happens also in a regular GSM network with non-EAP traffic.
+IMSI can be caught by listening the GSM network for phones that are
+registering themselves to the operator when they are powering on.
+The fault lies there, that GSM specification does not require the
+mobile network to authenticate itself to the phone and so GSM allows
+man in the middle attack. 
+The attack follows, when the IMSI-catcher impersonates itself as a
+(cellular) base station.  When the smartphone tries to attach to the fake base
+station, the smartphone reveals its IMSI number. Further, because the
+base station is responsible for chosen encryption, the base station
+can order the phone to not encrypt traffic at all or to use only weak
+encryption thus revealing all data, calls, and texts. Mitigation for
+IMSI-catching would be to disable GSM (2G) usage altogether from phone
+if that is possible\cite{imsi-heise}. Some development has been done to detect 
+IMSI-catchers, most notably by the project AIMSICD\cite{aimcid}.
 
 
 Most EAP methods do not provide identity protection, i.e., the
