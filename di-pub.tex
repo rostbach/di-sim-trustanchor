@@ -1,4 +1,4 @@
-% Created 2015-10-03 la 15:57
+% Created 2015-10-03 la 16:22
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1778,7 +1778,7 @@ using RADIUS protocol (5).  MNO has RADIUS server running and it
 authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
 the Cloud, whether IMSI user has admin-role (AuthZ). 
 MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if
-user is both known AND has admin role or \emph{ACCESS-REJECT} \{\}(7).  CPE
+user is both known AND has admin role or \emph{ACCESS-REJECT} (7).  CPE
 receives this ACCEPT or REJECT. If there were other RADIUSes between
 CPE and MNO, they would have acted as proxy RADIUS servers.  If
 ACCEPTed, then the smartphone is both authenticated and authorized (8) and can
@@ -1805,7 +1805,7 @@ place within home network.
 \label{scenario-iii}
 
 Similar to first scenario is scenario III (Figure\ref{fig:scenario-III}), 
-but this time there is service provider between CPE and MNO, so AA is fully outsourced:
+but this time there is a service provider between CPE and MNO, so AA is fully outsourced:
 local AP communicates with RADIUS protocol to the external
 Authentication server. That in turn gets AuthN from MNO via its own
 HLR-AuC gateway and AuthZ from the cloud. It can also use alternative
@@ -1838,7 +1838,7 @@ there should be no problem.
 Scenario IV (Figure\ref{fig:scenario-IV}) is similar to scenario I, but
 now AuthZ is checked by CPE instead of MNO from the Cloud. If there are no connection to
 the cloud, the fall-back is to work just like II. So also this scenario needs local
-store for caching admin IMSIs (Roles).
+store for caching admin IMSIs (roles).
 
 \begin{figure}[htb]
 \centering
@@ -1846,43 +1846,42 @@ store for caching admin IMSIs (Roles).
 \caption{\label{fig:scenario-IV}Scenario IV, AuthZ from the Cloud, AuthN from MNO}
 \end{figure}
 
-In the last scenario (no figure), nothing has yet been configured. The bootstrapping
-is not done yet. The scenario can be any of I-IV, but no trust nor roles are present in CPE.
+In the scenario V, nothing has been configured. The bootstrapping
+has not been done yet. The scenario can be any of I-IV, but no trust nor roles are present in CPE.
 
 
 
 \subsection{discussion about change management models, simplificated model and further variations}
 \label{sec-4-6-1}
-[\# variation for sending changes direct to CPE]
+[ variation for sending changes direct to CPE]
 
-The simple way to propagate changes is make them come from the phone,
+The simple way to propagate changes is to make them come from the phone,
 where an application takes care of sending them right to the end
-devices. 
-
-This simplification has pitfalls. If the smartphone continuosly stays
-in the management network, how would later upcoming changes be
-separated from currently approved.
+devices. This simplification has pitfalls. If the smartphone continuosly stays
+in the management network, then the changes coming later may not be 
+separated from the currently approved.
 If we understood that the change approval belongs to the AA-process, then
 the later approvals would also need an AA.
 
  The smartphone should either be dropped out from the management
-network right away after the changes has been sent or after a
+network right away after the changes have been sent or after a
 predefined timeout period during which more changes can be send.
 That period can be called a management session.
 
 The session time and the logout can be handled in AP directly with
 an timer. After a specific time AP simple drops the connection
 (WPA2-session) to the phone. This needs modification to the AP
-software, if there already is not such method.
+software, if there is not already such method.
 Other solution would be for AP to listen for a command from an external
-AuthZ server, where similar timer would trigger a notification event.
-
+AuthZ server, where similar timer would trigger a notification event. 
+That also needed modifications;  a listening process to the AP and 
+the timer into the AuthZ server. 
 If GBA architecture was chosen, then the smartphone would hold a 
-token with validity time and must present that when accessing
+token with a validity time and has to present that when accessing
 services, here the management network. 
 \subsection{model of sending changes both to CPE and to the phone, which approves them}
 \label{sec-4-6-2}
- While changes already have been  sent direct to the CPE and only let it
+ While changes already have been sent direct to the CPE and only let it
 wait for approval, then when CPE receives ACCESS-ACCEPT, it could
 proceed on propagating those changes.  Otherwise, after certain
 timeout, CPE must stop waiting for phone's approval and drop changes.
@@ -3030,7 +3029,11 @@ a fake mobile operator representing EAP-SIM authentication flow was
 built. A dual-role model, which binds the smartphone to the home network and
 grants it rights to make changes there, has been proposed.  
 An indirect way to approve changes is achieved by binding the authorized
-access to the management network.
+access to the management network. After the authorization, the smart
+phone is free to configure the devices with its local application.
+Another way to convince the
+devices about trusted source is to send approval tickets that can
+be verified on reception, but that would involve more complex setup.
 
 Complexity of existing models in interworking was one motivator for
 the work. The research  on the subject did reveal some reasons 
@@ -3040,16 +3043,17 @@ There are some obvious weaknesses in the proposed solution such as
 missing continuous authorization after management access has been granted.
  Possible usage must carefully check the safety limits even when RADIUS protocol still
 has strengths in security today. The thesis only scratches bootstrapping
-problems and issues in bootstrapping the home network need to be studied
+problems and the issues in bootstrapping the home network need to be studied
 more thoroughly. One could use tickets in Kerberized way as in GBA.
-A software implementation as an application must be written for the smartphone.
+The application must be written for the smartphone before the solution
+can be implemented.
 
-With the proposed technique, the provisioning of users at home networks would
+Still, with the proposed technique, the provisioning of users at home networks would
 minimize, as the users already own a smartphone, which is an identifiable object. As
 a positive side effect, two-factor AuthN strengthens existing security.
-Developing HS2.0 a few steps further would bring mobile internet
+Developing HS2.0 a few steps further would add mobile traffic and internet
 off-loading on Wi-Fi networks and that would be the missing link in
-interworking between two worlds.
+interworking two worlds.
 
 \newpage
 %%%%%%%%%%%%%%%
