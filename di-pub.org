@@ -2672,7 +2672,6 @@ Other solution would be for AP to listen for a command from an external
 AuthZ server, where similar timer would trigger a notification event. 
 That also needed modifications;  a listening process to the AP and 
 the timer into the AuthZ server. 
-
 If GBA architecture was chosen, then the smartphone would hold a 
 token with a validity time and has to present that when accessing
 services, here the management network. 
