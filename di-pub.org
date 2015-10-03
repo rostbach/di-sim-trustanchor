@@ -4208,7 +4208,7 @@ devices have.
 Also, if SIM-profile was used through Bluetooth, there were also
 range limits, but even shorter. Despite the claimed distance limits
 on Bluetooth, receiving can be extended with even to one mile with
-directed antenna \cite{SANS-bluetooth-2007}.
+directed antenna\cite{SANS-bluetooth-2007}.
 
 
 # - WPS  :: despite its PIN method flaw, could work with its 'push button'-method
