@@ -1,4 +1,4 @@
-% Created 2015-10-02 pe 23:57
+% Created 2015-10-03 la 13:24
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -878,7 +878,8 @@ Identity hiding: &  &  &  & \\
 \section{Analysis of EAP-SIM protocol}
 \label{sec-2-6}
 Bird's-eye view to the EAP-SIM protocol messaging between the
-smartphone, AP, Authentication server and MNO is described in
+smartphone, AP, Authentication server and MNO with its Home Location
+Registry Authentication Center (HLR\_AuC) is described in
 Figure\ref{fig:eap-sim-bird}.  The traffic is EAP on the left, RADIUS in the
 middle, and MAP/SS7, which is an mobile connection application running
 over signaling system (SS7) used in cellular networks, on the right.
@@ -1148,7 +1149,7 @@ base having smartphones is orders of magnitude more than in any single
 organization, and as the most important fact, the trust anchor can be set to the smartphone.
 
 The users are already located centrally in operators' user databases
-in Home Location Registry Authentication Center (HLR-AuC).  To be able
+in HLR-AuC.  To be able
 to achieve the management paradigm change to a central configured one,
 we still need to bridge home network to that model with a trusted local controller
 and resolve the work-flow of change management.
@@ -1803,10 +1804,11 @@ place within home network.
 \label{scenario-iii}
 
 Similar to first scenario is scenario III (Figure\ref{fig:scenario-III}), 
-but this time there is SP between CPE and MNO, so AA is fully outsourced:
+but this time there is service provider between CPE and MNO, so AA is fully outsourced:
 local AP communicates with RADIUS protocol to the external
-Authentication server. That in turn gets AuthN from MNO via its
-hlr-auc-gateway and AuthZ from the cloud.
+Authentication server. That in turn gets AuthN from MNO via its own
+HLR-AuC gateway and AuthZ from the cloud. It can also use alternative
+sources for AuthN.
 Locally there is a cache for roles in case of network disconnectivity.
 
 Here benefit is, that 3rd party Authentication server may have direct
@@ -2099,15 +2101,20 @@ extensions for homeworkers instead of office.
 
 To prove that the proposed model works, empirical tests were done.
 A preliminary plan to benefit from SIM-authentication at home is
-presented in Figure \ref{fig:sim-pre}. The real operator and its HLR was 
-planned to be replaced in gateway at home network and real phone
-with its simulator counterpart.
+presented in Figure\ref{fig:sim-pre}. The real operator (MNO) and its HLR were 
+planned to be replaced with a gateway at home network and the real phone
+with its simulated counterpart.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{phone-soft-hlr.png}
+\caption{\label{fig:sim-pre}Plan to benefit from SIM-authentication at home}
+\end{figure}
 
 First it was shown how EAP-SIM authentication works in a simulated
 environment.
  Then a use case for disconnection was reported and network traces analyzed.
-Changes were in the end done \# for example (with SSH or)
-via SSH or NETCONF from the local controller to the management network.
+In the end, the changes in the management network were possible from the local controller with  SSH or NETCONF.
 
 
 
@@ -2118,21 +2125,33 @@ via SSH or NETCONF from the local controller to the management network.
 
 Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint and a laptop.
 The smartphones were Nokia E70-1 and Nokia E90, both capable of
-EAP-SIM on factory software (Symbian). The AP was running OpenWRT firmware.  
-Laptop's software was WPA2-Supplicant for Wi-Fi 802.1X access,
-hostapd for wired connected RADIUS server and hlr\_auc\_gw for MNO's
-HLR-AuC.
+EAP-SIM on factory software (Symbian). 
+
+Jouni Malinen's software package \emph{HostAP}\cite{hostapd} provides
+components for WPA2-Supplicant, Wireless Access point (AP),
+HLR-gateway (for GSM networks), and EAP-endpoint with or without
+RADIUS-server. From those, wpa-supplicant, hostapd for wired RADIUS
+server, and hlr\_auc\_gw programs were used.  HSS would replace HLR in
+3G/UMTS networks.  The version of HostAP used in the tests was 2.2,
+while version 2.4 was published on March 2015.
+
+
+
+
+For a more realistic test, additional hardware AP running OpenWRT
+firmware was used instead of \emph{hostapd}'s AP. OpenWRT AP works as a
+RADIUS client connecting to RADIUS server still provided by \emph{hostapd}.
+OpwnWRT will not try to open EAP-messages or need to know about them;
+it just encapsulates them into RADIUS packet.
+RADIUS server's configuration file can be seen in Appendix \ref{app:radius-conf}.
+
+
 Laptop's role was therefore physically split-brain representing all
-those components: It asked from itself for AA. 
+those components: it asked from itself for AA. 
 Figure\ref{eap-sim-testbed} shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=.9\linewidth]{phone-soft-hlr.png}
-\caption{\label{fig:sim-pre}Plan to benefit from SIM-authentication at home}
-\end{figure}
 
 
 
@@ -2144,24 +2163,6 @@ simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
 
 
-
-Jouni Malinen's software package \emph{HostAP}\cite{hostapd} can be thought
- as a reference
-implementation providing all necessary components: WPA2-Supplicant, Wireless
-Access point (AP), HLR-gateway (for GSM networks) and EAP-endpoint with
-or without RADIUS-server. HSS would replace HLR in 3G/UMTS networks.
-The version used in the tests was 2.2, while version
-2.4 was published on March 2015. RADIUS server used configuration file
- can be seen in Appendix \ref{app:radius-conf}.
-
-
-For a more realistic test, additional hardware OpenWRT AP was used instead of \emph{hostapd}'s
-AP.
-
-OpenWRT AP works as a RADIUS client connecting to RADIUS server still
-provided by  \emph{hostapd}.
-OpwnWRT will not try to open EAP-messages or need
-to know about them; it just encapsulates them into RADIUS packet.
 
 
 The algorithm used in the demo was internal GSM-Milenage,
