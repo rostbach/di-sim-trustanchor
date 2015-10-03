@@ -1,4 +1,4 @@
-% Created 2015-10-03 la 13:24
+% Created 2015-10-03 la 15:51
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -932,10 +932,11 @@ server received in message 10.
 
 
 
-After mutual authentication, the Authenticator receives either
-Access-Accept or Access-Deny RADIUS message. Accept triggers
-802.1x protocol to open a virtual port in AP and let the WPA2 process
-continue in exchanging WPA2 session keys. 
+After mutual authentication, the AuthN phase has been completed. The
+Authentication server completes the AuthZ by sending the Authenticator either
+an Access-Accept or Access-Deny RADIUS message. 
+Accept message triggers 802.1x protocol to open a virtual port in AP
+and lets the WPA2 process continue in exchanging WPA2 session keys. 
 
 Both parties have now retrieved the same trusted key \emph{Kc}. The
 Authenticator has received it directly from RADIUS message 10 and the
@@ -1777,7 +1778,7 @@ using RADIUS protocol (5).  MNO has RADIUS server running and it
 authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
 the Cloud, whether IMSI user has admin-role (AuthZ). 
 MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if
-user is both known AND has admin role or \emph{ACCESS-REJECT} (7).  CPE
+user is both known AND has admin role or /ACCESS-REJECT/(7).  CPE
 receives this ACCEPT or REJECT. If there were other RADIUSes between
 CPE and MNO, they would have acted as proxy RADIUS servers.  IF
 ACCEPTed, then the smartphone is both authenticated and authorized (8) and can
@@ -2103,7 +2104,8 @@ To prove that the proposed model works, empirical tests were done.
 A preliminary plan to benefit from SIM-authentication at home is
 presented in Figure\ref{fig:sim-pre}. The real operator (MNO) and its HLR were 
 planned to be replaced with a gateway at home network and the real phone
-with its simulated counterpart.
+with its simulated counterpart. HSS would replace HLR in 3G/UMTS networks.  
+
 
 \begin{figure}[htb]
 \centering
@@ -2125,29 +2127,27 @@ In the end, the changes in the management network were possible from the local c
 
 Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint and a laptop.
 The smartphones were Nokia E70-1 and Nokia E90, both capable of
-EAP-SIM on factory software (Symbian). 
+EAP-SIM on factory software.
 
 Jouni Malinen's software package \emph{HostAP}\cite{hostapd} provides
 components for WPA2-Supplicant, Wireless Access point (AP),
 HLR-gateway (for GSM networks), and EAP-endpoint with or without
 RADIUS-server. From those, wpa-supplicant, hostapd for wired RADIUS
-server, and hlr\_auc\_gw programs were used.  HSS would replace HLR in
-3G/UMTS networks.  The version of HostAP used in the tests was 2.2,
+server, and hlr\_auc\_gw programs were used.  
+The versions of HostAP used in the tests were 2.2 and later 2.3,
 while version 2.4 was published on March 2015.
 
 
-
-
 For a more realistic test, additional hardware AP running OpenWRT
-firmware was used instead of \emph{hostapd}'s AP. OpenWRT AP works as a
-RADIUS client connecting to RADIUS server still provided by \emph{hostapd}.
-OpwnWRT will not try to open EAP-messages or need to know about them;
-it just encapsulates them into RADIUS packet.
-RADIUS server's configuration file can be seen in Appendix \ref{app:radius-conf}.
+firmware was used instead of \emph{hostapd}'s AP. OpenWRT AP worked as a
+RADIUS client connecting to the RADIUS server still provided by the
+\emph{hostapd}.  OpenWRT AP did not try to open EAP-messages, but just
+encapsulated them into RADIUS packets.  RADIUS server's configuration
+file can be seen in Appendix \ref{app:radius-conf}.
 
 
-Laptop's role was therefore physically split-brain representing all
-those components: it asked from itself for AA. 
+Laptop's role was therefore physically split-brain; it asked for AA in
+the end from itself.
 Figure\ref{eap-sim-testbed} shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
@@ -2165,11 +2165,11 @@ simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
 
 
-The algorithm used in the demo was internal GSM-Milenage,
-which handles beside EAP-AKA also EAP-SIM.
+The algorithm used in the demo was an internal GSM-Milenage,
+which handles EAP-SIM beside EAP-AKA.
 Milenage is a reference implementation and as such suitable for operators, who do not 
-want to invent their own security algorithms. OPc and Seq numbers from
-Milenage were not used, they are only needed when using EAP-AKA. 
+want to invent their own security algorithms. OPc and Seq parameters from
+Milenage were not used, because they are not needed in EAP-SIM. 
 
 \section{Detailed description of test runs}
 \label{sec-5-2}
@@ -2178,21 +2178,22 @@ Milenage were not used, they are only needed when using EAP-AKA.
 
 
 
-
-Test runs were made with diverse clients.
-Nokia E70-1 with Symbian 60 Series OS (2006) had a
+The first tests were done with hostapd as a wireless AP.
+Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. Despite that it took part in generating
-primary EAP traffic.
+primary EAP traffic. 
 Examples in appendix \ref{app:nosim}   [TBD]
-
 First tests 
 did not go as planned. There was no indication of SIM method
-present in captures, the only indication of security was message
+present in captures, the only indication of security was a message
 ``Open System'' in application logs, which means that no pre-shared
 key is used.
+
 Nokia E90, with a registered SIM had better results. Traces
 are in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
   \verb~e90.sim.auth.pcapng~ and \verb~eap-1.pcapng~  [TBD]
+
+
 
 After some modifications, runs got to the authentication phase.
 Naturally, challenge-responses did not work because SIM secrets were
@@ -2409,7 +2410,9 @@ Lenght(2), and Type(1), it yields 16 octets for the
 identity. Therefore the identity is not coded as a 
 numeral but instead as a string and that brings more flexibility in
 the protocol as the Identity can include alphabets too. It also
-minimizes misunderstandings, if context gets lost.
+minimizes misunderstandings, if context gets lost. 
+When we remember, that IMSI can not be be more than 15 octets, the extra prefix '1'
+denotes that we are talking about EAP-SIM identity. 
 
 
 
@@ -2421,6 +2424,8 @@ EAPOL format  into RADIUS format and
 sent to RADIUS server. The capture between AP and Radius server is
 shown
 in Figure\ref{fig:capture}.
+
+
 
 
 \scriptsize
@@ -2456,6 +2461,8 @@ Here interesting part is the first RADIUS AVP.
 While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
 field, it was surprising that RADIUS has captured that field and 
 filled its User-Name field to the very same, ``1232010000000000''. 
+IMSI is '232010000000000' and it is prefixed with
+an '1' as earlier explained.
 
 In WPA2-Supplicant configuration file (see Appendix \ref{app:wpa-conf}) both the identity and
 credential section had the identity field, but that might 
