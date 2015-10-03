@@ -2669,7 +2669,9 @@ an timer. After a specific time AP simple drops the connection
 (WPA2-session) to the phone. This needs modification to the AP
 software, if there is not already such method.
 Other solution would be for AP to listen for a command from an external
-AuthZ server, where similar timer would trigger a notification event.
+AuthZ server, where similar timer would trigger a notification event. 
+That also needed modifications;  a listening process to the AP and 
+the timer into the AuthZ server. 
 
 If GBA architecture was chosen, then the smartphone would hold a 
 token with validity time and must present that when accessing
