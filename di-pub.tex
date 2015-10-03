@@ -1,4 +1,4 @@
-% Created 2015-10-03 la 16:22
+% Created 2015-10-03 la 17:15
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1403,12 +1403,19 @@ which must be sent through management network, perhaps including digest
 of change message as a verification.
 
 Because smartphone is not actively listening the CPE, it cannot input
-those request. There are three planned ways to distribute changes.
+those request. There are four planned ways to distribute changes. One
+would not involve smartphone at all but depends on earlier set
+trust. One uses the smartphone as a direct commander and two depends
+on complex setup involving tokens.
 
 \begin{enumerate}
 \item Changes are delivered normally from cloud to CPE (CPEs) without
 interaction from the smartphone. Such changes would not need
 AA at all or changes include credentials to login to targets.
+
+\item Changes are delivered from cloud to smartphone, which
+forwards them through management
+net to each and all devices after the authentication has succeeded.
 
 \item Changes are delivered from cloud to CPE functioning as a central
 management station without interaction from the smartphone.  Digest
@@ -1419,10 +1426,13 @@ it received from cloud as an approval message to central management
 station inside home network, which then forwards configuration changes
 to other devices.
 
-\item Changes are delivered from cloud to smartphone, which after
-authenticating into management net, forwards them through management
-net to each and all devices.
+\item Variation of number 3 is that if CPE itself is an Authenticator, it
+could proceed on propagating changes when it receives
+ACCESS-ACCEPT. Otherwise it must stop waiting for phone's AA and
+drop received changes without forwarding them.
 \end{enumerate}
+
+
 
 
 The smartphone may receive the authentication token with 
@@ -1879,12 +1889,6 @@ the timer into the AuthZ server.
 If GBA architecture was chosen, then the smartphone would hold a 
 token with a validity time and has to present that when accessing
 services, here the management network. 
-\subsection{model of sending changes both to CPE and to the phone, which approves them}
-\label{sec-4-6-2}
- While changes already have been sent direct to the CPE and only let it
-wait for approval, then when CPE receives ACCESS-ACCEPT, it could
-proceed on propagating those changes.  Otherwise, after certain
-timeout, CPE must stop waiting for phone's approval and drop changes.
 
 \section{Ways to modify RADIUS messages [perhaps to security integrity chapter?]}
 \label{sec-4-7}
