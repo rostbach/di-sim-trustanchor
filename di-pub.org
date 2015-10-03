@@ -2674,7 +2674,7 @@ That also needed modifications;  a listening process to the AP and
 the timer into the AuthZ server. 
 
 If GBA architecture was chosen, then the smartphone would hold a 
-token with a validity time and must present that when accessing
+token with a validity time and has to present that when accessing
 services, here the management network. 
 # If, on the other hand, the smartphone must send the changes itself, then it
 # would be possible that the access in to the management network has short
