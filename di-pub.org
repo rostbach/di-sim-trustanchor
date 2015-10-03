@@ -2686,7 +2686,7 @@ services, here the management network.
 
 # see automatic re-login issues
 *** model of sending changes both to CPE and to the phone, which approves them
- While changes already have been  sent direct to the CPE and only let it
+ While changes already have been sent direct to the CPE and only let it
 wait for approval, then when CPE receives ACCESS-ACCEPT, it could
 proceed on propagating those changes.  Otherwise, after certain
 timeout, CPE must stop waiting for phone's approval and drop changes.
@@ -4446,7 +4446,11 @@ grants it rights to make changes there, has been proposed.
 # Working with management network is indirect way to approve changes.  
 # [or:
 An indirect way to approve changes is achieved by binding the authorized
-access to the management network.
+access to the management network. After the authorization, the smart
+phone is free to configure the devices with its local application.
+Another way to convince the
+devices about trusted source is to send approval tickets that can
+be verified on reception, but that would involve more complex setup.
  
 # [Benefits and disadvantages]
 # MOTIVATION
@@ -4458,19 +4462,20 @@ There are some obvious weaknesses in the proposed solution such as
 missing continuous authorization after management access has been granted.
  Possible usage must carefully check the safety limits even when RADIUS protocol still
 has strengths in security today. The thesis only scratches bootstrapping
-problems and issues in bootstrapping the home network need to be studied
+problems and the issues in bootstrapping the home network need to be studied
 more thoroughly. One could use tickets in Kerberized way as in GBA.
 # More roles and multiuser cases could be added. 
-A software implementation as an application must be written for the smartphone.
+The application must be written for the smartphone before the solution
+can be implemented.
 # There are MIF[def] and Provision Domains WGs on IETF. Their work partly
 # overlaps this.
 
-With the proposed technique, the provisioning of users at home networks would
+Still, with the proposed technique, the provisioning of users at home networks would
 minimize, as the users already own a smartphone, which is an identifiable object. As
 a positive side effect, two-factor AuthN strengthens existing security.
-Developing HS2.0 a few steps further would bring mobile internet
+Developing HS2.0 a few steps further would add mobile traffic and internet
 off-loading on Wi-Fi networks and that would be the missing link in
-interworking between two worlds.
+interworking two worlds.
 
 #+BEGIN_LaTex
 \newpage
