@@ -2564,7 +2564,7 @@ place within home network.
 <<scenario-iii>>
 
 Similar to first scenario is scenario III (Figure[[fig:scenario-III]]), 
-but this time there is service provider between CPE and MNO, so AA is fully outsourced:
+but this time there is a service provider between CPE and MNO, so AA is fully outsourced:
 local AP communicates with RADIUS protocol to the external
 Authentication server. That in turn gets AuthN from MNO via its own
 HLR-AuC gateway and AuthZ from the cloud. It can also use alternative
@@ -2582,8 +2582,8 @@ This is similar to federated service.
 #+begin_src ditaa :file scenIII.png  :cmdline -E -r  -s 4
            +--------+                     +------=------+
            |cloud2  +<-+  (Alternative +->+MNO2(HLR_AuC)|
-           +---=----+  : AuthN sources):  +-------------+
-                       :               :
+           +---=----+  : AuthZ & AuthN :  +-------------+
+                       :   sources  )  :
                        v               v
  +-------+         +---+---------------+-----------+
  |cloud1 +<-AuthZ->+3rd party AA service provider  |
@@ -2619,7 +2619,7 @@ there should be no problem.
 Scenario IV (Figure[[fig:scenario-IV]]) is similar to scenario I, but
 now AuthZ is checked by CPE instead of MNO from the Cloud. If there are no connection to
 the cloud, the fall-back is to work just like II. So also this scenario needs local
-store for caching admin IMSIs (Roles).
+store for caching admin IMSIs (roles).
 
 # #+begin_src ditaa :file scenIV.png :cmdline -E -r -s 0.8
 # preview : C-cC-o
@@ -2642,7 +2642,7 @@ store for caching admin IMSIs (Roles).
 [[file:scenIV.png]]
 
 # *** Scenario V: Bootstrapping, no roles defined
-In the last scenario (no figure), nothing has yet been configured. The bootstrapping
+In the scenario V, nothing has been configured yet. The bootstrapping
 is not done yet. The scenario can be any of I-IV, but no trust nor roles are present in CPE.
 
 
