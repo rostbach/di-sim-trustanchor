@@ -1980,14 +1980,15 @@ justifies the management and therefore the changes to be allowed, if the smartph
 # In production, some changes in cloud are propagated to home network via
 # management network without need for extra authentication phase.  
 
-In production, some changes in local controller are propagated to home network
+In production, some changes in local controller can be propagated to
+the home network
 via management network without need for an extra authentication phase.
 The local controller does not interact there. An example of change is
 a modification in network segment, which does not change network topology of other domains.
 # Cha 4. last Section, "Lastly, variation of design is, that not
 # every change needs to go
-Those changes or alternatively changes that do need authorization
-should be enumerated, which ever would be smaller set.  
+It is not known for the author which type represent the majority of
+change requests.
 # Q:Why enumeration needed? Why smaller set? 
 # A: To explicit tell, when authorization is needed and rest can be
 # left out. Alternatively, if free changes are only minimal (what are
