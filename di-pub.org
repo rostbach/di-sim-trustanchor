@@ -2521,7 +2521,7 @@ authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
 the Cloud, whether IMSI user has admin-role (AuthZ). 
 # [how long does it take to ask?]  
 MNO returns in RADIUS message either /ACCESS-ACCEPT/, if
-user is both known AND has admin role or /ACCESS-REJECT/\(7).  CPE
+user is both known AND has admin role or /ACCESS-REJECT/\{}(7).  CPE
 receives this ACCEPT or REJECT. If there were other RADIUSes between
 CPE and MNO, they would have acted as proxy RADIUS servers.  IF
 ACCEPTed, then the smartphone is both authenticated and authorized (8) and can
