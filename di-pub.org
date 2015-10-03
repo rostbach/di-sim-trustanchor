@@ -2025,7 +2025,11 @@ those request. There are three planned ways to distribute changes.
    interaction from the smartphone. Such changes would not need
    AA at all or changes include credentials to login to targets.
 
-2) Changes are delivered from cloud to CPE functioning as a central
+2) Changes are delivered from cloud to smartphone, which after
+   authenticating into management net, forwards them through management
+   net to each and all devices.
+
+3) Changes are delivered from cloud to CPE functioning as a central
    management station without interaction from the smartphone.  Digest
    of what is going to happen would be sent to smartphone from BaaS
    over the air (OtA). Smartphone would authenticate in to management
@@ -2034,9 +2038,14 @@ those request. There are three planned ways to distribute changes.
    station inside home network, which then forwards configuration changes
    to other devices.
 
-3) Changes are delivered from cloud to smartphone, which after
-   authenticating into management net, forwards them through management
-   net to each and all devices.
+4) Variation of number 3 is that if CPE itself is an Authenticator, it
+   could proceed on propagating changes when it receives
+   ACCESS-ACCEPT. Otherwise it must stop waiting for phone's AA and
+   drop received changes without forwarding them.
+
+# see automatic re-login issues
+#   [this was the question somewhere, ``triggering'']
+
 
 
 # Let's assume, that changes are delivered normally
@@ -2684,18 +2693,9 @@ services, here the management network.
 
 
 
-# see automatic re-login issues
-*** model of sending changes both to CPE and to the phone, which approves them
- While changes already have been sent direct to the CPE and only let it
-wait for approval, then when CPE receives ACCESS-ACCEPT, it could
-proceed on propagating those changes.  Otherwise, after certain
-timeout, CPE must stop waiting for phone's approval and drop changes.
-#   [this was the question somewhere, ``triggering'']
 
-
-
-
-# ** What prevents modifications of RADIUS messages? Securing message integrity.
+# ** What prevents modifications of RADIUS messages? Securing message
+# integrity.
 
 ** Ways to modify RADIUS messages [perhaps to security integrity chapter?]
 <<sec:radius-macs>>
