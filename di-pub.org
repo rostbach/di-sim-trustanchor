@@ -2642,8 +2642,8 @@ store for caching admin IMSIs (roles).
 [[file:scenIV.png]]
 
 # *** Scenario V: Bootstrapping, no roles defined
-In the scenario V, nothing has been configured yet. The bootstrapping
-is not done yet. The scenario can be any of I-IV, but no trust nor roles are present in CPE.
+In the scenario V, nothing has been configured. The bootstrapping
+has not been done yet. The scenario can be any of I-IV, but no trust nor roles are present in CPE.
 
 
 
