@@ -2832,10 +2832,11 @@ users network.
 
 # file:ditaa-simpleboxes.png
 
-#+CAPTION: 802.1x access control with EAP [TBD deleted?]. Source Cisco.
-#+LABEL: fig:cisco-802.1x
-#+ATTR_LaTeX: width=5cm,angle=90
-file:~/gitdocs/di/images/170847.jpg
+# deleted 3.10.2015
+# #+CAPTION: 802.1x access control with EAP [TBD deleted?]. Source Cisco.
+# #+LABEL: fig:cisco-802.1x
+# #+ATTR_LaTeX: width=5cm,angle=90
+#  file:~/gitdocs/di/images/170847.jpg
 
 # source: [[http://www.cisco.com/c/dam/en/us/td/i/100001-200000/170001-180000/170001-171000/170847.ps/_jcr_content/renditions/170847.jpg]]
 # voisi myös laittaa thumbnailin näin
@@ -2874,10 +2875,10 @@ file:~/gitdocs/di/images/170847.jpg
 
 
 Device provider Cisco calls this
- ``Lock-and-Key''\cite[p.117]{lockandkeybook}
-access and uses dynamic access list to implement it.
+ ``Lock-and-Key''
+access and uses dynamic access list to implement it\cite[p.117]{lockandkeybook}.
 # [cite this or find Basic manual: [[http://www.getnetworking.net/acl/dynamic-access-list-configuration]]]
-Figure [[fig:cisco-802.1x]] reminds us again how 802.1X works. 
+# Figure[[fig:cisco-802.1x]] reminds us again how 802.1X works. 
 Lock-and-key is presented on Figure[[fig:lock-and-view]].
  Smartphone has only limited access to the network before AA
 has completed, while in the Lock-and-key
