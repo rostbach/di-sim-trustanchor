@@ -1945,7 +1945,7 @@ new admin user.
 
 Let's first suppose, for case of simplicity, that the home network has been
 already configured(bootstrapped) and it is functioning properly.  The
-home configuration model has been copied[inserted, etc] to the cloud.
+home configuration model has been copied to the cloud.
 When changes are made to the cloud model through authorized cloud
 administrator users (operators), those changes are later also committed
 in to the production in home network. There is no magic here, plain
