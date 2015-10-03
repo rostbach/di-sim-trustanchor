@@ -2660,14 +2660,14 @@ If we understood that the change approval belongs to the AA-process, then
 the later approvals would also need an AA.
 
  The smartphone should either be dropped out from the management
-network right away after the changes has been sent or after a
+network right away after the changes have been sent or after a
 predefined timeout period during which more changes can be send.
 That period can be called a management session.
 
 The session time and the logout can be handled in AP directly with
 an timer. After a specific time AP simple drops the connection
 (WPA2-session) to the phone. This needs modification to the AP
-software, if there already is not such method.
+software, if there is not already such method.
 Other solution would be for AP to listen for a command from an external
 AuthZ server, where similar timer would trigger a notification event.
 
