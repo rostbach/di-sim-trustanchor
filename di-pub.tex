@@ -1,4 +1,4 @@
-% Created 2015-10-03 la 17:15
+% Created 2015-10-03 la 17:33
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1349,7 +1349,7 @@ new admin user.
 
 Let's first suppose, for case of simplicity, that the home network has been
 already configured(bootstrapped) and it is functioning properly.  The
-home configuration model has been copied[inserted, etc] to the cloud.
+home configuration model has been copied to the cloud.
 When changes are made to the cloud model through authorized cloud
 administrator users (operators), those changes are later also committed
 in to the production in home network. There is no magic here, plain
@@ -1363,28 +1363,28 @@ change approved and after that we want to allow the newcomer account
 to have access to that segment and only to that. For the first part,
 which is normal operation, approving would perhaps yet not be
 necessary, but for the second part we need some checking unless our
-trust to cloud operator is ultimate.  [FOR approval needs, discuss
-this with the team.]
+trust to cloud operator is ultimate.  
 
 
 
 
 When CPE of home network is about to input configuration changes which
 would change balance of authors or roles (if role-based authorization
-in use), it needs to check if that is permitted.  Permission would 
-need to be asked from trusted point, here mobile SIM but instead of
-that the CPE checks from its state database, 
+in use), it needs to check that it is permitted.  Permission would 
+need to be asked from a trusted point, here mobile SIM. Instead of
+that, the CPE checks from its own state database, 
 whether mobile SIM has been given access to management network.
-CPE wants to verify, if the changes are authorized. They are, if currently
-smartphone user is logged in management network, i.e. management is allowed.
+CPE wants to verify, if the changes are authorized. This thesis
+justifies the management and therefore the changes to be allowed, if the smartphone user is currently logged in to the management network.
 
 
-In production, some changes in local controller are propagated to home network
+In production, some changes in local controller can be propagated to
+the home network
 via management network without need for an extra authentication phase.
 The local controller does not interact there. An example of change is
 a modification in network segment, which does not change network topology of other domains.
-Those changes or alternatively changes that do need authorization
-should be enumerated, which ever would be smaller set.  
+It is not known for the author which type represent the majority of
+change requests.
 
 In our model, only initial bootstrap needs the authentication with
 smartphone as well as change of admin roles and some dangerous
@@ -1979,11 +1979,6 @@ users network.
 
 
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=.9\linewidth]{/home/itapuro/gitdocs/di/images/170847.jpg}
-\caption{\label{fig:cisco-802.1x}802.1x access control with EAP [TBD deleted?]. Source Cisco.}
-\end{figure}
 
 
 
@@ -2000,9 +1995,8 @@ users network.
 
 
 Device provider Cisco calls this
- ``Lock-and-Key''\cite[p.117]{lockandkeybook}
-access and uses dynamic access list to implement it.
-Figure \ref{fig:cisco-802.1x} reminds us again how 802.1X works. 
+ ``Lock-and-Key''
+access and uses dynamic access list to implement it\cite[p.117]{lockandkeybook}.
 Lock-and-key is presented on Figure\ref{fig:lock-and-view}.
  Smartphone has only limited access to the network before AA
 has completed, while in the Lock-and-key
