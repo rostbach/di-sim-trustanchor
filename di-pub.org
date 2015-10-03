@@ -1959,8 +1959,8 @@ change approved and after that we want to allow the newcomer account
 to have access to that segment and only to that. For the first part,
 which is normal operation, approving would perhaps yet not be
 necessary, but for the second part we need some checking unless our
-trust to cloud operator is ultimate.  [FOR approval needs, discuss
-this with the team.]
+trust to cloud operator is ultimate.  
+# [FOR approval needs, discuss this with the team.]
 
 
 
@@ -1968,9 +1968,9 @@ this with the team.]
 # to be needed for AA.
 When CPE of home network is about to input configuration changes which
 would change balance of authors or roles (if role-based authorization
-in use), it needs to check if that is permitted.  Permission would 
-need to be asked from trusted point, here mobile SIM but instead of
-that the CPE checks from its state database, 
+in use), it needs to check that it is permitted.  Permission would 
+need to be asked from a trusted point, here mobile SIM. Instead of
+that, the CPE checks from its own state database, 
 whether mobile SIM has been given access to management network.
 # [How is this PULL asking triggered? In reality it is not asked, but
 # changes are accepted from admin roles. How admin role is checked?]
