@@ -1,4 +1,4 @@
-% Created 2015-10-03 la 15:51
+% Created 2015-10-03 la 15:52
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1778,7 +1778,7 @@ using RADIUS protocol (5).  MNO has RADIUS server running and it
 authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
 the Cloud, whether IMSI user has admin-role (AuthZ). 
 MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if
-user is both known AND has admin role or /ACCESS-REJECT/(7).  CPE
+user is both known AND has admin role or \emph{ACCESS-REJECT}$\backslash$(7).  CPE
 receives this ACCEPT or REJECT. If there were other RADIUSes between
 CPE and MNO, they would have acted as proxy RADIUS servers.  IF
 ACCEPTed, then the smartphone is both authenticated and authorized (8) and can
