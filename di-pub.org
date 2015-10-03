@@ -2515,7 +2515,7 @@ The model has been changed in the Cloud (1). Cloud sends changes to CPE
 user. The changes are sent also to the phone(3) and the phone user must
 authenticate  to the management network.  The phone user starts the
 AuthN to management network using EAP-SIM and reveals
-the IMSI(4).  CPE (AP) forwards  the authentication to MNO's RADIUS server
+the IMSI(4).  CPE (AP) forwards  the AuthN request to MNO's RADIUS server
 using RADIUS protocol (5).  MNO has RADIUS server running and it
 authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
 the Cloud, whether IMSI user has admin-role (AuthZ). 
