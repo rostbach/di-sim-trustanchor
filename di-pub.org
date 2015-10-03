@@ -1248,10 +1248,11 @@ Smartphone                           Authenticator (AP)
 
 
 
-After mutual authentication, the Authenticator receives either
-Access-Accept or Access-Deny RADIUS message. Accept triggers
-802.1x protocol to open a virtual port in AP and let the WPA2 process
-continue in exchanging WPA2 session keys. 
+After mutual authentication, the AuthN phase has been completed. The
+Authentication server completes the AuthZ by sending the Authenticator either
+an Access-Accept or Access-Deny RADIUS message. 
+Accept message triggers 802.1x protocol to open a virtual port in AP
+and lets the WPA2 process continue in exchanging WPA2 session keys. 
 
 Both parties have now retrieved the same trusted key /Kc/. The
 Authenticator has received it directly from RADIUS message 10 and the
@@ -2520,7 +2521,7 @@ authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
 the Cloud, whether IMSI user has admin-role (AuthZ). 
 # [how long does it take to ask?]  
 MNO returns in RADIUS message either /ACCESS-ACCEPT/, if
-user is both known AND has admin role or /ACCESS-REJECT/ (7).  CPE
+user is both known AND has admin role or /ACCESS-REJECT/(7).  CPE
 receives this ACCEPT or REJECT. If there were other RADIUSes between
 CPE and MNO, they would have acted as proxy RADIUS servers.  IF
 ACCEPTed, then the smartphone is both authenticated and authorized (8) and can
@@ -3148,12 +3149,11 @@ Milenage were not used, because they are not needed in EAP-SIM.
 # [ need to check those internal ref-citings!]
 
 
-
+The first tests were done with hostapd as a wireless AP.
 Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. Despite that it took part in generating
 primary EAP traffic. 
 Examples in appendix [[app:nosim]]   [TBD]
-
 First tests 
 # Test run with hostapd and simulated HLR_auc_gw
 # [draw picture],
@@ -3162,10 +3162,13 @@ present in captures, the only indication of security was a message
 ``Open System'' in application logs, which means that no pre-shared
 key is used.
 # Olisiko Open ollutkin 802.11 Open System ilmoitus?
+
 Nokia E90, with a registered SIM had better results. Traces
 # sim2 sim3
 are in folder ~gitdocs/di/testit/~ files ~eap3.pcapng~,
   ~e90.sim.auth.pcapng~ and ~eap-1.pcapng~  [TBD]
+
+
 
 After some modifications, runs got to the authentication phase.
 Naturally, challenge-responses did not work because SIM secrets were
@@ -3464,7 +3467,9 @@ Lenght(2), and Type(1), it yields 16 octets for the
 identity. Therefore the identity is not coded as a 
 numeral but instead as a string and that brings more flexibility in
 the protocol as the Identity can include alphabets too. It also
-minimizes misunderstandings, if context gets lost.
+minimizes misunderstandings, if context gets lost. 
+When we remember, that IMSI can not be be more than 15 octets, the extra prefix '1'
+denotes that we are talking about EAP-SIM identity. 
 
 #  Other information is also needed, for example
 # time stamps and accounting logs so these calculations are not precise.
@@ -3481,7 +3486,10 @@ shown
 in Figure[[fig:capture]].
 
 
+
+
 #+LATEX: \scriptsize
+#+Caption: EAP client's identity transformed
 #+begin_example
 Frame3: 15:57:17.988616
 Radius Protocol
@@ -3516,6 +3524,8 @@ Here interesting part is the first RADIUS AVP.
 While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
 field, it was surprising that RADIUS has captured that field and 
 filled its User-Name field to the very same, ``1232010000000000''. 
+IMSI is '232010000000000' and it is prefixed with
+an '1' as earlier explained.
 
 In WPA2-Supplicant configuration file (see Appendix [[app:wpa-conf]]) both the identity and
 credential section had the identity field, but that might 
@@ -4649,4 +4659,5 @@ wpa-supplicant supports.
 # _with user configurable_ User and Domain parameters (-> pseudonym
 # protection). As default, identity is read from SIM application (from
 # card).
+ 
  
