@@ -2653,7 +2653,7 @@ has not been done yet. The scenario can be any of I-IV, but no trust nor roles a
 The simple way to propagate changes is to make them come from the phone,
 where an application takes care of sending them right to the end
 devices. This simplification has pitfalls. If the smartphone continuosly stays
-in the management network, then the changes coming later can not be 
+in the management network, then the changes coming later may not be 
 separated from the currently approved.
 # , i.e., the smart phone now is part of the trusted management network, but 
 If we understood that the change approval belongs to the AA-process, then
