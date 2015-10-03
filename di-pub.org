@@ -1974,9 +1974,8 @@ that, the CPE checks from its own state database,
 whether mobile SIM has been given access to management network.
 # [How is this PULL asking triggered? In reality it is not asked, but
 # changes are accepted from admin roles. How admin role is checked?]
-CPE wants to verify, if the changes are authorized. This thesis uses
-the model where the management and
-therefore the changes are allowed, if the smartphone user is currently logged in to the management network.
+CPE wants to verify, if the changes are authorized. This thesis
+justifies the management and therefore the changes to be allowed, if the smartphone user is currently logged in to the management network.
 
 # In production, some changes in cloud are propagated to home network via
 # management network without need for extra authentication phase.  
