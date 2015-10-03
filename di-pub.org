@@ -4073,7 +4073,7 @@ current admin user list, state of OTP list, or VLAN id.
 # --------------------------------------------------------
 Earlier in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
-considered bad.  Mixing secrets between usage
+considered bad because mixing secrets between usage
 domains weakens them.  In GSM networks, IMSI identifies subscriber on
 first contact, later TMSI is used for call and SMS.  In EAP-SIM those
 values are also used. IMSI naturally is the same, but TMSI should be
