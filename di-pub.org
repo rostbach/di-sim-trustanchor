@@ -1861,53 +1861,13 @@ Who sent that password and where that password should be inserted?
 
 
 
-# here attest
-All this time it is assumed, that hardware does not lie. In case
-the hardware has been tampered, we could not trust it and its claims.
-For example, there have been attacks against SIM to reveal its private
-key after SIM have been copied.  To verify, that a device has not been
-tampered, a method called attestation can be used.
-# [cite]! [something from attestation techniques]
-# - Attestation methods for proofing,   TPM-part, to avoid tampering. [
-# Check Antti's work]
-A device which has attestation capability such as 
-hardware certificates or Trusted Platform Module (TPM) technology
-can function as a trust anchor.
-Such a device could be sent direct to customer with pre-configured
-secrets and methods to take a place as a trust anchor. 
-That leads us again to the key distribution problem.
-
-There is also fraudulent Authenticator problem: the Authenticator may present some 
-information to the Authentication server and other to the EAP-peer.
-Mitigation for that is, that EAP-peer includes some 
-characteristics of the Authenticator inside its EAP-message, which
-then the Authentication server verifies (RFC6677)\cite{rfc6677}.
-
 
 # ***  How can trust be achieved with the phone?
 
-The phone brings trust to the home network by completing full EAP-SIM AuthN through
-the local Authenticator. SIM's identity is verified by HLR AuC at the phone
-operator's end. The verification leaves a trail on the local Authenticator and
-opens a trust channel for a limited period of time for changes from the phone.
-[This was the most important paragraph of whole work. Thanks for
-reading it.]
-
-
-
-# as part of multiple service operators   MSO
-# Elisa's and additionally Wi-FI with only WPA2-PSK mode.
-
-
-# - admin user has SIM-card (working smartphone), whose IMSI is
-# registered as admin   user in home network configuration.
+# requirements
 Requirement for home network can be as small as having WPA2 Enterprise capable
 AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
-# provides
-# IPTV service 
 has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
-#  that use it as cable modem 
-# connectivity for cable TV and radio broadcasting. There Wi-Fi did 
 Additionally, managing user's SIM-card has to be registered as an admin user in home network 
 configuration, i.e. IMSI must belong to the admin group.
 In this implementation, no extra application is needed in smartphone
@@ -1918,7 +1878,7 @@ implemented. Disconnection issues are explained in Section
 [[sec:disconnections]].
 # [picture?]
 
-** Making changes [TBD already above, FIX THIS section]
+** Change management possibilities [TBD already above, FIX THIS section]
 
 # Wanted: 
 #  + separate MGMT net exists
@@ -2075,8 +2035,19 @@ possible 3G data link still may stay operational.
 # 
 
 
-** Chosen design and why (Rationale)
-<<sec:chosendesign>>   
+** Chosen AA design 
+<<sec:chosendesign>>
+
+# trust and thesis main point
+The phone brings trust to the home network by completing full EAP-SIM AuthN through
+the local Authenticator. SIM's identity is verified by HLR AuC at the phone
+operator's end. The verification leaves a trail on the local Authenticator and
+opens a trust channel for a limited period of time for changes from the phone.
+[This was the most important paragraph of whole work. Thanks for
+reading it.]
+
+
+   
 # segments
 Network can be divided into separate segments based on user role and
 needs, such as guest or home members segment. The segments provide
@@ -4127,7 +4098,35 @@ it would soon be exhausted and not function anymore.
 # - [ RADSEC proxy, standard radius proxy which also knows TLS, UNINETT implementation]
   
 
-*** Mitigation methods
+*** Hardware tampering
+# here attest
+All this time it is assumed, that hardware does not lie. In case
+the hardware has been tampered, we could not trust it and its claims.
+For example, there have been attacks against SIM to reveal its private
+key after SIM have been copied.  To verify, that a device has not been
+tampered, a method called attestation can be used.
+# [cite]! [something from attestation techniques]
+# - Attestation methods for proofing,   TPM-part, to avoid tampering. [
+# Check Antti's work]
+
+A device which has attestation capability such as 
+hardware certificates or Trusted Platform Module (TPM) technology
+can function as a trust anchor.
+Such a device could be sent direct to customer with pre-configured
+secrets and methods to take a place as a trust anchor. 
+That leads us again to the key distribution problem.
+
+
+*** Fraudulent Authenticator
+There is also fraudulent Authenticator problem: the Authenticator may present some 
+information to the Authentication server and other to the EAP-peer.
+This is an attack against both integrity and privacy.
+Mitigation for that is, that EAP-peer includes some 
+characteristics of the Authenticator inside its EAP-message, which
+then the Authentication server verifies (RFC6677)\cite{rfc6677}.
+
+
+*** Mitigation methods against radio capturing
 To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
