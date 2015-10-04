@@ -3989,8 +3989,8 @@ Authenticator is the one whose performance might suffer, which
 comes from processing loads\cite{2009-lin-simefficiency}.
 
 
-Traditionally, RADIUS has used connection\-less UDP protocol for its
-light weightiness. UDP misses reliability, but retransmission in UDP is
+Traditionally, RADIUS has used connection\-less UDP protocol that is
+light weight. UDP misses reliability that TCP has, and retransmission in UDP is
 tolerable, because the user is ready to wait  several seconds for
 authentication to complete. Today, RADIUS can also run over TCP, which
 has generally more aggressive retransmission
