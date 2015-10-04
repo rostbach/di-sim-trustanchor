@@ -4122,8 +4122,6 @@ secrets and methods to take a place as a trust anchor.
 That leads us again to the key distribution problem.
 
 
-*** Fraudulent Authenticator
-
 *** Mitigation methods against radio capturing
 To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
