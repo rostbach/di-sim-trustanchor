@@ -2075,19 +2075,20 @@ whether mobile SIM has been given access to management network.
 # [How is this PULL asking triggered? In reality it is not asked, but
 # changes are accepted from admin roles. How admin role is checked?]
 CPE wants to verify, if the changes are authorized. This thesis
-justifies the management and therefore the changes to be allowed, if the smartphone user is currently logged in to the management network.
+justifies the management and therefore the changes to be allowed, if
+the smartphone user is currently logged in to the management network.
 
 # In production, some changes in cloud are propagated to home network via
 # management network without need for extra authentication phase.  
 
 In production, some changes in local controller can be propagated to
-the home network
-via management network without need for an extra authentication phase.
-The local controller does not interact there. An example of change is
-a modification in network segment, which does not change network topology of other domains.
+the home network via management network without need for an extra
+authentication phase.  The local controller does not interact
+there. An example of change is a modification in network segment,
+which does not change network topology of other domains.
 # Cha 4. last Section, "Lastly, variation of design is, that not
 # every change needs to go
-It is not known for the author which type represent the majority of
+It is not yet known for the author which type represents the majority of
 change requests.
 # Q:Why enumeration needed? Why smaller set? 
 # A: To explicit tell, when authorization is needed and rest can be
@@ -2103,11 +2104,6 @@ change requests.
 # - enumeration ::  complete, ordered listing of all the items in a
 #  collection.
 
-In our model, only initial bootstrap needs the authentication with
-smartphone as well as change of admin roles and some dangerous
-combination of commands.
-
-[ sync. part to misc Section ?]
 
 
 
@@ -2179,6 +2175,8 @@ possible 3G data link still may stay operational.
 ** [Need for Security bootstrapping]  
  [removed, NOT YET trust anchor methods HERE!!! ]
 
+
+
 # Bootstrapping protocols are used to bring the first trust anchor in an
 # environment and use that device to attach other devices to the same trust
 # circle.
@@ -2192,6 +2190,13 @@ such as using SIM-auth (EAP-SIM) or CallerID, how they differ.
 What is needed? How GBA could be used here?]
 # Any other authentication methods such as CallerID
 # as a primary identification (bootstrap) and later as identification?]*
+
+[Restricting AA only to few spaces.]
+In our model, only initial bootstrap needs the authentication with
+smartphone as well as change of admin roles and some dangerous
+combination of commands.
+
+[ sync. part to misc Section ?]
 
 # [SIM card's anatomy: it has private key, MNO
 # also has the same key in its database and that is used to derive
