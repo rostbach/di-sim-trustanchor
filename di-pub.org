@@ -3604,7 +3604,7 @@ is difficult.
 #  be used for other areas to divide costs?
 EAP-SIM always needs MNO for first authentication,
 because only MNO and SIM-card manufacturer know 
-what are SIM's K_i and the used A3/A8 algorithm variation
+what are SIM's Ki and the used A3/A8 algorithm variation
 for GSM/3GPP/LTE authentication.
 
 # Even, if SIM card technically had multiple identities,
@@ -4053,8 +4053,6 @@ special RAND numbers can be used to differentiate the use of TMSI in 3GPP and LA
 contexts.
 
 # termination and re-login
-# --------------------------------------------------------
-# [This paragraph maybe to security considerations II part?]
 Re-authentication and termination can bring unexpected results.
 If SSID changing introduced in mitigation Section([[tag:hidessid]]) was in use, fast re-authentication
 should be forbidden\cite[p.11]{rfc5448}.
@@ -4067,25 +4065,21 @@ Swiss mobile operator Swisscom provided two networks for its customers:
 for connection and used smartphones' SIMs automatically. Unfortunately,
 it also charged users for using Wi-Fi connections without their 
 knowledge.\cite{swisscom}
-#   [link to Swisscom cases, where EAP-SIM is used and charged for Wi-Fi
-# and some unexpected roaming did happen where customer had to pay,]
-
 # http://www.wireless-forum.ch/forum/viewtopic.php?t=24071 Swisscom provides
 # [ Is it then the same as normal pre-configured WPA2-enterprise? Just that we
 # have not been used for paying for using eduroam or LANGATONWPA networks.]
-
-
 
 #  [examples of citation with emacs+auctex]
 # -  Haverinen  [[notes:hav-doc][hav-doc-note]]
 # - papers-Haverinen[[papers:hav-doc][hav-doc-paper]
 
+
 # SIM api bruteforce protection
 # --------------------------------------------------------
 If one can read and write data through SIM card's API,
-one could try to get information (SRES, K_c) by brute-force. 
+one could try to get information (SRES, Kc) by brute-force. 
 # or using the card as an oracle[def]. 
-Fortunately SRES and K_c are never sent in clear, but inside
+Fortunately SRES and Kc are never sent in clear, but inside
 a digested MAC.
 # (AT_MAC). AT syntax not used in thesis.
  Additionally SIM card can be programmed to answer only
