@@ -2246,16 +2246,15 @@ methods.
 Management through Wi-Fi has then three
 options.  Without RADIUS, access is open and the only checking comes
 from the used management protocol and its access control.
-With WPA2, PSK is used, but no EAP or RADIUS as a backend.  With EAP,
+With WPA2-PSK,  no EAP or RADIUS is used as a backend.  With EAP,
 RADIUS server is the one who returns correct values to get in the
 management network in ACCESS-ACCEPT message as was
 explained in Section [[sec:chosendesign]].
 
-Even, when AP has authenticated the smart home, managed devices still 
+Even, when AP has authenticated the smart home user, managed devices still 
 can have their own access control.
 # [2015/05/11 NEW! This must be told everywhere, devices still have
 # their own access control! 
-
 They may consult local RADIUS server, whether there is currently
 authenticated smartphone present which indicated presence of 
 allowed changes. Then every change coming from management network
@@ -2288,7 +2287,7 @@ them after getting into management network.
 # remember Swisscom [mentioned elsewhere].
 
  
-*** HS2.0 [If deleted, remember also from conclusion! TBD]
+# *** HS2.0 [If deleted, remember also from conclusion! TBD]
 
 It is well known, that the usability of the captive-portal Wi-Fi
  network is burden, because a user needs to go through 
