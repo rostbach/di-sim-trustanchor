@@ -1918,7 +1918,7 @@ implemented. Disconnection issues are explained in Section
 [[sec:disconnections]].
 # [picture?]
 
-** Flow of design [TBD already above, FIX THIS section]
+** Making changes [TBD already above, FIX THIS section]
 
 # Wanted: 
 #  + separate MGMT net exists
