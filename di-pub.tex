@@ -1,4 +1,4 @@
-% Created 2015-10-03 la 17:49
+% Created 2015-10-04 su 09:33
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1295,35 +1295,6 @@ Who sent that password and where that password should be inserted?
 
 
 
-All this time it is assumed, that hardware does not lie. In case
-the hardware has been tampered, we could not trust it and its claims.
-For example, there have been attacks against SIM to reveal its private
-key after SIM have been copied.  To verify, that a device has not been
-tampered, a method called attestation can be used.
-A device which has attestation capability such as 
-hardware certificates or Trusted Platform Module (TPM) technology
-can function as a trust anchor.
-Such a device could be sent direct to customer with pre-configured
-secrets and methods to take a place as a trust anchor. 
-That leads us again to the key distribution problem.
-
-There is also fraudulent Authenticator problem: the Authenticator may present some 
-information to the Authentication server and other to the EAP-peer.
-Mitigation for that is, that EAP-peer includes some 
-characteristics of the Authenticator inside its EAP-message, which
-then the Authentication server verifies (RFC6677)\cite{rfc6677}.
-
-
-
-The phone brings trust to the home network by completing full EAP-SIM AuthN through
-the local Authenticator. SIM's identity is verified by HLR AuC at the phone
-operator's end. The verification leaves a trail on the local Authenticator and
-opens a trust channel for a limited period of time for changes from the phone.
-[This was the most important paragraph of whole work. Thanks for
-reading it.]
-
-
-
 
 
 Requirement for home network can be as small as having WPA2 Enterprise capable
@@ -1338,7 +1309,7 @@ based software can be used, although those functions have not yet been
 implemented. Disconnection issues are explained in Section
 \ref{sec:disconnections}.
 
-\section{Flow of design [TBD already above, FIX THIS section]}
+\section{Change management possibilities [TBD already above, FIX THIS section]}
 \label{sec-4-2}
 
 
@@ -1450,9 +1421,19 @@ available and routing would still prefer Wi-Fi as a default gateway, although
 possible 3G data link still may stay operational.
 
 
-\section{Chosen design and why (Rationale)}
+\section{Chosen AA design}
 \label{sec-4-3}
-\label{sec:chosendesign}   
+\label{sec:chosendesign}
+
+The phone brings trust to the home network by completing full EAP-SIM AuthN through
+the local Authenticator. SIM's identity is verified by HLR AuC at the phone
+operator's end. The verification leaves a trail on the local Authenticator and
+opens a trust channel for a limited period of time for changes from the phone.
+[This was the most important paragraph of whole work. Thanks for
+reading it.]
+
+
+
 Network can be divided into separate segments based on user role and
 needs, such as guest or home members segment. The segments provide
 base connectivity layer and simple separation. Different
@@ -2533,7 +2514,7 @@ To further divide possible costs for EAP-SIM usage
 is difficult.
 EAP-SIM always needs MNO for first authentication,
 because only MNO and SIM-card manufacturer know 
-what are SIM's K\_i and the used A3/A8 algorithm variation
+what are SIM's Ki and the used A3/A8 algorithm variation
 for GSM/3GPP/LTE authentication.
 
 It is difficult to see if any commercial provider would implement
@@ -2734,6 +2715,13 @@ versions of TLS might in the future require\cite{rfc6614}. This is
 even more important, as it already has been noted in 2005, that SHA1 can be
 broken
 
+There is also fraudulent Authenticator problem, which is an attack
+against both integrity and privacy.  The Authenticator may present
+some information to the Authentication server and other to the
+EAP-peer. Mitigation for that is, that EAP-peer includes some
+characteristics of the Authenticator inside its EAP-message, which
+then the Authentication server verifies (RFC6677)\cite{rfc6677}.
+
 \subsection{Accessibility, DoS and Scalability}
 \label{sec-6-4-3}
 
@@ -2788,6 +2776,7 @@ current admin user list, state of OTP list, or VLAN id.
 
 \subsection{Replay, Re-use, Re-auth, and brute-force challenges}
 \label{sec-6-4-5}
+
 Earlier in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
 considered bad because mixing secrets between usage
@@ -2801,23 +2790,23 @@ contexts.
 Re-authentication and termination can bring unexpected results.
 If SSID changing introduced in mitigation Section(\ref{tag:hidessid}) was in use, fast re-authentication
 should be forbidden\cite[p.11]{rfc5448}.
-Even, when sessions can be terminated, the client side have 
-option to login automatically, transparent and without users control.
+Even, when sessions can be terminated, the client side may have 
+option set to login automatically, transparent and without users control.
 Automatic re-authentication after disconnection  must be considered
-here as harmful as well as automatic login. For example,
-Swiss mobile operator Swisscom provided two networks for its customers:
-``Mobile'' and ``Mobile Eapsim''. The latter network did not ask customers
-for connection and used smartphones' SIMs automatically. Unfortunately,
-it also charged users for using Wi-Fi connections without their 
+here as harmful as well as automatic login when nearby suitable AP. An
+example from harmful behaviour is Swiss mobile operator Swisscom, who
+ provided two networks ``Mobile'' and ``Mobile Eapsim''  for its
+customers. 
+The latter network did not ask customers
+for connection but used theirs smartphones' SIM automatically. Unfortunately,
+it also charged users for using Wi-Fi connections without users'
 knowledge.\cite{swisscom}
 
 
 
-
-
 If one can read and write data through SIM card's API,
-one could try to get information (SRES, K\_c) by brute-force. 
-Fortunately SRES and K\_c are never sent in clear, but inside
+one could try to get information (SRES, Kc) by brute-force. 
+Fortunately SRES and Kc are never sent in clear, but inside
 a digested MAC.
  Additionally SIM card can be programmed to answer only
 limited number of challenge request, for example 65535, which in
@@ -2825,8 +2814,27 @@ normal usage would be enough, but in brute-force challenges
 it would soon be exhausted and not function anymore.
 
 
-\subsection{Mitigation methods}
+\subsection{Hardware tampering}
 \label{sec-6-4-6}
+All this time it is assumed, that hardware does not lie. In case
+the hardware has been tampered, we could not trust it and its claims.
+For example, there have been attacks against SIM to reveal its private
+key after SIM have been copied.  To verify, that a device has not been
+tampered, a method called attestation can be used.
+
+A device which has attestation capability such as 
+hardware certificates or Trusted Platform Module (TPM) technology
+can function as a trust anchor.
+Such a device could be sent direct to customer with pre-configured
+secrets and methods to take a place as a trust anchor. 
+That leads us again to the key distribution problem.
+
+
+\subsection{Fraudulent Authenticator}
+\label{sec-6-4-7}
+
+\subsection{Mitigation methods against radio capturing}
+\label{sec-6-4-8}
 To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
@@ -2894,7 +2902,7 @@ directed antenna\cite{SANS-bluetooth-2007}.
 
 
 \subsection{Decision point for adding role information [ move to design part]}
-\label{sec-6-4-7}
+\label{sec-6-4-9}
 
 
 
