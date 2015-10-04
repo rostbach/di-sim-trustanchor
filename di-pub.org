@@ -4040,8 +4040,8 @@ current admin user list, state of OTP list, or VLAN id.
 
 
 *** Replay, Re-use, Re-auth, and brute-force challenges
-# same context
-# --------------------------------------------------------
+
+# same context problems
 Earlier in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
 considered bad because mixing secrets between usage
@@ -4056,14 +4056,16 @@ contexts.
 Re-authentication and termination can bring unexpected results.
 If SSID changing introduced in mitigation Section([[tag:hidessid]]) was in use, fast re-authentication
 should be forbidden\cite[p.11]{rfc5448}.
-Even, when sessions can be terminated, the client side have 
-option to login automatically, transparent and without users control.
+Even, when sessions can be terminated, the client side may have 
+option set to login automatically, transparent and without users control.
 Automatic re-authentication after disconnection  must be considered
-here as harmful as well as automatic login. For example,
-Swiss mobile operator Swisscom provided two networks for its customers:
-``Mobile'' and ``Mobile Eapsim''. The latter network did not ask customers
-for connection and used smartphones' SIMs automatically. Unfortunately,
-it also charged users for using Wi-Fi connections without their 
+here as harmful as well as automatic login when nearby suitable AP. An
+example from harmful behaviour is Swiss mobile operator Swisscom, who
+ provided two networks ``Mobile'' and ``Mobile Eapsim''  for its
+customers. 
+The latter network did not ask customers
+for connection but used theirs smartphones' SIM automatically. Unfortunately,
+it also charged users for using Wi-Fi connections without users'
 knowledge.\cite{swisscom}
 # http://www.wireless-forum.ch/forum/viewtopic.php?t=24071 Swisscom provides
 # [ Is it then the same as normal pre-configured WPA2-enterprise? Just that we
