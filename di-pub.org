@@ -2230,8 +2230,8 @@ To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
 and thus RADIUS server.
 
 # Two SSID, rationale
-It was not found, how Authenticator could use the same network with
-both WPA2-PSK (or open access) and WPA2-Enterprise, so
+Because it was not found, how Authenticator could use the same network
+with both WPA2-PSK (or open access) and WPA2-Enterprise, a
 separate SSID for management network was technically needed.
 # , while only management network is
 # configured to use external RADIUS.  
