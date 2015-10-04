@@ -1,4 +1,4 @@
-% Created 2015-10-04 su 10:27
+% Created 2015-10-04 su 10:40
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1459,22 +1459,18 @@ need to be asked from a trusted point, here mobile SIM. Instead of
 that, the CPE checks from its own state database, 
 whether mobile SIM has been given access to management network.
 CPE wants to verify, if the changes are authorized. This thesis
-justifies the management and therefore the changes to be allowed, if the smartphone user is currently logged in to the management network.
+justifies the management and therefore the changes to be allowed, if
+the smartphone user is currently logged in to the management network.
 
 
 In production, some changes in local controller can be propagated to
-the home network
-via management network without need for an extra authentication phase.
-The local controller does not interact there. An example of change is
-a modification in network segment, which does not change network topology of other domains.
-It is not known for the author which type represent the majority of
+the home network via management network without need for an extra
+authentication phase.  The local controller does not interact
+there. An example of change is a modification in network segment,
+which does not change network topology of other domains.
+It is not yet known for the author which type represents the majority of
 change requests.
 
-In our model, only initial bootstrap needs the authentication with
-smartphone as well as change of admin roles and some dangerous
-combination of commands.
-
-[ sync. part to misc Section ?]
 
 
 
@@ -1541,10 +1537,19 @@ possible 3G data link still may stay operational.
 
 
 
+
+
 [Description of General Bootstrapping architecture (GBA) vs. yet
 another custom architecture. Maybe parts of architecture
 such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
 What is needed? How GBA could be used here?]
+
+[Restricting AA only to few spaces.]
+In our model, only initial bootstrap needs the authentication with
+smartphone as well as change of admin roles and some dangerous
+combination of commands.
+
+[ sync. part to misc Section ?]
 
 
 In Behringers work-in-progress  bootstrapping\cite{draft-behringer-bootstrap},
@@ -1569,8 +1574,8 @@ to management network.
 To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
 and thus RADIUS server.
 
-It was not found, how Authenticator could use the same network with
-both WPA2-PSK (or open access) and WPA2-Enterprise, so
+Because it was not found, how Authenticator could use the same network
+with both WPA2-PSK (or open access) and WPA2-Enterprise, a
 separate SSID for management network was technically needed.
 If Wi-Fi was limited to only have one SSID, then we would need another
 way to indicate that user wants to get in to management net. 
@@ -1582,14 +1587,13 @@ methods.
 Management through Wi-Fi has then three
 options.  Without RADIUS, access is open and the only checking comes
 from the used management protocol and its access control.
-With WPA2, PSK is used, but no EAP or RADIUS as a backend.  With EAP,
+With WPA2-PSK,  no EAP or RADIUS is used as a backend.  With EAP,
 RADIUS server is the one who returns correct values to get in the
 management network in ACCESS-ACCEPT message as was
 explained in Section \ref{sec:chosendesign}.
 
-Even, when AP has authenticated the smart home, managed devices still 
+Even, when AP has authenticated the smart home user, managed devices still 
 can have their own access control.
-
 They may consult local RADIUS server, whether there is currently
 authenticated smartphone present which indicated presence of 
 allowed changes. Then every change coming from management network
@@ -1598,8 +1602,10 @@ devices through earlier received configuration information and use
 them after getting into management network.
 
 
-\subsection{HS2.0 [If deleted, remember also from conclusion! TBD]}
-\label{sec-4-5-1}
+
+
+
+
 
 It is well known, that the usability of the captive-portal Wi-Fi
  network is burden, because a user needs to go through 
