@@ -3959,12 +3959,12 @@ versions of TLS might in the future require\cite{rfc6614}. This is
 even more important, as it already has been noted in 2005, that SHA1 can be
 broken
 
-There is also fraudulent Authenticator problem, which is an attack
-against both integrity and privacy.  The Authenticator may present
+There is also a fraudulent Authenticator problem, which is an attack
+against both the integrity and privacy.  The Authenticator may present
 some information to the Authentication server and other to the
 EAP-peer. Mitigation for that is, that EAP-peer includes some
 characteristics of the Authenticator inside its EAP-message, which
-then the Authentication server verifies (RFC6677)\cite{rfc6677}.
+the Authentication server then verifies (RFC6677)\cite{rfc6677}.
 
 
 
@@ -3985,7 +3985,7 @@ small and middle size companies?
 To answer this we can remember that backends (cloud and operator) are
 designed for thousands or even millions of users, so 
 they hardly are limiting factors. Instead, local
-Authenticator might suffer from inefficiency, which
+Authenticator is the one whose performance might suffer, which
 comes from processing loads\cite{2009-lin-simefficiency}.
 
 
