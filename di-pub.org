@@ -1878,6 +1878,146 @@ implemented. Disconnection issues are explained in Section
 [[sec:disconnections]].
 # [picture?]
 
+** Chosen AA design 
+<<sec:chosendesign>>
+
+# trust and thesis main point
+The phone brings trust to the home network by completing full EAP-SIM AuthN through
+the local Authenticator. SIM's identity is verified by HLR AuC at the phone
+operator's end. The verification leaves a trail on the local Authenticator and
+opens a trust channel for a limited period of time for changes from the phone.
+[This was the most important paragraph of whole work. Thanks for
+reading it.]
+
+
+   
+# segments
+Network can be divided into separate segments based on user role and
+needs, such as guest or home members segment. The segments provide
+base connectivity layer and simple separation. Different
+services, like disk storage, can force their own policy on application
+level.
+It is not defined, if the segmentation is made 
+physical or virtual (VLAN, Virtual LAN). 
+There is also a segment for devices management. 
+An analogy to the real world would be public access corridors and doors for
+customers separate from privileged doors for service personnel.
+
+
+Routers control access to the segments with aid of 
+# Access to the network segments is checked in routers with
+access control lists (ACL), where decision is made based on current configuration or user's
+role.  Once user has been authorized into management network, access
+stays open for him, at least for a (predefined) limited time.
+
+So, instead of checking user's credentials each time data is received
+this model only checks, from where data is received. 
+Data received from the management network is granted for changes.
+It is arguable a lighter method than always
+fully AuthN and AuthZ but may suffice here, at first.
+
+# What have I thought here?
+# -Naturally one will first challenge the solution, if
+#  management network is thought to be in secured zone,
+#  and devices need to have additional protection for logging in them. 
+
+# then routers would have always management channel open.
+# That is true, and so routers still need protection 
+# by other means. Breaking one router would otherwise let open access to 
+# every other router. But is that not then circular reasoning? 
+
+Example of a complex solution would be a traditional firewall and packet
+inspection in the interconnects, but very modern model
+is the de-perimeterization trend set originally by Open Group's
+Jericho Work Group in 2004, that won't leave trust verification to
+perimeters of network (firewalls and application proxies) but 
+always handles traffic as coming from untrusted source.\cite{jericho2004}
+One implementation of de-perimeterization is 
+Google's BeyondCorp\cite{2014-beyondcorp}, 
+where all traffic always travels through Access Control Engine
+and is suspected as being external, even when it originates from
+inside networks. 
+# That model is also called 
+# de-perimeterization, while 
+# it plays no role, where traffic comes,  from inside or outside 
+# organization, it is always checked and authenticated.
+# [;login; 2014 Dec. Vol. 39, No. 6(2014), pp. 6-11].
+
+
+
+# (includes trust bind, which is also described on next Chapter, Section AuthZ with trust anchor...)
+# [Tell in early phase, what solution has been chosen. Choose the one that was in abstract].  
+
+
+# GOOD   trust bind
+When home network needs secure binding to the smartphone, earlier
+mentioned trust is the first one needed.  The trust is achieved by
+checking whether the smartphone can access home management
+network using only its trusted SIM-card, which provides AuthN. AuthZ in
+turn is compared to existing roles of IMSI in the Authenticator.
+
+
+[This has been explained in 802.1X Section in the begin. TBD]
+
+Technically we use in Wi-Fi connection IEEE 802.11i (also known as WPA2), which includes
+802.1X as port based access protocol.  802.11i defines there
+authentication, authorization, and cryptography key agreement.
+ It uses EAP for selecting authentication 
+# explained already in Chapter (cha:aaa EAP)
+mechanism, after Authenticator requests smartphone to identify itself as in Figure xxx is shown
+Messages are carried over 802.1X or RADIUS depending on transport
+medium as of Figure[[fig:eap-layers]].
+
+# *** "provisioning of service": [combine :: v1 ::]
+
+When AP forwards authentication request to next RADIUS server, it can
+ask or receive, beside AuthN and AuthZ, other service parameters, such
+as provisioning. That would allow the smartphone to connect to
+specific management network access either via CLI or SNMP or
+ similar\cite[p.4]{rfc5608}.  RADIUS can carry extra attributes in its
+ACCESS-ACCEPT message.   In essence, AuthZ part itself can be thought as
+one type of service provisioning. 
+
+
+# Specific VLAN attributes can alternatively be delivered via
+#  or similar ``getting into VLAN'' attribute
+# if standard RADIUS messages do not suffice.  VSAs allow a vendor to use
+# extra 255 attributes as they wish. 
+There exists RADIUS attribute types for directing user into specific
+VLAN. If those do not suffice, there is also special Vendor Specified
+Attributes (VSA). VSAs allow vendors to define up to 255 own
+attributes that can be used in provisioning in homogeneous environment. 
+
+
+# [cite rfcXXX].  
+That way (3rd party) Authentication server can decide which network
+segment the device would be put.  In our case, admin users are put in
+to the management network.  Yet, usually RADIUS ACCESS-ACCEPT message,
+which means AuthN and AuthZ were successful,  puts the user in
+default network, i.e., just gives it basic access. As for other
+provisioning parameters, not all end devices support them.
+
+In the first prototype it is enough to identify authorized
+smartphone's SIM.  Smartphone holding the SIM is granted the access to
+the parts of the management network and is authenticated strong.  User
+management is outsourced to MNO, which
+already has provided SIM cards to users. What remains, is the adding
+of the user's IMSI to the authorized users' list. That list can be
+located on diverse place, as can be seen in xxx
+# ### 
+
+# explain provisioning? 20150702
+
+After authentication and authorization has succeeded, session key
+creation occurs (WPA2 session) between AP and the smartphone. 
+The Authenticator has opened port to the smartphone for
+configuration changes. 
+The Local RADIUS (if existing) has trails of successful
+authentication and knows which IMSI has successfully authenticated in
+the home net. It also knows mapping between IMSI and temporal IMSI for
+cases where the smartphone later would need re-authentication.
+
+
 ** Change management possibilities [TBD already above, FIX THIS section]
 
 # Wanted: 
@@ -2033,146 +2173,6 @@ possible 3G data link still may stay operational.
 # It is not tested, whether 3G-data link could be active still at the
 # same time.
 # 
-
-
-** Chosen AA design 
-<<sec:chosendesign>>
-
-# trust and thesis main point
-The phone brings trust to the home network by completing full EAP-SIM AuthN through
-the local Authenticator. SIM's identity is verified by HLR AuC at the phone
-operator's end. The verification leaves a trail on the local Authenticator and
-opens a trust channel for a limited period of time for changes from the phone.
-[This was the most important paragraph of whole work. Thanks for
-reading it.]
-
-
-   
-# segments
-Network can be divided into separate segments based on user role and
-needs, such as guest or home members segment. The segments provide
-base connectivity layer and simple separation. Different
-services, like disk storage, can force their own policy on application
-level.
-It is not defined, if the segmentation is made 
-physical or virtual (VLAN, Virtual LAN). 
-There is also a segment for devices management. 
-An analogy to the real world would be public access corridors and doors for
-customers separate from privileged doors for service personnel.
-
-
-Routers control access to the segments with aid of 
-# Access to the network segments is checked in routers with
-access control lists (ACL), where decision is made based on current configuration or user's
-role.  Once user has been authorized into management network, access
-stays open for him, at least for a (predefined) limited time.
-
-So, instead of checking user's credentials each time data is received
-this model only checks, from where data is received. 
-Data received from the management network is granted for changes.
-It is arguable a lighter method than always
-fully AuthN and AuthZ but may suffice here, at first.
-
-# What have I thought here?
-# -Naturally one will first challenge the solution, if
-#  management network is thought to be in secured zone,
-#  and devices need to have additional protection for logging in them. 
-
-# then routers would have always management channel open.
-# That is true, and so routers still need protection 
-# by other means. Breaking one router would otherwise let open access to 
-# every other router. But is that not then circular reasoning? 
-
-Example of a complex solution would be a traditional firewall and packet
-inspection in the interconnects, but very modern model
-is the de-perimeterization trend set originally by Open Group's
-Jericho Work Group in 2004, that won't leave trust verification to
-perimeters of network (firewalls and application proxies) but 
-always handles traffic as coming from untrusted source.\cite{jericho2004}
-One implementation of de-perimeterization is 
-Google's BeyondCorp\cite{2014-beyondcorp}, 
-where all traffic always travels through Access Control Engine
-and is suspected as being external, even when it originates from
-inside networks. 
-# That model is also called 
-# de-perimeterization, while 
-# it plays no role, where traffic comes,  from inside or outside 
-# organization, it is always checked and authenticated.
-# [;login; 2014 Dec. Vol. 39, No. 6(2014), pp. 6-11].
-
-
-
-# (includes trust bind, which is also described on next Chapter, Section AuthZ with trust anchor...)
-# [Tell in early phase, what solution has been chosen. Choose the one that was in abstract].  
-
-
-# GOOD   trust bind
-When home network needs secure binding to the smartphone, earlier
-mentioned trust is the first one needed.  The trust is achieved by
-checking whether the smartphone can access home management
-network using only its trusted SIM-card, which provides AuthN. AuthZ in
-turn is compared to existing roles of IMSI in the Authenticator.
-
-
-[This has been explained in 802.1X Section in the begin. TBD]
-
-Technically we use in Wi-Fi connection IEEE 802.11i (also known as WPA2), which includes
-802.1X as port based access protocol.  802.11i defines there
-authentication, authorization, and cryptography key agreement.
- It uses EAP for selecting authentication 
-# explained already in Chapter (cha:aaa EAP)
-mechanism, after Authenticator requests smartphone to identify itself as in Figure xxx is shown
-Messages are carried over 802.1X or RADIUS depending on transport
-medium as of Figure[[fig:eap-layers]].
-
-# *** "provisioning of service": [combine :: v1 ::]
-
-When AP forwards authentication request to next RADIUS server, it can
-ask or receive, beside AuthN and AuthZ, other service parameters, such
-as provisioning. That would allow the smartphone to connect to
-specific management network access either via CLI or SNMP or
- similar\cite[p.4]{rfc5608}.  RADIUS can carry extra attributes in its
-ACCESS-ACCEPT message.   In essence, AuthZ part itself can be thought as
-one type of service provisioning. 
-
-
-# Specific VLAN attributes can alternatively be delivered via
-#  or similar ``getting into VLAN'' attribute
-# if standard RADIUS messages do not suffice.  VSAs allow a vendor to use
-# extra 255 attributes as they wish. 
-There exists RADIUS attribute types for directing user into specific
-VLAN. If those do not suffice, there is also special Vendor Specified
-Attributes (VSA). VSAs allow vendors to define up to 255 own
-attributes that can be used in provisioning in homogeneous environment. 
-
-
-# [cite rfcXXX].  
-That way (3rd party) Authentication server can decide which network
-segment the device would be put.  In our case, admin users are put in
-to the management network.  Yet, usually RADIUS ACCESS-ACCEPT message,
-which means AuthN and AuthZ were successful,  puts the user in
-default network, i.e., just gives it basic access. As for other
-provisioning parameters, not all end devices support them.
-
-In the first prototype it is enough to identify authorized
-smartphone's SIM.  Smartphone holding the SIM is granted the access to
-the parts of the management network and is authenticated strong.  User
-management is outsourced to MNO, which
-already has provided SIM cards to users. What remains, is the adding
-of the user's IMSI to the authorized users' list. That list can be
-located on diverse place, as can be seen in xxx
-# ### 
-
-# explain provisioning? 20150702
-
-After authentication and authorization has succeeded, session key
-creation occurs (WPA2 session) between AP and the smartphone. 
-The Authenticator has opened port to the smartphone for
-configuration changes. 
-The Local RADIUS (if existing) has trails of successful
-authentication and knows which IMSI has successfully authenticated in
-the home net. It also knows mapping between IMSI and temporal IMSI for
-cases where the smartphone later would need re-authentication.
 
 
 
