@@ -2891,22 +2891,28 @@ via normal access network.
 
 
 This thesis suggests a mix of these methods: EAP-SIM 802.1x WPA2 for
-authenticating in the local network with SIM and
+authenticating and encrypting in the local network with SIM and
 Lock-and-key type modification in the AP to further access the 
 management network. Finally, RADIUS protocol is used to transfer 
 parameters, that the smartphone would need in communicating with 
 devices in need of changes.
 
-
-smartphone  enc   AP                proxy or provider knows admin
- (sp)       ----->    
- IMSIs              < ---------->
+#
+#+begin_src ditaa :file trust-register.png :cmdline -E -r -s 2
+smartphone  enc.   AP                proxy or provider knows admin
+ (sp)     +----->    
+ IMSIs            <---------->
                   AP trusts sp 
            ?mgmt-> 
-                      ------->     >  <-  
+                      ------->     ->  <-  
+#+end_src
+#+CAPTION: trust register (draft)
+#+NAME:   fig:trust-register
+#+RESULTS:
+[[file:trust-register.png]]
 
-register itself to registrar or function as registrar itself!
-software for that
+- register itself to registrar or function as registrar itself!
+- software for that
 
 # From the beginning of the chapter, now fully described
 

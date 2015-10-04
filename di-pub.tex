@@ -1,4 +1,4 @@
-% Created 2015-10-04 su 10:10
+% Created 2015-10-04 su 10:18
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2006,22 +2006,22 @@ via normal access network.
 
 
 This thesis suggests a mix of these methods: EAP-SIM 802.1x WPA2 for
-authenticating in the local network with SIM and
+authenticating and encrypting in the local network with SIM and
 Lock-and-key type modification in the AP to further access the 
 management network. Finally, RADIUS protocol is used to transfer 
 parameters, that the smartphone would need in communicating with 
 devices in need of changes.
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{trust-register.png}
+\caption{\label{fig:trust-register}trust register (draft)}
+\end{figure}
 
-smartphone  enc   AP                proxy or provider knows admin
- (sp)       ----->    
- IMSIs              < ---------->
-                  AP trusts sp 
-           ?mgmt-> 
-                      ------->     >  <-  
-
-register itself to registrar or function as registrar itself!
-software for that
+\begin{itemize}
+\item register itself to registrar or function as registrar itself!
+\item software for that
+\end{itemize}
 
 
 
@@ -2710,7 +2710,7 @@ Message digestion codes provide integrity for RADIUS protocol.
 If PEAP is used, it handles integrity through its usage of
  TLS\cite{peap}.
 Above mentioned RadSec extension allows other digesting functions than MD5 such
-as SHA and is open for negotiating more secure ciphersuites that later
+as SHA1 and is open for negotiating more secure ciphersuites that later
 versions of TLS might in the future require\cite{rfc6614}. This is
 even more important, as it already has been noted in 2005, that SHA1 can be
 broken
@@ -2830,11 +2830,8 @@ secrets and methods to take a place as a trust anchor.
 That leads us again to the key distribution problem.
 
 
-\subsection{Fraudulent Authenticator}
-\label{sec-6-4-7}
-
 \subsection{Mitigation methods against radio capturing}
-\label{sec-6-4-8}
+\label{sec-6-4-7}
 To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
@@ -2902,7 +2899,7 @@ directed antenna\cite{SANS-bluetooth-2007}.
 
 
 \subsection{Decision point for adding role information [ move to design part]}
-\label{sec-6-4-9}
+\label{sec-6-4-8}
 
 
 
