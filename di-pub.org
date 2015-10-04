@@ -4020,7 +4020,7 @@ is backwards compatible with RADIUS protocol, so it can be used
 as secure RADIUS proxy such as /radproxy/\cite{uninett-radproxy}.
 
 RADIUS uses MD5 hashing and shared secrets. Because of the weaknesses of
-MD5 hashing (MD5Attack\cite{rfc5176}), the transport needs additional
+MD5 hashing (for example MD5Attack\cite{rfc5176}), the transport needs additional
 protection like tunneling or IPsec. TLS can be used for encryption and
 its signatures for integrity checking of packet payload.
 #  Inside RADIUS-packet, there are also
