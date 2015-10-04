@@ -1,4 +1,4 @@
-% Created 2015-10-04 su 10:18
+% Created 2015-10-04 su 10:27
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1309,120 +1309,8 @@ based software can be used, although those functions have not yet been
 implemented. Disconnection issues are explained in Section
 \ref{sec:disconnections}.
 
-\section{Change management possibilities [TBD already above, FIX THIS section]}
-\label{sec-4-2}
-
-
-
-
-To demonstrate how the model works, we present the case of adding a
-new admin user.
-
-Let's first suppose, for case of simplicity, that the home network has been
-already configured(bootstrapped) and it is functioning properly.  The
-home configuration model has been copied to the cloud.
-When changes are made to the cloud model through authorized cloud
-administrator users (operators), those changes are later also committed
-in to the production in home network. There is no magic here, plain
-configuration change, just this time externally initiated.
-
-Now, let's think what happens, when the cloud operator (or owner of
-home network) tries to modify attributes, which give access to a new actor,
-such as a new operator, who would want to have access to separate
-segments of home network.  First we need to have that segment separation
-change approved and after that we want to allow the newcomer account
-to have access to that segment and only to that. For the first part,
-which is normal operation, approving would perhaps yet not be
-necessary, but for the second part we need some checking unless our
-trust to cloud operator is ultimate.  
-
-
-
-
-When CPE of home network is about to input configuration changes which
-would change balance of authors or roles (if role-based authorization
-in use), it needs to check that it is permitted.  Permission would 
-need to be asked from a trusted point, here mobile SIM. Instead of
-that, the CPE checks from its own state database, 
-whether mobile SIM has been given access to management network.
-CPE wants to verify, if the changes are authorized. This thesis
-justifies the management and therefore the changes to be allowed, if the smartphone user is currently logged in to the management network.
-
-
-In production, some changes in local controller can be propagated to
-the home network
-via management network without need for an extra authentication phase.
-The local controller does not interact there. An example of change is
-a modification in network segment, which does not change network topology of other domains.
-It is not known for the author which type represent the majority of
-change requests.
-
-In our model, only initial bootstrap needs the authentication with
-smartphone as well as change of admin roles and some dangerous
-combination of commands.
-
-[ sync. part to misc Section ?]
-
-
-
-
-
-
-Alternative method is that the changes could be marked some way, so that they need
-approving and then there could be a specific change-approval message,
-which must be sent through management network, perhaps including digest
-of change message as a verification.
-
-Because smartphone is not actively listening the CPE, it cannot input
-those request. There are four planned ways to distribute changes. One
-would not involve smartphone at all but depends on earlier set
-trust. One uses the smartphone as a direct commander and two depends
-on complex setup involving tokens.
-
-\begin{enumerate}
-\item Changes are delivered normally from cloud to CPE (CPEs) without
-interaction from the smartphone. Such changes would not need
-AA at all or changes include credentials to login to targets.
-
-\item Changes are delivered from cloud to smartphone, which
-forwards them through management
-net to each and all devices after the authentication has succeeded.
-
-\item Changes are delivered from cloud to CPE functioning as a central
-management station without interaction from the smartphone.  Digest
-of what is going to happen would be sent to smartphone from BaaS
-over the air (OtA). Smartphone would authenticate in to management
-network (if not already there) and send through it the digest token
-it received from cloud as an approval message to central management
-station inside home network, which then forwards configuration changes
-to other devices.
-
-\item Variation of number 3 is that if CPE itself is an Authenticator, it
-could proceed on propagating changes when it receives
-ACCESS-ACCEPT. Otherwise it must stop waiting for phone's AA and
-drop received changes without forwarding them.
-\end{enumerate}
-
-
-
-
-The smartphone may receive the authentication token with 
-a message explaining what is going to happen in the change.
-As the CPE and the Authenticator may be separate devices, approving
-happens by sending the token from the smartphone to the CPE via the
-management network where the Authenticator gives access.
-
-It must be noted, that the smartphone can already have an association
-to a non-management network with Wi-Fi. If that is the case, it first
-must disconnect from there and then connect (i.e. AA) to the correct management
-network. That implies disconnection from other services using Wi-Fi
-link, because smartphones currently have only one Wi-Fi radio
-available and routing would still prefer Wi-Fi as a default gateway, although
-possible 3G data link still may stay operational.
-
-
 \section{Chosen AA design}
-\label{sec-4-3}
+\label{sec-4-2}
 \label{sec:chosendesign}
 
 The phone brings trust to the home network by completing full EAP-SIM AuthN through
@@ -1532,6 +1420,118 @@ The Local RADIUS (if existing) has trails of successful
 authentication and knows which IMSI has successfully authenticated in
 the home net. It also knows mapping between IMSI and temporal IMSI for
 cases where the smartphone later would need re-authentication.
+
+
+\section{Change management possibilities [TBD already above, FIX THIS section]}
+\label{sec-4-3}
+
+
+
+
+To demonstrate how the model works, we present the case of adding a
+new admin user.
+
+Let's first suppose, for case of simplicity, that the home network has been
+already configured(bootstrapped) and it is functioning properly.  The
+home configuration model has been copied to the cloud.
+When changes are made to the cloud model through authorized cloud
+administrator users (operators), those changes are later also committed
+in to the production in home network. There is no magic here, plain
+configuration change, just this time externally initiated.
+
+Now, let's think what happens, when the cloud operator (or owner of
+home network) tries to modify attributes, which give access to a new actor,
+such as a new operator, who would want to have access to separate
+segments of home network.  First we need to have that segment separation
+change approved and after that we want to allow the newcomer account
+to have access to that segment and only to that. For the first part,
+which is normal operation, approving would perhaps yet not be
+necessary, but for the second part we need some checking unless our
+trust to cloud operator is ultimate.  
+
+
+
+
+When CPE of home network is about to input configuration changes which
+would change balance of authors or roles (if role-based authorization
+in use), it needs to check that it is permitted.  Permission would 
+need to be asked from a trusted point, here mobile SIM. Instead of
+that, the CPE checks from its own state database, 
+whether mobile SIM has been given access to management network.
+CPE wants to verify, if the changes are authorized. This thesis
+justifies the management and therefore the changes to be allowed, if the smartphone user is currently logged in to the management network.
+
+
+In production, some changes in local controller can be propagated to
+the home network
+via management network without need for an extra authentication phase.
+The local controller does not interact there. An example of change is
+a modification in network segment, which does not change network topology of other domains.
+It is not known for the author which type represent the majority of
+change requests.
+
+In our model, only initial bootstrap needs the authentication with
+smartphone as well as change of admin roles and some dangerous
+combination of commands.
+
+[ sync. part to misc Section ?]
+
+
+
+
+
+
+Alternative method is that the changes could be marked some way, so that they need
+approving and then there could be a specific change-approval message,
+which must be sent through management network, perhaps including digest
+of change message as a verification.
+
+Because smartphone is not actively listening the CPE, it cannot input
+those request. There are four planned ways to distribute changes. One
+would not involve smartphone at all but depends on earlier set
+trust. One uses the smartphone as a direct commander and two depends
+on complex setup involving tokens.
+
+\begin{enumerate}
+\item Changes are delivered normally from cloud to CPE (CPEs) without
+interaction from the smartphone. Such changes would not need
+AA at all or changes include credentials to login to targets.
+
+\item Changes are delivered from cloud to smartphone, which
+forwards them through management
+net to each and all devices after the authentication has succeeded.
+
+\item Changes are delivered from cloud to CPE functioning as a central
+management station without interaction from the smartphone.  Digest
+of what is going to happen would be sent to smartphone from BaaS
+over the air (OtA). Smartphone would authenticate in to management
+network (if not already there) and send through it the digest token
+it received from cloud as an approval message to central management
+station inside home network, which then forwards configuration changes
+to other devices.
+
+\item Variation of number 3 is that if CPE itself is an Authenticator, it
+could proceed on propagating changes when it receives
+ACCESS-ACCEPT. Otherwise it must stop waiting for phone's AA and
+drop received changes without forwarding them.
+\end{enumerate}
+
+
+
+
+The smartphone may receive the authentication token with 
+a message explaining what is going to happen in the change.
+As the CPE and the Authenticator may be separate devices, approving
+happens by sending the token from the smartphone to the CPE via the
+management network where the Authenticator gives access.
+
+It must be noted, that the smartphone can already have an association
+to a non-management network with Wi-Fi. If that is the case, it first
+must disconnect from there and then connect (i.e. AA) to the correct management
+network. That implies disconnection from other services using Wi-Fi
+link, because smartphones currently have only one Wi-Fi radio
+available and routing would still prefer Wi-Fi as a default gateway, although
+possible 3G data link still may stay operational.
 
 
 
@@ -2756,7 +2756,7 @@ is backwards compatible with RADIUS protocol, so it can be used
 as secure RADIUS proxy such as \emph{radproxy}\cite{uninett-radproxy}.
 
 RADIUS uses MD5 hashing and shared secrets. Because of the weaknesses of
-MD5 hashing (MD5Attack\cite{rfc5176}), the transport needs additional
+MD5 hashing (for example MD5Attack\cite{rfc5176}), the transport needs additional
 protection like tunneling or IPsec. TLS can be used for encryption and
 its signatures for integrity checking of packet payload.
 RADIUS protocol itself provides some integrity checks with Message
