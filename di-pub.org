@@ -3959,6 +3959,15 @@ versions of TLS might in the future require\cite{rfc6614}. This is
 even more important, as it already has been noted in 2005, that SHA1 can be
 broken
 
+There is also fraudulent Authenticator problem, which is an attack
+against both integrity and privacy.  The Authenticator may present
+some information to the Authentication server and other to the
+EAP-peer. Mitigation for that is, that EAP-peer includes some
+characteristics of the Authenticator inside its EAP-message, which
+then the Authentication server verifies (RFC6677)\cite{rfc6677}.
+
+
+
 # is supplicant--AP traffic EAPOl or EAP over TLS?
 
 # - identification ::  separates different users and makes  claim about users identity
@@ -4114,13 +4123,6 @@ That leads us again to the key distribution problem.
 
 
 *** Fraudulent Authenticator
-There is also fraudulent Authenticator problem: the Authenticator may present some 
-information to the Authentication server and other to the EAP-peer.
-This is an attack against both integrity and privacy.
-Mitigation for that is, that EAP-peer includes some 
-characteristics of the Authenticator inside its EAP-message, which
-then the Authentication server verifies (RFC6677)\cite{rfc6677}.
-
 
 *** Mitigation methods against radio capturing
 To mitigate risks for radio capturing, two methods are presented: hiding of
