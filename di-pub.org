@@ -1880,11 +1880,11 @@ needs, such as guest or home members segment. The segments provide
 base connectivity layer and simple separation. Different
 services, like disk storage, can force their own policy on application
 level.
-It is not defined, if the segmentation is made 
+It is not defined here, if the segmentation is made 
 physical or virtual (VLAN, Virtual LAN). 
 There is also a segment for devices management. 
 An analogy to the real world would be public access corridors and doors for
-customers separate from privileged doors for service personnel.
+customers that are separate from privileged doors for service personnel.
 
 
 Routers control access to the segments with aid of 
@@ -1893,7 +1893,7 @@ access control lists (ACL), where decision is made based on current configuratio
 role.  Once user has been authorized into management network, access
 stays open for him, at least for a (predefined) limited time.
 
-So, instead of checking user's credentials each time data is received
+So, instead of checking user's credentials each time data is received,
 this model only checks, from where data is received. 
 Data received from the management network is granted for changes.
 It is arguable a lighter method than always
@@ -1917,7 +1917,7 @@ perimeters of network (firewalls and application proxies) but
 always handles traffic as coming from untrusted source.\cite{jericho2004}
 One implementation of de-perimeterization is 
 Google's BeyondCorp\cite{2014-beyondcorp}, 
-where all traffic always travels through Access Control Engine
+where traffic always travels through Access Control Engine
 and is suspected as being external, even when it originates from
 inside networks. 
 # That model is also called 
@@ -1940,26 +1940,26 @@ network using only its trusted SIM-card, which provides AuthN. AuthZ in
 turn is compared to existing roles of IMSI in the Authenticator.
 
 
-[This has been explained in 802.1X Section in the begin. TBD]
-
-Technically we use in Wi-Fi connection IEEE 802.11i (also known as WPA2), which includes
-802.1X as port based access protocol.  802.11i defines there
-authentication, authorization, and cryptography key agreement.
- It uses EAP for selecting authentication 
-# explained already in Chapter (cha:aaa EAP)
-mechanism, after Authenticator requests smartphone to identify itself as in Figure xxx is shown
-Messages are carried over 802.1X or RADIUS depending on transport
-medium as of Figure[[fig:eap-layers]].
+# *** [This has been explained in 802.1X Section in the begin. TBD]
+# Technically we use in Wi-Fi connection IEEE 802.11i (also known as
+# WPA2), which includes 802.1X as port based access protocol.  802.11i
+# defines there authentication, authorization, and cryptography key
+# agreement. It uses EAP for selecting authentication mechanism, after
+# Authenticator requests smartphone to identify itself as in Figure
+# xxx is shown Messages are carried over 802.1X or RADIUS depending on
+# transport medium as of Figure[[fig:eap-layers]].
 
 # *** "provisioning of service": [combine :: v1 ::]
 
-When AP forwards authentication request to next RADIUS server, it can
+When AP forwards authentication request to the next RADIUS server, it can
 ask or receive, beside AuthN and AuthZ, other service parameters, such
-as provisioning. That would allow the smartphone to connect to
-specific management network access either via CLI or SNMP or
- similar\cite[p.4]{rfc5608}.  RADIUS can carry extra attributes in its
-ACCESS-ACCEPT message.   In essence, AuthZ part itself can be thought as
-one type of service provisioning. 
+as provisioning. RADIUS can carry those extra attributes in its
+ACCESS-ACCEPT message.
+ In essence, AuthZ part itself can be thought as one type of service provisioning.
+That would then allow the smartphone to connect to
+specific management network and access the devices either via command
+line interfaces, SNMP, or similar\cite[p.4]{rfc5608}.  
+
 
 
 # Specific VLAN attributes can alternatively be delivered via
@@ -2143,7 +2143,7 @@ must disconnect from there and then connect (i.e. AA) to the correct management
 network. That implies disconnection from other services using Wi-Fi
 link, because smartphones currently have only one Wi-Fi radio
 available and routing would still prefer Wi-Fi as a default gateway, although
-possible 3G data link still may stay operational.
+possible 3G data link still may stay up and operational.
 # It is not tested, whether 3G-data link could be active still at the
 # same time.
 # 
