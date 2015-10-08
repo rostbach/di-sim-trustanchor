@@ -2229,6 +2229,7 @@ to management network.
 To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
 and thus RADIUS server.
 
+
 # Two SSID, rationale
 Because it was not found, how Authenticator could use the same network
 with both WPA2-PSK (or open access) and WPA2-Enterprise, a
@@ -3192,9 +3193,6 @@ and traffic captures for later analysis.
 
 # [Analyze configuration script here]
 
-# scan_ssid: When set to 1, this will add the SSID to the probe
-# requests, in case you're connecting to a hidden network or an AP with
-# _multiple_ SSIDs.
 
 ** Disconnecting the local controller and offline changes
 <<sec:disconnections>>
@@ -4189,6 +4187,12 @@ If the client knows beforehand the name of SSID
 (and maybe also checks AP's MAC), then AP does not reveal any information,
 before the client has tried to connect to it and that would minimize
 the time window for attacks.
+
+# scan_ssid: When set to 1, this will add the SSID to the probe
+# requests, in case you're connecting to a hidden network or an AP with
+# _multiple_ SSIDs.
+
+
 
  Hiding can also have privacy enhancing effects.
 While Wi-Fi client's normal action is to probe for SSIDs of lately visited
