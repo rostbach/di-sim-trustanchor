@@ -3464,7 +3464,7 @@ EAP client's identity is transformed at Authenticator
 EAPOL format  into RADIUS format and
 sent to RADIUS server. The capture between AP and Radius server is
 shown
-in Figure \ref{fig:capture}.
+in Capture \ref{fig:capture}.
 
 
 
