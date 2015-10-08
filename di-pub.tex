@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 16:57
+% Created 2015-10-08 to 17:00
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2295,13 +2295,6 @@ for simulated MAPS/SS7 traffic.
 The capture has been done at the WPA2-supplicants end.
 
 
-\lstset{basicstyle=\ttfamily\small,
-  columns=fixed,emph={1232010000000000}, 
-  emphstyle={\color{red}\textbf}}
-\renewcommand{\lstlistingname}{Capture}
-
-
-
 \scriptsize
 \begin{center}
 \begin{tabular}{rrlllrl}
@@ -2340,10 +2333,10 @@ IMSI is sent first time already on the second EAP message from
 WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
 This part is presented in Capture \ref{capimsi}.
 
-
 \lstset{basicstyle=\ttfamily\small,
-  columns=fixed,emph={ty}, 
+  columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
+\renewcommand{\lstlistingname}{Capture}
 
 \begin{lstlisting}[language=bash,
   label=capimsi,
@@ -2446,7 +2439,7 @@ Here interesting part is the first RADIUS AVP.
 While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
 field, it was surprising that RADIUS has captured that field and 
 filled its User-Name field to the very same, ``1232010000000000''. 
-IMSI is '232010000000000' and it is prefixed with
+IMSI is ``232010000000000'' and it is prefixed with
 an '1' as earlier explained.
 
 In WPA2-Supplicant configuration file (see Appendix \ref{app:wpa-conf}) both the identity and
