@@ -1700,7 +1700,7 @@ unknown device.
  # mobiilivarmenne
 Other techniques  to use SIM's unique properties besides EAP-SIM
 are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
-direct connection through PC/SC (Personal\-Computer/Smart\- Card),
+direct connection through PC/SC (Personal\- Computer/Smart\- Card),
 CallerID service from phone network, or
 Mobile signing service.
 #  such as ``Mobiilivarmenne'' in Finland.
@@ -1775,12 +1775,11 @@ by limiting which tele operators are allowed to connect.
 
 # *** fed services. VERY draft
 SIM card can also benefit from electronic signatures.
-European Telecommunications Standards Institute (ETSI) defined a
+European Telecommunications Standards Institute (ETSI) has defined a
 standard for mobile signature services (MSS) in ETSI TS 102 204.
-MNOs in Finland have implemented this as a 
-service called ``Mobiilivarmenne``. 
-For example, MNO Sonera's brand for  it is ``Sonera ID'' while MNO Elisa calls it
-``Elisa Mobiilivarmenne''.
+MNOs in Finland have diverse implementations for this. The universal 
+service is called ``Mobiilivarmenne``, but MNO Sonera's brand for it
+is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
 # No references (Open) available 
 #
 # There was one pilot program between MNO (Elisa) and organization
