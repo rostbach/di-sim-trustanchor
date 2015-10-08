@@ -3521,7 +3521,7 @@ Here interesting part is the first RADIUS AVP.
 While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
 field, it was surprising that RADIUS has captured that field and 
 filled its User-Name field to the very same, ``1232010000000000''. 
-IMSI is '232010000000000' and it is prefixed with
+IMSI is ``232010000000000'' and it is prefixed with
 an '1' as earlier explained.
 
 In WPA2-Supplicant configuration file (see Appendix [[app:wpa-conf]]) both the identity and
