@@ -3163,13 +3163,13 @@ are in folder ~gitdocs/di/testit/~ files ~eap3.pcapng~,
 
 After some modifications, runs got to the authentication phase.
 Naturally, challenge-responses did not work because SIM secrets were
-not known. Nevertheless, both card succeeded to the point, where MNO's
-message would be verified with the SIM card.
+not known. Nevertheless, both cards succeeded to the point, where MNO's
+message would had next been verified with the SIM card.
 
 # Show here, that 
-Unregistered phone could not use SIM card while 
-registered phone verifies and notices, that operator is not right, 
-and therefor ends conversation as should be regarding protocol-document [EAP-SIM].
+Unregistered phone could not use SIM card at all, while 
+registered phone verified and noticed, that operator is not right, 
+and therefore ended the conversation as it should regarding protocol-document [[rfc4186]].
 # i.e., what is the difference btw. those. REMEMBER: you cannot packet
 # trace phone connection, only AP and RADIUS logs.
 
