@@ -3430,8 +3430,7 @@ This part is presented in Capture [[cap:imsi]].
   columns=fixed,emph={Identity}, 
   emphstyle={\textbf}}
 % \lstset{basicstyle=\ttfamily}
-\begin{lstlisting}[
-  language=Python,
+\begin{lstlisting}[language=Python,
   caption={First indication of IMSI},
   label={cap:imsi}
 ]
