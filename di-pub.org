@@ -3433,7 +3433,7 @@ This part is presented in Capture [[cap:imsi]].
 
 
 #+BEGIN_LaTeX
-\begin{lstlisting}[language=Python,
+\begin{lstlisting}[language=bash,
   caption={First indication of IMSI},
   label={cap:imsi}
 ]
