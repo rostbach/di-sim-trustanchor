@@ -3377,6 +3377,7 @@ The capture has been done at the WPA2-supplicants end.
 \lstset{basicstyle=\ttfamily\small,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
+\renewcommand{\lstlistingname}{Capture}
 #+END_LaTeX
 
 
@@ -3415,7 +3416,7 @@ The capture has been done at the WPA2-supplicants end.
 
 IMSI is sent first time already on the second EAP message from 
 WPA2-Supplicant to AP (compare with Figure[[fig:eap-sim-radius]], message 2.)
-This part is presented in Capture\ref{capimsi}.
+This part is presented in Capture \ref{capimsi}.
 # The capture has been done at the WPA2-supplicants end
 # Same in tests made 150123-155714, source:
 # testit/demot/ap-s150123-155714/
