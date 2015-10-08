@@ -3026,7 +3026,7 @@ In the end, the changes in the management network were possible from the local c
 #  per scenarios in Scenario Chapter. 
 # "Here" needs reference, but it is already referenced in next Chapter?
 
-Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint and a laptop.
+Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint, and a laptop.
 The smartphones were Nokia E70-1 and Nokia E90, both capable of
 EAP-SIM on factory software.
 
