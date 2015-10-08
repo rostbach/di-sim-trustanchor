@@ -2096,7 +2096,7 @@ of change message as a verification.
 Because smartphone is not actively listening the CPE, it cannot input
 those request. There are four planned ways to distribute changes. One
 way would not involve smartphone at all but depended on earlier set
-trust. One uses the smartphone as a direct commander and two depends
+trust. Second uses the smartphone as a direct commander and two would depend
 on complex setup involving tokens.
 
 1) Changes are delivered normally from cloud to CPE (CPEs) without
