@@ -3330,15 +3330,14 @@ To defeat internet connection problem, a simple solution would be
 sending a one-time password to a predefined phone via an SMS, but what
 entity would then check that and who would be authorized to send that message?
 Authenticating server, which has no internet connection should 
-have a way to check that one-time password received via SMS is correct.
+have a predefined way to check that one-time password received via SMS is correct.
 
-Solution for this could be a co-existing WWW-based authentication, that
-is, a web-page where credentials could be entered.
-Software could run in AP. As AP is programmable with luci, it could
-run direct  a WWW-access portal. Alternatively, existing programs such
-as /ChilliSpot/ or /NoCatAuth/ would work as WWW-portals.
-For that to success, the WWW-portal would need also an open access without
-802.1X port based access control.
+Solution for this could be still using a co-existing captive-portal
+for emergency access. As AP is programmable with luci, it could
+provide this portal.  Alternatively, existing programs such as
+/ChilliSpot/ or /NoCatAuth/ could be used as WWW-portals.  For that to
+success, the WWW-portal would also need an open access without 802.1X
+port based access control.
 
 
 # [Full authentication vs. Fast re-authentication]
