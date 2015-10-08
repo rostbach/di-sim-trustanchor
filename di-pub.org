@@ -3389,12 +3389,7 @@ The capture has been done at the WPA2-supplicants end.
 #+END_LaTeX
 
 
-#+BEGIN_LaTeX
-\begin{lstlisting}[language=Python,
-  caption={First indication of IMSI},
-  label={cap:imsi}
-]
-#+END_LaTeX
+
 #+LATEX: \scriptsize
 | No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
 | 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
