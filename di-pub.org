@@ -1994,7 +1994,7 @@ The Authenticator has opened port to the smartphone for
 configuration changes. 
 The Local RADIUS (if existing) and AP have trail of a successful
 authentication and know which IMSI has successfully authenticated in
-the home net. They also know the mapping between IMSI and temporal IMSI for
+the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
 
 
@@ -2206,7 +2206,7 @@ and thus RADIUS server.
 
 
 # Two SSID, rationale
-Because it was not found, how Authenticator could use the same network
+Because it was not found, how Authenticator could use the same network SSID
 with both WPA2-PSK (or open access) and WPA2-Enterprise, a
 separate SSID for management network was technically needed.
 # , while only management network is
