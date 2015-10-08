@@ -3424,6 +3424,7 @@ This part is presented in Capture [[cap:imsi]].
 # packet from AP.
 
 # #+LATEX: \scriptsize
+
 #+BEGIN_LaTeX
 \lstset{basicstyle=\ttfamily\small,
   columns=fixed,emph={1232010000000000}, 
