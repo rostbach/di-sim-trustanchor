@@ -3474,7 +3474,7 @@ denotes that we are talking about EAP-SIM identity.
 
 
 EAP client's identity is transformed at Authenticator
-(Figure[[fig:eap-layers]], Chapter [[cha:aaa]]) from 802.1X's 
+(Figure[[fig:eap-layers]], Chapter [[#cha:aaa]]) from 802.1X's 
 EAPOL format  into RADIUS format and
 sent to RADIUS server. The capture between AP and Radius server is
 shown
