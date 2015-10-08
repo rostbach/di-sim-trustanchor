@@ -1959,9 +1959,6 @@ as one type of service provisioning.  That would then allow the
 smartphone to connect to a specific management network and access the
 devices either via command line interfaces, SNMP, or
 similar\cite[p.4]{rfc5608}.
-
-
-
 # Specific VLAN attributes can alternatively be delivered via
 #  or similar ``getting into VLAN'' attribute
 # if standard RADIUS messages do not suffice.  VSAs allow a vendor to use
