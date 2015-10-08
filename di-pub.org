@@ -3426,9 +3426,9 @@ This part is presented in Capture [[cap:imsi]].
 # #+LATEX: \scriptsize
 #+BEGIN_LaTeX
 
-\lstset{basicstyle=\ttfamily,
+\lstset{basicstyle=\ttfamily\small,
   columns=fixed,emph={Identity}, 
-  emphstyle={\textbf}}
+  emphstyle={\color{red}\textbf}}
 % \lstset{basicstyle=\ttfamily}
 \begin{lstlisting}[language=Python,
   caption={First indication of IMSI},
