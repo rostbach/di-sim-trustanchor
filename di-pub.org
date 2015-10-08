@@ -2103,9 +2103,9 @@ on complex setup involving tokens.
    interaction from the smartphone. Such changes would not need
    AA at all or changes include credentials to login to targets.
 
-2) Changes are delivered from cloud to smartphone, which
-   forwards them through management
-   net to each and all devices after the authentication has succeeded.
+2) Changes are delivered from cloud to smartphone, which forwards them
+   to devices located at management net after the
+   authentication has succeeded.
 
 3) Changes are delivered from cloud to CPE functioning as a central
    management station without interaction from the smartphone.  Digest
