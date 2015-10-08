@@ -1005,11 +1005,12 @@ but it adds mutual AuthN, i.e., also the network is authenticated.
 
 [Move mutual auth to next section; details]
 
-Network authentication is achieved, if 
-the network is able to correctly respond to a client sent
+# Network authentication is achieved, if 
+# the network is able to correctly respond to a client sent
 # as a authentication backend
 # generates challenge using triplet (IMSI, Ki, OPc).
-That procedure is later described in more detail.
+# That procedure is later described in more detail.
+
 # received from MNO to authenticate SIM
 # GSM authentication protocol is used, but additionally client
 # adds a nonce, which must be received back from network in right form 
