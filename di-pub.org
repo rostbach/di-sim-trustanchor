@@ -3507,7 +3507,6 @@ in Figure[[fig:capture]].
 \renewcommand{\lstlistingname}{Capture}
 \lstset{basicstyle=\ttfamily\small,
   columns=fixed,emph={1232010000000000}, 
-
   emphstyle={\color{red}\textbf}}
 
 \begin{lstlisting}[language=Python,
