@@ -3436,7 +3436,7 @@ This part is presented in Capture [[cap:imsi]].
 \lstset{basicstyle=\ttfamily\small,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
-% \lstset{basicstyle=\ttfamily}
+
 \begin{lstlisting}[language=Python,
   caption={First indication of IMSI},
   label={cap:imsi}
