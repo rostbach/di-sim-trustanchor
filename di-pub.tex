@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 14:53
+% Created 2015-10-08 to 14:56
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2359,10 +2359,13 @@ WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
 This part is presented in Capture \texttt{cap:imsi}.
 
 
-\lstset{basicstyle=\ttfamily,columns=fixed,
-  caption={First indication of IMSI},label=cap:imsi,emph={Identity}}
+\lstset{basicstyle=\ttfamily,columns=fixed,emph={Identity}, emphstyle={\color{red}\textbf}
 % \lstset{basicstyle=\ttfamily}
-\begin{lstlisting}
+\begin{lstlisting}[
+  caption={First indication of IMSI},
+  label={cap:imsi}
+]
+
 Frame 129: 15:57:17.983047
     Type: 802.1X Authentication (0x888e)
     Version: 802.1X-2004 (2)
