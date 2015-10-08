@@ -3433,6 +3433,10 @@ This part is presented in Capture [[cap:imsi]].
 
 
 #+BEGIN_LaTeX
+\lstset{basicstyle=\ttfamily\small,
+  columns=fixed,emph={1232010000000000}, 
+  emphstyle={\color{red}\textbf}}
+
 \begin{lstlisting}[language=bash,
   caption={First indication of IMSI},
   label={cap:imsi}
