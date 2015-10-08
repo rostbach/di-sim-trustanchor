@@ -1977,7 +1977,7 @@ which means AuthN and AuthZ were successful,  puts the user in
 default network, i.e., just gives it basic access. As for other
 provisioning parameters, not all end devices support them.
 
-In the first prototype it was enough to identify authorized
+In the first prototype it was enough to identify an authorized
 smartphone's SIM.  Smartphone holding the SIM is granted the access to
 the parts of the management network and is authenticated strong.  User
 management is outsourced to MNO, which
