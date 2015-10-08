@@ -3169,30 +3169,32 @@ message would had next been verified with the SIM card.
 # Show here, that 
 Unregistered phone could not use SIM card at all, while 
 registered phone verified and noticed, that operator is not right, 
-and therefore ended the conversation as it should regarding protocol-document [[rfc4186]].
+and therefore ended the conversation as it should regarding
+protocol-document [[ rfc4186]].
 # i.e., what is the difference btw. those. REMEMBER: you cannot packet
 # trace phone connection, only AP and RADIUS logs.
 
 #  simulated SIM and it's secrets were known. 
-At this point, physical phones were put aside and simulated SIM-card
-was used.
+At this point, physical phones were put aside and a simulated SIM-card
+environment was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software claimed that ``Hostapd will send SIM/AKA authentication
-queries over a UNIX domain socket to an external ~hlr_auc_gw~ program.''
+queries over a UNIX domain socket to an external 
+/hlr_auc_gw/ program.''
 Appendix [[app:hlraucgw]]   shows that traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
 # finally got AUTH-SUCCESS message from remote RADIUS.
 
-Tests were run with a shell program (Appendix [[app:fulleap]]), which
-started the needed programs. It also recorded the used configurations, logs,
+Tests were run from a shell program (Appendix [[app:fulleap]]), which
+started the needed programs. That also recorded used configurations, logs,
 and traffic captures for later analysis.
 
-[Analyze configuration script here]
+# [Analyze configuration script here]
 
-scan_ssid: When set to 1, this will add the SSID to the probe
-requests, in case you're connecting to a hidden network or an AP with
-_multiple_ SSIDs.
+# scan_ssid: When set to 1, this will add the SSID to the probe
+# requests, in case you're connecting to a hidden network or an AP with
+# _multiple_ SSIDs.
 
 ** Disconnecting the local controller and offline changes
 <<sec:disconnections>>
