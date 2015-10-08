@@ -4334,8 +4334,8 @@ temporal identities.
 The Authenticator does know the original user and mapping of TMSI to
 IMSI, but needs to get AuthZ information. 
 It can get AuthZ either from the remote operator which would be easier for the
-Authenticator or there might be a proxying RADIUS, which inserts that
-knowledge into ACCESS-ACCEPT packet. The latter has issues with
+Authenticator or there might be a proxying RADIUS, which inserts the AuthZ
+information into ACCESS-ACCEPT packet. The latter has issues with
 temporal identities. 
 
 When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
