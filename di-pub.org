@@ -3507,8 +3507,8 @@ in Figure[[fig:capture]].
 \renewcommand{\lstlistingname}{Capture}
 \lstset{basicstyle=\footnotesize,columns=fixed,emph={1232010000000000},emphstyle=\color{red}\textbf}
 
-\begin{lstlisting}[language=Python,caption={EAP client's identity transformed},
-  label={fig:capture}
+\begin{lstlisting}[
+  language=Python,caption={EAP client's identity transformed},label={fig:capture}
 ]
 Frame3: 15:57:17.988616
 Radius Protocol
