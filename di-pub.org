@@ -3487,9 +3487,10 @@ in Figure[[fig:capture]].
 # #+LATEX:\begin{figure}
 #+BEGIN_LaTeX
 \scriptsize
-\begin{verbatim}
+
 \caption{EAP client's identity transformed}
 \label{fig:capture}
+\begin{verbatim}
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
