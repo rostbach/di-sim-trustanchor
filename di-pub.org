@@ -1992,8 +1992,8 @@ After authentication and authorization has succeeded, session key
 creation occurs (WPA2 session) between AP and the smartphone. 
 The Authenticator has opened port to the smartphone for
 configuration changes. 
-The Local RADIUS (if existing) has trails of successful
-authentication and knows which IMSI has successfully authenticated in
+The Local RADIUS (if existing) and AP have trail of a successful
+authentication and know which IMSI has successfully authenticated in
 the home net. It also knows mapping between IMSI and temporal IMSI for
 cases where the smartphone later would need re-authentication.
 
