@@ -3429,7 +3429,7 @@ This part is presented in Capture [[cap:imsai]].
   emphstyle={\color{red}\textbf}}
 
 \begin{lstlisting}[language=bash,
-  label=cap:imsi
+  label=cap:imsi,
   caption={First indication of IMSI},
 
 ]
