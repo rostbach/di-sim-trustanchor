@@ -1951,14 +1951,14 @@ turn is compared to existing roles of IMSI in the Authenticator.
 
 # *** "provisioning of service": [combine :: v1 ::]
 
-When AP forwards authentication request to the next RADIUS server, it can
-ask or receive, beside AuthN and AuthZ, other service parameters, such
-as provisioning. RADIUS can carry those extra attributes in its
-ACCESS-ACCEPT message.
- In essence, AuthZ part itself can be thought as one type of service provisioning.
-That would then allow the smartphone to connect to
-specific management network and access the devices either via command
-line interfaces, SNMP, or similar\cite[p.4]{rfc5608}.  
+When AP forwards authentication request to the next RADIUS server, it
+can ask or receive, beside AuthN and AuthZ, other service parameters,
+such as provisioning. RADIUS can carry those extra attributes in its
+ACCESS-ACCEPT message.  In essence, AuthZ part itself can be thought
+as one type of service provisioning.  That would then allow the
+smartphone to connect to a specific management network and access the
+devices either via command line interfaces, SNMP, or
+similar\cite[p.4]{rfc5608}.
 
 
 
