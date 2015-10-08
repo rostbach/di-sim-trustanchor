@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 15:55
+% Created 2015-10-08 to 16:05
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -787,20 +787,13 @@ EAP-SIM is the original type created for GSM networks and defined
 in RFC4186\cite{rfc4186}.
 It is a challenge-response method and similar to AuthN used in GSM, 
 but it adds mutual AuthN, i.e., also the network is authenticated.
-
-[Move mutual auth to next section; details]
-
-Network authentication is achieved, if 
-the network is able to correctly respond to a client sent
-That procedure is later described in more detail.
-
 Beginning from 3GPP networks, new types EAP-AKA and AKA' can be used.
 EAP-AKA is defined in RFC4187\cite{rfc4187} and 
 uses 3GPP's AKA (Authentication and Key Agreement) protocol.
-It differs from EAP-SIM by using additional parameters such as
-sequence numbering from MNO to protect replay attacks. 
-Additionally, digests use SHA-256 function instead of SHA-1.\cite{rfc5448}.
-Otherwise the protocol messaging is same as in  EAP-SIM, only algorithms differ.
+It adds to EAP-SIM additional parameters such as
+sequence numbering from MNO to protect replay attacks and more
+advanced digestion functions instead of SHA-1.\cite{rfc5448}.
+Otherwise the protocol messaging is same as in  EAP-SIM.
 Last, there exists EAP-AKA' that enhances AKA by including Service Set
 Identifier (SSID) 
 in the key derivation function, which limits the possibility of using possibly
@@ -809,12 +802,12 @@ compromised network's nodes and keys.
 
   Using EAP-SIM means using the secret key inside SIM card with A3/A8
 algorithms to generate valid responses for the challenges coming from 
-MNO and to derive session keys.  The algorithms used (A3/A8) and their
+MNO and to derive session keys.  The algorithms A3/A8 and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
 interest in this work beside the point that they are MNO specific or known reference algorithms.
 
 
-EAP-SIM derivatives provide strong AuthN which means here two-factor
+EAP-SIM variants provide strong AuthN which means here two-factor
 AuthN. A one factor  is something you own (physical SIM) while  
 another
 is  something you know (SIM card's PIN). Biometric factor, i.e., what you are,
@@ -836,7 +829,7 @@ Using smartphone may cost money, either to client or to service
 provider, but costs could be lower than using SMS, because 
 the network  used is IP network instead of cellular phone network.
 
-In many parts, SIM variants in EAP are simpler than other EAP
+In many parts, SIM variants of EAP are simpler than other EAP
 variants to mobile client.  Table\ref{table-peapsim} compares the setup of Wi-Fi
 in clients of one existing organization to EAP-SIM. It
 is noteworthy, that plain EAP-SIM will not support identity hiding and
