@@ -3426,7 +3426,7 @@ This part is presented in Capture \ref{capimsi}.
 
 #+BEGIN_LaTeX
 \lstset{basicstyle=\ttfamily\small,
-  columns=fixed,
+  columns=fixed,emph={1232}, 
   emphstyle={\color{red}\textbf}}
 
 \begin{lstlisting}[language=bash,
