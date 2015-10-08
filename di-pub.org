@@ -3426,7 +3426,7 @@ This part is presented in detail next.
 # #+LATEX: \scriptsize
 #+BEGIN_LaTeX
 
-\lstset{basicstyle=\ttfamily,columns=fixed,caption={First indication of IMSI},label=cap:imsi}
+\lstset{basicstyle=\ttfamily,columns=fixed,caption={First indication of IMSI},label=cap:imsi,otherkeywords={Identity}
 % \lstset{basicstyle=\ttfamily}
 \begin{lstlisting}
 Frame 129: 15:57:17.983047
