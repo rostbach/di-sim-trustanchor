@@ -3434,7 +3434,7 @@ This part is presented in Capture [[cap:imsi]].
 
 #+BEGIN_LaTeX
 \lstset{basicstyle=\ttfamily\small,
-  columns=fixed,emph={1232010000000000}, 
+  columns=fixed,emph={Identity}, 
   emphstyle={\color{red}\textbf}}
 
 \begin{lstlisting}[language=bash,
