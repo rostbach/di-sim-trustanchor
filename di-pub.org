@@ -1875,7 +1875,7 @@ reading it.]
 
    
 # segments
-Network can be divided into separate segments based on user role and
+Network can be divided into separate segments based on user's role and
 needs, such as guest or home members segment. The segments provide
 base connectivity layer and simple separation. Different
 services, like disk storage, can force their own policy on application
@@ -4332,7 +4332,7 @@ temporal identities.
 # problem of TMSI
 When proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
 a beforehand known IMSI identity, there will be problem
-on inserting the admin role information in RADIUS message.
+on inserting the admin role information in-flight in-to RADIUS message.
 Operator or proxying RADIUS 
 # , on the other hand, 
 does not necessary know about roles without BaaS, so a link
