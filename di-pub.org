@@ -3425,8 +3425,9 @@ This part is presented in detail next.
 
 # #+LATEX: \scriptsize
 #+BEGIN_LaTeX
-% \lstset{basicstyle=\ttfamily,columns=fixed}
-\lstset{basicstyle=\ttfamily}
+\caption{First indication of IMSI}
+\lstset{basicstyle=\ttfamily,columns=fixed}
+% \lstset{basicstyle=\ttfamily}
 \begin{lstlisting}
 Frame 129: 15:57:17.983047
     Type: 802.1X Authentication (0x888e)
