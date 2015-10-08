@@ -3428,10 +3428,10 @@ This part is presented in Capture [[cap:imsi]].
 
 \lstset{basicstyle=\ttfamily,
   columns=fixed,emph={Identity}, 
-  language=C,
   emphstyle={\textbf}}
 % \lstset{basicstyle=\ttfamily}
 \begin{lstlisting}[
+  language=Python,
   caption={First indication of IMSI},
   label={cap:imsi}
 ]
