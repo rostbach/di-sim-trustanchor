@@ -4330,13 +4330,22 @@ temporal identities.
 # #+END_EXAMPLE
 
 # problem of TMSI
-When proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
+
+When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
 a beforehand known IMSI identity, there will be problem
-on inserting the admin role information in-flight in-to RADIUS message.
-Operator or proxying RADIUS 
+if it has to insert the  admin role information in to the RADIUS message.
+Operator does not necessary know about the roles and proxying RADIUS
+cannot know for sure anything but the originating server if TMSI is
+used. The Authenticator does
+know the original user, but needs to get AuthZ information. It can get
+AuthZ either from the remote operator which would be easier for the
+Authenticator or there might be a proxying RADIUS, which inserts that
+knowledge into ACCESS-ACCEPT packet. The latter has issues with
+temporal identities. 
+
 # , on the other hand, 
-does not necessary know about roles without BaaS, so a link
-is needed between them to get role information inside RADIUS packet.
+# does not necessary know about roles without the cloud, so a link
+# is needed between them to get role information inside RADIUS packet.
 # Although Authenticator can map TMSI to ...
 # Even when AuthN succeeds, then how to map that to real user,
 # when only temporary identity is available and that changes every
