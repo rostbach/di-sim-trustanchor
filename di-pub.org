@@ -3383,6 +3383,11 @@ The capture has been done at the WPA2-supplicants end.
 
 
 #+LATEX: \scriptsize
+\begin{lstlisting}[language=Python,
+  caption={First indication of IMSI},
+  label={cap:imsi}
+]
+
 | No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
 | 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
 | 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                   |
@@ -3407,6 +3412,8 @@ The capture has been done at the WPA2-supplicants end.
 | 143 | 15:57:18.0123 | smartphone | AP-802.1x  | EAPOL  | 135 | Key (Message 2 of 4)                 |
 | 144 | 15:57:18.0161 | AP-802.1x  | smartphone | EAPOL  | 169 | Key (Message 3 of 4)                 |
 | 145 | 15:57:18.0163 | smartphone | AP-802.1x  | EAPOL  | 113 | Key (Message 4 of 4)                 |
+\end{lstlisting}
+#+END_LaTeX
 #+LATEX: \normalsize
 
 # - flow of messages,  timing,  size, attributes 
@@ -3495,13 +3502,17 @@ in Figure[[fig:capture]].
 
 
 
-# #+LATEX:\begin{figure}
+
 #+BEGIN_LaTeX
-\scriptsize
-\begin{figure}
-\caption{EAP client's identity transformed}
-\label{fig:capture}
-%\begin{verbatim}
+\lstset{basicstyle=\ttfamily\small,
+  columns=fixed,emph={1232010000000000}, 
+  emphstyle={\color{red}\textbf}}
+
+\begin{lstlisting}[language=Python,
+  caption{EAP client's identity transformed}
+  label={fig:capture}
+]
+
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
@@ -3527,10 +3538,11 @@ Radius Protocol
                 Type: Identity (1)
                 Identity: 1232010000000000
         AVP: l=18 t=Message-Authenticator(80):04ea7e507d72bdb1acf515ef19ac9527
-%\end{verbatim}
-\end{figure}
-\normalsize
+
+\end{lstlisting}
 #+END_LaTeX
+#+LATEX: \normalsize
+
 
 Here interesting part is the first RADIUS AVP.
 While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
