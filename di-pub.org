@@ -3416,7 +3416,7 @@ The capture has been done at the WPA2-supplicants end.
 
 IMSI is sent first time already on the second EAP message from 
 WPA2-Supplicant to AP (compare with Figure[[fig:eap-sim-radius]], message 2.)
-This part is presented in detail next.
+This part is presented in Capture [[cap:imsi]].
 # The capture has been done at the WPA2-supplicants end
 # Same in tests made 150123-155714, source:
 # testit/demot/ap-s150123-155714/
@@ -3426,7 +3426,8 @@ This part is presented in detail next.
 # #+LATEX: \scriptsize
 #+BEGIN_LaTeX
 
-\lstset{basicstyle=\ttfamily,columns=fixed,caption={First indication of IMSI},label=cap:imsi,otherkeywords={Identity}
+\lstset{basicstyle=\ttfamily,columns=fixed,
+  caption={First indication of IMSI},label=cap:imsi,otherkeywords={Identity}}
 % \lstset{basicstyle=\ttfamily}
 \begin{lstlisting}
 Frame 129: 15:57:17.983047
