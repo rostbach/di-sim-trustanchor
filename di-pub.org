@@ -2357,7 +2357,7 @@ may be placed in the home or at the external provider.
 
 # Analyzing the locations
 AuthZ is usually checked from sources outside home, 
-although the Authenticator is the one, who
+although the Authenticator at home is the one, who
 gives the final decision about the access.
 
 If the AuthZ-decision is made on remote AuthN server, 3rd party, 
@@ -2408,9 +2408,10 @@ The goal is to make trusted configuration change.
 # do not get such treatment.
 #   more carefully than the others
 # to get basic understanding of flow. Aims to configuration change
-The steps are numbered in Figure[[fig:scenario-I]].
+The steps are numbered  in Figure[[fig:scenario-I]] and explained in detail.
 Configuration change is allowed, if CPE gets ACCEPT from MNO.  MNO gets
-information of allowed users from Cloud (BaaS [def.])
+information of allowed users from Cloud.
+#  (BaaS [def.])
 # or proxy BaaS[def.def.].
 
 
