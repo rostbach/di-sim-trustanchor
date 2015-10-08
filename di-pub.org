@@ -3483,9 +3483,13 @@ in Figure[[fig:capture]].
 
 
 
-#+LATEX: \scriptsize
-#+Caption: EAP client's identity transformed
-#+begin_example
+
+# #+LATEX:\begin{figure}
+#+BEGIN_LaTeX
+\scriptsize
+\begin{program}
+\caption{EAP client's identity transformed}
+\label{fig:capture}
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
@@ -3510,11 +3514,10 @@ Radius Protocol
                 Length: 21
                 Type: Identity (1)
                 Identity: 1232010000000000
-        AVP: l=18 t=Message-Authenticator(80): 04ea7e507d72bdb1acf515ef19ac9527
-#+end_example
-#+CAPTION: capture between AP and RADIUS server
-#+NAME: fig:capture
-#+LATEX: \normalsize
+        AVP: l=18 t=Message-Authenticator(80):04ea7e507d72bdb1acf515ef19ac9527
+\normalsize
+#+END_LaTeX
+
 Here interesting part is the first RADIUS AVP.
 While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
 field, it was surprising that RADIUS has captured that field and 
