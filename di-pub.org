@@ -3464,7 +3464,7 @@ EAP client's identity is transformed at Authenticator
 EAPOL format  into RADIUS format and
 sent to RADIUS server. The capture between AP and Radius server is
 shown
-in Capture [[fig:capture]].
+in Capture \ref{fig:capture}.
 # in Capture \ref{fig:capture}.
 
 
@@ -3473,7 +3473,9 @@ in Capture [[fig:capture]].
 \lstset{basicstyle=\footnotesize,columns=fixed,emph={$1232010000000000$,musta,AVP},emphstyle=\color{red}\textbf}
 
 \begin{lstlisting}[
-  language=Python,caption={EAP client's identity transformed},\label{fig:capture}
+  language=Python,
+  caption={EAP client's identity transformed},
+  label={fig:capture}
 ]
 Frame3: 15:57:17.988616
 Radius Protocol
