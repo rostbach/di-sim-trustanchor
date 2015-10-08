@@ -3364,8 +3364,8 @@ thoroughly.
 
 First capture shows tries with normal phones, when SIM secrets were
 not known. Even when authentication conversation would not complete fully,
-Authenticator still receives a claim of identification from the
-smartphone. Yet, as there is no AuthN, no proof of identity exists in
+Authenticator still received a claim of identification from the
+smartphone. Yet, as there is no AuthN, no proof of identity existed in
 that case.
 
 [Missing trace, demonstrating the use of unknown SIM physical phone,
