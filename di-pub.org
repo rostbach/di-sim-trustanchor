@@ -1512,31 +1512,6 @@ the bootstrapping phase to setup the CA trust anchor.
 # %\section{Evaluating and comparing bootstrapping methods and authentication}
 
 
-Home Network configuration itself is mostly excluded from this work.
-For example, 
-# moved here from 4.3 (chosen design section)
-it is desirable, that changes in home network are done only through
-local controller, not at local device because of
-synchronization issues, even 
-# but that will rise question for further studies
-if synchronizing algorithms such as Trickle\cite{rfc6206} were used in
-home network for configuration propagation. As another example,
-configuration also includes
-power level settings of devices to save electricity based on usage
-profile. For example at nights or when there is nobody home, some
-devices do not need to be working at their maximum capacity. 
-
-Instead, we study interfaces of AA.  Main points here are an existing
-infrastructure (phones, internet access, Wi-Fi access points),  a strong
-authentication (two-factor), and authentication methods
-(EAP-SIM, EAP-AKA, EAP-AKA').
-
-# This  work does not dive That is the case even when synchronizing
-# protocol such as  Trickle algorithms were used in home network.
-# Cloud or controller software in smartphone needs to recognize
-# commands, that need EAP-SIM AuthN. Authenticator will not know that.
-
-
 # [See security Chapter]
 
 # from console to central management
@@ -1582,10 +1557,24 @@ we still need to bridge home network to that model with a trusted local controll
 and resolve the work-flow of change management.
 
 
-# , which still has orders of magnitude more users available than any
-# other organization. 
+Home Network change management itself is mostly excluded from this work.
+For example, 
+# moved here from 4.3 (chosen design section)
+it is desirable, that changes in home network are done only through
+local controller, not at local device because of
+synchronization issues, even 
+# but that will rise question for further studies
+if synchronizing algorithms such as Trickle\cite{rfc6206} were used in
+home network for configuration propagation. As another example,
+configuration also includes
+power level settings of devices to save electricity based on usage
+profile. For example at nights or when there is nobody home, some
+devices do not need to be working at their maximum capacity. 
 
-# 3. trust again
+Instead, we study interfaces of AA.  Main points here are an existing
+infrastructure (phones, internet access, Wi-Fi access points),  a strong
+authentication (two-factor), and authentication methods
+(EAP-SIM, EAP-AKA, EAP-AKA').
 
 
 * Design of home network trust anchor and separation of change management
