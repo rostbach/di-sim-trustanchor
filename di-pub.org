@@ -3431,7 +3431,6 @@ This part is presented in Capture [[cap:imsai]].
 \begin{lstlisting}[language=bash,
   label=cap:imsi,
   caption={First indication of IMSI}
-
 ]
 
 Frame 129: 15:57:17.983047
