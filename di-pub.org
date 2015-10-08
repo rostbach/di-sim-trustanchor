@@ -3470,7 +3470,7 @@ in Capture \ref{fig:capture}.
 # basicstyle=\ttfamily\small,
 #+BEGIN_LaTeX
 
-\lstset{basicstyle=\ttfamily\tiny,columns=fixed,emph={"1232010000000000",musta,0,AVP},emphstyle=\color{red}\textbf}
+\lstset{basicstyle=\ttfamily\small,columns=fixed,emph={"1232010000000000",musta,0,AVP},emphstyle=\color{red}\textbf}
 \renewcommand{\lstlistingname}{Capture}
 \begin{lstlisting}[
   language=Python,
@@ -4285,55 +4285,32 @@ directed antenna\cite{SANS-bluetooth-2007}.
 # ** Mapping temporal user (TMSI) and role to correct user in proxy
 
 # Just remember[from where?], that 
-Email (2014/Sep) from Karri Huhtanen revealed another
-problem (translation by author):
-#+BEGIN_QUOTE
-``It is possible to add authorization message in-flight in to the
-ACCESS-ACCEPT.
-Problem is only that, if it is done in flight, you need some way to
-combine authentication messages to same identity. SIM auth makes it
-possible to use for example temporary identity and then the only thing
-what you can mine from the authentication message is the used operator.''
-#+END_QUOTE
-
-So proxying RADIUS server cannot know for sure anything but the
-originating server (operator) if TMSI is used. The Authenticator does
-know the original user, but needs to get AuthZ information. It can get
-AuthZ either from the remote operator which would be easier for the
-Authenticator or there might be a proxying RADIUS, which inserts that
-knowledge into ACCESS-ACCEPT packet. The latter has issues with
-temporal identities. 
-
-
+# Email correspondence (2014/Sep) with Karri Huhtanen  revealed
+# another
+Another problem using in-flight addition of the authorization in RADIUS 
+ACCESS-ACCEPT message(\cite{mail-huhtanen-2014} is mapping of 
+authentication messages of IMSI and TMSI identitys.
+# #+BEGIN_QUOTE
+#  ``It is possible to add authorization message in-flight in to the
+# ACCESS-ACCEPT.
+# Problem is only that, if it is done in flight, you need some way to
+# combine authentication messages to same identity. SIM auth makes it
+# possible to use for example temporary identity and then the only thing
+# what you can mine from the authentication message is the used operator.''
+# #+END_QUOTE
+# So proxying RADIUS se¤rver cannot know for sure anything but the
+# originating server (operator) if TMSI is used. The Authenticator does
+# know the original user, but needs to get AuthZ information. It can get
+# AuthZ either from the remote operator which would be easier for the
+# Authenticator or there might be a proxying RADIUS, which inserts that
+# knowledge into ACCESS-ACCEPT packet. The latter has issues with
+# temporal identities. 
 #  -K. Huhtanen, 2014 
 # [cite: Karri Huhtanen/ArchRed, email, Sep 10. 2014, translation by author]
-
-
-# #+BEGIN_EXAMPLE
-# [Riku:
-# >> Kertooko autentikoinnin tarjoama loppupää autentikointivastauksen #
-# >> yhteydessä myös ryhmään kuuluvuuden, vai kysyykö autentikaattori
-# >> sen erikseen sen jälkeen, kun autentikointi on onnistunut, mutta 
-# >> samasta paikasta? Tässä haen sitä, mihin pisteeseen meidän olisi
-# >> parasta lisätä tieto siitä, kuka on sallittu käyttäjä kussakin
-# >> kotiverkossa.
-
-# Karri:
-# >Tuon voi täydentää matkallakin nimenomaan siihen
-# >autentikaatio-ok-vastaukseen. Ongelmana vain on, että jos se
-# >täydennetään matkalla, tarvitaan joku tapa yhdistää 
-# >autentikaatioviestit samaan identiteettiin. SIM-autentikointitavat 
-# >nimittäin mahdollistavat sen, että voidaan käyttää esim. temporary 
-# >identityä, jolloin ainoa varma asia, jonka autentikaatioviestistä
-# >välipisteet voivat louhia on käytetty operaattori.
-# ]
-# #+END_EXAMPLE
-
 # problem of TMSI
-
 The Authenticator does know the original user and mapping of TMSI to
-IMSI, but needs to get AuthZ information. 
-It can get AuthZ either from the remote operator which would be easier for the
+IMSI, but needs to get AuthZ information. That can be received from the
+remote operator, which would be easier for the
 Authenticator or there might be a proxying RADIUS, which resolves the AuthZ
 information and generates an ACCESS-ACCEPT packet. The latter has issues with
 temporal identities. 
@@ -4343,9 +4320,6 @@ a beforehand known IMSI identity, there will be problem
 # if it had to insert the admin role information in to the RADIUS message.
 because proxying RADIUS knows for sure only the originating server. 
 MNO in turn does not necessary know about the roles.
-
-
-
 
 # , on the other hand, 
 # does not necessary know about roles without the cloud, so a link
