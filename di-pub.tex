@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 13:52
+% Created 2015-10-08 to 13:54
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2406,7 +2406,7 @@ denotes that we are talking about EAP-SIM identity.
 
 
 EAP client's identity is transformed at Authenticator
-(Figure\ref{fig:eap-layers}, Chapter \texttt{cha:aaa}) from 802.1X's 
+(Figure\ref{fig:eap-layers}, Chapter \ref{sec-2}) from 802.1X's 
 EAPOL format  into RADIUS format and
 sent to RADIUS server. The capture between AP and Radius server is
 shown
@@ -2417,7 +2417,7 @@ in Figure\texttt{fig:capture}.
 
 
 \scriptsize
-
+\begin{figure}
 \caption{EAP client's identity transformed}
 \label{fig:capture}
 \begin{verbatim}
@@ -2447,6 +2447,7 @@ Radius Protocol
                 Identity: 1232010000000000
         AVP: l=18 t=Message-Authenticator(80):04ea7e507d72bdb1acf515ef19ac9527
 \end{verbatim}
+\end{figure}
 \normalsize
 
 Here interesting part is the first RADIUS AVP.
