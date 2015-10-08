@@ -3066,7 +3066,7 @@ simulated WPA2-Supplicant and HLR-AuC as simulation environment.
       |                         |
       v                         v
 +--+--+---------+----+    +-----+----------------+      /-----=------------------\
-|  | Wifidriver |    |    |WiFi AP(Authenticator)|      |                        |
+|  | WiFidriver |    |    |WiFi AP(Authenticator)|      |                        |
 |  +--+---------+    |    +----------------------+      |                        |
 |     ^              |    |        c060          |      |                        |
 |     | +----------+ |    +-----+----------------+      |  +-----------------+   | 
