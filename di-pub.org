@@ -3363,7 +3363,11 @@ thoroughly.
 # Maybe also remote syslog from access point.]
 
 First capture shows tries with normal phones, when SIM secrets were
-not known. Even when authentication conversation would not complete fully,
+not known. Communicating partners are denoted as AP-802.1x and
+smartphone for Wi-Fi traffic, AP-wired and RADIUS-srv for RADIUS on
+wire, and finally RADIUS-hlr and HLR-AuC gw for simulated MAPS/SS7
+traffic.
+   Even when authentication conversation would not complete fully,
 Authenticator still received a claim of identification from the
 smartphone. Yet, as there is no AuthN, no proof of identity existed in
 that case.
@@ -3378,30 +3382,30 @@ parts of logs at WPA2-Supplicant, RADIUS server and packet captures
 
 
 #+LATEX: \scriptsize
-| No. |          Time | Src        | Dest       | Proto  | Len | Info                                      |
-| 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                         |
-| 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                        |
-| 131 | 15:57:17.9887 | AP-wired   | RADIUS-srv | RADIUS | 235 | Access-Request(1) (id=162, l=193)         |
-| 132 | 15:57:17.9889 | RADIUS-srv | AP-wired   | RADIUS | 108 | Access-Challenge(11) (id=162, l=66)       |
-| 133 | 15:57:17.9908 | AP-802.1x  | smartphone | EAP    |  38 | Request, GSM Subscriber Identity          |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                     |
-| 134 | 15:57:17.9924 | smartphone | AP-802.1x  | EAP    |  70 | Response, GSM Subscriber Identity         |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                     |
-| 135 | 15:57:17.9945 | AP-wired   | RADIUS-srv | RADIUS | 272 | Access-Request(1) (id=163, l=230)         |
-|     |               | RADIUS-srv | HLR-AuC gw | socket |     | SIM-REQ-AUTH <IMSI> 3      |
-|     |               | HLR-AuC gw | RADIUS-srv | socket |     | SIM-RESP-AUTH <IMSI>, 3 triplets                |
-| 136 | 15:57:18.0024 | RADIUS-srv | AP-wired   | RADIUS | 256 | Access-Challenge(11) (id=163, l=214)      |
-| 137 | 15:57:18.0040 | AP-802.1x  | smartphone | EAP    | 186 | Request, GSM Subscriber Identity          |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                     |
-| 138 | 15:57:18.0043 | smartphone | AP-802.1x  | EAP    |  46 | Response, GSM Subscriber Identity         |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                     |
-| 139 | 15:57:18.0063 | AP-wired   | RADIUS-srv | RADIUS | 248 | Access-Request(1) (id=164, l=206)         |
-| 140 | 15:57:18.0065 | RADIUS-srv | AP-wired   | RADIUS | 202 | Access-Accept(2) (id=164, l=160)          |
-| 141 | 15:57:18.0110 | AP-802.1x  | smartphone | EAP    |  22 | Success                                   |
-| 142 | 15:57:18.0112 | AP-802.1x  | smartphone | EAPOL  | 135 | Key (Message 1 of 4)                      |
-| 143 | 15:57:18.0123 | smartphone | AP-802.1x  | EAPOL  | 135 | Key (Message 2 of 4)                      |
-| 144 | 15:57:18.0161 | AP-802.1x  | smartphone | EAPOL  | 169 | Key (Message 3 of 4)                      |
-| 145 | 15:57:18.0163 | smartphone | AP-802.1x  | EAPOL  | 113 | Key (Message 4 of 4)                      |
+| No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
+| 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
+| 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                   |
+| 131 | 15:57:17.9887 | AP-wired   | RADIUS-srv | RADIUS | 235 | Access-Request(1) (id=162, l=193)    |
+| 132 | 15:57:17.9889 | RADIUS-srv | AP-wired   | RADIUS | 108 | Access-Challenge(11) (id=162, l=66)  |
+| 133 | 15:57:17.9908 | AP-802.1x  | smartphone | EAP    |  38 | Request, GSM Subscriber Identity     |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
+| 134 | 15:57:17.9924 | smartphone | AP-802.1x  | EAP    |  70 | Response, GSM Subscriber Identity    |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
+| 135 | 15:57:17.9945 | AP-wired   | RADIUS-srv | RADIUS | 272 | Access-Request(1) (id=163, l=230)    |
+|     |               | RADIUS-hlr | HLR-AuC gw | socket |     | SIM-REQ-AUTH <IMSI> 3                |
+|     |               | HLR-AuC gw | RADIUS-hlr | socket |     | SIM-RESP-AUTH <IMSI>, 3 triplets     |
+| 136 | 15:57:18.0024 | RADIUS-srv | AP-wired   | RADIUS | 256 | Access-Challenge(11) (id=163, l=214) |
+| 137 | 15:57:18.0040 | AP-802.1x  | smartphone | EAP    | 186 | Request, GSM Subscriber Identity     |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
+| 138 | 15:57:18.0043 | smartphone | AP-802.1x  | EAP    |  46 | Response, GSM Subscriber Identity    |
+|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
+| 139 | 15:57:18.0063 | AP-wired   | RADIUS-srv | RADIUS | 248 | Access-Request(1) (id=164, l=206)    |
+| 140 | 15:57:18.0065 | RADIUS-srv | AP-wired   | RADIUS | 202 | Access-Accept(2) (id=164, l=160)     |
+| 141 | 15:57:18.0110 | AP-802.1x  | smartphone | EAP    |  22 | \em{Success}                         |
+| 142 | 15:57:18.0112 | AP-802.1x  | smartphone | EAPOL  | 135 | Key (Message 1 of 4)                 |
+| 143 | 15:57:18.0123 | smartphone | AP-802.1x  | EAPOL  | 135 | Key (Message 2 of 4)                 |
+| 144 | 15:57:18.0161 | AP-802.1x  | smartphone | EAPOL  | 169 | Key (Message 3 of 4)                 |
+| 145 | 15:57:18.0163 | smartphone | AP-802.1x  | EAPOL  | 113 | Key (Message 4 of 4)                 |
 #+LATEX: \normalsize
 
 # - flow of messages,  timing,  size, attributes 
