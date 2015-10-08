@@ -3427,7 +3427,7 @@ This part is presented in Capture [[cap:imsi]].
 #+BEGIN_LaTeX
 
 \lstset{basicstyle=\ttfamily,columns=fixed,
-  caption={First indication of IMSI},label=cap:imsi,morekeywords={Identity}}
+  caption={First indication of IMSI},label=cap:imsi,emph={Identity}}
 % \lstset{basicstyle=\ttfamily}
 \begin{lstlisting}
 Frame 129: 15:57:17.983047
