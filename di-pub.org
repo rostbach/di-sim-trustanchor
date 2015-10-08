@@ -3426,10 +3426,13 @@ This part is presented in Capture [[cap:imsi]].
 # #+LATEX: \scriptsize
 #+BEGIN_LaTeX
 
-\lstset{basicstyle=\ttfamily,columns=fixed,
-  caption={First indication of IMSI},label=cap:imsi,emph={Identity}}
+\lstset{basicstyle=\ttfamily,columns=fixed,emph={Identity}}
 % \lstset{basicstyle=\ttfamily}
-\begin{lstlisting}
+\begin{lstlisting}[
+  caption={First indication of IMSI},
+  label={cap:imsi}
+]
+
 Frame 129: 15:57:17.983047
     Type: 802.1X Authentication (0x888e)
     Version: 802.1X-2004 (2)
