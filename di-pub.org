@@ -3517,6 +3517,7 @@ Radius Protocol
                 Identity: 1232010000000000
         AVP: l=18 t=Message-Authenticator(80):04ea7e507d72bdb1acf515ef19ac9527
 \end{verbatim}
+\end{figure}
 \normalsize
 #+END_LaTeX
 
