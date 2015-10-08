@@ -3469,7 +3469,7 @@ in Capture \ref{fig:capture}.
 
 # basicstyle=\ttfamily\small,
 #+BEGIN_LaTeX
-\renewcommand{\lstlistingname}{Capture}
+
 \lstset{basicstyle=\ttfamily\tiny,columns=fixed,emph={*,1232010000000000,Nam,0,AVP},emphstyle=\color{red}\textbf}
 
 \begin{lstlisting}[
@@ -3477,6 +3477,7 @@ in Capture \ref{fig:capture}.
   caption={EAP client's identity transformed},
   label={fig:capture}
 ]
+\renewcommand{\lstlistingname}{Capture}
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
