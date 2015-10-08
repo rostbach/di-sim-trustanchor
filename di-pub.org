@@ -3471,13 +3471,13 @@ in Capture \ref{fig:capture}.
 #+BEGIN_LaTeX
 
 \lstset{basicstyle=\ttfamily\tiny,columns=fixed,emph={"1232010000000000",musta,0,AVP},emphstyle=\color{red}\textbf}
-
+\renewcommand{\lstlistingname}{Capture}
 \begin{lstlisting}[
   language=Python,
   caption={EAP client's identity transformed},
   label={fig:capture}
 ]
-\renewcommand{\lstlistingname}{Capture}
+
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
