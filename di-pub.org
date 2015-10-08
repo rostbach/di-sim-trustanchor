@@ -3620,15 +3620,16 @@ Send: SIM-RESP-AUTH 232010000000000
 
 To deploy the system, modifications must be done to AP and client.
 Additionally, contract must be made with the MNO service
-provider producing AuthN [while AuthZ is already taken care of with
-the cloud service contract.]  [TBD, leave cloud out ]
+provider producing AuthN 
+# [while AuthZ is already taken care of with
+# the cloud service contract.]  [TBD, leave cloud out ]
 For AP, modifications are minimal. Needed settings are
 WPA2 mode to WPA2-enterprise, IP-address of RADIUS server providing 
 AA, and corresponding shared secret.
-For client, Wi-Fi profile must be added: used management SSID,
+For  the client, a Wi-Fi profile must be added: used management SSID,
 protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
-Smartphone can have different profiles, also with under same SSID, but
-then user need to choose manually, which profile he wanted to use.
+Smartphone can have different profiles, also with a same SSID, but
+then the user needs to choose manually, which profile is wanted.
 # settings=EAP, subtype of EAP=SIM, username from SIM-card.
 
 # ** Estimating time to authenticate EAP-SIM [TO BE REMOVED]
