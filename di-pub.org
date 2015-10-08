@@ -3510,7 +3510,7 @@ in Figure[[fig:capture]].
   emphstyle={\color{red}\textbf}}
 
 \begin{lstlisting}[language=Python,
-  caption{EAP client's identity transformed}
+  caption{EAP client's identity transformed},
   label={fig:capture}
 ]
 
