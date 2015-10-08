@@ -3381,8 +3381,15 @@ for simulated MAPS/SS7 traffic.
 The capture has been done at the WPA2-supplicants end.
 
 
+# listingsmääritykset
+#+BEGIN_LaTeX
+\lstset{basicstyle=\ttfamily\small,
+  columns=fixed,emph={1232010000000000}, 
+  emphstyle={\color{red}\textbf}}
+#+END_LaTeX
 
-#+LATEX: \scriptsize
+
+#+BEGIN_LaTeX
 \begin{lstlisting}[language=Python,
   caption={First indication of IMSI},
   label={cap:imsi}
@@ -3433,9 +3440,6 @@ This part is presented in Capture [[cap:imsi]].
 # #+LATEX: \scriptsize
 
 #+BEGIN_LaTeX
-\lstset{basicstyle=\ttfamily\small,
-  columns=fixed,emph={1232010000000000}, 
-  emphstyle={\color{red}\textbf}}
 
 \begin{lstlisting}[language=Python,
   caption={First indication of IMSI},
