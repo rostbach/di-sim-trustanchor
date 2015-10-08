@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 17:33
+% Created 2015-10-08 to 17:34
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2395,7 +2395,7 @@ sent to RADIUS server. The capture between AP and Radius server is
 shown
 in Capture \ref{fig:capture}.
 
-\renewcommand{\lstlistingname}{Capture}
+
 \lstset{basicstyle=\ttfamily\tiny,columns=fixed,emph={*,1232010000000000,Nam,0,AVP},emphstyle=\color{red}\textbf}
 
 \begin{lstlisting}[
@@ -2403,6 +2403,7 @@ in Capture \ref{fig:capture}.
   caption={EAP client's identity transformed},
   label={fig:capture}
 ]
+\renewcommand{\lstlistingname}{Capture}
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
