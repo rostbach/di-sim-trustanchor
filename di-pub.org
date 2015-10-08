@@ -3425,7 +3425,6 @@ This part is presented in Capture [[cap:imsi]].
 
 # #+LATEX: \scriptsize
 #+BEGIN_LaTeX
-
 \lstset{basicstyle=\ttfamily\small,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
