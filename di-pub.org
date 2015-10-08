@@ -3357,16 +3357,6 @@ for simulated MAPS/SS7 traffic.
 The capture has been done at the WPA2-supplicants end.
 
 
-# listingsmääritykset
-#+BEGIN_LaTeX
-\lstset{basicstyle=\ttfamily\small,
-  columns=fixed,emph={1232010000000000}, 
-  emphstyle={\color{red}\textbf}}
-\renewcommand{\lstlistingname}{Capture}
-#+END_LaTeX
-
-
-
 #+LATEX: \scriptsize
 | No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
 | 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
@@ -3408,12 +3398,15 @@ This part is presented in Capture \ref{capimsi}.
 # Capture is from the the smartphone client, when it has received the first EAP
 # packet from AP.
 
-
+# listingsmääritykset
 #+BEGIN_LaTeX
 \lstset{basicstyle=\ttfamily\small,
-  columns=fixed,emph={ty}, 
+  columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
+\renewcommand{\lstlistingname}{Capture}
+#+END_LaTeX
 
+#+BEGIN_LaTeX
 \begin{lstlisting}[language=bash,
   label=capimsi,
   caption={First indication of IMSI}
