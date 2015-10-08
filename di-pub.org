@@ -3539,7 +3539,6 @@ Radius Protocol
                 Type: Identity (1)
                 Identity: 1232010000000000
         AVP: l=18 t=Message-Authenticator(80):04ea7e507d72bdb1acf515ef19ac9527
-
 \end{lstlisting}
 #+END_LaTeX
 #+LATEX: \normalsize
