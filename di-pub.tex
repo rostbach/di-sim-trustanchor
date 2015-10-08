@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 13:56
+% Created 2015-10-08 to 14:26
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2358,8 +2358,7 @@ IMSI is sent first time already on the second EAP message from
 WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
 This part is presented in detail next.
 
-\scriptsize
-\begin{verbatim}
+\lstset{basicstyle=\ttfamily,columns=fixed}
 Frame 129: 15:57:17.983047
     Type: 802.1X Authentication (0x888e)
     Version: 802.1X-2004 (2)
@@ -2382,7 +2381,8 @@ Frame 130: 15:57:17.983223
         Length: 21
         Type: Identity (1)
         Identity: 1232010000000000
-\end{verbatim}
+\#+END\_EXAMPLE
+
 \normalsize
 
 We notice the difference on 802.1X versions; AP uses version
@@ -2420,7 +2420,7 @@ in Figure\texttt{fig:capture}.
 \begin{figure}
 \caption{EAP client's identity transformed}
 \label{fig:capture}
-\begin{verbatim}
+%\begin{verbatim}
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
@@ -2428,7 +2428,7 @@ Radius Protocol
     Length: 193
     Authenticator: 055ff370b9e793c1e39d375aade8033c
     Attribute Value Pairs
-        AVP: l=18 t=User-Name(1): 1232010000000000
+        AVP: l=18 t=\em{User-Name(1): 1232010000000000}
         AVP: l=7 t=NAS-Identifier(32): musta
         AVP: l=27 t=Called-Station-Id(30): 66-66-B3-8A-68-B3:simtest
         AVP: l=6 t=NAS-Port-Type(61): Wireless-802.11(19)
@@ -2446,7 +2446,7 @@ Radius Protocol
                 Type: Identity (1)
                 Identity: 1232010000000000
         AVP: l=18 t=Message-Authenticator(80):04ea7e507d72bdb1acf515ef19ac9527
-\end{verbatim}
+%\end{verbatim}
 \end{figure}
 \normalsize
 
