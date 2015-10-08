@@ -3404,9 +3404,7 @@ This part is presented in Capture \ref{capimsi}.
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
 \renewcommand{\lstlistingname}{Capture}
-#+END_LaTeX
 
-#+BEGIN_LaTeX
 \begin{lstlisting}[language=bash,
   label=capimsi,
   caption={First indication of IMSI}
