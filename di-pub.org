@@ -3363,11 +3363,7 @@ thoroughly.
 # Maybe also remote syslog from access point.]
 
 First capture shows tries with normal phones, when SIM secrets were
-not known. Communicating partners are denoted as AP-802.1x and
-smartphone for Wi-Fi traffic, AP-wired and RADIUS-srv for RADIUS on
-wire, and finally RADIUS-hlr and HLR-AuC gw for simulated MAPS/SS7
-traffic.
-   Even when authentication conversation would not complete fully,
+not known. Even when authentication conversation would not complete fully,
 Authenticator still received a claim of identification from the
 smartphone. Yet, as there is no AuthN, no proof of identity existed in
 that case.
@@ -3378,7 +3374,11 @@ include first traces: TBD.]
 
 Packet capture of successful SIM-authentication with corresponding
 parts of logs at WPA2-Supplicant, RADIUS server and packet captures
-802.1X, RADIUS and HLR is shown below.
+802.1X, RADIUS and HLR is shown below.  Communicating partners are
+denoted as AP-802.1x and smartphone for Wi-Fi traffic, AP-wired and
+RADIUS-srv for RADIUS on wire, and finally RADIUS-hlr and HLR-AuC gw
+for simulated MAPS/SS7 traffic.
+
 
 
 #+LATEX: \scriptsize
