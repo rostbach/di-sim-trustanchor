@@ -3469,7 +3469,7 @@ in Capture \ref{fig:capture}.
 
 #+BEGIN_LaTeX
 \renewcommand{\lstlistingname}{Capture}
-\lstset{basicstyle=\footnotesize,columns=fixed,emph={1232010000000000,AVP},emphstyle=\color{red}\textbf}
+\lstset{basicstyle=\footnotesize,columns=fixed,emph={'1232010000000000',AVP},emphstyle=\color{red}\textbf}
 
 \begin{lstlisting}[
   language=Python,caption={EAP client's identity transformed},label={fig:capture}
