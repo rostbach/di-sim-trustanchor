@@ -3394,7 +3394,8 @@ The capture has been done at the WPA2-supplicants end.
   caption={First indication of IMSI},
   label={cap:imsi}
 ]
-
+#+END_LaTeX
+#+LATEX: \scriptsize
 | No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
 | 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
 | 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                   |
@@ -3437,10 +3438,8 @@ This part is presented in Capture [[cap:imsi]].
 # Capture is from the the smartphone client, when it has received the first EAP
 # packet from AP.
 
-# #+LATEX: \scriptsize
 
 #+BEGIN_LaTeX
-
 \begin{lstlisting}[language=Python,
   caption={First indication of IMSI},
   label={cap:imsi}
