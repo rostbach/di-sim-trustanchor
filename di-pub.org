@@ -3378,6 +3378,7 @@ parts of logs at WPA2-Supplicant, RADIUS server and packet captures
 denoted as AP-802.1x and smartphone for Wi-Fi traffic, AP-wired and
 RADIUS-srv for RADIUS on wire, and finally RADIUS-hlr and HLR-AuC gw
 for simulated MAPS/SS7 traffic.
+The capture has been done at the WPA2-supplicants end.
 
 
 
@@ -3414,13 +3415,13 @@ for simulated MAPS/SS7 traffic.
 # (see sequence, and explain why) [TBD]
 
 IMSI is sent first time already on the second EAP message from 
-# - 1st id claim comes already on second EAP message, from
-WPA2-Supplicant to AP (see Figure[[fig:eap-sim-radius]], message 2.)
-# , working set in simulated environment.
-Same in tests made 150123-155714, source:
-testit/demot/ap-s150123-155714/
-Capture is from the the smartphone client, when it has received the first EAP
-packet from AP.
+WPA2-Supplicant to AP (compare with Figure[[fig:eap-sim-radius]], message 2.)
+This part is presented in detail next.
+# The capture has been done at the WPA2-supplicants end
+# Same in tests made 150123-155714, source:
+# testit/demot/ap-s150123-155714/
+# Capture is from the the smartphone client, when it has received the first EAP
+# packet from AP.
 
 #+LATEX: \scriptsize
 #+BEGIN_EXAMPLE
