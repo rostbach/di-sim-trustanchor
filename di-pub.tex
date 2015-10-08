@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 17:17
+% Created 2015-10-08 to 17:18
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2393,14 +2393,16 @@ EAP client's identity is transformed at Authenticator
 EAPOL format  into RADIUS format and
 sent to RADIUS server. The capture between AP and Radius server is
 shown
-in Capture \texttt{fig:capture}.
+in Capture \ref{fig:capture}.
 
 
 \renewcommand{\lstlistingname}{Capture}
 \lstset{basicstyle=\footnotesize,columns=fixed,emph={$1232010000000000$,musta,AVP},emphstyle=\color{red}\textbf}
 
 \begin{lstlisting}[
-  language=Python,caption={EAP client's identity transformed},\label{fig:capture}
+  language=Python,
+  caption={EAP client's identity transformed},
+  label={fig:capture}
 ]
 Frame3: 15:57:17.988616
 Radius Protocol
