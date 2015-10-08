@@ -3505,8 +3505,7 @@ in Figure[[fig:capture]].
 
 #+BEGIN_LaTeX
 \renewcommand{\lstlistingname}{Capture}
-\lstset{basicstyle=\ttfamily\small,
-  columns=fixed,emph={1232010000000000}, 
+\lstset{basicstyle=\footnotesize,columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
 
 \begin{lstlisting}[language=Python,caption={EAP client's identity transformed},
