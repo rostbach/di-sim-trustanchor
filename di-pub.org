@@ -1517,7 +1517,7 @@ the bootstrapping phase to setup the CA trust anchor.
 # from console to central management
 ** Centralization trends in management
 
-Traditionally, management of network devices has been done
+Traditionally, configuration management of network devices has been done
 individually using each device's console or web-access.  As the number of
 devices has increased, it would have been reasonable to rationalize
 the process by utilizing a central management, not least to prevent human
@@ -1576,6 +1576,9 @@ infrastructure (phones, internet access, Wi-Fi access points),  a strong
 authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 
+*** Trust anchoring shortly explained
+
+TBD.
 
 * Design of home network trust anchor and separation of change management
 :PROPERTIES:
