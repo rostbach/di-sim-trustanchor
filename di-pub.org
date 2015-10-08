@@ -4524,6 +4524,7 @@ Complexity of existing models in interworking was one motivator for
 the work. The research  on the subject did reveal some reasons 
 for the complexity, that are difficult to overcome with simplistic 
 methods without losing security at the same time.
+The implementation misses the application for the smartphone.
 There are some obvious weaknesses in the proposed solution such as 
 missing continuous authorization after management access has been granted.
  Possible usage must carefully check the safety limits even when RADIUS protocol still
@@ -4531,7 +4532,7 @@ has strengths in security today. The thesis only scratches bootstrapping
 problems and the issues in bootstrapping the home network need to be studied
 more thoroughly. One could use tickets in Kerberized way as in GBA.
 # More roles and multiuser cases could be added. 
-The implementation misses the application for the smartphone.
+
 # There are MIF[def] and Provision Domains WGs on IETF. Their work partly
 # overlaps this.
 
