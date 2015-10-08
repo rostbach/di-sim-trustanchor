@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 14:57
+% Created 2015-10-08 to 14:58
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2359,7 +2359,10 @@ WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
 This part is presented in Capture \texttt{cap:imsi}.
 
 
-\lstset{basicstyle=\ttfamily,columns=fixed,emph={Identity}, emphstyle={\color{red}\textbf}}
+\lstset{basicstyle=\ttfamily,
+  columns=fixed,emph={Identity}, 
+  language=C,
+  emphstyle={\textbf}}
 % \lstset{basicstyle=\ttfamily}
 \begin{lstlisting}[
   caption={First indication of IMSI},
