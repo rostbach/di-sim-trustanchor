@@ -3427,6 +3427,7 @@ This part is presented in detail next.
 #+BEGIN_LaTeX
 % \lstset{basicstyle=\ttfamily,columns=fixed}
 \lstset{basicstyle=\ttfamily}
+\begin{lstlisting}
 Frame 129: 15:57:17.983047
     Type: 802.1X Authentication (0x888e)
     Version: 802.1X-2004 (2)
@@ -3449,6 +3450,7 @@ Frame 130: 15:57:17.983223
         Length: 21
         Type: Identity (1)
         Identity: 1232010000000000
+\end{lstlisting}
 #+END_LaTeX
 #+LATEX: \normalsize
 
