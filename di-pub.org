@@ -4340,8 +4340,8 @@ temporal identities.
 
 When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
 a beforehand known IMSI identity, there will be problem
-if it had to insert the admin role information in to the RADIUS message.
-because it knows for sure only originating server. 
+# if it had to insert the admin role information in to the RADIUS message.
+because proxying RADIUS knows for sure only originating server. 
 MNO in turn does not necessary know about the roles.
 
 
