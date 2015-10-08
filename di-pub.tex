@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 15:07
+% Created 2015-10-08 to 15:12
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2321,6 +2321,11 @@ The capture has been done at the WPA2-supplicants end.
 
 
 \scriptsize
+\begin{lstlisting}[language=Python,
+  caption=\{First indication of IMSI\},
+  label=\{cap:imsi\}
+]
+
 \begin{center}
 \begin{tabular}{rrlllrl}
 No. & Time & Src & Dest & Proto & Len & Info\\
@@ -2349,6 +2354,8 @@ No. & Time & Src & Dest & Proto & Len & Info\\
 145 & 15:57:18.0163 & smartphone & AP-802.1x & EAPOL & 113 & Key (Message 4 of 4)\\
 \end{tabular}
 \end{center}
+\end{lstlisting}
+\#+END\_$\backslash$LaTeX\{\}
 \normalsize
 
 
@@ -2424,11 +2431,16 @@ in Figure\texttt{fig:capture}.
 
 
 
-\scriptsize
-\begin{figure}
-\caption{EAP client's identity transformed}
-\label{fig:capture}
-%\begin{verbatim}
+
+\lstset{basicstyle=\ttfamily\small,
+  columns=fixed,emph={1232010000000000}, 
+  emphstyle={\color{red}\textbf}}
+
+\begin{lstlisting}[language=Python,
+  caption{EAP client's identity transformed}
+  label={fig:capture}
+]
+
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
@@ -2454,9 +2466,10 @@ Radius Protocol
                 Type: Identity (1)
                 Identity: 1232010000000000
         AVP: l=18 t=Message-Authenticator(80):04ea7e507d72bdb1acf515ef19ac9527
-%\end{verbatim}
-\end{figure}
+
+\end{lstlisting}
 \normalsize
+
 
 Here interesting part is the first RADIUS AVP.
 While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
