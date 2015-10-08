@@ -1983,7 +1983,7 @@ the parts of the management network and is authenticated strong.  User
 management is outsourced to MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
-located on diverse place, as can be seen in xxx
+located on diverse place, as can be seen in Section [[sec:scenarios]]
 # ### 
 
 # explain provisioning? 20150702
