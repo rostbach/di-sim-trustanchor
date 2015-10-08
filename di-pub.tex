@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 15:13
+% Created 2015-10-08 to 15:33
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2324,36 +2324,38 @@ The capture has been done at the WPA2-supplicants end.
   emphstyle={\color{red}\textbf}}
 
 
-\begin{lstlisting}[language=Python,
-  caption={First indication of IMSI},
-  label={cap:imsi}
-]
 
-| No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
-| 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
-| 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                   |
-| 131 | 15:57:17.9887 | AP-wired   | RADIUS-srv | RADIUS | 235 | Access-Request(1) (id=162, l=193)    |
-| 132 | 15:57:17.9889 | RADIUS-srv | AP-wired   | RADIUS | 108 | Access-Challenge(11) (id=162, l=66)  |
-| 133 | 15:57:17.9908 | AP-802.1x  | smartphone | EAP    |  38 | Request, GSM Subscriber Identity     |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
-| 134 | 15:57:17.9924 | smartphone | AP-802.1x  | EAP    |  70 | Response, GSM Subscriber Identity    |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
-| 135 | 15:57:17.9945 | AP-wired   | RADIUS-srv | RADIUS | 272 | Access-Request(1) (id=163, l=230)    |
-|     |               | RADIUS-hlr | HLR-AuC gw | socket |     | SIM-REQ-AUTH <IMSI> 3                |
-|     |               | HLR-AuC gw | RADIUS-hlr | socket |     | SIM-RESP-AUTH <IMSI>, 3 triplets     |
-| 136 | 15:57:18.0024 | RADIUS-srv | AP-wired   | RADIUS | 256 | Access-Challenge(11) (id=163, l=214) |
-| 137 | 15:57:18.0040 | AP-802.1x  | smartphone | EAP    | 186 | Request, GSM Subscriber Identity     |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
-| 138 | 15:57:18.0043 | smartphone | AP-802.1x  | EAP    |  46 | Response, GSM Subscriber Identity    |
-|     |               |            |            |        |     | Modules EAP (EAP-SIM)                |
-| 139 | 15:57:18.0063 | AP-wired   | RADIUS-srv | RADIUS | 248 | Access-Request(1) (id=164, l=206)    |
-| 140 | 15:57:18.0065 | RADIUS-srv | AP-wired   | RADIUS | 202 | Access-Accept(2) (id=164, l=160)     |
-| 141 | 15:57:18.0110 | AP-802.1x  | smartphone | EAP    |  22 | \em{Success}                         |
-| 142 | 15:57:18.0112 | AP-802.1x  | smartphone | EAPOL  | 135 | Key (Message 1 of 4)                 |
-| 143 | 15:57:18.0123 | smartphone | AP-802.1x  | EAPOL  | 135 | Key (Message 2 of 4)                 |
-| 144 | 15:57:18.0161 | AP-802.1x  | smartphone | EAPOL  | 169 | Key (Message 3 of 4)                 |
-| 145 | 15:57:18.0163 | smartphone | AP-802.1x  | EAPOL  | 113 | Key (Message 4 of 4)                 |
+\scriptsize
+\begin{center}
+\begin{tabular}{rrlllrl}
+No. & Time & Src & Dest & Proto & Len & Info\\
+129 & 15:57:17.9830 & AP-802.1x & smartphone & EAP & 23 & Request, Identity\\
+130 & 15:57:17.9832 & smartphone & AP-802.1x & EAP & 39 & Response, Identity\\
+131 & 15:57:17.9887 & AP-wired & RADIUS-srv & RADIUS & 235 & Access-Request(1) (id=162, l=193)\\
+132 & 15:57:17.9889 & RADIUS-srv & AP-wired & RADIUS & 108 & Access-Challenge(11) (id=162, l=66)\\
+133 & 15:57:17.9908 & AP-802.1x & smartphone & EAP & 38 & Request, GSM Subscriber Identity\\
+ &  &  &  &  &  & Modules EAP (EAP-SIM)\\
+134 & 15:57:17.9924 & smartphone & AP-802.1x & EAP & 70 & Response, GSM Subscriber Identity\\
+ &  &  &  &  &  & Modules EAP (EAP-SIM)\\
+135 & 15:57:17.9945 & AP-wired & RADIUS-srv & RADIUS & 272 & Access-Request(1) (id=163, l=230)\\
+ &  & RADIUS-hlr & HLR-AuC gw & socket &  & SIM-REQ-AUTH <IMSI> 3\\
+ &  & HLR-AuC gw & RADIUS-hlr & socket &  & SIM-RESP-AUTH <IMSI>, 3 triplets\\
+136 & 15:57:18.0024 & RADIUS-srv & AP-wired & RADIUS & 256 & Access-Challenge(11) (id=163, l=214)\\
+137 & 15:57:18.0040 & AP-802.1x & smartphone & EAP & 186 & Request, GSM Subscriber Identity\\
+ &  &  &  &  &  & Modules EAP (EAP-SIM)\\
+138 & 15:57:18.0043 & smartphone & AP-802.1x & EAP & 46 & Response, GSM Subscriber Identity\\
+ &  &  &  &  &  & Modules EAP (EAP-SIM)\\
+139 & 15:57:18.0063 & AP-wired & RADIUS-srv & RADIUS & 248 & Access-Request(1) (id=164, l=206)\\
+140 & 15:57:18.0065 & RADIUS-srv & AP-wired & RADIUS & 202 & Access-Accept(2) (id=164, l=160)\\
+141 & 15:57:18.0110 & AP-802.1x & smartphone & EAP & 22 & \em{Success}\\
+142 & 15:57:18.0112 & AP-802.1x & smartphone & EAPOL & 135 & Key (Message 1 of 4)\\
+143 & 15:57:18.0123 & smartphone & AP-802.1x & EAPOL & 135 & Key (Message 2 of 4)\\
+144 & 15:57:18.0161 & AP-802.1x & smartphone & EAPOL & 169 & Key (Message 3 of 4)\\
+145 & 15:57:18.0163 & smartphone & AP-802.1x & EAPOL & 113 & Key (Message 4 of 4)\\
+\end{tabular}
+\end{center}
 \end{lstlisting}
+\#+END\_$\backslash$LaTeX\{\}
 \normalsize
 
 
@@ -2362,7 +2364,6 @@ The capture has been done at the WPA2-supplicants end.
 IMSI is sent first time already on the second EAP message from 
 WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
 This part is presented in Capture \texttt{cap:imsi}.
-
 
 
 \begin{lstlisting}[language=Python,
@@ -2521,15 +2522,14 @@ Send: SIM-RESP-AUTH 232010000000000
 
 To deploy the system, modifications must be done to AP and client.
 Additionally, contract must be made with the MNO service
-provider producing AuthN [while AuthZ is already taken care of with
-the cloud service contract.]  [TBD, leave cloud out ]
+provider producing AuthN 
 For AP, modifications are minimal. Needed settings are
 WPA2 mode to WPA2-enterprise, IP-address of RADIUS server providing 
 AA, and corresponding shared secret.
-For client, Wi-Fi profile must be added: used management SSID,
+For  the client, a Wi-Fi profile must be added: used management SSID,
 protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
-Smartphone can have different profiles, also with under same SSID, but
-then user need to choose manually, which profile he wanted to use.
+Smartphone can have different profiles, also with a same SSID, but
+then the user needs to choose manually, which profile is wanted.
 
 \section{Costs for end-user}
 \label{sec-6-2}
@@ -2584,8 +2584,8 @@ iOS from version 5.x.\cite{sim-support}.
 
 Generally, to support EAP-SIM  with open source software in 
 smartphone is \emph{pcsc-lite} for accessing SIM card, \emph{wpa\_supplicant} for
-WPA2 client, and possible used connection manager (\emph{connman} or
-\emph{wicd}). This is in line, what was done in testing without \emph{pcsc-lite},
+WPA2 client, and possible used connection manager (\emph{connman},
+\emph{wicd}, or \emph{Network Manager} in Linux). This is in line, what was done in testing without \emph{pcsc-lite},
 because a file backend was used instead of a SIM card.
 
 
@@ -3049,16 +3049,22 @@ were thought to be sufficient.
 
 
 
-The environment described is a modern complex home network management, whose configuration
-management tools are external in the cloud. The trust issues between the
-home network and the cloud are searched through a 
-smartphone located in the intersection of both domains.
+The environment described in thesis is a modern complex home network
+management, whose configuration management tools are external in the
+cloud.  The thesis concentrates on three main parts:
+the smartphone driven authorization and authentication at home
+networks, the connection to the existing change management model from
+external cloud service, and the security issues in that environment.
+The trust issues between the home network and the cloud are searched
+through a smartphone located in the intersection of both domains.
 
-Home Network's future needs, for example  the change of the authority and the
-delegation of the configuration management have been described. 
-To solve those, a method to approve changes indirectly has been proposed. The approval
-follows from a successful authentication and authorization with EAP-SIM
-method by the smartphone and that also sets a trust anchor to the smartphone.
+Home Network's future needs, for example the change of the authority
+and the delegation of the configuration management have been
+described.
+To solve those needs, a method to approve changes indirectly has been
+proposed. The approval follows from a successful authentication and
+authorization with EAP-SIM method by the smartphone and that also sets
+a trust anchor to the smartphone.
 
 
 For testing purposes, a real working EAP-SIM test bed with fake credentials and
@@ -3076,14 +3082,14 @@ Complexity of existing models in interworking was one motivator for
 the work. The research  on the subject did reveal some reasons 
 for the complexity, that are difficult to overcome with simplistic 
 methods without losing security at the same time.
+The implementation misses the application for the smartphone.
 There are some obvious weaknesses in the proposed solution such as 
 missing continuous authorization after management access has been granted.
  Possible usage must carefully check the safety limits even when RADIUS protocol still
 has strengths in security today. The thesis only scratches bootstrapping
 problems and the issues in bootstrapping the home network need to be studied
 more thoroughly. One could use tickets in Kerberized way as in GBA.
-The application must be written for the smartphone before the solution
-can be implemented.
+
 
 Still, with the proposed technique, the provisioning of users at home networks would
 minimize, as the users already own a smartphone, which is an identifiable object. As
