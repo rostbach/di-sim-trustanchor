@@ -1,4 +1,4 @@
-% Created 2015-10-04 su 21:50
+% Created 2015-10-08 to 13:49
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1574,6 +1574,7 @@ to management network.
 To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
 and thus RADIUS server.
 
+
 Because it was not found, how Authenticator could use the same network
 with both WPA2-PSK (or open access) and WPA2-Enterprise, a
 separate SSID for management network was technically needed.
@@ -1726,7 +1727,7 @@ information of allowed users from Cloud (BaaS [def.])
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{scenI.png}
-\caption{\label{fig:scenario-I}Scenario I with 3 separate domains: Cloud, MNO and home net}
+\caption{\label{fig:scenario-I}Scenario I with 3 separate domains: Cloud, MNO and home network}
 \end{figure}
 
 
@@ -1844,7 +1845,7 @@ store for caching admin IMSIs (roles).
 \end{figure}
 
 In the scenario V, nothing has been configured. The bootstrapping
-has not been done yet. The scenario can be any of I-IV, but no trust nor roles are present in CPE.
+has not been done, so the scenario can be any of I-IV, but CPE has neither trust nor roles.
 
 
 
@@ -1880,6 +1881,15 @@ services, here the management network.
 \section{Ways to modify RADIUS messages [perhaps to security integrity chapter?]}
 \label{sec-4-7}
 \label{sec:radius-macs}
+
+Our model would greatly benefit from modification of RADIUS messages in proxying
+RADIUS, if that is possible as was mentioned in Section \ref{sec:radius}(RADIUS).
+The modification is needed, when the proxying RADIUS wants to combine AuthN message
+from MNO to AuthZ decision received from elsewhere.
+
+
+
+
 RADIUS messages are not protected from eavesdropping, but they have
 integrity fields to notice if tampering has been done.  
 Integrity field is called a Message Authenticator.
@@ -1916,11 +1926,6 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 \end{center}
 
 
-
-Our model would greatly benefit from modification of RADIUS messages in proxying
-RADIUS, if that is possible as was mentioned in Section \ref{sec:radius}(RADIUS).
-The modification is needed when proxying RADIUS combines AuthN message
-from MNO to AuthZ decision received from elsewhere.
 
 
 
@@ -2109,7 +2114,7 @@ In the end, the changes in the management network were possible from the local c
 
 
 
-Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint and a laptop.
+Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint, and a laptop.
 The smartphones were Nokia E70-1 and Nokia E90, both capable of
 EAP-SIM on factory software.
 
@@ -2181,30 +2186,27 @@ are in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
 
 After some modifications, runs got to the authentication phase.
 Naturally, challenge-responses did not work because SIM secrets were
-not known. Nevertheless, both card succeeded to the point, where MNO's
-message would be verified with the SIM card.
+not known. Nevertheless, both cards succeeded to the point, where MNO's
+message would had next been verified with the SIM card.
 
-Unregistered phone could not use SIM card while 
-registered phone verifies and notices, that operator is not right, 
-and therefor ends conversation as should be regarding protocol-document [EAP-SIM].
+Unregistered phone could not use SIM card at all, while 
+registered phone verified and noticed, that operator is not right, 
+and therefore ended the conversation as it should regarding
+protocol-document \texttt{ rfc4186}.
 
-At this point, physical phones were put aside and simulated SIM-card
-was used.
+At this point, physical phones were put aside and a simulated SIM-card
+environment was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software claimed that ``Hostapd will send SIM/AKA authentication
-queries over a UNIX domain socket to an external \verb~hlr_auc_gw~ program.''
+queries over a UNIX domain socket to an external 
+\emph{hlr\_auc\_gw} program.''
 Appendix \ref{app:hlraucgw}   shows that traffic.
 
-Tests were run with a shell program (Appendix \ref{app:fulleap}), which
-started the needed programs. It also recorded the used configurations, logs,
+Tests were run from a shell program (Appendix \ref{app:fulleap}), which
+started the needed programs. That also recorded used configurations, logs,
 and traffic captures for later analysis.
 
-[Analyze configuration script here]
-
-scan\_ssid: When set to 1, this will add the SSID to the probe
-requests, in case you're connecting to a hidden network or an AP with
-\uline{multiple} SSIDs.
 
 \section{Disconnecting the local controller and offline changes}
 \label{sec-5-3}
@@ -2272,15 +2274,14 @@ To defeat internet connection problem, a simple solution would be
 sending a one-time password to a predefined phone via an SMS, but what
 entity would then check that and who would be authorized to send that message?
 Authenticating server, which has no internet connection should 
-have a way to check that one-time password received via SMS is correct.
+have a predefined way to check that one-time password received via SMS is correct.
 
-Solution for this could be a co-existing WWW-based authentication, that
-is, a web-page where credentials could be entered.
-Software could run in AP. As AP is programmable with luci, it could
-run direct  a WWW-access portal. Alternatively, existing programs such
-as \emph{ChilliSpot} or \emph{NoCatAuth} would work as WWW-portals.
-For that to success, the WWW-portal would need also an open access without
-802.1X port based access control.
+Solution for this could be still using a co-existing captive-portal
+for emergency access. As AP is programmable with luci, it could
+provide this portal.  Alternatively, existing programs such as
+\emph{ChilliSpot} or \emph{NoCatAuth} could be used as WWW-portals.  For that to
+success, the WWW-portal would also need an open access without 802.1X
+port based access control.
 
 
 \section{Network traces (EAP, SIM, AUTH traffic analysis)}
@@ -2301,8 +2302,8 @@ thoroughly.
 
 First capture shows tries with normal phones, when SIM secrets were
 not known. Even when authentication conversation would not complete fully,
-Authenticator still receives a claim of identification from the
-smartphone. Yet, as there is no AuthN, no proof of identity exists in
+Authenticator still received a claim of identification from the
+smartphone. Yet, as there is no AuthN, no proof of identity existed in
 that case.
 
 [Missing trace, demonstrating the use of unknown SIM physical phone,
@@ -2311,7 +2312,12 @@ include first traces: TBD.]
 
 Packet capture of successful SIM-authentication with corresponding
 parts of logs at WPA2-Supplicant, RADIUS server and packet captures
-802.1X, RADIUS and HLR is shown below.
+802.1X, RADIUS and HLR is shown below.  Communicating partners are
+denoted as AP-802.1x and smartphone for Wi-Fi traffic, AP-wired and
+RADIUS-srv for RADIUS on wire, and finally RADIUS-hlr and HLR-AuC gw
+for simulated MAPS/SS7 traffic.
+The capture has been done at the WPA2-supplicants end.
+
 
 
 \scriptsize
@@ -2327,8 +2333,8 @@ No. & Time & Src & Dest & Proto & Len & Info\\
 134 & 15:57:17.9924 & smartphone & AP-802.1x & EAP & 70 & Response, GSM Subscriber Identity\\
  &  &  &  &  &  & Modules EAP (EAP-SIM)\\
 135 & 15:57:17.9945 & AP-wired & RADIUS-srv & RADIUS & 272 & Access-Request(1) (id=163, l=230)\\
- &  & RADIUS-srv & HLR-AuC gw & socket &  & SIM-REQ-AUTH <IMSI> 3\\
- &  & HLR-AuC gw & RADIUS-srv & socket &  & SIM-RESP-AUTH <IMSI>, 3 triplets\\
+ &  & RADIUS-hlr & HLR-AuC gw & socket &  & SIM-REQ-AUTH <IMSI> 3\\
+ &  & HLR-AuC gw & RADIUS-hlr & socket &  & SIM-RESP-AUTH <IMSI>, 3 triplets\\
 136 & 15:57:18.0024 & RADIUS-srv & AP-wired & RADIUS & 256 & Access-Challenge(11) (id=163, l=214)\\
 137 & 15:57:18.0040 & AP-802.1x & smartphone & EAP & 186 & Request, GSM Subscriber Identity\\
  &  &  &  &  &  & Modules EAP (EAP-SIM)\\
@@ -2336,7 +2342,7 @@ No. & Time & Src & Dest & Proto & Len & Info\\
  &  &  &  &  &  & Modules EAP (EAP-SIM)\\
 139 & 15:57:18.0063 & AP-wired & RADIUS-srv & RADIUS & 248 & Access-Request(1) (id=164, l=206)\\
 140 & 15:57:18.0065 & RADIUS-srv & AP-wired & RADIUS & 202 & Access-Accept(2) (id=164, l=160)\\
-141 & 15:57:18.0110 & AP-802.1x & smartphone & EAP & 22 & Success\\
+141 & 15:57:18.0110 & AP-802.1x & smartphone & EAP & 22 & \em{Success}\\
 142 & 15:57:18.0112 & AP-802.1x & smartphone & EAPOL & 135 & Key (Message 1 of 4)\\
 143 & 15:57:18.0123 & smartphone & AP-802.1x & EAPOL & 135 & Key (Message 2 of 4)\\
 144 & 15:57:18.0161 & AP-802.1x & smartphone & EAPOL & 169 & Key (Message 3 of 4)\\
@@ -2349,11 +2355,8 @@ No. & Time & Src & Dest & Proto & Len & Info\\
 
 
 IMSI is sent first time already on the second EAP message from 
-WPA2-Supplicant to AP (see Figure\ref{fig:eap-sim-radius}, message 2.)
-Same in tests made 150123-155714, source:
-testit/demot/ap-s150123-155714/
-Capture is from the the smartphone client, when it has received the first EAP
-packet from AP.
+WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
+This part is presented in detail next.
 
 \scriptsize
 \begin{verbatim}
@@ -2407,13 +2410,16 @@ EAP client's identity is transformed at Authenticator
 EAPOL format  into RADIUS format and
 sent to RADIUS server. The capture between AP and Radius server is
 shown
-in Figure\ref{fig:capture}.
+in Figure\texttt{fig:capture}.
+
 
 
 
 
 \scriptsize
-\begin{verbatim}
+\begin{program}
+\caption{EAP client's identity transformed}
+\label{fig:capture}
 Frame3: 15:57:17.988616
 Radius Protocol
     Code: Access-Request (1)
@@ -2438,9 +2444,9 @@ Radius Protocol
                 Length: 21
                 Type: Identity (1)
                 Identity: 1232010000000000
-        AVP: l=18 t=Message-Authenticator(80): 04ea7e507d72bdb1acf515ef19ac9527
-\end{verbatim}
+        AVP: l=18 t=Message-Authenticator(80):04ea7e507d72bdb1acf515ef19ac9527
 \normalsize
+
 Here interesting part is the first RADIUS AVP.
 While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
 field, it was surprising that RADIUS has captured that field and 
@@ -2877,6 +2883,9 @@ If the client knows beforehand the name of SSID
 (and maybe also checks AP's MAC), then AP does not reveal any information,
 before the client has tried to connect to it and that would minimize
 the time window for attacks.
+
+
+
 
  Hiding can also have privacy enhancing effects.
 While Wi-Fi client's normal action is to probe for SSIDs of lately visited
