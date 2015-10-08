@@ -2071,7 +2071,7 @@ there. An example of change is a modification in network segment,
 which does not change network topology of other domains.
 # Cha 4. last Section, "Lastly, variation of design is, that not
 # every change needs to go
-It is not yet known for the author which type represents the majority of
+It is still unclear to the author which type represents the majority of
 change requests.
 # Q:Why enumeration needed? Why smaller set? 
 # A: To explicit tell, when authorization is needed and rest can be
