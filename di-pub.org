@@ -2186,9 +2186,6 @@ Finally this thesis takes the bootstrapped environment as given, i.e.,
 the initial configuration has already been set.
 
 
-
-
-
 # * Theory Chapter: Managing Home Networks 
 
 
