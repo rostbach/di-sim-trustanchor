@@ -2189,154 +2189,6 @@ the initial configuration has already been set.
 # * Theory Chapter: Managing Home Networks 
 
 
-** Access methods to Wi-Fi with only one SSID
-
-[To be cleaned!]
-
-Today, home networks usually consists of only one Service Set ID (SSID)
-Wi-Fi network though it is possible to define multiple SSIDs in
-an access point. Having multiple SSIDs enables us to dedicate one of them
-to management network. 
-To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
-and thus RADIUS server.
-
-
-# Two SSID, rationale
-Because it was not found, how Authenticator could use the same network SSID
-with both WPA2-PSK (or open access) and WPA2-Enterprise, a
-separate SSID for management network was technically needed.
-# , while only management network is
-# configured to use external RADIUS.  
-# it was either WPA2-Enterprise (RADIUS) or WPA2-PSK for access.
-If Wi-Fi was limited to only have one SSID, then we would need another
-way to indicate that user wants to get in to management net. 
-Separation can be done at client's  end by using different realm on
-AuthN identity. It also can be done by adding hints to destination to
-username (username decoration) or using different authentication
-methods. 
-
-Management through Wi-Fi has then three
-options.  Without RADIUS, access is open and the only checking comes
-from the used management protocol and its access control.
-With WPA2-PSK,  no EAP or RADIUS is used as a backend.  With EAP,
-RADIUS server is the one who returns correct values to get in the
-management network in ACCESS-ACCEPT message as was
-explained in Section [[sec:chosendesign]].
-
-Even, when AP has authenticated the smart home user, managed devices still 
-can have their own access control.
-# [2015/05/11 NEW! This must be told everywhere, devices still have
-# their own access control! 
-They may consult local RADIUS server, whether there is currently
-authenticated smartphone present which indicated presence of 
-allowed changes. Then every change coming from management network
-would be allowed. Smartphone also could know the login credentials to
-devices through earlier received configuration information and use
-them after getting into management network.
-
-# If they were integrated to same RADIUS server as used earlier, then
-# smart AA could be consulted from Or do they use RADIUS? Now RADIUS
-# is used to carry on EAP auth to get into access
-# network, why not use it also to get in device? ]
-
-# - Normal access, no RADIUS or just plain backend.
-# - WPA2 Access, shared secret, no RADIUS 
-# - PEAP access with whatever EAP outer-inner encapsulation
-# encapsulation was explained on xxx
-
-# *** Multirealms [ delete]
-  
-# [delete next paragraph] With multiple realms AuthN would be made on
-# normal channel, if user represents himself as =username=, or
-# =user@home= but on EAP-SIM, if user gives IMSI type id.  
-#  [I think
-# that authentication method is chosen before user have possibility to
-# give any credentials.]  But remembering users choice of method,
-# Authenticator can act differently: Either using external RADIUS or
-# authenticating direct the user. One good usability issue is the one
-# click access, where user clicks to choose Network and does not give
-# any extra credentials, because SIM automatically feeds them. Still
-# remember Swisscom [mentioned elsewhere].
-
- 
-# *** HS2.0 [If deleted, remember also from conclusion! TBD]
-
-It is well known, that the usability of the captive-portal Wi-Fi
- network is burden, because a user needs to go through 
-a web portal logins with a username-password authentication 
-procedure and those are different for every network.
-Additionally, the user is often required to switch 
-between cellular and  Wi-Fi data access when they change their location.
-
-An industry brand  Hotspot 2.0 addresses those issues and tries to
-simplify user's switch between Wi-Fi and cellular to automate the
-roaming experience.  Hotspot 2.0 is driven by two alliances:
-Wi-Fi Alliance has a certification program (Passpoint)
-for Hotspot 2.0 compatible devices, while the Wireless Broadband
-Alliance has a program called Next Generation Hotspot (NGH), targeted
-to user experience\cite{wba-ngh}.
-
-Hotspot 2.0
-enables the selection of the network based on the ownership, services and
-performance characteristics /before/ a Wi-Fi client has been associated
-to a Hotspot 2.0 AP. The technology is built on IEEE 802.11u specification. 
-In its second release version the operator would
-have control on which network the smartphone would carry its data
-transmission. 
-
-#  and 802.11u specs. HS2.0 WPA2 has portions for this,
-# maybe disabled.  
-
-
-# One could guess, that Ownership, service and performance
-# characteristics
-# include 
-# - ownership :: costs, money 
-# - services :: sound, video, IP, printing, etc.
-# - performance ::  speed and latency
-
-
-In 2012 Ericsson's technology journal ``Review'', their 
-HS2.0 goals were to make roaming between Wi-Fi and 3GPP/LTE networks smoother
-and to bring operator-grade to Wi-Fi by putting control in operators side. More
-than offloading traffic, plans were to bring other services also to Wi-Fi.\cite{er-seamless}
-
-In Hotspot 2.0, the cellular network may signal the smartphone and
-propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
-access point and continue using Wi-Fi instead of cellular network.
-In a similar way, the smartphone could receive signal from the cellular
-network, when controlling changes need to be approved. The smartphone
-would then make some tests to proof the local AP's suitability for 
-HS2.0. If those succeed, then the cellular network would continue and order the 
-phone to make a switch to the Wi-Fi network, authenticate there with 
-EAP-SIM (or -AKA) and transfer services to Wi-Fi not forgetting 
-the transfer in to the management network. This scenario could be 
-studied further.
-
-
-If HS2.0 was used here to automate the part, where
-the smartphone needs to change from cellular to local
-management Wi-Fi network and back, we probably would
-miss the user decision part. The user, not the operator,
- must give his consent to access the management network, so
-it is important, that the switch would not be automatic or forced.
-In a way, operator aided roaming between Wi-Fi and cellular
-works in a different level than here described trust-anchor method.
-The operator is interested on the access network, while
-we are interested in the side result of getting access, namely 
-the achieved trusted access point.
-
-
-# [TO DO: check 802.11u features and what they add to 802.11-2007]
-#  + interworking with ext networks
-# + hs2.0 is extended 802.11u
-# + next generation Hotspot 
-# + advertises external networks /before/ association. no need to
-#   select Service Set ID (SSID)
-# - access network type, roaming consortium support and venue information
-# - some QoS mapping
-# - emergency services (not in HS2.0)
-
 
 ** Scenarios for choosing the AuthZ location
 :PROPERTIES:
@@ -4413,6 +4265,157 @@ large. Additionally lower speed technologies such as cellular modems
 were thought to be sufficient.
 # What prevents us using the SIM?
 # how the Sections below belong to discussion?  
+
+** Access methods to Wi-Fi with only one SSID
+
+
+Today, home networks usually consists of only one Service Set ID (SSID)
+Wi-Fi network though it is possible to define multiple SSIDs in
+an access point. Having multiple SSIDs enables us to dedicate one of them
+to management network. 
+To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
+and thus RADIUS server.
+
+
+# Two SSID, rationale
+Because it was not found, how Authenticator could use the same network SSID
+with both WPA2-PSK (or open access) and WPA2-Enterprise, a
+separate SSID for management network was technically needed.
+# , while only management network is
+# configured to use external RADIUS.  
+# it was either WPA2-Enterprise (RADIUS) or WPA2-PSK for access.
+If Wi-Fi was limited to only have one SSID, then we would need another
+way to indicate that user wants to get in to management net. 
+Separation can be done at client's  end by using different realm on
+AuthN identity. It also can be done by adding hints to destination to
+username (username decoration) or using different authentication
+methods. 
+
+Management through Wi-Fi has then three
+options.  Without RADIUS, access is open and the only checking comes
+from the used management protocol and its access control.
+With WPA2-PSK,  no EAP or RADIUS is used as a backend.  With EAP,
+RADIUS server is the one who returns correct values to get in the
+management network in ACCESS-ACCEPT message as was
+explained in Section [[sec:chosendesign]].
+
+Even, when AP has authenticated the smart home user, managed devices still 
+can have their own access control.
+# [2015/05/11 NEW! This must be told everywhere, devices still have
+# their own access control! 
+They may consult local RADIUS server, whether there is currently
+authenticated smartphone present which indicated presence of 
+allowed changes. Then every change coming from management network
+would be allowed. Smartphone also could know the login credentials to
+devices through earlier received configuration information and use
+them after getting into management network.
+
+# If they were integrated to same RADIUS server as used earlier, then
+# smart AA could be consulted from Or do they use RADIUS? Now RADIUS
+# is used to carry on EAP auth to get into access
+# network, why not use it also to get in device? ]
+
+# - Normal access, no RADIUS or just plain backend.
+# - WPA2 Access, shared secret, no RADIUS 
+# - PEAP access with whatever EAP outer-inner encapsulation
+# encapsulation was explained on xxx
+
+# *** Multirealms [ delete]
+  
+# [delete next paragraph] With multiple realms AuthN would be made on
+# normal channel, if user represents himself as =username=, or
+# =user@home= but on EAP-SIM, if user gives IMSI type id.  
+#  [I think
+# that authentication method is chosen before user have possibility to
+# give any credentials.]  But remembering users choice of method,
+# Authenticator can act differently: Either using external RADIUS or
+# authenticating direct the user. One good usability issue is the one
+# click access, where user clicks to choose Network and does not give
+# any extra credentials, because SIM automatically feeds them. Still
+# remember Swisscom [mentioned elsewhere].
+
+ 
+# *** HS2.0 [If deleted, remember also from conclusion! TBD]
+
+It is well known, that the usability of the captive-portal Wi-Fi
+ network is burden, because a user needs to go through 
+a web portal logins with a username-password authentication 
+procedure and those are different for every network.
+Additionally, the user is often required to switch 
+between cellular and  Wi-Fi data access when they change their location.
+
+An industry brand  Hotspot 2.0 addresses those issues and tries to
+simplify user's switch between Wi-Fi and cellular to automate the
+roaming experience.  Hotspot 2.0 is driven by two alliances:
+Wi-Fi Alliance has a certification program (Passpoint)
+for Hotspot 2.0 compatible devices, while the Wireless Broadband
+Alliance has a program called Next Generation Hotspot (NGH), targeted
+to user experience\cite{wba-ngh}.
+
+Hotspot 2.0
+enables the selection of the network based on the ownership, services and
+performance characteristics /before/ a Wi-Fi client has been associated
+to a Hotspot 2.0 AP. The technology is built on IEEE 802.11u specification. 
+In its second release version the operator would
+have control on which network the smartphone would carry its data
+transmission. 
+
+#  and 802.11u specs. HS2.0 WPA2 has portions for this,
+# maybe disabled.  
+
+
+# One could guess, that Ownership, service and performance
+# characteristics
+# include 
+# - ownership :: costs, money 
+# - services :: sound, video, IP, printing, etc.
+# - performance ::  speed and latency
+
+
+In 2012 Ericsson's technology journal ``Review'', their 
+HS2.0 goals were to make roaming between Wi-Fi and 3GPP/LTE networks smoother
+and to bring operator-grade to Wi-Fi by putting control in operators side. More
+than offloading traffic, plans were to bring other services also to Wi-Fi.\cite{er-seamless}
+
+In Hotspot 2.0, the cellular network may signal the smartphone and
+propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
+access point and continue using Wi-Fi instead of cellular network.
+In a similar way, the smartphone could receive signal from the cellular
+network, when controlling changes need to be approved. The smartphone
+would then make some tests to proof the local AP's suitability for 
+HS2.0. If those succeed, then the cellular network would continue and order the 
+phone to make a switch to the Wi-Fi network, authenticate there with 
+EAP-SIM (or -AKA) and transfer services to Wi-Fi not forgetting 
+the transfer in to the management network. This scenario could be 
+studied further.
+
+
+If HS2.0 was used here to automate the part, where
+the smartphone needs to change from cellular to local
+management Wi-Fi network and back, we probably would
+miss the user decision part. The user, not the operator,
+ must give his consent to access the management network, so
+it is important, that the switch would not be automatic or forced.
+In a way, operator aided roaming between Wi-Fi and cellular
+works in a different level than here described trust-anchor method.
+The operator is interested on the access network, while
+we are interested in the side result of getting access, namely 
+the achieved trusted access point.
+
+
+# [TO DO: check 802.11u features and what they add to 802.11-2007]
+#  + interworking with ext networks
+# + hs2.0 is extended 802.11u
+# + next generation Hotspot 
+# + advertises external networks /before/ association. no need to
+#   select Service Set ID (SSID)
+# - access network type, roaming consortium support and venue information
+# - some QoS mapping
+# - emergency services (not in HS2.0)
+
+
+
+
 
 
 * Conclusion
