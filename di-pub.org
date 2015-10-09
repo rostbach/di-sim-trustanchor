@@ -2195,7 +2195,7 @@ Instead, in our work the Authentication server can be an external
 RADIUS server, but usually the final decision point lies at the
 Authenticator in CPE. Further, in last two planned ways only the
 initial bootstrap as well as change of admin roles and some dangerous
-combination of commands would need AuthN with the smartphone.
+combination of commands would need AA with the smartphone.
 
 
 
