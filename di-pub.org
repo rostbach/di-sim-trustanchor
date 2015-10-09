@@ -3495,7 +3495,8 @@ On the other hand, empty GSM cards for testing can cost as much as
 
 
 ** Platform specific issues
-# : eg memory requirements, hardware requirements, computation requirements
+# : eg memory requirements, hardware requirements, computation
+# requirements, one-sid
 
 For clients, there is no need for public key infrastructure (PKI) 
 unless EAP-PEAP is used. Under PEAP there are either server
