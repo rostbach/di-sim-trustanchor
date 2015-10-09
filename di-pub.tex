@@ -1,4 +1,4 @@
-% Created 2015-10-09 pe 16:18
+% Created 2015-10-09 pe 16:28
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1409,16 +1409,16 @@ cases when the smartphone later would need re-authentication.
 
 
 
-To demonstrate how the model works, we present the case of adding a
-new admin user.
 
-Let's first suppose, for case of simplicity, that the home network has been
-already configured(bootstrapped) and it is functioning properly.  The
-home configuration model has been copied to the cloud.
-When changes are made to the cloud model through authorized cloud
-administrator users (operators), those changes are later also committed
-in to the production in home network. There is no magic here, plain
-configuration change, just this time externally initiated.
+To demonstrate how the model works, we present the case of adding a
+new admin user. Let's first suppose, for case of simplicity, that the
+home network has been already configured(bootstrapped) and it is
+functioning properly.  The home configuration model has been copied to
+the cloud.  When changes are made to the cloud model through
+authorized cloud administrator users (operators), those changes are
+later also committed in to the production in home network. There is no
+magic here, plain configuration change, just this time externally
+initiated.
 
 Now, let's think what happens, when the cloud operator (or owner of
 home network) tries to modify attributes, which give access to a new actor,
@@ -1430,18 +1430,15 @@ which is normal operation, approving would perhaps yet not be
 necessary, but for the second part we need some checking unless our
 trust to cloud operator is ultimate.  
 
-
-
-
 When CPE of home network is about to input configuration changes which
-would change the balance of authors or roles,
-it needs to check that the change is permitted.  Permission 
-needs to be asked from a trusted point, here mobile SIM. Instead of
-that, the CPE checks from its own state database, 
-whether mobile SIM has been given access to management network.
-This thesis
-justifies the management and therefore the changes to be allowed, if
-the smartphone user is currently logged in to the management network.
+would change the balance of authors or roles, it needs to check that
+the change is permitted.  Permission needs to be asked from a trusted
+point, here mobile SIM. Instead of that, the CPE checks from its own
+state database, whether mobile SIM has been given access to management
+network.
+This thesis justifies the management and therefore the changes to be
+allowed, if the smartphone user is currently logged in to the
+management network.
 
 
 It must be noted, that the smartphone can already have an association
@@ -1451,9 +1448,6 @@ network. This implies disconnection from other services using Wi-Fi
 link, because smartphones currently have only one Wi-Fi radio
 available and routing would still prefer Wi-Fi as a default gateway, although
 possible 3G data link still may stay up and operational.
-
-
-
 
 In production, some changes in local controller can be propagated to
 the home network via management network without need for an extra
@@ -1465,17 +1459,16 @@ the requests: those that need approval, or those that may proceed
 without approval. An educated guess is, that every change set needs to
 check the trust anchor's precence.
 
-
-
-Alternative method is that the changes could be marked some way, so that they need
-approving and then there could be a specific change-approval message,
-which must be sent through management network, perhaps including digest
-of change message as a verification.
+Alternative method is that the changes could be marked some way, so
+that they need approving and then there could be a specific
+change-approval message, which must be sent through management
+network, perhaps including digest of change message as a verification.
 Because smartphone is not actively listening the CPE, it cannot input
 those request. There are four planned ways to distribute changes. The
 first uses the smartphone as a direct commander and is the preferred
-method. The second would not involve smartphone at all but depended on earlier set
-trust. The remaining two would depend on more complex setups involving tokens.
+method. The second would not involve smartphone at all but depended on
+earlier set trust. The remaining two would depend on more complex
+setups involving tokens.
 
 
 \begin{enumerate}
@@ -1506,16 +1499,11 @@ drop received changes without forwarding them.
 \end{enumerate}
 
 
-
-
 The smartphone may receive the authentication token with 
 a message explaining what is going to happen in the change.
 As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
 management network where the Authenticator gives access.
-
-
-
 
 
 
@@ -1540,8 +1528,6 @@ initial bootstrap as well as the change of admin roles and some dangerous
 combination of commands would need AA with the smartphone.
 Finally this thesis takes the bootstrapped environment as given, i.e.,
 the initial configuration has already been set.
-
-
 
 \section{Scenarios for choosing the AuthZ location}
 \label{sec-4-4}
@@ -2814,9 +2800,8 @@ directed antenna\cite{SANS-bluetooth-2007}.
 
 
 
-Another problem using in-flight addition of the authorization in RADIUS 
-ACCESS-ACCEPT message(\cite{mail-huhtanen-2014} is mapping of 
-authentication messages of IMSI and TMSI identitys.
+Another problem using in-flight addition of the authorization in RADIUS ACCESS-ACCEPT message
+is mapping of authentication messages of IMSI and TMSI identitys.
 The Authenticator does know the original user and mapping of TMSI to
 IMSI, but needs to get AuthZ information. That can be received from the
 remote operator, which would be easier for the
