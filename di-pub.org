@@ -4258,13 +4258,13 @@ AuthN identity. It also can be done by adding hints to destination to
 username (username decoration) or using different authentication
 methods. 
 
-Management through Wi-Fi has then three
-options.  Without RADIUS, access is open and the only checking comes
-from the used management protocol and its access control.
-With WPA2-PSK,  no EAP or RADIUS is used as a backend.  With EAP,
-RADIUS server is the one who returns correct values to get in the
-management network in ACCESS-ACCEPT message as was
-explained in Section [[sec:chosendesign]].
+# Management through Wi-Fi has then three
+# options.  Without RADIUS, access is open and the only checking comes
+# from the used management protocol and its access control.
+# With WPA2-PSK,  no EAP or RADIUS is used as a backend.  With EAP,
+# RADIUS server is the one who returns correct values to get in the
+# management network in ACCESS-ACCEPT message as was
+# explained in Section [[sec:chosendesign]].
 
 Even, when AP has authenticated the smart home user, managed devices still 
 can have their own access control.
