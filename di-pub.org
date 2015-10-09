@@ -4262,7 +4262,8 @@ rural areas. Technically that was well enough, but demand was not so
 large. Additionally lower speed technologies that were cheaper at that
 time, such as cellular modems were thought to be sufficient, even when
 inferior technically.
-
+It could also be, that market is waiting for future products, and does 
+not want to invest on existing technology, which can be seen ``old''.
 # [compare with future usage, such as embedded SIMs, and past technology 
 # failures WiMax, which had no technical problems, but wifi and good
 # cellular networks overtook it.]
