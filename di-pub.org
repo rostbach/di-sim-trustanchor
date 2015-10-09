@@ -2164,18 +2164,18 @@ management network where the Authenticator gives access.
 # also has the same key in its database and that is used to derive
 # other keys based on input received.]
 
-Using tickets has a connection to earlier homenet studies, such as 
+Using tickets has a connection to earlier homenet studies, such as
 Behringers work-in-progress
-bootstrapping\cite{draft-behringer-bootstrap}.
-Bootstrapping protocols in general are used to bring the first trust anchor in an
-environment and use that anchor to attach other devices to the same trust
-circle. Behringer proposes that AuthN would happen likewise
-first at cloud provider's end but it is done by checking device's Vendor
-certificates. 
-This AuthN would not yet give full AuthZ, but a ticket, with which
-the end device may request for service tickets. That similar to Kerberos, which is based on Needham-Schroeder
-protocol. The device applies with that ticket for access to change
-management service from CPE.
+bootstrapping\cite{draft-behringer-bootstrap}.  Bootstrapping
+protocols in general are used to bring the first trust anchor in an
+environment and use that anchor to attach other devices to the same
+trust circle. Behringer proposes that AuthN would happen likewise
+first at cloud provider's end but it is done by checking device's
+Vendor certificates.  This AuthN would not yet give full AuthZ, but a
+ticket, with which the end device may request for service tickets.
+The device applies with that ticket for access to change management
+service from CPE. That is similar to Kerberos, which is based on
+Needham-Schroeder protocol.
 
  Instead, in our work the Authentication server can be an external
 RADIUS server, but usually the final decision point lies at the
