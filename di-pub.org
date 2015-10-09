@@ -4461,7 +4461,7 @@ networks would minimize with the proposed technique, as the users
 already own a smartphone, which is an identifiable object. As a
 positive side effect, the two-factor AuthN from a hardware based SIM will
 strengthen an existing security.  Finally, the cloud management tools
-will benefit from trust anchor on the smartphone and can be developed
+will benefit from the trust anchor on the smartphone and can be developed
 further to aid in resolving issues in future homes networks.
 
 #+BEGIN_LaTex
