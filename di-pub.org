@@ -4197,11 +4197,10 @@ Re-authentication is used.
 ** Discussion
 
 
-[do not jump in with so short flash messages. This looks like conclusion.] 
+# [do not jump in with so short flash messages. This looks like conclusion.] 
 SIM card of the smartphone, used together with Wi-Fi access to home network 
-verifies change controls. For verification, there are few options presented.
-
-Location of AuthN and AuthZ components may also vary.
+verifies change controls, and for that we have presented some options.
+Location of AuthN and AuthZ components may vary.
 Always in the beginning, AuthN lies outside the home network, but
 later it can use local point. AuthZ may be located more freely.
 # RADIUS protocol is used to open management port. 
