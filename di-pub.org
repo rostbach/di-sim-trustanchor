@@ -2189,7 +2189,7 @@ Using tickets has a connection to earlier studies on homenets.
 In Behringers work-in-progress  bootstrapping\cite{draft-behringer-bootstrap},
 AuthZ happens likewise first at cloud provider's
 end, but after checking device's Vendor certificates, cloud provider
-gives the device a ticket of authorization like in Needham-Schröder
+gives the device a ticket of authorization similar to Needham-Schröder
 based Kerberos implementations. Device presents that ticket to CPE which
 finally can decide, whether it allows change. 
 Instead, here the Authentication server can be external RADIUS server,
