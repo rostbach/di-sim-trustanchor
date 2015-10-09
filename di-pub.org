@@ -3498,24 +3498,13 @@ On the other hand, empty GSM cards for testing can cost as much as
 # : eg memory requirements, hardware requirements, computation
 # requirements, one-sid
 
-For clients, there is no need for public key infrastructure (PKI) 
+For clients, there is no need for public key infrastructure (PKI)
 unless EAP-PEAP is used. Under PEAP there are either server
-certificate or additionally client certificate present.
-# (in WPA2, how wpa-supplicant checks RADIUS server's
-# authenticity?). 
-# Compare algorithms used in EAP-SIM A3/A8 (aka
-#  COMP128 v1,2,3) to those of  TLS computation to RSA, SHA, cite from publication.
-#   Which version was used in demo? V1 has been discontinued since 2002.
-There are smartphones, that do not have EAP-SIM yet available.
-For example support for
-#  Android starts  although 
-# -  Considering WPA2-Supplicant + Hardware access to SIM,
-#    at least few years ago there were not support for Android + SIM
-#   auth cite:android-sim, although
-EAP-SIM (and -AKA) methods starts in Android only from version 4.x and in
-iOS from version 5.x.\cite{sim-support}.
+certificate or additionally client certificate present.  There are
+smartphones, that do not have EAP-SIM yet available.  For example
+support for EAP-SIM (and -AKA) methods starts in Android only from
+version 4.x and in iOS from version 5.x.\cite{sim-support}.
 # http://www.ida.gov.sg/Infocomm-Landscape/Infrastructure/Wireless/Wireless-at-SG/For-Consumer/SIM-based-Connection-Guide
-
 
 Generally, to support EAP-SIM  with open source software in 
 smartphone is /pcsc-lite/ for accessing SIM card, /wpa_supplicant/ for
@@ -3525,14 +3514,13 @@ because a file backend was used instead of a SIM card.
 
 # From t.j.c: (jolla), what is to smartphone Jolla:
 # "Symbian also support EAP-SIM (at least S60r5, tested successfully on 5800 XpressMusic).
-
 # - add pcsc-lite package (needed to access SIM card)
 # - compile wpa_supplicant package with EAP-SIM support (needs pcsc-lite according to doc)
 # - [update connman to handle EAP connections]
 # (Triton (Jan 6 '14))"
 
-# Besides Switzerland (Swisscom), in South Korea every the smartphone operator
-# uses EAP-SIM for their authenticated Wi-Fi connections.
+# Besides Switzerland (Swisscom), in South Korea every smartphone
+# operator uses EAP-SIM for their authenticated Wi-Fi connections.
 # (source t.j.c peremen (Jan 27 '14)"
 
 
