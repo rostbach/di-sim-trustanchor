@@ -4111,9 +4111,9 @@ directed antenna\cite{SANS-bluetooth-2007}.
 # Just remember[from where?], that 
 # Email correspondence (2014/Sep) with Karri Huhtanen  revealed
 # another
-Another problem using in-flight addition of the authorization in RADIUS 
-ACCESS-ACCEPT message(\cite{mail-huhtanen-2014} is mapping of 
-authentication messages of IMSI and TMSI identitys.
+Another problem using in-flight addition of the authorization in RADIUS ACCESS-ACCEPT message
+# (\cite{mail-huhtanen-2014} 
+is mapping of authentication messages of IMSI and TMSI identitys.
 # #+BEGIN_QUOTE
 #  ``It is possible to add authorization message in-flight in to the
 # ACCESS-ACCEPT.
