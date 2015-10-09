@@ -3820,7 +3820,7 @@ light weight. UDP misses reliability that TCP has, and retransmission in UDP is
 tolerable, because the user is ready to wait  several seconds for
 authentication to complete. Today, RADIUS can also run over TCP, which
 has generally more aggressive retransmission
-rate.\cite[Section 2.2.1]{rfc5080}. 
+rate\cite[Section 2.2.1]{rfc5080}. 
 # explain this. 
 On the other hand, adding an
 alternative UDP RADIUS server can answer faster than waiting for TCP's reliable delivery.
