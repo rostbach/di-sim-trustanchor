@@ -4209,49 +4209,48 @@ later it can use local point. AuthZ, on the otherhand, may be located more freel
 # allowing user into service, which is the traditional way to use
 # RADIUS, but opening access to separated network. 
 802.1X standard activates the management port and
-RADIUS directs smartphone traffic into own virtual LAN segment (VLAN),
-where management of the home network devices is allowed.
+RADIUS transfers the orders for correct AA.
+Smartphone traffic is directed in to an own virtual LAN segment (VLAN),
+which is dedicated to the home network devices management.
 # Similar use case is traditional separate user to own network segment
 # based on RADIUS message.
 # is used to open management port. 
 # It is not used to traditional user authentication.
 # lets configuration changes be 
-Thesis thus uses old, yet simple method for problem risen in modern environment home network.
+Thesis thus uses an old, yet simple method for problem risen in a modern environment home network.
 
-Disconnection from normal (Wi-Fi) access network happens, before phone can get
-into management network. It means, that all stateful network
+Disconnection from a normal (Wi-Fi) access network happens, before phone can get
+into the management network. It means, that all stateful network
 connections using Wi-Fi will close at that point. Smartphones do not
 have multiple wireless connections, but mobile data connections may 
 stay up. Even then, the default routing in the smartphone may change.
 
-In the theory chapter it was questioned whether proxying RADIUS server
-can read and alter messages on their way or is the messaging secured
+In the theory chapter it was questioned whether the proxying RADIUS server
+can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
-Later it was learned, that message's integrity is indeed protected, if
+Later it was learned, that the message's integrity is indeed protected, if
 only in a very light way, but not encrypted.
 
 
-EAP does by definition only AuthN part although successful
-authentication often precedes ad hoc AuthZ if nothing is demanded.
+EAP does by definition only AuthN part although the successful
+authentication often precedes ad hoc AuthZ if nothing else is demanded.
 EAP-SIM handles this part, but for AuthZ something else is needed
-and so some methods has been presented to add right role to 
-authenticated identity.
+and so some methods have been presented to add the right role to 
+the authenticated identity.
 
-There are many attributes in RADIUS vocabulary, which could be 
+There are many attributes in RADIUS's vocabulary, which could be 
 used to carry extra information for provisioning in AuthZ phase. Exactly which
 of them are used remains to implementer's  decision.
 # jump to term "provisioning"
 Term /provisioning/ can mean adding users to home network with correct
-attributes including authentication method and identification.
-The binding between user and SIM card is pre-existing.
+attributes such as authentication method and identification.
+Provisioning a user to a SIM card is also provisioning and that is 
+pre-existing here.
 It also can mean identifying users later and giving them 
 dynamically more attributes and access rights.
 # - [Each component does only limited part of the job.]
 # - [It is difficult to have control over one's own SIM card ]
 
-[compare with future usage, such as embedded SIMs, and past technology 
-failures WiMax, which had no technical problems, but wifi and good
-cellular networks overtook it.]
 # One question rose during this work is to find 
 
 Although the core technology has been there for more than ten years and
@@ -4260,8 +4259,13 @@ there can be many reasons why SIM-based methods are not in wider use.
 One could guess, that they are similar that happened for example with 
 WiMax technology, which was used for broadband network connections to
 rural areas. Technically that was well enough, but demand was not so
-large. Additionally lower speed technologies such as cellular modems
-were thought to be sufficient.
+large. Additionally lower speed technologies that were cheaper at that
+time, such as cellular modems were thought to be sufficient.
+
+[compare with future usage, such as embedded SIMs, and past technology 
+failures WiMax, which had no technical problems, but wifi and good
+cellular networks overtook it.]
+
 # What prevents us using the SIM?
 # how the Sections below belong to discussion?  
 
