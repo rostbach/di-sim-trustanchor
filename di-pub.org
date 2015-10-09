@@ -3524,15 +3524,14 @@ because a file backend was used instead of a SIM card.
 # (source t.j.c peremen (Jan 27 '14)"
 
 
-If OpenWRT platform  is used for CPE, the memory size (32MB) restricts some
-use.
+If OpenWRT platform is used for CPE, the memory size (32MB) restricts
+some use.
 # - OpenWRT is environment for embedded system.
 #   When software is not fully optimized, memory is one of the limits which come first.
 WPA2 software included in basic OpenWRT installation is small,
 but that does not yet include RADIUS server part or EAP-SIM handling.
 #  is less than 128k, but 
- 
-#   To compile and install RADIUS server package into OpenWRT .   
+ #   To compile and install RADIUS server package into OpenWRT .   
 
 Software has other limitations. Freeradius2 is not yet included  in OpenWRT.
 and if it was, it would also be based heavily on current Perl environment which
