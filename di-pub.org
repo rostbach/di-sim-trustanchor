@@ -2182,7 +2182,8 @@ RADIUS server, but usually the final decision point lies at the
 Authenticator in CPE. Further, in last two planned ways only the
 initial bootstrap as well as the change of admin roles and some dangerous
 combination of commands would need AA with the smartphone.
-
+Finally this thesis takes the bootstrapped environment as given, i.e.,
+the initial configuration has already been set.
 
 
 
