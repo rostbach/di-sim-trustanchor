@@ -4292,14 +4292,13 @@ them after getting into management network.
 # [delete next paragraph] With multiple realms AuthN would be made on
 # normal channel, if user represents himself as =username=, or
 # =user@home= but on EAP-SIM, if user gives IMSI type id.  
-#  [I think
-# that authentication method is chosen before user have possibility to
-# give any credentials.]  But remembering users choice of method,
-# Authenticator can act differently: Either using external RADIUS or
-# authenticating direct the user. One good usability issue is the one
-# click access, where user clicks to choose Network and does not give
-# any extra credentials, because SIM automatically feeds them. Still
-# remember Swisscom [mentioned elsewhere].
+#  [I think that authentication method is chosen before user have
+#  possibility to give any credentials.]  But remembering users choice
+#  of method, Authenticator can act differently: Either using external
+#  RADIUS or authenticating direct the user. One good usability issue
+#  is the one click access, where user clicks to choose Network and
+#  does not give any extra credentials, because SIM automatically
+#  feeds them. Still remember Swisscom [mentioned elsewhere].
 
  
 # *** HS2.0 [If deleted, remember also from conclusion! TBD]
@@ -4343,6 +4342,11 @@ Ericsson's technology journal ``Review'' revealed in 2012 that their
 HS2.0 goal is to make roaming between Wi-Fi and 3GPP/LTE networks smoother
 and to bring operator-grade to Wi-Fi by putting control in operators side. More
 than offloading traffic, plans were to bring other services also to Wi-Fi.\cite{er-seamless}
+Developing HS2.0 a few steps further would add mobile traffic and internet
+off-loading on Wi-Fi networks and that would be the missing link in
+interworking those two worlds.
+
+
 
 In Hotspot 2.0, the cellular network may signal the smartphone and
 propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
@@ -4368,6 +4372,7 @@ works in a different level than here described trust-anchor method.
 The operator is interested on the access network, while
 we are interested in the side result of getting access, namely 
 the achieved trusted access point.
+
 
 
 # [TO DO: check 802.11u features and what they add to 802.11-2007]
@@ -4453,9 +4458,6 @@ more thoroughly. One could use tickets in Kerberized way as in GBA.
 Still, with the proposed technique, the provisioning of users at home networks would
 minimize, as the users already own a smartphone, which is an identifiable object. As
 a positive side effect, two-factor AuthN strengthens existing security.
-Developing HS2.0 a few steps further would add mobile traffic and internet
-off-loading on Wi-Fi networks and that would be the missing link in
-interworking two worlds.
 
 #+BEGIN_LaTex
 \newpage
