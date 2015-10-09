@@ -4457,13 +4457,12 @@ more thoroughly. One could use tickets in Kerberized way as in GBA.
 # overlaps this.
 
 Still, after those shortcoming the provisioning of users at home
-networks would minimize with the proposed technique,  as the users
+networks would minimize with the proposed technique, as the users
 already own a smartphone, which is an identifiable object. As a
-positive side effect, two-factor AuthN from a hardware based SIM will
-strengthen an existing security.
-Finally, the  cloud management tools can be developed further to enjoy 
-trust anchor on the smartphone and aid in resolving issues in 
-future homes networks.
+positive side effect, the two-factor AuthN from a hardware based SIM will
+strengthen an existing security.  Finally, the cloud management tools
+will benefit from trust anchor on the smartphone and can be developed
+further to aid in resolving issues in future homes networks.
 
 #+BEGIN_LaTex
 \newpage
