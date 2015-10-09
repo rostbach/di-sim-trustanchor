@@ -2153,30 +2153,13 @@ management network where the Authenticator gives access.
 
 
 
-** [Need for Security bootstrapping]  
- [removed, NOT YET trust anchor methods HERE!!! ]
-
-
-
-# Bootstrapping protocols are used to bring the first trust anchor in an
-# environment and use that device to attach other devices to the same trust
-# circle.
-
-#  [Evaluating and comparing bootstrapping methods and authentication.
+# [Evaluating and comparing bootstrapping methods and authentication.
 # Evaluation missing, so comparing difficult too.]
 
-[Description of General Bootstrapping architecture (GBA) vs. yet
-another custom architecture. Maybe parts of architecture
-such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
-What is needed? How GBA could be used here?]
-# Any other authentication methods such as CallerID
-# as a primary identification (bootstrap) and later as identification?]*
-
-The boot
-
-[Restricting AA only to few spaces.]
-
-[ sync. part to misc Section ?]
+# [Description of General Bootstrapping architecture (GBA) vs. yet
+# another custom architecture. Maybe parts of architecture
+# such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
+# What is needed? How GBA could be used here?]
 
 # [SIM card's anatomy: it has private key, MNO
 # also has the same key in its database and that is used to derive
@@ -2191,11 +2174,18 @@ authorization similar to Kerberos, which is based on Needham-Schroeder
 protocol. Device presents that ticket to CPE which finally can
 decide, whether it allows change.  
 
+
+
 Instead, in our work the Authentication server can be an external
 RADIUS server, but usually the final decision point lies at the
 Authenticator in CPE. Further, in last two planned ways only the
 initial bootstrap as well as change of admin roles and some dangerous
 combination of commands would need AA with the smartphone.
+
+
+Bootstrapping protocols in general are used to bring the first trust anchor in an
+environment and use that device to attach other devices to the same trust
+circle.
 
 
 
