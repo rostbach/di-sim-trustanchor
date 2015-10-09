@@ -2144,7 +2144,6 @@ trust. The remaining two would depend on more complex setups involving tokens.
 # case of authentication, messages are sent both to smartphone via radio
 # channel [BaaS provides that?] and to CPE via normal IP messaging.
 The smartphone may receive the authentication token with 
-# (not authorization, but)
 a message explaining what is going to happen in the change.
 As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
@@ -2165,27 +2164,27 @@ management network where the Authenticator gives access.
 # also has the same key in its database and that is used to derive
 # other keys based on input received.]
 
-Using tickets has a connection to earlier studies on homenets.  In
+Using tickets has a connection to earlier homenet studies, such as 
 Behringers work-in-progress
-bootstrapping\cite{draft-behringer-bootstrap}, AuthZ happens likewise
-first at cloud provider's end, but after checking device's Vendor
-certificates, cloud provider gives the device a ticket of
-authorization similar to Kerberos, which is based on Needham-Schroeder
-protocol. Device presents that ticket to CPE which finally can
-decide, whether it allows change.  
+bootstrapping\cite{draft-behringer-bootstrap}.
+Bootstrapping protocols in general are used to bring the first trust anchor in an
+environment and use that anchor to attach other devices to the same trust
+circle. Behringer proposes that AuthN would happen likewise
+first at cloud provider's end but it is done by checking device's Vendor
+certificates. 
 
+This AuthN does not yet give AuthZ, but a ticket, with
+the end device may request for service tickets. That similar to Kerberos, which is based on Needham-Schroeder
+protocol. Device applies with that ticket for access to change
+management service from CPE.
 
-
-Instead, in our work the Authentication server can be an external
+ Instead, in our work the Authentication server can be an external
 RADIUS server, but usually the final decision point lies at the
 Authenticator in CPE. Further, in last two planned ways only the
 initial bootstrap as well as change of admin roles and some dangerous
 combination of commands would need AA with the smartphone.
 
 
-Bootstrapping protocols in general are used to bring the first trust anchor in an
-environment and use that anchor to attach other devices to the same trust
-circle.
 
 
 
