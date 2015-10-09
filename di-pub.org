@@ -1116,13 +1116,13 @@ over signaling system (SS7) used in cellular networks, on the right.
 
 
 #+begin_src ditaa :file eap-sim-bird.png :cmdline -E -r -s 4
-Smartphone    Authenticator (AP)     Authentication server    MNO(HLR_AuC) 
-    |             |                        |                        |
-    |             |                        |                        |
-    |    EAP      |      RADIUS (EAP)      |     MAP/SS7            |
-    +<----------->+<---------------------->+<---------------------->+
-    |             |                        |                        |             
-    |             |                        |                        |
+Smartphone    Authenticator (AP)     Authentication server     MNO(HLR_AuC) 
+    |                |                        |                      |
+    |                |                        |                      |
+    |       EAP      |      RADIUS (EAP)      |       MAP/SS7        |
+    +<-------------->+<---------------------->+<-------------------->+
+    |                |                        |                      |             
+    |                |                        |                      |
 #+end_src
 #+CAPTION: Bird's-eye view to EAP-SIM components
 #+NAME:   fig:eap-sim-bird
@@ -1865,10 +1865,11 @@ implemented. Disconnection issues are explained in Section
 <<sec:chosendesign>>
 
 # trust and thesis main point
-The phone brings trust to the home network by completing full EAP-SIM AuthN through
-the local Authenticator. SIM's identity is verified by HLR AuC at the phone
-operator's end. The verification leaves a trail on the local Authenticator and
-opens a trust channel for a limited period of time for changes from the phone.
+The phone brings trust to the home network by completing full EAP-SIM
+AA through the local Authenticator. SIM's identity is verified by HLR
+AuC at the phone operator's end and AuthZ added to it later. The
+verification leaves a trail on the local Authenticator and opens a
+trust channel for a limited period of time for changes from the phone.
 [This was the most important paragraph of whole work. Thanks for
 reading it.]
 
@@ -1920,12 +1921,9 @@ Google's BeyondCorp\cite{2014-beyondcorp},
 where traffic always travels through Access Control Engine
 and is suspected as being external, even when it originates from
 inside networks. 
-# That model is also called 
-# de-perimeterization, while 
 # it plays no role, where traffic comes,  from inside or outside 
 # organization, it is always checked and authenticated.
 # [;login; 2014 Dec. Vol. 39, No. 6(2014), pp. 6-11].
-
 
 
 # (includes trust bind, which is also described on next Chapter, Section AuthZ with trust anchor...)
@@ -2047,16 +2045,30 @@ trust to cloud operator is ultimate.
 
 # to be needed for AA.
 When CPE of home network is about to input configuration changes which
-would change balance of authors or roles (if role-based authorization
-in use), it needs to check that it is permitted.  Permission would 
-need to be asked from a trusted point, here mobile SIM. Instead of
+would change the balance of authors or roles,
+# (if role-based authorization in use), 
+it needs to check that the change is permitted.  Permission 
+needs to be asked from a trusted point, here mobile SIM. Instead of
 that, the CPE checks from its own state database, 
 whether mobile SIM has been given access to management network.
 # [How is this PULL asking triggered? In reality it is not asked, but
 # changes are accepted from admin roles. How admin role is checked?]
-CPE wants to verify, if the changes are authorized. This thesis
+This thesis
 justifies the management and therefore the changes to be allowed, if
 the smartphone user is currently logged in to the management network.
+
+
+It must be noted, that the smartphone can already have an association
+to a non-management network with Wi-Fi. If that is the case, it first
+must disconnect from there and then connect, i.e., do the  AA in the correct management
+network. This implies disconnection from other services using Wi-Fi
+link, because smartphones currently have only one Wi-Fi radio
+available and routing would still prefer Wi-Fi as a default gateway, although
+possible 3G data link still may stay up and operational.
+# It is not tested, whether 3G-data link could be active still at the
+# same time.
+ 
+
 
 # In production, some changes in cloud are propagated to home network via
 # management network without need for extra authentication phase.  
@@ -2069,7 +2081,9 @@ which does not change network topology of other domains.
 # Cha 4. last Section, "Lastly, variation of design is, that not
 # every change needs to go
 It is still unclear to the author which type of changes represents majority of
-the requests.
+the requests: those that need approval, or those that may proceed
+without approval. An educated guess is, that every change set needs to
+check the trust anchor's precence.
 # Q:Why enumeration needed? Why smaller set? 
 # A: To explicit tell, when authorization is needed and rest can be
 # left out. Alternatively, if free changes are only minimal (what are
@@ -2091,31 +2105,33 @@ approving and then there could be a specific change-approval message,
 which must be sent through management network, perhaps including digest
 of change message as a verification.
 Because smartphone is not actively listening the CPE, it cannot input
-those request. There are four planned ways to distribute changes. One
-way would not involve smartphone at all but depended on earlier set
-trust. Second uses the smartphone as a direct commander and two would depend
-on complex setup involving tokens.
+those request. There are four planned ways to distribute changes. The
+first uses the smartphone as a direct commander and is the preferred
+method. The second would not involve smartphone at all but depended on earlier set
+trust. The remaining two would depend on more complex setups involving tokens.
 
-1) Changes are delivered normally from cloud to CPE (CPEs) without
-   interaction from the smartphone. Such changes would not need
-   AA at all or changes include credentials to login to targets.
 
-2) Changes are delivered from cloud to smartphone, which forwards them
+1) Changes are delivered from cloud to smartphone, which forwards them
    to devices located at management net after the
    authentication has succeeded.
 
+2) Changes are delivered normally from cloud to CPE (CPEs) without
+   interaction from the smartphone. Such changes would not need
+   AA at all or changes include credentials to login to targets.
+
+
 3) Changes are delivered from cloud to CPE functioning as a central
    management station without interaction from the smartphone.  Digest
-   of what is going to happen would be sent to smartphone from BaaS
-   over the air (OtA). Smartphone would authenticate in to management
-   network (if not already there) and send through it the digest token
-   it received from cloud as an approval message to central management
-   station inside home network, which then forwards configuration changes
-   to other devices.
+   of what is going to happen would be sent to smartphone from the
+   cloud over the air (OtA). Smartphone would authenticate in to the
+   management network (if not already there) and send through it the
+   digest token it received from the cloud as an approval message to
+   the central management station inside home network, which then
+   forwards the configuration changes to other devices.
 
 4) Variation of number 3 is that if CPE itself is an Authenticator, it
    could proceed on propagating changes when it receives
-   ACCESS-ACCEPT. Otherwise it must stop waiting for phone's AA and
+   ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
    drop received changes without forwarding them.
 
 # see automatic re-login issues
@@ -2134,16 +2150,6 @@ As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
 management network where the Authenticator gives access.
 
-It must be noted, that the smartphone can already have an association
-to a non-management network with Wi-Fi. If that is the case, it first
-must disconnect from there and then connect (i.e. AA) to the correct management
-network. That implies disconnection from other services using Wi-Fi
-link, because smartphones currently have only one Wi-Fi radio
-available and routing would still prefer Wi-Fi as a default gateway, although
-possible 3G data link still may stay up and operational.
-# It is not tested, whether 3G-data link could be active still at the
-# same time.
-# 
 
 
 
@@ -2166,6 +2172,8 @@ What is needed? How GBA could be used here?]
 # Any other authentication methods such as CallerID
 # as a primary identification (bootstrap) and later as identification?]*
 
+The boot
+
 [Restricting AA only to few spaces.]
 In our model, only initial bootstrap needs the authentication with
 smartphone as well as change of admin roles and some dangerous
@@ -2177,10 +2185,11 @@ combination of commands.
 # also has the same key in its database and that is used to derive
 # other keys based on input received.]
 
+Using tickets has a connection to earlier studies on homenets. 
 In Behringers work-in-progress  bootstrapping\cite{draft-behringer-bootstrap},
 AuthZ happens likewise first at cloud provider's
 end, but after checking device's Vendor certificates, cloud provider
-gives device a ticket of authorization like in Needham-Schröder or
+gives the device a ticket of authorization like in Needham-Schröder or
 Kerberos implementations. Device presents that ticket to CPE which
 finally can decide, whether it allows change. 
 Instead, here the Authentication server can be external RADIUS server,
