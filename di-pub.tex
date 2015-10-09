@@ -1,4 +1,4 @@
-% Created 2015-10-08 to 18:25
+% Created 2015-10-09 pe 16:18
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1304,10 +1304,11 @@ implemented. Disconnection issues are explained in Section
 \label{sec-4-2}
 \label{sec:chosendesign}
 
-The phone brings trust to the home network by completing full EAP-SIM AuthN through
-the local Authenticator. SIM's identity is verified by HLR AuC at the phone
-operator's end. The verification leaves a trail on the local Authenticator and
-opens a trust channel for a limited period of time for changes from the phone.
+The phone brings trust to the home network by completing full EAP-SIM
+AA through the local Authenticator. SIM's identity is verified by HLR
+AuC at the phone operator's end and AuthZ added to it later. The
+verification leaves a trail on the local Authenticator and opens a
+trust channel for a limited period of time for changes from the phone.
 [This was the most important paragraph of whole work. Thanks for
 reading it.]
 
@@ -1349,7 +1350,6 @@ Google's BeyondCorp\cite{2014-beyondcorp},
 where traffic always travels through Access Control Engine
 and is suspected as being external, even when it originates from
 inside networks. 
-
 
 
 
@@ -1434,14 +1434,25 @@ trust to cloud operator is ultimate.
 
 
 When CPE of home network is about to input configuration changes which
-would change balance of authors or roles (if role-based authorization
-in use), it needs to check that it is permitted.  Permission would 
-need to be asked from a trusted point, here mobile SIM. Instead of
+would change the balance of authors or roles,
+it needs to check that the change is permitted.  Permission 
+needs to be asked from a trusted point, here mobile SIM. Instead of
 that, the CPE checks from its own state database, 
 whether mobile SIM has been given access to management network.
-CPE wants to verify, if the changes are authorized. This thesis
+This thesis
 justifies the management and therefore the changes to be allowed, if
 the smartphone user is currently logged in to the management network.
+
+
+It must be noted, that the smartphone can already have an association
+to a non-management network with Wi-Fi. If that is the case, it first
+must disconnect from there and then connect, i.e., do the  AA in the correct management
+network. This implies disconnection from other services using Wi-Fi
+link, because smartphones currently have only one Wi-Fi radio
+available and routing would still prefer Wi-Fi as a default gateway, although
+possible 3G data link still may stay up and operational.
+
+
 
 
 In production, some changes in local controller can be propagated to
@@ -1450,7 +1461,9 @@ authentication phase.  The local controller does not interact
 there. An example of change is a modification in network segment,
 which does not change network topology of other domains.
 It is still unclear to the author which type of changes represents majority of
-the requests.
+the requests: those that need approval, or those that may proceed
+without approval. An educated guess is, that every change set needs to
+check the trust anchor's precence.
 
 
 
@@ -1459,32 +1472,36 @@ approving and then there could be a specific change-approval message,
 which must be sent through management network, perhaps including digest
 of change message as a verification.
 Because smartphone is not actively listening the CPE, it cannot input
-those request. There are four planned ways to distribute changes. One
-way would not involve smartphone at all but depended on earlier set
-trust. Second uses the smartphone as a direct commander and two would depend
-on complex setup involving tokens.
+those request. There are four planned ways to distribute changes. The
+first uses the smartphone as a direct commander and is the preferred
+method. The second would not involve smartphone at all but depended on earlier set
+trust. The remaining two would depend on more complex setups involving tokens.
+
 
 \begin{enumerate}
-\item Changes are delivered normally from cloud to CPE (CPEs) without
-interaction from the smartphone. Such changes would not need
-AA at all or changes include credentials to login to targets.
-
 \item Changes are delivered from cloud to smartphone, which forwards them
 to devices located at management net after the
 authentication has succeeded.
 
+\item Changes are delivered normally from cloud to CPE (CPEs) without
+interaction from the smartphone. Such changes would not need
+AA at all or changes include credentials to login to targets.
+\end{enumerate}
+
+
+\begin{enumerate}
 \item Changes are delivered from cloud to CPE functioning as a central
 management station without interaction from the smartphone.  Digest
-of what is going to happen would be sent to smartphone from BaaS
-over the air (OtA). Smartphone would authenticate in to management
-network (if not already there) and send through it the digest token
-it received from cloud as an approval message to central management
-station inside home network, which then forwards configuration changes
-to other devices.
+of what is going to happen would be sent to smartphone from the
+cloud over the air (OtA). Smartphone would authenticate in to the
+management network (if not already there) and send through it the
+digest token it received from the cloud as an approval message to
+the central management station inside home network, which then
+forwards the configuration changes to other devices.
 
 \item Variation of number 3 is that if CPE itself is an Authenticator, it
 could proceed on propagating changes when it receives
-ACCESS-ACCEPT. Otherwise it must stop waiting for phone's AA and
+ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
 drop received changes without forwarding them.
 \end{enumerate}
 
@@ -1497,153 +1514,37 @@ As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
 management network where the Authenticator gives access.
 
-It must be noted, that the smartphone can already have an association
-to a non-management network with Wi-Fi. If that is the case, it first
-must disconnect from there and then connect (i.e. AA) to the correct management
-network. That implies disconnection from other services using Wi-Fi
-link, because smartphones currently have only one Wi-Fi radio
-available and routing would still prefer Wi-Fi as a default gateway, although
-possible 3G data link still may stay up and operational.
-
-
-
-\section{[Need for Security bootstrapping]}
-\label{sec-4-4}
-[removed, NOT YET trust anchor methods HERE!!! ]
-
-
-
-
-
-[Description of General Bootstrapping architecture (GBA) vs. yet
-another custom architecture. Maybe parts of architecture
-such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
-What is needed? How GBA could be used here?]
-
-[Restricting AA only to few spaces.]
-In our model, only initial bootstrap needs the authentication with
-smartphone as well as change of admin roles and some dangerous
-combination of commands.
-
-[ sync. part to misc Section ?]
-
-
-In Behringers work-in-progress  bootstrapping\cite{draft-behringer-bootstrap},
-AuthZ happens likewise first at cloud provider's
-end, but after checking device's Vendor certificates, cloud provider
-gives device a ticket of authorization like in Needham-Schröder or
-Kerberos implementations. Device presents that ticket to CPE which
-finally can decide, whether it allows change. 
-Instead, here the Authentication server can be external RADIUS server,
-but usually the final decision point lies at the Authenticator in CPE.
-
-
-\section{Access methods to Wi-Fi with only one SSID}
-\label{sec-4-5}
-
-[To be cleaned!]
-
-Today, home networks usually consists of only one Service Set ID (SSID)
-Wi-Fi network though it is possible to define multiple SSIDs in
-an access point. Having multiple SSIDs enables us to dedicate one of them
-to management network. 
-To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
-and thus RADIUS server.
-
-
-Because it was not found, how Authenticator could use the same network SSID
-with both WPA2-PSK (or open access) and WPA2-Enterprise, a
-separate SSID for management network was technically needed.
-If Wi-Fi was limited to only have one SSID, then we would need another
-way to indicate that user wants to get in to management net. 
-Separation can be done at client's  end by using different realm on
-AuthN identity. It also can be done by adding hints to destination to
-username (username decoration) or using different authentication
-methods. 
-
-Management through Wi-Fi has then three
-options.  Without RADIUS, access is open and the only checking comes
-from the used management protocol and its access control.
-With WPA2-PSK,  no EAP or RADIUS is used as a backend.  With EAP,
-RADIUS server is the one who returns correct values to get in the
-management network in ACCESS-ACCEPT message as was
-explained in Section \ref{sec:chosendesign}.
-
-Even, when AP has authenticated the smart home user, managed devices still 
-can have their own access control.
-They may consult local RADIUS server, whether there is currently
-authenticated smartphone present which indicated presence of 
-allowed changes. Then every change coming from management network
-would be allowed. Smartphone also could know the login credentials to
-devices through earlier received configuration information and use
-them after getting into management network.
 
 
 
 
 
 
+Using tickets has a connection to earlier homenet studies, such as
+Behringers work-in-progress
+bootstrapping\cite{draft-behringer-bootstrap}.  Bootstrapping
+protocols in general are used to bring the first trust anchor in an
+environment and use that anchor to attach other devices to the same
+trust circle. Behringer proposes that AuthN would happen likewise
+first at cloud provider's end but it is done by checking device's
+Vendor certificates.  This AuthN would not yet give full AuthZ, but a
+ticket, with which the end device may request for service tickets.
+The device applies with that ticket for access to change management
+service from CPE. That is similar to Kerberos, which is based on
+Needham-Schroeder protocol.
 
-It is well known, that the usability of the captive-portal Wi-Fi
- network is burden, because a user needs to go through 
-a web portal logins with a username-password authentication 
-procedure and those are different for every network.
-Additionally, the user is often required to switch 
-between cellular and  Wi-Fi data access when they change their location.
+In our work, the Authentication server can be an external
+RADIUS server, but usually the final decision point lies at the
+Authenticator in CPE. Further, in last two planned ways only the
+initial bootstrap as well as the change of admin roles and some dangerous
+combination of commands would need AA with the smartphone.
+Finally this thesis takes the bootstrapped environment as given, i.e.,
+the initial configuration has already been set.
 
-An industry brand  Hotspot 2.0 addresses those issues and tries to
-simplify user's switch between Wi-Fi and cellular to automate the
-roaming experience.  Hotspot 2.0 is driven by two alliances:
-Wi-Fi Alliance has a certification program (Passpoint)
-for Hotspot 2.0 compatible devices, while the Wireless Broadband
-Alliance has a program called Next Generation Hotspot (NGH), targeted
-to user experience\cite{wba-ngh}.
-
-Hotspot 2.0
-enables the selection of the network based on the ownership, services and
-performance characteristics \emph{before} a Wi-Fi client has been associated
-to a Hotspot 2.0 AP. The technology is built on IEEE 802.11u specification. 
-In its second release version the operator would
-have control on which network the smartphone would carry its data
-transmission. 
-
-
-
-
-
-In 2012 Ericsson's technology journal ``Review'', their 
-HS2.0 goals were to make roaming between Wi-Fi and 3GPP/LTE networks smoother
-and to bring operator-grade to Wi-Fi by putting control in operators side. More
-than offloading traffic, plans were to bring other services also to Wi-Fi.\cite{er-seamless}
-
-In Hotspot 2.0, the cellular network may signal the smartphone and
-propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
-access point and continue using Wi-Fi instead of cellular network.
-In a similar way, the smartphone could receive signal from the cellular
-network, when controlling changes need to be approved. The smartphone
-would then make some tests to proof the local AP's suitability for 
-HS2.0. If those succeed, then the cellular network would continue and order the 
-phone to make a switch to the Wi-Fi network, authenticate there with 
-EAP-SIM (or -AKA) and transfer services to Wi-Fi not forgetting 
-the transfer in to the management network. This scenario could be 
-studied further.
-
-
-If HS2.0 was used here to automate the part, where
-the smartphone needs to change from cellular to local
-management Wi-Fi network and back, we probably would
-miss the user decision part. The user, not the operator,
- must give his consent to access the management network, so
-it is important, that the switch would not be automatic or forced.
-In a way, operator aided roaming between Wi-Fi and cellular
-works in a different level than here described trust-anchor method.
-The operator is interested on the access network, while
-we are interested in the side result of getting access, namely 
-the achieved trusted access point.
 
 
 \section{Scenarios for choosing the AuthZ location}
-\label{sec-4-6}
+\label{sec-4-4}
 
 
 The AA components and the Authenticators can appear in 
@@ -1826,7 +1727,7 @@ has not been done, so the scenario can be any of I-IV, but CPE has neither trust
 
 
 \subsection{discussion about change management models, simplificated model and further variations}
-\label{sec-4-6-1}
+\label{sec-4-4-1}
 [ variation for sending changes direct to CPE]
 
 The simple way to propagate changes is to make them come from the phone,
@@ -1855,7 +1756,7 @@ token with a validity time and has to present that when accessing
 services, here the management network. 
 
 \section{Ways to modify RADIUS messages [perhaps to security integrity chapter?]}
-\label{sec-4-7}
+\label{sec-4-5}
 \label{sec:radius-macs}
 
 Our model would greatly benefit from modification of RADIUS messages in proxying
@@ -1938,7 +1839,7 @@ detection tool\cite[p.2]{rfc6151}.
 
 
 \section{Similarities with Lock-and-Key method}
-\label{sec-4-8}
+\label{sec-4-6}
 The method is very similar to the concept used on routers to dynamically enable
 access to certain parts of network by first letting the user to log in
 to the router. If the access succeeds, the router dynamically adds
@@ -2023,7 +1924,7 @@ proxy)
 request is correct
 \end{enumerate}
 \section{Summary of the chosen solution}
-\label{sec-4-9}
+\label{sec-4-7}
 
 [wrap up of solution]
 
@@ -2941,49 +2842,46 @@ Re-authentication is used.
 \label{sec-6-5}
 
 
-[do not jump in with so short flash messages. This looks like conclusion.] 
 SIM card of the smartphone, used together with Wi-Fi access to home network 
-verifies change controls. For verification, there are few options presented.
-
-Location of AuthN and AuthZ components may also vary.
+verifies change controls, and for that we have presented some options.
+Location of AuthN and AuthZ components may vary depending on state of process.
 Always in the beginning, AuthN lies outside the home network, but
-later it can use local point. AuthZ may be located more freely.
+later it can use local point. AuthZ, on the otherhand, may be located more freely.
 802.1X standard activates the management port and
-RADIUS directs smartphone traffic into own virtual LAN segment (VLAN),
-where management of the home network devices is allowed.
-Thesis thus uses old, yet simple method for problem risen in modern environment home network.
+RADIUS transfers the orders for correct AA.
+Smartphone traffic is directed in to an own virtual LAN segment (VLAN),
+which is dedicated to the home network devices management.
+Thesis thus uses an old, yet simple method for problem risen in a modern environment home network.
 
-Disconnection from normal (Wi-Fi) access network happens, before phone can get
-into management network. It means, that all stateful network
+Disconnection from a normal (Wi-Fi) access network happens, before phone can get
+into the management network. It means, that all stateful network
 connections using Wi-Fi will close at that point. Smartphones do not
 have multiple wireless connections, but mobile data connections may 
 stay up. Even then, the default routing in the smartphone may change.
 
-In the theory chapter it was questioned whether proxying RADIUS server
-can read and alter messages on their way or is the messaging secured
+In the theory chapter it was questioned whether the proxying RADIUS server
+can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
-Later it was learned, that message's integrity is indeed protected, if
+Later it was learned, that the message's integrity is indeed protected, if
 only in a very light way, but not encrypted.
 
 
-EAP does by definition only AuthN part although successful
-authentication often precedes ad hoc AuthZ if nothing is demanded.
+EAP does by definition only AuthN part although the successful
+authentication often precedes ad hoc AuthZ if nothing else is demanded.
 EAP-SIM handles this part, but for AuthZ something else is needed
-and so some methods has been presented to add right role to 
-authenticated identity.
+and so some methods have been presented to add the right role to 
+the authenticated identity.
 
-There are many attributes in RADIUS vocabulary, which could be 
+There are many attributes in RADIUS's vocabulary, which could be 
 used to carry extra information for provisioning in AuthZ phase. Exactly which
 of them are used remains to implementer's  decision.
 Term \emph{provisioning} can mean adding users to home network with correct
-attributes including authentication method and identification.
-The binding between user and SIM card is pre-existing.
+attributes such as authentication method and identification.
+Provisioning a user to a SIM card is also provisioning and that is 
+pre-existing here.
 It also can mean identifying users later and giving them 
 dynamically more attributes and access rights.
 
-[compare with future usage, such as embedded SIMs, and past technology 
-failures WiMax, which had no technical problems, but wifi and good
-cellular networks overtook it.]
 
 Although the core technology has been there for more than ten years and
 the hardware and the applications mostly support it, 
@@ -2991,8 +2889,117 @@ there can be many reasons why SIM-based methods are not in wider use.
 One could guess, that they are similar that happened for example with 
 WiMax technology, which was used for broadband network connections to
 rural areas. Technically that was well enough, but demand was not so
-large. Additionally lower speed technologies such as cellular modems
-were thought to be sufficient.
+large. Additionally lower speed technologies that were cheaper at that
+time, such as cellular modems were thought to be sufficient, even when
+inferior technically.
+It could also be, that market is waiting for future products, and does 
+not want to invest on existing technology, which can be seen ``old''.
+
+\section{Access methods to Wi-Fi with only one SSID}
+\label{sec-6-6}
+
+
+Today, home networks usually consists of only one Service Set ID (SSID)
+Wi-Fi network though it is possible to define multiple SSIDs in
+an access point. Having multiple SSIDs enables us to dedicate one of them
+to management network. 
+To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
+and thus RADIUS server.
+
+
+Because it was not found, how Authenticator could use the same network SSID
+with both WPA2-PSK (or open access) and WPA2-Enterprise, a
+separate SSID for management network was technically needed.
+If Wi-Fi was limited to only have one SSID, then we would need another
+way to indicate that user wants to get in to management net. 
+Separation can be done at client's  end by using different realm on
+AuthN identity. It also can be done by adding hints to destination to
+username (username decoration) or using different authentication
+methods. 
+
+Management through Wi-Fi has then three
+options.  Without RADIUS, access is open and the only checking comes
+from the used management protocol and its access control.
+With WPA2-PSK,  no EAP or RADIUS is used as a backend.  With EAP,
+RADIUS server is the one who returns correct values to get in the
+management network in ACCESS-ACCEPT message as was
+explained in Section \ref{sec:chosendesign}.
+
+Even, when AP has authenticated the smart home user, managed devices still 
+can have their own access control.
+They may consult local RADIUS server, whether there is currently
+authenticated smartphone present which indicated presence of 
+allowed changes. Then every change coming from management network
+would be allowed. Smartphone also could know the login credentials to
+devices through earlier received configuration information and use
+them after getting into management network.
+
+
+
+
+
+
+
+It is well known, that the usability of the captive-portal Wi-Fi
+ network is burden, because a user needs to go through 
+a web portal logins with a username-password authentication 
+procedure and those are different for every network.
+Additionally, the user is often required to switch 
+between cellular and  Wi-Fi data access when they change their location.
+
+An industry brand  Hotspot 2.0 addresses those issues and tries to
+simplify user's switch between Wi-Fi and cellular to automate the
+roaming experience.  Hotspot 2.0 is driven by two alliances:
+Wi-Fi Alliance has a certification program (Passpoint)
+for Hotspot 2.0 compatible devices, while the Wireless Broadband
+Alliance has a program called Next Generation Hotspot (NGH), targeted
+to user experience\cite{wba-ngh}.
+
+Hotspot 2.0
+enables the selection of the network based on the ownership, services and
+performance characteristics \emph{before} a Wi-Fi client has been associated
+to a Hotspot 2.0 AP. The technology is built on IEEE 802.11u specification. 
+In its second release version the operator would
+have control on which network the smartphone would carry its data
+transmission. 
+
+
+
+
+
+In 2012 Ericsson's technology journal ``Review'', their 
+HS2.0 goals were to make roaming between Wi-Fi and 3GPP/LTE networks smoother
+and to bring operator-grade to Wi-Fi by putting control in operators side. More
+than offloading traffic, plans were to bring other services also to Wi-Fi.\cite{er-seamless}
+
+In Hotspot 2.0, the cellular network may signal the smartphone and
+propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
+access point and continue using Wi-Fi instead of cellular network.
+In a similar way, the smartphone could receive signal from the cellular
+network, when controlling changes need to be approved. The smartphone
+would then make some tests to proof the local AP's suitability for 
+HS2.0. If those succeed, then the cellular network would continue and order the 
+phone to make a switch to the Wi-Fi network, authenticate there with 
+EAP-SIM (or -AKA) and transfer services to Wi-Fi not forgetting 
+the transfer in to the management network. This scenario could be 
+studied further.
+
+
+If HS2.0 was used here to automate the part, where
+the smartphone needs to change from cellular to local
+management Wi-Fi network and back, we probably would
+miss the user decision part. The user, not the operator,
+ must give his consent to access the management network, so
+it is important, that the switch would not be automatic or forced.
+In a way, operator aided roaming between Wi-Fi and cellular
+works in a different level than here described trust-anchor method.
+The operator is interested on the access network, while
+we are interested in the side result of getting access, namely 
+the achieved trusted access point.
+
+
+
+
 
 
 \chapter{Conclusion}
