@@ -2177,7 +2177,7 @@ The device applies with that ticket for access to change management
 service from CPE. That is similar to Kerberos, which is based on
 Needham-Schroeder protocol.
 
- Instead, in our work the Authentication server can be an external
+In our work, the Authentication server can be an external
 RADIUS server, but usually the final decision point lies at the
 Authenticator in CPE. Further, in last two planned ways only the
 initial bootstrap as well as change of admin roles and some dangerous
