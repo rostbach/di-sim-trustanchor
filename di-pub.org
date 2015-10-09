@@ -4260,11 +4260,12 @@ One could guess, that they are similar that happened for example with
 WiMax technology, which was used for broadband network connections to
 rural areas. Technically that was well enough, but demand was not so
 large. Additionally lower speed technologies that were cheaper at that
-time, such as cellular modems were thought to be sufficient.
+time, such as cellular modems were thought to be sufficient, even when
+inferior technically.
 
-[compare with future usage, such as embedded SIMs, and past technology 
-failures WiMax, which had no technical problems, but wifi and good
-cellular networks overtook it.]
+# [compare with future usage, such as embedded SIMs, and past technology 
+# failures WiMax, which had no technical problems, but wifi and good
+# cellular networks overtook it.]
 
 # What prevents us using the SIM?
 # how the Sections below belong to discussion?  
