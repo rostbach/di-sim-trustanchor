@@ -2018,16 +2018,17 @@ cases when the smartphone later would need re-authentication.
 #       Message must belong to configuration and can be example a digested signature.
 #    3. FULL: changes may come only from MGMT net.
 
-To demonstrate how the model works, we present the case of adding a
-new admin user.
 
-Let's first suppose, for case of simplicity, that the home network has been
-already configured(bootstrapped) and it is functioning properly.  The
-home configuration model has been copied to the cloud.
-When changes are made to the cloud model through authorized cloud
-administrator users (operators), those changes are later also committed
-in to the production in home network. There is no magic here, plain
-configuration change, just this time externally initiated.
+# move this below bootstrapped
+To demonstrate how the model works, we present the case of adding a
+new admin user. Let's first suppose, for case of simplicity, that the
+home network has been already configured(bootstrapped) and it is
+functioning properly.  The home configuration model has been copied to
+the cloud.  When changes are made to the cloud model through
+authorized cloud administrator users (operators), those changes are
+later also committed in to the production in home network. There is no
+magic here, plain configuration change, just this time externally
+initiated.
 
 Now, let's think what happens, when the cloud operator (or owner of
 home network) tries to modify attributes, which give access to a new actor,
@@ -2038,24 +2039,19 @@ to have access to that segment and only to that. For the first part,
 which is normal operation, approving would perhaps yet not be
 necessary, but for the second part we need some checking unless our
 trust to cloud operator is ultimate.  
-# [FOR approval needs, discuss this with the team.]
-
-
-
 
 # to be needed for AA.
 When CPE of home network is about to input configuration changes which
-would change the balance of authors or roles,
-# (if role-based authorization in use), 
-it needs to check that the change is permitted.  Permission 
-needs to be asked from a trusted point, here mobile SIM. Instead of
-that, the CPE checks from its own state database, 
-whether mobile SIM has been given access to management network.
+would change the balance of authors or roles, it needs to check that
+the change is permitted.  Permission needs to be asked from a trusted
+point, here mobile SIM. Instead of that, the CPE checks from its own
+state database, whether mobile SIM has been given access to management
+network.
 # [How is this PULL asking triggered? In reality it is not asked, but
 # changes are accepted from admin roles. How admin role is checked?]
-This thesis
-justifies the management and therefore the changes to be allowed, if
-the smartphone user is currently logged in to the management network.
+This thesis justifies the management and therefore the changes to be
+allowed, if the smartphone user is currently logged in to the
+management network.
 
 
 It must be noted, that the smartphone can already have an association
@@ -2068,11 +2064,6 @@ possible 3G data link still may stay up and operational.
 # It is not tested, whether 3G-data link could be active still at the
 # same time.
  
-
-
-# In production, some changes in cloud are propagated to home network via
-# management network without need for extra authentication phase.  
-
 In production, some changes in local controller can be propagated to
 the home network via management network without need for an extra
 authentication phase.  The local controller does not interact
@@ -2098,17 +2089,16 @@ check the trust anchor's precence.
 # - enumeration ::  complete, ordered listing of all the items in a
 #  collection.
 
-
-
-Alternative method is that the changes could be marked some way, so that they need
-approving and then there could be a specific change-approval message,
-which must be sent through management network, perhaps including digest
-of change message as a verification.
+Alternative method is that the changes could be marked some way, so
+that they need approving and then there could be a specific
+change-approval message, which must be sent through management
+network, perhaps including digest of change message as a verification.
 Because smartphone is not actively listening the CPE, it cannot input
 those request. There are four planned ways to distribute changes. The
 first uses the smartphone as a direct commander and is the preferred
-method. The second would not involve smartphone at all but depended on earlier set
-trust. The remaining two would depend on more complex setups involving tokens.
+method. The second would not involve smartphone at all but depended on
+earlier set trust. The remaining two would depend on more complex
+setups involving tokens.
 
 
 1) Changes are delivered from cloud to smartphone, which forwards them
@@ -2137,20 +2127,11 @@ trust. The remaining two would depend on more complex setups involving tokens.
 # see automatic re-login issues
 #   [this was the question somewhere, ``triggering'']
 
-
-
-# Let's assume, that changes are delivered normally
-# from cloud to CPE direct without interaction from the smartphone. In
-# case of authentication, messages are sent both to smartphone via radio
-# channel [BaaS provides that?] and to CPE via normal IP messaging.
 The smartphone may receive the authentication token with 
 a message explaining what is going to happen in the change.
 As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
 management network where the Authenticator gives access.
-
-
-
 
 # [Evaluating and comparing bootstrapping methods and authentication.
 # Evaluation missing, so comparing difficult too.]
@@ -2184,11 +2165,6 @@ initial bootstrap as well as the change of admin roles and some dangerous
 combination of commands would need AA with the smartphone.
 Finally this thesis takes the bootstrapped environment as given, i.e.,
 the initial configuration has already been set.
-
-
-# * Theory Chapter: Managing Home Networks 
-
-
 
 ** Scenarios for choosing the AuthZ location
 :PROPERTIES:
