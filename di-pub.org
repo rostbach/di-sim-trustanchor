@@ -3401,7 +3401,7 @@ Send: SIM-RESP-AUTH 232010000000000
 
 
 
-** Deployment difficulty 
+** Deployment difficulty and costs
 
 To deploy the system, modifications must be done to AP and client.
 Additionally, contract must be made with the MNO service
@@ -3426,7 +3426,7 @@ then the user needs to choose manually, which profile is wanted.
 # authentication times can give comparison to eduroam or LANGATONWPA2
 # network through some RADIUS proxies in between home organization's RADIUS service.]
 
-** Costs for end-user 
+# ** Costs for end-user 
 # What are the costs per authentication from MNO?
 While no service yet exists from MNOs, we estimate their costs based
 on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
