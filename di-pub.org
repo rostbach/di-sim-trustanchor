@@ -2184,7 +2184,7 @@ combination of commands would need AA with the smartphone.
 
 
 Bootstrapping protocols in general are used to bring the first trust anchor in an
-environment and use that device to attach other devices to the same trust
+environment and use that anchor to attach other devices to the same trust
 circle.
 
 
