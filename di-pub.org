@@ -1496,9 +1496,11 @@ it can present to the wanted service, who verifies the access based
 on the ticket. 
 
 As can be seen, no public key infrastructure (PKI) is used on this.
-If EAP-SIM was applied in such environment, it would be used only once, namely in
-the bootstrapping phase to setup the CA trust anchor. Only after that, 
-can the CA start delivering PKI.
+If EAP-SIM was applied in such environment, it would be used only
+once, namely in the bootstrapping phase to setup the CA trust
+anchor. Only after that, can the CA start delivering PKI. Kerberos
+needs shared keys, and EAP-SIM provides those.
+
 
 
 # IMS multimedia + GBA
