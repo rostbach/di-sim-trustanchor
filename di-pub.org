@@ -1475,7 +1475,7 @@ manufacturer provided device certificates as trust anchor.
 # *** Ticket based, separate authentication and authorization
 
 This model could also be expanded to a full ticket enabled
-Kerberos style network, where time-limited tickets (tokens) for
+Kerberos style authentication network, where time-limited tickets (tokens) for
 both authentication and authorization exist for different services. Trusted
 Third Party authentication center would be setup with the help of MNO.
 # One could also model home network to use separate authentication 
