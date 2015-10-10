@@ -1492,9 +1492,13 @@ give it a time-limited ticket as a proof that the entity has been authenticated.
 When the entity wants to connect to the service, it asks from the central 
 server again for ticket, but this time for the service by presenting
 the authentication ticket. In return it receives a service ticket which
-it can present to the wanted service. 
+it can present to the wanted service, who verifies the access based
+on the ticket. 
+
+As can be seen, no public key infrastructure (PKI) is used on this.
 If EAP-SIM was applied in such environment, it would be used only once, namely in
-the bootstrapping phase to setup the CA trust anchor.  
+the bootstrapping phase to setup the CA trust anchor. Only after that, 
+can the CA start delivering PKI.
 
 
 # IMS multimedia + GBA
