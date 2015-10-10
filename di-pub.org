@@ -1161,7 +1161,7 @@ All EAP-SIM derivatives provide mutual authentication.
 #  using a NONCE value.
 # in message 4, that would not be possible.
 An operator (network) is authenticated with help of a nonce,
-which is by definition a value used only once and can
+which is by definition ``number used only once'' and can
 be thought as a client's challenge to the network.
 # The client challenges the operator by sending the nonce 
 # during the start of the negotiation phase in the message
