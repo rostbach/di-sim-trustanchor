@@ -3331,7 +3331,7 @@ Radius Protocol
     Length: 193
     Authenticator: 055ff370b9e793c1e39d375aade8033c
     Attribute Value Pairs
-        AVP: l=18 t=User-Name(1): 1232010000000000
+        AVP: l=18 t=User-Name(1): 1232010000000000 
         AVP: l=7 t=NAS-Identifier(32): musta
         AVP: l=27 t=Called-Station-Id(30): 66-66-B3-8A-68-B3:simtest
         AVP: l=6 t=NAS-Port-Type(61): Wireless-802.11(19)
