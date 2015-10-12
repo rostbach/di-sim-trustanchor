@@ -3316,7 +3316,7 @@ in Capture \ref{fig:capture}.
 # basicstyle=\ttfamily\small,
 #+BEGIN_LaTeX
 
-\lstset{basicstyle=\ttfamily\scriptsize,columns=fixed,emph={"1232010000000000",{=User-Name(1)},Identity},emphstyle=\color{red}\textbf}
+\lstset{basicstyle=\ttfamily\scriptsize,columns=fixed,emph={1232010000000000,{=User-Name(1)},Identity},emphstyle=\color{red}\textbf}
 \renewcommand{\lstlistingname}{Capture}
 \begin{lstlisting}[
   language=Python,
