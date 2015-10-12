@@ -4186,9 +4186,9 @@ transmission.
 # - performance ::  speed and latency
 
 
-Ericsson's technology journal ``Review'' revealed in 2012 that their 
-HS2.0 goal is to make roaming between Wi-Fi and 3GPP/LTE networks smoother
-and to bring operator-grade to Wi-Fi by putting control in operators side. More
+Ericsson's technology journal ``Review'' revealed in 2012, that their 
+HS2.0 goal is ``to make roaming between Wi-Fi and 3GPP/LTE networks smoother
+and to bring operator-grade to Wi-Fi by putting control in operators side''. More
 than offloading traffic, plans were to bring other services also to Wi-Fi.\cite{er-seamless}
 Developing HS2.0 a few steps further would add mobile traffic and internet
 off-loading on Wi-Fi networks and that would be the missing link in
