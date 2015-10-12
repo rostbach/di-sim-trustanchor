@@ -5,7 +5,7 @@
 # # Export ditaa silent, moved to org-custom-inittiin
 # #+org-confirm-babel-evaluate nil
 # It is possible to inhibit the evaluation of code blocks during export. Setting the org-export-babel-evaluate variable to nil will ensure that no code blocks are evaluated as part of the export process
-#+DATE: 8.10.2015 {3.10., 28.9., 2.9., 20.8.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
+#+DATE: 12.10.2015  {8.10.,3.10., 28.9., 2.9., 20.8.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
 #+TITLE:  Smartphone as a trust anchor in home networks
 # en halua orgmoden default title sivua. Siispä tyhjä
 #+LATEX_CLASS: tutclass
@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 
 #+LATEX_HEADER: % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-#+LATEX_HEADER: \thesistype{draft-8.10.2015 Master of Science thesis}
+#+LATEX_HEADER: \thesistype{draft-12.10.2015 Master of Science thesis}
 #+LATEX_HEADER: \examiner{Jarmo Harju}
 #+LATEX_HEADER: \makeatletter
 #+LATEX_HEADER:\usepackage{svg}
@@ -1386,7 +1386,7 @@ firewalls and NATs.
 
 Securing home network and its router's configuration can be done for
 example first limiting access to their administrative ports
-with static or dynamic access control lists (ACL) in
+with static or dynamic extended access control lists (ACL) in
 routers. To get through administrative ports, i.e., to login and make
 configuration changes, there exists either AAA or local authentication.
 # ACLs in turn are defined  are secured from change by AAA. 
@@ -1784,7 +1784,7 @@ SIM card can also benefit from electronic signatures.
 European Telecommunications Standards Institute (ETSI) has defined a
 standard for mobile signature services (MSS) in ETSI TS 102 204.
 MNOs in Finland have diverse implementations for this. The universal 
-service is called ``Mobiilivarmenne``, but MNO Sonera's brand for it
+service is called ``Mobiilivarmenne'', but MNO Sonera's brand for it
 is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
 # No references (Open) available 
 #
@@ -1987,7 +1987,7 @@ the parts of the management network and is authenticated strong.  User
 management is outsourced to MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
-located on diverse place, as can be seen in Section [[sec:scenarios]].
+located on diverse place, as can be seen in Section [[#sec:scenarios]].
 # ### 
 
 # explain provisioning? 20150702
@@ -2002,177 +2002,9 @@ the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
 
 
-** Change management possibilities [TBD already above, FIX THIS section]
+# ** Change management possibilities [TBD already above, FIX THIS section]
 
-# Wanted: 
-#  + separate MGMT net exists
-#  + SIM authentication to MGMT net is proven
-# - changes are authorized if they come from MGMT net
-# - log-out from MGMT net
-# - (spare connection, if internet link down)
-# - (fast-reauth, without MNO)
-
-# Implications are, that when someone has access to MGMT channel,
-# everything is permitted. No security limiting as default 
-# [Basically 2. and 3. is like traditional corporate network with firewall.]
-
-# a. AuthN is proven
-# b. AuthZ decision has challenges
-# c. Change approving has three cases:
-#     1. Changes are allowed, when port is open
-#    2. Confirmation message from MGMT-net authorizes changes.
-#       Message must belong to configuration and can be example a digested signature.
-#    3. FULL: changes may come only from MGMT net.
-
-
-# move this below bootstrapped
-To demonstrate how the model works, we present the case of adding a
-new admin user. Let's first suppose, for case of simplicity, that the
-home network has been already configured(bootstrapped) and it is
-functioning properly.  The home configuration model has been copied to
-the cloud.  When changes are made to the cloud model through
-authorized cloud administrator users (operators), those changes are
-later also committed in to the production in home network. There is no
-magic here, plain configuration change, just this time externally
-initiated.
-
-Now, let's think what happens, when the cloud operator (or owner of
-home network) tries to modify attributes, which give access to a new actor,
-such as a new operator, who would want to have access to separate
-segments of home network.  First we need to have that segment separation
-change approved and after that we want to allow the newcomer account
-to have access to that segment and only to that. For the first part,
-which is normal operation, approving would perhaps yet not be
-necessary, but for the second part we need some checking unless our
-trust to cloud operator is ultimate.  
-
-# to be needed for AA.
-When CPE of home network is about to input configuration changes which
-would change the balance of authors or roles, it needs to check that
-the change is permitted.  Permission needs to be asked from a trusted
-point, here mobile SIM. Instead of that, the CPE checks from its own
-state database, whether mobile SIM has been given access to management
-network.
-# [How is this PULL asking triggered? In reality it is not asked, but
-# changes are accepted from admin roles. How admin role is checked?]
-This thesis justifies the management and therefore the changes to be
-allowed, if the smartphone user is currently logged in to the
-management network.
-
-
-It must be noted, that the smartphone can already have an association
-to a non-management network with Wi-Fi. If that is the case, it first
-must disconnect from there and then connect, i.e., do the  AA in the correct management
-network. This implies disconnection from other services using Wi-Fi
-link, because smartphones currently have only one Wi-Fi radio
-available and routing would still prefer Wi-Fi as a default gateway, although
-possible 3G data link still may stay up and operational.
-# It is not tested, whether 3G-data link could be active still at the
-# same time.
- 
-In production, some changes in local controller can be propagated to
-the home network via management network without need for an extra
-authentication phase.  The local controller does not interact
-there. An example of change is a modification in network segment,
-which does not change network topology of other domains.
-# Cha 4. last Section, "Lastly, variation of design is, that not
-# every change needs to go
-It is still unclear to the author which type of changes represents majority of
-the requests: those that need approval, or those that may proceed
-without approval. An educated guess is, that every change set needs to
-check the trust anchor's precence.
-# Q:Why enumeration needed? Why smaller set? 
-# A: To explicit tell, when authorization is needed and rest can be
-# left out. Alternatively, if free changes are only minimal (what are
-# those? Invent. 
-# I) Case: segment (device) owner makes modification inside own domain. No need
-# to ask authentication from Network owner.
-# II) CasE: segment owner wants to modify network topology change,
-# which would add network segment belonging to someone else.
-# )In our case the latter is smaller.
-# Q: if almost every change needs to have authentication, then 
-# free changes
-# - enumeration ::  complete, ordered listing of all the items in a
-#  collection.
-
-Alternative method is that the changes could be marked some way, so
-that they need approving and then there could be a specific
-change-approval message, which must be sent through management
-network, perhaps including digest of change message as a verification.
-Because smartphone is not actively listening the CPE, it cannot input
-those request. There are four planned ways to distribute changes. The
-first uses the smartphone as a direct commander and is the preferred
-method. The second would not involve smartphone at all but depended on
-earlier set trust. The remaining two would depend on more complex
-setups involving tokens.
-
-
-1) Changes are delivered from cloud to smartphone, which forwards them
-   to devices located at management net after the
-   authentication has succeeded.
-
-2) Changes are delivered normally from cloud to CPE (CPEs) without
-   interaction from the smartphone. Such changes would not need
-   AA at all or changes include credentials to login to targets.
-
-
-3) Changes are delivered from cloud to CPE functioning as a central
-   management station without interaction from the smartphone.  Digest
-   of what is going to happen would be sent to smartphone from the
-   cloud over the air (OtA). Smartphone would authenticate in to the
-   management network (if not already there) and send through it the
-   digest token it received from the cloud as an approval message to
-   the central management station inside home network, which then
-   forwards the configuration changes to other devices.
-
-4) Variation of number 3 is that if CPE itself is an Authenticator, it
-   could proceed on propagating changes when it receives
-   ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
-   drop received changes without forwarding them.
-
-# see automatic re-login issues
-#   [this was the question somewhere, ``triggering'']
-
-The smartphone may receive the authentication token with 
-a message explaining what is going to happen in the change.
-As the CPE and the Authenticator may be separate devices, approving
-happens by sending the token from the smartphone to the CPE via the
-management network where the Authenticator gives access.
-
-# [Evaluating and comparing bootstrapping methods and authentication.
-# Evaluation missing, so comparing difficult too.]
-
-# [Description of General Bootstrapping architecture (GBA) vs. yet
-# another custom architecture. Maybe parts of architecture
-# such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
-# What is needed? How GBA could be used here?]
-
-# [SIM card's anatomy: it has private key, MNO
-# also has the same key in its database and that is used to derive
-# other keys based on input received.]
-
-Using tickets has a connection to earlier homenet studies, such as
-Behringers work-in-progress
-bootstrapping\cite{draft-behringer-bootstrap}.  Bootstrapping
-protocols in general are used to bring the first trust anchor in an
-environment and use that anchor to attach other devices to the same
-trust circle. Behringer proposes that AuthN would happen likewise
-first at cloud provider's end but it is done by checking device's
-Vendor certificates.  This AuthN would not yet give full AuthZ, but a
-ticket, with which the end device may request for service tickets.
-The device applies with that ticket for access to change management
-service from CPE. That is similar to Kerberos, which is based on
-Needham-Schroeder protocol.
-
-In our work, the Authentication server can be an external
-RADIUS server, but usually the final decision point lies at the
-Authenticator in CPE. Further, in last two planned ways only the
-initial bootstrap as well as the change of admin roles and some dangerous
-combination of commands would need AA with the smartphone.
-Finally this thesis takes the bootstrapped environment as given, i.e.,
-the initial configuration has already been set.
-
-** Scenarios for choosing the AuthZ location
+** AA component location scenarios
 :PROPERTIES:
 :CUSTOM_ID: sec:scenarios
 :END: 
@@ -2444,46 +2276,6 @@ has not been done, so the scenario can be any of I-IV, but CPE has neither trust
 
 
 
-*** discussion about change management models, simplificated model and further variations
-[ variation for sending changes direct to CPE]
-
-The simple way to propagate changes is to make them come from the phone,
-where an application takes care of sending them right to the end
-devices. This simplification has pitfalls. If the smartphone continuosly stays
-in the management network, then the changes coming later may not be 
-separated from the currently approved.
-# , i.e., the smart phone now is part of the trusted management network, but 
-If we understood that the change approval belongs to the AA-process, then
-the later approvals would also need an AA.
-
- The smartphone should either be dropped out from the management
-network right away after the changes have been sent or after a
-predefined timeout period during which more changes can be send.
-That period can be called a management session.
-
-The session time and the logout can be handled in AP directly with
-an timer. After a specific time AP simple drops the connection
-(WPA2-session) to the phone. This needs modification to the AP
-software, if there is not already such method.
-Other solution would be for AP to listen for a command from an external
-AuthZ server, where similar timer would trigger a notification event. 
-That also needed modifications;  a listening process to the AP and 
-the timer into the AuthZ server. 
-If GBA architecture was chosen, then the smartphone would hold a 
-token with a validity time and has to present that when accessing
-services, here the management network. 
-# If, on the other hand, the smartphone must send the changes itself, then it
-# would be possible that the access in to the management network has short
-# period of time, when phone holds that status or acceptance token. For
-# example, during 10 minutes the connection would be open for changes. Then
-# changes would not go directly to CPE but instead to X, but they would
-# include some token to phone, which is needed for approval message.
-
-
-
-
-# ** What prevents modifications of RADIUS messages? Securing message
-# integrity.
 
 ** Ways to modify RADIUS messages [perhaps to security integrity chapter?]
 <<sec:radius-macs>>
@@ -2753,6 +2545,227 @@ smartphone  enc.   AP                proxy or provider knows admin
  
 # using trust with phone
 # + tokens
+
+** Alternative management models
+
+
+Alternative method is that the changes could be marked some way, so
+that they need approving and then there could be a specific
+change-approval message, which must be sent through management
+network, perhaps including digest of change message as a verification.
+Because smartphone is not actively listening the CPE, it cannot input
+those request. Together with the chosen method, there are four planned
+methods to distribute changes. The first uses the smartphone as a
+direct commander and is the preferred 
+method. The second would not involve smartphone at all but depended on
+earlier set trust. The remaining two would depend on more complex
+setups involving tokens and are presented here just as ideas.
+
+
+1) Changes are delivered from cloud to smartphone, which forwards them
+   to devices located at management network after the
+   authentication has succeeded. This is here chosen method.
+
+2) Changes are delivered normally from cloud to CPE (CPEs) without
+   interaction from the smartphone. Such changes would not need AA at
+   all or changes include credentials to login to targets. An example
+   of change is a modification in network segment, which does not
+   change network topology of other domains.  It is still unclear to
+   the author which type of changes represents majority of the
+   requests: those that need approval, or those that may proceed
+   without approval. An educated guess is, that every change set needs
+   to check the trust anchor's precence.
+
+# In production, some changes in local controller can be propagated to
+# the home network via management network without need for an extra
+# authentication phase.  The local controller does not interact
+# there. 
+# Cha 4. last Section, "Lastly, variation of design is, that not
+# every change needs to go
+
+
+3) Changes are delivered from cloud to CPE functioning as a central
+   management station without interaction from the smartphone.  Digest
+   of what is going to happen would be sent to smartphone from the
+   cloud over the air (OtA). Smartphone would authenticate in to the
+   management network (if not already there) and send through it the
+   digest token it received from the cloud as an approval message to
+   the central management station inside home network, which then
+   forwards the configuration changes to other devices.
+
+4) Variation of number 3 is that if CPE itself is an Authenticator, it
+   could proceed on propagating changes when it receives
+   ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
+   drop received changes without forwarding them.
+
+# see automatic re-login issues
+#   [this was the question somewhere, ``triggering'']
+
+The smartphone may receive the authentication token with 
+a message explaining what is going to happen in the change.
+As the CPE and the Authenticator may be separate devices, approving
+happens by sending the token from the smartphone to the CPE via the
+management network where the Authenticator gives access.
+
+# [Evaluating and comparing bootstrapping methods and authentication.
+# Evaluation missing, so comparing difficult too.]
+
+# [Description of General Bootstrapping architecture (GBA) vs. yet
+# another custom architecture. Maybe parts of architecture
+# such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
+# What is needed? How GBA could be used here?]
+
+# [SIM card's anatomy: it has private key, MNO
+# also has the same key in its database and that is used to derive
+# other keys based on input received.]
+
+Using tickets has a connection to earlier homenet studies, such as
+Behringers work-in-progress
+bootstrapping\cite{draft-behringer-bootstrap}.  Bootstrapping
+protocols in general are used to bring the first trust anchor in an
+environment and use that anchor to attach other devices to the same
+trust circle. Behringer proposes that AuthN would happen likewise
+first at cloud provider's end but it is done by checking device's
+Vendor certificates.  This AuthN would not yet give full AuthZ, but a
+ticket, with which the end device may request for service tickets.
+The device applies with that ticket for access to change management
+service from CPE. That is similar to Kerberos, which is based on
+Needham-Schroeder protocol. Another bootstrapping architecture is
+defined in GBA (General Bootstrapping Architecture), which 
+benefits from MNO's or any other identity centre's  knowledge of user's SIM.
+
+
+In our work, the Authentication server can be an external
+RADIUS server, but usually the final decision point lies at the
+Authenticator in CPE. Further, in last two planned ways only the
+initial bootstrap as well as the change of admin roles and some dangerous
+combination of commands would need AA with the smartphone.
+Finally this thesis takes the bootstrapped environment as given, i.e.,
+the initial configuration has already been set.
+
+
+# ** What prevents modifications of RADIUS messages? Securing message
+# integrity.
+
+
+
+** Chosen management model
+
+# Wanted: 
+#  + separate MGMT net exists
+#  + SIM authentication to MGMT net is proven
+# - changes are authorized if they come from MGMT net
+# - log-out from MGMT net
+# - (spare connection, if internet link down)
+# - (fast-reauth, without MNO)
+
+# Implications are, that when someone has access to MGMT channel,
+# everything is permitted. No security limiting as default 
+# [Basically 2. and 3. is like traditional corporate network with firewall.]
+
+# a. AuthN is proven
+# b. AuthZ decision has challenges
+# c. Change approving has three cases:
+#     1. Changes are allowed, when port is open
+#    2. Confirmation message from MGMT-net authorizes changes.
+#       Message must belong to configuration and can be example a digested signature.
+#    3. FULL: changes may come only from MGMT net.
+
+
+# move this below bootstrapped
+The simple way to propagate changes from the cloud (or any outside
+source) is to make them come from the trusted place, here the smartphone,
+where an application takes care of sending them right to the end
+devices. This simplification has some pitfalls. If the smartphone continuosly stays
+in the management network, then the changes coming later may not be 
+separated from the currently approved.
+# , i.e., the smart phone now is part of the trusted management network, but 
+If we understood that the change approval belongs to the AA-process, then
+the later approvals would also need an AA.
+
+ The smartphone should either be dropped out from the management
+network right away after the changes have been sent or after a
+predefined timeout period during which more changes can be send.
+That period can be called a management session.
+The session time and the logout can be handled in AP directly with
+an timer. After a specific time AP simple drops the connection
+(WPA2-session) to the phone. This needs modification to the AP
+software, if there is not already such method.
+
+Other solution would be for AP to listen for a command from an external
+AuthZ server, where similar timer would trigger a notification event. 
+That also needed modifications;  a listening process to the AP and 
+the timer into the AuthZ server. 
+If GBA architecture was chosen, then the smartphone would hold a 
+token with a validity time and has to present that when accessing
+services, here the management network. 
+# If, on the other hand, the smartphone must send the changes itself, then it
+# would be possible that the access in to the management network has short
+# period of time, when phone holds that status or acceptance token. For
+# example, during 10 minutes the connection would be open for changes. Then
+# changes would not go directly to CPE but instead to X, but they would
+# include some token to phone, which is needed for approval message.
+
+
+To demonstrate how the model works, we present the case of adding a
+new admin user. Let's first suppose, for case of simplicity, that the
+home network has been already configured(bootstrapped) and it is
+functioning properly.  The home configuration model has been copied to
+the cloud.  When changes are made to the cloud model through
+authorized cloud administrator users (operators), those changes are
+later also committed in to the production in home network. There is no
+magic here, plain configuration change, just this time externally
+initiated.
+
+Now, let's think what happens, when the cloud operator (or owner of
+home network) tries to modify attributes, which give access to a new actor,
+such as a new operator, who would want to have access to separate
+segments of home network.  First we need to have that segment separation
+change approved and after that we want to allow the newcomer account
+to have access to that segment and only to that. For the first part,
+which is normal operation, approving would perhaps yet not be
+necessary, but for the second part we need some checking unless our
+trust to cloud operator is ultimate.  
+
+# to be needed for AA.
+When CPE of home network is about to input configuration changes which
+would change the balance of authors or roles, it needs to check that
+the change is permitted.  Permission needs to be asked from a trusted
+point, here mobile SIM. Instead of that, the CPE checks from its own
+state database, whether mobile SIM has been given access to management
+network.
+# [How is this PULL asking triggered? In reality it is not asked, but
+# changes are accepted from admin roles. How admin role is checked?]
+This thesis justifies the management and therefore the changes to be
+allowed, if the smartphone user is currently logged in to the
+management network.
+
+
+It must be noted, that the smartphone can already have an association
+to a non-management network with Wi-Fi. If that is the case, it first
+must disconnect from there and then connect, i.e., do the  AA in the correct management
+network. This implies disconnection from other services using Wi-Fi
+link, because smartphones currently have only one Wi-Fi radio
+available and routing would still prefer Wi-Fi as a default gateway, although
+possible 3G data link still may stay up and operational.
+# It is not tested, whether 3G-data link could be active still at the
+# same time.
+
+ 
+# Q:Why enumeration needed? Why smaller set? 
+# A: To explicit tell, when authorization is needed and rest can be
+# left out. Alternatively, if free changes are only minimal (what are
+# those? Invent. 
+# I) Case: segment (device) owner makes modification inside own domain. No need
+# to ask authentication from Network owner.
+# II) CasE: segment owner wants to modify network topology change,
+# which would add network segment belonging to someone else.
+# )In our case the latter is smaller.
+# Q: if almost every change needs to have authentication, then 
+# free changes
+# - enumeration ::  complete, ordered listing of all the items in a
+#  collection.
+
 ** Summary of the chosen solution
 
 [wrap up of solution]
@@ -2817,11 +2830,12 @@ with its simulated counterpart. HSS would replace HLR in 3G/UMTS networks.
 #+RESULTS:
 [[file:phone-soft-hlr.png]]
 
-First it was shown how EAP-SIM authentication works in a simulated
+First it is shown how EAP-SIM authentication works in a simulated
 environment.
- Then a use case for disconnection was reported and network traces analyzed.
+ Then a use case for disconnection is reported and network traces are analyzed.
 # for adding an admin user is reported.
-In the end, the changes in the management network were possible from the local controller with  SSH or NETCONF.
+In the end, the changes in the management network are possible from
+the local controller with  command line interface (CLI).
 
 
 
@@ -2842,14 +2856,14 @@ components for WPA2-Supplicant, Wireless Access point (AP),
 HLR-gateway (for GSM networks), and EAP-endpoint with or without
 RADIUS-server. From those, wpa-supplicant, hostapd for wired RADIUS
 server, and hlr_auc_gw programs were used.  
-The versions of HostAP used in the tests were 2.2 and later 2.3,
+The versions of /HostAP/ used in the tests were 2.2 and later 2.3,
 while version 2.4 was published on March 2015 and 2.5 on September 2015. The software
 may be distributed, used, and modified under the terms of BSD license.
 
 For a more realistic test, additional hardware AP running OpenWRT
-firmware was used instead of /hostapd/'s AP. OpenWRT AP worked as a
+firmware was used instead of hostapd's AP. OpenWRT AP worked as a
 RADIUS client connecting to the RADIUS server still provided by the
-/hostapd/.  OpenWRT AP did not try to open EAP-messages, but just
+hostapd.  OpenWRT AP did not try to open EAP-messages, but just
 encapsulated them into RADIUS packets.  RADIUS server's configuration
 file can be seen in Appendix [[app:radius-conf]].
 
@@ -2977,7 +2991,7 @@ message would had next been verified with the SIM card.
 Unregistered phone could not use SIM card at all, while 
 registered phone verified and noticed, that operator is not right, 
 and therefore ended the conversation as it should regarding
-protocol-document [[ rfc4186]].
+protocol rfc4186[[rfc4186]].
 # i.e., what is the difference btw. those. REMEMBER: you cannot packet
 # trace phone connection, only AP and RADIUS logs.
 
@@ -2986,9 +3000,11 @@ At this point, physical phones were put aside and a simulated SIM-card
 environment was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
 with SIM/USIM protocols, respective EAP-SIM, logging 
-from hostapd software claimed that ``Hostapd will send SIM/AKA authentication
-queries over a UNIX domain socket to an external 
-/hlr_auc_gw/ program.''
+from hostapd software claimed that 
+#+BEGIN_VERSE
+Hostapd will send SIM/AKA authentication queries over a UNIX domain
+socket to an external hlr_auc_gw program.
+#+END_VERSE
 Appendix [[app:hlraucgw]]   shows that traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
 # finally got AUTH-SUCCESS message from remote RADIUS.
@@ -3292,7 +3308,7 @@ denotes that we are talking about EAP-SIM identity.
 EAP client's identity is transformed at Authenticator
 (Figure[[fig:eap-layers]], Chapter [[#cha:aaa]]) from 802.1X's 
 EAPOL format  into RADIUS format and
-sent to RADIUS server. The capture between AP and Radius server is
+sent to RADIUS server. The captured frame between AP and Radius server is
 shown
 in Capture \ref{fig:capture}.
 # in Capture \ref{fig:capture}.
@@ -3300,7 +3316,7 @@ in Capture \ref{fig:capture}.
 # basicstyle=\ttfamily\small,
 #+BEGIN_LaTeX
 
-\lstset{basicstyle=\ttfamily\small,columns=fixed,emph={"1232010000000000",musta,0,AVP},emphstyle=\color{red}\textbf}
+\lstset{basicstyle=\ttfamily\scriptsize,columns=fixed,emph={"1232010000000000",{=User-Name(1)},Identity},emphstyle=\color{red}\textbf}
 \renewcommand{\lstlistingname}{Capture}
 \begin{lstlisting}[
   language=Python,
@@ -4064,180 +4080,6 @@ directed antenna\cite{SANS-bluetooth-2007}.
 
 
 
-** Discussion
-
-
-# [do not jump in with so short flash messages. This looks like conclusion.] 
-SIM card of the smartphone, used together with Wi-Fi access to home network 
-verifies change controls, and for that we have presented some options.
-Location of AuthN and AuthZ components may vary depending on state of process.
-Always in the beginning, AuthN lies outside the home network, but
-later it can use local point. AuthZ, on the otherhand, may be located more freely.
-# RADIUS protocol is used to open management port. 
-# It is not used to traditional user authentication.
-# RADIUS protocol is here not used for 
-# allowing user into service, which is the traditional way to use
-# RADIUS, but opening access to separated network. 
-802.1X standard activates the management port and
-RADIUS transfers the orders for correct AA.
-Smartphone traffic is directed in to an own virtual LAN segment (VLAN),
-which is dedicated to the home network devices management.
-# Similar use case is traditional separate user to own network segment
-# based on RADIUS message.
-# is used to open management port. 
-# It is not used to traditional user authentication.
-# lets configuration changes be 
-Thesis thus uses an old, yet simple method for problem risen in a modern environment home network.
-
-Disconnection from a normal (Wi-Fi) access network happens, before phone can get
-into the management network. It means, that all stateful network
-connections using Wi-Fi will close at that point. Smartphones do not
-have multiple wireless connections, but mobile data connections may 
-stay up. Even then, the default routing in the smartphone may change.
-
-In the theory chapter it was questioned whether the proxying RADIUS server
-can read and alter the messages on their way or is the messaging secured
-by encryption, integrity hashes and digital signatures.
-Later it was learned, that the message's integrity is indeed protected, if
-only in a very light way, but not encrypted.
-
-
-EAP does by definition only AuthN part although the successful
-authentication often precedes ad hoc AuthZ if nothing else is demanded.
-EAP-SIM handles this part, but for AuthZ something else is needed
-and so some methods have been presented to add the right role to 
-the authenticated identity.
-
-There are many attributes in RADIUS's vocabulary, which could be 
-used to carry extra information for provisioning in AuthZ phase. Exactly which
-of them are used remains to implementer's  decision.
-# jump to term "provisioning"
-Term /provisioning/ can mean adding users to home network with correct
-attributes such as authentication method and identification.
-Provisioning a user to a SIM card is also provisioning and that is 
-pre-existing here.
-It also can mean identifying users later and giving them 
-dynamically more attributes and access rights.
-# - [Each component does only limited part of the job.]
-# - [It is difficult to have control over one's own SIM card ]
-
-# One question rose during this work is to find 
-
-Although the core technology has been there for more than ten years and
-the hardware and the applications mostly support it, 
-there can be many reasons why SIM-based methods are not in wider use. 
-One could guess, that they are similar that happened for example with 
-WiMax technology, which was used for broadband network connections to
-rural areas. Technically that was well enough, but demand was not so
-large. Additionally lower speed technologies that were cheaper at that
-time, such as cellular modems were thought to be sufficient, even when
-inferior technically.
-It could also be, that market is waiting for future products, and does 
-not want to invest on existing technology, which can be seen ``old''.
-# [compare with future usage, such as embedded SIMs, and past technology 
-# failures WiMax, which had no technical problems, but wifi and good
-# cellular networks overtook it.]
-
-# What prevents us using the SIM?
-# how the Sections below belong to discussion?  
-
-
-# *** Decision point for adding role information [ move to design part]
-
-# Unique identifier for SIM is IMSI (International Mobile Subscriber
-# Identity, 15 digits long[ALREADY analyzed in scenario-II!], more
-# familiar # user's phone number), which is
-# included in the NAI(Network Address Identifier) 
-# in the beginning of the 
-# during the first EAP-SIM message  \cite[XX] in full authentication.
-# After session has been set IMSI may be left out and
-#  temporal IMSI (TMSI) can be used,
-# so identity is hidden on following connections.
-
-# The IMSI's authenticity
-# fig:eap-sim-radius
-# will be challenged later.
-# [check user preferences and user domain]
-
-# On the other hand, that issue exists also in GSM networks.
-# [Remember IMSI-catcher \cite{imsi}. Last chapter might have a Section
-# about this.]
-# AuthZ provides that information
-# and Authenticator model includes authorized roles.
-#
-# Only admin mobile will pass the AuthZ phase, so even when
-# AuthN  works for others, as should, when everything works well between
-# mobile and MNO via chain of components, it still is responsibility of
-# Authenticator to decide about access to management net.
-
-
-# decide about access to management net.
-
-
-# ** Mapping temporal user (TMSI) and role to correct user in proxy
-
-# Just remember[from where?], that 
-# Email correspondence (2014/Sep) with Karri Huhtanen  revealed
-# another
-Another problem using in-flight addition of the authorization in RADIUS ACCESS-ACCEPT message
-# (\cite{mail-huhtanen-2014} 
-is mapping of authentication messages of IMSI and TMSI identities.
-# #+BEGIN_QUOTE
-#  ``It is possible to add authorization message in-flight in to the
-# ACCESS-ACCEPT.
-# Problem is only that, if it is done in flight, you need some way to
-# combine authentication messages to same identity. SIM auth makes it
-# possible to use for example temporary identity and then the only thing
-# what you can mine from the authentication message is the used operator.''
-# #+END_QUOTE
-# So proxying RADIUS se¤rver cannot know for sure anything but the
-# originating server (operator) if TMSI is used. The Authenticator does
-# know the original user, but needs to get AuthZ information. It can get
-# AuthZ either from the remote operator which would be easier for the
-# Authenticator or there might be a proxying RADIUS, which inserts that
-# knowledge into ACCESS-ACCEPT packet. The latter has issues with
-# temporal identities. 
-#  -K. Huhtanen, 2014 
-# [cite: Karri Huhtanen/ArchRed, email, Sep 10. 2014, translation by author]
-# problem of TMSI
-The Authenticator does know the original user and mapping of TMSI to
-IMSI, but needs to get AuthZ information. That can be received from the
-remote operator, which would be easier for the
-Authenticator or there might be a proxying RADIUS, which resolves the AuthZ
-information and generates an ACCESS-ACCEPT packet. The latter has issues with
-temporal identities. 
-
-When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
-a beforehand known IMSI identity, there will be problem
-# if it had to insert the admin role information in to the RADIUS message.
-because proxying RADIUS knows for sure only the originating server. 
-MNO in turn does not necessary know about the roles.
-
-# , on the other hand, 
-# does not necessary know about roles without the cloud, so a link
-# is needed between them to get role information inside RADIUS packet.
-# Although Authenticator can map TMSI to ...
-# Even when AuthN succeeds, then how to map that to real user,
-# when only temporary identity is available and that changes every
-# time. Can RADIUS server choose who gets which role? 
-It seems, that AuthZ data must be mapped during the first phase of
-EAP-SIM AuthN, when IMSI still is available, and in some way
-that map must be forwarded to the proxying RADIUS servers.
-# [order - do we already know here the design?]
-These issues are fully avoided only in that scenario presented in Chapter
-[[#cha:design]], where there is local Authentication server in home network.
-Partly avoidance can be reached, if only Full Authentication is
-used, i.e., the authentication is always checked from MNO and no Fast
-Re-authentication is used.
-# explain fast and full authentication
-
-
-# TODO figure xxx
-
-# Technique used is 
-# protected WPA2-enterprise, using EAP-SIM[def] for AA
-# . Citations to
-
 
 ** Access methods to Wi-Fi with only one SSID
 
@@ -4396,6 +4238,186 @@ the achieved trusted access point.
 
 
 
+** Discussion
+
+Although the core technology has been there for more than ten years and
+the hardware and the applications mostly support it, 
+there can be many reasons why SIM-based methods are not in wider use. 
+One can guess, that the reasons are similar that happened for example with 
+WiMax technology, which was used for broadband network connections to
+rural areas. Technically that was well enough, but demand was not so
+large. Additionally lower speed technologies that were cheaper at that
+time, such as cellular modems were thought to be sufficient, even when
+inferior technically.
+It could also be, that market is waiting for future products, and does 
+not want to invest on existing technology, which can be seen as ``old''.
+# [compare with future usage, such as embedded SIMs, and past technology 
+# failures WiMax, which had no technical problems, but wifi and good
+# cellular networks overtook it.]
+
+# What prevents us using the SIM?
+# how the Sections below belong to discussion?  
+
+
+# [do not jump in with so short flash messages. This looks like conclusion.] 
+SIM card of the smartphone, used together with Wi-Fi access to home network 
+verifies change controls, and for that we have presented some options.
+Location of AuthN and AuthZ components may vary depending on state of process.
+Always in the beginning, AuthN lies outside the home network, but
+later it can use local point. AuthZ, on the otherhand, may be located more freely.
+# RADIUS protocol is used to open management port. 
+# It is not used to traditional user authentication.
+# RADIUS protocol is here not used for 
+# allowing user into service, which is the traditional way to use
+# RADIUS, but opening access to separated network. 
+Based on 802.1X standard, the management port is activated and
+RADIUS transfers the orders for correct AA.
+The smartphone traffic is directed in to an own virtual LAN segment (VLAN),
+which is dedicated to the home network devices management.
+# Similar use case is traditional separate user to own network segment
+# based on RADIUS message.
+# is used to open management port. 
+# It is not used to traditional user authentication.
+# lets configuration changes be 
+Thesis thus uses an old, yet simple method for problem risen in a modern environment home network.
+
+Disconnection from a normal (Wi-Fi) access network must happens, before phone can get
+into the management network. It means, that all stateful network
+connections using Wi-Fi will close at that point. Smartphones do not
+have multiple wireless connections, but mobile data connections may 
+stay up. Even then, the default routing in the smartphone may change.
+
+
+EAP does by definition only AuthN part although the successful
+authentication often precedes ad hoc AuthZ if nothing else is demanded.
+EAP-SIM handles this part, but for AuthZ something else is needed
+and so some methods have been presented to add the right role to 
+the authenticated identity.
+
+
+
+In the theory chapter it was questioned whether the proxying RADIUS server
+can read and alter the messages on their way or is the messaging secured
+by encryption, integrity hashes and digital signatures.
+Later it was learned, that the message's integrity is indeed protected, if
+only in a very light way, but not encrypted.
+
+Altering or addition of  RADIUS messages can choose from many
+attributes of RADIUS's vocabulary. They can carry extra information
+for provisioning in AuthZ phase. Exactly which of them are used
+remains to implementer's  decision. 
+# jump to term "provisioning"
+Term /provisioning/ can mean adding users to home network with correct
+attributes such as authentication method and identification.
+It also can mean identifying users later and giving
+them more attributes and access rights dynamically.
+Binding a user to a SIM card is also provisioning and that has
+happened earlier.
+
+
+# - [Each component does only limited part of the job.]
+# - [It is difficult to have control over one's own SIM card ]
+
+# One question rose during this work is to find 
+
+
+# *** Decision point for adding role information [ move to design part]
+
+# Unique identifier for SIM is IMSI (International Mobile Subscriber
+# Identity, 15 digits long[ALREADY analyzed in scenario-II!], more
+# familiar # user's phone number), which is
+# included in the NAI(Network Address Identifier) 
+# in the beginning of the 
+# during the first EAP-SIM message  \cite[XX] in full authentication.
+# After session has been set IMSI may be left out and
+#  temporal IMSI (TMSI) can be used,
+# so identity is hidden on following connections.
+
+# The IMSI's authenticity
+# fig:eap-sim-radius
+# will be challenged later.
+# [check user preferences and user domain]
+
+# On the other hand, that issue exists also in GSM networks.
+# [Remember IMSI-catcher \cite{imsi}. Last chapter might have a Section
+# about this.]
+# AuthZ provides that information
+# and Authenticator model includes authorized roles.
+#
+# Only admin mobile will pass the AuthZ phase, so even when
+# AuthN  works for others, as should, when everything works well between
+# mobile and MNO via chain of components, it still is responsibility of
+# Authenticator to decide about access to management net.
+
+
+# decide about access to management net.
+
+
+# ** Mapping temporal user (TMSI) and role to correct user in proxy
+
+# Just remember[from where?], that 
+# Email correspondence (2014/Sep) with Karri Huhtanen  revealed
+# another
+Another problem using in-flight alteration of the AuthZ data in RADIUS ACCESS-ACCEPT message
+# (\cite{mail-huhtanen-2014} 
+is the mapping of the authentication messages of IMSI and TMSI identities.
+# #+BEGIN_QUOTE
+#  ``It is possible to add authorization message in-flight in to the
+# ACCESS-ACCEPT.
+# Problem is only that, if it is done in flight, you need some way to
+# combine authentication messages to same identity. SIM auth makes it
+# possible to use for example temporary identity and then the only thing
+# what you can mine from the authentication message is the used operator.''
+# #+END_QUOTE
+# So proxying RADIUS se¤rver cannot know for sure anything but the
+# originating server (operator) if TMSI is used. The Authenticator does
+# know the original user, but needs to get AuthZ information. It can get
+# AuthZ either from the remote operator which would be easier for the
+# Authenticator or there might be a proxying RADIUS, which inserts that
+# knowledge into ACCESS-ACCEPT packet. The latter has issues with
+# temporal identities. 
+#  -K. Huhtanen, 2014 
+# [cite: Karri Huhtanen/ArchRed, email, Sep 10. 2014, translation by author]
+# problem of TMSI
+The Authenticator does know the original user and mapping of TMSI to
+IMSI, but needs to get AuthZ information. That can be received from the
+remote operator, which would be easier for the
+Authenticator or there might be a proxying RADIUS, which resolves the AuthZ
+information and generates an ACCESS-ACCEPT packet. The latter has issues with
+TMSI.
+
+When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
+a beforehand known IMSI identity, there will be problem
+# if it had to insert the admin role information in to the RADIUS message.
+because proxying RADIUS knows for sure only the originating server. 
+MNO in turn does not necessary know about the roles.
+
+# , on the other hand, 
+# does not necessary know about roles without the cloud, so a link
+# is needed between them to get role information inside RADIUS packet.
+# Although Authenticator can map TMSI to ...
+# Even when AuthN succeeds, then how to map that to real user,
+# when only temporary identity is available and that changes every
+# time. Can RADIUS server choose who gets which role? 
+It seems, that AuthZ data must be mapped during the first phase of
+EAP-SIM AuthN, when IMSI still is available, and in some way
+that map must be forwarded to the proxying RADIUS servers.
+# [order - do we already know here the design?]
+These issues are fully avoided only in scenario II presented in Chapter
+[[#cha:design]], where there is local Authentication server in home network.
+Partly avoidance can be reached, if only Full Authentication is
+used, i.e., the authentication is always checked from MNO and no Fast
+Re-authentication is used.
+# explain fast and full authentication
+
+
+# TODO figure xxx
+
+# Technique used is 
+# protected WPA2-enterprise, using EAP-SIM[def] for AA
+# . Citations to
+
+
 * Conclusion
 :PROPERTIES:
 :CUSTOM_ID: cha:conclusion
@@ -4453,22 +4475,23 @@ methods without losing security at the same time.
 There are some obvious weaknesses in the proposed solution such as 
 missing continuous authorization after management access has been
 granted. The application for the smartphone is yet to be implemented.
-Possible usage must carefully check the safety limits even when RADIUS protocol still
+Possible usage must carefully check the safety limits even when for
+example RADIUS protocol still
 has strengths in security today. The thesis only scratches bootstrapping
 problems and the issues in the home network bootstrapping need to be studied
-more thoroughly. One could use tickets in Kerberized way as in GBA.
+more thoroughly. A one promising lead would be to use tickets in Kerberized way as in GBA.
 # More roles and multiuser cases could be added. 
 
 # There are MIF[def] and Provision Domains WGs on IETF. Their work partly
 # overlaps this.
 
-Still, after those shortcoming the provisioning of users at home
-networks would minimize with the proposed technique, as the users
-already own a smartphone, which is an identifiable object. As a
-positive side effect, the two-factor AuthN from a hardware based SIM will
+After those shortcoming, the provisioning of manager users at home
+networks still would minimize with the proposed technique, as the users
+already own a smartphone, which is an identifiable and trusted object. As a
+positive side effect, the two-factor AuthN from a hardware based SIM would
 strengthen an existing security.  Finally, the cloud management tools
-will benefit from the trust anchor on the smartphone and can be developed
-further to aid in resolving issues in future homes networks.
+would benefit from the trust anchor on the smartphone and could be developed
+further to aid in resolving issues in future home networks.
 
 #+BEGIN_LaTex
 \newpage
