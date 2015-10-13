@@ -3415,6 +3415,23 @@ Send: SIM-RESP-AUTH 232010000000000
 
 # Signal 2 - terminate
 
+** Extension of the WPA2 supplicant to the real smartphone
+
+Because we had source code available, we also tried to move 
+the simulated SIM application to the real smartphone.
+Jolla is a finnish smartphone, running on ARMv7 processor and based on MER  (MEego Reinvented)
+platform(, which in turn was Nokia's last reasonable operating system.)
+WPA-supplicant was built inside a Virtualbox, which is used to 
+develop programs for armv7 processor  a cross-compiling environment 
+(SB2) SDK. 
+
+| version(s) | component          | tested on      |
+|        2.3 | hostap(RADIUS-EAP) | laptop(x86_64) |
+|        2.3 | hlr_auc_gw         | laptop(x86_64) |
+|   2.2, 2.3 | wpa-supplicant     | laptop(x86_64) |
+|        2.4 | wpa-supplicant     | Jolla (armv7l) |
+
+
 
 * Analysis, Results and Discussion
 :PROPERTIES:
