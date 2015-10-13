@@ -3420,7 +3420,9 @@ Send: SIM-RESP-AUTH 232010000000000
 Because we had source code available, we also tried to move 
 the simulated SIM application to the real smartphone.
 Jolla is a finnish smartphone, running on ARMv7 processor and based on MER  (MEego Reinvented)
-platform(, which in turn was Nokia's last reasonable operating system.)
+platform(, which in turn was Nokia's last reasonable operating
+system.)
+Although the operating system is Sailfish, Jolla's base 
 WPA-supplicant was built inside a Virtualbox, which is used to 
 develop programs for armv7 processor  a cross-compiling environment 
 (SB2) SDK. 
