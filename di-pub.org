@@ -3419,14 +3419,17 @@ Send: SIM-RESP-AUTH 232010000000000
 
 Because we had source code available, we also tried to move 
 the simulated SIM application to the real smartphone.
-Jolla is a finnish smartphone, running on ARMv7 processor and based on MER  (MEego Reinvented)
-platform(, which in turn was Nokia's last reasoy
-nable operating
-system.)
-Although the operating system is Sailfish, Jolla's base 
-WPA-supplicant was built inside a Virtualbox, which is used to 
-develop programs for armv7 processor  a cross-compiling environment 
-(SB2) SDK. 
+Jolla is a finnish smartphone, running on ARMv7 processor, having its
+root's on Nokia's last mobilephone operating system MEEGO.
+The OS is called Sailfish and it includes user interface code made by
+Jolla, open source components from MER (MEego Reinvented), and some 
+other software components, which are either free or proprietary.
+Jolla's base 
+WPA-supplicant belongs to MER core and it was here re-built for 
+simulator use. The build process was done inside the Virtualbox
+program, because it provides simulated Jolla environment and
+ made porting programs to Armv7 processor easy.
+
 
 | version(s) | component          | tested on      |
 |        2.3 | hostap(RADIUS-EAP) | laptop(x86_64) |
