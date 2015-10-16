@@ -3431,11 +3431,13 @@ program, because it provides simulated Jolla environment and
  made porting programs to Armv7 processor easy.
 
 
-| version(s) | component          | tested on      |
-|        2.3 | hostap(RADIUS-EAP) | laptop(x86_64) |
-|        2.3 | hlr_auc_gw         | laptop(x86_64) |
-|   2.2, 2.3 | wpa-supplicant     | laptop(x86_64) |
-|        2.4 | wpa-supplicant     | Jolla (armv7l) |
+| version(s) | component          | tested on               |
+|        2.3 | hostap(RADIUS-EAP) | laptop(x86_64)          |
+|        2.3 | hlr_auc_gw         | laptop(x86_64)          |
+|   2.2, 2.3 | wpa-supplicant     | laptop(x86_64)          |
+|        2.4 | wpa-supplicant     | Jolla (armv7l)          |
+|   1.1.9.28 | Sailfish           | Jolla (armv7l)          |
+|   1.1.9.28 | Sailfish           | Virtualbox (x86/armv7l) |
 
 
 
