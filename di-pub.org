@@ -3422,10 +3422,10 @@ the simulated SIM application to the real smartphone.
 Jolla is a finnish smartphone, running on ARMv7 processor, having its
 root's on Nokia's last mobilephone operating system MEEGO.
 The OS is called Sailfish and it includes user interface code made by
-Jolla, open source components from MER (MEego Reinvented), and some 
+Jolla, open source components from Mer (MEego Reinvented), and some 
 other software components, which are either free or proprietary.
 Jolla's base 
-WPA-supplicant belongs to MER core and it was here re-built for 
+WPA-supplicant belongs to Mer core and it was here re-built for 
 simulator use. The build process was done inside the Virtualbox
 program, because it provides simulated Jolla environment and
  made porting programs to Armv7 processor easy.
