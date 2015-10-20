@@ -2362,7 +2362,7 @@ must deliver those attributes and that allows us to use larger set of AVPs
 than is in any (proxying) RADIUS server's vocabulary.
 By adding AVPs inside the authorization packet, we achieve extra
 information about validity of the access request.
-That information may include VLAN parameter or time of forced
+That information may include a VLAN parameter or a timestamp for a forced
 logout.
 # that the access point and smartphone would later need.
 RFC2865\cite{rfc2865} says, that the forwarding RADIUS proxy may alter
@@ -2392,7 +2392,7 @@ packet's signature, the proxy has to re-sign the packet.
 
 So at least Proxying RADIUS can insert something, but that is not
 enough.  If a malicious actor imitates RADIUS Proxy (i.e. Man in the
-middle, MiTM), it can try to inject untruthful messages. 
+middle, MiTM), it can try to inject false messages. 
 Message Authenticator with MD5 digesting
 might help in detecting those attacks,
 Unfortunately MD5 can not be thought computationally
