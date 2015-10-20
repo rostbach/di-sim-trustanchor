@@ -1529,10 +1529,10 @@ devices has increased, it would have been reasonable to rationalize
 the process by utilizing a central management, not least to prevent human
 errors for repetitive tasks.  Yet, at home, network devices often are
 too heterogeneous, bought at different times from different vendors
-and so incompatible with each other to fully benefit from
-centralization. 
+and therefore incompatible with each other to fully benefit from
+the centralization. 
 
-To help moving the management to a more centralized
+To help in moving the management to a more centralized
 model, the home network will see smartphone as a central managing local
 controller.
 # cloud service of type Backend-as-a-Service (BaaS) is used here for
@@ -1556,11 +1556,10 @@ organization, and as the most important fact, the trust anchor can be set to the
 # 1.Updating the running software has become an import fact in computer
 # security, since non-patched software, which still there has been running 
 # 2.
-The users are already located centrally in operators' user databases
-in HLR-AuC.  To be able
-to achieve the management paradigm change to a central configured one,
-we still need to bridge home network to that model with a trusted local controller
-and resolve the work-flow of change management.
+The users already are  centrally located  in operators' user databases
+in HLR-AuC.  To achieve the management paradigm change to a central configured one,
+we still need to bridge the+ home network to that model with a trusted local controller
+and then resolve the work-flow of change management.
 
 
 Home Network change management itself is mostly excluded from this work.
@@ -1575,7 +1574,8 @@ home network for configuration propagation. As another example,
 configuration also includes
 power level settings of devices to save electricity based on usage
 profile. For example at nights or when there is nobody home, some
-devices do not need to be working at their maximum capacity. 
+devices do not need to be working at their maximum capacity, and
+details of how this scheduled is out of scope.
 
 Instead, we study interfaces of AA.  Main points here are an existing
 infrastructure (phones, internet access, Wi-Fi access points),  a strong
