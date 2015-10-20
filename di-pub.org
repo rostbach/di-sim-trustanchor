@@ -2086,15 +2086,15 @@ information of allowed users from Cloud.
 #+begin_src ditaa :file scenI.png :cmdline -E -r -s 4
                                           6+-------+
       +-----+ AuthZ +-------------------+--+{s}HLR |
-    1 |Cloud+<----->+MNO (RADIUS server)|  +-------+
+     1|Cloud+<----->+MNO (RADIUS server)|  +-------+
       +-+-+-+       +-----------+-------+
-        | |     2             5 ^
-        | +---=-(conf)--=---+ |RADIUS AA
-  +-----|----------=--------|-=-|-------+ 
-  |   3 v      home net     v   v 7     |
-  |  +--+--+               ++---+--+    |
+        |2                     5^
+    conf|                       |RADIUS AA
+  +-----|----------=----------=-|-------+ 
+  |     v3     home net         v7      |
+  |  +--+--+8             4+----+--+    |
   |  |phone+<-----(AA)---->+CPE(AP)|    |
-  |  +-----+8             4+-------+    |
+  |  +-----+               +-------+    |
   +=------------------------------------+
 #+end_src
 #+CAPTION: Scenario I with 3 separate domains: Cloud, MNO and home network
@@ -2108,12 +2108,11 @@ information of allowed users from Cloud.
 # [ alternative presentation of the flow, I: list ] 
 
 1. The model has been changed in the Cloud (1).
-2. The Cloud send the changes to CPE (AP) (2).
+2. The Cloud send the changes to the Local Controller (phone) (2).
 3. If the changes are privileged, they need to be approved by the phone user.
-   The changes are sent also to the phone(3) and the phone user must
-   authenticate to the management network.
+   The phone user must  authenticate to the management network.
 4. The phone user starts the authentication process to management
-   network using EAP-SIM and reveals the IMSI(4).
+   network using EAP-SIM and reveals its IMSI(4).
 5. CPE (AP) forwards the authentication to MNO's RADIUS server using
    RADIUS protocol (5).
 6. MNO has RADIUS server which uses HLR-AuC for authentication
