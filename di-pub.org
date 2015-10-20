@@ -754,7 +754,7 @@ RADIUS protocol is a stateless, request-response type client-server
 protocol. 
 # explain, what is ACCESS here.. 
 # not needed, changed word <2015-08-09 su>
-There are four types of RADIUS messages defined in RFC 2865 that are
+There are four types of RADIUS messages defined in RFC2865 that are
 used in AA. ACCESS-REQUEST and ACCESS-CHALLENGE cover both AuthN and
 AuthZ messaging while final RADIUS message is either
 ACCESS-ACCEPT or ACCESS-REJECT, based on the
