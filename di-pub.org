@@ -2239,6 +2239,7 @@ there should be no problem.
 
 
 # *** Scenario IV: AuthN from MNO, AuthZ separate from BaaS.
+# move to discussion and speculations
 <<scenario-iv>> 
 
 
@@ -2269,8 +2270,14 @@ store for caching admin IMSIs (roles).
 [[file:scenIV.png]]
 
 # *** Scenario V: Bootstrapping, no roles defined
-In the scenario V, nothing has been configured. The bootstrapping
-has not been done, so the scenario can be any of I-IV, but CPE has neither trust nor roles.
+# In the scenario V, nothing has been configured. The bootstrapping
+# has not been done, so the scenario can be any of I-IV, but CPE has neither trust nor roles.
+
+
+In case that nothing has been configured in network, there are no 
+admin users and APs are set to factory default, then they need
+pre-configuring and bootstrapping. The scenario can be any of I-IV,
+but CPE has neither trust nor roles.
 
 
 
