@@ -2856,9 +2856,10 @@ the local controller with  command line interface (CLI).
 #  per scenarios in Scenario Chapter. 
 # "Here" needs reference, but it is already referenced in next Chapter?
 
-Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint, and a laptop.
-The smartphones were Nokia E70-1 and Nokia E90, both capable of
-EAP-SIM on factory software.
+Physical devices used in the tests  were three smartphones, an Wi-Fi accesspoint, and a laptop.
+The smartphones were Nokia E70-1, Nokia E90, and Jolla. Nokias
+featured EAP-SIM by factory, but Jolla had missing library and
+configuration on its WPA-supplicant for SIM.
 
 Jouni Malinen's software package /HostAP/\cite{hostapd} provides
 components for WPA2-Supplicant, Wireless Access point (AP),
@@ -2883,6 +2884,12 @@ Figure[[eap-sim-testbed]] shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
+To make thing more interesting, laptop's WPA2-supplicant with know
+software SIM part was later implemented inside Jolla. This was
+possible thanks open software and similarity of Jolla's environment to
+used in laptop. Modification involved compiling PCSC-libraries and
+recompiling the WPA-supplicant used in Jolla with simulator options 
+for ARMv7 architecture.
 
 
 # Logically the model can be better described in figure[[eap-sim-testbed]].
