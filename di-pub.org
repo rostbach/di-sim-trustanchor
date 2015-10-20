@@ -2243,7 +2243,7 @@ there should be no problem.
 
 
 Scenario IV (Figure[[fig:scenario-IV]]) is similar to scenario I, but
-now AuthZ is checked by CPE instead of MNO from the Cloud. If there are no connection to
+now AuthZ is checked from the Cloud by CPE instead of MNO. If there is no connection to
 the cloud, the fall-back is to work just like II. So also this scenario needs local
 store for caching admin IMSIs (roles).
 
