@@ -2995,7 +2995,7 @@ message would had next been verified with the SIM card.
 Unregistered SIM in phone could not use SIM card at all, while 
 phone with a registered SIM verified and noticed, that operator is not right, 
 and therefore correctly ended the conversation as it should regarding
-rfc4186[[rfc4186]].
+RFC4186[[rfc4186]].
 # i.e., what is the difference btw. those. REMEMBER: you cannot packet
 # trace phone connection, only AP and RADIUS logs.
 
