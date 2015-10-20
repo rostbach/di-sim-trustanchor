@@ -1,4 +1,4 @@
-% Created 2015-10-12 ma 20:25
+% Created 2015-10-20 ti 08:39
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -597,7 +597,7 @@ devices such as switches and routers.
 
 RADIUS protocol is a stateless, request-response type client-server
 protocol. 
-There are four types of RADIUS messages defined in RFC 2865 that are
+There are four types of RADIUS messages defined in RFC2865 that are
 used in AA. ACCESS-REQUEST and ACCESS-CHALLENGE cover both AuthN and
 AuthZ messaging while final RADIUS message is either
 ACCESS-ACCEPT or ACCESS-REJECT, based on the
@@ -1413,7 +1413,7 @@ cases when the smartphone later would need re-authentication.
 
 The AA components and the Authenticators can appear in 
 diverse location combinations. Here the AuthN component 
-always is located outside the home, as AuthN is the MNO.
+is always located outside the home, as AuthN is the MNO.
 The Authenticator or the AuthZ on the other hand
 may be placed in the home or at the external provider.
 
@@ -1473,16 +1473,14 @@ information of allowed users from Cloud.
 
 
 
-[ alternative presentation of the flow, I: list ] 
 
 \begin{enumerate}
 \item The model has been changed in the Cloud (1).
-\item The Cloud send the changes to CPE (AP) (2).
+\item The Cloud send the changes to the Local Controller (phone) (2).
 \item If the changes are privileged, they need to be approved by the phone user.
-The changes are sent also to the phone(3) and the phone user must
-authenticate to the management network.
+The phone user must  authenticate to the management network.
 \item The phone user starts the authentication process to management
-network using EAP-SIM and reveals the IMSI(4).
+network using EAP-SIM and reveals its IMSI(4).
 \item CPE (AP) forwards the authentication to MNO's RADIUS server using
 RADIUS protocol (5).
 \item MNO has RADIUS server which uses HLR-AuC for authentication
@@ -1504,25 +1502,7 @@ coming from authorized  network.
 
 
 
-[ alternative presentation of flow, II: textual paragraph. Which one
-is better? Remember to unify content below and above.] 
 
-The model has been changed in the Cloud (1). Cloud sends changes to CPE
-(2).  If the changes are privileged, they need to be approved by phone
-user. The changes are sent also to the phone(3) and the phone user must
-authenticate  to the management network.  The phone user starts the
-AA process to management network using EAP-SIM and reveals
-the IMSI(4).  CPE (AP) forwards  the AuthN request to MNO's RADIUS server
-using RADIUS protocol (5).  MNO has RADIUS server running and it
-authenticates the IMSI user at its HLR-AuC (6). MNO also asks from
-the Cloud, whether IMSI user has admin-role (AuthZ). 
-MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if
-user is both known AND has admin role or \emph{ACCESS-REJECT} (7).  CPE
-receives this ACCEPT or REJECT. If there were other RADIUSes between
-CPE and MNO, they would have acted as proxy RADIUS servers.  If
-ACCEPTed, then the smartphone is both authenticated and authorized (8) and can
-send configuration change message to CPE, which recognizes it coming
-from authorized network.
 
 
 
@@ -1575,7 +1555,7 @@ there should be no problem.
 
 
 Scenario IV (Figure\ref{fig:scenario-IV}) is similar to scenario I, but
-now AuthZ is checked by CPE instead of MNO from the Cloud. If there are no connection to
+now AuthZ is checked from the Cloud by CPE instead of MNO. If there is no connection to
 the cloud, the fall-back is to work just like II. So also this scenario needs local
 store for caching admin IMSIs (roles).
 
@@ -1585,8 +1565,12 @@ store for caching admin IMSIs (roles).
 \caption{\label{fig:scenario-IV}Scenario IV, AuthZ from the Cloud, AuthN from MNO}
 \end{figure}
 
-In the scenario V, nothing has been configured. The bootstrapping
-has not been done, so the scenario can be any of I-IV, but CPE has neither trust nor roles.
+
+
+In case that nothing has been configured in network, there are no 
+admin users and APs are set to factory default, then they need
+pre-configuring and bootstrapping. The scenario can be any of I-IV,
+but CPE has neither trust nor roles.
 
 
 
@@ -1603,8 +1587,8 @@ from MNO to AuthZ decision received from elsewhere.
 
 
 
-RADIUS messages are not protected from eavesdropping, but they have
-integrity fields to notice if tampering has been done.  
+RADIUS messages are normally not protected from eavesdropping, but they have
+integrity fields to notice if tampering has been done. 
 Integrity field is called a Message Authenticator.
 Notice the use of the term \emph{Authenticator} in different context here, not
 meaning 802.1X's Authenticator.
@@ -1624,15 +1608,17 @@ $3fef65608\ldots 2a79$.
  Response Authenticator = 
      MD5(Code |ID |Length |Request Authenticator |Attributes |Secret)
 \end{verbatim}
-The Secret is the shared secret which has been configured between RADIUS servers,
+The Secret is the shared secret which has been configured between
+RADIUS client-server pairs,
 and it protects some parts of traffic. 
-Different RADIUS clients may have different
-secrets and RADIUS server must separate them by client's IP address to
+Different RADIUS client-server pairs may use different
+shared secrets and RADIUS server must separate them by client's IP address to
 manage proxied RADIUS requests\cite{radiusbook}.
-If the user password was to be transmitted on wire, it would be run
-through exclusive OR function (XOR) together with MD5 digested Secret
-and Request
-Authenticator.
+
+An exception to above mentioned plain-text messaging are the user passwords.
+If the user password was to be transmitted in RADIUS, it would be sent first
+through exclusive OR (XOR) function together with MD5 digested Secret
+and Request Authenticator.
 \begin{center}
 {\tt 
 User-Password = XOR(password, MD5(Secret | Request Authenticator))}
@@ -1645,13 +1631,14 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 
 
 
+RADIUS servers may implement different vocabulary in their AVP set.
 RFC6929\cite{rfc6929} reminds, that even when
-the proxies do not understand all AVPs inside RADIUS message, they
-must deliver those values and that allows us to use larger set of AVPs 
+the RADIUS proxies do not understand all AVPs inside RADIUS message, they
+must deliver those attributes and that allows us to use larger set of AVPs 
 than is in any (proxying) RADIUS server's vocabulary.
 By adding AVPs inside the authorization packet, we achieve extra
 information about validity of the access request.
-That information may include VLAN parameter or time of forced
+That information may include a VLAN parameter or a timestamp for a forced
 logout.
 RFC2865\cite{rfc2865} says, that the forwarding RADIUS proxy may alter
 the packet as it passes it, but because an alteration would invalidate the
@@ -1662,14 +1649,14 @@ packet's signature, the proxy has to re-sign the packet.
 
 So at least Proxying RADIUS can insert something, but that is not
 enough.  If a malicious actor imitates RADIUS Proxy (i.e. Man in the
-middle, MiTM), it can try to inject untruthful messages. 
-Message Authenticator with MD5 digesting
+middle, MiTM), it can try to inject false messages. 
+The Message Authenticator with MD5 digesting
 might help in detecting those attacks,
 Unfortunately MD5 can not be thought computationally
 secure, because duplicate hashes are easy to compute
 today\cite{xie2013fast}.
 MD5 hashes were first time broken by brute force
-already 20 years ago and today they can only be used as data error
+already 20 years ago and today they can only be used as a data error
 detection tool\cite[p.2]{rfc6151}. 
 
 
@@ -1989,9 +1976,10 @@ the local controller with  command line interface (CLI).
 
 
 
-Physical devices used in the tests  were two smartphones, an Wi-Fi accesspoint, and a laptop.
-The smartphones were Nokia E70-1 and Nokia E90, both capable of
-EAP-SIM on factory software.
+Physical devices used in the tests  were three smartphones, an Wi-Fi accesspoint, and a laptop.
+The smartphones were Nokia E70-1, Nokia E90, and Jolla. Nokias
+featured EAP-SIM by factory, but Jolla had missing library and
+configuration on its WPA-supplicant for SIM.
 
 Jouni Malinen's software package \emph{HostAP}\cite{hostapd} provides
 components for WPA2-Supplicant, Wireless Access point (AP),
@@ -2016,6 +2004,12 @@ Figure\ref{eap-sim-testbed} shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
+To make thing more interesting, laptop's WPA2-supplicant with know
+software SIM part was later implemented inside Jolla. This was
+possible thanks open software and similarity of Jolla's environment to
+used in laptop. Modification involved compiling PCSC-libraries and
+recompiling the WPA-supplicant used in Jolla with simulator options 
+for ARMv7 architecture.
 
 
 
@@ -2047,11 +2041,7 @@ Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. Despite that it took part in generating
 primary EAP traffic. 
 Examples in appendix \ref{app:nosim}   [TBD]
-First tests 
-did not go as planned. There was no indication of SIM method
-present in captures, the only indication of security was a message
-``Open System'' in application logs, which means that no pre-shared
-key is used.
+
 
 Nokia E90, with a registered SIM had better results. Traces
 are in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
@@ -2064,10 +2054,10 @@ Naturally, challenge-responses did not work because SIM secrets were
 not known. Nevertheless, both cards succeeded to the point, where MNO's
 message would had next been verified with the SIM card.
 
-Unregistered phone could not use SIM card at all, while 
-registered phone verified and noticed, that operator is not right, 
-and therefore ended the conversation as it should regarding
-protocol rfc4186\texttt{rfc4186}.
+Unregistered SIM in phone could not use SIM card at all, while 
+phone with a registered SIM verified and noticed, that operator is not right, 
+and therefore correctly ended the conversation as it should regarding
+RFC4186\texttt{rfc4186}.
 
 At this point, physical phones were put aside and a simulated SIM-card
 environment was used.
@@ -2377,6 +2367,37 @@ Send: SIM-RESP-AUTH 232010000000000
  832475ad3e7bea2b:3fe28cc8:1be8b4f1ab247ec732d15cf63ad57390 \
 \end{verbatim}
 \normalsize
+
+\section{Extension of the WPA2 supplicant to the real smartphone}
+\label{sec-5-5}
+
+Because we had source code available, we also tried to move 
+the simulated SIM application to the real smartphone.
+Jolla is a finnish smartphone, running on ARMv7 processor, having its
+root's on Nokia's last mobilephone operating system MEEGO.
+The OS is called Sailfish and it includes user interface code made by
+Jolla, open source components from Mer (MEego Reinvented, or
+meritocratic community), and some 
+other software components, which are either free or proprietary.
+Jolla's base 
+WPA-supplicant belongs to Mer core and it was here re-built for 
+simulator use. The build process was done inside the Virtualbox
+program, because it provides simulated Jolla environment and
+ made porting programs to Armv7 processor easy.
+
+
+\begin{center}
+\begin{tabular}{rll}
+version(s) & component & tested on\\
+2.3 & hostap(RADIUS-EAP) & laptop(x86\_64)\\
+2.3 & hlr\_auc\_gw & laptop(x86\_64)\\
+2.2, 2.3 & wpa-supplicant & laptop(x86\_64)\\
+2.4 & wpa-supplicant & Jolla (armv7l)\\
+1.1.9.28 & Sailfish & Jolla (armv7l)\\
+1.1.9.28 & Sailfish & Virtualbox (x86/armv7l)\\
+\end{tabular}
+\end{center}
+
 
 
 \chapter{Analysis, Results and Discussion}
@@ -2995,6 +3016,12 @@ These issues are fully avoided only in scenario II presented in Chapter
 Partly avoidance can be reached, if only Full Authentication is
 used, i.e., the authentication is always checked from MNO and no Fast
 Re-authentication is used.
+
+In testing the implementation, first tests did not go as
+planned. 
+There was no indication of SIM method present in captures, the only
+indication of security was a message ``Open System'' in application
+logs, which means that no pre-shared key is used.
 
 
 \chapter{Conclusion}
