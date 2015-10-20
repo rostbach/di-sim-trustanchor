@@ -2013,7 +2013,7 @@ cases when the smartphone later would need re-authentication.
 
 The AA components and the Authenticators can appear in 
 diverse location combinations. Here the AuthN component 
-always is located outside the home, as AuthN is the MNO.
+is always located outside the home, as AuthN is the MNO.
 The Authenticator or the AuthZ on the other hand
 may be placed in the home or at the external provider.
 
