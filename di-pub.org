@@ -2393,13 +2393,13 @@ packet's signature, the proxy has to re-sign the packet.
 So at least Proxying RADIUS can insert something, but that is not
 enough.  If a malicious actor imitates RADIUS Proxy (i.e. Man in the
 middle, MiTM), it can try to inject false messages. 
-Message Authenticator with MD5 digesting
+The Message Authenticator with MD5 digesting
 might help in detecting those attacks,
 Unfortunately MD5 can not be thought computationally
 secure, because duplicate hashes are easy to compute
 today\cite{xie2013fast}.
 MD5 hashes were first time broken by brute force
-already 20 years ago and today they can only be used as data error
+already 20 years ago and today they can only be used as a data error
 detection tool\cite[p.2]{rfc6151}. 
 
 
