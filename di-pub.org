@@ -2355,9 +2355,9 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 
 # , so at least it can insert something.
 
-#
+RADIUS servers may implement different vocabulary in their AVP set.
 RFC6929\cite{rfc6929} reminds, that even when
-the proxies do not understand all AVPs inside RADIUS message, they
+the RADIUS proxies do not understand all AVPs inside RADIUS message, they
 must deliver those values and that allows us to use larger set of AVPs 
 than is in any (proxying) RADIUS server's vocabulary.
 By adding AVPs inside the authorization packet, we achieve extra
