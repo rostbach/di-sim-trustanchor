@@ -2975,14 +2975,9 @@ Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. Despite that it took part in generating
 primary EAP traffic. 
 Examples in appendix [[app:nosim]]   [TBD]
-First tests 
+
 # Test run with hostapd and simulated HLR_auc_gw
 # [draw picture],
-did not go as planned. There was no indication of SIM method
-present in captures, the only indication of security was a message
-``Open System'' in application logs, which means that no pre-shared
-key is used.
-# Olisiko Open ollutkin 802.11 Open System ilmoitus?
 
 Nokia E90, with a registered SIM had better results. Traces
 # sim2 sim3
@@ -2997,9 +2992,9 @@ not known. Nevertheless, both cards succeeded to the point, where MNO's
 message would had next been verified with the SIM card.
 
 # Show here, that 
-Unregistered phone could not use SIM card at all, while 
-registered phone verified and noticed, that operator is not right, 
-and therefore ended the conversation as it should regarding
+Unregistered SIM in phone could not use SIM card at all, while 
+phone with a registered SIM verified and noticed, that operator is not right, 
+and therefore correctly ended the conversation as it should regarding
 protocol rfc4186[[rfc4186]].
 # i.e., what is the difference btw. those. REMEMBER: you cannot packet
 # trace phone connection, only AP and RADIUS logs.
@@ -4445,6 +4440,14 @@ used, i.e., the authentication is always checked from MNO and no Fast
 Re-authentication is used.
 # explain fast and full authentication
 
+In testing the implementation, first tests did not go as
+planned. 
+# By carefully studying configuration, both documented and
+# un-documented,
+There was no indication of SIM method present in captures, the only
+indication of security was a message ``Open System'' in application
+logs, which means that no pre-shared key is used.
+# Olisiko Open ollutkin 802.11 Open System ilmoitus?
 
 # TODO figure xxx
 
