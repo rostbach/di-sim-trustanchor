@@ -2334,6 +2334,7 @@ An exception to above mentioned plain-text messaging are the user passwords.
 If the user password was to be transmitted in RADIUS, it would be sent first
 through exclusive OR (XOR) function together with MD5 digested Secret
 and Request Authenticator.
+# padding?
 #+BEGIN_LaTeX
 \begin{center}
 {\tt 
