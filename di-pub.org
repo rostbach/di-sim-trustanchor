@@ -2297,8 +2297,8 @@ from MNO to AuthZ decision received from elsewhere.
 
 
 
-RADIUS messages are not protected from eavesdropping, but they have
-integrity fields to notice if tampering has been done.  
+RADIUS messages are normally not protected from eavesdropping, but they have
+integrity fields to notice if tampering has been done. 
 Integrity field is called a Message Authenticator.
 Notice the use of the term /Authenticator/ in different context here, not
 meaning 802.1X's Authenticator.
@@ -2322,15 +2322,18 @@ $3fef65608\ldots 2a79$.
      MD5(Code |ID |Length |Request Authenticator |Attributes |Secret)
 \end{verbatim}
 #+END_LaTeX
-The Secret is the shared secret which has been configured between RADIUS servers,
+The Secret is the shared secret which has been configured between
+RADIUS client-server pairs,
 and it protects some parts of traffic. 
-Different RADIUS clients may have different
-secrets and RADIUS server must separate them by client's IP address to
+Different RADIUS client-server pairs may use different
+shared secrets and RADIUS server must separate them by client's IP address to
 manage proxied RADIUS requests\cite{radiusbook}.
-If the user password was to be transmitted on wire, it would be run
-through exclusive OR function (XOR) together with MD5 digested Secret
-and Request
-Authenticator.
+
+# to the radius Security?
+An exception to above mentioned plain-text messaging are the user passwords.
+If the user password was to be transmitted in RADIUS, it would be sent first
+through exclusive OR (XOR) function together with MD5 digested Secret
+and Request Authenticator.
 #+BEGIN_LaTeX
 \begin{center}
 {\tt 
