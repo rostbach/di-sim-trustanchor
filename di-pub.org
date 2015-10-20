@@ -1325,7 +1325,7 @@ Now, how this trust could be used to include other components under
 same trust circle in the home network? As mentioned earlier, the SIM
 and MNO trust each other hence mutual authentication between them is
 possible and that is later shown to be an important factor.  Also the
-key distribution problem mentioned in Chapter[[cha:intro]] is solved
+key distribution problem mentioned in Chapter [[cha:intro]] is solved
 already at SIM-card distribution phase.  As AuthN-AuthZ at home
 proceeds through the Authenticator, then the Authenticator must
 deliver this information further and use it as a derivation function
