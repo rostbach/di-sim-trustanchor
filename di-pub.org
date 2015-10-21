@@ -2027,7 +2027,7 @@ cloud service's AuthZ data (scenario III, external AuthZ).
 Further it seems inevitable, that just like the home network model
 in the cloud has  AuthZ data of eligible IMSI accounts,
 then also delegating AuthZ function to the cloud would simplify home network 
-management: instead of putting logic on CPE for AuthZ, CPE
+management. Instead of putting logic on CPE for AuthZ, CPE
 could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
 
