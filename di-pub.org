@@ -2064,13 +2064,13 @@ external, like in scenario III.
 # *** Scenario I: AuthN from MNO, which uses cloud for AuthZ
 <<scenario-i>>
 The first AA-scenario is presented here thoroughly as an example.
-The goal is to make trusted configuration change. 
+The goal is to make a trusted configuration change. 
 # Other scenarios 
 # do not get such treatment.
 #   more carefully than the others
 # to get basic understanding of flow. Aims to configuration change
 The steps are numbered  in Figure[[fig:scenario-I]] and explained in detail.
-Configuration change is allowed, if CPE gets ACCEPT from MNO.  MNO gets
+The configuration change is allowed, if CPE gets ACCEPT message from MNO.  MNO gets
 information of allowed users from Cloud.
 #  (BaaS [def.])
 # or proxy BaaS[def.def.].
@@ -2102,9 +2102,6 @@ information of allowed users from Cloud.
 [[file:scenI.png]]
 
 # [ Maybe replace BaaS with CLOUD] 
-
-
-# [ alternative presentation of the flow, I: list ] 
 
 1. The model has been changed in the Cloud (1).
 2. The Cloud send the changes to the Local Controller (phone) (2).
