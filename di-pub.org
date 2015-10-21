@@ -2011,10 +2011,12 @@ cases when the smartphone later would need re-authentication.
 
 # [Place of Authorization decision  ]
 
-The AA components and the Authenticators can appear in 
+The AA components and can appear in 
 diverse location combinations. Here the AuthN component 
-is always located outside the home, as AuthN is the MNO.
-The Authenticator or the AuthZ on the other hand
+is usually located outside the home, as AuthN is the MNO, unless
+we are considering offline AuthN or recurring AuthN.
+# The Authenticator or 
+The AuthZ on the other hand
 may be placed more freely. It can be at home, at an external provider, 
 or at MNO.
 
