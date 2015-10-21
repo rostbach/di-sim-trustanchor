@@ -2015,7 +2015,8 @@ The AA components and the Authenticators can appear in
 diverse location combinations. Here the AuthN component 
 is always located outside the home, as AuthN is the MNO.
 The Authenticator or the AuthZ on the other hand
-may be placed in the home or at the external provider.
+may be placed more freely. It can be at home, at an external provider, 
+or at MNO.
 
 # Analyzing the locations
 AuthZ is usually checked from sources outside home, 
