@@ -1,4 +1,4 @@
-% Created 2015-10-20 ti 08:48
+% Created 2015-10-21 ke 18:39
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1411,23 +1411,22 @@ cases when the smartphone later would need re-authentication.
 \label{sec-4-3}
 
 
-The AA components and the Authenticators can appear in 
+The AA components and can appear in 
 diverse location combinations. Here the AuthN component 
-is always located outside the home, as AuthN is the MNO.
-The Authenticator or the AuthZ on the other hand
-may be placed in the home or at the external provider.
-
-AuthZ is usually checked from sources outside home, 
-although the Authenticator at home is the one, who
+is usually located outside the home, as AuthN is the MNO, unless
+we are considering offline AuthN or recurring AuthN.
+The AuthZ may be placed more freely. It can be at
+home, at an external provider, or at MNO.
+Authenticator on the other hand must lie at home, and 
 gives the final decision about the access.
 
-If the AuthZ-decision is made on remote AuthN server, 3rd party, 
+If the AuthZ decision is made on remote AuthZ server, 3rd party, 
 then that server needs to have either local data or access to 
-cloud service's AuthZ data (scenario III, external Authenticator).
+cloud service's AuthZ data (scenario III, external AuthZ).
 Further it seems inevitable, that just like the home network model
 in the cloud has  AuthZ data of eligible IMSI accounts,
 then also delegating AuthZ function to the cloud would simplify home network 
-management: instead of putting logic on CPE for AuthZ, CPE
+management. Instead of putting logic on CPE for AuthZ, CPE
 could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
 
@@ -1459,10 +1458,10 @@ V & - & - & -\\
 
 \label{scenario-i}
 The first AA-scenario is presented here thoroughly as an example.
-The goal is to make trusted configuration change. 
+The goal is to make a trusted configuration change. 
 The steps are numbered  in Figure\ref{fig:scenario-I} and explained in detail.
-Configuration change is allowed, if CPE gets ACCEPT from MNO.  MNO gets
-information of allowed users from Cloud.
+The configuration change is allowed, if CPE gets ACCEPT message from
+MNO.  Allowed users have been inserted earlier to MNO from the Cloud.
 
 
 \begin{figure}[htb]
@@ -1470,8 +1469,6 @@ information of allowed users from Cloud.
 \includegraphics[width=.9\linewidth]{scenI.png}
 \caption{\label{fig:scenario-I}Scenario I with 3 separate domains: Cloud, MNO and home network}
 \end{figure}
-
-
 
 
 \begin{enumerate}
