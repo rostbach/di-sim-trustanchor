@@ -2102,6 +2102,9 @@ MNO.  Allowed users have been inserted earlier to MNO from the Cloud.
 [[file:scenI.png]]
 
 # [ Maybe replace BaaS with CLOUD] 
+# Maybe siplify by 1, 2 out and 3 is The local controller needs to
+# speak to homenet. Leave also out, what happens in MNO re IMSI and
+# cloud. That part does not even _have_ a number 
 
 1. The model has been changed in the Cloud (1).
 2. The Cloud send the changes to the Local Controller (phone) (2).
