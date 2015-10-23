@@ -2170,10 +2170,10 @@ place within home network.
  | Cloud |      |MNO (RADIUS server)|
  +---+---+      +-----+-------------+
      |                ^ 
-     |                |AuthN
+conf |                |AuthN
      v                v
   +--+--+        +---+------------+
-  |phone|<-conf->|       +--------+
+  |phone|<--AA-->|       +-AuthZ--+
   +-----+        |CPE(AP)|{s}Roles|
          	 +-------+--------+
 #+end_src
@@ -2212,7 +2212,7 @@ This is similar to federated service.
  |cloud1 +<-AuthZ->+3rd party AA service provider  |
  +----+--+         +---+------------------+--------+
       |                ^                  ^         
-      |                |RADIUS            |AuthN 
+conf  |                |RADIUS            |AuthN 
       v                v                  v         
   +---+-+        +-----+----------+   +---+---------+
   |phone|<--AA-->|       +--------+   +MNO1(HLR_AuC)|
@@ -2253,13 +2253,13 @@ store for caching admin IMSIs (roles).
       |  Cloud     |   |MNO (HLR_AuC) |
       ++----------++   ++-------------+
        |          ^     ^
-       |     AuthZ|     |AuthN
+ conf  |     AuthZ|     |AuthN
        v          v     v
-  +----++        ++-----+---------+
-  |phone+<--AA-->+       +--------+
-  +-----+        |CPE(AP)|{s}Role |
-                 |       | cache  |
-                 +-------+--------+
+  +----++        ++-----+----------+
+  |phone+<--AA-->+       +---------+
+  +-----+        |CPE(AP)|{s}Roles |
+                 |       | (cache) |
+                 +-------+---------+
 
 #+end_src
 #+CAPTION: Scenario IV. In the future CPE could be attached direct to the Cloud and AuthN comes from MNO
@@ -2443,11 +2443,11 @@ users network.
 #+begin_src ditaa :file lockandkey.png :cmdline  -r -s 0.8
                                       
 +----------+  telnet  +-------+ +--------------=+
-|smartphone+<-------->+'lock  | |  +----------+ |
+|smartphone+<-------->+ ''lock| |  +----------+ |
 |   or     |          | and   | |  |management| |
-| general  |  all     | key'  | |  |          | |
-| terminal +----------+       +-=->+ network  | |
-+----------+          | router| |  |          | |
+| general  |  all     | key'' | |  |          | |
+| terminal +----------+ router+-=->+ network | |
++----------+          |       | |  |          | |
                       +-------+ |  +----------+ |
                                 +---------------+
 #+end_src
@@ -2829,8 +2829,10 @@ To prove that the proposed model works, empirical tests were done.
 A preliminary plan to benefit from SIM-authentication at home is
 presented in Figure[[fig:sim-pre]]. The real operator (MNO) and its HLR were 
 planned to be replaced with a gateway at home network and the real phone
-with its simulated counterpart. HSS would replace HLR in 3G/UMTS networks.  
-
+with its simulated counterpart. HSS would replace HLR in 3G/UMTS
+networks. 
+Only the Local Controller's interaction with the home network is
+tested and Cloud part set away.
 
 #+CAPTION: Plan to benefit from SIM-authentication at home
 #+NAME: fig:sim-pre
