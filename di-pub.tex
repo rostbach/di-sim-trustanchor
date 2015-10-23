@@ -1,4 +1,4 @@
-% Created 2015-10-23 pe 13:47
+% Created 2015-10-23 pe 13:53
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1950,8 +1950,10 @@ To prove that the proposed model works, empirical tests were done.
 A preliminary plan to benefit from SIM-authentication at home is
 presented in Figure\ref{fig:sim-pre}. The real operator (MNO) and its HLR were 
 planned to be replaced with a gateway at home network and the real phone
-with its simulated counterpart. HSS would replace HLR in 3G/UMTS networks.  
-
+with its simulated counterpart. HSS would replace HLR in 3G/UMTS
+networks. 
+Only the Local Controller's interaction with the home network is
+tested and Cloud part set away.
 
 \begin{figure}[htb]
 \centering
@@ -1962,7 +1964,7 @@ with its simulated counterpart. HSS would replace HLR in 3G/UMTS networks.
 First it is shown how EAP-SIM authentication works in a simulated
 environment.
  Then a use case for disconnection is reported and network traces are analyzed.
-In the end, the changes in the management network are possible from
+In the end, it is shown, that the changes in the management network are possible from
 the local controller with  command line interface (CLI).
 
 
@@ -1973,9 +1975,10 @@ the local controller with  command line interface (CLI).
 
 
 Physical devices used in the tests  were three smartphones, an Wi-Fi accesspoint, and a laptop.
-The smartphones were Nokia E70-1, Nokia E90, and Jolla. Nokias
-featured EAP-SIM by factory, but Jolla had missing library and
-configuration on its WPA-supplicant for SIM.
+The smartphones were Nokia E70-1, Nokia E90, and Jolla. The Nokia phones
+featured EAP-SIM by factory, but the Jolla phone missed a crucial
+software library
+and right compilation time configuration set on its WPA-supplicant for SIM.
 
 Jouni Malinen's software package \emph{HostAP}\cite{hostapd} provides
 components for WPA2-Supplicant, Wireless Access point (AP),
@@ -2061,8 +2064,8 @@ After WPA2-Supplicant run on laptop with simulated SIM-card access
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software claimed that 
 \begin{verse}
-Hostapd will send SIM/AKA authentication queries over a UNIX domain \\
-socket to an external hlr\_auc\_gw program. \\
+"Hostapd will send SIM/AKA authentication queries over a UNIX domain \\
+socket to an external hlr\_auc\_gw program." \\
 \end{verse}
 Appendix \ref{app:hlraucgw}   shows that traffic.
 
