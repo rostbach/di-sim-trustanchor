@@ -2082,16 +2082,16 @@ MNO.  Allowed users have been inserted earlier to MNO from the Cloud.
 # C-c C-c to evaluate , C-c C-o to preview  images
 # #+begin_src ditaa :file cloud.png :cmdline -E -r 
 #+begin_src ditaa :file scenI.png :cmdline -E -r -s 4
-                                          6+-------+
-      +-----+ AuthZ +-------------------+--+{s}HLR |
-     1|Cloud+<----->+MNO (RADIUS server)|  +-------+
+                                          AuthN 6 +-------+
+      +-----+ AuthZ +-------------------+---------+{s}HLR |
+     1|Cloud+<----->+MNO (RADIUS server)|         +-------+
       +-+-+-+       +-----------+-------+
-        |2                     5^
-    conf|                       |RADIUS AA
+        |2                    5 ^
+    conf|                       |AA(RADIUS)
   +-----|----------=----------=-|-------+ 
   |     v3     home net         v7      |
   |  +--+--+8             4+----+--+    |
-  |  |phone+<-----(AA)---->+CPE(AP)|    |
+  |  |phone+<------AA----->+CPE(AP)|    |
   |  +-----+               +-------+    |
   +=------------------------------------+
 #+end_src
@@ -2215,7 +2215,7 @@ This is similar to federated service.
       |                |RADIUS            |AuthN 
       v                v                  v         
   +---+-+        +-----+----------+   +---+---------+
-  |phone|<-conf->|       +--------+   +MNO1(HLR_AuC)|
+  |phone|<--AA-->|       +--------+   +MNO1(HLR_AuC)|
   +-----+        |CPE(AP)|{s}Role |   +-------------+
                  |       | cache  |
                  +-------+--------+
@@ -2256,13 +2256,13 @@ store for caching admin IMSIs (roles).
        |     AuthZ|     |AuthN
        v          v     v
   +----++        ++-----+---------+
-  |phone+<-conf->+       +--------+
+  |phone+<--AA-->+       +--------+
   +-----+        |CPE(AP)|{s}Role |
                  |       | cache  |
                  +-------+--------+
 
 #+end_src
-#+CAPTION: Scenario IV, AuthZ from the Cloud, AuthN from MNO
+#+CAPTION: Scenario IV. In the future CPE could be attached direct to the Cloud, AuthN from MNO
 #+NAME:   fig:scenario-IV
 #+RESULTS:
 [[file:scenIV.png]]
