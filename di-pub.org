@@ -2262,7 +2262,7 @@ store for caching admin IMSIs (roles).
                  +-------+--------+
 
 #+end_src
-#+CAPTION: Scenario IV. In the future CPE could be attached direct to the Cloud, AuthN from MNO
+#+CAPTION: Scenario IV. In the future CPE could be attached direct to the Cloud and AuthN comes from MNO
 #+NAME:   fig:scenario-IV
 #+RESULTS:
 [[file:scenIV.png]]
