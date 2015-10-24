@@ -1440,7 +1440,7 @@ external configuration even with the proposed automation aids.
 # homenet according to a policy set by the user of the homenet.
 # #+END_QUOTE
 
-
+** Homenet with PKI
 # C-c C-x [,  
 # cite{draft-behringer-bootstrap},
 # There are proposed techniques for that for example in Internet-draft
@@ -1470,16 +1470,17 @@ For that, AuthN of the trust anchor device would happen by checking device's Ven
 device later becomes home network's Certificate Authority (CA) service
 and the trust anchor, upon which the rest of the home network devices
 would apply for certificates from to get under the same trust circle.
- 
+Key creation, key exchange and their usage is explained in similar
+draft from Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. That explains PKI usage in general
+in bootstrapping. 
+
+** Homenet without PKI 
  Behringer continues, that the end devices would not yet get full AuthZ,
 but only a ticket, with which the end device may request for service tickets.
 with that ticket, the device can apply for access to change management
 service from CPE. That is similar to Kerberos, which is based on
 Needham-Schroeder protocol.
 # Regarding
-Key creation, key exchange and their usage is explained in similar
-draft from Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. That explains PKI usage in general
-in bootstrapping. 
 # There is also discussion about using manufacturer provided device certificates as trust anchor.  
 
 # Rest of gba:
