@@ -1,4 +1,4 @@
-% Created 2015-10-24 la 19:33
+% Created 2015-10-24 la 19:36
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1058,9 +1058,8 @@ avoided and let home network user decide whether device becomes trusted.
 So, these statements reveal us that home network environment still needs
 external configuration even with the proposed automation aids.
 
-
-
-
+\section{Homenet with PKI}
+\label{sec-3-2}
 
 Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
 home. The public key cryptography is processor intensive and its
@@ -1084,15 +1083,17 @@ For that, AuthN of the trust anchor device would happen by checking device's Ven
 device later becomes home network's Certificate Authority (CA) service
 and the trust anchor, upon which the rest of the home network devices
 would apply for certificates from to get under the same trust circle.
+Key creation, key exchange and their usage is explained in similar
+draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in general
+in bootstrapping. 
 
+\section{Homenet without PKI}
+\label{sec-3-3}
  Behringer continues, that the end devices would not yet get full AuthZ,
 but only a ticket, with which the end device may request for service tickets.
 with that ticket, the device can apply for access to change management
 service from CPE. That is similar to Kerberos, which is based on
 Needham-Schroeder protocol.
-Key creation, key exchange and their usage is explained in similar
-draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in general
-in bootstrapping. 
 
 
 
@@ -1114,7 +1115,7 @@ once, namely in the bootstrapping phase to setup the CA trust
 anchor. Only after that, can the CA start delivering PKI. Kerberos
 needs shared keys, and EAP-SIM helps in providing those.
 \section{Centralization trends in management}
-\label{sec-3-2}
+\label{sec-3-4}
 
 Traditionally, configuration management of network devices has been done
 individually using each device's console or web-access.  As the number of
@@ -1161,7 +1162,7 @@ authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 
 \subsection{Trust anchoring shortly explained}
-\label{sec-3-2-1}
+\label{sec-3-4-1}
 
 TBD.
 
