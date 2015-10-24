@@ -2606,7 +2606,7 @@ III) Changes are delivered from cloud to CPE functioning as a central
    the central management station inside home network, which then
    forwards the configuration changes to other devices.
 
-IV) Variation of number 3 is that if CPE itself is an Authenticator, it
+IV) Variation of III is that if CPE itself is an Authenticator, it
    could proceed on propagating changes when it receives
    ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
    drop received changes without forwarding them.
