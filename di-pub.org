@@ -4322,6 +4322,7 @@ not want to invest on existing technology, which can be seen as ``old''.
 # [do not jump in with so short flash messages. This looks like conclusion.] 
 SIM card of the smartphone, used together with Wi-Fi access to home network 
 verifies change controls, and for that we have presented some options.
+
 Location of AuthN and AuthZ components may vary depending on state of process.
 Always in the beginning, AuthN lies outside the home network, but
 later it can use local point. AuthZ, on the otherhand, may be located more freely.
@@ -4330,6 +4331,7 @@ later it can use local point. AuthZ, on the otherhand, may be located more freel
 # RADIUS protocol is here not used for 
 # allowing user into service, which is the traditional way to use
 # RADIUS, but opening access to separated network. 
+
 Based on 802.1X standard, the management port is activated and
 RADIUS transfers the orders for correct AA.
 The smartphone traffic is directed in to an own virtual LAN segment (VLAN),
@@ -4356,7 +4358,7 @@ the authenticated identity.
 
 
 
-In the theory chapter it was questioned whether the proxying RADIUS server
+In the Design chapter it was questioned whether the proxying RADIUS server
 can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
