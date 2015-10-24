@@ -4207,7 +4207,8 @@ It is well known, that the usability of the captive-portal Wi-Fi
 a web portal logins with a username-password authentication 
 procedure and those are different for every network.
 Additionally, the user is often required to switch 
-between cellular and  Wi-Fi data access when they change their location.
+between cellular and  Wi-Fi data access when they change their
+ location, and that would disrupt the network connection.
 
 An industry brand  Hotspot 2.0 addresses those issues and tries to
 simplify user's switch between Wi-Fi and cellular to automate the
