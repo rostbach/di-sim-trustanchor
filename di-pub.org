@@ -2574,12 +2574,12 @@ earlier set trust. The remaining two would depend on more complex
 setups involving tokens and are presented here just as ideas.
 
 
-1) Changes are delivered from cloud to smartphone, which forwards them
+I) Changes are delivered from cloud to smartphone, which forwards them
    to devices located at management network after the
    authentication has succeeded. This is the method chosen here and
    already explained.
 
-2) Changes are delivered normally from cloud to CPE (CPEs) without
+II) Changes are delivered normally from cloud to CPE (CPEs) without
    interaction from the smartphone. Such changes would not need AA at
    all or changes include credentials to login to targets. An example
    of change is a modification in network segment, which does not
@@ -2597,7 +2597,7 @@ setups involving tokens and are presented here just as ideas.
 # every change needs to go
 
 
-3) Changes are delivered from cloud to CPE functioning as a central
+III) Changes are delivered from cloud to CPE functioning as a central
    management station without interaction from the smartphone.  Digest
    of what is going to happen would be sent to smartphone from the
    cloud over the air (OtA). Smartphone would authenticate in to the
@@ -2606,7 +2606,7 @@ setups involving tokens and are presented here just as ideas.
    the central management station inside home network, which then
    forwards the configuration changes to other devices.
 
-4) Variation of number 3 is that if CPE itself is an Authenticator, it
+IV) Variation of number 3 is that if CPE itself is an Authenticator, it
    could proceed on propagating changes when it receives
    ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
    drop received changes without forwarding them.
