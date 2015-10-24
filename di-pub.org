@@ -4364,7 +4364,7 @@ by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
 only in a very light way, but not encrypted.
 
-Altering or addition of  RADIUS messages can choose from many
+Altering or addition of  RADIUS messages can be chosen from many
 attributes of RADIUS's vocabulary. They can carry extra information
 for provisioning in AuthZ phase. Exactly which of them are used
 remains to implementer's  decision. 
