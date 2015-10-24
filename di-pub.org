@@ -1596,8 +1596,7 @@ infrastructure (phones, internet access, Wi-Fi access points),  a strong
 authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 
-** Trust anchoring shortly explained
-** Alternative methods for introducing trust anchor into the home network
+** Methods for introducing trust anchor into the home network
 <<sec:altmethods>>
 # In bootstrapped environment change management can happen.
 
