@@ -1,4 +1,4 @@
-% Created 2015-10-24 la 19:52
+% Created 2015-10-24 la 20:02
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1201,125 +1201,9 @@ beginning as can be seen from Figure\ref{fig:trustbegin}.
 \caption{\label{fig:trustbegin}Trust circles in the beginning}
 \end{figure}
 
-\section{Alternative methods for introducing trust anchor into the home network}
-\label{sec-4-1}
-\label{sec:altmethods}
-
-
-
- Trust information, may it then be a secret or some
-other evidence, can be delivered to a trust device via physical
-transport channel separate from the actual communicating channel.
-Traditional way to do that is with a password inside a sealed
-envelope or a one-time password list that for example online banks 
-use today. The secret can also be sent as an SMS.
-
-Trust can also be requested with the help of device's
-unique properties. Recently, there have appeared  devices on the market, that
-have vendor provided certificates inside them, which brings public key
-infrastructure as one possible alternative to learn trusted identity. 
-The device proves its identity by presenting a certificate, which has
-been issued by a trusted vendor.  Private keys are inside the device's
-trusted hardware store. Vendor trust is needed for checking the issued certificates
-and so the trust verification of individual devices is merely
-transferred to trust verification of the vendor.  Root CAs are trust anchors
-also and can in the same way be read from the device's read-only store.
-CPE could use vendor issued certificate for AuthN of some earlier
-unknown device.  
-
-
-Other techniques  to use SIM's unique properties besides EAP-SIM
-are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
-direct connection through PC/SC (Personal\- Computer/Smart\- Card),
-CallerID service from phone network, or
-Mobile signing service.
-
-
-
-Bluetooth SIM and PC/SC would need patching of smartphone's software
-to work.  On the other hand, the smartphone would any way need to
-download  a controlling application
-in the beginning for advanced use, so these techniques could be
-studied further in another work.
-
-Caller ID as an authentication method uses cellular network's controlling
-channels. When a phone makes a call, the receiving end gets 
-to know callers phone number (IMSI) before it answers the call.
-That information is called Caller ID and it has been in use
-successfully for some door locking implementations. 
-It does not cost anything for caller or responder,
-because after receiving the CallerID  information, responder can hang
-up upcoming call and no call expenses are created.
- It can also be made safe at least in Finland
-by limiting which tele operators are allowed to connect.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SIM card can also benefit from electronic signatures.
-European Telecommunications Standards Institute (ETSI) has defined a
-standard for mobile signature services (MSS) in ETSI TS 102 204.
-MNOs in Finland have diverse implementations for this. The universal 
-service is called ``Mobiilivarmenne'', but MNO Sonera's brand for it
-is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
-
-When AuthN and AuthZ comes from outside, one possibility is to use a
-federated Mobile AuthN Service, which then is connected to  MSSP(Mobile
-Signature Service Provider) with ETSI-204. Benefits for ETSI-204
-federation are similar to those with federation of WiFi groups
-mentioned in Section \ref{sec:radius} -- no home device must implement it at home,
-but also beneficial for  MNO as it sees the service as just one
-client.  Without the federation, the mobile AuthN services would need to be
-multiplied with number of the separate home networks  needing authentication service.
-
-
-
-Project Moonshot\cite{moonshot}, is in its early phases. Its goal is
-to enable federated access universally to applications and
-services. If it worked and was used together with MSSP, it may offer
-SIM-based SSH access to Authenticator. Modifications are then needed 
-both in SSH server and client. Additionally, EAP must be used through
-tunneling, for example as an inner protocol of EAP-TTLS.
-
-At this point a question might rise, why these external service
-providers are needed. Is it not easier and simpler to just send 
-an SMS with password code to the smartphone, when access confirmation is needed?
-Mobile SIM provides two-way AuthN part as discussed earlier.
-Without need for strong AuthN, that model would indeed be 
-simpler, but using SIM also solves initial key distribution problem.
-Additionally, mutual AuthN problem would still need to be solved:
-Who sent that password and where that password should be inserted?
-
-
-
-
-
-Requirement for home network can be as small as having WPA2 Enterprise capable
-AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
-has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
-Additionally, managing user's SIM-card has to be registered as an admin user in home network 
-configuration, i.e. IMSI must belong to the admin group.
-In this implementation, no extra application is needed in smartphone
-for primitive trust, but later for more serious use some application is needed.
-For added functionality, for example for logging admins out, OpenWRT
-based software can be used, although those functions have not yet been
-implemented. Disconnection issues are explained in Section
-\ref{sec:disconnections}.
 
 \section{Chosen AA design}
-\label{sec-4-2}
+\label{sec-4-1}
 \label{sec:chosendesign}
 
 The phone brings trust to the home network by completing full EAP-SIM
@@ -1408,7 +1292,7 @@ the parts of the management network and is authenticated strong.  User
 management is outsourced to MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
-located on diverse place, as can be seen in Section \ref{sec-4-3}.
+located on diverse place, as can be seen in Section \ref{sec-4-2}.
 
 
 After authentication and authorization has succeeded, session key
@@ -1421,7 +1305,7 @@ the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
 
 \section{AA component location scenarios}
-\label{sec-4-3}
+\label{sec-4-2}
 
 
 The AA components can be found in diverse location combinations. Here, the AuthN component 
@@ -1585,10 +1469,10 @@ but CPE has neither trust nor roles.
 
 
 \section{Ways to modify RADIUS messages [perhaps to security integrity chapter?]}
-\label{sec-4-4}
+\label{sec-4-3}
 \label{sec:radius-macs}
 
-Our model would greatly benefit from modification of RADIUS messages in proxying
+Our model would greatly benefit from the modification of RADIUS messages in proxying
 RADIUS, if that is possible as was mentioned in Section \ref{sec:radius}(RADIUS).
 The modification is needed, when the proxying RADIUS wants to combine AuthN message
 from MNO to AuthZ decision received from elsewhere.
@@ -1671,7 +1555,7 @@ detection tool\cite[p.2]{rfc6151}.
 
 
 \section{Similarities with Lock-and-Key method}
-\label{sec-4-5}
+\label{sec-4-4}
 The method is very similar to the concept used on routers to dynamically enable
 access to certain parts of network by first letting the user to log in
 to the router. If the access succeeds, the router dynamically adds
@@ -1756,87 +1640,10 @@ proxy)
 request is correct
 \end{enumerate}
 
-\section{Alternative management models (-> to discussion and speculations)}
-\label{sec-4-6}
-
-If we were to question or evolve the given model of change
-propagation, the trust anchoring would also need some modifications.
-Alternative method is that the changes could be marked some way, so
-that they need approving and then there could be a specific
-change-approval message, which must be sent through management
-network, perhaps including digest of change message as a verification.
-Because smartphone is not actively listening the CPE, it cannot input
-those request. Together with the chosen method, there are four planned
-methods to distribute changes. The first uses the smartphone as a
-direct commander and is the preferred 
-method. The second would not involve smartphone at all but depended on
-earlier set trust. The remaining two would depend on more complex
-setups involving tokens and are presented here just as ideas.
-
-
-I) Changes are delivered from cloud to smartphone, which forwards them
-   to devices located at management network after the
-   authentication has succeeded. This is the method chosen here and
-   already explained.
-
-II) Changes are delivered normally from cloud to CPE (CPEs) without
-   interaction from the smartphone. Such changes would not need AA at
-   all or changes include credentials to login to targets. An example
-   of change is a modification in network segment, which does not
-   change network topology of other domains.  It is still unclear to
-   the author which type of changes represents majority of the
-   requests: those that need approval, or those that may proceed
-   without approval. An educated guess is, that every change set needs
-   to check the trust anchor's precence.
-
-
-
-III) Besides AP, also CPE would have direct connection to the
-   Cloud. Changes are then delivered from cloud to CPE functioning as a central
-   management station without interaction from the smartphone.  Digest
-   of what is going to happen would be sent to smartphone from the
-   cloud over the air (OtA). Smartphone would authenticate in to the
-   management network (if not already there) and send through it the
-   digest token it received from the cloud as an approval message to
-   the central management station inside home network, which then
-   forwards the configuration changes to other devices.
-
-IV) Variation of III is that when CPE itself is an Authenticator, it
-   could proceed on propagating changes when it receives
-   ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
-   drop received changes without forwarding them.
-
-
-The smartphone may receive the AuthN token with 
-a message explaining what is going to happen in the change.
-As the CPE and the Authenticator may be separate devices, approving
-happens by sending the token from the smartphone to the CPE via the
-management network where the Authenticator gives access.
-
-
-
-
-Using tickets has a connection to earlier homenet studies, such as
-Behringers work-in-progress
-bootstrapping\cite{draft-behringer-bootstrap}.  
-
- Another bootstrapping architecture is
-defined in GBA (General Bootstrapping Architecture), which 
-benefits from MNO's or any other identity centre's  knowledge of user's SIM.
-
-
-In our work, the Authentication server can be an external
-RADIUS server, but usually the final decision point lies at the
-Authenticator in CPE. Further, in last two planned ways only the
-initial bootstrap as well as the change of admin roles and some dangerous
-combination of commands would need AA with the smartphone.
-Finally this thesis takes the bootstrapped environment as given, i.e.,
-the initial configuration has already been set.
-
 
 
 \section{Chosen management model}
-\label{sec-4-7}
+\label{sec-4-5}
 
 
 
@@ -1909,7 +1716,7 @@ available and routing would still prefer Wi-Fi as a default gateway, although
 possible 3G data link still may stay up and operational.
 
 \section{Summary of the chosen solution}
-\label{sec-4-8}
+\label{sec-4-6}
 
 [wrap up of solution]
 
@@ -2410,8 +2217,10 @@ version(s) & component & tested on\\
 We have now gone through theory, design and implementation so let's
 discuss some results and findings. We concentrate on security, 
 deployment difficulties and costs, platform issues and cases where we
-need to extend the number of SSID's. Last, we discuss and speculate on 
-some alternative solutions.
+need to extend the number of SSID's. The facts collected in the thesis
+are once more wrapped up in Discussion section.
+Last, we speculate on some alternative design solutions for adding
+trust and management models.
 
 
 \section{Security considerations}
@@ -2537,6 +2346,9 @@ Thus, this paper does not consider TMSI in the implementation Chapter
 \ref{sec-5}.
 \subsection{Integrity}
 \label{sec-6-1-2}
+
+
+
 The integrity issues were handled in Section \ref{sec:radius-macs} describing
 RADIUS message modification.
 Message digestion codes provide integrity for RADIUS protocol.
@@ -2951,9 +2763,11 @@ not want to invest on existing technology, which can be seen as ``old''.
 
 SIM card of the smartphone, used together with Wi-Fi access to home network 
 verifies change controls, and for that we have presented some options.
+
 Location of AuthN and AuthZ components may vary depending on state of process.
 Always in the beginning, AuthN lies outside the home network, but
 later it can use local point. AuthZ, on the otherhand, may be located more freely.
+
 Based on 802.1X standard, the management port is activated and
 RADIUS transfers the orders for correct AA.
 The smartphone traffic is directed in to an own virtual LAN segment (VLAN),
@@ -2975,13 +2789,13 @@ the authenticated identity.
 
 
 
-In the theory chapter it was questioned whether the proxying RADIUS server
+In the design chapter (Chapter \label{cha:design}) it was questioned whether the proxying RADIUS server
 can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
 only in a very light way, but not encrypted.
 
-Altering or addition of  RADIUS messages can choose from many
+Altering or addition of  RADIUS messages can be chosen from many
 attributes of RADIUS's vocabulary. They can carry extra information
 for provisioning in AuthZ phase. Exactly which of them are used
 remains to implementer's  decision. 
@@ -3032,6 +2846,203 @@ planned.
 There was no indication of SIM method present in captures, the only
 indication of security was a message ``Open System'' in application
 logs, which means that no pre-shared key is used.
+
+
+
+\section{Alternative methods for introducing trust anchor into the home network}
+\label{sec-6-6}
+\label{sec:altmethods}
+
+
+
+ Trust information, may it then be a secret or some
+other evidence, can be delivered to a trust device via physical
+transport channel separate from the actual communicating channel.
+Traditional way to do that is with a password inside a sealed
+envelope or a one-time password list that for example online banks 
+use today. The secret can also be sent as an SMS.
+
+Trust can also be requested with the help of device's
+unique properties. Recently, there have appeared  devices on the market, that
+have vendor provided certificates inside them, which brings public key
+infrastructure as one possible alternative to learn trusted identity. 
+The device proves its identity by presenting a certificate, which has
+been issued by a trusted vendor.  Private keys are inside the device's
+trusted hardware store. Vendor trust is needed for checking the issued certificates
+and so the trust verification of individual devices is merely
+transferred to trust verification of the vendor.  Root CAs are trust anchors
+also and can in the same way be read from the device's read-only store.
+CPE could use vendor issued certificate for AuthN of some earlier
+unknown device.  
+
+
+Other techniques  to use SIM's unique properties besides EAP-SIM
+are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
+direct connection through PC/SC (Personal\- Computer/Smart\- Card),
+CallerID service from phone network, or
+Mobile signing service.
+
+
+
+Bluetooth SIM and PC/SC would need patching of smartphone's software
+to work.  On the other hand, the smartphone would any way need to
+download  a controlling application
+in the beginning for advanced use, so these techniques could be
+studied further in another work.
+
+Caller ID as an authentication method uses cellular network's controlling
+channels. When a phone makes a call, the receiving end gets 
+to know callers phone number (IMSI) before it answers the call.
+That information is called Caller ID and it has been in use
+successfully for some door locking implementations. 
+It does not cost anything for caller or responder,
+because after receiving the CallerID  information, responder can hang
+up upcoming call and no call expenses are created.
+ It can also be made safe at least in Finland
+by limiting which tele operators are allowed to connect.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SIM card can also benefit from electronic signatures.
+European Telecommunications Standards Institute (ETSI) has defined a
+standard for mobile signature services (MSS) in ETSI TS 102 204.
+MNOs in Finland have diverse implementations for this. The universal 
+service is called ``Mobiilivarmenne'', but MNO Sonera's brand for it
+is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
+
+When AuthN and AuthZ comes from outside, one possibility is to use a
+federated Mobile AuthN Service, which then is connected to  MSSP(Mobile
+Signature Service Provider) with ETSI-204. Benefits for ETSI-204
+federation are similar to those with federation of WiFi groups
+mentioned in Section \ref{sec:radius} -- no home device must implement it at home,
+but also beneficial for  MNO as it sees the service as just one
+client.  Without the federation, the mobile AuthN services would need to be
+multiplied with number of the separate home networks  needing authentication service.
+
+
+
+Project Moonshot\cite{moonshot}, is in its early phases. Its goal is
+to enable federated access universally to applications and
+services. If it worked and was used together with MSSP, it may offer
+SIM-based SSH access to Authenticator. Modifications are then needed 
+both in SSH server and client. Additionally, EAP must be used through
+tunneling, for example as an inner protocol of EAP-TTLS.
+
+At this point a question might rise, why these external service
+providers are needed. Is it not easier and simpler to just send 
+an SMS with password code to the smartphone, when access confirmation is needed?
+Mobile SIM provides two-way AuthN part as discussed earlier.
+Without need for strong AuthN, that model would indeed be 
+simpler, but using SIM also solves initial key distribution problem.
+Additionally, mutual AuthN problem would still need to be solved:
+Who sent that password and where that password should be inserted?
+
+
+
+
+
+Requirement for home network can be as small as having WPA2 Enterprise capable
+AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
+has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
+Additionally, managing user's SIM-card has to be registered as an admin user in home network 
+configuration, i.e. IMSI must belong to the admin group.
+In this implementation, no extra application is needed in smartphone
+for primitive trust, but later for more serious use some application is needed.
+For added functionality, for example for logging admins out, OpenWRT
+based software can be used, although those functions have not yet been
+implemented. Disconnection issues are explained in Section
+\ref{sec:disconnections}.
+
+
+\section{Alternative management models (-> to discussion and speculations)}
+\label{sec-6-7}
+
+If we were to question or evolve the given model of change
+propagation, the trust anchoring would also need some modifications.
+Alternative method is that the changes could be marked some way, so
+that they need approving and then there could be a specific
+change-approval message, which must be sent through management
+network, perhaps including digest of change message as a verification.
+Because smartphone is not actively listening the CPE, it cannot input
+those request. Together with the chosen method, there are four planned
+methods to distribute changes. The first uses the smartphone as a
+direct commander and is the preferred 
+method. The second would not involve smartphone at all but depended on
+earlier set trust. The remaining two would depend on more complex
+setups involving tokens and are presented here just as ideas.
+
+
+I) Changes are delivered from cloud to smartphone, which forwards them
+   to devices located at management network after the
+   authentication has succeeded. This is the method chosen here and
+   already explained.
+
+II) Changes are delivered normally from cloud to CPE (CPEs) without
+   interaction from the smartphone. Such changes would not need AA at
+   all or changes include credentials to login to targets. An example
+   of change is a modification in network segment, which does not
+   change network topology of other domains.  It is still unclear to
+   the author which type of changes represents majority of the
+   requests: those that need approval, or those that may proceed
+   without approval. An educated guess is, that every change set needs
+   to check the trust anchor's precence.
+
+
+
+III) Besides AP, also CPE would have direct connection to the
+   Cloud. Changes are then delivered from cloud to CPE functioning as a central
+   management station without interaction from the smartphone.  Digest
+   of what is going to happen would be sent to smartphone from the
+   cloud over the air (OtA). Smartphone would authenticate in to the
+   management network (if not already there) and send through it the
+   digest token it received from the cloud as an approval message to
+   the central management station inside home network, which then
+   forwards the configuration changes to other devices.
+
+IV) Variation of III is that when CPE itself is an Authenticator, it
+   could proceed on propagating changes when it receives
+   ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
+   drop received changes without forwarding them.
+
+
+The smartphone may receive the AuthN token with 
+a message explaining what is going to happen in the change.
+As the CPE and the Authenticator may be separate devices, approving
+happens by sending the token from the smartphone to the CPE via the
+management network where the Authenticator gives access.
+
+
+
+
+Using tickets has a connection to earlier homenet studies, such as
+Behringers work-in-progress
+bootstrapping\cite{draft-behringer-bootstrap}.  
+
+ Another bootstrapping architecture is
+defined in GBA (General Bootstrapping Architecture), which 
+benefits from MNO's or any other identity centre's  knowledge of user's SIM.
+
+
+In our work, the Authentication server can be an external
+RADIUS server, but usually the final decision point lies at the
+Authenticator in CPE. Further, in last two planned ways only the
+initial bootstrap as well as the change of admin roles and some dangerous
+combination of commands would need AA with the smartphone.
+Finally this thesis takes the bootstrapped environment as given, i.e.,
+the initial configuration has already been set.
 
 
 \chapter{Conclusion}
