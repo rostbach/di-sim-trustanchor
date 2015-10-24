@@ -1596,7 +1596,7 @@ infrastructure (phones, internet access, Wi-Fi access points),  a strong
 authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 
-*** Trust anchoring shortly explained
+** Trust anchoring shortly explained
 
 TBD.
 
