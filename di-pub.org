@@ -4169,9 +4169,9 @@ Even, when AP has authenticated the smart home user, managed devices still
 need to have their own access control.
 # [2015/05/11 NEW! This must be told everywhere, devices still have
 # their own access control! 
-They may consult local RADIUS server, whether there is currently
-authenticated smartphone present which indicated presence of 
-allowed changes. Then every change coming from management network
+They may consult local RADIUS server, whether there currently is an
+authenticated smartphone present, which indicated that changes coming
+from the management network
 would be allowed. Smartphone also could know the login credentials to
 devices through earlier received configuration information and use
 them after getting into management network.
