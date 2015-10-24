@@ -3183,7 +3183,7 @@ discuss some results and findings. We concentrate on security,
 deployment difficulties and costs, platform issues and cases where we
 need to extend the number of SSID's. The facts collected in the thesis
 are once more wrapped up in Discussion section.
-Last, we  speculate on some alternative design solutions for adding
+Last, we speculate on some alternative design solutions for adding
 trust and management models.
 
 
