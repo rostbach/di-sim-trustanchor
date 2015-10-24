@@ -3475,8 +3475,9 @@ program, because it provides simulated Jolla environment and
 We have now gone through theory, design and implementation so let's
 discuss some results and findings. We concentrate on security, 
 deployment difficulties and costs, platform issues and cases where we
-need to extend the number of SSID's. Last, we discuss and speculate on 
-some alternative solutions.
+need to extend the number of SSID's. The facts collected in the thesis
+are once more wrapped up in Discussion section.
+Last, we  speculate on some alternative design solutions.
 
 
 ** Security considerations
@@ -4482,6 +4483,8 @@ logs, which means that no pre-shared key is used.
 # Olisiko Open ollutkin 802.11 Open System ilmoitus?
 
 # TODO figure xxx
+
+
 
 # Technique used is 
 # protected WPA2-enterprise, using EAP-SIM[def] for AA
