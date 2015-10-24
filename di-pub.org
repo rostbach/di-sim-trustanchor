@@ -1608,7 +1608,7 @@ use today. The secret can also be sent as an SMS.
 # trust and thesis main point
 In this thesis,
 # uses the following method.
-the phone brings trust to the home network by completing full EAP-SIM
+the phone brings trust to the home network by completing a full EAP-SIM
 AA through the local Authenticator. SIM's identity is verified by HLR
 AuC at the phone operator's end and AuthZ added to it later. The
 verification leaves a trail on the local Authenticator and opens a
