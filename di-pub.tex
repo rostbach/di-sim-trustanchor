@@ -1,4 +1,4 @@
-% Created 2015-10-24 la 17:59
+% Created 2015-10-24 la 19:33
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1069,33 +1069,30 @@ communication. There they can be used to securely negotiate symmetric
 keys which allows faster cryptographic processing.
 Rest of this section discusses possible PKI usage.
 
-To use PKI, bootstrapping protocols are first needed for trust
-anchoring and AuthN.
-Bootstrapping
-protocols in general are used to bring the first trust anchor in an
-environment and use that anchor to attach other devices to the same
-trust circle.
-  Despite the etymology of name bootstrapping,
-``Lift oneself by his own bootstraps'', bootstrapping usually needs
-some input from outside.
-For that, draft from Behringer\cite{draft-behringer-bootstrap} proposes,
-that one device is first chosen as a trust anchor and trust is
-built upon that anchor. This anchored device then becomes home network's
-Certificate Authority (CA) service. In the end, the rest of the home network 
-devices need to apply for certificates from that CA to get under same
-trust circle. 
- Behringer proposes that AuthN would happen likewise
-first at cloud provider's end but it is done by checking device's
-Vendor certificates.  This AuthN would not yet give full AuthZ, but a
-ticket, with which the end device may request for service tickets.
-The device applies with that ticket for access to change management
+To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
+first needed.
+The bootstrapping protocols in general are used to
+bring the first trust anchor in an environment and later use that anchor to
+attach other devices to the same trust circle.  A draft from
+Behringer\cite{draft-behringer-bootstrap} proposes, that one device
+at home is first chosen as a trust anchor  using its unique properties such as 
+device Vendor certificates.
+
+Despite the etymology of name bootstrapping, ``Lift oneself by his own
+bootstraps'', bootstrapping usually needs some input from outside.
+For that, AuthN of the trust anchor device would happen by checking device's Vendor certificates. This anchored
+device later becomes home network's Certificate Authority (CA) service
+and the trust anchor, upon which the rest of the home network devices
+would apply for certificates from to get under the same trust circle.
+
+ Behringer continues, that the end devices would not yet get full AuthZ,
+but only a ticket, with which the end device may request for service tickets.
+with that ticket, the device can apply for access to change management
 service from CPE. That is similar to Kerberos, which is based on
 Needham-Schroeder protocol.
-
-
 Key creation, key exchange and their usage is explained in similar
-draft from Pritikin\cite{draft-pritikin-bootstrap}. There is also discussion about using
-manufacturer provided device certificates as trust anchor.  
+draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in general
+in bootstrapping. 
 
 
 
