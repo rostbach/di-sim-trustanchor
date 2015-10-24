@@ -1333,7 +1333,8 @@ to extend trust.
 
 
 
-* Managing Home Networks [or Home network architecture]
+*  Home network architecture 
+# or managing home networks
 :PROPERTIES:
 :CUSTOM_ID: cha:management
 :END:
