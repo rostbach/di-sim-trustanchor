@@ -2574,7 +2574,7 @@ setups involving tokens and are presented here just as ideas.
 
 1) Changes are delivered from cloud to smartphone, which forwards them
    to devices located at management network after the
-   authentication has succeeded. This is here chosen method.
+   authentication has succeeded. This is the method chosen here.
 
 2) Changes are delivered normally from cloud to CPE (CPEs) without
    interaction from the smartphone. Such changes would not need AA at
