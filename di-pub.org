@@ -1620,8 +1620,6 @@ transferred to trust verification of the vendor.  Root CAs are trust anchors
 also and can in the same way be read from the device's read-only store.
 CPE could use vendor issued certificate for AuthN of some earlier
 unknown device.  
-# If the keys are stored in SIM as they here are, an external operator support is needed.
-# # this is not PKI
 
 # [Picture]
 
