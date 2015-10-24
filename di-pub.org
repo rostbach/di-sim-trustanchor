@@ -3472,7 +3472,7 @@ program, because it provides simulated Jolla environment and
 :CUSTOM_ID: cha:discussion
 :END: 
 
-We have now gone through theory, design and implementation. Let's
+We have now gone through theory, design and implementation so let's
 discuss some results and findings. We concentrate on security, 
 deployment difficulties and costs, platform issues and cases where we
 need to extend the number of SSID's. Last, we discuss and speculate on 
