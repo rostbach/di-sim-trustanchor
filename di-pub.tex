@@ -1,4 +1,4 @@
-% Created 2015-10-24 la 19:39
+% Created 2015-10-24 la 19:52
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2407,100 +2407,15 @@ version(s) & component & tested on\\
 \chapter{Analysis, Results and Discussion}
 \label{sec-6}
 
-
-
-\section{Deployment difficulty and costs}
-\label{sec-6-1}
-
-To deploy the system, modifications must be done to AP and client.
-Additionally, contract must be made with the MNO service
-provider producing AuthN 
-For AP, modifications are minimal. Needed settings are
-WPA2 mode to WPA2-enterprise, IP-address of RADIUS server providing 
-AA, and corresponding shared secret.
-For  the client, a Wi-Fi profile must be added: used management SSID,
-protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
-Smartphone can have different profiles, also with a same SSID, but
-then the user needs to choose manually, which profile is wanted.
-
-
-While no service yet exists from MNOs, we estimate their costs based
-on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
-clients, if usage is personal, but costs for service providers are
-unknown.  Hardware costs can mostly be eliminated, while users already
-have smartphones and for infrastructure, existing hardware such as APs
-can be used.
-
-Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
-To further divide possible costs for EAP-SIM usage
-is difficult.
-EAP-SIM always needs MNO for first authentication,
-because only MNO and SIM-card manufacturer know 
-what are SIM's Ki and the used A3/A8 algorithm variation
-for GSM/3GPP/LTE authentication.
-
-It is difficult to see if any commercial provider would implement
-SIM-key sharing so, that secret part was divided to a part that
-implements AuthN for own operator and to a part, that is free to use by
-some other operator.  Instead, the same functionality can be achieved with
-Dual-SIM phones, which allow inserting two SIM cards from different
-operators in to the phone. By using menu option in phone, or even a
-specific prefix code before call, alternate SIM card can be chosen
-without booting the phone.
-Dual-SIM thus allows change of ID and IMSI without removing SIM card.
-
-There exists also private GSM networks. An interesting use case
-of them  has been Chaos Computer Club's international 
-CCC-camps\cite{ccc}, where organizers 
-provide private GSM network for attendees of conference
-by distributing them separate SIM cards for 2 euros.  Even, when GSM
-network used 1.8GHz radio channel under an experimental spectrum
-licence,  GSM encryption also could be used, because the SIM-card secrets were known
-to the organizing, private operator.
-On the other hand, empty GSM cards for testing can cost as much as 
-18 euros a piece (webshop-quote\cite{smartjac-testsim}).
-
-
-\section{Platform specific issues}
-\label{sec-6-2}
-
-For clients, there is no need for public key infrastructure (PKI)
-unless EAP-PEAP is used. Under PEAP there are either server
-certificate or additionally client certificate present.  There are
-smartphones, that do not have EAP-SIM yet available.  For example
-support for EAP-SIM (and -AKA) methods starts in Android only from
-version 4.x and in iOS from version 5.x.\cite{sim-support}.
-
-Generally, to support EAP-SIM  with open source software in 
-smartphone is \emph{pcsc-lite} for accessing SIM card, \emph{wpa\_supplicant} for
-WPA2 client, and possible used connection manager (\emph{connman},
-\emph{wicd}, or \emph{Network Manager} in Linux). This is in line, what was done in testing without \emph{pcsc-lite},
-because a file backend was used instead of a SIM card.
-
-
-
-
-If OpenWRT platform is used for CPE, the memory size (32MB) restricts
-some use.
-WPA2 software included in basic OpenWRT installation is small,
-but that does not yet include RADIUS server part or EAP-SIM handling.
-
-Software has other limitations. Freeradius2 is not yet included  in OpenWRT.
-and if it was, it would also be based heavily on current Perl environment which
-itself needs a lot of space.
-Currently, as of 9.8.2015, Freeradius is running on version 3 and
-EAP-AKA is supported through a module from hostapd project.
-COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
-algorithms, is  supported\cite{freeradius2}, and so EAP-SIM is available.
-Yet, Freeradius can be used as Authentication Center (AuC).
-Diameter (freeDiameter) can be compiled in OpenWRT. That is good,
-because on 3GPP networks Diameter protocol has more support than RADIUS.
-If nothing else works, as a backup old-fashioned WWW-authentication
-portal can be used for offline authentication.
+We have now gone through theory, design and implementation so let's
+discuss some results and findings. We concentrate on security, 
+deployment difficulties and costs, platform issues and cases where we
+need to extend the number of SSID's. Last, we discuss and speculate on 
+some alternative solutions.
 
 
 \section{Security considerations}
-\label{sec-6-3}
+\label{sec-6-1}
 
 
 
@@ -2509,7 +2424,7 @@ the home network management delegation. Following subsections divide them into
 confidentiality (privacy), integrity, and
 authenticity. Accessibility is also discussed.
 \subsection{Confidentiality (privacy)}
-\label{sec-6-3-1}
+\label{sec-6-1-1}
 
 The purpose of the message confidentiality in authentication phase is
 to hide the identity of the smartphone and possible the delivered
@@ -2621,7 +2536,7 @@ For other parameters, EAP-SIM is confidential.
 Thus, this paper does not consider TMSI in the implementation Chapter
 \ref{sec-5}.
 \subsection{Integrity}
-\label{sec-6-3-2}
+\label{sec-6-1-2}
 The integrity issues were handled in Section \ref{sec:radius-macs} describing
 RADIUS message modification.
 Message digestion codes provide integrity for RADIUS protocol.
@@ -2641,7 +2556,7 @@ characteristics of the Authenticator inside its EAP-message, which
 the Authentication server then verifies (RFC6677)\cite{rfc6677}.
 
 \subsection{Accessibility, DoS and Scalability}
-\label{sec-6-3-3}
+\label{sec-6-1-3}
 
 Is home network immune against (distributed) denial of service (DoS)
 attacks? Besides DoS, does the solution scale up from home network to
@@ -2664,7 +2579,7 @@ alternative UDP RADIUS server can answer faster than waiting for TCP's reliable 
 
 
 \subsection{RADIUS weaknesses and strengths in limited use cases}
-\label{sec-6-3-4}
+\label{sec-6-1-4}
 
 
 RADIUS protocol itself is old and not very secure as of current
@@ -2693,7 +2608,7 @@ current admin user list, state of OTP list, or VLAN id.
 
 
 \subsection{Replay, Re-use, Re-auth, and brute-force challenges}
-\label{sec-6-3-5}
+\label{sec-6-1-5}
 
 Earlier in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
@@ -2733,7 +2648,7 @@ it would soon be exhausted and not function anymore.
 
 
 \subsection{Hardware tampering}
-\label{sec-6-3-6}
+\label{sec-6-1-6}
 All this time it is assumed, that hardware does not lie. In case
 the hardware has been tampered, we could not trust it and its claims.
 For example, there have been attacks against SIM to reveal its private
@@ -2749,7 +2664,7 @@ That leads us again to the key distribution problem.
 
 
 \subsection{Mitigation methods against radio capturing}
-\label{sec-6-3-7}
+\label{sec-6-1-7}
 To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
@@ -2821,6 +2736,96 @@ directed antenna\cite{SANS-bluetooth-2007}.
 
 
 
+\section{Deployment difficulty and costs}
+\label{sec-6-2}
+
+To deploy the system, modifications must be done to AP and client.
+Additionally, contract must be made with the MNO service
+provider producing AuthN 
+For AP, modifications are minimal. Needed settings are
+WPA2 mode to WPA2-enterprise, IP-address of RADIUS server providing 
+AA, and corresponding shared secret.
+For  the client, a Wi-Fi profile must be added: used management SSID,
+protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
+Smartphone can have different profiles, also with a same SSID, but
+then the user needs to choose manually, which profile is wanted.
+
+
+While no service yet exists from MNOs, we estimate their costs based
+on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
+clients, if usage is personal, but costs for service providers are
+unknown.  Hardware costs can mostly be eliminated, while users already
+have smartphones and for infrastructure, existing hardware such as APs
+can be used.
+
+Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
+To further divide possible costs for EAP-SIM usage
+is difficult.
+EAP-SIM always needs MNO for first authentication,
+because only MNO and SIM-card manufacturer know 
+what are SIM's Ki and the used A3/A8 algorithm variation
+for GSM/3GPP/LTE authentication.
+
+It is difficult to see if any commercial provider would implement
+SIM-key sharing so, that secret part was divided to a part that
+implements AuthN for own operator and to a part, that is free to use by
+some other operator.  Instead, the same functionality can be achieved with
+Dual-SIM phones, which allow inserting two SIM cards from different
+operators in to the phone. By using menu option in phone, or even a
+specific prefix code before call, alternate SIM card can be chosen
+without booting the phone.
+Dual-SIM thus allows change of ID and IMSI without removing SIM card.
+
+There exists also private GSM networks. An interesting use case
+of them  has been Chaos Computer Club's international 
+CCC-camps\cite{ccc}, where organizers 
+provide private GSM network for attendees of conference
+by distributing them separate SIM cards for 2 euros.  Even, when GSM
+network used 1.8GHz radio channel under an experimental spectrum
+licence,  GSM encryption also could be used, because the SIM-card secrets were known
+to the organizing, private operator.
+On the other hand, empty GSM cards for testing can cost as much as 
+18 euros a piece (webshop-quote\cite{smartjac-testsim}).
+
+
+\section{Platform specific issues}
+\label{sec-6-3}
+
+For clients, there is no need for public key infrastructure (PKI)
+unless EAP-PEAP is used. Under PEAP there are either server
+certificate or additionally client certificate present.  There are
+smartphones, that do not have EAP-SIM yet available.  For example
+support for EAP-SIM (and -AKA) methods starts in Android only from
+version 4.x and in iOS from version 5.x.\cite{sim-support}.
+
+Generally, to support EAP-SIM  with open source software in 
+smartphone is \emph{pcsc-lite} for accessing SIM card, \emph{wpa\_supplicant} for
+WPA2 client, and possible used connection manager (\emph{connman},
+\emph{wicd}, or \emph{Network Manager} in Linux). This is in line, what was done in testing without \emph{pcsc-lite},
+because a file backend was used instead of a SIM card.
+
+
+
+
+If OpenWRT platform is used for CPE, the memory size (32MB) restricts
+some use.
+WPA2 software included in basic OpenWRT installation is small,
+but that does not yet include RADIUS server part or EAP-SIM handling.
+
+Software has other limitations. Freeradius2 is not yet included  in OpenWRT.
+and if it was, it would also be based heavily on current Perl environment which
+itself needs a lot of space.
+Currently, as of 9.8.2015, Freeradius is running on version 3 and
+EAP-AKA is supported through a module from hostapd project.
+COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
+algorithms, is  supported\cite{freeradius2}, and so EAP-SIM is available.
+Yet, Freeradius can be used as Authentication Center (AuC).
+Diameter (freeDiameter) can be compiled in OpenWRT. That is good,
+because on 3GPP networks Diameter protocol has more support than RADIUS.
+If nothing else works, as a backup old-fashioned WWW-authentication
+portal can be used for offline authentication.
+
+
 \section{Access methods to Wi-Fi with only one SSID}
 \label{sec-6-4}
 
@@ -2841,17 +2846,17 @@ way to indicate that user wants to get in to management net.
 Separation can be done at client's  end by using different realm on
 AuthN identity. It also can be done by adding hints to destination to
 username (username decoration) or using different authentication
-methods. 
+methods. All these methods allows the separation of the user in Authentication Server.
 
 
 Even, when AP has authenticated the smart home user, managed devices still 
-can have their own access control.
-They may consult local RADIUS server, whether there is currently
-authenticated smartphone present which indicated presence of 
-allowed changes. Then every change coming from management network
-would be allowed. Smartphone also could know the login credentials to
-devices through earlier received configuration information and use
-them after getting into management network.
+need to have their own access control.
+They may consult local RADIUS server, whether there currently is an
+authenticated smartphone present, which indicated that changes coming
+from the management network would be allowed. Smartphone also could
+know the login credentials to devices through earlier received
+configuration information and use them after getting into management
+network.
 
 
 
@@ -2864,7 +2869,8 @@ It is well known, that the usability of the captive-portal Wi-Fi
 a web portal logins with a username-password authentication 
 procedure and those are different for every network.
 Additionally, the user is often required to switch 
-between cellular and  Wi-Fi data access when they change their location.
+between cellular and  Wi-Fi data access when they change their
+ location, and that would disrupt the network connection.
 
 An industry brand  Hotspot 2.0 addresses those issues and tries to
 simplify user's switch between Wi-Fi and cellular to automate the
