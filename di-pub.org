@@ -4358,7 +4358,7 @@ the authenticated identity.
 
 
 
-In the Design chapter it was questioned whether the proxying RADIUS server
+In the dDesign chapter it was questioned whether the proxying RADIUS server
 can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
