@@ -1686,202 +1686,6 @@ file:trustcircles.png
 
 # what happens when accessing home network?
 
-** Alternative methods for introducing trust anchor into the home network
-<<sec:altmethods>>
-# In bootstrapped environment change management can happen.
-
-
-
- Trust information, may it then be a secret or some
-other evidence, can be delivered to a trust device via physical
-transport channel separate from the actual communicating channel.
-Traditional way to do that is with a password inside a sealed
-envelope or a one-time password list that for example online banks 
-use today. The secret can also be sent as an SMS.
-
-Trust can also be requested with the help of device's
-unique properties. Recently, there have appeared  devices on the market, that
-have vendor provided certificates inside them, which brings public key
-infrastructure as one possible alternative to learn trusted identity. 
-The device proves its identity by presenting a certificate, which has
-been issued by a trusted vendor.  Private keys are inside the device's
-trusted hardware store. Vendor trust is needed for checking the issued certificates
-and so the trust verification of individual devices is merely
-transferred to trust verification of the vendor.  Root CAs are trust anchors
-also and can in the same way be read from the device's read-only store.
-CPE could use vendor issued certificate for AuthN of some earlier
-unknown device.  
-# If the keys are stored in SIM as they here are, an external operator support is needed.
-# # this is not PKI
-
-# [Picture]
-
-# *** Other SIM methods 
- # mobiilivarmenne
-Other techniques  to use SIM's unique properties besides EAP-SIM
-are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
-direct connection through PC/SC (Personal\- Computer/Smart\- Card),
-CallerID service from phone network, or
-Mobile signing service.
-#  such as ``Mobiilivarmenne'' in Finland.
-
-# Finnish certificate based mobile app running in the SIM card
-# (brand name "Mobiilivarmenne") providing
-
-# (Using SIM as source of authentication can mean EAP-SIM based AuthN)
-
-# *** Bluetooth access
-Bluetooth SIM and PC/SC would need patching of smartphone's software
-to work.  On the other hand, the smartphone would any way need to
-download  a controlling application
-# from the cloud 
-in the beginning for advanced use, so these techniques could be
-studied further in another work.
-
-Caller ID as an authentication method uses cellular network's controlling
-channels. When a phone makes a call, the receiving end gets 
-to know callers phone number (IMSI) before it answers the call.
-That information is called Caller ID and it has been in use
-successfully for some door locking implementations. 
-It does not cost anything for caller or responder,
-because after receiving the CallerID  information, responder can hang
-up upcoming call and no call expenses are created.
- It can also be made safe at least in Finland
-by limiting which tele operators are allowed to connect.
-
-
-# *** smart-card readers PC/SC access
-# If one has SMS card reading device such as ...
-
-# +  Bluetooth-Access to SIM
-
-# +  Federated services
-#  - token (ticket) based, kerberos and GBA similarities
-# *** Token, hw-token
-
-# - automated password or PKI systems (Open ID and http://GSMA.com/personaldata)
-
-
-# - registering an entity which has attestation capability, like
-#  hardware certificates or Trusted Platform Module (TPM) technology in
-
-# - Given as OTP-lists, like banks use today, deliver by post (not signed post)
-# - derived from SIM used in phone, need operator support
-# - derived from IMEI from phone,
-# - device serial.(proposed, see later)
-# - PKI:  unique keys include SIM keys and Vendor certificates
-# - Vendor certificates is a new method. 
-
-
-
-# ( - messages are signed but error message part in clear/same.
-#   - some older SIMs answer also to malformed, wrong signed messages with valid signed message.)
- 
-#  - secrets (credentials) sent as an paper inside closed envelope
-#   i.e. through other channel and inserting them inside CPE.
-# - delivery of software certificate through other channel and
-#  inserting it into the phone. 
-
-# +  sending secrets via an SMS
-
-
-# +  Mobiilivarmenne
-#    - (Sonera ID, or DNA Mobiilivarmenne, Elisa Mobiilivarmenne)
-#    - not available for each account type
- #    - PKI system, x509 certificates, private key on SIM protected with
-#      own pass code (not SIM's card ), [separate sign & encrypt key?]
-#      (source:DNA mobiilivarmenne tunnistusperiaatteet 2011], 
-#   - uses SATU id.
-
-# *** fed services. VERY draft
-SIM card can also benefit from electronic signatures.
-European Telecommunications Standards Institute (ETSI) has defined a
-standard for mobile signature services (MSS) in ETSI TS 102 204.
-MNOs in Finland have diverse implementations for this. The universal 
-service is called ``Mobiilivarmenne'', but MNO Sonera's brand for it
-is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
-# No references (Open) available 
-#
-# There was one pilot program between MNO (Elisa) and organization
-# (CSC) in Finland in 2015. Smartphone was used to AA.  MNO provided
-# organization both AuthN and some attributes such as person's name
-# and based on that AuthZ was achieved.
-
-When AuthN and AuthZ comes from outside, one possibility is to use a
-federated Mobile AuthN Service, which then is connected to  MSSP(Mobile
-Signature Service Provider) with ETSI-204. Benefits for ETSI-204
-federation are similar to those with federation of WiFi groups
-mentioned in Section [[sec:radius]] -- no home device must implement it at home,
-but also beneficial for  MNO as it sees the service as just one
-client.  Without the federation, the mobile AuthN services would need to be
-multiplied with number of the separate home networks  needing authentication service.
-# clients.
-# picture
-
-# [write to sentences, analyze, and open]
-# 
-# 1) no need to implement ETSI-204 at home. 
-# 2) Communication is simple with REST-protocol.
-# 3) Request messages in HTTP GET 
-# 4) Responses on JSON-format
-# 5) MNO sees service as just one client. Without federation, Mobile
-#    AuthN Service would need to be multiplied with # of clients.
-# 6) extra attributes, here AuthZ, can be added from other systems (BaaS?)
-# 7) There is one pilot-program between Elisa and CSC in use, where Elisa
-#    provides CSC both AuthN and some attributes such as persons
-#   Name [cite:keskustelut]
-# 8) [check mobiilivarmenne plugin software]
-
-
-#  MOONSHOT
-# [Project Moonshot for federated ssh-access? NOT HERE]
-# #+BEGIN_QUOTE
-#  Moonshot is a technology, based on the IETF ABFAB open standards, #
-# that aims to enable federated access to virtually any application
-# or service.
-# #+END_QUOTE
-# source:https://wiki.moonshot.ja.net/display/HOME/Home
-Project Moonshot\cite{moonshot}, is in its early phases. Its goal is
-to enable federated access universally to applications and
-services. If it worked and was used together with MSSP, it may offer
-SIM-based SSH access to Authenticator. Modifications are then needed 
-both in SSH server and client. Additionally, EAP must be used through
-tunneling, for example as an inner protocol of EAP-TTLS.
-# end of fed services.
-
-# *** Web portal with SMS passwd
-# Did'nt I just explain these external providers are needed?
-At this point a question might rise, why these external service
-providers are needed. Is it not easier and simpler to just send 
-an SMS with password code to the smartphone, when access confirmation is needed?
-Mobile SIM provides two-way AuthN part as discussed earlier.
-Without need for strong AuthN, that model would indeed be 
-simpler, but using SIM also solves initial key distribution problem.
-Additionally, mutual AuthN problem would still need to be solved:
-Who sent that password and where that password should be inserted?
-# Why care? Explain, that fake access point and 
-# captured home network session would allow dishonest admin into managing
-# home network. MiTM or DoS.
-# [The simpler model has been handled at section about offline and disconnectivity.]
-
-
-
-
-# ***  How can trust be achieved with the phone?
-
-# requirements
-Requirement for home network can be as small as having WPA2 Enterprise capable
-AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
-has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
-Additionally, managing user's SIM-card has to be registered as an admin user in home network 
-configuration, i.e. IMSI must belong to the admin group.
-In this implementation, no extra application is needed in smartphone
-for primitive trust, but later for more serious use some application is needed.
-For added functionality, for example for logging admins out, OpenWRT
-based software can be used, although those functions have not yet been
-implemented. Disconnection issues are explained in Section
-[[sec:disconnections]].
-# [picture?]
 
 ** Chosen AA design 
 <<sec:chosendesign>>
@@ -4489,6 +4293,206 @@ logs, which means that no pre-shared key is used.
 # Technique used is 
 # protected WPA2-enterprise, using EAP-SIM[def] for AA
 # . Citations to
+
+
+
+** Alternative methods for introducing trust anchor into the home network
+<<sec:altmethods>>
+# In bootstrapped environment change management can happen.
+
+
+
+ Trust information, may it then be a secret or some
+other evidence, can be delivered to a trust device via physical
+transport channel separate from the actual communicating channel.
+Traditional way to do that is with a password inside a sealed
+envelope or a one-time password list that for example online banks 
+use today. The secret can also be sent as an SMS.
+
+Trust can also be requested with the help of device's
+unique properties. Recently, there have appeared  devices on the market, that
+have vendor provided certificates inside them, which brings public key
+infrastructure as one possible alternative to learn trusted identity. 
+The device proves its identity by presenting a certificate, which has
+been issued by a trusted vendor.  Private keys are inside the device's
+trusted hardware store. Vendor trust is needed for checking the issued certificates
+and so the trust verification of individual devices is merely
+transferred to trust verification of the vendor.  Root CAs are trust anchors
+also and can in the same way be read from the device's read-only store.
+CPE could use vendor issued certificate for AuthN of some earlier
+unknown device.  
+# If the keys are stored in SIM as they here are, an external operator support is needed.
+# # this is not PKI
+
+# [Picture]
+
+# *** Other SIM methods 
+ # mobiilivarmenne
+Other techniques  to use SIM's unique properties besides EAP-SIM
+are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
+direct connection through PC/SC (Personal\- Computer/Smart\- Card),
+CallerID service from phone network, or
+Mobile signing service.
+#  such as ``Mobiilivarmenne'' in Finland.
+
+# Finnish certificate based mobile app running in the SIM card
+# (brand name "Mobiilivarmenne") providing
+
+# (Using SIM as source of authentication can mean EAP-SIM based AuthN)
+
+# *** Bluetooth access
+Bluetooth SIM and PC/SC would need patching of smartphone's software
+to work.  On the other hand, the smartphone would any way need to
+download  a controlling application
+# from the cloud 
+in the beginning for advanced use, so these techniques could be
+studied further in another work.
+
+Caller ID as an authentication method uses cellular network's controlling
+channels. When a phone makes a call, the receiving end gets 
+to know callers phone number (IMSI) before it answers the call.
+That information is called Caller ID and it has been in use
+successfully for some door locking implementations. 
+It does not cost anything for caller or responder,
+because after receiving the CallerID  information, responder can hang
+up upcoming call and no call expenses are created.
+ It can also be made safe at least in Finland
+by limiting which tele operators are allowed to connect.
+
+
+# *** smart-card readers PC/SC access
+# If one has SMS card reading device such as ...
+
+# +  Bluetooth-Access to SIM
+
+# +  Federated services
+#  - token (ticket) based, kerberos and GBA similarities
+# *** Token, hw-token
+
+# - automated password or PKI systems (Open ID and http://GSMA.com/personaldata)
+
+
+# - registering an entity which has attestation capability, like
+#  hardware certificates or Trusted Platform Module (TPM) technology in
+
+# - Given as OTP-lists, like banks use today, deliver by post (not signed post)
+# - derived from SIM used in phone, need operator support
+# - derived from IMEI from phone,
+# - device serial.(proposed, see later)
+# - PKI:  unique keys include SIM keys and Vendor certificates
+# - Vendor certificates is a new method. 
+
+
+
+# ( - messages are signed but error message part in clear/same.
+#   - some older SIMs answer also to malformed, wrong signed messages with valid signed message.)
+ 
+#  - secrets (credentials) sent as an paper inside closed envelope
+#   i.e. through other channel and inserting them inside CPE.
+# - delivery of software certificate through other channel and
+#  inserting it into the phone. 
+
+# +  sending secrets via an SMS
+
+
+# +  Mobiilivarmenne
+#    - (Sonera ID, or DNA Mobiilivarmenne, Elisa Mobiilivarmenne)
+#    - not available for each account type
+ #    - PKI system, x509 certificates, private key on SIM protected with
+#      own pass code (not SIM's card ), [separate sign & encrypt key?]
+#      (source:DNA mobiilivarmenne tunnistusperiaatteet 2011], 
+#   - uses SATU id.
+
+# *** fed services. VERY draft
+SIM card can also benefit from electronic signatures.
+European Telecommunications Standards Institute (ETSI) has defined a
+standard for mobile signature services (MSS) in ETSI TS 102 204.
+MNOs in Finland have diverse implementations for this. The universal 
+service is called ``Mobiilivarmenne'', but MNO Sonera's brand for it
+is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
+# No references (Open) available 
+#
+# There was one pilot program between MNO (Elisa) and organization
+# (CSC) in Finland in 2015. Smartphone was used to AA.  MNO provided
+# organization both AuthN and some attributes such as person's name
+# and based on that AuthZ was achieved.
+
+When AuthN and AuthZ comes from outside, one possibility is to use a
+federated Mobile AuthN Service, which then is connected to  MSSP(Mobile
+Signature Service Provider) with ETSI-204. Benefits for ETSI-204
+federation are similar to those with federation of WiFi groups
+mentioned in Section [[sec:radius]] -- no home device must implement it at home,
+but also beneficial for  MNO as it sees the service as just one
+client.  Without the federation, the mobile AuthN services would need to be
+multiplied with number of the separate home networks  needing authentication service.
+# clients.
+# picture
+
+# [write to sentences, analyze, and open]
+# 
+# 1) no need to implement ETSI-204 at home. 
+# 2) Communication is simple with REST-protocol.
+# 3) Request messages in HTTP GET 
+# 4) Responses on JSON-format
+# 5) MNO sees service as just one client. Without federation, Mobile
+#    AuthN Service would need to be multiplied with # of clients.
+# 6) extra attributes, here AuthZ, can be added from other systems (BaaS?)
+# 7) There is one pilot-program between Elisa and CSC in use, where Elisa
+#    provides CSC both AuthN and some attributes such as persons
+#   Name [cite:keskustelut]
+# 8) [check mobiilivarmenne plugin software]
+
+
+#  MOONSHOT
+# [Project Moonshot for federated ssh-access? NOT HERE]
+# #+BEGIN_QUOTE
+#  Moonshot is a technology, based on the IETF ABFAB open standards, #
+# that aims to enable federated access to virtually any application
+# or service.
+# #+END_QUOTE
+# source:https://wiki.moonshot.ja.net/display/HOME/Home
+Project Moonshot\cite{moonshot}, is in its early phases. Its goal is
+to enable federated access universally to applications and
+services. If it worked and was used together with MSSP, it may offer
+SIM-based SSH access to Authenticator. Modifications are then needed 
+both in SSH server and client. Additionally, EAP must be used through
+tunneling, for example as an inner protocol of EAP-TTLS.
+# end of fed services.
+
+# *** Web portal with SMS passwd
+# Did'nt I just explain these external providers are needed?
+At this point a question might rise, why these external service
+providers are needed. Is it not easier and simpler to just send 
+an SMS with password code to the smartphone, when access confirmation is needed?
+Mobile SIM provides two-way AuthN part as discussed earlier.
+Without need for strong AuthN, that model would indeed be 
+simpler, but using SIM also solves initial key distribution problem.
+Additionally, mutual AuthN problem would still need to be solved:
+Who sent that password and where that password should be inserted?
+# Why care? Explain, that fake access point and 
+# captured home network session would allow dishonest admin into managing
+# home network. MiTM or DoS.
+# [The simpler model has been handled at section about offline and disconnectivity.]
+
+
+
+
+# ***  How can trust be achieved with the phone?
+
+# requirements
+Requirement for home network can be as small as having WPA2 Enterprise capable
+AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
+has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
+Additionally, managing user's SIM-card has to be registered as an admin user in home network 
+configuration, i.e. IMSI must belong to the admin group.
+In this implementation, no extra application is needed in smartphone
+for primitive trust, but later for more serious use some application is needed.
+For added functionality, for example for logging admins out, OpenWRT
+based software can be used, although those functions have not yet been
+implemented. Disconnection issues are explained in Section
+[[sec:disconnections]].
+# [picture?]
+
 
 
 * Conclusion
