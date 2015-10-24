@@ -1606,7 +1606,7 @@ envelope or a one-time password list that for example online banks
 use today. The secret can also be sent as an SMS.
 
 # trust and thesis main point
-This thesis presents the trust anchor 
+This thesis uses the following method.
 The phone brings trust to the home network by completing full EAP-SIM
 AA through the local Authenticator. SIM's identity is verified by HLR
 AuC at the phone operator's end and AuthZ added to it later. The
