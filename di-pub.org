@@ -4155,7 +4155,7 @@ way to indicate that user wants to get in to management net.
 Separation can be done at client's  end by using different realm on
 AuthN identity. It also can be done by adding hints to destination to
 username (username decoration) or using different authentication
-methods. 
+methods. All these methods allows the separation in Authentication Server.
 
 # Management through Wi-Fi has then three
 # options.  Without RADIUS, access is open and the only checking comes
