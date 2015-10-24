@@ -2597,7 +2597,8 @@ II) Changes are delivered normally from cloud to CPE (CPEs) without
 # every change needs to go
 
 
-III) Changes are delivered from cloud to CPE functioning as a central
+III) Besides AP, also CPE would have direct connection to the
+   Cloud. Changes are then delivered from cloud to CPE functioning as a central
    management station without interaction from the smartphone.  Digest
    of what is going to happen would be sent to smartphone from the
    cloud over the air (OtA). Smartphone would authenticate in to the
@@ -2606,7 +2607,7 @@ III) Changes are delivered from cloud to CPE functioning as a central
    the central management station inside home network, which then
    forwards the configuration changes to other devices.
 
-IV) Variation of III is that if CPE itself is an Authenticator, it
+IV) Variation of III is that when CPE itself is an Authenticator, it
    could proceed on propagating changes when it receives
    ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
    drop received changes without forwarding them.
