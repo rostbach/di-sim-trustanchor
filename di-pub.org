@@ -1632,12 +1632,6 @@ are for example Bluetooth SIM Access Profile(Bluetooth  SAP),
 direct connection through PC/SC (Personal\- Computer/Smart\- Card),
 CallerID service from phone network, or
 Mobile signing service.
-#  such as ``Mobiilivarmenne'' in Finland.
-
-# Finnish certificate based mobile app running in the SIM card
-# (brand name "Mobiilivarmenne") providing
-
-# (Using SIM as source of authentication can mean EAP-SIM based AuthN)
 
 # *** Bluetooth access
 Bluetooth SIM and PC/SC would need patching of smartphone's software
@@ -1680,8 +1674,6 @@ by limiting which tele operators are allowed to connect.
 # - device serial.(proposed, see later)
 # - PKI:  unique keys include SIM keys and Vendor certificates
 # - Vendor certificates is a new method. 
-
-
 
 # ( - messages are signed but error message part in clear/same.
 #   - some older SIMs answer also to malformed, wrong signed messages with valid signed message.)
