@@ -1476,7 +1476,6 @@ but only a ticket, with which the end device may request for service tickets.
 with that ticket, the device can apply for access to change management
 service from CPE. That is similar to Kerberos, which is based on
 Needham-Schroeder protocol.
-
 # Regarding
 Key creation, key exchange and their usage is explained in similar
 draft from Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. That explains PKI usage in general
