@@ -2615,7 +2615,7 @@ IV) Variation of III is that when CPE itself is an Authenticator, it
 # see automatic re-login issues
 #   [this was the question somewhere, ``triggering'']
 
-The smartphone may receive the authentication token with 
+The smartphone may receive the AuthN token with 
 a message explaining what is going to happen in the change.
 As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
