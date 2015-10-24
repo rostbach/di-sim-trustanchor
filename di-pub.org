@@ -1612,7 +1612,7 @@ infrastructure as one possible alternative to learn trusted identity.
 The device proves its identity by presenting a certificate, which has
 been issued by a trusted vendor.  Private keys are inside the device's
 trusted hardware store. Vendor trust is needed for checking the issued certificates
-and so the task of trust verification of individual devices is merely
+and so the trust verification of individual devices is merely
 transferred to trust verification of the vendor.  Root CAs are trust anchors
 also and can in the same way be read from the device's read-only store.
 CPE could use vendor issued certificate for AuthN of some earlier
