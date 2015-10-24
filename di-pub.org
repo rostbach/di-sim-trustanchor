@@ -4397,7 +4397,7 @@ implemented. Disconnection issues are explained in Section
 # [picture?]
 
 
-** Alternative management models (-> to discussion and speculations)
+** Alternative management models 
 
 If we were to question or evolve the given model of change
 propagation, the trust anchoring would also need some modifications.
