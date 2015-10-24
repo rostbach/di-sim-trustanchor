@@ -1605,6 +1605,18 @@ Traditional way to do that is with a password inside a sealed
 envelope or a one-time password list that for example online banks 
 use today. The secret can also be sent as an SMS.
 
+# trust and thesis main point
+This thesis presents the trust anchor 
+The phone brings trust to the home network by completing full EAP-SIM
+AA through the local Authenticator. SIM's identity is verified by HLR
+AuC at the phone operator's end and AuthZ added to it later. The
+verification leaves a trail on the local Authenticator and opens a
+trust channel for a limited period of time for changes from the phone.
+[This was the most important paragraph of whole work. Thanks for
+reading it.]
+
+
+
 Trust can also be requested with the help of device's
 unique properties. Recently, there have appeared  devices on the market, that
 have vendor provided certificates inside them, which brings public key
@@ -1868,15 +1880,6 @@ file:trustcircles.png
 
 ** Chosen AA design 
 <<sec:chosendesign>>
-
-# trust and thesis main point
-The phone brings trust to the home network by completing full EAP-SIM
-AA through the local Authenticator. SIM's identity is verified by HLR
-AuC at the phone operator's end and AuthZ added to it later. The
-verification leaves a trail on the local Authenticator and opens a
-trust channel for a limited period of time for changes from the phone.
-[This was the most important paragraph of whole work. Thanks for
-reading it.]
 
 
    
