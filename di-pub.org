@@ -3697,6 +3697,9 @@ Thus, this paper does not consider TMSI in the implementation Chapter
 # insert here commit 17989d2dcc1f5449499ee912d9db4d363cedfb7a vv
 # 
 ***  Integrity
+
+
+
 The integrity issues were handled in Section [[sec:radius-macs]] describing
 RADIUS message modification.
 Message digestion codes provide integrity for RADIUS protocol.
