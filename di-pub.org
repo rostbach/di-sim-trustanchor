@@ -3472,161 +3472,11 @@ program, because it provides simulated Jolla environment and
 :CUSTOM_ID: cha:discussion
 :END: 
 
-
-
-** Deployment difficulty and costs
-
-To deploy the system, modifications must be done to AP and client.
-Additionally, contract must be made with the MNO service
-provider producing AuthN 
-# [while AuthZ is already taken care of with
-# the cloud service contract.]  [TBD, leave cloud out ]
-For AP, modifications are minimal. Needed settings are
-WPA2 mode to WPA2-enterprise, IP-address of RADIUS server providing 
-AA, and corresponding shared secret.
-For  the client, a Wi-Fi profile must be added: used management SSID,
-protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
-Smartphone can have different profiles, also with a same SSID, but
-then the user needs to choose manually, which profile is wanted.
-# settings=EAP, subtype of EAP=SIM, username from SIM-card.
-
-# ** Estimating time to authenticate EAP-SIM [TO BE REMOVED]
-# Local tests, with software back ends need less than 20ms for one
-# EAP-RADIUS message exchange between peers. There will be added time
-# needed to scan Wi-Fi network for correct AP and SIM card's computing
-# time. [Take reference on network authentication part on earlier
-# tests. Timeout was 3 seconds for that part.] [Some Figures for
-# authentication times can give comparison to eduroam or LANGATONWPA2
-# network through some RADIUS proxies in between home organization's RADIUS service.]
-
-# ** Costs for end-user 
-# What are the costs per authentication from MNO?
-While no service yet exists from MNOs, we estimate their costs based
-on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
-clients, if usage is personal, but costs for service providers are
-unknown.  Hardware costs can mostly be eliminated, while users already
-have smartphones and for infrastructure, existing hardware such as APs
-can be used.
-# - Hardware. Phones included.
-
-Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
-To further divide possible costs for EAP-SIM usage
-is difficult.
-#  be used for other areas to divide costs?
-EAP-SIM always needs MNO for first authentication,
-because only MNO and SIM-card manufacturer know 
-what are SIM's Ki and the used A3/A8 algorithm variation
-for GSM/3GPP/LTE authentication.
-
-# Even, if SIM card technically had multiple identities,
-# Ideally, SIM card could have also part that 
-# No one else h
-It is difficult to see if any commercial provider would implement
-SIM-key sharing so, that secret part was divided to a part that
-implements AuthN for own operator and to a part, that is free to use by
-some other operator.  Instead, the same functionality can be achieved with
-Dual-SIM phones, which allow inserting two SIM cards from different
-operators in to the phone. By using menu option in phone, or even a
-specific prefix code before call, alternate SIM card can be chosen
-without booting the phone.
-Dual-SIM thus allows change of ID and IMSI without removing SIM card.
-# , but that would
-# It is not known for the author, whether Dual-SIM
-# cards have that kind of architecture. 
-
-#  for example between work and private. 
-# User could save money by having two different operator's SIM.
-# If that second SIM was meant for only authentication and operator for
-# that was found, then costs would be minimal. 
-# SIM (GSM) cards can be distributed for as low as 2€. 
-There exists also private GSM networks. An interesting use case
-of them  has been Chaos Computer Club's international 
-CCC-camps\cite{ccc}, where organizers 
-provide private GSM network for attendees of conference
-# free phone and messaging net
-by distributing them separate SIM cards for 2 euros.  Even, when GSM
-network used 1.8GHz radio channel under an experimental spectrum
-licence,  GSM encryption also could be used, because the SIM-card secrets were known
-to the organizing, private operator.
-#  [cite:28C3
-On the other hand, empty GSM cards for testing can cost as much as 
-18 euros a piece (webshop-quote\cite{smartjac-testsim}).
-
-# Although the network operated under an experimental spectrum license by
-# the German regulatory authority.
-# experimental spectrum license b
-# . What is the anatomy of SIM card?
-# How about MULTI-SIM cards? Multi-SIM service is service where user
-# has two physical cards with same IMEI, where Operator chains calls.
-
-# Dual-SIM cards have not been tested in this thesis, but one supposes
-# that they would show themselves as two separate identities as 
-# phone itself is not used in AA. It only reveals  MAC-address of its
-# radio interface, but that is not used in EAP-SIM AuthN unlike in MAC-based web-access portals.
-
-# - Outsourcing to cloud
-
-
-** Platform specific issues
-# : eg memory requirements, hardware requirements, computation
-# requirements, one-sid
-
-For clients, there is no need for public key infrastructure (PKI)
-unless EAP-PEAP is used. Under PEAP there are either server
-certificate or additionally client certificate present.  There are
-smartphones, that do not have EAP-SIM yet available.  For example
-support for EAP-SIM (and -AKA) methods starts in Android only from
-version 4.x and in iOS from version 5.x.\cite{sim-support}.
-# http://www.ida.gov.sg/Infocomm-Landscape/Infrastructure/Wireless/Wireless-at-SG/For-Consumer/SIM-based-Connection-Guide
-
-Generally, to support EAP-SIM  with open source software in 
-smartphone is /pcsc-lite/ for accessing SIM card, /wpa_supplicant/ for
-WPA2 client, and possible used connection manager (/connman/,
-/wicd/, or /Network Manager/ in Linux). This is in line, what was done in testing without /pcsc-lite/,
-because a file backend was used instead of a SIM card.
-
-# From t.j.c: (jolla), what is to smartphone Jolla:
-# "Symbian also support EAP-SIM (at least S60r5, tested successfully on 5800 XpressMusic).
-# - add pcsc-lite package (needed to access SIM card)
-# - compile wpa_supplicant package with EAP-SIM support (needs pcsc-lite according to doc)
-# - [update connman to handle EAP connections]
-# (Triton (Jan 6 '14))"
-
-# Besides Switzerland (Swisscom), in South Korea every smartphone
-# operator uses EAP-SIM for their authenticated Wi-Fi connections.
-# (source t.j.c peremen (Jan 27 '14)"
-
-
-If OpenWRT platform is used for CPE, the memory size (32MB) restricts
-some use.
-# - OpenWRT is environment for embedded system.
-#   When software is not fully optimized, memory is one of the limits which come first.
-WPA2 software included in basic OpenWRT installation is small,
-but that does not yet include RADIUS server part or EAP-SIM handling.
-#  is less than 128k, but 
- #   To compile and install RADIUS server package into OpenWRT .   
-
-Software has other limitations. Freeradius2 is not yet included  in OpenWRT.
-and if it was, it would also be based heavily on current Perl environment which
-itself needs a lot of space.
-Currently, as of 9.8.2015, Freeradius is running on version 3 and
-EAP-AKA is supported through a module from hostapd project.
-COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
-algorithms, is  supported\cite{freeradius2}, and so EAP-SIM is available.
-Yet, Freeradius can be used as Authentication Center (AuC).
-Diameter (freeDiameter) can be compiled in OpenWRT. That is good,
-because on 3GPP networks Diameter protocol has more support than RADIUS.
-If nothing else works, as a backup old-fashioned WWW-authentication
-portal can be used for offline authentication.
-
-
-# All work with wpa-supplicant, RADIUS  with has been done so far with (Jouni Malinen's) wpa.
-
-
-# Recall authentication on figure x.x. 
-# It seems that AUTN message is always same and that is why patched
-# freeradius2 work without MNO's support i.e. without SS7/MAP
-# RADIUS/IP gateway.
+We have now gone through theory, design and implementation. Let's
+discuss some results and findings. We concentrate on security, 
+deployment difficulties and costs, platform issues and cases where we
+need to extend the number of SSID's. Last, we discuss and speculate on 
+some alternative solutions.
 
 
 ** Security considerations
@@ -4130,6 +3980,161 @@ directed antenna\cite{SANS-bluetooth-2007}.
 # - benefit instead of presented model.
 
 
+
+
+** Deployment difficulty and costs
+
+To deploy the system, modifications must be done to AP and client.
+Additionally, contract must be made with the MNO service
+provider producing AuthN 
+# [while AuthZ is already taken care of with
+# the cloud service contract.]  [TBD, leave cloud out ]
+For AP, modifications are minimal. Needed settings are
+WPA2 mode to WPA2-enterprise, IP-address of RADIUS server providing 
+AA, and corresponding shared secret.
+For  the client, a Wi-Fi profile must be added: used management SSID,
+protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
+Smartphone can have different profiles, also with a same SSID, but
+then the user needs to choose manually, which profile is wanted.
+# settings=EAP, subtype of EAP=SIM, username from SIM-card.
+
+# ** Estimating time to authenticate EAP-SIM [TO BE REMOVED]
+# Local tests, with software back ends need less than 20ms for one
+# EAP-RADIUS message exchange between peers. There will be added time
+# needed to scan Wi-Fi network for correct AP and SIM card's computing
+# time. [Take reference on network authentication part on earlier
+# tests. Timeout was 3 seconds for that part.] [Some Figures for
+# authentication times can give comparison to eduroam or LANGATONWPA2
+# network through some RADIUS proxies in between home organization's RADIUS service.]
+
+# ** Costs for end-user 
+# What are the costs per authentication from MNO?
+While no service yet exists from MNOs, we estimate their costs based
+on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
+clients, if usage is personal, but costs for service providers are
+unknown.  Hardware costs can mostly be eliminated, while users already
+have smartphones and for infrastructure, existing hardware such as APs
+can be used.
+# - Hardware. Phones included.
+
+Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
+To further divide possible costs for EAP-SIM usage
+is difficult.
+#  be used for other areas to divide costs?
+EAP-SIM always needs MNO for first authentication,
+because only MNO and SIM-card manufacturer know 
+what are SIM's Ki and the used A3/A8 algorithm variation
+for GSM/3GPP/LTE authentication.
+
+# Even, if SIM card technically had multiple identities,
+# Ideally, SIM card could have also part that 
+# No one else h
+It is difficult to see if any commercial provider would implement
+SIM-key sharing so, that secret part was divided to a part that
+implements AuthN for own operator and to a part, that is free to use by
+some other operator.  Instead, the same functionality can be achieved with
+Dual-SIM phones, which allow inserting two SIM cards from different
+operators in to the phone. By using menu option in phone, or even a
+specific prefix code before call, alternate SIM card can be chosen
+without booting the phone.
+Dual-SIM thus allows change of ID and IMSI without removing SIM card.
+# , but that would
+# It is not known for the author, whether Dual-SIM
+# cards have that kind of architecture. 
+
+#  for example between work and private. 
+# User could save money by having two different operator's SIM.
+# If that second SIM was meant for only authentication and operator for
+# that was found, then costs would be minimal. 
+# SIM (GSM) cards can be distributed for as low as 2€. 
+There exists also private GSM networks. An interesting use case
+of them  has been Chaos Computer Club's international 
+CCC-camps\cite{ccc}, where organizers 
+provide private GSM network for attendees of conference
+# free phone and messaging net
+by distributing them separate SIM cards for 2 euros.  Even, when GSM
+network used 1.8GHz radio channel under an experimental spectrum
+licence,  GSM encryption also could be used, because the SIM-card secrets were known
+to the organizing, private operator.
+#  [cite:28C3
+On the other hand, empty GSM cards for testing can cost as much as 
+18 euros a piece (webshop-quote\cite{smartjac-testsim}).
+
+# Although the network operated under an experimental spectrum license by
+# the German regulatory authority.
+# experimental spectrum license b
+# . What is the anatomy of SIM card?
+# How about MULTI-SIM cards? Multi-SIM service is service where user
+# has two physical cards with same IMEI, where Operator chains calls.
+
+# Dual-SIM cards have not been tested in this thesis, but one supposes
+# that they would show themselves as two separate identities as 
+# phone itself is not used in AA. It only reveals  MAC-address of its
+# radio interface, but that is not used in EAP-SIM AuthN unlike in MAC-based web-access portals.
+
+# - Outsourcing to cloud
+
+
+** Platform specific issues
+# : eg memory requirements, hardware requirements, computation
+# requirements, one-sid
+
+For clients, there is no need for public key infrastructure (PKI)
+unless EAP-PEAP is used. Under PEAP there are either server
+certificate or additionally client certificate present.  There are
+smartphones, that do not have EAP-SIM yet available.  For example
+support for EAP-SIM (and -AKA) methods starts in Android only from
+version 4.x and in iOS from version 5.x.\cite{sim-support}.
+# http://www.ida.gov.sg/Infocomm-Landscape/Infrastructure/Wireless/Wireless-at-SG/For-Consumer/SIM-based-Connection-Guide
+
+Generally, to support EAP-SIM  with open source software in 
+smartphone is /pcsc-lite/ for accessing SIM card, /wpa_supplicant/ for
+WPA2 client, and possible used connection manager (/connman/,
+/wicd/, or /Network Manager/ in Linux). This is in line, what was done in testing without /pcsc-lite/,
+because a file backend was used instead of a SIM card.
+
+# From t.j.c: (jolla), what is to smartphone Jolla:
+# "Symbian also support EAP-SIM (at least S60r5, tested successfully on 5800 XpressMusic).
+# - add pcsc-lite package (needed to access SIM card)
+# - compile wpa_supplicant package with EAP-SIM support (needs pcsc-lite according to doc)
+# - [update connman to handle EAP connections]
+# (Triton (Jan 6 '14))"
+
+# Besides Switzerland (Swisscom), in South Korea every smartphone
+# operator uses EAP-SIM for their authenticated Wi-Fi connections.
+# (source t.j.c peremen (Jan 27 '14)"
+
+
+If OpenWRT platform is used for CPE, the memory size (32MB) restricts
+some use.
+# - OpenWRT is environment for embedded system.
+#   When software is not fully optimized, memory is one of the limits which come first.
+WPA2 software included in basic OpenWRT installation is small,
+but that does not yet include RADIUS server part or EAP-SIM handling.
+#  is less than 128k, but 
+ #   To compile and install RADIUS server package into OpenWRT .   
+
+Software has other limitations. Freeradius2 is not yet included  in OpenWRT.
+and if it was, it would also be based heavily on current Perl environment which
+itself needs a lot of space.
+Currently, as of 9.8.2015, Freeradius is running on version 3 and
+EAP-AKA is supported through a module from hostapd project.
+COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
+algorithms, is  supported\cite{freeradius2}, and so EAP-SIM is available.
+Yet, Freeradius can be used as Authentication Center (AuC).
+Diameter (freeDiameter) can be compiled in OpenWRT. That is good,
+because on 3GPP networks Diameter protocol has more support than RADIUS.
+If nothing else works, as a backup old-fashioned WWW-authentication
+portal can be used for offline authentication.
+
+
+# All work with wpa-supplicant, RADIUS  with has been done so far with (Jouni Malinen's) wpa.
+
+
+# Recall authentication on figure x.x. 
+# It seems that AUTN message is always same and that is why patched
+# freeradius2 work without MNO's support i.e. without SS7/MAP
+# RADIUS/IP gateway.
 
 
 ** Access methods to Wi-Fi with only one SSID
