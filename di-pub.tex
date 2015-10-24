@@ -1,4 +1,4 @@
-% Created 2015-10-23 pe 13:53
+% Created 2015-10-24 la 17:59
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1070,7 +1070,12 @@ keys which allows faster cryptographic processing.
 Rest of this section discusses possible PKI usage.
 
 To use PKI, bootstrapping protocols are first needed for trust
-anchoring and AuthN.  Despite the etymology of name bootstrapping,
+anchoring and AuthN.
+Bootstrapping
+protocols in general are used to bring the first trust anchor in an
+environment and use that anchor to attach other devices to the same
+trust circle.
+  Despite the etymology of name bootstrapping,
 ``Lift oneself by his own bootstraps'', bootstrapping usually needs
 some input from outside.
 For that, draft from Behringer\cite{draft-behringer-bootstrap} proposes,
@@ -1078,7 +1083,16 @@ that one device is first chosen as a trust anchor and trust is
 built upon that anchor. This anchored device then becomes home network's
 Certificate Authority (CA) service. In the end, the rest of the home network 
 devices need to apply for certificates from that CA to get under same
-trust circle.
+trust circle. 
+ Behringer proposes that AuthN would happen likewise
+first at cloud provider's end but it is done by checking device's
+Vendor certificates.  This AuthN would not yet give full AuthZ, but a
+ticket, with which the end device may request for service tickets.
+The device applies with that ticket for access to change management
+service from CPE. That is similar to Kerberos, which is based on
+Needham-Schroeder protocol.
+
+
 Key creation, key exchange and their usage is explained in similar
 draft from Pritikin\cite{draft-pritikin-bootstrap}. There is also discussion about using
 manufacturer provided device certificates as trust anchor.  
@@ -1109,10 +1123,9 @@ Traditionally, configuration management of network devices has been done
 individually using each device's console or web-access.  As the number of
 devices has increased, it would have been reasonable to rationalize
 the process by utilizing a central management, not least to prevent human
-errors for repetitive tasks.  Yet, at home, network devices often are
-too heterogeneous, bought at different times from different vendors
-and therefore incompatible with each other to fully benefit from
-the centralization. 
+errors for repetitive tasks.  The reason, why this has not happened at
+home, is because network devices there often are too heterogeneous, bought at different times from different vendors
+and therefore incompatible with each other and.
 
 To help in moving the management to a more centralized
 model, the home network will see smartphone as a central managing local
@@ -1275,12 +1288,14 @@ multiplied with number of the separate home networks  needing authentication ser
 
 
 
-Project Moonshot\cite{moonshot}, if worked and used together with MSSP, may offer
+Project Moonshot\cite{moonshot}, is in its early phases. Its goal is
+to enable federated access universally to applications and
+services. If it worked and was used together with MSSP, it may offer
 SIM-based SSH access to Authenticator. Modifications are then needed 
-both in SSH server and client. Additionally EAP must be used through
+both in SSH server and client. Additionally, EAP must be used through
 tunneling, for example as an inner protocol of EAP-TTLS.
 
-At this point question might rise, why these external service
+At this point a question might rise, why these external service
 providers are needed. Is it not easier and simpler to just send 
 an SMS with password code to the smartphone, when access confirmation is needed?
 Mobile SIM provides two-way AuthN part as discussed earlier.
@@ -1743,10 +1758,11 @@ proxy)
 request is correct
 \end{enumerate}
 
-\section{Alternative management models}
+\section{Alternative management models (-> to discussion and speculations)}
 \label{sec-4-6}
 
-
+If we were to question or evolve the given model of change
+propagation, the trust anchoring would also need some modifications.
 Alternative method is that the changes could be marked some way, so
 that they need approving and then there could be a specific
 change-approval message, which must be sent through management
@@ -1760,42 +1776,40 @@ earlier set trust. The remaining two would depend on more complex
 setups involving tokens and are presented here just as ideas.
 
 
-\begin{enumerate}
-\item Changes are delivered from cloud to smartphone, which forwards them
-to devices located at management network after the
-authentication has succeeded. This is here chosen method.
+I) Changes are delivered from cloud to smartphone, which forwards them
+   to devices located at management network after the
+   authentication has succeeded. This is the method chosen here and
+   already explained.
 
-\item Changes are delivered normally from cloud to CPE (CPEs) without
-interaction from the smartphone. Such changes would not need AA at
-all or changes include credentials to login to targets. An example
-of change is a modification in network segment, which does not
-change network topology of other domains.  It is still unclear to
-the author which type of changes represents majority of the
-requests: those that need approval, or those that may proceed
-without approval. An educated guess is, that every change set needs
-to check the trust anchor's precence.
-\end{enumerate}
-
+II) Changes are delivered normally from cloud to CPE (CPEs) without
+   interaction from the smartphone. Such changes would not need AA at
+   all or changes include credentials to login to targets. An example
+   of change is a modification in network segment, which does not
+   change network topology of other domains.  It is still unclear to
+   the author which type of changes represents majority of the
+   requests: those that need approval, or those that may proceed
+   without approval. An educated guess is, that every change set needs
+   to check the trust anchor's precence.
 
 
-\begin{enumerate}
-\item Changes are delivered from cloud to CPE functioning as a central
-management station without interaction from the smartphone.  Digest
-of what is going to happen would be sent to smartphone from the
-cloud over the air (OtA). Smartphone would authenticate in to the
-management network (if not already there) and send through it the
-digest token it received from the cloud as an approval message to
-the central management station inside home network, which then
-forwards the configuration changes to other devices.
 
-\item Variation of number 3 is that if CPE itself is an Authenticator, it
-could proceed on propagating changes when it receives
-ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
-drop received changes without forwarding them.
-\end{enumerate}
+III) Besides AP, also CPE would have direct connection to the
+   Cloud. Changes are then delivered from cloud to CPE functioning as a central
+   management station without interaction from the smartphone.  Digest
+   of what is going to happen would be sent to smartphone from the
+   cloud over the air (OtA). Smartphone would authenticate in to the
+   management network (if not already there) and send through it the
+   digest token it received from the cloud as an approval message to
+   the central management station inside home network, which then
+   forwards the configuration changes to other devices.
+
+IV) Variation of III is that when CPE itself is an Authenticator, it
+   could proceed on propagating changes when it receives
+   ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
+   drop received changes without forwarding them.
 
 
-The smartphone may receive the authentication token with 
+The smartphone may receive the AuthN token with 
 a message explaining what is going to happen in the change.
 As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
@@ -1806,16 +1820,9 @@ management network where the Authenticator gives access.
 
 Using tickets has a connection to earlier homenet studies, such as
 Behringers work-in-progress
-bootstrapping\cite{draft-behringer-bootstrap}.  Bootstrapping
-protocols in general are used to bring the first trust anchor in an
-environment and use that anchor to attach other devices to the same
-trust circle. Behringer proposes that AuthN would happen likewise
-first at cloud provider's end but it is done by checking device's
-Vendor certificates.  This AuthN would not yet give full AuthZ, but a
-ticket, with which the end device may request for service tickets.
-The device applies with that ticket for access to change management
-service from CPE. That is similar to Kerberos, which is based on
-Needham-Schroeder protocol. Another bootstrapping architecture is
+bootstrapping\cite{draft-behringer-bootstrap}.  
+
+ Another bootstrapping architecture is
 defined in GBA (General Bootstrapping Architecture), which 
 benefits from MNO's or any other identity centre's  knowledge of user's SIM.
 
