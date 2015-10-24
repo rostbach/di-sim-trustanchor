@@ -1319,8 +1319,6 @@ Secure network configuration and credential exchange is then possible.
 # ( http://static.usenix.org/event/sec04/tech/full_papers/balfanz/balfanz_html/
 # ]
 
-
-
 Now, how this trust could be used to include other components under
 same trust circle in the home network? As mentioned earlier, the SIM
 and MNO trust each other hence mutual authentication between them is
