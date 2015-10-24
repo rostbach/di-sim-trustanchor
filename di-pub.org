@@ -2373,104 +2373,6 @@ smartphone  enc.   AP                proxy or provider knows admin
 # using trust with phone
 # + tokens
 
-** Alternative management models (-> to discussion and speculations)
-
-If we were to question or evolve the given model of change
-propagation, the trust anchoring would also need some modifications.
-# what are those modifications? -ri24.11.2015
-Alternative method is that the changes could be marked some way, so
-that they need approving and then there could be a specific
-change-approval message, which must be sent through management
-network, perhaps including digest of change message as a verification.
-Because smartphone is not actively listening the CPE, it cannot input
-those request. Together with the chosen method, there are four planned
-methods to distribute changes. The first uses the smartphone as a
-direct commander and is the preferred 
-method. The second would not involve smartphone at all but depended on
-earlier set trust. The remaining two would depend on more complex
-setups involving tokens and are presented here just as ideas.
-
-
-I) Changes are delivered from cloud to smartphone, which forwards them
-   to devices located at management network after the
-   authentication has succeeded. This is the method chosen here and
-   already explained.
-
-II) Changes are delivered normally from cloud to CPE (CPEs) without
-   interaction from the smartphone. Such changes would not need AA at
-   all or changes include credentials to login to targets. An example
-   of change is a modification in network segment, which does not
-   change network topology of other domains.  It is still unclear to
-   the author which type of changes represents majority of the
-   requests: those that need approval, or those that may proceed
-   without approval. An educated guess is, that every change set needs
-   to check the trust anchor's precence.
-
-# In production, some changes in local controller can be propagated to
-# the home network via management network without need for an extra
-# authentication phase.  The local controller does not interact
-# there. 
-# Cha 4. last Section, "Lastly, variation of design is, that not
-# every change needs to go
-
-
-III) Besides AP, also CPE would have direct connection to the
-   Cloud. Changes are then delivered from cloud to CPE functioning as a central
-   management station without interaction from the smartphone.  Digest
-   of what is going to happen would be sent to smartphone from the
-   cloud over the air (OtA). Smartphone would authenticate in to the
-   management network (if not already there) and send through it the
-   digest token it received from the cloud as an approval message to
-   the central management station inside home network, which then
-   forwards the configuration changes to other devices.
-
-IV) Variation of III is that when CPE itself is an Authenticator, it
-   could proceed on propagating changes when it receives
-   ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
-   drop received changes without forwarding them.
-
-# see automatic re-login issues
-#   [this was the question somewhere, ``triggering'']
-
-The smartphone may receive the AuthN token with 
-a message explaining what is going to happen in the change.
-As the CPE and the Authenticator may be separate devices, approving
-happens by sending the token from the smartphone to the CPE via the
-management network where the Authenticator gives access.
-
-# [Evaluating and comparing bootstrapping methods and authentication.
-# Evaluation missing, so comparing difficult too.]
-
-# [Description of General Bootstrapping architecture (GBA) vs. yet
-# another custom architecture. Maybe parts of architecture
-# such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
-# What is needed? How GBA could be used here?]
-
-# [SIM card's anatomy: it has private key, MNO
-# also has the same key in its database and that is used to derive
-# other keys based on input received.]
-
-Using tickets has a connection to earlier homenet studies, such as
-Behringers work-in-progress
-bootstrapping\cite{draft-behringer-bootstrap}.  
-
- Another bootstrapping architecture is
-defined in GBA (General Bootstrapping Architecture), which 
-benefits from MNO's or any other identity centre's  knowledge of user's SIM.
-
-
-In our work, the Authentication server can be an external
-RADIUS server, but usually the final decision point lies at the
-Authenticator in CPE. Further, in last two planned ways only the
-initial bootstrap as well as the change of admin roles and some dangerous
-combination of commands would need AA with the smartphone.
-Finally this thesis takes the bootstrapped environment as given, i.e.,
-the initial configuration has already been set.
-
-
-# ** What prevents modifications of RADIUS messages? Securing message
-# integrity.
-
 
 
 ** Chosen management model
@@ -3281,7 +3183,8 @@ discuss some results and findings. We concentrate on security,
 deployment difficulties and costs, platform issues and cases where we
 need to extend the number of SSID's. The facts collected in the thesis
 are once more wrapped up in Discussion section.
-Last, we  speculate on some alternative design solutions.
+Last, we  speculate on some alternative design solutions for adding
+trust and management models.
 
 
 ** Security considerations
@@ -4493,6 +4396,104 @@ implemented. Disconnection issues are explained in Section
 [[sec:disconnections]].
 # [picture?]
 
+
+** Alternative management models (-> to discussion and speculations)
+
+If we were to question or evolve the given model of change
+propagation, the trust anchoring would also need some modifications.
+# what are those modifications? -ri24.11.2015
+Alternative method is that the changes could be marked some way, so
+that they need approving and then there could be a specific
+change-approval message, which must be sent through management
+network, perhaps including digest of change message as a verification.
+Because smartphone is not actively listening the CPE, it cannot input
+those request. Together with the chosen method, there are four planned
+methods to distribute changes. The first uses the smartphone as a
+direct commander and is the preferred 
+method. The second would not involve smartphone at all but depended on
+earlier set trust. The remaining two would depend on more complex
+setups involving tokens and are presented here just as ideas.
+
+
+I) Changes are delivered from cloud to smartphone, which forwards them
+   to devices located at management network after the
+   authentication has succeeded. This is the method chosen here and
+   already explained.
+
+II) Changes are delivered normally from cloud to CPE (CPEs) without
+   interaction from the smartphone. Such changes would not need AA at
+   all or changes include credentials to login to targets. An example
+   of change is a modification in network segment, which does not
+   change network topology of other domains.  It is still unclear to
+   the author which type of changes represents majority of the
+   requests: those that need approval, or those that may proceed
+   without approval. An educated guess is, that every change set needs
+   to check the trust anchor's precence.
+
+# In production, some changes in local controller can be propagated to
+# the home network via management network without need for an extra
+# authentication phase.  The local controller does not interact
+# there. 
+# Cha 4. last Section, "Lastly, variation of design is, that not
+# every change needs to go
+
+
+III) Besides AP, also CPE would have direct connection to the
+   Cloud. Changes are then delivered from cloud to CPE functioning as a central
+   management station without interaction from the smartphone.  Digest
+   of what is going to happen would be sent to smartphone from the
+   cloud over the air (OtA). Smartphone would authenticate in to the
+   management network (if not already there) and send through it the
+   digest token it received from the cloud as an approval message to
+   the central management station inside home network, which then
+   forwards the configuration changes to other devices.
+
+IV) Variation of III is that when CPE itself is an Authenticator, it
+   could proceed on propagating changes when it receives
+   ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
+   drop received changes without forwarding them.
+
+# see automatic re-login issues
+#   [this was the question somewhere, ``triggering'']
+
+The smartphone may receive the AuthN token with 
+a message explaining what is going to happen in the change.
+As the CPE and the Authenticator may be separate devices, approving
+happens by sending the token from the smartphone to the CPE via the
+management network where the Authenticator gives access.
+
+# [Evaluating and comparing bootstrapping methods and authentication.
+# Evaluation missing, so comparing difficult too.]
+
+# [Description of General Bootstrapping architecture (GBA) vs. yet
+# another custom architecture. Maybe parts of architecture
+# such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
+# What is needed? How GBA could be used here?]
+
+# [SIM card's anatomy: it has private key, MNO
+# also has the same key in its database and that is used to derive
+# other keys based on input received.]
+
+Using tickets has a connection to earlier homenet studies, such as
+Behringers work-in-progress
+bootstrapping\cite{draft-behringer-bootstrap}.  
+
+ Another bootstrapping architecture is
+defined in GBA (General Bootstrapping Architecture), which 
+benefits from MNO's or any other identity centre's  knowledge of user's SIM.
+
+
+In our work, the Authentication server can be an external
+RADIUS server, but usually the final decision point lies at the
+Authenticator in CPE. Further, in last two planned ways only the
+initial bootstrap as well as the change of admin roles and some dangerous
+combination of commands would need AA with the smartphone.
+Finally this thesis takes the bootstrapped environment as given, i.e.,
+the initial configuration has already been set.
+
+
+# ** What prevents modifications of RADIUS messages? Securing message
+# integrity.
 
 
 * Conclusion
