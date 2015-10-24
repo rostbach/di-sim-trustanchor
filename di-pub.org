@@ -1466,7 +1466,7 @@ trust circle.
 some input from outside.
 For that, draft from Behringer\cite{draft-behringer-bootstrap} proposes,
 that one device is first chosen as a trust anchor and trust is
-built upon that anchor. This anchored device then becomes home network's
+built upon that anchor. This anchored device later becomes home network's
 Certificate Authority (CA) service. In the end, the rest of the home network 
 devices need to apply for certificates from that CA to get under same
 trust circle. 
