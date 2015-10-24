@@ -1832,13 +1832,13 @@ Project Moonshot\cite{moonshot}, is in its early phases. Its goal is
 to enable federated access universally to applications and
 services. If it worked and was used together with MSSP, it may offer
 SIM-based SSH access to Authenticator. Modifications are then needed 
-both in SSH server and client. Additionally EAP must be used through
+both in SSH server and client. Additionally, EAP must be used through
 tunneling, for example as an inner protocol of EAP-TTLS.
 # end of fed services.
 
 # *** Web portal with SMS passwd
 # Did'nt I just explain these external providers are needed?
-At this point question might rise, why these external service
+At this point a question might rise, why these external service
 providers are needed. Is it not easier and simpler to just send 
 an SMS with password code to the smartphone, when access confirmation is needed?
 Mobile SIM provides two-way AuthN part as discussed earlier.
