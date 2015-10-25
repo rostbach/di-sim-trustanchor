@@ -2285,7 +2285,7 @@ but CPE has neither trust nor roles.
 
 
 
-** Ways to modify RADIUS messages [perhaps to security integrity chapter?]
+** Modification of RADIUS messages [perhaps to security integrity chapter?]
 <<sec:radius-macs>>
 # [Analysis of RADIUS, RADIUS Proxies..
 
