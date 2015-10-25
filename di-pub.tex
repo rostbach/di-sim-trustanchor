@@ -1,4 +1,4 @@
-% Created 2015-10-24 la 20:28
+% Created 2015-10-25 su 22:56
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -75,7 +75,6 @@
 
 If not already on vocabulary, expansion of the most important terms like
 authentication, key-exchange, integrity, replay, algorithms, SIM,\ldots{}
-[from Cryptoprotocol-course, check that key exchange with 8 different methods)]
 
 \newpage             % Added 2015-02-22
 
@@ -1056,64 +1055,8 @@ avoided and let home network user decide whether device becomes trusted.
 So, these statements reveal us that home network environment still needs
 external configuration even with the proposed automation aids.
 
-\section{Bootstrapping with PKI}
-\label{sec-3-2}
-
-Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
-home. The public key cryptography is processor intensive and its
-asymmetric keys are usually used just in the beginning of
-communication. There they can be used to securely negotiate symmetric
-keys which allows faster cryptographic processing.
-Rest of this section discusses possible PKI usage.
-
-To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
-first needed.
-The bootstrapping protocols in general are used to
-bring the first trust anchor in an environment and later use that anchor to
-attach other devices to the same trust circle.  A draft from
-Behringer\cite{draft-behringer-bootstrap} proposes, that one device
-at home is first chosen as a trust anchor  using its unique properties such as 
-device Vendor certificates.
-
-Despite the etymology of name bootstrapping, ``Lift oneself by his own
-bootstraps'', bootstrapping usually needs some input from outside.
-For that, AuthN of the trust anchor device would happen by checking device's Vendor certificates. This anchored
-device later becomes home network's Certificate Authority (CA) service
-and the trust anchor, upon which the rest of the home network devices
-would apply for certificates from to get under the same trust circle.
-Key creation, key exchange and their usage is explained in similar
-draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in general
-in bootstrapping. 
-
-\section{Bootstrapping without PKI}
-\label{sec-3-3}
- Behringer continues, that the end devices would not yet get full AuthZ,
-but only a ticket, with which the end device may request for service tickets.
-with that ticket, the device can apply for access to change management
-service from CPE. That is similar to Kerberos, which is based on
-Needham-Schroeder protocol.
-
-
-
-This model could also be expanded to a full ticket enabled
-Kerberos style authentication network, where time-limited tickets (tokens) for
-both authentication and authorization exist for different services. Trusted
-Third Party authentication center would be setup with the help of MNO.
-One service would then authenticate an entity, here smartphone, and
-give it a time-limited ticket as a proof that the entity has been authenticated.
-When the entity wants to connect to the service, it asks from the central 
-server again for ticket, but this time for the service by presenting
-the authentication ticket. In return it receives a service ticket which
-it can present to the wanted service, who verifies the access based
-on the ticket. 
-
-As can be seen, no public key infrastructure (PKI) is used on this.
-If EAP-SIM was applied in such environment, it would be used only
-once, namely in the bootstrapping phase to setup the CA trust
-anchor. Only after that, can the CA start delivering PKI. Kerberos
-needs shared keys, and EAP-SIM helps in providing those.
 \section{Centralization trends in management}
-\label{sec-3-4}
+\label{sec-3-2}
 
 Traditionally, configuration management of network devices has been done
 individually using each device's console or web-access.  As the number of
@@ -1160,7 +1103,7 @@ authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 
 \section{Methods for introducing trust anchor into the home network}
-\label{sec-3-5}
+\label{sec-3-3}
 \label{sec:altmethods}
 
  Trust information, may it then be a secret or some
@@ -1281,6 +1224,64 @@ For added functionality, for example for logging admins out, OpenWRT
 based software can be used, although those functions have not yet been
 implemented. Disconnection issues are explained in Section
 \ref{sec:disconnections}.
+
+\section{Bootstrapping with PKI}
+\label{sec-3-4}
+
+Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
+home. The public key cryptography is processor intensive and its
+asymmetric keys are usually used just in the beginning of
+communication. There they can be used to securely negotiate symmetric
+keys which allows faster cryptographic processing.
+Rest of this section discusses possible PKI usage.
+
+To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
+first needed.
+The bootstrapping protocols in general are used to
+bring the first trust anchor in an environment and later use that anchor to
+attach other devices to the same trust circle.  A draft from
+Behringer\cite{draft-behringer-bootstrap} proposes, that one device
+at home is first chosen as a trust anchor  using its unique properties such as 
+device Vendor certificates.
+
+Despite the etymology of name bootstrapping, ``Lift oneself by his own
+bootstraps'', bootstrapping usually needs some input from outside.
+For that, AuthN of the trust anchor device would happen by checking device's Vendor certificates. This anchored
+device later becomes home network's Certificate Authority (CA) service
+and the trust anchor, upon which the rest of the home network devices
+would apply for certificates from to get under the same trust circle.
+Key creation, key exchange and their usage is explained in similar
+draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in general
+in bootstrapping. 
+
+\section{Bootstrapping without PKI}
+\label{sec-3-5}
+ Behringer continues, that the end devices would not yet get full AuthZ,
+but only a ticket, with which the end device may request for service tickets.
+with that ticket, the device can apply for access to change management
+service from CPE. That is similar to Kerberos, which is based on
+Needham-Schroeder protocol.
+
+
+
+This model could also be expanded to a full ticket enabled
+Kerberos style authentication network, where time-limited tickets (tokens) for
+both authentication and authorization exist for different services. Trusted
+Third Party authentication center would be setup with the help of MNO.
+One service would then authenticate an entity, here smartphone, and
+give it a time-limited ticket as a proof that the entity has been authenticated.
+When the entity wants to connect to the service, it asks from the central 
+server again for ticket, but this time for the service by presenting
+the authentication ticket. In return it receives a service ticket which
+it can present to the wanted service, who verifies the access based
+on the ticket. 
+
+As can be seen, no public key infrastructure (PKI) is used on this.
+If EAP-SIM was applied in such environment, it would be used only
+once, namely in the bootstrapping phase to setup the CA trust
+anchor. Only after that, can the CA start delivering PKI. Kerberos
+needs shared keys, and EAP-SIM helps in providing those.
+
 
 \chapter{Design of home network trust anchor and separation of change management}
 \label{sec-4}
@@ -1576,7 +1577,7 @@ but CPE has neither trust nor roles.
 
 
 
-\section{Ways to modify RADIUS messages [perhaps to security integrity chapter?]}
+\section{Modification of RADIUS messages [perhaps to security integrity chapter?]}
 \label{sec-4-3}
 \label{sec:radius-macs}
 
