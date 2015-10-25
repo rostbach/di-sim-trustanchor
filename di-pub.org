@@ -1439,100 +1439,6 @@ external configuration even with the proposed automation aids.
 # homenet according to a policy set by the user of the homenet.
 # #+END_QUOTE
 
-** Bootstrapping with PKI
-# C-c C-x [,  
-# cite{draft-behringer-bootstrap},
-# There are proposed techniques for that for example in Internet-draft
-# draft-behringer-bootstrap \cite{draft-behringer-bootstrap} where 
-# Authentication (may) need some # bootstrapping of trust for start.
-
-Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
-home. The public key cryptography is processor intensive and its
-asymmetric keys are usually used just in the beginning of
-communication. There they can be used to securely negotiate symmetric
-keys which allows faster cryptographic processing.
-Rest of this section discusses possible PKI usage.
-# [source not needed. is well known fact]
-
-To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
-first needed.
-The bootstrapping protocols in general are used to
-bring the first trust anchor in an environment and later use that anchor to
-attach other devices to the same trust circle.  A draft from
-Behringer\cite{draft-behringer-bootstrap} proposes, that one device
-at home is first chosen as a trust anchor  using its unique properties such as 
-device Vendor certificates.
-
-Despite the etymology of name bootstrapping, ``Lift oneself by his own
-bootstraps'', bootstrapping usually needs some input from outside.
-For that, AuthN of the trust anchor device would happen by checking device's Vendor certificates. This anchored
-device later becomes home network's Certificate Authority (CA) service
-and the trust anchor, upon which the rest of the home network devices
-would apply for certificates from to get under the same trust circle.
-Key creation, key exchange and their usage is explained in similar
-draft from Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. That explains PKI usage in general
-in bootstrapping. 
-
-** Bootstrapping without PKI
- Behringer continues, that the end devices would not yet get full AuthZ,
-but only a ticket, with which the end device may request for service tickets.
-with that ticket, the device can apply for access to change management
-service from CPE. That is similar to Kerberos, which is based on
-Needham-Schroeder protocol.
-# Regarding
-# There is also discussion about using manufacturer provided device certificates as trust anchor.  
-
-# Rest of gba:
-
-# *** Ticket based, separate authentication and authorization
-
-This model could also be expanded to a full ticket enabled
-Kerberos style authentication network, where time-limited tickets (tokens) for
-both authentication and authorization exist for different services. Trusted
-Third Party authentication center would be setup with the help of MNO.
-# One could also model home network to use separate authentication 
-# and authorization service in style of Kerberos. That would help
-# on limiting access based on time, role, service and user to name few.
-# - Needham-Schröder background, Kerberos, GBA def.
-# [explain similarities and basic flow on kerberos.]
-# K kerberos bears similarities: 
-# Trust there is bound to trusted third party service, 
-# AuthN is mutual, 
-One service would then authenticate an entity, here smartphone, and
-give it a time-limited ticket as a proof that the entity has been authenticated.
-# With this [...] (Ticket-Granting-Ticket) together with TGS session key.
-When the entity wants to connect to the service, it asks from the central 
-server again for ticket, but this time for the service by presenting
-the authentication ticket. In return it receives a service ticket which
-it can present to the wanted service, who verifies the access based
-on the ticket. 
-
-As can be seen, no public key infrastructure (PKI) is used on this.
-If EAP-SIM was applied in such environment, it would be used only
-once, namely in the bootstrapping phase to setup the CA trust
-anchor. Only after that, can the CA start delivering PKI. Kerberos
-needs shared keys, and EAP-SIM helps in providing those.
-
-
-
-# IMS multimedia + GBA
-# - IMS :: IP multimedia subsystem
-# http://link.springer.com/chapter/10.1007%2F978-3-319-10903-9_2#page-1
-
-# [- GAA :: Generic Authentication Architecture 
-#  - GBA :: Generic Bootstrapping Architecture, a method for
-#          authentication (in the IP multimedia subsystem IMS (not only
-#          that)). Is part of GAA standard, based on shared-secret,
-#          standardized at the 3GPP, so uses phone's smartcard
-# ]
-
-# ??Instead here, service does not need to ask for session keys from the operator.
-# %\section{Evaluating and comparing bootstrapping methods and authentication}
-
-
-# [See security Chapter]
-
-# from console to central management
 ** Centralization trends in management
 
 Traditionally, configuration management of network devices has been done
@@ -1793,6 +1699,102 @@ based software can be used, although those functions have not yet been
 implemented. Disconnection issues are explained in Section
 [[sec:disconnections]].
 # [picture?]
+
+** Bootstrapping with PKI
+# C-c C-x [,  
+# cite{draft-behringer-bootstrap},
+# There are proposed techniques for that for example in Internet-draft
+# draft-behringer-bootstrap \cite{draft-behringer-bootstrap} where 
+# Authentication (may) need some # bootstrapping of trust for start.
+
+Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
+home. The public key cryptography is processor intensive and its
+asymmetric keys are usually used just in the beginning of
+communication. There they can be used to securely negotiate symmetric
+keys which allows faster cryptographic processing.
+Rest of this section discusses possible PKI usage.
+# [source not needed. is well known fact]
+
+To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
+first needed.
+The bootstrapping protocols in general are used to
+bring the first trust anchor in an environment and later use that anchor to
+attach other devices to the same trust circle.  A draft from
+Behringer\cite{draft-behringer-bootstrap} proposes, that one device
+at home is first chosen as a trust anchor  using its unique properties such as 
+device Vendor certificates.
+
+Despite the etymology of name bootstrapping, ``Lift oneself by his own
+bootstraps'', bootstrapping usually needs some input from outside.
+For that, AuthN of the trust anchor device would happen by checking device's Vendor certificates. This anchored
+device later becomes home network's Certificate Authority (CA) service
+and the trust anchor, upon which the rest of the home network devices
+would apply for certificates from to get under the same trust circle.
+Key creation, key exchange and their usage is explained in similar
+draft from Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. That explains PKI usage in general
+in bootstrapping. 
+
+** Bootstrapping without PKI
+ Behringer continues, that the end devices would not yet get full AuthZ,
+but only a ticket, with which the end device may request for service tickets.
+with that ticket, the device can apply for access to change management
+service from CPE. That is similar to Kerberos, which is based on
+Needham-Schroeder protocol.
+# Regarding
+# There is also discussion about using manufacturer provided device certificates as trust anchor.  
+
+# Rest of gba:
+
+# *** Ticket based, separate authentication and authorization
+
+This model could also be expanded to a full ticket enabled
+Kerberos style authentication network, where time-limited tickets (tokens) for
+both authentication and authorization exist for different services. Trusted
+Third Party authentication center would be setup with the help of MNO.
+# One could also model home network to use separate authentication 
+# and authorization service in style of Kerberos. That would help
+# on limiting access based on time, role, service and user to name few.
+# - Needham-Schröder background, Kerberos, GBA def.
+# [explain similarities and basic flow on kerberos.]
+# K kerberos bears similarities: 
+# Trust there is bound to trusted third party service, 
+# AuthN is mutual, 
+One service would then authenticate an entity, here smartphone, and
+give it a time-limited ticket as a proof that the entity has been authenticated.
+# With this [...] (Ticket-Granting-Ticket) together with TGS session key.
+When the entity wants to connect to the service, it asks from the central 
+server again for ticket, but this time for the service by presenting
+the authentication ticket. In return it receives a service ticket which
+it can present to the wanted service, who verifies the access based
+on the ticket. 
+
+As can be seen, no public key infrastructure (PKI) is used on this.
+If EAP-SIM was applied in such environment, it would be used only
+once, namely in the bootstrapping phase to setup the CA trust
+anchor. Only after that, can the CA start delivering PKI. Kerberos
+needs shared keys, and EAP-SIM helps in providing those.
+
+
+
+# IMS multimedia + GBA
+# - IMS :: IP multimedia subsystem
+# http://link.springer.com/chapter/10.1007%2F978-3-319-10903-9_2#page-1
+
+# [- GAA :: Generic Authentication Architecture 
+#  - GBA :: Generic Bootstrapping Architecture, a method for
+#          authentication (in the IP multimedia subsystem IMS (not only
+#          that)). Is part of GAA standard, based on shared-secret,
+#          standardized at the 3GPP, so uses phone's smartcard
+# ]
+
+# ??Instead here, service does not need to ask for session keys from the operator.
+# %\section{Evaluating and comparing bootstrapping methods and authentication}
+
+
+# [See security Chapter]
+
+# from console to central management
+
 
 * Design of home network trust anchor and separation of change management
 :PROPERTIES:
@@ -4748,3 +4750,4 @@ wpa-supplicant supports.
 # card).
  
  
+
