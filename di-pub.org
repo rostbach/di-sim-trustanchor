@@ -55,7 +55,7 @@
 
 If not already on vocabulary, expansion of the most important terms like
 authentication, key-exchange, integrity, replay, algorithms, SIM,...
-[from Cryptoprotocol-course, check that key exchange with 8 different methods)]
+# [from Cryptoprotocol-course, check that key exchange with 8 different methods)]
 
 #+begin_latex
 \newpage             % Added 2015-02-22
