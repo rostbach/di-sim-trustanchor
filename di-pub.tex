@@ -1,4 +1,4 @@
-% Created 2015-10-27 ti 20:57
+% Created 2015-10-27 ti 21:09
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1396,23 +1396,23 @@ of RADIUS is either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
 [Put the table maybe after the scenarios?]
 
 Table\ref{table-scenarios} represents the locations for Authenticator (AA),
-AuthN, and AuthZ in five scenarios. The locations are marked as (I)
-for internal or (E) for external in the table and the scenarios are
+AuthN, and AuthZ in five scenarios. The locations are marked as (i)
+for internal or (e) for external in the table and the scenarios are
 described after that in detail. Authenticator is the entity which
-gives the final decision about access regardless of location of AA.
-It always is internal, located at home network.
+gives the final decision about access regardless of location of AA
+and it is always internal, located at home network.
 
 \begin{table}[htb]
 \caption{\label{table-scenarios}Location of AA, AuthN and AuthZ in scenarios I-V}
 \centering
-\begin{tabular}{llll}
-scene no: & Authenticator & AuthN & AuthZ\\
+\begin{tabular}{lll}
+scene no: & AuthN & AuthZ\\
 \hline
-I & I & E & E\\
-II & I & E & I\\
-III & I & E & I/E (proxied)\\
-V & - & - & -\\
-TMSI,cached &  & I & I/E\\
+I & e & e\\
+II & e & i\\
+III & e & i/e (proxied)\\
+IV & i & i\\
+V & - & -\\
 \end{tabular}
 \end{table}
 \label{scenario-i}
@@ -1515,8 +1515,6 @@ admin users and APs are set to factory default, then they need
 pre-configuring and bootstrapping. The scenario can be any of I-IV,
 but CPE has neither trust nor roles. Bootstrapping is discussed in 
 Section \ref{bootstrapping}.
-
-
 
 
 \section{Modification of RADIUS messages [perhaps to security integrity chapter?]}
@@ -2952,7 +2950,7 @@ management network where the Authenticator gives access.
 \label{scenario-iv} 
 In the future, other components than  the  local controller might 
 have a direct connection to the cloud. 
-Scenario IV (Figure\ref{fig:scenario-IV}) is similar to scenario I presented
+Scenario VI (Figure\texttt{fig:scenario-VI}) is similar to scenario I presented
 earlier, but now AuthZ is checked from the Cloud by CPE instead of
 MNO.  If there is no connection to the cloud, the fall-back is to work
 just like II. So also this scenario needs local store for caching
@@ -2960,8 +2958,8 @@ admin IMSIs (roles).
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=.9\linewidth]{scenIV.png}
-\caption{\label{fig:scenario-IV}Scenario IV. In the future CPE could be attached direct to the Cloud and AuthN comes from MNO}
+\includegraphics[width=.9\linewidth]{scenVI.png}
+\caption{\label{fig:scenario-IV}In the future, CPE could be attached direct to the Cloud and AuthN comes from MNO}
 \end{figure}
 
 
