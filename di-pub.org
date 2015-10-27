@@ -2063,27 +2063,27 @@ MNO. Allowed users have been inserted earlier to MNO from the Cloud.
 # speak to homenet. Leave also out, what happens in MNO re IMSI and
 # cloud. That part does not even _have_ a number 
 
-1. The model has been changed in the Cloud (1).
-2. The Cloud send the changes to the Local Controller (phone) (2).
+1. The model has been changed in the Cloud.
+2. The Cloud send the changes to the Local Controller (phone).
 3. If the changes are privileged, they need to be approved by the phone user.
    The phone user must  authenticate to the management network.
 4. The phone user starts the authentication process to management
-   network using EAP-SIM and reveals its IMSI(4).
+   network using EAP-SIM and reveals its IMSI.
 5. CPE (AP) forwards the authentication to MNO's RADIUS server using
-   RADIUS protocol (5).
+   RADIUS protocol.
 6. MNO has RADIUS server which uses HLR-AuC for authentication
-   triplets (6). 
+   triplets. 
    (AuthZ). This RADIUS continues the authentication process until to
    the end. 
  MNO also asks from the Cloud, whether IMSI user has an admin role.
  MNO returns in RADIUS message either /ACCESS-ACCEPT/, if user is both
    known AND has admin role  or /ACCESS-REJECT/ if either property
-   fails (7).
+   fails.
 7. CPE receives this ACCEPT or REJECT. If there were other RADIUSes
    between CPE and MNO, they would have acted
    as proxy RADIUS servers.
 8. IF ACCEPTed, then the smartphone is both authenticated and
-   authorized (8) and it now 
+   authorized and it now 
    can send configuration change message to CPE, which recognizes it
    coming from authorized  network.
 
