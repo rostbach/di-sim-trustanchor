@@ -2218,8 +2218,8 @@ but Full authentication would not work because of missing MNO.
                       
   +-----+         +-------+------------+
   |phone|<--AA--->+       |TMSI mapping|
-  |IMSI |  TMSIx  |CPE(AP)|{s}Roles    |
-  |TMSIx|         |       |TMSIx : IMSI|
+  |IMSI |  TMSIx  |CPE(AP)|{s}         |
+  |TMSIx|         |       |TMSIx::IMSI |
   +-----+         +-------+------------+
 #+end_src
 #+CAPTION: Scenario IV, offline 
