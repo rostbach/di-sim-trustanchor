@@ -1,4 +1,4 @@
-% Created 2015-10-25 su 22:56
+% Created 2015-10-27 ti 20:48
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,14 +47,14 @@
 \title{Smartphone as a trust anchor for delegated home net configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-24.10.2015 Master of Science thesis}
+\thesistype{draft-27.10.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{24.10.2015 \{12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{27.10.2015 \{12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -140,23 +140,24 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,\ldots{}
 [what was the problem, what was done, and what are the results. ]
 % Do not include charts or tables in the abstract.
 
-Today, home networks have become more complex and home owner 
+Today, home networks have become more complex and the home owner 
 does not necessarily want to administer all aspects of it.
-Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If configuration is out-sourced to external parties and 
+Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If the configuration is out-sourced to external parties and 
 done remotely, those requirements need adjustment.
-Access to the end device must be provided from outside. Login credentials must be shared to operator and trustful operator must be hired to make configuration changes.
+Access to an end device must be provided from outside. 
+A trustful operator must be hired and login credentials shared to them to make configuration changes.
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
 As there already exists an infrastructure within mobile phone subscribers, that is used in the study as a trusted base.
-To benefit from mobile identification it is shown how
-authentication is done using extendable authentication profile (EAP) with SIM-card
-and authorization checked with RADIUS protocol.
+To benefit from the mobile identification, it is shown how
+the authentication is done using an extendable authentication profile (EAP) with a SIM-card
+and how the authorization is checked with a RADIUS protocol.
 A theory, how SIM-authentication works is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
-As a result it is shown, that SIM authentication's benefits are strong
+As results, it is shown, that SIM authentication's benefits are strong
 authentication and existing user-base, while its disadvantages include
 dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications. % [or: balancing the re-authentication]
-Principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
- For transporting authentication claims, WPA2 enterprise has been chosen, which includes RADIUS environment.
+The principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
+ For transporting authentication claims, WPA2 Enterprise, which includes RADIUS environment has been chosen.
 To further avoid complexity and granularity, we
 only use a simple model of management network. Getting in to management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
 
@@ -974,8 +975,9 @@ With trust set between two devices, i.e.,  if they can securely
 authenticate each other, secret communication is possible. 
 Secure network configuration and credential exchange is then possible.
 
-Now, how this trust could be used to include other components under
-same trust circle in the home network? As mentioned earlier, the SIM
+
+This trust can be used to include other components under the
+same trust circle in the home network. As mentioned earlier, the SIM
 and MNO trust each other hence mutual authentication between them is
 possible and that is later shown to be an important factor.  Also the
 key distribution problem mentioned in Chapter \ref{cha:intro} is solved
@@ -1120,23 +1122,23 @@ AuC at the phone operator's end and AuthZ added to it later. The
 verification leaves a trail on the local Authenticator and opens a
 trust channel for a limited period of time for changes from the phone.
 
-[This was the most important paragraph of whole work. Thanks for
-reading it.]
 
 
 
-Trust can also be requested with the help of device's
-unique properties. Recently, there have appeared  devices on the market, that
-have vendor provided certificates inside them, which brings public key
-infrastructure as one possible alternative to learn trusted identity. 
-The device proves its identity by presenting a certificate, which has
-been issued by a trusted vendor.  Private keys are inside the device's
-trusted hardware store. Vendor trust is needed for checking the issued certificates
-and so the trust verification of individual devices is merely
-transferred to trust verification of the vendor.  Root CAs are trust anchors
-also and can be read in the same way from the device's read-only store.
-CPE could use vendor issued certificate for AuthN of some earlier
-unknown device.  
+Trust can also be requested with help of device's unique
+properties. Recently, devices have appeared on the market, that have
+vendor provided certificates inside them and this brings public key
+infrastructure as one possible alternative for learning trusted
+identity.  The device proves its identity by presenting a certificate,
+which has been issued by a trusted vendor and which includes devices
+public key.  Private part of a key pair is inside the device's trusted
+hardware store and does not ever leave the hardware. Vendor trust is
+needed for checking the issued certificates and so the trust
+verification of individual devices is merely transferred to trust
+verification of the vendor.  Root CAs are trust anchors also and can
+be read in the same way from the device's read-only store.  CPE could
+use vendor issued certificate for AuthN of some earlier unknown
+device.
 
 
 Other techniques  to use SIM's unique properties besides EAP-SIM
@@ -1144,7 +1146,6 @@ are for example Bluetooth SIM Access Profile(Bluetooth  SAP),
 direct connection through PC/SC (Personal\- Computer/Smart\- Card),
 CallerID service from phone network, or
 Mobile signing service.
-
 Bluetooth SIM and PC/SC would need patching of smartphone's software
 to work.  On the other hand, the smartphone would any way need to
 download  a controlling application
@@ -1217,7 +1218,7 @@ Requirement for home network can be as small as having WPA2 Enterprise capable
 AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
 has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
 Additionally, managing user's SIM-card has to be registered as an admin user in home network 
-configuration, i.e. IMSI must belong to the admin group.
+configuration, i.e., IMSI must belong to the admin group.
 In this implementation, no extra application is needed in smartphone
 for primitive trust, but later for more serious use some application is needed.
 For added functionality, for example for logging admins out, OpenWRT
@@ -1225,62 +1226,7 @@ based software can be used, although those functions have not yet been
 implemented. Disconnection issues are explained in Section
 \ref{sec:disconnections}.
 
-\section{Bootstrapping with PKI}
-\label{sec-3-4}
 
-Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
-home. The public key cryptography is processor intensive and its
-asymmetric keys are usually used just in the beginning of
-communication. There they can be used to securely negotiate symmetric
-keys which allows faster cryptographic processing.
-Rest of this section discusses possible PKI usage.
-
-To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
-first needed.
-The bootstrapping protocols in general are used to
-bring the first trust anchor in an environment and later use that anchor to
-attach other devices to the same trust circle.  A draft from
-Behringer\cite{draft-behringer-bootstrap} proposes, that one device
-at home is first chosen as a trust anchor  using its unique properties such as 
-device Vendor certificates.
-
-Despite the etymology of name bootstrapping, ``Lift oneself by his own
-bootstraps'', bootstrapping usually needs some input from outside.
-For that, AuthN of the trust anchor device would happen by checking device's Vendor certificates. This anchored
-device later becomes home network's Certificate Authority (CA) service
-and the trust anchor, upon which the rest of the home network devices
-would apply for certificates from to get under the same trust circle.
-Key creation, key exchange and their usage is explained in similar
-draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in general
-in bootstrapping. 
-
-\section{Bootstrapping without PKI}
-\label{sec-3-5}
- Behringer continues, that the end devices would not yet get full AuthZ,
-but only a ticket, with which the end device may request for service tickets.
-with that ticket, the device can apply for access to change management
-service from CPE. That is similar to Kerberos, which is based on
-Needham-Schroeder protocol.
-
-
-
-This model could also be expanded to a full ticket enabled
-Kerberos style authentication network, where time-limited tickets (tokens) for
-both authentication and authorization exist for different services. Trusted
-Third Party authentication center would be setup with the help of MNO.
-One service would then authenticate an entity, here smartphone, and
-give it a time-limited ticket as a proof that the entity has been authenticated.
-When the entity wants to connect to the service, it asks from the central 
-server again for ticket, but this time for the service by presenting
-the authentication ticket. In return it receives a service ticket which
-it can present to the wanted service, who verifies the access based
-on the ticket. 
-
-As can be seen, no public key infrastructure (PKI) is used on this.
-If EAP-SIM was applied in such environment, it would be used only
-once, namely in the bootstrapping phase to setup the CA trust
-anchor. Only after that, can the CA start delivering PKI. Kerberos
-needs shared keys, and EAP-SIM helps in providing those.
 
 
 \chapter{Design of home network trust anchor and separation of change management}
@@ -1395,9 +1341,9 @@ which means AuthN and AuthZ were successful,  puts the user in
 default network, i.e., just gives it basic access. As for other
 provisioning parameters, not all end devices support them.
 
-In the first prototype it was enough to identify an authorized
+In the first prototype it is enough to identify an authorized
 smartphone's SIM.  Smartphone holding the SIM is granted the access to
-the parts of the management network and is authenticated strong.  User
+the parts of the management network and it is authenticated strong.  User
 management is outsourced to MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
@@ -1412,6 +1358,17 @@ The Local RADIUS (if existing) and AP have trail of a successful
 authentication and know which IMSI has successfully authenticated in
 the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
+
+
+Eventhough, the AP now has authenticated the smartphone user, the managed devices still 
+need to have their own access control.
+They may consult local RADIUS server, which tells whether there currently is an
+authenticated smartphone present and then the changes going
+to the management network would be allowed. Smartphone also could have
+the login credentials to devices through earlier received
+configuration information and use them after getting into management
+network. This AA would happen on upper, application layer (layer 7), while
+802.1X happens already on media layer (layer 2).
 
 \section{AA component location scenarios}
 \label{sec-4-2}
@@ -1436,15 +1393,14 @@ could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
 
 
-[Put the table after the scenarios?]
+[Put the table maybe after the scenarios?]
 
-Table \ref{table-scenarios} represents the locations for Authenticator (AA),
+Table\ref{table-scenarios} represents the locations for Authenticator (AA),
 AuthN, and AuthZ in five scenarios. The locations are marked as (I)
 for internal or (E) for external in the table and the scenarios are
 described after that in detail. Authenticator is the entity which
 gives the final decision about access regardless of location of AA.
-In most cases it is located in the local AP, but it can also be
-external, like in scenario III. 
+It always is internal, located at home network.
 
 \begin{table}[htb]
 \caption{\label{table-scenarios}Location of AA, AuthN and AuthZ in scenarios I-V}
@@ -1454,13 +1410,11 @@ scene no: & Authenticator & AuthN & AuthZ\\
 \hline
 I & I & E & E\\
 II & I & E & I\\
-III & E & E & E\\
-IV & I & E & E\footnotemark\\
+III & I & E & I/E (proxied)\\
 V & - & - & -\\
+TMSI,cached &  & I & I/E\\
 \end{tabular}
-\end{table}\footnotetext[1]{Cloud provides}
-
-
+\end{table}
 \label{scenario-i}
 The first AA-scenario is presented here thoroughly as an example.
 The goal is to make a trusted configuration change. 
@@ -1472,7 +1426,7 @@ MNO.  Allowed users have been inserted earlier to MNO from the Cloud.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{scenI.png}
-\caption{\label{fig:scenario-I}Scenario I with 3 separate domains: Cloud, MNO and home network}
+\caption{\label{fig:scenario-I}General scenario I with 3 separate domains: Cloud, MNO and home net}
 \end{figure}
 
 
@@ -1534,8 +1488,8 @@ sources for AuthN.
 Locally there is a cache for roles in case of network disconnectivity.
 
 Here benefit is, that 3rd party Authentication server may have direct
-contracts to many alternative MNOs, so user does not need to find and choose
-them. As a bonus,  MNOs already delegate requests to right operator, if
+contracts to many alternative MNOs, so the user is free to choose its
+MNO operator. As a bonus,  MNOs already delegate requests to right operator, if
 they happen to get AuthN request which does not belong to them.
 This is similar to federated service.
 
@@ -1553,26 +1507,14 @@ between IMSI and TMSI, but because only full-authentication is used,
 there should be no problem.
 
 
-\label{scenario-iv} 
-
-
-Scenario IV (Figure\ref{fig:scenario-IV}) is similar to scenario I, but
-now AuthZ is checked from the Cloud by CPE instead of MNO. If there is no connection to
-the cloud, the fall-back is to work just like II. So also this scenario needs local
-store for caching admin IMSIs (roles).
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=.9\linewidth]{scenIV.png}
-\caption{\label{fig:scenario-IV}Scenario IV. In the future CPE could be attached direct to the Cloud and AuthN comes from MNO}
-\end{figure}
 
 
 
 In case that nothing has been configured in network, there are no 
 admin users and APs are set to factory default, then they need
 pre-configuring and bootstrapping. The scenario can be any of I-IV,
-but CPE has neither trust nor roles.
+but CPE has neither trust nor roles. Bootstrapping is discussed in 
+Section\ref{bootstrapping}.
 
 
 
@@ -2720,7 +2662,7 @@ support for EAP-SIM (and -AKA) methods starts in Android only from
 version 4.x and in iOS from version 5.x.\cite{sim-support}.
 
 Generally, to support EAP-SIM  with open source software in 
-smartphone is \emph{pcsc-lite} for accessing SIM card, \emph{wpa\_supplicant} for
+smartphone, needed components are \emph{pcsc-lite} for accessing SIM card, \emph{wpa\_supplicant} for
 WPA2 client, and possible used connection manager (\emph{connman},
 \emph{wicd}, or \emph{Network Manager} in Linux). This is in line, what was done in testing without \emph{pcsc-lite},
 because a file backend was used instead of a SIM card.
@@ -2747,44 +2689,32 @@ If nothing else works, as a backup old-fashioned WWW-authentication
 portal can be used for offline authentication.
 
 
-\section{Access methods to Wi-Fi with only one SSID}
-\label{sec-6-4}
+\subsection{Access methods to Wi-Fi with only one SSID}
+\label{sec-6-3-1}
 
 
-Today, home networks usually consists of only one Service Set ID (SSID)
-Wi-Fi network though it is possible to define multiple SSIDs in
-an access point. Having multiple SSIDs enables us to dedicate one of them
-to management network. 
+
 To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
-and thus RADIUS server.
+and thus RADIUS server, but at the same time, existing Wi-Fi network at
+home usually has been set using WPA2-PSK.
+Because it was not found, how Authenticator could use the same network
+SSID for both WPA2-PSK (or open access) and WPA2-Enterprise, a
+separate SSID for dedicated management network was technically needed.
+Luckily, today's APs allow setting of multiple SSIDs.
 
-
-Because it was not found, how Authenticator could use the same network SSID
-with both WPA2-PSK (or open access) and WPA2-Enterprise, a
-separate SSID for management network was technically needed.
-If Wi-Fi was limited to only have one SSID, then we would need another
+Nevertheless, if Wi-Fi was limited to only one SSID, then we would
+need another 
 way to indicate that user wants to get in to management net. 
-Separation can be done at client's  end by using different realm on
-AuthN identity. It also can be done by adding hints to destination to
-username (username decoration) or using different authentication
-methods. All these methods allows the separation of the user in Authentication Server.
+Separation can be done for example at client's  end by using different realm on
+AuthN identity. It also can be done by adding hints for different destination to
+username (username decoration) or by using different authentication
+method. All these methods allows Authentication Server to distinguish, what the user
+wants to do; get normal access to home network or make trust anchor claim to 
+management network.
 
 
-Even, when AP has authenticated the smart home user, managed devices still 
-need to have their own access control.
-They may consult local RADIUS server, whether there currently is an
-authenticated smartphone present, which indicated that changes coming
-from the management network would be allowed. Smartphone also could
-know the login credentials to devices through earlier received
-configuration information and use them after getting into management
-network.
-
-
-
-
-
-
-
+\section{Usability benefits of HS2.0}
+\label{sec-6-4}
 It is well known, that the usability of the captive-portal Wi-Fi
  network is burden, because a user needs to go through 
 a web portal logins with a username-password authentication 
@@ -2968,7 +2898,8 @@ propagation, the trust anchoring would also need some modifications.
 Alternative method is that the changes could be marked some way, so
 that they need approving and then there could be a specific
 change-approval message, which must be sent through management
-network, perhaps including digest of change message as a verification.
+network. That approval would be akin to \emph{commit} in database actions
+and its form could perhaps include a digest of change message as a verification.
 Because smartphone is not actively listening the CPE, it cannot input
 those request. Together with the chosen method, there are four planned
 methods to distribute changes. The first uses the smartphone as a
@@ -3018,8 +2949,81 @@ happens by sending the token from the smartphone to the CPE via the
 management network where the Authenticator gives access.
 
 
+\label{scenario-iv} 
+In the future, other components than  the  local controller might 
+have a direct connection to the cloud. 
+Scenario IV (Figure\ref{fig:scenario-IV}) is similar to scenario I presented
+earlier, but now AuthZ is checked from the Cloud by CPE instead of
+MNO.  If there is no connection to the cloud, the fall-back is to work
+just like II. So also this scenario needs local store for caching
+admin IMSIs (roles).
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{scenIV.png}
+\caption{\label{fig:scenario-IV}Scenario IV. In the future CPE could be attached direct to the Cloud and AuthN comes from MNO}
+\end{figure}
 
 
+\section{Bootstrapping with and without PKI}
+\label{sec-6-7}
+\label{bootstrapping}
+
+Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
+home. The public key cryptography is processor intensive and its
+asymmetric keys are usually used just in the beginning of
+communication. There they can be used to securely negotiate symmetric
+keys which allows faster cryptographic processing.
+Rest of this section discusses possible PKI usage.
+
+To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
+first needed.
+The bootstrapping protocols in general are used to
+bring the first trust anchor in an environment and later use that anchor to
+attach other devices to the same trust circle.  A draft from
+Behringer\cite{draft-behringer-bootstrap} proposes, that one device
+at home is first chosen as a trust anchor  using its unique properties such as 
+device Vendor certificates.
+
+Despite the etymology of name bootstrapping, ``Lift oneself by his own
+bootstraps'', bootstrapping usually needs some input from outside.
+For that, AuthN of the trust anchor device would happen by checking device's Vendor certificates. This anchored
+device later becomes home network's Certificate Authority (CA) service
+and the trust anchor, upon which the rest of the home network devices
+would apply for certificates from to get under the same trust circle.
+Key creation, key exchange and their usage is explained in similar
+draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in general
+in bootstrapping. 
+
+
+Behringer continues, that this model could be expanded to a full ticket enabled Kerberos style
+AA network, where time-limited tickets (tokens) for both
+AuthN and AuthZ exist for different services.
+Behringer continues, that   end devices could first try to get AuthN ticket,
+which does not include yet the AuthZ.
+With that ticket, the device may later apply for AuthZ ticket, which
+opens the ports to change management service from CPE.
+That is very similar to Kerberos, which is based on
+Needham-Schroeder protocol.
+
+In GBA, Trusted Third Party authentication center would be setup with the help of MNO.
+One service would then authenticate an entity, here smartphone, and
+give it a time-limited ticket as a proof that the entity has been authenticated.
+When the entity wants to connect to the service, it asks from the central 
+server again for ticket, but this time for the service by presenting
+the authentication ticket. In return it receives a service ticket which
+it can present to the wanted service, who verifies the access based
+on the ticket. 
+
+As can be seen, no public key infrastructure (PKI) is used on this.
+If EAP-SIM was applied in such environment, it would be used only
+once, namely in the bootstrapping phase to setup the CA trust
+anchor. Only after that, can the CA start delivering PKI. Kerberos
+needs shared keys, and EAP-SIM helps in providing those.
+
+
+\subsection{this has been said already TB removed.}
+\label{sec-6-7-1}
 Using tickets has a connection to earlier homenet studies, such as
 Behringers work-in-progress
 bootstrapping\cite{draft-behringer-bootstrap}.  
@@ -3146,8 +3150,6 @@ the body text, remember this! ]
 \section{wpa-supplicant settings (wpa-simtest-owrt2.conf)}
 \label{sec-7-2}
 \label{app:wpa-conf}
-If KEYS have been excluded from log or conf files, there will be
-string ``[REMOVED]''  as a placeholder.
 \scriptsize
 \lstinputlisting[language=sh]{testit/wpa-simtest-owrt2.conf.clean}
 \normalsize
@@ -3158,14 +3160,14 @@ string ``[REMOVED]''  as a placeholder.
 \scriptsize
 \lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
 \normalsize
-\section{hlr auc}
+\section{hlr\_auc}
 \label{sec-7-4}
 
 \label{app:hlraucgw}
 \scriptsize
 \lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
 \normalsize
-TBD
+
 \scriptsize
 
 \section{No sim}
@@ -3176,6 +3178,7 @@ Here capture + analysis from nosim
 
 
 \end{otherlanguage} % End on 2nd language part (figures)
+
 \chapter{[MISC to be added on right places]}
 \label{sec-8}
 \section{facts TBD.}
