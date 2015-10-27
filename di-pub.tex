@@ -1,4 +1,4 @@
-% Created 2015-10-27 ti 23:55
+% Created 2015-10-28 ke 00:26
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1329,7 +1329,7 @@ smartphone to connect to a specific management network and access the
 devices either via command line interfaces, SNMP, or
 similar\cite[p.4]{rfc5608}.
 There exists RADIUS attribute types for directing user into specific
-VLAN. If those do not suffice, there is also special Vendor Specified
+VLAN. If those do not suffice, there are also special Vendor Specified
 Attributes (VSA). VSAs allow vendors to define up to 255 own
 attributes that can be used in provisioning in homogeneous environment. 
 
@@ -1360,15 +1360,15 @@ the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
 
 
-Eventhough, the AP now has authenticated the smartphone user, the managed devices still 
+Even though the AP now has authenticated the smartphone user, the managed devices still 
 need to have their own access control.
-They may consult local RADIUS server, which tells whether there currently is an
+They may consult a local RADIUS server, which tells whether there currently is an
 authenticated smartphone present and then the changes going
-to the management network would be allowed. Smartphone also could have
-the login credentials to devices through earlier received
+to the management network would be allowed. Smartphone could also have
+received the login credentials to devices through earlier 
 configuration information and use them after getting into management
-network. This AA would happen on upper, application layer (layer 7), while
-802.1X happens already on media layer (layer 2).
+network. This kind of AA would happen on upper, application layer
+(layer 7), while AA discussed here (802.1X) happens already on lower, media layer (layer 2).
 
 \section{AA component location scenarios}
 \label{sec-4-2}
