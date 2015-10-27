@@ -2005,13 +2005,13 @@ and it is always internal, located at home network.
 :END:
 #+CAPTION: Location of AA, AuthN and AuthZ in scenarios I-V
 #+NAME: table-scenarios
-| scene no:   | Authenticator | AuthN | AuthZ         |
-|-------------+---------------+-------+---------------|
-| I           | i             | e     | e             |
-| II          | i             | e     | i             |
-| III         | i             | e     | i/e (proxied) |
-| V           | -             | -     | -             |
-| TMSI,cached | i             | i     | i             |
+| scene no:   | AuthN | AuthZ         |
+|-------------+-------+---------------|
+| I           | e     | e             |
+| II          | e     | i             |
+| III         | e     | i/e (proxied) |
+| V           | -     | -             |
+| TMSI,cached | i     | i             |
 
 [fn:baasprovides] Cloud provides
 
