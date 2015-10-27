@@ -1985,8 +1985,6 @@ would simplify home network management, because the cloud
 already 
 #   just the same way as the home network model in the cloud
 has AuthZ data of eligible IMSI accounts.
-
-
 Instead of putting logic on CPE for AuthZ, CPE
 could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
