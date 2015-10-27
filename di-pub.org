@@ -2208,6 +2208,26 @@ on the Authenticator and the round-trip and handling at HLR can so be
 eliminated. Re-auth also works when there is no internet connectivity,
 but Full authentication would not work because of missing MNO.
 
+
+#+begin_src ditaa :file scenIV.png :cmdline -E -r -s 3
+ +-------+      +-------------------+
+ | Cloud |      |MNO (RADIUS server)|
+ +-------+      +-------------------+
+                      
+  +-----+        +-------+------------+
+  |phone|<--AA-->|       |TMSI mapping|
+  +-----+        |CPE(AP)|{s}Roles    |
+                 |       |            |
+         	 +-------+------------+
+#+end_src
+#+CAPTION: Scenario IV, offline 
+#+NAME:   fig:scenario-IV
+#+RESULTS:
+[[file:scenIV.png]]
+
+
+
+
 [repeat the same, To be combined]
 The local CPE may cache AuthZ information. It also 
 saves the session information and next possible TMSI values. 
