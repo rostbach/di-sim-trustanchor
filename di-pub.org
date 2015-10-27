@@ -1930,7 +1930,7 @@ to the management network would be allowed. Smartphone could also have
 received the login credentials to devices through earlier 
 configuration information and use them after getting into management
 network. This kind of AA would happen on upper, application layer
-(layer 7), while AA discussed here (802.1X) happens already on media layer (layer 2).
+(layer 7), while AA discussed here (802.1X) happens already on lower, media layer (layer 2).
 
 # If they were integrated to same RADIUS server as used earlier, then
 # smart AA could be consulted from Or do they use RADIUS? Now RADIUS
