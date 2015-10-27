@@ -4,12 +4,11 @@ network={
   ssid="simtest"
   key_mgmt=WPA-EAP
   eap=SIM
-  # If these uncommented, the REAL SIM would be used instead of simulator
+  # If uncommented, the REAL SIM would be used instead of simulator
   # pin="1234"   
-  #  pcsc=""
+  # pcsc=""
       
-  # if not working, prefix with 2
-  identity="1232010000000000"
+  identity="1232010000000000"         # if not working, prefix with 2
   password="90dca4eda45b53cf0f12d7c9c3bc6a89:cb9cccc4b9258e6dca4760379fb82581"
 }
 

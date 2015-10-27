@@ -1,6 +1,6 @@
-# no wireless functionality, only RADIUS/EAP  
+# no wireless functionality here, only RADIUS/EAP
 driver=none
-# RADIUS secrets for external AP
+# RADIUS secrets for external AP in this file
 radius_server_clients=hostapd.radius_clients
 # eap-handler enabled
 eap_server=1
