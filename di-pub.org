@@ -3111,7 +3111,7 @@ The capture has been done at the WPA2-supplicants end.
  
 # (see sequence, and explain why) [TBD]
 
-IMSI is sent first time already on the second EAP message from 
+IMSI is sent the first time already on the second EAP message from 
 WPA2-Supplicant to AP (compare with Figure[[fig:eap-sim-radius]], message 2.)
 This part is presented in Capture \ref{capimsi}.
 # The capture has been done at the WPA2-supplicants end
