@@ -2029,7 +2029,7 @@ The goal is to make a trusted configuration change.
 # to get basic understanding of flow. Aims to configuration change
 The steps are numbered and explaine in detail in Figure[[fig:scenario-I]].
 The configuration change is allowed, if CPE gets ACCEPT message from
-MNO.  Allowed users have been inserted earlier to MNO from the Cloud.
+MNO. Allowed users have been inserted earlier to MNO from the Cloud.
 #  (BaaS [def.])
 # or proxy BaaS[def.def.].
 
