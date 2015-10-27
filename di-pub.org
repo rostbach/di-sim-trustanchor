@@ -2206,7 +2206,7 @@ In case that nothing has been configured in network, there are no
 admin users and APs are set to factory default, then they need
 pre-configuring and bootstrapping. The scenario can be any of I-IV,
 but CPE has neither trust nor roles. Bootstrapping is discussed in 
-Section[[bootstrapping]].
+Section[[bootstrapping]].p
 
 
 
