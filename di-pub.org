@@ -2208,8 +2208,6 @@ but CPE has neither trust nor roles. Bootstrapping is discussed in
 Section [[bootstrapping]].
 
 
-
-
 ** Modification of RADIUS messages [perhaps to security integrity chapter?]
 <<sec:radius-macs>>
 # [Analysis of RADIUS, RADIUS Proxies..
