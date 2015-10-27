@@ -2145,7 +2145,7 @@ conf |                |AuthN
 # *** Scenario III: AuthN and AuthZ from 3rd party, which uses MNO & BaaS
 <<scenario-iii>>
 
-Similar to first scenario is scenario III (Figure[[fig:scenario-III]]), 
+Similar to the first scenario is scenario III (Figure[[fig:scenario-III]]), 
 but this time there is a service provider between CPE and MNO, so AA is fully outsourced:
 local AP communicates with RADIUS protocol to the external
 Authentication server. That in turn gets AuthN from MNO via its own
