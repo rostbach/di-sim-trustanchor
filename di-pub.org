@@ -1920,7 +1920,7 @@ the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
 
 
-Even though, the AP now has authenticated the smartphone user, the managed devices still 
+Even though the AP now has authenticated the smartphone user, the managed devices still 
 need to have their own access control.
 # [2015/05/11 NEW! This must be told everywhere, devices still have
 # their own access control! 
