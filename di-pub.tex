@@ -1,4 +1,4 @@
-% Created 2015-10-27 ti 21:41
+% Created 2015-10-27 ti 23:55
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1382,8 +1382,8 @@ home, at an external provider, or at MNO.
 Authenticator on the other hand must lie at home, and 
 gives the final decision about the access.
 
-If the AuthZ decision is made on remote AuthZ server, 3rd party, 
-then that server needs to have either local data or access to 
+If the AuthZ decision is made on remote, 3rd party AuthZ server, 
+then that server needs either to have local data or access to 
 cloud service's AuthZ data (scenario III, external AuthZ).
 Further it seems inevitable, that just like the home network model
 in the cloud has  AuthZ data of eligible IMSI accounts,
@@ -1417,7 +1417,8 @@ V & - & -\\
 \end{table}
 \label{scenario-i}
 The first AA-scenario is presented here thoroughly as an example.
-The goal is to make a trusted configuration change. 
+The goal is to make the smartphone trusted to the home network and
+later proceed to trusted configuration change.
 The steps are numbered and explained in detail in Figure\ref{fig:scenario-I}.
 The configuration change is allowed, if CPE gets ACCEPT message from
 MNO. Allowed users have been inserted earlier to MNO from the Cloud.
@@ -1522,7 +1523,7 @@ but Full authentication would not work because of missing MNO.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{scenIV.png}
-\caption{\label{fig:scenario-IV}Scenario IV, offline}
+\caption{\label{fig:scenario-IV}Scenario IV, offline AA}
 \end{figure}
 
 
