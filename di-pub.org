@@ -2134,7 +2134,7 @@ conf |                |AuthN
   +--+--+        +---+------------+
   |phone|<--AA-->|       +--------+
   +-----+        |CPE(AP)|{s}Roles|
-                 |       | (Roles)|
+                 |       | (AuthZ)|
          	 +-------+--------+
 #+end_src
 #+CAPTION: Scenario II with AuthZ in home network
@@ -2156,23 +2156,23 @@ sources for AuthN.
 Locally there is a cache for roles in case of network disconnectivity.
 
 Here benefit is, that 3rd party Authentication server may have direct
-contracts to many alternative MNOs, so user does not need to find and choose
-them. As a bonus,  MNOs already delegate requests to right operator, if
+contracts to many alternative MNOs, so the user is free to choose its
+MNO operator. As a bonus,  MNOs already delegate requests to right operator, if
 they happen to get AuthN request which does not belong to them.
 This is similar to federated service.
 
 # #+begin_src ditaa :file scenIII.png :cmdline -E -r -s 0.8
 #+begin_src ditaa :file scenIII.png  :cmdline -E -r  -s 4
            +--------+                     +------=------+
-           |cloud2  +<-+  (Alternative +->+MNO2(HLR_AuC)|
+           |cloud2  +<-+  Alternative  +->+MNO2(HLR_AuC)|
            +---=----+  : AuthZ & AuthN :  +-------------+
-                       :   sources  )  :
+                       :   sources     :
                        v               v
  +-------+         +---+---------------+-----------+
  |cloud1 +<-AuthZ->+3rd party AA service provider  |
  +----+--+         +---+------------------+--------+
       |                ^                  ^         
-conf  |                |RADIUS            |AuthN 
+conf  |                |AA(RADIUS)        |AuthN 
       v                v                  v         
   +---+-+        +-----+----------+   +---+---------+
   |phone|<--AA-->|       +--------+   +MNO1(HLR_AuC)|
