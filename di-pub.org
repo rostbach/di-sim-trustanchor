@@ -2027,7 +2027,7 @@ The goal is to make a trusted configuration change.
 # do not get such treatment.
 #   more carefully than the others
 # to get basic understanding of flow. Aims to configuration change
-The steps are numbered  in Figure[[fig:scenario-I]] and explained in detail.
+The steps are numbered and explaine in detail in Figure[[fig:scenario-I]].
 The configuration change is allowed, if CPE gets ACCEPT message from
 MNO.  Allowed users have been inserted earlier to MNO from the Cloud.
 #  (BaaS [def.])
@@ -2041,10 +2041,9 @@ MNO.  Allowed users have been inserted earlier to MNO from the Cloud.
 # C-c C-c to evaluate , C-c C-o to preview  images
 # #+begin_src ditaa :file cloud.png :cmdline -E -r 
 #+begin_src ditaa :file scenI.png :cmdline -E -r -s 4
-                                          AuthN 6 +-------+
-      +-----+ AuthZ +-------------------+---------+{s}HLR |
-     1|Cloud+<----->+MNO (RADIUS server)|         +-------+
-      +-+-+-+       +-----------+-------+
+      +-----+ AuthZ +-------------------+ AuthN +-------+
+     1|Cloud+<----->+MNO (RADIUS server)+<----->+{s}HLR |
+      +-+-+-+       +-----------+-------+      6+-------+
         |2                    5 ^
     conf|                       |AA(RADIUS)
   +-----|----------=----------=-|-------+ 
