@@ -1988,7 +1988,7 @@ could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
 
 
-[Put the table after the scenarios?]
+ [Put the table maybe after the scenarios?]
 
 # This Chapter presents 5 scenarios for possible locations of AuthN and 
 Table[[table-scenarios]] represents the locations for Authenticator (AA),
@@ -2054,7 +2054,7 @@ MNO.  Allowed users have been inserted earlier to MNO from the Cloud.
   |  +-----+               +-------+    |
   +=------------------------------------+
 #+end_src
-#+CAPTION: Scenario I with 3 separate domains: Cloud, MNO and home network
+#+CAPTION: General scenario I with 3 separate domains: Cloud, MNO and home net
 #+NAME:   fig:scenario-I
 #+RESULTS:
 [[file:scenI.png]]
