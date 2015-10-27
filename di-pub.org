@@ -2010,9 +2010,8 @@ and it is always internal, located at home network.
 | I           | e     | e             |
 | II          | e     | i             |
 | III         | e     | i/e (proxied) |
-| V           | -     | -             |
 | TMSI,cached | i     | i             |
-
+| V           | -     | -             |
 [fn:baasprovides] Cloud provides
 
 # | IV        | I             | E     | E[fn:baasprovides] |
