@@ -2022,7 +2022,9 @@ and it is always internal, located at home network.
 # *** Scenario I: AuthN from MNO, which uses cloud for AuthZ
 <<scenario-i>>
 The first AA-scenario is presented here thoroughly as an example.
-The goal is to make a trusted configuration change. 
+The goal is to make the smartphone trusted to the home network and
+later proceed to trusted configuration change.
+
 # Other scenarios 
 # do not get such treatment.
 #   more carefully than the others
