@@ -4292,7 +4292,7 @@ used, i.e., the authentication is always checked from MNO and no Fast
 Re-authentication is used.
 # explain fast and full authentication
 
-In testing the implementation, first tests did not go as
+In testing the implementation, the first tests did not go as
 planned. 
 # By carefully studying configuration, both documented and
 # un-documented,
