@@ -2132,8 +2132,9 @@ place within home network.
 conf |                |AuthN
      v                v
   +--+--+        +---+------------+
-  |phone|<--AA-->|       +-AuthZ--+
+  |phone|<--AA-->|       +--------+
   +-----+        |CPE(AP)|{s}Roles|
+                 |       | (Roles)|
          	 +-------+--------+
 #+end_src
 #+CAPTION: Scenario II with AuthZ in home network
