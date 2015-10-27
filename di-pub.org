@@ -2011,7 +2011,7 @@ It always is internal, located at home network.
 | II          | i             | e     | i             |
 | III         | i             | e     | i/e (proxied) |
 | V           | -             | -     | -             |
-| TMSI,cached |               | i     | i/e           |
+| TMSI,cached |               | i     | i             |
 
 [fn:baasprovides] Cloud provides
 
