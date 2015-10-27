@@ -1,4 +1,4 @@
-% Created 2015-10-27 ti 21:26
+% Created 2015-10-27 ti 21:28
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1431,27 +1431,27 @@ MNO. Allowed users have been inserted earlier to MNO from the Cloud.
 
 
 \begin{enumerate}
-\item The model has been changed in the Cloud (1).
-\item The Cloud send the changes to the Local Controller (phone) (2).
+\item The model has been changed in the Cloud.
+\item The Cloud send the changes to the Local Controller (phone).
 \item If the changes are privileged, they need to be approved by the phone user.
 The phone user must  authenticate to the management network.
 \item The phone user starts the authentication process to management
-network using EAP-SIM and reveals its IMSI(4).
+network using EAP-SIM and reveals its IMSI.
 \item CPE (AP) forwards the authentication to MNO's RADIUS server using
-RADIUS protocol (5).
+RADIUS protocol.
 \item MNO has RADIUS server which uses HLR-AuC for authentication
-  triplets (6). 
+  triplets. 
   (AuthZ). This RADIUS continues the authentication process until to
   the end. 
 MNO also asks from the Cloud, whether IMSI user has an admin role.
 MNO returns in RADIUS message either \emph{ACCESS-ACCEPT}, if user is both
   known AND has admin role  or \emph{ACCESS-REJECT} if either property
-  fails (7).
+  fails.
 \item CPE receives this ACCEPT or REJECT. If there were other RADIUSes
 between CPE and MNO, they would have acted
 as proxy RADIUS servers.
 \item IF ACCEPTed, then the smartphone is both authenticated and
-authorized (8) and it now 
+authorized and it now 
 can send configuration change message to CPE, which recognizes it
 coming from authorized  network.
 \end{enumerate}
