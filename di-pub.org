@@ -2218,7 +2218,7 @@ but Full authentication would not work because of missing MNO.
                       
   +-----+         +-------+------------+
   |phone|<--AA--->+       |role mapping|
-  |IMSI |  TMSIx  |CPE(AP)|{s}         |
+  |IMSI |  TMSI   |CPE(AP)|{s}         |
   +-----+         |       | TMSI--IMSI |
                   +-------+------------+
 #+end_src
