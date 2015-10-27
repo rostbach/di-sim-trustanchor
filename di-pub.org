@@ -1991,7 +1991,7 @@ of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
 [Put the table after the scenarios?]
 
 # This Chapter presents 5 scenarios for possible locations of AuthN and 
-Table [[table-scenarios]] represents the locations for Authenticator (AA),
+Table[[table-scenarios]] represents the locations for Authenticator (AA),
 AuthN, and AuthZ in five scenarios. The locations are marked as (I)
 for internal or (E) for external in the table and the scenarios are
 described after that in detail. Authenticator is the entity which
