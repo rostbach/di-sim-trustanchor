@@ -1992,8 +1992,8 @@ of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
 
 # This Chapter presents 5 scenarios for possible locations of AuthN and 
 Table[[table-scenarios]] represents the locations for Authenticator (AA),
-AuthN, and AuthZ in five scenarios. The locations are marked as (I)
-for internal or (E) for external in the table and the scenarios are
+AuthN, and AuthZ in five scenarios. The locations are marked as (i)
+for internal or (e) for external in the table and the scenarios are
 described after that in detail. Authenticator is the entity which
 gives the final decision about access regardless of location of AA.
 It always is internal, located at home network.
@@ -2007,11 +2007,11 @@ It always is internal, located at home network.
 #+NAME: table-scenarios
 | scene no:   | Authenticator | AuthN | AuthZ         |
 |-------------+---------------+-------+---------------|
-| I           | I             | E     | E             |
-| II          | I             | E     | I             |
-| III         | I             | E     | I/E (proxied) |
+| I           | i             | e     | e             |
+| II          | i             | e     | i             |
+| III         | i             | e     | i/e (proxied) |
 | V           | -             | -     | -             |
-| TMSI,cached |               | I     | I/E           |
+| TMSI,cached |               | i     | i/e           |
 [fn:baasprovides] Cloud provides
 
 # | IV        | I             | E     | E[fn:baasprovides] |
