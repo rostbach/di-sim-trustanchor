@@ -4374,6 +4374,13 @@ As the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
 management network where the Authenticator gives access.
 
+
+
+In the future, other components than  the  local controller might 
+have a direct connection to the cloud. 
+
+
+
 # [Evaluating and comparing bootstrapping methods and authentication.
 # Evaluation missing, so comparing difficult too.]
 
