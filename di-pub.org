@@ -654,7 +654,7 @@ allowed to do. They only transport this information between a client
 who needs them and a server authorized to provide them.
 # client and Authenticator server.
 Often, the last 'A' which stands for accounting has been neglected
-and also here only first two A's are used and later described as AA
+and also here only the first two A's are used and later described as AA
 services. Authentication (AuthN) answers how to identify users and
 prove that they really are who they claim to be. Authorization (AuthZ)
 answers what operations the identified users are allowed to do and
@@ -2186,7 +2186,8 @@ conf  |                |AA(RADIUS)        |AuthN
 
 Allowed users are verified from the cloud's registries and specific IMSI is
 authenticated from MNO.  It may need some preparation, if SIM
-identities are temporary i.e. TMSI is used.  Still, IMSI is carried out at first message
+identities are temporary i.e. TMSI is used.  Still, IMSI is carried
+out at the first message
 of full authentication. Later, the server would need to have mapping
 between IMSI and TMSI, but because only full-authentication is used,
 there should be no problem.
@@ -3059,7 +3060,7 @@ thoroughly.
 
 # Maybe also remote syslog from access point.]
 
-First capture shows tries with normal phones, when SIM secrets were
+The first capture shows tries with normal phones, when SIM secrets were
 not known. Even when authentication conversation would not complete fully,
 Authenticator still received a claim of identification from the
 smartphone. Yet, as there is no AuthN, no proof of identity existed in
