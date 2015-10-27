@@ -1886,7 +1886,7 @@ similar\cite[p.4]{rfc5608}.
 # if standard RADIUS messages do not suffice.  VSAs allow a vendor to use
 # extra 255 attributes as they wish. 
 There exists RADIUS attribute types for directing user into specific
-VLAN. If those do not suffice, there is also special Vendor Specified
+VLAN. If those do not suffice, there are also special Vendor Specified
 Attributes (VSA). VSAs allow vendors to define up to 255 own
 attributes that can be used in provisioning in homogeneous environment. 
 
