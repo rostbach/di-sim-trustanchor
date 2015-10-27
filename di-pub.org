@@ -2198,6 +2198,16 @@ there should be no problem.
 
 # IV , with TMSI and cached role , disconnected versio
 If internet connection is down, local AA is still possible.
+# Offline changes include also cases where the smartphone is not
+# available or when internet connection is down. 
+Full authentication uses IMSI, 
+which is the identity of the phone's SIM.  Lighter, fast
+re-authentication would use temporal identity TMSI. It can change
+each time the AuthN request had been sent. Mapping of TMSI is cached
+on the Authenticator and the round-trip and handling at HLR can so be
+eliminated. Re-auth also works when there is no internet connectivity,
+but Full authentication would not work because of missing MNO.
+
 The local CPE may cache AuthZ information. It also 
 saves the session information and next possible TMSI values. 
 When the smart phone makes a re-authentication request with
@@ -2205,6 +2215,7 @@ its temporal IMSI value, the CPE still would know the connection to
 the right mapping to IMSI authorization.
 # They are needed, if the smart phone makes a re-authentication 
 # message with it 
+
 
 
 # *** Scenario V: Bootstrapping, no roles defined
@@ -2987,14 +2998,6 @@ As a side note, Diameter protocol would provide server initiated messaging.
   portal [-> reference to [[text:nointernet][No Internet connectivity]] link is
 # \ref{text:nointernet}. [avoid linking inside document, prefer linearity]
 
-Offline changes include cases where the smartphone is not available or
-when internet connection is down.  Full authentication uses IMSI,
-which is the identity of the phone's SIM.  Lighter, fast
-re-authentication would use temporal identity TMSI, which can change
-each time the AuthN request had been sent. Mapping of TMSI is cached
-on the Authenticator and the round-trip and handling at HLR can so be
-eliminated. Re-auth also works when there is no internet connectivity,
-but Full authentication would not work because of missing MNO.
 
 
 
