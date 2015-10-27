@@ -2222,7 +2222,7 @@ but Full authentication would not work because of missing MNO.
   +-----+         |       |{s}TMSI-IMSI|
                   +-------+------------+
 #+end_src
-#+CAPTION: Scenario IV, offline 
+#+CAPTION: Scenario IV, offline AA 
 #+NAME:   fig:scenario-IV
 #+RESULTS:
 [[file:scenIV.png]]
