@@ -16,7 +16,7 @@
 # 	./apd [OPTION]...
 
 # root directory for programs and logs
-BASE=/home/itapuro/gitdocs/di/testit
+BASE=$HOME/gitdocs/di/testit
 # Client (supplicant) parameters
 WPASUPPLICANT=$BASE/wpa_supplicant
 # hostapd as RADIUS role NOT AP-role
@@ -62,7 +62,7 @@ ifconfig wlan0 up
 tshark -i eth0  -w $TARGET/eth0-pcap &
 tshark -i wlan0 -w $TARGET/wlan0-pcap &
 echo start hostapd  
-# & pakollinen, jos >
+# start RADIUS in background
 $HOSTAPD -Kdt $HOSTAPDCONF > $TARGET/hostapdwired-debug  &
 echo "if $? == 0 then RADIUS server started ok"
 sleep 1

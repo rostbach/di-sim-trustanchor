@@ -1,16 +1,19 @@
 # EAP-SIM with a GSM SIM or USIM
 beacon_int=10
 network={
-	ssid="simtest"
-	key_mgmt=WPA-EAP
-	eap=SIM
-#	pin="1234"
-#	pcsc=""
+  ssid="simtest"
+  key_mgmt=WPA-EAP
+  eap=SIM
+  # If these uncommented, the REAL SIM would be used instead of simulator
+  # pin="1234"   
+  #  pcsc=""
+      
+  # if not working, prefix with 2
   identity="1232010000000000"
   password="90dca4eda45b53cf0f12d7c9c3bc6a89:cb9cccc4b9258e6dca4760379fb82581"
 }
 
 cred={
-  	imsi="1232010000000000"
-  	milenage="90dca4eda45b53cf0f12d7c9c3bc6a89:cb9cccc4b9258e6dca4760379fb82581"
+  imsi="1232010000000000"
+  milenage="90dca4eda45b53cf0f12d7c9c3bc6a89:cb9cccc4b9258e6dca4760379fb82581"
 }
