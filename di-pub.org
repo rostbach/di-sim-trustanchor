@@ -3533,7 +3533,7 @@ there will be parts, where RADIUS messages travel in plain.
 
 
 Based on those facts, EAP-SIM cannot be considered confidential for identity
-during first message exchanges, but later the identity can be hidden
+during the first message exchanges, but later the identity can be hidden
 using temporal identity (TMSI). 
 For other parameters, EAP-SIM is confidential.
 # This paper does not observe TMSI's  usage 
