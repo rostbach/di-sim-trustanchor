@@ -2175,8 +2175,8 @@ conf  |                |AA(RADIUS)        |AuthN
       v                v                  v         
   +---+-+        +-----+----------+   +---+---------+
   |phone|<--AA-->|       +--------+   +MNO1(HLR_AuC)|
-  +-----+        |CPE(AP)|{s}Role |   +-------------+
-                 |       | cache  |
+  +-----+        |CPE(AP)|{s}Roles|   +-------------+
+                 |       |(cached)|
                  +-------+--------+
 #+end_src
 #+CAPTION: Scenario III with outsourced AA
