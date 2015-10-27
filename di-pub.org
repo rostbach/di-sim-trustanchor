@@ -2196,6 +2196,9 @@ there should be no problem.
 
 
 
+# IV , with TMSI and cached role , disconnected versio
+
+
 # *** Scenario V: Bootstrapping, no roles defined
 # In the scenario V, nothing has been configured. The bootstrapping
 # has not been done, so the scenario can be any of I-IV, but CPE has neither trust nor roles.
