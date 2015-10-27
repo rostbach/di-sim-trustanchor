@@ -4373,7 +4373,7 @@ admin IMSIs (roles).
 #+CAPTION: In the future, CPE could be attached direct to the Cloud and AuthN comes from MNO
 #+NAME:   fig:scenario-IV
 #+RESULTS:
-[[file:scenIV.png]]
+[[file:scenVI.png]]
 
 
 
