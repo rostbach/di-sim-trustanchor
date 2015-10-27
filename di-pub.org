@@ -2131,7 +2131,7 @@ place within home network.
 conf |                |AuthN
      v                v
   +--+--+        +---+------------+
-  |phone|<--AA-->|       +--------+
+  |phone+<--AA-->+       +--------+
   +-----+        |CPE(AP)|{s}Roles|
                  |       | (AuthZ)|
          	 +-------+--------+
@@ -2174,7 +2174,7 @@ This is similar to federated service.
 conf  |                |AA(RADIUS)        |AuthN 
       v                v                  v         
   +---+-+        +-----+----------+   +---+---------+
-  |phone|<--AA-->|       +--------+   +MNO1(HLR_AuC)|
+  |phone+<--AA-->+       +--------+   +MNO1(HLR_AuC)|
   +-----+        |CPE(AP)|{s}Roles|   +-------------+
                  |       |(cached)|
                  +-------+--------+
@@ -2212,13 +2212,14 @@ but Full authentication would not work because of missing MNO.
 #+begin_src ditaa :file scenIV.png :cmdline -E -r -s 3
  +-------+      +-------------------+
  | Cloud |      |MNO (RADIUS server)|
- +-------+      +-------------------+
+ +---=---+      +--------=----------+
+
                       
-  +-----+        +-------+------------+
-  |phone|<--AA-->|       |TMSI mapping|
-  +-----+        |CPE(AP)|{s}Roles    |
-                 |       |            |
-         	 +-------+------------+
+  +-----+         +-------+------------+
+  |phone|<--AA--->+       |TMSI mapping|
+  +-----+         |CPE(AP)|{s}Roles    |
+                  |       |            |
+         	  +-------+------------+
 #+end_src
 #+CAPTION: Scenario IV, offline 
 #+NAME:   fig:scenario-IV

@@ -1,4 +1,4 @@
-% Created 2015-10-27 ti 21:09
+% Created 2015-10-27 ti 21:26
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1508,6 +1508,34 @@ there should be no problem.
 
 
 
+If internet connection is down, local AA is still possible.
+Full authentication uses IMSI, 
+which is the identity of the phone's SIM.  Lighter, fast
+re-authentication would use temporal identity TMSI. It can change
+each time the AuthN request had been sent. Mapping of TMSI is cached
+on the Authenticator and the round-trip and handling at HLR can so be
+eliminated. Re-auth also works when there is no internet connectivity,
+but Full authentication would not work because of missing MNO.
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{scenIV.png}
+\caption{\label{fig:scenario-IV}Scenario IV, offline}
+\end{figure}
+
+
+
+
+[repeat the same, To be combined]
+The local CPE may cache AuthZ information. It also 
+saves the session information and next possible TMSI values. 
+When the smart phone makes a re-authentication request with
+its temporal IMSI value, the CPE still would know the connection to 
+the right mapping to IMSI authorization.
+
+
+
 
 
 In case that nothing has been configured in network, there are no 
@@ -1986,14 +2014,6 @@ As a side note, Diameter protocol would provide server initiated messaging.
 portal [-> reference to \hyperref[text:nointernet]{No Internet connectivity} link is
 \end{itemize}
 
-Offline changes include cases where the smartphone is not available or
-when internet connection is down.  Full authentication uses IMSI,
-which is the identity of the phone's SIM.  Lighter, fast
-re-authentication would use temporal identity TMSI, which can change
-each time the AuthN request had been sent. Mapping of TMSI is cached
-on the Authenticator and the round-trip and handling at HLR can so be
-eliminated. Re-auth also works when there is no internet connectivity,
-but Full authentication would not work because of missing MNO.
 
 
 
