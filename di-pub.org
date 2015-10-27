@@ -2196,36 +2196,6 @@ there should be no problem.
 # [ move that sentence elsewhere]
 
 
-# *** Scenario IV: AuthN from MNO, AuthZ separate from BaaS.
-# move to discussion and speculations
-<<scenario-iv>> 
-
-
-Scenario IV (Figure[[fig:scenario-IV]]) is similar to scenario I, but
-now AuthZ is checked from the Cloud by CPE instead of MNO. If there is no connection to
-the cloud, the fall-back is to work just like II. So also this scenario needs local
-store for caching admin IMSIs (roles).
-
-# #+begin_src ditaa :file scenIV.png :cmdline -E -r -s 0.8
-# preview : C-cC-o
-#+begin_src ditaa :file scenIV.png :cmdline -E -r -s 3
-      +------------+   +--------------+
-      |  Cloud     |   |MNO (HLR_AuC) |
-      ++----------++   ++-------------+
-       |          ^     ^
- conf  |     AuthZ|     |AuthN
-       v          v     v
-  +----++        ++-----+----------+
-  |phone+<--AA-->+       +---------+
-  +-----+        |CPE(AP)|{s}Roles |
-                 |       | (cache) |
-                 +-------+---------+
-
-#+end_src
-#+CAPTION: Scenario IV. In the future CPE could be attached direct to the Cloud and AuthN comes from MNO
-#+NAME:   fig:scenario-IV
-#+RESULTS:
-[[file:scenIV.png]]
 
 # *** Scenario V: Bootstrapping, no roles defined
 # In the scenario V, nothing has been configured. The bootstrapping
@@ -4375,9 +4345,36 @@ happens by sending the token from the smartphone to the CPE via the
 management network where the Authenticator gives access.
 
 
-
+<<scenario-iv>> 
 In the future, other components than  the  local controller might 
 have a direct connection to the cloud. 
+# *** Scenario IV: AuthN from MNO, AuthZ separate from BaaS.
+# move to discussion and speculations
+Scenario IV (Figure[[fig:scenario-IV]]) is similar to scenario I presented
+earlier, but now AuthZ is checked from the Cloud by CPE instead of MNO. If there is no connection to
+the cloud, the fall-back is to work just like II. So also this scenario needs local
+store for caching admin IMSIs (roles).
+
+# #+begin_src ditaa :file scenIV.png :cmdline -E -r -s 0.8
+# preview : C-cC-o
+#+begin_src ditaa :file scenIV.png :cmdline -E -r -s 3
+      +------------+   +--------------+
+      |  Cloud     |   |MNO (HLR_AuC) |
+      ++----------++   ++-------------+
+       |          ^     ^
+ conf  |     AuthZ|     |AuthN
+       v          v     v
+  +----++        ++-----+----------+
+  |phone+<--AA-->+       +---------+
+  +-----+        |CPE(AP)|{s}Roles |
+                 |       | (cache) |
+                 +-------+---------+
+
+#+end_src
+#+CAPTION: Scenario IV. In the future CPE could be attached direct to the Cloud and AuthN comes from MNO
+#+NAME:   fig:scenario-IV
+#+RESULTS:
+[[file:scenIV.png]]
 
 
 
