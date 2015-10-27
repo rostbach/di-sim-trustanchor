@@ -1996,7 +1996,7 @@ AuthN, and AuthZ in five scenarios. The locations are marked as (I)
 for internal or (E) for external in the table and the scenarios are
 described after that in detail. Authenticator is the entity which
 gives the final decision about access regardless of location of AA.
-It always is internal.
+It always is internal, located at home network.
 # In most cases it is located in the local AP, but it can also be
 # external, like in scenario III. 
 
