@@ -1977,8 +1977,8 @@ home, at an external provider, or at MNO.
 Authenticator on the other hand must lie at home, and 
 gives the final decision about the access.
 
-If the AuthZ decision is made on remote AuthZ server, 3rd party, 
-then that server needs to have either local data or access to 
+If the AuthZ decision is made on remote, 3rd party AuthZ server, 
+then that server needs either to have local data or access to 
 cloud service's AuthZ data (scenario III, external AuthZ).
 Further it seems inevitable, that just like the home network model
 in the cloud has  AuthZ data of eligible IMSI accounts,
