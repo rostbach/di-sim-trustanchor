@@ -2179,7 +2179,7 @@ conf  |                |AA(RADIUS)        |AuthN
                  |       |(cached)|
                  +-------+--------+
 #+end_src
-#+CAPTION: Scenario III with outsourced AA
+#+CAPTION: Scenario III with outsourced AA and backup cache for AuthZ
 #+NAME:   fig:scenario-III
 #+RESULTS:
 [[file:scenIII.png]]
