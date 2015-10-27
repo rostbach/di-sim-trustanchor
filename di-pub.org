@@ -1995,8 +1995,8 @@ Table[[table-scenarios]] represents the locations for Authenticator (AA),
 AuthN, and AuthZ in five scenarios. The locations are marked as (i)
 for internal or (e) for external in the table and the scenarios are
 described after that in detail. Authenticator is the entity which
-gives the final decision about access regardless of location of AA.
-It always is internal, located at home network.
+gives the final decision about access regardless of location of AA
+and it is always internal, located at home network.
 # In most cases it is located in the local AP, but it can also be
 # external, like in scenario III. 
 
@@ -2011,7 +2011,7 @@ It always is internal, located at home network.
 | II          | i             | e     | i             |
 | III         | i             | e     | i/e (proxied) |
 | V           | -             | -     | -             |
-| TMSI,cached |               | i     | i             |
+| TMSI,cached | i             | i     | i             |
 
 [fn:baasprovides] Cloud provides
 
