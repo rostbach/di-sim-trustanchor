@@ -4316,7 +4316,8 @@ propagation, the trust anchoring would also need some modifications.
 Alternative method is that the changes could be marked some way, so
 that they need approving and then there could be a specific
 change-approval message, which must be sent through management
-network, perhaps including digest of change message as a verification.
+network. That approval would be akin to /commit/ in database actions
+and its form could perhaps include a digest of change message as a verification.
 Because smartphone is not actively listening the CPE, it cannot input
 those request. Together with the chosen method, there are four planned
 methods to distribute changes. The first uses the smartphone as a
