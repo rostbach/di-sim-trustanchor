@@ -3433,25 +3433,25 @@ TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi
 
 #+begin_src ditaa :file imsi-tmsi.png :cmdline -E -r -s 2
 
-    Smartphone                    AP    Authentication server
-         |                         |       |
-         | IMSI                    |       |
-         +------------------------>+ IMSI  |
-         |                         +------>|
-         |                         |       |
-         |                         | TMSI  |
-         |  TMSI                   |<------+
-         |<------------------------+   
-         |                         | 
-   +-----------+                   |
-   +---------+ |AuthReq(TMSI)      |
-+->+ re auth?| +------------------>+
-|  +---------+ |                   |
-|  |           |AuthNResp(new TMSI)|
-|  |           +<------------------+
-|  +--+--------+
-+-----^  
-    
+    Smartphone                      AP   Authentication server
+         |                          |        |
+         | IMSI                     |        |
+         +------------------------->|  IMSI  |
+         |                          +------->|
+         |                          |        |
+         |                          | TMSI   |
+         |  TMSI                    |<-------+
+         |<-------------------------+   
+         |                          | 
+   +-----+-----+                    |
+   |           |AuthReq(TMSI)       |
++->+ re auth?  +------------------->+
+|  |           |                    |
+|  |           |AuthNResp(new TMSI) |
+|  |           +<-------------------+
+|  +-----+-----+
+|        |TMSI=new TMSI
++--------+
 #+end_src
 #+CAPTION: Changing TMSI without MNO or Authentication server
 #+NAME:   fig:tmsi
