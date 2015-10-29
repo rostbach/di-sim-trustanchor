@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 15:17
+% Created 2015-10-29 to 15:25
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -3004,7 +3004,7 @@ admin IMSIs (roles).
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{scenVI.png}
-\caption{\label{fig:scenario-VI}In the future, CPE could be attached direct to the Cloud and AuthN comes from MNO}
+\caption{\label{fig:scenario-VI}Future, direct connected CPE to the Cloud. AuthN from MNO}
 \end{figure}
 
 
@@ -3049,15 +3049,10 @@ With that ticket, the device may later apply for AuthZ ticket, which
 opens the ports to change management service from CPE.
 That is very similar to Kerberos, which is based on
 Needham-Schroeder protocol.
-
-Using tickets has a connection to earlier homenet studies, such as
-Behringers work-in-progress bootstrapping\cite{draft-behringer-bootstrap}.  
 Another bootstrapping architecture is 
 defined in GBA (General Bootstrapping Architecture), which 
 is 3GPP's standard\cite{}.
 It benefits from MNO's or any other identity center's  knowledge of user's SIM.
-
-
 In GBA, Trusted Third Party authentication center would be setup with the help of MNO.
 One service would then authenticate an entity, here smartphone, and
 give it a time-limited ticket as a proof that the entity has been authenticated.
