@@ -2164,9 +2164,6 @@ would get positive AuthN result, the AuthZ still would deny him the access.
 When we think, that local role cache only involves few numbers, this
 is tolerable administrative burden.
 
-there are not many users to administer.   external MNO
-can not authorize 
-
 # which has received model earlier.
 # If AA is fully outsourced, :
 
