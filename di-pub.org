@@ -4586,23 +4586,13 @@ needs shared keys, and EAP-SIM helps in providing those.
 # %\section{Evaluating and comparing bootstrapping methods and authentication}
 
 
-# [See security Chapter]
-
-# from console to central management
-
-
 # *** this has been said already TB removed.
-
-
 # In our work, the Authentication server can be an external
 # RADIUS server, but usually the final decision point lies at the
 # Authenticator in CPE. 
 
-
-
 # ** What prevents modifications of RADIUS messages? Securing message
 # integrity.
-
 
 * Conclusion
 :PROPERTIES:
