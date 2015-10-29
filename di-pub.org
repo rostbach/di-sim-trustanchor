@@ -2725,8 +2725,7 @@ running as a proxy.
 # a right to switch on and off its sensor network, it would not be 
 # necessary for the home owner to accept those changes every time they occur.
 
-
-# - define perhaps what changes need authentication and thus passthru
+#  - define perhaps what changes need authentication and thus passthru
 
 Critical changes are those, where network topology changes so much,
 that different players would get access outside their earlier domains.
