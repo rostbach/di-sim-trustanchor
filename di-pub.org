@@ -2693,27 +2693,31 @@ possible non-Wi-Fi data link still may stay up and operational.
 
 ** Summary of the chosen solution
 
-[wrap up of solution]
+# [wrap up of solution]
 
 The chosen solution to benefit from SIM is via EAP-profiles, as EAP
 is well known when using WPA2-Enterprise protection in Wi-Fi.
-
-Design is [move from above]...
+Design is based on 802.1X and mobile network operator aided
+authentication
+# RADIUS  [move from above]...
 and it is a variation of lock-and-key design.
 # Abbreviation ..
 
-Above it was mentioned, that the local controller delivers changes to each
-device. 
-On this work, it is first assumed that the local controller (smart
-phone) only /approves/ changes,
-# which are already delivered 
-and delivers them to /one, central CPE/, 
-which handles distribution of changes to other CPEs. The distribution
-is not further described. 
-Later, the Authenticator is both the AP and
-RADIUS client (in scenarios I-V), which receives RADIUS messages from
+In this chapter it was mentioned, that the local controller delivers changes to each
+device.  It is assumed, that  the local controller (smart phone)
+delivers all changes to target devices.
+# On this work, it is first assumed that the local controller (smart
+# phone) only /approves/ changes, 
+# and delivers them to /one, central CPE/, 
+# which handles distribution of changes to other CPEs. 
+The distribution is not further described here, because that is an
+existing model.
+The AP functions both as the Authenticator and RADIUS client in
+scenarios I-IV.
+Authenticator receives RADIUS messages from
 Authentication server, even when there would be a separate local RADIUS server
 running as a proxy.
+
 Lastly, a variation of the design is, that not every change needs to go
  through  the local controller and so the process does not always need
 interaction from the user. For example, if 3rd party has been given 
