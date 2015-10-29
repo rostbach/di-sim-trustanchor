@@ -1981,11 +1981,11 @@ If the AuthZ decision is made on remote, 3rd party AuthZ server,
 then that server needs to have either local AuthZ data or access to 
 cloud service's AuthZ data (scenario III, external AuthZ).
 Further it seems inevitable, that delegating AuthZ function 
-would simplify home network management, because the cloud
+would simplify home network management. Because the cloud
 already 
 #   just the same way as the home network model in the cloud
-has AuthZ data of eligible IMSI accounts.
-Instead of putting logic on CPE for AuthZ, CPE
+has AuthZ data of eligible IMSI accounts,
+then instead of putting logic on CPE for AuthZ, CPE
 could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
 
