@@ -529,25 +529,26 @@ points, and the research problem here is how to enable the trust between the
 controller and the home network as the controller lies at the edge of the
 home network.
 
-The trust can be derived from the facts that already are known.  
-The ultimate trust can be achieved by verifying the trust chains 
-until the chain reaches a trust anchor.
-# The place where a trust is no longer derived or built upon any other fact
-# but is assumed to be present is called a trust anchor.  
-# [OR: /
-The trust anchor is the fact, state or place,
-where derivation of trust is done no more, but accepted per se.
-# / ]
-Combining existing techniques, this thesis presents one possible way
-to bind the home network's trust to the smartphone's unique, existing
-secret keys inside the smart card's Subscriber Identify Module (SIM),
-which then would function as a trust anchor. 
 
 
 Any encryption between devices needs trusted key exchange beforehand,
 and finding and establishing trust is needed for that.  That is called
 the key distribution problem. Public and privat keys solve the key exchange part, but
 only partially, because the trust still must be found somewhere.
+The trust can be derived from the facts that already are known.  
+The ultimate trust can be achieved by verifying the trust chains 
+until the chain reaches a trust anchor.
+# The place where a trust is no longer derived or built upon any other fact
+# but is assumed to be present is called a trust anchor.  
+The trust anchor is the fact, state or place,
+where derivation of trust is done no more, but accepted per se.
+Combining existing techniques, this thesis presents one possible way
+to bind the home network's trust to the smartphone's unique, existing
+secret keys inside the smart card's Subscriber Identify Module (SIM),
+which then would function as a trust anchor. 
+
+
+
 The above mentioned cloud solution for delegated home network
 management currently has preliminary authentication and access model
 using pre-defined credentials for accessing the local network in general and other
@@ -596,8 +597,8 @@ before delegation in the cloud can happen.
 
 The goal is to make the smart phone a central, trusted controlling 
 point for managing purposes, while the normal access between the
-Internet and home network stays unchanged.
-The human aspect and usability are important, but the focus will
+Internet and home network stays unchanged. 
+The human aspect and usability are also important, but the focus will
 still be on authentication and authorization part of the home net
 management with smartphone as a trust anchor.  The proposed model
 should nevertheless require less effort than the currently used methods
@@ -605,6 +606,27 @@ on distributing user credentials, finding the right place for them to be
 inserted, and ensuring that they are written correctly.
 Besides those, problems such as limited connectivity are
 studied.
+#+begin_src ditaa :file intro-goal.png :cmdline -E -r -s 2
+
+Now: 
+ +----------------+                           
+ |LOCAL CONTROLLER|     Non-existing trust    +------------+
+ |  (smartphone)  +<------------------------->+Home Network|
+ +----------------+                           +------------+
+
+
+
+Goal:
+ +----------------+                           
+ |LOCAL CONTROLLER|     Mutual trust          +------------+
+ |(smartphone)    +<------------------------->+Home Network|  
+ +----------------+                           +------------+            
+
+#+end_src
+#+CAPTION: Goal
+#+NAME:   fig:intro-goal
+#+RESULTS:
+[[file:intro-goal.png]]
 
 
 
