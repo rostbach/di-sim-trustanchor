@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 12:45
+% Created 2015-10-29 to 12:58
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1771,9 +1771,6 @@ Other solution would be for AP to listen for a command from an external
 AuthZ server, where similar timer would trigger a notification event. 
 That also needed modifications;  a listening process to the AP and 
 the timer into the AuthZ server. 
-If GBA architecture was chosen, then the smartphone would hold a 
-token with a validity time and has to present that when accessing
-services, here the management network. 
 
 
 To demonstrate how the model works, we present the case of adding a
@@ -2998,8 +2995,8 @@ smartphone.
 \label{scenario-iv} 
 In the future, other components than  the  local controller might 
 have a direct connection to the cloud. 
-Scenario VI (Figure\texttt{fig:scenario-VI}) is similar to scenario I presented
-earlier, but now AuthZ is checked from the Cloud by CPE instead of
+Scenario VI (Figure\ref{fig:scenario-VI}) is similar to Scenario I presented
+earlier, but now AuthZ is checked direct from the Cloud by CPE instead of
 MNO.  If there is no connection to the cloud, the fall-back is to work
 just like II. So also this scenario needs local store for caching
 admin IMSIs (roles).
@@ -3007,7 +3004,7 @@ admin IMSIs (roles).
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{scenVI.png}
-\caption{\label{fig:scenario-IV}In the future, CPE could be attached direct to the Cloud and AuthN comes from MNO}
+\caption{\label{fig:scenario-VI}In the future, CPE could be attached direct to the Cloud and AuthN comes from MNO}
 \end{figure}
 
 
@@ -3047,11 +3044,18 @@ AA network, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
 There, the end devices  first try to get AuthN ticket, which 
 does not include yet the AuthZ.
-
 With that ticket, the device may later apply for AuthZ ticket, which
 opens the ports to change management service from CPE.
 That is very similar to Kerberos, which is based on
 Needham-Schroeder protocol.
+
+Using tickets has a connection to earlier homenet studies, such as
+Behringers work-in-progress bootstrapping\cite{draft-behringer-bootstrap}.  
+Another bootstrapping architecture is 
+defined in GBA (General Bootstrapping Architecture), which 
+is 3GPP's standard\cite{}.
+It benefits from MNO's or any other identity center's  knowledge of user's SIM.
+
 
 In GBA, Trusted Third Party authentication center would be setup with the help of MNO.
 One service would then authenticate an entity, here smartphone, and
@@ -3062,7 +3066,12 @@ the authentication ticket. In return it receives a service ticket which
 it can present to the wanted service, who verifies the access based
 on the ticket. 
 
-As can be seen, no public key infrastructure (PKI) is not used before setup
+If GBA architecture was chosen, then the smartphone would hold a 
+token with a validity time and had to present that when accessing
+services, here the management network. 
+
+
+As can be seen, no public key infrastructure (PKI) is used before setup
 phase is ready.
 If EAP-SIM was applied in such environment, it would be used only
 once, namely in the bootstrapping phase to setup the CA trust
@@ -3072,14 +3081,6 @@ needs shared keys, and EAP-SIM helps in providing those.
 
 \subsection{this has been said already TB removed.}
 \label{sec-6-7-1}
-Using tickets has a connection to earlier homenet studies, such as
-Behringers work-in-progress
-bootstrapping\cite{draft-behringer-bootstrap}.  
-
- Another bootstrapping architecture is
-defined in GBA (General Bootstrapping Architecture), which 
-is 3GPP's standard\cite{}.
-It benefits from MNO's or any other identity centre's  knowledge of user's SIM.
 
 
 In our work, the Authentication server can be an external
