@@ -2718,11 +2718,12 @@ Authenticator receives RADIUS messages from
 Authentication server, even when there would be a separate local RADIUS server
 running as a proxy.
 
-Lastly, a variation of the design is, that not every change needs to go
- through  the local controller and so the process does not always need
-interaction from the user. For example, if 3rd party has been given 
-a right to switch on and off its sensor network, it would not be 
-necessary for the home owner to accept those changes every time they occur.
+# to speculative part
+# Lastly, a variation of the design is, that not every change needs to go
+#  through  the local controller and so the process does not always need
+# interaction from the user. For example, if 3rd party has been given 
+# a right to switch on and off its sensor network, it would not be 
+# necessary for the home owner to accept those changes every time they occur.
 
 
 # - define perhaps what changes need authentication and thus passthru
