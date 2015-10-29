@@ -1836,15 +1836,13 @@ file:trustcircles.png
 # segments
 Network can be divided into separate segments based on user's role and
 needs, such as guest or home members segment. The segments provide
-base connectivity layer and simple separation. Different
-services, like disk storage, can force their own policy on application
-level.
-It is not defined here, if the segmentation is made 
-physical or virtual (VLAN, Virtual LAN). 
-There is also a segment for devices management. 
-An analogy to the real world would be a hotel, where customers use
-public access corridors and doors,
-and service personnel privileged corridors and doors.
+base connectivity layer and simple separation. Different services,
+like disk storage, can force their own policy on application level.
+It is not defined here, if the segmentation is made physical or
+virtual (VLAN, Virtual LAN).  There is also a segment for devices
+management.  An analogy to the real world would be a hotel, where
+customers use public access corridors and doors, and service personnel
+privileged corridors and doors.
 
 
 Routers control access to the segments with aid of 
