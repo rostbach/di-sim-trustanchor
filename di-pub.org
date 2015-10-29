@@ -610,17 +610,17 @@ studied.
 
 Now: 
  +----------------+                           
- |LOCAL CONTROLLER|     Non-existing trust    +------------+
- |  (smartphone)  +<------------------------->+Home Network|
- +----------------+                           +------------+
+ |Local Controller|     No trust    +------------+
+ |  (smartphone)  +<--------------->+Home Network|
+ +----------------+                 +------------+
 
 
 
 Goal:
  +----------------+                           
- |LOCAL CONTROLLER|     Mutual trust          +------------+
- |(smartphone)    +<------------------------->+Home Network|  
- +----------------+                           +------------+            
+ |Local Controller|   Mutual trust  +------------+
+ |(smartphone)    +<--------------->+Home Network|  
+ +----------------+                 +------------+            
 
 #+end_src
 #+CAPTION: Goal
