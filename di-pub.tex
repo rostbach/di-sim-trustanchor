@@ -1,4 +1,4 @@
-% Created 2015-10-28 ke 00:53
+% Created 2015-10-29 to 09:51
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -496,7 +496,10 @@ which then would function as a trust anchor.
 
 
 
-The Human aspect and usability are important, but the focus will
+The goal is to make the smart phone a central, trusted controlling 
+point for managing purposes, while the normal access between the
+Internet and home network stays unchanged.
+The human aspect and usability are important, but the focus will
 still be on authentication and authorization part of the home net
 management with smartphone as a trust anchor.  The proposed model
 should nevertheless require less effort than the currently used methods
@@ -1374,22 +1377,26 @@ network. This kind of AA would happen on upper, application layer
 \label{sec-4-2}
 
 
-The AA components AuthN and AuthZ can be found in diverse location combinations. Here, the AuthN component 
-usually is located outside the home, as MNO is the AuthN, unless
-we are considering offline AuthN or recurring AuthN.
+The AA components AuthN and AuthZ can be found in diverse location
+combinations
+depending, who provides those services and are there any caching
+available. 
+Here, the AuthN component 
+is usually located outside the home, as MNO provides the AuthN, unless
+we are considering offline or recurring AuthN.
 The AuthZ may be placed more freely. It can be at
 home, at an external provider, or at MNO.
-Authenticator on the other hand must lie at home, and it always 
+Authenticator on the other hand must stay at home, and it always 
 gives the final decision about the access.
 
 If the AuthZ decision is made on remote, 3rd party AuthZ server, 
 then that server needs to have either local AuthZ data or access to 
 cloud service's AuthZ data (scenario III, external AuthZ).
 Further it seems inevitable, that delegating AuthZ function 
-would simplify home network management, because the cloud
+would simplify home network management. Because the cloud
 already 
-has AuthZ data of eligible IMSI accounts.
-Instead of putting logic on CPE for AuthZ, CPE
+has AuthZ data of eligible IMSI accounts,
+then instead of putting logic on CPE for AuthZ, CPE
 could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
 
