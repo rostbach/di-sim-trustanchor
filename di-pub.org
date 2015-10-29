@@ -587,9 +587,9 @@ which then would function as a trust anchor.
 
 
 
-The goal is to make the smart phone the central, trusted controlling 
-point, which connects outside world to home network for managing
-purposes, while the normal access between the Internet and home network  stays unchanged.
+The goal is to make the smart phone a central, trusted controlling 
+point for managing purposes, while the normal access between the
+Internet and home network stays unchanged.
 
 The human aspect and usability are important, but the focus will
 still be on authentication and authorization part of the home net
