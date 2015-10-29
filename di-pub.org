@@ -4040,7 +4040,8 @@ portal can be used for offline authentication.
 # RADIUS/IP gateway.
 
 
-*** Access methods to Wi-Fi with only one SSID
+
+# *** Access methods to Wi-Fi with only one SSID
 
 
 
@@ -4076,7 +4077,7 @@ management network.
 # explained in Section [[sec:chosendesign]].
 
 
-** Usability benefits of HS2.0
+** Usability of access points 
 It is well known, that the usability of the captive-portal Wi-Fi
  network is burden, because a user needs to go through 
 a web portal logins with a username-password authentication 
@@ -4582,7 +4583,8 @@ bootstrapping\cite{draft-behringer-bootstrap}.
 
  Another bootstrapping architecture is
 defined in GBA (General Bootstrapping Architecture), which 
-benefits from MNO's or any other identity centre's  knowledge of user's SIM.
+is 3GPP's standard\cite{}.
+It benefits from MNO's or any other identity centre's  knowledge of user's SIM.
 
 
 In our work, the Authentication server can be an external
