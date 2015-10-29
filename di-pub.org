@@ -2921,7 +2921,7 @@ message would had next been verified with the SIM card.
 Unregistered SIM in phone could not use SIM card at all, while 
 phone with a registered SIM verified and noticed, that operator is not right, 
 and therefore correctly ended the conversation as it should regarding
-RFC4186[[rfc4186]].
+RFC4186\cite{rfc4186}
 # i.e., what is the difference btw. those. REMEMBER: you cannot packet
 # trace phone connection, only AP and RADIUS logs.
 
@@ -2932,8 +2932,7 @@ After WPA2-Supplicant run on laptop with simulated SIM-card access
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software claimed that 
 #+BEGIN_VERSE
-"Hostapd will send SIM/AKA authentication queries over a UNIX domain
-socket to an external hlr_auc_gw program."
+"Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr_auc_gw program."
 #+END_VERSE
 Appendix [[app:hlraucgw]]   shows that traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
