@@ -4549,7 +4549,7 @@ the authentication ticket. In return it receives a service ticket which
 it can present to the wanted service, who verifies the access based
 on the ticket. 
 
-As can be seen, no public key infrastructure (PKI) is not used before setup
+As can be seen, no public key infrastructure (PKI) is used before setup
 phase is ready.
 If EAP-SIM was applied in such environment, it would be used only
 once, namely in the bootstrapping phase to setup the CA trust
