@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 11:33
+% Created 2015-10-29 to 12:35
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1779,12 +1779,11 @@ services, here the management network.
 To demonstrate how the model works, we present the case of adding a
 new admin user. Let's first suppose, for case of simplicity, that the
 home network has been already configured(bootstrapped) and it is
-functioning properly.  The home configuration model has been copied to
-the cloud.  When changes are made to the cloud model through
-authorized cloud administrator users (operators), those changes are
-later also committed in to the production in home network. There is no
-magic here, plain configuration change, just this time externally
-initiated.
+functioning properly.  To further make the case simpler, let's think,
+that the Local Controller is the sole administrative source for the
+configuration changes, and leave the cloud outside, 
+because we know that there already exists a configuration framework in the cloud.
+
 
 Now, let's think what happens, when the cloud operator (or owner of
 home network) tries to modify attributes, which give access to a new actor,
@@ -1805,7 +1804,8 @@ network.
 This thesis justifies the management and therefore the changes to be
 allowed, if the smartphone user is currently logged in to the
 management network.
-
+After the AA is ready, the smartphone has all means to connect the
+configured targets
 
 It must be noted, that the smartphone can already have an association
 to a non-management network with Wi-Fi. If that is the case, it first
@@ -1813,7 +1813,7 @@ must disconnect from there and then connect, i.e., do the  AA in the correct man
 network. This implies disconnection from other services using Wi-Fi
 link, because smartphones currently have only one Wi-Fi radio
 available and routing would still prefer Wi-Fi as a default gateway, although
-possible 3G data link still may stay up and operational.
+possible non-Wi-Fi data link still may stay up and operational.
 
 \section{Summary of the chosen solution}
 \label{sec-4-6}
@@ -2730,8 +2730,11 @@ If nothing else works, as a backup old-fashioned WWW-authentication
 portal can be used for offline authentication.
 
 
-\subsection{Access methods to Wi-Fi with only one SSID}
-\label{sec-6-3-1}
+
+
+
+
+
 
 
 
@@ -2754,7 +2757,7 @@ wants to do; get normal access to home network or make trust anchor claim to
 management network.
 
 
-\section{Usability benefits of HS2.0}
+\section{Usability of access points}
 \label{sec-6-4}
 It is well known, that the usability of the captive-portal Wi-Fi
  network is burden, because a user needs to go through 
@@ -2842,11 +2845,10 @@ not want to invest on existing technology, which can be seen as ``old''.
 
 
 SIM card of the smartphone, used together with Wi-Fi access to home network 
-verifies change controls, and for that we have presented some options.
-
+helps in verifying the changes, and for that we have presented some options.
 Location of AuthN and AuthZ components may vary depending on state of process.
 Always in the beginning, AuthN lies outside the home network, but
-later it can use local point. AuthZ, on the otherhand, may be located more freely.
+later it can also use local point. AuthZ, on the other hand, may be located more freely.
 
 Based on 802.1X standard, the management port is activated and
 RADIUS transfers the orders for correct AA.
@@ -2938,14 +2940,14 @@ If we were to question or evolve the given model of change
 propagation, the trust anchoring would also need some modifications.
 Alternative method is that the changes could be marked some way, so
 that they need approving and then there could be a specific
-change-approval message, which must be sent through management
+change-approval message, which must be sent through the management
 network. That approval would be akin to \emph{commit} in database actions
 and its form could perhaps include a digest of change message as a verification.
-Because smartphone is not actively listening the CPE, it cannot input
+Because smartphone is not actively listening to the CPE, it cannot input
 those request. Together with the chosen method, there are four planned
 methods to distribute changes. The first uses the smartphone as a
-direct commander and is the preferred 
-method. The second would not involve smartphone at all but depended on
+direct commander and it is the one described throughout the thesis.
+The second would not involve smartphone at all but depended on
 earlier set trust. The remaining two would depend on more complex
 setups involving tokens and are presented here just as ideas.
 
@@ -3040,8 +3042,9 @@ in bootstrapping.
 Behringer continues, that this model could be expanded to a full ticket enabled Kerberos style
 AA network, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
-Behringer continues, that   end devices could first try to get AuthN ticket,
-which does not include yet the AuthZ.
+There, the end devices  first try to get AuthN ticket, which 
+does not include yet the AuthZ.
+
 With that ticket, the device may later apply for AuthZ ticket, which
 opens the ports to change management service from CPE.
 That is very similar to Kerberos, which is based on
@@ -3056,7 +3059,8 @@ the authentication ticket. In return it receives a service ticket which
 it can present to the wanted service, who verifies the access based
 on the ticket. 
 
-As can be seen, no public key infrastructure (PKI) is used on this.
+As can be seen, no public key infrastructure (PKI) is not used before setup
+phase is ready.
 If EAP-SIM was applied in such environment, it would be used only
 once, namely in the bootstrapping phase to setup the CA trust
 anchor. Only after that, can the CA start delivering PKI. Kerberos
@@ -3071,7 +3075,8 @@ bootstrapping\cite{draft-behringer-bootstrap}.
 
  Another bootstrapping architecture is
 defined in GBA (General Bootstrapping Architecture), which 
-benefits from MNO's or any other identity centre's  knowledge of user's SIM.
+is 3GPP's standard\cite{}.
+It benefits from MNO's or any other identity centre's  knowledge of user's SIM.
 
 
 In our work, the Authentication server can be an external
