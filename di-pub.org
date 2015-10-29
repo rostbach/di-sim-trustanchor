@@ -4189,7 +4189,7 @@ not want to invest on existing technology, which can be seen as ``old''.
 
 # [do not jump in with so short flash messages. This looks like conclusion.] 
 SIM card of the smartphone, used together with Wi-Fi access to home network 
-verifies change controls, and for that we have presented some options.
+helps in verifying the changes, and for that we have presented some options.
 
 Location of AuthN and AuthZ components may vary depending on state of process.
 Always in the beginning, AuthN lies outside the home network, but
