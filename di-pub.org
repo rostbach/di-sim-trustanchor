@@ -2527,12 +2527,23 @@ devices in need of changes.
 
 #
 #+begin_src ditaa :file trust-register.png :cmdline -E -r -s 2
-smartphone  enc.   AP                proxy or provider knows admin
- (sp)     +----->    
- IMSIs            <---------->
-                  AP trusts sp 
-           ?mgmt-> 
-                      ------->     ->  <-  
+  
+local controller   AP                 Managed device
+     +------------>+----------------------->+ 
+     |             |                        |
+     |             |                        |
+     |             |  mgmt allowed ?        |
+     |             +<-----------------------+
+     |             |                        |
+     |             |  "Yes, has been AA'd"  |
+     |             +----------------------->+
+     |                                      | 
+     |                                     ++-------+
+     |                                     | open   |
+     |                                     | session|
+     |         manage the device           ++-------+
+     +<------------------------------------>+
+     |                                      |
 #+end_src
 #+CAPTION: trust register (draft)
 #+NAME:   fig:trust-register
