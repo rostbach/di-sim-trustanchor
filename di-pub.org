@@ -4525,7 +4525,9 @@ draft from Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. That explain
 in bootstrapping. 
 
 
-Behringer continues, that this model could be expanded to a full ticket enabled Kerberos style
+Behringer continues, that this model could be expanded to a full
+ticket enabled 
+# Kerberos style
 # There is also discussion about using manufacturer provided device certificates as trust anchor.  
 AA network, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
@@ -4539,7 +4541,7 @@ does not include yet the AuthZ.
 #  request  for service tickets for AuthZ.
 With that ticket, the device may later apply for AuthZ ticket, which
 opens the ports to change management service from CPE.
-That is very similar to Kerberos, which is based on
+That is very similar to Kerberos AA, which is based on
 Needham-Schroeder protocol.
 # Regarding
 # Using tickets has a connection to earlier homenet studies, 
