@@ -2724,15 +2724,14 @@ running as a proxy.
 # interaction from the user. For example, if 3rd party has been given 
 # a right to switch on and off its sensor network, it would not be 
 # necessary for the home owner to accept those changes every time they occur.
+# # - define perhaps what changes need authentication and thus passthru
 
-#  - define perhaps what changes need authentication and thus passthru
-
-Critical changes are those, where network topology changes so much,
-that different players would get access outside their earlier domains.
-Different players include external service providers, users at home,
-visitors, and also home network owner. Examples of the previous cases can first be
-seen on the division of home network to guest and private network and
-extensions for homeworkers instead of office.
+# Critical changes are those, where network topology changes so much,
+# that different players would get access outside their earlier
+# domains.Different players include external service providers, users
+# at home, visitors, and also home network owner. Examples of the
+# previous cases can first be seen on the division of home network to
+# guest and private network and extensions for homeworkers instead of office.
 
 
 
