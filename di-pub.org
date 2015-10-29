@@ -4435,8 +4435,8 @@ In the future, other components than  the  local controller might
 have a direct connection to the cloud. 
 # *** Scenario IV: AuthN from MNO, AuthZ separate from BaaS.
 # move to discussion and speculations
-Scenario VI (Figure[[fig:scenario-VI]]) is similar to scenario I presented
-earlier, but now AuthZ is checked from the Cloud by CPE instead of
+Scenario VI (Figure[[fig:scenario-VI]]) is similar to Scenario I presented
+earlier, but now AuthZ is checked direct from the Cloud by CPE instead of
 MNO.  If there is no connection to the cloud, the fall-back is to work
 just like II. So also this scenario needs local store for caching
 admin IMSIs (roles).
@@ -4520,7 +4520,6 @@ AuthN and AuthZ exist for different services.
 # Behringer continues, that   end devices could
 There, the end devices  first try to get AuthN ticket, which 
 does not include yet the AuthZ.
- 
 # AA,  where they would get a ticket from a successful AuthN,
 # but that
 # also benefit from
