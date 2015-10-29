@@ -297,17 +297,22 @@ Teemu Teekkari
 
 # - term :: meaning
 - 802.1X :: port based access control standard 
-- Access point :: Wi-Fi client connects access point (AP) on 802.11
-                   layer. AP knows EAP client and encapsulates EAP-message
-                   to RADIUS-message and forwards that to
-                   Authenticator.
+- Access point :: Connects Wi-Fi clients to wired network on. Used
+                  here to encapsulate EAP messages to RADIUS and
+                  forward them to Authentication server
+# client connects access point (AP) on 802.11
+#                   layer. AP knows EAP client and encapsulates EAP-message
+#                   to RADIUS-message and forwards that to
+#                   Authenticator.
 # - BaaS :: Backend as a Service. Type of cloud service, which focuses
 #           on mobile backend.
+ - Authentication server :: Server checking identity claims, for
+      example RADIUS server.
  - Authenticator :: local entity, who makes authentication (and
                     authorization) decision for client based on local and remote
                     claims, part of 802.1X standard.
 #  - cloud :: here, BaaS (Parse) service running Internet
- - mobile-operator :: MNO, knows connection between SIM-owner and SIM
+ - mobile operator :: MNO, Mobile network operator, knows connection between SIM-owner and SIM
 #  - Parse :: one BaaS-cloud provider
  - proxying RADIUS :: RADIUS server standing between RADIUS
       client and Authentication server, part of RADIUS server chain.
