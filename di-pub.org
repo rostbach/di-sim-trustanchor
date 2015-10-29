@@ -587,7 +587,11 @@ which then would function as a trust anchor.
 
 
 
-The Human aspect and usability are important, but the focus will
+The goal is to make the smart phone the central, trusted controlling 
+point, which connects outside world to home network for managing
+purposes, while the normal access between the Internet and home network  stays unchanged.
+
+The human aspect and usability are important, but the focus will
 still be on authentication and authorization part of the home net
 management with smartphone as a trust anchor.  The proposed model
 should nevertheless require less effort than the currently used methods
