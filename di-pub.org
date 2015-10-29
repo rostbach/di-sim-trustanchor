@@ -611,7 +611,7 @@ studied.
 Now: 
  +----------------+                           
  |Local Controller|     No trust    +------------+
- |  (smartphone)  +<--------------->+Home Network|
+ |  (smartphone)  +<---------=----->+Home Network|
  +----------------+                 +------------+
 
 
