@@ -2664,7 +2664,6 @@ network.
 This thesis justifies the management and therefore the changes to be
 allowed, if the smartphone user is currently logged in to the
 management network.
-
 After the AA is ready, the smartphone has all means to connect the
 configured targets
 
