@@ -2672,7 +2672,7 @@ must disconnect from there and then connect, i.e., do the  AA in the correct man
 network. This implies disconnection from other services using Wi-Fi
 link, because smartphones currently have only one Wi-Fi radio
 available and routing would still prefer Wi-Fi as a default gateway, although
-possible 3G data link still may stay up and operational.
+possible non-Wi-Fi data link still may stay up and operational.
 # It is not tested, whether 3G-data link could be active still at the
 # same time.
 
