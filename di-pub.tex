@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 15:29
+% Created 2015-10-29 to 15:32
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1965,7 +1965,7 @@ message would had next been verified with the SIM card.
 Unregistered SIM in phone could not use SIM card at all, while 
 phone with a registered SIM verified and noticed, that operator is not right, 
 and therefore correctly ended the conversation as it should regarding
-RFC4186\texttt{rfc4186}.
+RFC4186\cite{rfc4186}.
 
 At this point, physical phones were put aside and a simulated SIM-card
 environment was used.
@@ -1973,8 +1973,7 @@ After WPA2-Supplicant run on laptop with simulated SIM-card access
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software claimed that 
 \begin{verse}
-"Hostapd will send SIM/AKA authentication queries over a UNIX domain \\
-socket to an external hlr\_auc\_gw program." \\
+"Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr\_auc\_gw program." \\
 \end{verse}
 Appendix \ref{app:hlraucgw}   shows that traffic.
 
