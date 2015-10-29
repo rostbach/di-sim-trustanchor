@@ -2245,8 +2245,9 @@ If internet connection is down, local AA is still possible.
 # available or when internet connection is down. 
 Full authentication uses IMSI, 
 which is the identity of the phone's SIM.
-Light than full, fast re-authentication would use temporal identity TMSI. 
-Figure[[fig:scenario-IV]] shows the case when TMSI is used. TMSI can change
+Light than full, fast re-authentication would use temporal identity
+TMSI
+and it is shown in Figure[[fig:scenario-IV]]. TMSI can change
 each time the AuthN request had been sent. Mapping of TMSI is cached
 on the Authenticator and the round-trip and handling at HLR can so be
 eliminated. Re-auth also works when there is no internet connectivity,
