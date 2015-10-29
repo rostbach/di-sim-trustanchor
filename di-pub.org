@@ -271,7 +271,7 @@ Teemu Teekkari
 \item[CPE] Customer Premise Equipment %, device physically located at customers home.
 \item[EAP] Extensible Authentication Protocol %, extends 802.1X
 \item[GAA] Generic Authentication Architecture % (for SSO)
-\item[GBA] Generic Bootstrapping Architecture, 3GPP standard for user authentication with help of shared key from operator- Åart pf GAA
+\item[GBA] Generic Bootstrapping Architecture, 3GPP standard for user authentication with help of shared key from operator- Åart pf GAA.
 \item[GSM] Global System for Mobile Communication (earlier Groupe Spécial Mobile)
 \item[HLR] Home Location Registry, ...
 % \item[ICCID] card serial
