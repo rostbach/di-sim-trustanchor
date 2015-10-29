@@ -4510,7 +4510,7 @@ draft from Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. That explain
 in bootstrapping. 
 
 
- Behringer continues, that this model could be expanded to a full ticket enabled Kerberos style
+Behringer continues, that this model could be expanded to a full ticket enabled Kerberos style
 # There is also discussion about using manufacturer provided device certificates as trust anchor.  
 AA network, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
