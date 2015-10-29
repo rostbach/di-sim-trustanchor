@@ -2515,10 +2515,6 @@ router.
 
 # [This belongs to multiple SSID section]
 
-If Lock-and-key method was used instead of EAP-SIM RADIUS, then
-separate manage\-ment SSID would not be needed. Roles were given at
-Authentication server or designated router after the smartphone has done login to it
-via normal access network.
 
 
 
@@ -4058,6 +4054,12 @@ username (username decoration) or by using different authentication
 method. All these methods allows Authentication Server to distinguish, what the user
 wants to do; get normal access to home network or make trust anchor claim to 
 management network.
+
+If Lock-and-key method was used instead of EAP-SIM RADIUS, then
+separate manage\-ment SSID would not be needed. Roles were given at
+Authentication server or designated router after the smartphone has done login to it
+via normal access network.
+
 
 # Management through Wi-Fi has then three
 # options.  Without RADIUS, access is open and the only checking comes
