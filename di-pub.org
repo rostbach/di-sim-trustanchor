@@ -1927,9 +1927,9 @@ attributes that can be used in provisioning in homogeneous environment.
 # [cite rfcXXX].  
 That way (3rd party) Authentication server can decide which network
 segment the device would be put in.  In our case, admin users are put in
-to the management network.  Yet, usually RADIUS ACCESS-ACCEPT message,
+to the management network.  Yet, usually RADIUS's ACCESS-ACCEPT message,
 which means AuthN and AuthZ were successful,  puts the user in
-default network, i.e., just gives it basic access. As for other
+default network, i.e., it just gives basic access. As for other
 provisioning parameters, not all end devices support them.
 
 In the first prototype it is enough to identify an authorized
