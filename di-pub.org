@@ -2162,8 +2162,7 @@ place within home network. Benefit of local roles is that
 administrative users can be held at local base. Even, if some intruder
 would get positive AuthN result, the AuthZ still would deny him the access.
  When we think, that local role cache only involves few numbers, this
-is tolerable
-administrative  burden.
+is tolerable administrative  burden.
 
 there are not many users to administer.   external MNO
 can not authorize 
