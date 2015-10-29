@@ -1478,8 +1478,8 @@ external configuration even with the proposed automation aids.
 
 ** Centralization trends in management
 
-Traditionally, configuration management of network devices has been done
-individually using each device's console or web-access.  As the number of
+Traditionally, configuration management of individual network devices has been done
+using each device's console or web interface.  As the number of
 devices has increased, it would have been reasonable to rationalize
 the process by utilizing a central management, not least to prevent human
 errors for repetitive tasks.  The reason, why this has not happened at
