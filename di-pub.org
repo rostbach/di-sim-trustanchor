@@ -4482,6 +4482,9 @@ admin IMSIs (roles).
 # draft-behringer-bootstrap \cite{draft-behringer-bootstrap} where 
 # Authentication (may) need some # bootstrapping of trust for start.
 
+# This thesis mostly takes the bootstrapped environment as given, i.e.,
+# the initial configuration has already been set.
+
 Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
 home. The public key cryptography is processor intensive and its
 asymmetric keys are usually used just in the beginning of
@@ -4595,10 +4598,6 @@ In our work, the Authentication server can be an external
 RADIUS server, but usually the final decision point lies at the
 Authenticator in CPE. 
 
-Further, in last two planned ways only the
-
-Finally this thesis takes the bootstrapped environment as given, i.e.,
-the initial configuration has already been set.
 
 
 # ** What prevents modifications of RADIUS messages? Securing message
