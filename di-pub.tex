@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 15:25
+% Created 2015-10-29 to 15:29
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -3004,7 +3004,7 @@ admin IMSIs (roles).
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{scenVI.png}
-\caption{\label{fig:scenario-VI}Future, direct connected CPE to the Cloud. AuthN from MNO}
+\caption{\label{fig:scenario-VI}Future, direct to Cloud connected CPE. AuthN comes from MNO}
 \end{figure}
 
 
@@ -3062,17 +3062,17 @@ the authentication ticket. In return it receives a service ticket which
 it can present to the wanted service, who verifies the access based
 on the ticket. 
 
-If GBA architecture was chosen, then the smartphone would hold a 
-token with a validity time and had to present that when accessing
-services, here the management network. 
 
 
-As can be seen, no public key infrastructure (PKI) is used before setup
-phase is ready.
-If EAP-SIM was applied in such environment, it would be used only
-once, namely in the bootstrapping phase to setup the CA trust
-anchor. Only after that, can the CA start delivering PKI. Kerberos
-needs shared keys, and EAP-SIM helps in providing those.
+As can be seen, no public key infrastructure (PKI) is used before
+setup phase is ready.  If EAP-SIM was applied in such environment, it
+would be used only once, namely in the bootstrapping phase to setup
+the CA trust anchor.  Only after that, can the CA start delivering
+PKI. Kerberos needs shared keys, and EAP-SIM helps in providing those.
+The smartphone would hold a token with a validity time and had to
+present that when accessing services, here the management network. The
+validity time would automatically disallow the management if applied
+later than allowed time.
 
 \chapter{Conclusion}
 \label{sec-7}
