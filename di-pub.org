@@ -529,6 +529,20 @@ points, and the research problem here is how to enable the trust between the
 controller and the home network as the controller lies at the edge of the
 home network.
 
+The trust can be derived from the facts that already are known.  
+The ultimate trust can be achieved by verifying the trust chains 
+until the chain reaches a trust anchor.
+# The place where a trust is no longer derived or built upon any other fact
+# but is assumed to be present is called a trust anchor.  
+# [OR: /
+The trust anchor is the fact, state or place,
+where derivation of trust is done no more, but accepted per se.
+# / ]
+Combining existing techniques, this thesis presents one possible way
+to bind the home network's trust to the smartphone's unique, existing
+secret keys inside the smart card's Subscriber Identify Module (SIM),
+which then would function as a trust anchor. 
+
 
 Any encryption between devices needs trusted key exchange beforehand,
 and finding and establishing trust is needed for that.  That is called
@@ -551,9 +565,9 @@ The smartphone with its Subscriber Identity Module (later SIM) and an
 existing key infrastructure to the mobile
 network operator (MNO) would later eliminate the requirement for an
 additional credential distribution. That issue is studied in this
-thesis.  Although the smartphone provides alternative authentication
+thesis.  Although the smartphone provides alternativue authentication
 method with its SIM key, usual methods to authenticate still are plain
-username-password combinations.  Those security issues must be solved
+username-password combinations.  This security issue must be solved
 before delegation in the cloud can happen.
 #  Anchoring must be set somewhere, 
 # is When Trust can be anchored to an entity 
@@ -563,19 +577,6 @@ before delegation in the cloud can happen.
 # older smart cards and USIM with SIM-application running inside USIM
 # card on newer smart cards.
 
-The trust can be derived from the facts that already are known.  
-The ultimate trust can be achieved by verifying the trust chains 
-until the chain reaches a trust anchor.
-# The place where a trust is no longer derived or built upon any other fact
-# but is assumed to be present is called a trust anchor.  
-# [OR: /
-The trust anchor is the fact, state or place,
-where derivation of trust is done no more, but accepted per se.
-# / ]
-Combining existing techniques, this thesis presents one possible way
-to bind the home network's trust to the smartphone's unique, existing
-secret keys inside the smart card's Subscriber Identify Module (SIM),
-which then would function as a trust anchor. 
 
 # To generally find
 # ultimate trust it is only needed to verify trust chains until the
