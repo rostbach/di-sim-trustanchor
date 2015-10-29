@@ -4522,15 +4522,13 @@ opens the ports to change management service from CPE.
 That is very similar to Kerberos, which is based on
 Needham-Schroeder protocol.
 # Regarding
-
-Using tickets has a connection to earlier homenet studies, such as
-Behringers work-in-progress bootstrapping\cite{draft-behringer-bootstrap}.  
+# Using tickets has a connection to earlier homenet studies, 
+# such as
+# Behringers work-in-progress bootstrapping\cite{draft-behringer-bootstrap}.  
 Another bootstrapping architecture is 
 defined in GBA (General Bootstrapping Architecture), which 
 is 3GPP's standard\cite{}.
 It benefits from MNO's or any other identity center's  knowledge of user's SIM.
-
-
 In GBA, Trusted Third Party authentication center would be setup with the help of MNO.
 # One could also model home network to use separate authentication 
 # and authorization service in style of Kerberos. That would help
