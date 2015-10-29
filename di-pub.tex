@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 13:01
+% Created 2015-10-29 to 14:48
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1522,7 +1522,7 @@ This is similar to federated service.
 \end{figure}
 
 Allowed users are verified from the cloud's registries and specific IMSI is
-authenticated from MNO.  It may need some preparation, if SIM
+authenticated at MNO.  It may need some preparation, if SIM
 identities are temporary i.e. TMSI is used.  Still, IMSI is carried
 out at the first message
 of full authentication. Later, the server would need to have mapping
@@ -1532,13 +1532,15 @@ there should be no problem.
 
 
 If internet connection is down, local AA is still possible.
+
 Full authentication uses IMSI, 
-which is the identity of the phone's SIM.  Lighter, fast
-re-authentication would use temporal identity TMSI. It can change
+which is the identity of the phone's SIM. 
+but lighter, fast re-authentication would use temporal identity TMSI. 
+Figure\ref{fig:scenario-IV} shows the case when TMSI is used. TMSI can change
 each time the AuthN request had been sent. Mapping of TMSI is cached
 on the Authenticator and the round-trip and handling at HLR can so be
 eliminated. Re-auth also works when there is no internet connectivity,
-but Full authentication would not work because of missing MNO.
+but Full authentication would not work here because of missing MNO.
 
 
 \begin{figure}[htb]
@@ -1546,9 +1548,6 @@ but Full authentication would not work because of missing MNO.
 \includegraphics[width=.9\linewidth]{scenIV.png}
 \caption{\label{fig:scenario-IV}Scenario IV, offline AA}
 \end{figure}
-
-
-
 
 [repeat the same, To be combined]
 The local CPE may cache AuthZ information. It also 
@@ -2924,7 +2923,7 @@ In testing the implementation, the first tests did not go as
 planned. 
 There was no indication of SIM method present in captures, the only
 indication of security was a message ``Open System'' in application
-logs, which means that no pre-shared key is used.
+logs, which only means that no pre-shared key is used.
 
 
 
