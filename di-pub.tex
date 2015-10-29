@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 12:35
+% Created 2015-10-29 to 12:45
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -289,7 +289,7 @@ Teemu Teekkari
 \item[CPE] Customer Premise Equipment %, device physically located at customers home.
 \item[EAP] Extensible Authentication Protocol %, extends 802.1X
 \item[GAA] Generic Authentication Architecture % (for SSO)
-\item[GBA] Generic Bootstrapping Architecture
+\item[GBA] Generic Bootstrapping Architecture, 3GPP standard for user authentication with help of shared key from operator- Åart pf GAA.
 \item[GSM] Global System for Mobile Communication (earlier Groupe Spécial Mobile)
 \item[HLR] Home Location Registry, ...
 % \item[ICCID] card serial
@@ -2985,11 +2985,14 @@ IV) Variation of III is that when CPE itself is an Authenticator, it
    drop received changes without forwarding them.
 
 
-The smartphone may receive the AuthN token with 
-a message explaining what is going to happen in the change.
-As the CPE and the Authenticator may be separate devices, approving
+In last two planned ways, the smartphone may receive the AuthN token
+with a message explaining what is going to happen in the change.  As
+the CPE and the Authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
-management network where the Authenticator gives access.
+management network where the Authenticator gives access.  Further,
+only the initial bootstrap as well as the change of admin roles and
+some dangerous combination of commands would need AA with the
+smartphone.
 
 
 \label{scenario-iv} 
@@ -3081,9 +3084,10 @@ It benefits from MNO's or any other identity centre's  knowledge of user's SIM.
 
 In our work, the Authentication server can be an external
 RADIUS server, but usually the final decision point lies at the
-Authenticator in CPE. Further, in last two planned ways only the
-initial bootstrap as well as the change of admin roles and some dangerous
-combination of commands would need AA with the smartphone.
+Authenticator in CPE. 
+
+Further, in last two planned ways only the
+
 Finally this thesis takes the bootstrapped environment as given, i.e.,
 the initial configuration has already been set.
 
