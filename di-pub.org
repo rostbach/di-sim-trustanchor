@@ -2635,13 +2635,12 @@ that the Local Controller is the sole administrative source for the
 configuration changes, and leave the cloud outside, 
 because we know that there already exists a configuration framework in the cloud.
 
-In the real world the home
-configuration model would have been copied to
-the cloud and the changes are made to the cloud model through
-authorized cloud administrator users (operators) and those changes are
-later also committed in to the production in home network. There is no
-magic here, plain configuration change, just this time externally
-initiated.
+# In the real world the home configuration model would have been copied
+# to the cloud and the changes are made to the cloud model through
+# authorized cloud administrator users (operators) and those changes are
+# later also committed in to the production in home network. There is no
+# magic here, plain configuration change, just this time externally
+# initiated.
 
 Now, let's think what happens, when the cloud operator (or owner of
 home network) tries to modify attributes, which give access to a new actor,
