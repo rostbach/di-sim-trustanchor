@@ -4514,9 +4514,10 @@ in bootstrapping.
 # There is also discussion about using manufacturer provided device certificates as trust anchor.  
 AA network, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
-Behringer continues, that   end devices could first try to get AuthN ticket,
-which does not include yet the AuthZ.
-# 
+# Behringer continues, that   end devices could
+There, the end devices  first try to get AuthN ticket, which 
+does not include yet the AuthZ.
+ 
 # AA,  where they would get a ticket from a successful AuthN,
 # but that
 # also benefit from
