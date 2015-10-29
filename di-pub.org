@@ -550,7 +550,8 @@ the key distribution problem. Public and privat keys solve the key exchange part
 only partially, because the trust still must be found somewhere.
 The above mentioned cloud solution for delegated home network
 management currently has preliminary authentication and access model
-using pre-defined credentials and SSH-connection from the local
+using pre-defined credentials for accessing the local network in general and other
+credentials for secure SSH-connection from the local
 controller device to configuration
 targets\cite[Chap.4]{silverajan2015collaborative}.
 # while the communication between the cloud and the local controller
