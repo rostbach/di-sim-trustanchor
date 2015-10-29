@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 15:10
+% Created 2015-10-29 to 15:17
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1489,7 +1489,11 @@ coming from authorized  network.
 In second scenario (Figure\ref{fig:scenario-II}), AuthN is asked from MNO but
 AuthZ is checked from local database. Local data comes from data model
 i.e. from configuration data and will be saved in CPE, or some other
-place within home network.
+place within home network. Benefit of local roles is that
+administrative users can be held at local base. Even, if some intruder
+would get positive AuthN result, the AuthZ still would deny him the access.
+When we think, that local role cache only involves few numbers, this
+is tolerable administrative burden.
 
 
 \begin{figure}[htb]
