@@ -1843,7 +1843,7 @@ It is not defined here, if the segmentation is made
 physical or virtual (VLAN, Virtual LAN). 
 There is also a segment for devices management. 
 An analogy to the real world would be public access corridors and doors for
-customers that are separate from privileged doors for service personnel.
+customers, that are separate from privileged corridors and doors for service personnel.
 
 
 Routers control access to the segments with aid of 
