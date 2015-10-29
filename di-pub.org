@@ -3421,34 +3421,24 @@ TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi
 
 #+begin_src ditaa :file imsi-tmsi.png :cmdline -E -r -s 2
 
-    Smartphone       AP    Authentication server
-         |           |       |
-         | IMSI      |       |
-         +---------->| IMSI  |
-         |           +------>|
-         |           |       |
-         |           | TMSI  |
-         |  TMSI     |<------+
-         |<----------+       |
-         |           |
-+--------+-----+     |
-|  Change TMSI?|     |
-+--------+-----+     |
-         |           |
-         +---------->|
-         |           |
-         |   new TMSI|
-         |<----------+
-         |           |
-         |           |
-+--------+-----+     |
-|  Change TMSI?|     |
-+--------+-----+     |
-         |           |           
-         +---------->|
-         |  new TMSI |
-         |<----------+
-         |           |
+    Smartphone                    AP    Authentication server
+         |                         |       |
+         | IMSI                    |       |
+         +------------------------>+ IMSI  |
+         |                         +------>|
+         |                         |       |
+         |                         | TMSI  |
+         |  TMSI                   |<------+
+         |<------------------------+   
+         |                         | 
+   +-----------+                   |
+   +---------+ |AuthReq(TMSI)      |
++->+ re auth?| +------------------>+
+|  +---------+ |                   |
+|  |           |AuthNResp(new TMSI)|
+|  |           +<------------------+
+|  +--+--------+
++-----^  
     
 #+end_src
 #+CAPTION: Changing TMSI without MNO or Authentication server
@@ -4341,7 +4331,7 @@ planned.
 # un-documented,
 There was no indication of SIM method present in captures, the only
 indication of security was a message ``Open System'' in application
-logs, which means that no pre-shared key is used.
+logs, which only means that no pre-shared key is used.
 # Olisiko Open ollutkin 802.11 Open System ilmoitus?
 
 # TODO figure xxx
