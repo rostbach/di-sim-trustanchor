@@ -595,9 +595,9 @@ before delegation in the cloud can happen.
 
 
 
-The goal is to make the smart phone a central, trusted controlling 
-point for managing purposes, while the normal access between the
-Internet and home network stays unchanged. 
+The goal presented in Figure[[fig:intro-goal]] is to make the smart phone a central, trusted controlling 
+point for managing purposes. The normal access between the
+Internet and home network should stay unchanged. 
 The human aspect and usability are also important, but the focus will
 still be on authentication and authorization part of the home net
 management with smartphone as a trust anchor.  The proposed model
@@ -609,9 +609,9 @@ studied.
 #+begin_src ditaa :file intro-goal.png :cmdline -E -r -s 2
 
 Now: 
- +----------------+                           
- |Local Controller|     No trust    +------------+
- |  (smartphone)  +<---------=----->+Home Network|
+
+ +----------------+     No trust    +------------+
+ |   Smartphone   +<---------=----->+Home Network|
  +----------------+                 +------------+
 
 
@@ -619,7 +619,7 @@ Now:
 Goal:
  +----------------+                           
  |Local Controller|   Mutual trust  +------------+
- |(smartphone)    +<--------------->+Home Network|  
+ |  (Smartphone)  +<--------------->+Home Network|  
  +----------------+                 +------------+            
 
 #+end_src

@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 09:51
+% Created 2015-10-29 to 11:28
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -313,18 +313,19 @@ Teemu Teekkari
 
 \begin{description}
 \item[{802.1X}] port based access control standard
-\item[{Access point}] Wi-Fi client connects access point (AP) on 802.11
-layer. AP knows EAP client and encapsulates EAP-message
-to RADIUS-message and forwards that to
-Authenticator.
+\item[{Access point}] Connects Wi-Fi clients to wired network on. Used
+here to encapsulate EAP messages to RADIUS and
+forward them to Authentication server
 \end{description}
 \begin{description}
+\item[{Authentication server}] Server checking identity claims, for
+example RADIUS server.
 \item[{Authenticator}] local entity, who makes authentication (and
 authorization) decision for client based on local and remote
 claims, part of 802.1X standard.
 \end{description}
 \begin{description}
-\item[{mobile-operator}] MNO, knows connection between SIM-owner and SIM
+\item[{mobile operator}] MNO, Mobile network operator, knows connection between SIM-owner and SIM
 \end{description}
 \begin{description}
 \item[{proxying RADIUS}] RADIUS server standing between RADIUS
@@ -456,29 +457,11 @@ controller and the home network as the controller lies at the edge of the
 home network.
 
 
+
 Any encryption between devices needs trusted key exchange beforehand,
 and finding and establishing trust is needed for that.  That is called
 the key distribution problem. Public and privat keys solve the key exchange part, but
 only partially, because the trust still must be found somewhere.
-The above mentioned cloud solution for delegated home network
-management currently has preliminary authentication and access model
-using pre-defined credentials and SSH-connection from the local
-controller device to configuration
-targets\cite[Chap.4]{silverajan2015collaborative}.
-That does not yet handle the bootstrap of the infrastructure, 
-i.e., the first trust is taken as given. 
-
-The smartphone with its Subscriber Identity Module (later SIM) and an
-existing key infrastructure to the mobile
-network operator (MNO) would later eliminate the requirement for an
-additional credential distribution. That issue is studied in this
-thesis.  Although the smartphone provides alternative authentication
-method with its SIM key, usual methods to authenticate still are plain
-username-password combinations.  Those security issues must be solved
-before delegation in the cloud can happen.
-
-
-
 The trust can be derived from the facts that already are known.  
 The ultimate trust can be achieved by verifying the trust chains 
 until the chain reaches a trust anchor.
@@ -491,15 +474,38 @@ which then would function as a trust anchor.
 
 
 
+The above mentioned cloud solution for delegated home network
+management currently has preliminary authentication and access model
+using pre-defined credentials for accessing the local network in general and other
+credentials for secure SSH-connection from the local
+controller device to configuration
+targets\cite[Chap.4]{silverajan2015collaborative}.
+That does not yet handle the bootstrap of the infrastructure, 
+i.e., the first trust is taken as given. 
+
+The smartphone with its SIM and an
+existing key infrastructure to the mobile
+network operator (MNO) would later eliminate the requirement for an
+additional credential distribution. That issue is studied in this
+thesis.  Although the smartphone provides an alternative authentication
+method with its SIM key, usual methods to authenticate still are plain
+username-password combinations.  This security issue must be solved
+before delegation in the cloud can happen.
 
 
 
 
 
-The goal is to make the smart phone a central, trusted controlling 
-point for managing purposes, while the normal access between the
-Internet and home network stays unchanged.
-The human aspect and usability are important, but the focus will
+
+
+
+
+
+
+The goal presented in Figure\ref{fig:intro-goal} is to make the smart phone a central, trusted controlling 
+point for managing purposes. The normal access between the
+Internet and home network should stay unchanged. 
+The human aspect and usability are also important, but the focus will
 still be on authentication and authorization part of the home net
 management with smartphone as a trust anchor.  The proposed model
 should nevertheless require less effort than the currently used methods
@@ -507,6 +513,11 @@ on distributing user credentials, finding the right place for them to be
 inserted, and ensuring that they are written correctly.
 Besides those, problems such as limited connectivity are
 studied.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{intro-goal.png}
+\caption{\label{fig:intro-goal}Goal}
+\end{figure}
 
 
 
@@ -834,7 +845,9 @@ the network  used is IP network instead of cellular phone network.
 
 In many parts, SIM variants of EAP are simpler than other EAP
 variants to mobile client.  Table\ref{table-peapsim} compares the setup of Wi-Fi
-in clients of one existing organization to EAP-SIM. It
+in clients of one existing organization to EAP-SIM. The example 
+is taken from setting up Nokia Communicator model E90, but in general,
+same options are also needed for other clients, also with laptops. It
 is noteworthy, that plain EAP-SIM will not support identity hiding and
 that will be later discussed further. If we added PEAP
 also to EAP-SIM (in last column of Table\ref{table-peapsim}), comparison would be more fair.
