@@ -1949,7 +1949,7 @@ The Authenticator has opened a port to the smartphone for
 access. It specifically has opened an access to the management network for
 the configuration changes. 
 The Local RADIUS (if existing) and AP have trail of a successful
-authentication and know which IMSI has successfully authenticated in
+authentication and they know which IMSI has successfully authenticated in
 the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
 
