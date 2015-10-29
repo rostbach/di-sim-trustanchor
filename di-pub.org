@@ -4591,12 +4591,12 @@ needs shared keys, and EAP-SIM helps in providing those.
 # from console to central management
 
 
-*** this has been said already TB removed.
+# *** this has been said already TB removed.
 
 
-In our work, the Authentication server can be an external
-RADIUS server, but usually the final decision point lies at the
-Authenticator in CPE. 
+# In our work, the Authentication server can be an external
+# RADIUS server, but usually the final decision point lies at the
+# Authenticator in CPE. 
 
 
 
