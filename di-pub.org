@@ -712,7 +712,7 @@ available for authenticated entity.
 
 Before we introduce SIM-based authentication used throughout the
 thesis, protocols 802.1X, WPA2, EAP and RADIUS are described in the
-following Sections. [sections?]. Last, we expand the term /trust/.
+following sections. Last, we expand the term /trust/.
 
 ** 802.1X
 
@@ -3433,7 +3433,7 @@ TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi
 
 #+begin_src ditaa :file imsi-tmsi.png :cmdline -E -r -s 2
 
-    Smartphone                      AP   Authentication server
+     Smartphone                    AP   Authentication server
          |                          |        |
          | IMSI                     |        |
          +------------------------->|  IMSI  |
@@ -3450,7 +3450,11 @@ TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi
 |  |           |AuthNResp(new TMSI) |
 |  |           +<-------------------+
 |  +-----+-----+
-|        |TMSI=new TMSI
+|        |
+|  +-----+--------+
+|  |TMSI<-new TMSI|
+|  +-----+--------+
+|        |
 +--------+
 #+end_src
 #+CAPTION: Changing TMSI without MNO or Authentication server
