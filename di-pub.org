@@ -2616,9 +2616,6 @@ Other solution would be for AP to listen for a command from an external
 AuthZ server, where similar timer would trigger a notification event. 
 That also needed modifications;  a listening process to the AP and 
 the timer into the AuthZ server. 
-If GBA architecture was chosen, then the smartphone would hold a 
-token with a validity time and has to present that when accessing
-services, here the management network. 
 # If, on the other hand, the smartphone must send the changes itself, then it
 # would be possible that the access in to the management network has short
 # period of time, when phone holds that status or acceptance token. For
@@ -4548,6 +4545,11 @@ server again for ticket, but this time for the service by presenting
 the authentication ticket. In return it receives a service ticket which
 it can present to the wanted service, who verifies the access based
 on the ticket. 
+
+If GBA architecture was chosen, then the smartphone would hold a 
+token with a validity time and had to present that when accessing
+services, here the management network. 
+
 
 As can be seen, no public key infrastructure (PKI) is used before setup
 phase is ready.
