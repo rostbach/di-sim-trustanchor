@@ -2275,11 +2275,10 @@ but Full authentication would not work here then because of missing MNO.
 #+RESULTS:
 [[file:scenIV.png]]
 
-[repeat the same, To be combined]
-The local CPE may cache AuthZ information. It also 
-saves the session information and next possible TMSI values. 
-# They are needed, if the smart phone makes a re-authentication 
-# message with it 
+# [repeat the same, To be combined]
+# The local CPE may cache AuthZ information. It also 
+# saves the session information and next possible TMSI values. 
+
 
 
 
