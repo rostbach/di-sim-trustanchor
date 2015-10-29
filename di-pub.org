@@ -2259,11 +2259,11 @@ but Full authentication would not work here because of missing MNO.
  +---=---+      +--------=----------+
 
                       
-  +-----+         +--------------------+
-  |phone|<--AA--->+       +------------+
-  |IMSI |  TMSI   |CPE(AP)|role mapping|
-  +-----+         |       |{s}TMSI-IMSI|
-                  +-------+------------+
+  +-----+         +---------------------+
+  |phone|<--AA--->+        +------------+
+  |IMSI |  TMSI   |CPE(AP) |role mapping|
+  +-----+         |        |{s}TMSI/IMSI|
+                  +--------+------------+
 #+end_src
 #+CAPTION: Scenario IV, offline AA 
 #+NAME:   fig:scenario-IV
