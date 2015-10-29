@@ -1978,7 +1978,7 @@ we are considering offline or recurring AuthN.
 # The Authenticator or 
 The AuthZ may be placed more freely. It can be at
 home, at an external provider, or at MNO.
-Authenticator on the other hand must lie at home, and it always 
+Authenticator on the other hand must stay at home, and it always 
 gives the final decision about the access.
 
 If the AuthZ decision is made on remote, 3rd party AuthZ server, 
