@@ -2462,7 +2462,7 @@ users network.
 |smartphone+<-------->+ ''lock| |  +----------+ |
 |   or     |          | and   | |  |management| |
 | general  |  after   | key'' | |  |          | |
-| terminal +---=------+ router+-=->+ network | |
+| terminal +---=------+ router+-=->+ network  | |
 +----------+  login   |       | |  |          | |
                       +-------+ |  +----------+ |
                                 +---------------+
