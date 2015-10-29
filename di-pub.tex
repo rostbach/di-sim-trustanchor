@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 15:32
+% Created 2015-10-29 to 15:39
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1815,39 +1815,23 @@ possible non-Wi-Fi data link still may stay up and operational.
 \section{Summary of the chosen solution}
 \label{sec-4-6}
 
-[wrap up of solution]
 
 The chosen solution to benefit from SIM is via EAP-profiles, as EAP
 is well known when using WPA2-Enterprise protection in Wi-Fi.
-
-Design is [move from above]\ldots{}
+Design is based on 802.1X and mobile network operator aided
+authentication
 and it is a variation of lock-and-key design.
 
-Above it was mentioned, that the local controller delivers changes to each
-device. 
-On this work, it is first assumed that the local controller (smart
-phone) only \emph{approves} changes,
-and delivers them to \emph{one, central CPE}, 
-which handles distribution of changes to other CPEs. The distribution
-is not further described. 
-Later, the Authenticator is both the AP and
-RADIUS client (in scenarios I-V), which receives RADIUS messages from
+In this chapter it was mentioned, that the local controller delivers changes to each
+device.  It is assumed, that  the local controller (smart phone)
+delivers all changes to target devices.
+The distribution is not further described here, because that is an
+existing model.
+The AP functions both as the Authenticator and RADIUS client in
+scenarios I-IV.
+Authenticator receives RADIUS messages from
 Authentication server, even when there would be a separate local RADIUS server
 running as a proxy.
-Lastly, a variation of the design is, that not every change needs to go
- through  the local controller and so the process does not always need
-interaction from the user. For example, if 3rd party has been given 
-a right to switch on and off its sensor network, it would not be 
-necessary for the home owner to accept those changes every time they occur.
-
-
-
-Critical changes are those, where network topology changes so much,
-that different players would get access outside their earlier domains.
-Different players include external service providers, users at home,
-visitors, and also home network owner. Examples of the previous cases can first be
-seen on the division of home network to guest and private network and
-extensions for homeworkers instead of office.
 
 
 
