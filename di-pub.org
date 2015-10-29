@@ -1933,20 +1933,21 @@ default network, i.e., it just gives basic access. As for other
 provisioning parameters, not all end devices support them.
 
 In the first prototype it is enough to identify an authorized
-smartphone's SIM.  Smartphone holding the SIM is granted the access to
+smartphone's SIM.  The smartphone holding the SIM is granted the access to
 the parts of the management network and it is authenticated strong.  User
 management is outsourced to MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
-located on diverse place, as can be seen in Section [[#sec:scenarios]].
+located on diverse places, as can be seen in Section [[#sec:scenarios]].
 # ### 
 
 # explain provisioning? 20150702
 
-After authentication and authorization has succeeded, session key
-creation occurs (WPA2 session) between AP and the smartphone. 
-The Authenticator has opened port to the smartphone for
-configuration changes. 
+After authentication and authorization have succeeded, WPA2 session key
+creation occurs between AP and the smartphone. 
+The Authenticator has opened a port to the smartphone for
+access. It specifically has opened an access to the management network for
+the configuration changes. 
 The Local RADIUS (if existing) and AP have trail of a successful
 authentication and know which IMSI has successfully authenticated in
 the home net. They also know the mapping between IMSI and temporal TMSI for
