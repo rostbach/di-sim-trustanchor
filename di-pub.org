@@ -623,7 +623,7 @@ Goal:
  +----------------+                 +------------+            
 
 #+end_src
-#+CAPTION: Goal
+#+CAPTION: Goal of thesis
 #+NAME:   fig:intro-goal
 #+RESULTS:
 [[file:intro-goal.png]]
