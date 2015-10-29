@@ -2249,7 +2249,7 @@ If internet connection is down, local AA is still possible.
 Full authentication uses IMSI, which is the identity of the phone's
 SIM.  Fast re-authentication on the other hand would 
 # Light than full, fast re-authentication would
-use temporal identity TMSI, is lighter in operation than full
+use temporal identity TMSI, which is lighter in operation than full
 authentication, and is shown in Figure[[fig:scenario-IV]]. TMSI can
 change each time the AuthN request had been sent. Mapping of TMSI is
 cached on the Authenticator and the round-trip and handling at HLR can
