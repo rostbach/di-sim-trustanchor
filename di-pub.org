@@ -1867,11 +1867,11 @@ full AuthN and AuthZ but may suffice here, at first.
 # by other means. Breaking one router would otherwise let open access to 
 # every other router. But is that not then circular reasoning? 
 
-Example of a complex solution would be a traditional firewall and packet
-inspection in the interconnects, but very modern model
-is the de-perimeterization trend set originally by Open Group's
+An example of a complex solution would be a traditional firewall and packet
+inspection in the interconnects, but modern model
+would be a de-perimeterization trend set originally by Open Group's
 Jericho Work Group in 2004, that won't leave trust verification to
-perimeters of network (firewalls and application proxies) but 
+perimeters of network (firewalls and application proxies), but 
 always handles traffic as coming from untrusted source.\cite{jericho2004}
 One implementation of de-perimeterization is 
 Google's BeyondCorp\cite{2014-beyondcorp}, 
@@ -1888,9 +1888,9 @@ inside networks.
 
 
 # GOOD   trust bind
-When home network needs secure binding to the smartphone, earlier
+When the home network needs a secure binding to the smartphone, earlier
 mentioned trust is the first one needed.  The trust is achieved by
-checking whether the smartphone can access home management
+checking whether the smartphone can access the home management
 network using only its trusted SIM-card, which provides AuthN. AuthZ in
 turn is compared to existing roles of IMSI in the Authenticator.
 
