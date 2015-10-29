@@ -4446,7 +4446,7 @@ admin IMSIs (roles).
                  +-------+---------+
 
 #+end_src
-#+CAPTION: Future, direct connected CPE to the Cloud. AuthN from MNO
+#+CAPTION: Future, direct to Cloud connected CPE. AuthN comes from MNO
 #+NAME:   fig:scenario-VI
 #+RESULTS:
 [[file:scenVI.png]]
@@ -4547,16 +4547,17 @@ the authentication ticket. In return it receives a service ticket which
 it can present to the wanted service, who verifies the access based
 on the ticket. 
 
-If GBA architecture was chosen, then the smartphone would hold a 
-token with a validity time and had to present that when accessing
-services, here the management network. 
+# If GBA architecture was chosen, then . 
 
 
-As can be seen, no public key infrastructure (PKI) is used before setup
-phase is ready.
-If EAP-SIM was applied in such environment, it would be used only
-once, namely in the bootstrapping phase to setup the CA trust
-anchor. Only after that, can the CA start delivering PKI. Kerberos
+As can be seen, no public key infrastructure (PKI) is used before
+setup phase is ready.  If EAP-SIM was applied in such environment, it
+would be used only once, namely in the bootstrapping phase to setup
+the CA trust anchor.  The smartphone would hold a token with a
+validity time and had to present that when accessing services, here
+the management network
+
+Only after that, can the CA start delivering PKI. Kerberos
 needs shared keys, and EAP-SIM helps in providing those.
 
 
