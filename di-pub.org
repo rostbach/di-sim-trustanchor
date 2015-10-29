@@ -2513,10 +2513,10 @@ router.
 # management  network segment. Further, 
 
 
-[This belongs to multiple SSID section]
+# [This belongs to multiple SSID section]
 
 If Lock-and-key method was used instead of EAP-SIM RADIUS, then
-separate manage\-ment LAN would not be needed. Roles were given at
+separate manage\-ment SSID would not be needed. Roles were given at
 Authentication server or designated router after the smartphone has done login to it
 via normal access network.
 
