@@ -1870,8 +1870,8 @@ full AuthN and AuthZ but may suffice here, at first.
 # by other means. Breaking one router would otherwise let open access to 
 # every other router. But is that not then circular reasoning? 
 
-An example of a complex solution would be a traditional firewall and packet
-inspection in the interconnects, but modern model
+An example of a deeper access controlling  solution would be a traditional firewall and packet
+inspection in the interconnects, but even more complex and modern model
 would be a de-perimeterization trend set originally by Open Group's
 Jericho Work Group in 2004, that won't leave trust verification to
 perimeters of network (firewalls and application proxies), but 
