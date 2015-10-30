@@ -1883,10 +1883,10 @@ inside networks.
 # [Tell in early phase, what solution has been chosen. Choose the one that was in abstract].  
 
 On chosen model, on the other hand, once a user has been authorized into a management network, access
-stays open for him, at least for a (predefined) limited time.
+will stay open for him, at least for a (predefined) limited time.
 So, instead of checking user's credentials each time data is received,
 this model only checks, from where data is received. 
-Data received from the management network is granted for changes.
+Data received from the management network is allowed for changes.
 It is arguable a lighter method than to always make 
 full AuthN and AuthZ but may suffice here, at first.
 
