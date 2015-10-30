@@ -1872,7 +1872,7 @@ full AuthN and AuthZ but may suffice here, at first.
 
 An example of a deeper access controlling  solution would be a traditional firewall and packet
 inspection in the interconnects, but even more complex and modern model
-would be a de-perimeterization trend set originally by Open Group's
+would be the de-perimeterization trend set originally by Open Group's
 Jericho Work Group in 2004, that won't leave trust verification to
 perimeters of network (firewalls and application proxies), but 
 always handles traffic as coming from untrusted source.\cite{jericho2004}
