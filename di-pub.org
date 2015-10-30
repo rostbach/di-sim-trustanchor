@@ -739,9 +739,11 @@ It is easy to mix here terms /Authenticator/ and /Authentication
 server/, but their roles are different: Authenticator works as a
 gate-keeper to ports between supplicant and network, while
 Authentication server handles the AA processes.
-At home, Authenticator usually lies inside the access point, but 
+At home, Authenticator usually lies inside the access point (AP),
+which functions also as a router, but 
 on large enterprise networks, Authenticator may be a centralized unit 
-and multiple access points function only as radio stations.
+and multiple access points function only as radio stations without
+routing or authenticator properties.
 
 
 
