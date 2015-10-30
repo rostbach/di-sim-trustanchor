@@ -1763,7 +1763,7 @@ AP in the home network and authenticates with SIM-card.
 # AP functions here as an Authenticator. 
 The resulting authorized connection brings a trust relationship
 between the smartphone (a local controller)
-and the home network (managed devices) so that the 
+and the home network (managed devices) anchoring the trust to the smartphone so that the 
 # configuration changes
 management can happen. 
 #  as long as the smartphone is present. 
@@ -1950,7 +1950,7 @@ creation occurs between AP and the smartphone.
 The Authenticator has opened a port to the smartphone for
 access. It specifically has opened an access to the management network for
 the configuration changes. 
-The Local RADIUS (if existing) and AP have trail of a successful
+The local RADIUS (if existing) and AP have trail of a successful
 authentication and they know which IMSI has successfully authenticated in
 the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
@@ -2654,7 +2654,7 @@ because we know that there already exists a configuration framework in the cloud
 Now, let's think what happens, when the cloud operator (or owner of
 home network) tries to modify attributes, which give access to a new actor,
 such as a new operator, who would want to have access to separate
-segments of home network.  First we need to have that segment separation
+segments of home network.  First, we need to have that segment separation
 change approved and after that we want to allow the newcomer account
 to have access to that segment and only to that. For the first part,
 which is normal operation, approving would perhaps yet not be
