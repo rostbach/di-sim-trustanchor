@@ -1929,8 +1929,10 @@ That way (3rd party) Authentication server can decide which network
 segment the device would be put in.  In our case, admin users are put in
 to the management network.  Yet, usually RADIUS's ACCESS-ACCEPT message,
 which means AuthN and AuthZ were successful,  puts the user in
-default network, i.e., it just gives basic access. As for other
-provisioning parameters, not all end devices support them.
+default network, i.e., it just gives basic access, because 
+# As for other
+# provisioning parameters, 
+not all end devices support those provisioning parameters.
 
 In the first prototype it is enough to identify an authorized
 smartphone's SIM.  The smartphone holding the authorized SIM is granted access to
