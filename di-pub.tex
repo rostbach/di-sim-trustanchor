@@ -1,4 +1,4 @@
-% Created 2015-10-29 to 16:30
+% Created 2015-10-30 pe 11:00
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,14 +47,14 @@
 \title{Smartphone as a trust anchor for delegated home net configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-29.10.2015 Master of Science thesis}
+\thesistype{draft-30.10a.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{29.10.2015 \{12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{30.10a.2015 \{12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -566,7 +566,7 @@ available for authenticated entity.
 
 Before we introduce SIM-based authentication used throughout the
 thesis, protocols 802.1X, WPA2, EAP and RADIUS are described in the
-following Sections. [sections?]. Last, we expand the term \emph{trust}.
+following sections. Last, we expand the term \emph{trust}.
 
 \section{802.1X}
 \label{sec-2-1}
@@ -1258,7 +1258,7 @@ On its simplest, the smartphone connects with a Wi-Fi link to an
 AP in the home network and authenticates with SIM-card.
 The resulting authorized connection brings a trust relationship
 between the smartphone (a local controller)
-and the home network (managed devices) so that the 
+and the home network (managed devices) anchoring the trust to the smartphone so that the 
 management can happen. 
 In essence, the precence of the smartphone at home
 opens the gate for the management, though it needs a little
@@ -1289,35 +1289,30 @@ beginning as can be seen from Figure\ref{fig:trustbegin}.
 
 Network can be divided into separate segments based on user's role and
 needs, such as guest or home members segment. The segments provide
-base connectivity layer and simple separation. Different
-services, like disk storage, can force their own policy on application
-level.
-It is not defined here, if the segmentation is made 
-physical or virtual (VLAN, Virtual LAN). 
-There is also a segment for devices management. 
-An analogy to the real world would be public access corridors and doors for
-customers that are separate from privileged doors for service personnel.
+base connectivity layer and simple separation. Different services,
+like disk storage, can force their own policy on application level.
+It is not defined here, if the segmentation is made physical or
+virtual (VLAN, Virtual LAN).  There is also a segment for devices
+management.  An analogy to the real world would be a hotel, where
+customers use public access corridors and doors, and service personnel
+privileged corridors and doors.
 
 
-Routers control access to the segments with aid of 
-access control lists (ACL), where decision is made based on current configuration or user's
-role.  Once user has been authorized into management network, access
-stays open for him, at least for a (predefined) limited time.
-
-So, instead of checking user's credentials each time data is received,
-this model only checks, from where data is received. 
-Data received from the management network is granted for changes.
-It is arguable a lighter method than always
-fully AuthN and AuthZ but may suffice here, at first.
+Router devices know, how to connect different segments and how the
+path goes from segment A to segment B. Normally, they can also control
+access to the segments with aid of access control lists (ACL), where
+decision is made based on current configuration or user's role.
+Decision can happen at the border of network or specific segment
 
 
 
-Example of a complex solution would be a traditional firewall and packet
-inspection in the interconnects, but very modern model
-is the de-perimeterization trend set originally by Open Group's
-Jericho Work Group in 2004, that won't leave trust verification to
-perimeters of network (firewalls and application proxies) but 
-always handles traffic as coming from untrusted source.\cite{jericho2004}
+
+An example of a deeper access controlling  solution would be a traditional firewall and packet
+inspection in the interconnects of segments, but even more complex and modern model
+would be the de-perimeterization trend set originally by Open Group's
+Jericho Work Group\cite{jericho2004} in 2004, that will not leave trust verification to
+perimeters of network (firewalls and application proxies), but 
+always handles traffic as coming from untrusted source.
 One implementation of de-perimeterization is 
 Google's BeyondCorp\cite{2014-beyondcorp}, 
 where traffic always travels through Access Control Engine
@@ -1326,11 +1321,19 @@ inside networks.
 
 
 
+On our chosen model, on the other hand, once a user has been authorized into a management network, access
+will stay open for him, at least for a (predefined) limited time.
+So, instead of checking user's credentials each time data is received,
+this model only checks, from where data is received. 
+Data received from the management network is allowed for changes.
+It is arguable a lighter method than to always make 
+full AuthN and AuthZ but may suffice here, at first.
 
-When home network needs secure binding to the smartphone, earlier
+
+When the home network needs a secure binding to the smartphone, earlier
 mentioned trust is the first one needed.  The trust is achieved by
-checking whether the smartphone can access home management
-network using only its trusted SIM-card, which provides AuthN. AuthZ in
+checking, whether the smartphone can access the home management
+network using only its trusted SIM-card providing AuthN. AuthZ in
 turn is compared to existing roles of IMSI in the Authenticator.
 
 
@@ -1340,7 +1343,7 @@ When AP forwards authentication request to the next RADIUS server, it
 can ask or receive, beside AuthN and AuthZ, other service parameters,
 such as provisioning. RADIUS can carry those extra attributes in its
 ACCESS-ACCEPT message.  In essence, AuthZ part itself can be thought
-as one type of service provisioning.  That would then allow the
+as a one type of service provisioning.  That would then allow the
 smartphone to connect to a specific management network and access the
 devices either via command line interfaces, SNMP, or
 similar\cite[p.4]{rfc5608}.
@@ -1351,27 +1354,28 @@ attributes that can be used in provisioning in homogeneous environment.
 
 
 That way (3rd party) Authentication server can decide which network
-segment the device would be put.  In our case, admin users are put in
-to the management network.  Yet, usually RADIUS ACCESS-ACCEPT message,
+segment the device would be put in.  In our case, admin users are put in
+to the management network.  Yet, usually RADIUS's ACCESS-ACCEPT message,
 which means AuthN and AuthZ were successful,  puts the user in
-default network, i.e., just gives it basic access. As for other
-provisioning parameters, not all end devices support them.
+default network, i.e., it just gives basic access, because 
+not all end devices support those provisioning parameters.
 
 In the first prototype it is enough to identify an authorized
-smartphone's SIM.  Smartphone holding the SIM is granted the access to
+smartphone's SIM.  The smartphone holding the authorized SIM is granted access to
 the parts of the management network and it is authenticated strong.  User
 management is outsourced to MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
-located on diverse place, as can be seen in Section \ref{sec-4-2}.
+located on diverse places, as can be seen in Section \ref{sec-4-2}.
 
 
-After authentication and authorization has succeeded, session key
-creation occurs (WPA2 session) between AP and the smartphone. 
-The Authenticator has opened port to the smartphone for
-configuration changes. 
-The Local RADIUS (if existing) and AP have trail of a successful
-authentication and know which IMSI has successfully authenticated in
+After authentication and authorization have succeeded, WPA2 session key
+creation occurs between AP and the smartphone. 
+The Authenticator has opened a port to the smartphone for
+access. It specifically has opened an access to the management network for
+the configuration changes. 
+The local RADIUS (if existing) and AP have trail of a successful
+authentication and they know which IMSI has successfully authenticated in
 the home net. They also know the mapping between IMSI and temporal TMSI for
 cases when the smartphone later would need re-authentication.
 
@@ -1416,11 +1420,11 @@ of RADIUS is either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
 
 [Put the table maybe after the scenarios?]
 
-Table\ref{table-scenarios} represents the locations for Authenticator (AA),
-AuthN, and AuthZ in five scenarios. The locations are marked as (i)
-for internal or (e) for external in the table and the scenarios are
-described after that in detail. Authenticator is the entity which
-gives the final decision about access regardless of location of AA
+Table\ref{table-scenarios} represents the non-inclusive list of locations of
+AuthN and AuthZ in five scenarios. The locations in the table are marked as (i)
+for internal or (e) for external and the scenarios are
+described in detail after the table. Authenticator is the entity which
+gives the final decision about access regardless of the location of AA
 and it is always internal, located at home network.
 
 \begin{table}[htb]
@@ -1538,7 +1542,7 @@ there should be no problem.
 If internet connection is down, local AA is still possible.
 Full authentication uses IMSI, which is the identity of the phone's
 SIM.  Fast re-authentication on the other hand would 
-use temporal identity TMSI, is lighter in operation than full
+use temporal identity TMSI, which is lighter in operation than full
 authentication, and is shown in Figure\ref{fig:scenario-IV}. TMSI can
 change each time the AuthN request had been sent. Mapping of TMSI is
 cached on the Authenticator and the round-trip and handling at HLR can
@@ -1780,7 +1784,7 @@ because we know that there already exists a configuration framework in the cloud
 Now, let's think what happens, when the cloud operator (or owner of
 home network) tries to modify attributes, which give access to a new actor,
 such as a new operator, who would want to have access to separate
-segments of home network.  First we need to have that segment separation
+segments of home network.  First, we need to have that segment separation
 change approved and after that we want to allow the newcomer account
 to have access to that segment and only to that. For the first part,
 which is normal operation, approving would perhaps yet not be
@@ -3023,14 +3027,15 @@ draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in g
 in bootstrapping. 
 
 
-Behringer continues, that this model could be expanded to a full ticket enabled Kerberos style
+Behringer continues, that this model could be expanded to a full
+ticket enabled 
 AA network, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
 There, the end devices  first try to get AuthN ticket, which 
 does not include yet the AuthZ.
 With that ticket, the device may later apply for AuthZ ticket, which
 opens the ports to change management service from CPE.
-That is very similar to Kerberos, which is based on
+That is very similar to Kerberos AA, which is based on
 Needham-Schroeder protocol.
 Another bootstrapping architecture is 
 defined in GBA (General Bootstrapping Architecture), which 
