@@ -1845,10 +1845,14 @@ customers use public access corridors and doors, and service personnel
 privileged corridors and doors.
 
 
-Routers control access to the segments with aid of 
+Routers know, how to connect different segments and how the path from 
+segment A to segment B. Normally, they can control access to the segments with aid of 
 # Access to the network segments is checked in routers with
 access control lists (ACL), where decision is made based on current configuration or user's
-role.  Once user has been authorized into a management network, access
+role.  Decision can happen at the border of  network or specific
+segment 
+
+Once user has been authorized into a management network, access
 stays open for him, at least for a (predefined) limited time.
 
 So, instead of checking user's credentials each time data is received,
