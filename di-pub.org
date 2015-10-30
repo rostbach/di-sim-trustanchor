@@ -2799,7 +2799,7 @@ software library
 and right compilation time configuration set on its WPA-supplicant for SIM.
 
 Jouni Malinen's software package /HostAP/\cite{hostapd} provides
-components for WPA2-Supplicant, Wireless Access point (AP),
+components for WPA2\-Supplicant, Wireless Access point (AP),
 HLR-gateway (for GSM networks), and EAP-endpoint with or without
 RADIUS-server. From those, wpa-supplicant, hostapd for wired RADIUS
 server, and hlr_auc_gw programs were used.  
