@@ -5,7 +5,7 @@
 # # Export ditaa silent, moved to org-custom-inittiin
 # #+org-confirm-babel-evaluate nil
 # It is possible to inhibit the evaluation of code blocks during export. Setting the org-export-babel-evaluate variable to nil will ensure that no code blocks are evaluated as part of the export process
-#+DATE: 30.10a.2015 {12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
+#+DATE: 30.10b.2015 {12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
 #+TITLE:  Smartphone as a trust anchor in home networks
 # en halua orgmoden default title sivua. Siispä tyhjä
 #+LATEX_CLASS: tutclass
@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 
 #+LATEX_HEADER: % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-#+LATEX_HEADER: \thesistype{draft-30.10a.2015 Master of Science thesis}
+#+LATEX_HEADER: \thesistype{draft-30.10b.2015 Master of Science thesis}
 #+LATEX_HEADER: \examiner{Jarmo Harju}
 #+LATEX_HEADER: \makeatletter
 #+LATEX_HEADER:\usepackage{svg}
@@ -2777,7 +2777,9 @@ tested and Cloud part set away.
 
 First it is shown how EAP-SIM authentication works in a simulated
 environment.
- Then a use case for disconnection is reported and network traces are analyzed.
+ Then a use case for disconnection is discussed, but not further
+analyzed.
+# reported and network traces are analyzed.
 # for adding an admin user is reported.
 In the end, it is shown, that the changes in the management network are possible from
 the local controller with  command line interface (CLI).
@@ -2799,7 +2801,7 @@ software library
 and right compilation time configuration set on its WPA-supplicant for SIM.
 
 Jouni Malinen's software package /HostAP/\cite{hostapd} provides
-components for WPA2\-Supplicant, Wireless Access point (AP),
+components for WPA2-Supplicant, Wireless Access point (AP),
 HLR-gateway (for GSM networks), and EAP-endpoint with or without
 RADIUS-server. From those, wpa-supplicant, hostapd for wired RADIUS
 server, and hlr_auc_gw programs were used.  
@@ -2930,36 +2932,38 @@ are in folder ~gitdocs/di/testit/~ files ~eap3.pcapng~,
 
 
 
-After some modifications, runs got to the authentication phase.
-Naturally, challenge-responses did not work because SIM secrets were
-not known. Nevertheless, both cards succeeded to the point, where MNO's
-message would had next been verified with the SIM card.
-
+# After some modifications, 
+Runs got to the authentication phase, but challenge-responses did not
+work because SIM secrets were not known at that point. Nevertheless,
+both SIM cards succeeded to the point, where MNO's message would had next been
+verified with the SIM card.
 # Show here, that 
-Unregistered SIM in phone could not use SIM card at all, while 
-phone with a registered SIM verified and noticed, that operator is not right, 
-and therefore correctly ended the conversation as it should regarding
+Both, the unregistered SIM and the registered SIM could not verify the
+operator, because it was locally simulated and they both therefore
+correctly  ended the conversation as should regarding
 RFC4186\cite{rfc4186}.
 # i.e., what is the difference btw. those. REMEMBER: you cannot packet
 # trace phone connection, only AP and RADIUS logs.
 
 #  simulated SIM and it's secrets were known. 
 At this point, physical phones were put aside and a simulated SIM-card
-environment was used.
+environment at client side was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
 with SIM/USIM protocols, respective EAP-SIM, logging 
-from hostapd software claimed that 
+from hostapd software at server side  claimed that 
 #+BEGIN_VERSE
 "Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr_auc_gw program."
 #+END_VERSE
-Appendix [[app:hlraucgw]]   shows that traffic.
+# Appendix [[app:hlraucgw]]  shows tthat traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
 # finally got AUTH-SUCCESS message from remote RADIUS.
-
+This was notification, that Hostapd succesfully had received SIM
+card's AuthN request and was going to forward that to simulated HLR
+authentication program. Now it was necessary to start building the 
+testing software.
 Tests were run from a shell program (Appendix [[app:fulleap]]), which
-started the needed programs. That also recorded used configurations, logs,
+started the needed programs. It also recorded used configurations, logs,
 and traffic captures for later analysis.
-
 # [Analyze configuration script here]
 
 
@@ -3327,7 +3331,12 @@ against malicious use anymore.
 [see. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
 
 Meanwhile, HLR simulator was listening requests from Authentication
-server's internal EAP-handler through a local socket.
+server's internal EAP-handler through a local socket. 
+Its configuration is shown in
+Appendix [[app:hlraucgw]] and there one can see the simulated Milenage parameters including SIM secrets.
+
+
+
 # #+LATEX: \scriptsize
 #  #+BEGIN_EXAMPLE
 # Listening for requests on /tmp/hlr_auc_gw.sock
@@ -4737,7 +4746,8 @@ the body text, remember this! ]
 :END: 
 # \lstset{columns=fullflexible,basicstyple=\footnotesize}
 #+BEGIN_LaTex
-\lstset{basicstyle=\ttfamily,columns=fixed}
+\lstset{basicstyle=\ttfamily,columns=fixed,breaklines=true,
+  postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}
 # % \lstinputlisting[language=bash]
 \scriptsize
 \lstinputlisting[language=bash]{./testit/apd-tty.clean}
@@ -4746,7 +4756,7 @@ the body text, remember this! ]
 
 
 
-** wpa-supplicant settings (wpa-simtest-owrt2.conf)
+** WPA2-supplicant settings 
 <<app:wpa-conf>>
 # [already in text]
 # If KEYS have been excluded from log or conf files, there will be
@@ -4757,23 +4767,23 @@ the body text, remember this! ]
 \normalsize
 #+END_LaTeX
 
-** RADIUS server conf
+** RADIUS server configuration
 <<app:radius-conf>>
 #+BEGIN_LaTeX
 \scriptsize
 \lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
 \normalsize
 #+END_LaTeX
-** hlr_auc
+** hlr_auc_gw program's Milenage file
 
 <<app:hlraucgw>>
 #+BEGIN_LaTeX
 \scriptsize
-\lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
+\lstinputlisting[language=bash]{testit/hlr_auc_gw.milenage_db.clean}
 \normalsize
 #+END_LaTeX
 
-\scriptsize
+# \scriptsize
 #+NAME: app:hlraucgw
 
 ** No sim
@@ -4786,9 +4796,9 @@ the body text, remember this! ]
 Here capture + analysis from nosim
 
 
-#+BEGIN_LaTeX
-\end{otherlanguage} % End on 2nd language part (figures)
-#+END_LaTeX
+# #+BEGIN_LaTeX
+# \end{otherlanguage} % End on 2nd language part (figures) ((WHY??))
+# #+END_LaTeX
 
 * [MISC to be added on right places]
 ** facts TBD.
