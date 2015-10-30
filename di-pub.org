@@ -1852,7 +1852,7 @@ access control lists (ACL), where decision is made based on current configuratio
 role.  Decision can happen at the border of  network or specific
 segment 
 
-Here, once user has been authorized into a management network, access
+Here, once a user has been authorized into a management network, access
 stays open for him, at least for a (predefined) limited time.
 So, instead of checking user's credentials each time data is received,
 this model only checks, from where data is received. 
