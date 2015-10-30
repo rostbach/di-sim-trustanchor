@@ -1852,13 +1852,6 @@ access control lists (ACL), where decision is made based on current configuratio
 role.  Decision can happen at the border of  network or specific
 segment 
 
-Here, once a user has been authorized into a management network, access
-stays open for him, at least for a (predefined) limited time.
-So, instead of checking user's credentials each time data is received,
-this model only checks, from where data is received. 
-Data received from the management network is granted for changes.
-It is arguable a lighter method than to always make 
-full AuthN and AuthZ but may suffice here, at first.
 
 # What have I thought here?
 # -Naturally one will first challenge the solution, if
@@ -1873,7 +1866,7 @@ full AuthN and AuthZ but may suffice here, at first.
 An example of a deeper access controlling  solution would be a traditional firewall and packet
 inspection in the interconnects, but even more complex and modern model
 would be the de-perimeterization trend set originally by Open Group's
-Jericho Work Group in 2004, that won't leave trust verification to
+Jericho Work Group in 2004, that will not leave trust verification to
 perimeters of network (firewalls and application proxies), but 
 always handles traffic as coming from untrusted source.\cite{jericho2004}
 One implementation of de-perimeterization is 
@@ -1888,6 +1881,14 @@ inside networks.
 
 # (includes trust bind, which is also described on next Chapter, Section AuthZ with trust anchor...)
 # [Tell in early phase, what solution has been chosen. Choose the one that was in abstract].  
+
+On chosen model, on the other hand, once a user has been authorized into a management network, access
+stays open for him, at least for a (predefined) limited time.
+So, instead of checking user's credentials each time data is received,
+this model only checks, from where data is received. 
+Data received from the management network is granted for changes.
+It is arguable a lighter method than to always make 
+full AuthN and AuthZ but may suffice here, at first.
 
 
 # GOOD   trust bind
