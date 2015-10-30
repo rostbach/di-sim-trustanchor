@@ -1,4 +1,4 @@
-% Created 2015-10-30 pe 11:22
+% Created 2015-10-30 pe 11:45
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -585,9 +585,11 @@ It is easy to mix here terms \emph{Authenticator} and \emph{Authentication
 server}, but their roles are different: Authenticator works as a
 gate-keeper to ports between supplicant and network, while
 Authentication server handles the AA processes.
-At home, Authenticator usually lies inside the access point, but 
+At home, Authenticator usually lies inside the access point (AP),
+which functions also as a router, but 
 on large enterprise networks, Authenticator may be a centralized unit 
-and multiple access points function only as radio stations.
+and multiple access points function only as radio stations without
+routing or authenticator properties.
 
 
 
@@ -1873,7 +1875,7 @@ software library
 and right compilation time configuration set on its WPA-supplicant for SIM.
 
 Jouni Malinen's software package \emph{HostAP}\cite{hostapd} provides
-components for WPA2-Supplicant, Wireless Access point (AP),
+components for WPA2\-Supplicant, Wireless Access point (AP),
 HLR-gateway (for GSM networks), and EAP-endpoint with or without
 RADIUS-server. From those, wpa-supplicant, hostapd for wired RADIUS
 server, and hlr\_auc\_gw programs were used.  
