@@ -1845,12 +1845,12 @@ customers use public access corridors and doors, and service personnel
 privileged corridors and doors.
 
 
-Routers know, how to connect different segments and how the path from 
-segment A to segment B. Normally, they can control access to the segments with aid of 
 # Access to the network segments is checked in routers with
-access control lists (ACL), where decision is made based on current configuration or user's
-role.  Decision can happen at the border of  network or specific
-segment 
+Router devices know, how to connect different segments and how the
+path goes from segment A to segment B. Normally, they can also control
+access to the segments with aid of access control lists (ACL), where
+decision is made based on current configuration or user's role.
+Decision can happen at the border of network or specific segment
 
 
 # What have I thought here?
@@ -1864,11 +1864,11 @@ segment
 # every other router. But is that not then circular reasoning? 
 
 An example of a deeper access controlling  solution would be a traditional firewall and packet
-inspection in the interconnects, but even more complex and modern model
+inspection in the interconnects of segments, but even more complex and modern model
 would be the de-perimeterization trend set originally by Open Group's
-Jericho Work Group in 2004, that will not leave trust verification to
+Jericho Work Group\cite{jericho2004} in 2004, that will not leave trust verification to
 perimeters of network (firewalls and application proxies), but 
-always handles traffic as coming from untrusted source.\cite{jericho2004}
+always handles traffic as coming from untrusted source.
 One implementation of de-perimeterization is 
 Google's BeyondCorp\cite{2014-beyondcorp}, 
 where traffic always travels through Access Control Engine
@@ -1882,7 +1882,7 @@ inside networks.
 # (includes trust bind, which is also described on next Chapter, Section AuthZ with trust anchor...)
 # [Tell in early phase, what solution has been chosen. Choose the one that was in abstract].  
 
-On chosen model, on the other hand, once a user has been authorized into a management network, access
+On our chosen model, on the other hand, once a user has been authorized into a management network, access
 will stay open for him, at least for a (predefined) limited time.
 So, instead of checking user's credentials each time data is received,
 this model only checks, from where data is received. 
@@ -1894,8 +1894,8 @@ full AuthN and AuthZ but may suffice here, at first.
 # GOOD   trust bind
 When the home network needs a secure binding to the smartphone, earlier
 mentioned trust is the first one needed.  The trust is achieved by
-checking whether the smartphone can access the home management
-network using only its trusted SIM-card, which provides AuthN. AuthZ in
+checking, whether the smartphone can access the home management
+network using only its trusted SIM-card providing AuthN. AuthZ in
 turn is compared to existing roles of IMSI in the Authenticator.
 
 
@@ -1914,7 +1914,7 @@ When AP forwards authentication request to the next RADIUS server, it
 can ask or receive, beside AuthN and AuthZ, other service parameters,
 such as provisioning. RADIUS can carry those extra attributes in its
 ACCESS-ACCEPT message.  In essence, AuthZ part itself can be thought
-as one type of service provisioning.  That would then allow the
+as a one type of service provisioning.  That would then allow the
 smartphone to connect to a specific management network and access the
 devices either via command line interfaces, SNMP, or
 similar\cite[p.4]{rfc5608}.
@@ -2037,12 +2037,11 @@ of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
  [Put the table maybe after the scenarios?]
 
 # This Chapter presents 5 scenarios for possible locations of AuthN and 
-Table[[table-scenarios]] represents the locations for Authenticator (AA),
-AuthN, and AuthZ in five scenarios. The scenarios are not inclusive,
-but represented here as a model. The locations are marked as (i)
-for internal or (e) for external in the table and the scenarios are
-described after that in detail. Authenticator is the entity which
-gives the final decision about access regardless of location of AA
+Table[[table-scenarios]] represents the non-inclusive list of locations of
+AuthN and AuthZ in five scenarios. The locations in the table are marked as (i)
+for internal or (e) for external and the scenarios are
+described in detail after the table. Authenticator is the entity which
+gives the final decision about access regardless of the location of AA
 and it is always internal, located at home network.
 # In most cases it is located in the local AP, but it can also be
 # external, like in scenario III. 
