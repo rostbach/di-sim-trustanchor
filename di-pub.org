@@ -3836,7 +3836,7 @@ connect by that method and would cause continuous AP outages.
 
 <<tag:hidessid>>
 One could also think of hiding the network by disabling the
-advertisement of management network SSID. That is called ``network
+advertisement of mana\-gement network SSID. That is called ``network
 cloaking''.  Smartphone would then need to know the exact target SSID name.
 Does disabling or hiding the management network bring real security or
 is it just security by obscurity?  Security by obscurity means here,
@@ -4104,7 +4104,7 @@ way to indicate that user wants to get in to management net.
 Separation can be done for example at client's  end by using different realm on
 AuthN identity. It also can be done by adding hints for different destination to
 username (username decoration) or by using different authentication
-method. All these methods allows Authentication Server to distinguish, what the user
+method. All these methods allow Authentication Server to distinguish, what the user
 wants to do; get normal access to home network or make trust anchor claim to 
 management network.
 
