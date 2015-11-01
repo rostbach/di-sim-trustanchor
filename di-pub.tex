@@ -1,4 +1,4 @@
-% Created 2015-11-01 su 13:48
+% Created 2015-11-01 su 19:42
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,14 +47,14 @@
 \title{Smartphone as a trust anchor for delegated home net configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-30.10b.2015 Master of Science thesis}
+\thesistype{draft-1.11.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{30.10b.2015 \{12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{1.11.2015 \{30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -413,7 +413,8 @@ a model where the management is achieved through a service in a cloud.
 The cloud service is of type Backend-as-a-Service (BaaS) which is suited
 well for mobile app usage. The
 configuration model of devices in a home is mirrored to the cloud as a
-resource graph ( Figure x.1 TBD). Changes can be planned ahead in the cloud
+resource graph.
+Changes can be planned ahead in the cloud
 and committed (Pushed) later to the home  using configuration 
 tools CoAP and RESTCONF running over CoAP (Constrained Application
 Protocol)
@@ -808,7 +809,7 @@ More familiar, it is the user's full international phone number.
 SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
 is used as a remedy, if PIN has been inserted wrong too many times.
 If the card has other applications, for example mobile electrical
-signature application Mobiilivarmenne (see Section\ref{sec:altmethods}),
+signature application Mobiilivarmenne (see Section \ref{sec:altmethods}),
 they may have different keys and codes.
 
 
@@ -1178,6 +1179,10 @@ AA through the local Authenticator. SIM's identity is verified by HLR
 AuC at the phone operator's end and AuthZ added to it later. The
 verification leaves a trail on the local Authenticator and opens a
 trust channel for a limited period of time for changes from the phone.
+The disconnection, i.e., the revocation of trust has only been been theoretical presented,
+but not tested in simulated environment.
+ Disconnection issues are explained in Section
+\ref{sec:disconnections}.
 
 
 
@@ -1266,22 +1271,9 @@ Without need for strong AuthN, that model would indeed be
 simpler, but using SIM also solves initial key distribution problem.
 Additionally, mutual AuthN problem would still need to be solved:
 Who sent that password and where that password should be inserted?
+That is important, because if fake acess point were involved, the 
+dishonest admin could lure users to take part in middle man scenarios.
 
-
-
-
-
-Requirement for home network can be as small as having WPA2 Enterprise capable
-AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
-has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
-Additionally, managing user's SIM-card has to be registered as an admin user in home network 
-configuration, i.e., IMSI must belong to the admin group.
-In this implementation, no extra application is needed in smartphone
-for primitive trust, but later for more serious use some application is needed.
-For added functionality, for example for logging admins out, OpenWRT
-based software can be used, although those functions have not yet been
-implemented. Disconnection issues are explained in Section
-\ref{sec:disconnections}.
 
 
 
@@ -1638,21 +1630,10 @@ logout.
 RFC2865\cite{rfc2865} says, that the forwarding RADIUS proxy may alter
 the packet as it passes it, but because an alteration would invalidate the
 packet's signature, the proxy has to re-sign the packet.
+In the end, proxying RADIUS can technically insert some data into 
+bypassing messages.
 
 
-
-
-So at least Proxying RADIUS can insert something, but that is not
-enough.  If a malicious actor imitates RADIUS Proxy (i.e. Man in the
-middle, MiTM), it can try to inject false messages. 
-The Message Authenticator with MD5 digesting
-might help in detecting those attacks,
-Unfortunately MD5 can not be thought computationally
-secure, because duplicate hashes are easy to compute
-today\cite{xie2013fast}.
-MD5 hashes were first time broken by brute force
-already 20 years ago and today they can only be used as a data error
-detection tool\cite[p.2]{rfc6151}. 
 
 
 
@@ -1667,11 +1648,6 @@ users network.
 
 
 
-
-
-
-
-
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{lockandkey.png}
@@ -1681,8 +1657,7 @@ users network.
 
 
 
-Device provider Cisco calls this
- ``Lock-and-Key''
+Device provider Cisco calls this  ``Lock-and-Key''
 access and uses dynamic access list to implement it\cite[p.117]{lockandkeybook}.
 Lock-and-key is presented on Figure\ref{fig:lock-and-view}.
  Smartphone has only limited access to the network before AA
@@ -1716,13 +1691,9 @@ devices in need of changes.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{trust-register.png}
-\caption{\label{fig:trust-register}trust register (draft)}
+\caption{\label{fig:trust-register}Challenging trust from a managed device}
 \end{figure}
 
-\begin{itemize}
-\item register itself to registrar or function as registrar itself!
-\item software for that
-\end{itemize}
 
 
 
@@ -2019,7 +1990,7 @@ portal [-> reference to \texttt{No Internet connectivity} link is
 
 
 
-To defeat internet connection problem, a simple solution would be
+To defeat the missing internet connection problem, a simple solution would be
 sending a one-time password to a predefined phone via an SMS, but what
 entity would then check that and who would be authorized to send that message?
 Authenticating server, which has no internet connection should 
@@ -2044,7 +2015,7 @@ in the EAP messaging instead of radio channel details.
 Whole conversation is given first here and afterwards analyzed more
 thoroughly.
 
-[TBD: normalization of frame numbers (change ids and timeformat). Capture points in picture.]
+[TBD: Capture points in picture.]
 
 
 
@@ -2065,7 +2036,7 @@ parts of logs at WPA2-Supplicant, RADIUS server and packet captures
 denoted as AP-802.1x and smartphone for Wi-Fi traffic, AP-wired and
 RADIUS-srv for RADIUS on wire, and finally RADIUS-hlr and HLR-AuC gw
 for simulated MAPS/SS7 traffic.
-The capture has been done at the WPA2-supplicants end.
+The capture has been done at the WPA2-supplicant.
 
 
 \scriptsize
@@ -2113,7 +2084,7 @@ This part is presented in Capture \ref{capimsi}.
 
 \begin{lstlisting}[language=bash,
   label=capimsi,
-  caption={First indication of IMSI}
+  caption={First indication of IMSI, capture from WPA2-supplicant}
 ]
 
 Frame 129: 15:57:17.983047
@@ -2141,10 +2112,9 @@ Frame 130: 15:57:17.983223
 \end{lstlisting}
 \normalsize
 
-We notice the difference on 802.1X versions; AP uses version
-802.1X-2004 in its request while the WPA2-Supplicant
-responses with version 802.1X-2001. Here it does not have any
-noticeable effect. 
+We might notice the difference on used 802.1X versions: AP uses version
+802.1X-2004 in its request while the smartphone uses 802.1X-2001. Here
+it does not have any  noticeable effect.
 
 The last line has the important identity field received from the SIM.
 Its length cannot directly be seen, but when EAP message's length (21
@@ -2152,10 +2122,12 @@ octets) is reduced by fixed space needed for Code(1), ID(1),
 Lenght(2), and Type(1), it yields 16 octets for the
 identity. Therefore the identity is not coded as a 
 numeral but instead as a string and that brings more flexibility in
-the protocol as the Identity can include alphabets too. It also
+the protocol as the identity can include alphabets too. It also
 minimizes misunderstandings, if context gets lost. 
-When we remember, that IMSI can not be be more than 15 octets, the extra prefix '1'
-denotes that we are talking about EAP-SIM identity. 
+When we remember from Section \ref{sec:sim-based-auth}, that IMSI can not be
+be more than 15 octets, the extra prefix '1' has an extra meaning.
+Here it denotes that we are talking  now about EAP-SIM identity instead of
+EAP-AKA or EAP-AKA'.
 
 
 
@@ -2173,7 +2145,7 @@ in Capture \ref{fig:capture}.
 \renewcommand{\lstlistingname}{Capture}
 \begin{lstlisting}[
   language=Python,
-  caption={EAP client's identity transformed},
+  caption={EAP client's identity transformed, capture from RADIUS server},
   label={fig:capture}
 ]
 
@@ -2214,21 +2186,20 @@ IMSI is ``232010000000000'' and it is prefixed with
 an '1' as earlier explained.
 
 In WPA2-Supplicant configuration file (see Appendix \ref{app:wpa-conf}) both the identity and
-credential section had the identity field, but that might 
-just be syntax issue.
-AP just has followed conventions on converting
-EAP into RADIUS message and put identity field into User-Name
-Attribute Value Pair (AVP).
+credential section had the identity field, but the latter creds block
+was later learnt to belong to cases, where the same credentials would
+be used to multiple networks and therefore it would save to trouble of
+always rewriting that block.
+Another thing to be noted is, that AP has followed conventions on
+converting EAP into RADIUS message and put identity field into
+User-Name Attribute Value Pair (AVP) too.
 Similar convention can be seen when analyzing EAP encapsulation and
 message size. The last RADIUS (AVP) is 
 Message-Authenticator, which presents limited safety against message 
 corruption. Limited, because it uses MD5-hashing which is not safe
-against malicious use anymore.
+against malicious attackers anymore.
 
-[Here conversation]
-
-
-
+[Here conversation after identity reveal to HLR part]
 [see. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
 
 Meanwhile, HLR simulator was listening requests from Authentication
@@ -2239,11 +2210,14 @@ Appendix \ref{app:hlraucgw} and there one can see the simulated Milenage paramet
 
 
 The AuthN request (SIM-REQ-AUTH), which in production version would go
-to real HLR-AuC, included the IMSI and parameter
-"3", which indicates, that the requester wants three triplets. 
+to real HLR-AuC, included the IMSI and parameter "3", which indicates,
+that the requester wants three triplets.  
 While one triplet would equal 64-bit key used for challenges, three
-triplets will make the key 192 bit long. [theoretically.. see the
-article smwhere].  Format of triplet received is RAND:SRES:Kc.
+triplets will make the key 192 bit long. Session keys are derived from
+this keymaterial. Crypto analysis of Patel\cite{patel-sim} noted in
+2003, that achieved session key security lenght would not be even 128
+but 64 bit.  
+Format of triplet received is RAND:SRES:Kc.
 
 \scriptsize
 \begin{verbatim}
@@ -2258,23 +2232,22 @@ Send: SIM-RESP-AUTH 232010000000000
 \section{Simulation on smartphone Jolla}
 \label{sec-5-5}
 
-Because we had source code available, we also tried to move 
-the simulated SIM application to the real smartphone.
-Jolla is a new Finnish smartphone, running on ARMv7 processor, having its
-root's on Nokia's last mobilephone line that used Linux
-Distribution MeeGo in beginning of 2010's.
-The OS is called Sailfish and it includes user interface code made by
-Jolla, open source components from Mer (MEego Reinvented, or
-meritocratic community), and some 
-other software components, which are either free or proprietary.
-Jolla's base 
-WPA-supplicant belongs to Mer core and it was here re-built for 
+Because we had source code available, we also tried to move the
+simulated SIM application to the real smartphone.  Jolla is a new
+Finnish smartphone, running on ARMv7 processor, having its root's on
+Nokia's last mobilephone line that used Linux Distribution MeeGo in
+beginning of 2010's.  The OS is called Sailfish and it includes user
+interface code made by Jolla, open source components from Mer (MEego
+Reinvented, or meritocratic community), and some other software
+components, which are either free or proprietary.  Jolla's base
+WPA-supplicant belongs to Mer core and it was here re-built for
 simulator use. The build process was done inside MerSDK virtual
-machine running under Virtualbox,
-because it provided not only simulated Jolla environment on x86 
-architecture,  but also a cross compiling environment Scratchbox, that
-makes
- porting programs to Armv7 processor easy.
+machine running under Virtualbox, because it provided not only
+simulated Jolla environment on x86 architecture, but also a cross
+compiling environment Scratchbox, that makes porting programs to Armv7
+processor easy.
+[cross compile environment, little bit more, examples. SDK,
+script,strips ]
 
 
 \begin{center}
@@ -2418,7 +2391,7 @@ RadSec is also expandable and open
 for negotiating more secure ciphersuites that future 
 versions of TLS might require\cite{rfc6614}. This is
 more and more important today, as it already has been noted in 2005,
-that even SHA1 signatures can be forged.
+that even SHA1 digesting has shown its weaknesses and can be manipulated.
 RADIUS servers usually support RadSec extension, but APs do not, so 
 the part from the AP to RADIUS server will travel in plain unless
 secured otherwise.
@@ -2482,12 +2455,24 @@ transported on datagrams (UDP). Alternative RADSEC protocol uses TLS, and
 is backwards compatible with RADIUS protocol, so it can be used
 as secure RADIUS proxy such as \emph{radproxy}\cite{uninett-radproxy}.
 
-RADIUS uses MD5 hashing and shared secrets. Because of the weaknesses of
-MD5 hashing (for example MD5Attack\cite{rfc5176}), the transport needs additional
-protection like tunneling or IPsec. TLS can be used for encryption and
-its signatures for integrity checking of packet payload.
-RADIUS protocol itself provides some integrity checks with Message
-Authenticators as described in Section \ref{sec:radius-macs}.
+RADIUS protocol provides some integrity checks with Message
+Authenticators as described in Section \ref{sec:radius-macs}.  RADIUS uses
+MD5 hashing and shared secrets, but that is not enough.  MD5 hashes
+were first time broken by brute force already 20 years ago and today
+they can only be used as a data error detection
+tool\cite[p.2]{rfc6151}.  If a malicious actor imitates RADIUS Proxy
+(i.e. Man in the middle, MiTM), it can try to inject false messages.
+Duplicate MD5-hashes (collisions) are easy to compute today for
+example MD5Attack\cite{rfc5176}) and researchers like Xie in
+2013\cite{xie2013fast}.  are even accelerating the speed for
+computing.
+
+ Because of the weaknesses of MD5 hashing (for example
+MD5Attack\cite{rfc5176}), the transport needs additional protection
+like tunneling or IPsec. TLS can be used for encryption and its
+signatures for integrity checking of packet payload.
+
+
 
 
 
@@ -2637,15 +2622,30 @@ directed antenna\cite{SANS-bluetooth-2007}.
 \label{sec-6-2}
 
 To deploy the system, modifications must be done to AP and client.
-Additionally, contract must be made with the MNO service
-provider producing AuthN 
-For AP, modifications are minimal. Needed settings are
-WPA2 mode to WPA2-enterprise, IP-address of RADIUS server providing 
-AA, and corresponding shared secret.
+Additionally, a contract must be made with the MNO service
+provider producing AuthN.
+
+Requirement for home network can be as small as having WPA2 Enterprise capable
+AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
+has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
+WPA2-enterprise setting involves setting IP-address of RADIUS server providing 
+AA and corresponding shared secret.
 For  the client, a Wi-Fi profile must be added: used management SSID,
 protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
 Smartphone can have different profiles, also with a same SSID, but
 then the user needs to choose manually, which profile is wanted.
+
+Additionally, the initial admin user's SIM-card has to be registered as an
+admin user in some way in home network 
+configuration, i.e., IMSI must belong to the admin group.
+In this implementation, no extra application is needed in smartphone
+for primitive trust, but later for more serious use some application is needed.
+For added functionality, for example for logging admins out, OpenWRT
+based software can be used, although those functions have not yet been
+implemented.
+
+
+
 
 
 While no service yet exists from MNOs, we estimate their costs based
@@ -2755,8 +2755,13 @@ Authentication server or designated router after the smartphone has done login t
 via normal access network.
 
 
-\section{Usability of access points}
+\section{Usability with access points}
 \label{sec-6-4}
+There are three main types of wireless access points: open access
+points without configuration on client's end, access points that
+demand one-time only setup of client such as WPA2-PSK or
+WPA2-Enterprise, and lastly captive portal type access points, where
+user have to login manually first time through web-page login.
 It is well known, that the usability of the captive-portal Wi-Fi
  network is burden, because a user needs to go through 
 a web portal logins with a username-password authentication 
@@ -2765,18 +2770,18 @@ Additionally, the user is often required to switch
 between cellular and  Wi-Fi data access when they change their
  location, and that would disrupt the network connection.
 
-An industry brand  Hotspot 2.0 addresses those issues and tries to
+An industry brand  Hotspot 2.0 (HS2.0) addresses those issues and tries to
 simplify user's switch between Wi-Fi and cellular to automate the
-roaming experience.  Hotspot 2.0 is driven by two alliances:
+roaming experience.  HS2.0 is driven by two alliances:
 Wi-Fi Alliance has a certification program (Passpoint)
-for Hotspot 2.0 compatible devices, while the Wireless Broadband
+for HS2.0 compatible devices, while the Wireless Broadband
 Alliance has a program called Next Generation Hotspot (NGH), targeted
 to user experience\cite{wba-ngh}.
 
-Hotspot 2.0
+HS2.0
 enables the selection of the network based on the ownership, services and
 performance characteristics \emph{before} a Wi-Fi client has been associated
-to a Hotspot 2.0 AP. The technology is built on IEEE 802.11u specification. 
+to a HS2.0 AP. The technology is built on IEEE 802.11u specification. 
 In its second release version the operator would
 have control on which network the smartphone would carry its data
 transmission. 
@@ -2795,7 +2800,7 @@ interworking those two worlds.
 
 
 
-In Hotspot 2.0, the cellular network may signal the smartphone and
+In HS2.0, the cellular network may signal the smartphone and
 propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
 access point and continue using Wi-Fi instead of cellular network.
 In a similar way, the smartphone could receive signal from the cellular
@@ -3023,37 +3028,37 @@ Rest of this section discusses possible PKI usage.
 
 To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
 first needed.
-The bootstrapping protocols in general are used to
+The bootstrapping protocols in trust finding are used to
 bring the first trust anchor in an environment and later use that anchor to
 attach other devices to the same trust circle.  A draft from
-Behringer\cite{draft-behringer-bootstrap} proposes, that one device
-at home is first chosen as a trust anchor  using its unique properties such as 
-device Vendor certificates.
 
 Despite the etymology of name bootstrapping, ``Lift oneself by his own
 bootstraps'', bootstrapping usually needs some input from outside.
-For that, AuthN of the trust anchor device would happen by checking device's Vendor certificates. This anchored
-device later becomes home network's Certificate Authority (CA) service
-and the trust anchor, upon which the rest of the home network devices
-would apply for certificates from to get under the same trust circle.
-Key creation, key exchange and their usage is explained in similar
-draft from Pritikin\cite{draft-pritikin-bootstrap}. That explains PKI usage in general
-in bootstrapping. 
+For that, AuthN of the trust anchor device would happen by checking
+device's vendor certificates. 
+Behringer\cite{draft-behringer-bootstrap} proposes, that one device
+at home is first chosen as a trust anchor  using its unique properties 
+and this anchored device later becomes home
+network's Certificate Authority (CA) service and the trust anchor,
+upon which the rest of the home network devices would apply for
+certificates from to get under the same trust circle.  Key creation,
+key exchange and their usage is explained in similar draft from
+Pritikin\cite{draft-pritikin-bootstrap}. 
 
 
 Behringer continues, that this model could be expanded to a full
 ticket enabled 
-AA network, where time-limited tickets (tokens) for both
+AA, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
 There, the end devices  first try to get AuthN ticket, which 
 does not include yet the AuthZ.
 With that ticket, the device may later apply for AuthZ ticket, which
-opens the ports to change management service from CPE.
+opens the correct port to change management service from CPE.
 That is very similar to Kerberos AA, which is based on
 Needham-Schroeder protocol.
 Another bootstrapping architecture is 
 defined in GBA (General Bootstrapping Architecture), which 
-is 3GPP's standard\cite{}.
+is 3GPP's standard. 
 It benefits from MNO's or any other identity center's  knowledge of user's SIM.
 In GBA, Trusted Third Party authentication center would be setup with the help of MNO.
 One service would then authenticate an entity, here smartphone, and
@@ -3113,11 +3118,10 @@ be verified on reception, but that would involve a more complex setup.
 Complexity of existing models in interworking was one motivator for
 the work. The research  on the subject did reveal some reasons 
 for the complexity, that are difficult to overcome with simplistic 
-methods without losing security at the same time.
-
+methods shown here without losing security at the same time.
 There are some obvious weaknesses in the proposed solution such as 
 missing continuous authorization after management access has been
-granted. The application for the smartphone is yet to be implemented.
+granted. The application for the smartphone is yet to be fully implemented,
 Possible usage must carefully check the safety limits even when for
 example RADIUS protocol still
 has strengths in security today. The thesis only scratches bootstrapping
