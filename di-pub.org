@@ -845,6 +845,10 @@ to either Request or Response.\cite[p.20]{radiusbook}.
 The Request Authenticator is 16 octet long, random number in
 ACCESS-REQUEST message but the Response Authenticator for it is achieved
 by one-way MD5 digestion function. 
+# The Message Authenticator with MD5 digesting
+# might help in detecting those attacks.
+
+
 The digest is taken from concatenation of Code, ID, Length, corresponding
 Request\-Auth, Attributes, and a Secret and can look like 
 #+BEGIN_LaTeX
@@ -2393,7 +2397,8 @@ logout.
 RFC2865\cite{rfc2865} says, that the forwarding RADIUS proxy may alter
 the packet as it passes it, but because an alteration would invalidate the
 packet's signature, the proxy has to re-sign the packet.
-
+In the end, proxying RADIUS can technically insert some data into 
+bypassing messages.
 
 
 # RFC2865 \cite{rfc2865} says, that: [TBD, digest this]
@@ -2415,17 +2420,7 @@ packet's signature, the proxy has to re-sign the packet.
 # #+END_QUOTE
 # [source https://tools.ietf.org/html/rfc2865]
 
-So at least Proxying RADIUS can insert something, but that is not
-enough.  If a malicious actor imitates RADIUS Proxy (i.e. Man in the
-middle, MiTM), it can try to inject false messages. 
-The Message Authenticator with MD5 digesting
-might help in detecting those attacks,
-Unfortunately MD5 can not be thought computationally
-secure, because duplicate hashes are easy to compute
-today\cite{xie2013fast}.
-MD5 hashes were first time broken by brute force
-already 20 years ago and today they can only be used as a data error
-detection tool\cite[p.2]{rfc6151}. 
+
 
 
 
@@ -3696,7 +3691,20 @@ transported on datagrams (UDP). Alternative RADSEC protocol uses TLS, and
 is backwards compatible with RADIUS protocol, so it can be used
 as secure RADIUS proxy such as /radproxy/\cite{uninett-radproxy}.
 
-RADIUS uses MD5 hashing and shared secrets. Because of the weaknesses of
+RADIUS uses MD5 hashing and shared secrets, but that is not
+enough.  If a malicious actor imitates RADIUS Proxy (i.e. Man in the
+middle, MiTM), it can try to inject false messages. 
+
+Unfortunately MD5 can not be thought computationally
+secure, because duplicate hashes are easy to compute
+today\cite{xie2013fast}.
+MD5 hashes were first time broken by brute force
+already 20 years ago and today they can only be used as a data error
+detection tool\cite[p.2]{rfc6151}. 
+
+
+
+. Because of the weaknesses of
 MD5 hashing (for example MD5Attack\cite{rfc5176}), the transport needs additional
 protection like tunneling or IPsec. TLS can be used for encryption and
 its signatures for integrity checking of packet payload.
