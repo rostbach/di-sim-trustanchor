@@ -3607,7 +3607,7 @@ RadSec is also expandable and open
 for negotiating more secure ciphersuites that future 
 versions of TLS might require\cite{rfc6614}. This is
 more and more important today, as it already has been noted in 2005,
-that even SHA1 signatures can be forged.
+that even SHA1 digesting has shown its weaknesses and can be manipulated.
 RADIUS servers usually support RadSec extension, but APs do not, so 
 the part from the AP to RADIUS server will travel in plain unless
 secured otherwise.
@@ -3701,7 +3701,7 @@ MD5 hashing (for example MD5Attack\cite{rfc5176}), the transport needs additiona
 protection like tunneling or IPsec. TLS can be used for encryption and
 its signatures for integrity checking of packet payload.
 #  Inside RADIUS-packet, there are also
-RADIUS protocol itself provides some integrity checks with Message
+RADIUS protocol provides some integrity checks with Message
 Authenticators as described in Section [[sec:radius-macs]].
 #  [earlier described MACs, no need to mention it here ] 
 # Without message Authenticators  which use session secrets, hashes and
@@ -3727,7 +3727,6 @@ session time-out,
 # [check Section "Delivery of RADIUS attributes" above]
 current admin user list, state of OTP list, or VLAN id.
 #  [this was mentioned in 2 ISP cases in reverse path forwarding] 
-# See RADIUS fixes (rfc5080 cite:rfc5080.)
 # See RADIUS fixes (rfc5080 cite:rfc5080.)
 
 
