@@ -847,8 +847,6 @@ ACCESS-REQUEST message but the Response Authenticator for it is achieved
 by one-way MD5 digestion function. 
 # The Message Authenticator with MD5 digesting
 # might help in detecting those attacks.
-
-
 The digest is taken from concatenation of Code, ID, Length, corresponding
 Request\-Auth, Attributes, and a Secret and can look like 
 #+BEGIN_LaTeX
