@@ -1,4 +1,4 @@
-% Created 2015-10-30 pe 14:50
+% Created 2015-11-01 su 13:47
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -650,6 +650,45 @@ federation of different domains. In RADIUS trees, the messages are
 can be proxied to next RADIUS server in the chain, depending on the settings
 on the proxying RADIUS server.
 
+RADIUS messages are normally not protected from eavesdropping, but they have
+integrity fields to notice if tampering has been done. 
+Integrity field is called a Message Authenticator.
+Notice the use of the term \emph{Authenticator} in different context here, not
+meaning 802.1X's Authenticator.
+When using RADIUS to AuthN and AuthZ, Requests can only belong to ACCESS-REQUEST messages while
+Responses can be any of ACCESS-ACCEPT, ACCESS-REJECT, or ACCESS-CHALLENGE message.
+The Message Authenticator field is sent as last Attribute Value Pair (AVP)
+of each RADIUS message and it can belong 
+to either Request or Response.\cite[p.20]{radiusbook}.
+
+The Request Authenticator is 16 octet long, random number in
+ACCESS-REQUEST message but the Response Authenticator for it is achieved
+by one-way MD5 digestion function. 
+The digest is taken from concatenation of Code, ID, Length, corresponding
+Request\-Auth, Attributes, and a Secret and can look like 
+$3fef65608\ldots 2a79$. 
+\begin{verbatim}
+ Response Authenticator = 
+     MD5(Code |ID |Length |Request Authenticator |Attributes |Secret)
+\end{verbatim}
+The Secret is the shared secret which has been configured between
+RADIUS client-server pairs,
+and it protects some parts of traffic. 
+Different RADIUS client-server pairs may use different
+shared secrets and RADIUS server must separate them by client's IP address to
+manage proxied RADIUS requests\cite{radiusbook}.
+
+An exception to above mentioned plain-text messaging are the user passwords.
+If the user password was to be transmitted in RADIUS, it would be sent first
+through exclusive OR (XOR) function together with MD5 digested Secret
+and Request Authenticator.
+\begin{center}
+{\tt 
+User-Password = XOR(password, MD5(Secret | Request Authenticator))}
+\end{center}
+
+
+
 
 In the following chapters it is discussed how proxying servers take 
 part in AA decisions. Of main interest there is, if it is possible 
@@ -1063,8 +1102,8 @@ has been used to implement self-configuration archi\-tecture in
 home networks\cite{tr069rachidi2011}.
 
 
-RFC7368 about IPv6 Home Networking Architecture Principles from
-Arkko\cite{rfc7368} defines the borders of the home network and states that
+RFC7368\cite{rfc7368} from Arkko about IPv6 Home Networking Architecture Principles 
+defines the borders of the home network and states that
 internal borders in home network should possibly be automatically
 discovered. Limiting those borders to specific
 interface type would make it difficult to connect different realms locally.
@@ -1541,7 +1580,8 @@ there should be no problem.
 
 
 
-If internet connection is down, local AA is still possible.
+If internet connection is down, local AA is still possible, it there
+has been at least once a full AA round.
 Full authentication uses IMSI, which is the identity of the phone's
 SIM.  Fast re-authentication on the other hand would 
 use temporal identity TMSI, which is lighter in operation than full
@@ -1568,9 +1608,9 @@ would not work here then because of missing MNO.
 
 
 In case that nothing has been configured in network, there are no 
-admin users and APs are set to factory default, then they need
-pre-configuring and bootstrapping. The scenario can be any of I-IV,
-but CPE has neither trust nor roles. Bootstrapping is discussed in 
+admin users, and APs are set to factory default, then 
+pre-configuring and bootstrapping are needed. The scenario after that can be any
+of I-IV, but CPE  has first neither trust nor roles. Bootstrapping is discussed in 
 Section \ref{bootstrapping}.
 
 
@@ -1582,50 +1622,6 @@ Our model would greatly benefit from the modification of RADIUS messages in prox
 RADIUS, if that is possible as was mentioned in Section \ref{sec:radius}(RADIUS).
 The modification is needed, when the proxying RADIUS wants to combine AuthN message
 from MNO to AuthZ decision received from elsewhere.
-
-
-
-
-RADIUS messages are normally not protected from eavesdropping, but they have
-integrity fields to notice if tampering has been done. 
-Integrity field is called a Message Authenticator.
-Notice the use of the term \emph{Authenticator} in different context here, not
-meaning 802.1X's Authenticator.
-When using RADIUS to AuthN and AuthZ, Requests can only belong to ACCESS-REQUEST messages while
-Responses can be any of ACCESS-ACCEPT, ACCESS-REJECT, or ACCESS-CHALLENGE message.
-The Message Authenticator field is sent as last Attribute Value Pair (AVP)
-of each RADIUS message and it can belong 
-to either Request or Response.\cite[p.20]{radiusbook}.
-
-The Request Authenticator is 16 octet long, random number in
-ACCESS-REQUEST message but the Response Authenticator for it is achieved
-by one-way MD5 digestion function. 
-The digest is taken from concatenation of Code, ID, Length, corresponding
-Request\-Auth, Attributes, and a Secret and can look like 
-$3fef65608\ldots 2a79$. 
-\begin{verbatim}
- Response Authenticator = 
-     MD5(Code |ID |Length |Request Authenticator |Attributes |Secret)
-\end{verbatim}
-The Secret is the shared secret which has been configured between
-RADIUS client-server pairs,
-and it protects some parts of traffic. 
-Different RADIUS client-server pairs may use different
-shared secrets and RADIUS server must separate them by client's IP address to
-manage proxied RADIUS requests\cite{radiusbook}.
-
-An exception to above mentioned plain-text messaging are the user passwords.
-If the user password was to be transmitted in RADIUS, it would be sent first
-through exclusive OR (XOR) function together with MD5 digested Secret
-and Request Authenticator.
-\begin{center}
-{\tt 
-User-Password = XOR(password, MD5(Secret | Request Authenticator))}
-\end{center}
-
-
-
-
 
 
 
@@ -2017,7 +2013,7 @@ As a side note, Diameter protocol would provide server initiated messaging.
 \begin{itemize}
 \item forced logout, like in captive portals, where RADIUS is not used.
 \item no straightforward solution exists within RADIUS
-portal [-> reference to \hyperref[text:nointernet]{No Internet connectivity} link is
+portal [-> reference to \texttt{No Internet connectivity} link is
 \end{itemize}
 
 
@@ -2264,22 +2260,27 @@ Send: SIM-RESP-AUTH 232010000000000
 
 Because we had source code available, we also tried to move 
 the simulated SIM application to the real smartphone.
-Jolla is a finnish smartphone, running on ARMv7 processor, having its
-root's on Nokia's last mobilephone operating system MEEGO.
+Jolla is a new Finnish smartphone, running on ARMv7 processor, having its
+root's on Nokia's last mobilephone line that used Linux
+Distribution MeeGo in beginning of 2010's.
 The OS is called Sailfish and it includes user interface code made by
 Jolla, open source components from Mer (MEego Reinvented, or
 meritocratic community), and some 
 other software components, which are either free or proprietary.
 Jolla's base 
 WPA-supplicant belongs to Mer core and it was here re-built for 
-simulator use. The build process was done inside the Virtualbox
-program, because it provides simulated Jolla environment and
- made porting programs to Armv7 processor easy.
+simulator use. The build process was done inside MerSDK virtual
+machine running under Virtualbox,
+because it provided not only simulated Jolla environment on x86 
+architecture,  but also a cross compiling environment Scratchbox, that
+makes
+ porting programs to Armv7 processor easy.
 
 
 \begin{center}
 \begin{tabular}{rll}
-version(s) & component & tested on\\
+version(s) & component & tested on (machine arch)\\
+\hline
 2.3 & hostap(RADIUS-EAP) & laptop(x86\_64)\\
 2.3 & hlr\_auc\_gw & laptop(x86\_64)\\
 2.2, 2.3 & wpa-supplicant & laptop(x86\_64)\\
@@ -2315,6 +2316,8 @@ authenticity. Accessibility is also discussed.
 \subsection{Confidentiality (privacy)}
 \label{sec-6-1-1}
 
+Confidentiality means that no one else other than message's intended
+recipients may get to know information inside the message.
 The purpose of the message confidentiality in authentication phase is
 to hide the identity of the smartphone and possible the delivered
 secrets from eavesdroppers. Hiding IMSI enhances the privacy of the smartphone user. 
@@ -2331,37 +2334,35 @@ TMSI can even be re-changed using re-authentication as shown in Figure\ref{fig:t
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{imsi-tmsi.png}
-\caption{\label{fig:tmsi}Changing TMSI without MNO or Authentication server}
+\caption{\label{fig:tmsi}Changing TMSI without Authentication server (or MNO)}
 \end{figure}
 
 
 
 
-The Authenticator 
-is responsible for converting  TMSI to IMSI if it later needs to 
-ask for full authentication from the MNO. During that time,
-IMSI can be caught using the device called IMSI-catcher.
-
-The very same happens also in a regular GSM network with non-EAP traffic.
+The Authenticator is responsible for converting TMSI to IMSI if it
+later needs to ask for full authentication from the MNO. During that
+time, IMSI can be caught using the device called IMSI-catcher.  The
+very same happens also in a regular GSM network with non-EAP traffic.
 IMSI can be caught by listening the GSM network for phones that are
-registering themselves to the operator when they are powering on.
-The fault lies there, that GSM specification does not require the
-mobile network to authenticate itself to the phone and so GSM allows
-man in the middle attack. 
-The attack follows, when the IMSI-catcher impersonates itself as a
-(cellular) base station.  When the smartphone tries to attach to the fake base
-station, the smartphone reveals its IMSI number. Further, because the
-base station is responsible for chosen encryption, the base station
-can order the phone to not encrypt traffic at all or to use only weak
-encryption thus revealing all data, calls, and texts. Mitigation for
-IMSI-catching would be to disable GSM (2G) usage altogether from phone
-if that is possible\cite{imsi-heise}. Some development has been done to detect 
+registering themselves to the operator when they are powering on.  The
+fault lies there, that GSM specification does not require the mobile
+network to authenticate itself to the phone and so GSM allows man in
+the middle attack.  The attack follows, when the IMSI-catcher
+impersonates itself as a (cellular) base station.  When the smartphone
+tries to attach to the fake base station, the smartphone reveals its
+IMSI number. Further, because the base station is responsible for
+chosen encryption, the base station can order the phone to not encrypt
+traffic at all or to use only weak encryption thus revealing all data,
+calls, and texts. Mitigation for IMSI-catching would be to disable GSM
+(2G) usage altogether from phone if that is
+possible\cite{imsi-heise}. Some development has been done to detect
 IMSI-catchers, most notably by the project AIMSICD\cite{aimcid}.
 
 
-Most EAP methods do not provide identity protection, i.e., the
-end-user hiding themselves.
-This can be achieved with PEAP (Protected EAP) or TTLS, which
+Most EAP methods themselves do not provide identity protection, i.e., the
+end-user hiding.
+This feature can be achieved with PEAP (Protected EAP) or TTLS, which
 chains different EAP-methods together and protects the inner EAP with
 an outer EAP. 
 The outer identity tells just the realm, where AuthN can be checked
@@ -2373,9 +2374,9 @@ Handshake Authentication Protocol, version 2) can be used inside PEAP.
 
 
 EAP-SIM would provide identity protection, if it was used together
-with PEAP which protects the outer identification  and
-then EAP-SIM was used in inner authentication.
-Currently it is not known for the author that such implementations exists for
+with PEAP. There PEAP would anonymize the outer identification  and
+EAP-SIM was used in inner authentication.
+Currently, it is not known for the author that such implementations exists for
 EAP-SIM  except Tseng's proposition\cite{tseng-usim} for a new EAP type
 EAP-USIM, which would extend EAP-TLS type.
 
@@ -2407,45 +2408,46 @@ difficult to attack the session by pretending to be the smartphone.
 
 
 
-RADIUS messaging is vulnerable too, because it includes IMSI in clear form 
-inside EAP encapsulation. IMSI is also included in a RADIUS user-name
-attribute includes also IMSI, because it has been transferred there from
-from EAP's identity field.
-RADIUS runs over UDP, but can be used also with TCP with the RadSec
-extension. RADIUS servers usually support that extension, but APs do not, so 
-there will be parts, where RADIUS messages travel in plain.
-
-
+RADIUS messaging in the wire is vulnerable too, because IMSI is transmitted in clear 
+in EAP. IMSI is copied in to RADIUS's user-name attribute from EAP's identity field.
+RADIUS runs over UDP, but can be used also with TCP. With TCP, RADIUS
+may use RadSec extension, which features TLS-based message encryption,
+integrity checking and more advanced digesting functions than plain
+RADIUS.
+RadSec is also expandable and open 
+for negotiating more secure ciphersuites that future 
+versions of TLS might require\cite{rfc6614}. This is
+more and more important today, as it already has been noted in 2005,
+that even SHA1 signatures can be forged.
+RADIUS servers usually support RadSec extension, but APs do not, so 
+the part from the AP to RADIUS server will travel in plain unless
+secured otherwise.
 
 
 Based on those facts, EAP-SIM cannot be considered confidential for identity
 during the first message exchanges, but later the identity can be hidden
 using temporal identity (TMSI). 
 For other parameters, EAP-SIM is confidential.
-Thus, this paper does not consider TMSI in the implementation Chapter
+Thus, this paper considers TMSI only when using it for recurring
+authentication (re-auth) and offline cases in the implementation Chapter
 \ref{sec-5}.
 \subsection{Integrity}
 \label{sec-6-1-2}
 
 
 
-The integrity issues were handled in Section \ref{sec:radius-macs} describing
+The integrity issues were parly handled in Section \ref{sec:radius-macs} describing
 RADIUS message modification.
 Message digestion codes provide integrity for RADIUS protocol.
 If PEAP is used, it handles integrity through its usage of
  TLS\cite{peap}.
-Above mentioned RadSec extension allows other digesting functions than MD5 such
-as SHA1 and is open for negotiating more secure ciphersuites that later
-versions of TLS might in the future require\cite{rfc6614}. This is
-even more important, as it already has been noted in 2005, that SHA1 can be
-broken
 
 There is also a fraudulent Authenticator problem, which is an attack
 against both the integrity and privacy.  The Authenticator may present
 some information to the Authentication server and other to the
-EAP-peer. Mitigation for that is, that EAP-peer includes some
+EAP-peer. Mitigation for that is, that EAP-peer would include some
 characteristics of the Authenticator inside its EAP-message, which
-the Authentication server then verifies (RFC6677)\cite{rfc6677}.
+the Authentication server then verified (RFC6677)\cite{rfc6677}.
 
 \subsection{Accessibility, DoS and Scalability}
 \label{sec-6-1-3}
@@ -2502,52 +2504,52 @@ current admin user list, state of OTP list, or VLAN id.
 \subsection{Replay, Re-use, Re-auth, and brute-force challenges}
 \label{sec-6-1-5}
 
-Earlier in RADIUS analysis, prevention of replied messages was
+Earlier, in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
 considered bad because mixing secrets between usage
-domains weakens the security.  In GSM networks, IMSI identifies subscriber on
+domains weakens the security.  In GSM networks, IMSI identifies the subscriber on
 the first contact, later TMSI is used for call and SMS.  In EAP-SIM those
 values are also used. IMSI naturally is the same, but TMSI should be
 different for call and EAP.  Haverinen\cite{hav-doc} explains how
-special RAND numbers can be used to differentiate the use of TMSI in 3GPP and LAN
+special RAND numbers can be used to differentiate the use of TMSI in 3GPP and Wi-Fi
 contexts.
 
 Re-authentication and termination can bring unexpected results.
-If SSID changing introduced in mitigation Section(\ref{tag:hidessid}) was in use, fast re-authentication
-should be forbidden\cite[p.11]{rfc5448}.
 Even, when sessions can be terminated, the client side may have 
 option set to login automatically, transparent and without users control.
 Automatic re-authentication after disconnection  must be considered
 here as harmful as well as automatic login when nearby suitable AP. An
-example from harmful behaviour is Swiss mobile operator Swisscom, who
+example from harmful behaviour was a case with  Swiss mobile operator Swisscom, who
  provided two networks ``Mobile'' and ``Mobile Eapsim''  for its
 customers. 
-The latter network did not ask customers
-for connection but used theirs smartphones' SIM automatically. Unfortunately,
-it also charged users for using Wi-Fi connections without users'
-knowledge.\cite{swisscom}
+The latter network did not ask each time customers' permission for
+connection but used their smartphone's SIM
+automatically. Unfortunately, it also charged users for using Wi-Fi
+connections without users' knowledge.\cite{swisscom}
 
 
 
-If one can read and write data through SIM card's API,
-one could try to get information (SRES, Kc) by brute-force. 
+Although a direct connection to SIM card's memory is restricted,
+if one can read and write data through SIM card's API,
+one could still try to get information (SRES, Kc) by brute-force. 
 Fortunately SRES and Kc are never sent in clear, but inside
 a digested MAC.
  Additionally SIM card can be programmed to answer only
-limited number of challenge request, for example 65535, which in
-normal usage would be enough, but in brute-force challenges 
-it would soon be exhausted and not function anymore.
+limited number of challenge request, for example 65535 times.
+For normal use that would be enough, but in brute-force challenges 
+it would soon be exhausted and SIM card would lock itself and not
+function anymore at all.
 
 
 \subsection{Hardware tampering}
 \label{sec-6-1-6}
 All this time it is assumed, that hardware does not lie. In case
-the hardware has been tampered, we could not trust it and its claims.
+the hardware has been tampered, we could not trust its claims.
 For example, there have been attacks against SIM to reveal its private
 key after SIM have been copied.  To verify, that a device has not been
 tampered, a method called attestation can be used.
 
-A device which has attestation capability such as 
+A device, which has attestation capability such as 
 hardware certificates or Trusted Platform Module (TPM) technology
 can function as a trust anchor.
 Such a device could be sent direct to customer with pre-configured
@@ -2564,7 +2566,7 @@ limit attack vectors in time and place.
 
 Recall that the access to management network from the smartphone is
  needed only then when changes
-are challenged. Why then not just enable management radio network
+are made. Why then not just enable management radio network
 during those times? Then there were less networks for users to choose from.
 Enabling management network could be programmed through 
 LuCI-interface, which is a web user interface to the Unified
@@ -2572,12 +2574,12 @@ LuCI-interface, which is a web user interface to the Unified
 Preliminary tests showed, that activating new networks in AP also 
 disconnects existing Wi-Fi connections and may even restart AP,
 which certainly would not be wanted. Some other methods need to
-be invented to avoid denial-of service, when intruder tries to 
-connect by that method and causes continuous AP outages.
+be invented to avoid denial-of service, when an intruder tries to 
+connect by that method and would cause continuous AP outages.
 
 \label{tag:hidessid}
 One could also think of hiding the network by disabling the
-advertisement of management network SSID. That is called ``network
+advertisement of mana\-gement network SSID. That is called ``network
 cloaking''.  Smartphone would then need to know the exact target SSID name.
 Does disabling or hiding the management network bring real security or
 is it just security by obscurity?  Security by obscurity means here,
@@ -2595,15 +2597,19 @@ hiding the one-time-only network name actually could add security.
 If the client knows beforehand the name of SSID
 (and maybe also checks AP's MAC), then AP does not reveal any information,
 before the client has tried to connect to it and that would minimize
-the time window for attacks.
+the time window for attacks. 
+Because RFC5448\cite[p.12]{rfc5448} forbids the change of network name between full and
+fast authentication to prevent usage of compromised keys, the client
+and server should use full authentification, when they notice, that
+network name has changed.
 
 
 
 
  Hiding can also have privacy enhancing effects.
 While Wi-Fi client's normal action is to probe for SSIDs of lately visited
-and learned APs, analyzing those probes anyone can reveal client's earlier
-locations without further effort.
+and learned APs, anyone can analyze those probes and reveal client's
+earlier locations without very much effort.
 Lindqvist et.al.\cite{hidden-wlan} present usage of hidden
 APs in protecting privacy of clients and preventing that scenario.
 
@@ -2612,10 +2618,9 @@ APs in protecting privacy of clients and preventing that scenario.
 Regarding boundaries of home network, the Wi-Fi coverage gives 
 one natural limit, which is 50 meters indoors or 100 meters outdoors,
 when no extenders (i.e. Wi-Fi repeaters) are in use.
-Proximity so brings a minimal extra layer just like network cloaking 
-for preventing attacks, as the attacker must be physically within those limits.
-
-
+Proximity brings a minimal extra layer just like network cloaking 
+for preventing attacks, as the attacker must be physically within
+those limits.
 This can be considered as an added factor in multifactor
 authentication or reputation, but it will not be enough, because
 attackers will have more sensitive  radios available than normal users
@@ -2740,7 +2745,7 @@ way to indicate that user wants to get in to management net.
 Separation can be done for example at client's  end by using different realm on
 AuthN identity. It also can be done by adding hints for different destination to
 username (username decoration) or by using different authentication
-method. All these methods allows Authentication Server to distinguish, what the user
+method. All these methods allow Authentication Server to distinguish, what the user
 wants to do; get normal access to home network or make trust anchor claim to 
 management network.
 
@@ -2846,7 +2851,7 @@ later it can also use local point. AuthZ, on the other hand, may be located more
 Based on 802.1X standard, the management port is activated and
 RADIUS transfers the orders for correct AA.
 The smartphone traffic is directed in to an own virtual LAN segment (VLAN),
-which is dedicated to the home network devices management.
+which is dedicated to management.
 Thesis thus uses an old, yet simple method for problem risen in a modern environment home network.
 
 Disconnection from a normal (Wi-Fi) access network must happens, before phone can get
