@@ -3836,7 +3836,7 @@ connect by that method and would cause continuous AP outages.
 
 <<tag:hidessid>>
 One could also think of hiding the network by disabling the
-advertisement of mana\-gement network SSID. That is called ``network
+advertisement of manage\-ment network SSID. That is called ``network
 cloaking''.  Smartphone would then need to know the exact target SSID name.
 Does disabling or hiding the management network bring real security or
 is it just security by obscurity?  Security by obscurity means here,
