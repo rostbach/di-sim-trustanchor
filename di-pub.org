@@ -3928,8 +3928,8 @@ directed antenna\cite{SANS-bluetooth-2007}.
 ** Deployment difficulty and costs
 
 To deploy the system, modifications must be done to AP and client.
-Additionally, contract must be made with the MNO service
-provider producing AuthN 
+Additionally, a contract must be made with the MNO service
+provider producing AuthN.
 # [while AuthZ is already taken care of with
 # the cloud service contract.]  [TBD, leave cloud out ]
 For AP, modifications are minimal. Needed settings are
@@ -4410,7 +4410,7 @@ logs, which only means that no pre-shared key is used.
 
 If we were to question or evolve the given model of change
 propagation, the trust anchoring would also need some modifications.
-# what are those modifications? -ri24.11.2015
+# what are those modifications? -ri24.10.2015
 Alternative method is that the changes could be marked some way, so
 that they need approving and then there could be a specific
 change-approval message, which must be sent through the management
