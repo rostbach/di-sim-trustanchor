@@ -1,4 +1,4 @@
-% Created 2015-11-01 su 19:42
+% Created 2015-11-02 ma 17:50
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,14 +47,14 @@
 \title{Smartphone as a trust anchor for delegated home net configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-1.11.2015 Master of Science thesis}
+\thesistype{draft-2.11.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{1.11.2015 \{30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{2.11.2015 \{1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -1181,8 +1181,6 @@ verification leaves a trail on the local Authenticator and opens a
 trust channel for a limited period of time for changes from the phone.
 The disconnection, i.e., the revocation of trust has only been been theoretical presented,
 but not tested in simulated environment.
- Disconnection issues are explained in Section
-\ref{sec:disconnections}.
 
 
 
@@ -1726,12 +1724,15 @@ separated from the currently approved.
 If we understood that the change approval belongs to the AA-process, then
 the later approvals would also need an AA.
 
- The smartphone should either be dropped out from the management
-network right away after the changes have been sent or after a
-predefined timeout period during which more changes can be send.
-That period can be called a management session.
+ The smartphone should be dropped out forcibly from the management
+network either right after the changes have been sent or after a
+predefined timeout period during which more changes can be send.  That
+period can be called a management session.  Timeout method was the
+original idea and should be kept in mind when the final implementation
+is made.
+
 The session time and the logout can be handled in AP directly with
-an timer. After a specific time AP simple drops the connection
+an timer. After a specific time, AP simple drops the connection
 (WPA2-session) to the phone. This needs modification to the AP
 software, if there is not already such method.
 
@@ -1739,6 +1740,23 @@ Other solution would be for AP to listen for a command from an external
 AuthZ server, where similar timer would trigger a notification event. 
 That also needed modifications;  a listening process to the AP and 
 the timer into the AuthZ server. 
+
+
+
+
+Later it was learned\cite{rfc2865}, that terminating a session is not
+included in the original RADIUS protocol.  The root cause is, that
+messages originating from the RADIUS server are not defined in the
+RADIUS protocol and so AP as RADIUS client cannot receive RADIUS
+server initiated disconnection messages.  Additional extensions such
+as Disconnect and Change-of-Authorization (CoA) packets, also known as
+RADIUS Dynamic Authorization or RADIUS Disconnection Message(DM)\cite{rfc5176}, have
+later been brought in to the protocol by diverse
+vendors, but they may not all be implemented on every device.
+Disconnect-Request is sent to UDP port 3799, so Authenticator should
+listen also that in addition to RADIUS UDP port 1812.
+As a side note, Diameter protocol would provide server initiated messaging.
+
 
 
 To demonstrate how the model works, we present the case of adding a
@@ -1779,9 +1797,44 @@ network. This implies disconnection from other services using Wi-Fi
 link, because smartphones currently have only one Wi-Fi radio
 available and routing would still prefer Wi-Fi as a default gateway, although
 possible non-Wi-Fi data link still may stay up and operational.
+\section{Disconnecting the local controller and offline changes}
+\label{sec-4-6}
+\label{sec:disconnections}
+
+
+After the phone has been successfully connected to the management
+network, changes coming from the phone can reach configurable targets,
+for example routers.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To defeat the missing internet connection problem, a simple solution would be
+sending a one-time password to a predefined phone via an SMS, but what
+entity would then check that and who would be authorized to send that message?
+Authenticating server, which has no internet connection should 
+have a predefined way to check that one-time password received via SMS is correct.
+
+Solution for this could be still using a co-existing captive-portal
+for emergency access. As AP is programmable with luci, it could
+provide this portal.  Alternatively, existing programs such as
+\emph{ChilliSpot} or \emph{NoCatAuth} could be used as WWW-portals.  For that to
+success, the WWW-portal would also need an open access without 802.1X
+port based access control.
 
 \section{Summary of the chosen solution}
-\label{sec-4-6}
+\label{sec-4-7}
 
 
 The chosen solution to benefit from SIM is via EAP-profiles, as EAP
@@ -1790,16 +1843,14 @@ Design is based on 802.1X and mobile network operator aided
 authentication
 and it is a variation of lock-and-key design.
 
-In this chapter it was mentioned, that the local controller delivers changes to each
-device.  It is assumed, that  the local controller (smart phone)
+
+It is assumed, that  the local controller (smart phone)
 delivers all changes to target devices.
-The distribution is not further described here, because that is an
-existing model.
-The AP functions both as the Authenticator and RADIUS client in
-scenarios I-IV.
-Authenticator receives RADIUS messages from
-Authentication server, even when there would be a separate local RADIUS server
-running as a proxy.
+The distribution of changes\cite{silverajan2015collaborative} is not
+further described here.  The AP functions both as the Authenticator
+and RADIUS client in scenarios I-IV.  Authenticator receives RADIUS
+messages from Authentication server, even when there would be a
+separate local RADIUS server running as a proxy.
 
 
 
@@ -1823,9 +1874,8 @@ tested and Cloud part set away.
 \end{figure}
 
 First it is shown how EAP-SIM authentication works in a simulated
-environment.
- Then a use case for disconnection is discussed, but not further
-analyzed.
+environment with different clients.
+This is further analyzed with aid of network traces.
 In the end, it is shown, that the changes in the management network are possible from
 the local controller with  command line interface (CLI).
 
@@ -1894,9 +1944,6 @@ Milenage were not used, because they are not needed in EAP-SIM.
 \label{sec-5-2}
 
 
-
-
-
 The first tests were done with hostapd as a wireless AP.
 Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. Despite that it took part in generating
@@ -1907,8 +1954,6 @@ Examples in appendix \ref{app:nosim}   [TBD]
 Nokia E90, with a registered SIM had better results. Traces
 are in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
   \verb~e90.sim.auth.pcapng~ and \verb~eap-1.pcapng~  [TBD]
-
-
 
 Runs got to the authentication phase, but challenge-responses did not
 work because SIM secrets were not known at that point. Nevertheless,
@@ -1927,7 +1972,7 @@ from hostapd software at server side  claimed that
 \begin{verse}
 "Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr\_auc\_gw program." \\
 \end{verse}
-This was notification, that Hostapd succesfully had received SIM
+This notified, that Hostapd succesfully had received SIM
 card's AuthN request and was going to forward that to simulated HLR
 authentication program. Now it was necessary to start building the 
 testing software.
@@ -1936,88 +1981,19 @@ started the needed programs. It also recorded used configurations, logs,
 and traffic captures for later analysis.
 
 
-\section{Disconnecting the local controller and offline changes}
-\label{sec-5-3}
-\label{sec:disconnections}
-[Limiting time and forced logout, for how long access provided to
-management operations, or use fast-auth on following accesses TBD]
 
-After the phone has been successfully connected to the management network,
-changes coming from 
-the phone can reach routers.  There should be a way to close the session after
-the changes has been applied. Originally it was thought, that the session
-would stay open only for a limited time, after which the phone would be forced to
-logout or thrown away from the management network and that idea should be
-kept in mind when the final implementation is made.
-
-
-
-
-
-Later it was learned, that terminating a session is not included in the original RADIUS protocol.
-The root cause is, that messages originating from the RADIUS server
-are not defined in the RADIUS protocol and so AP as RADIUS client cannot
-receive RADIUS server initiated disconnection messages. 
-Additional
-extensions such as Disconnect and Change-of-Authorization (CoA)
-packets, also known as RADIUS Dynamic Authorization or RADIUS
-Disconnection Message(DM), have later been brought in\cite{rfc5176}
-to the protocol by diverse vendors, but they may not all be implemented on
-every device.
-Disconnect-Request is sent to UDP port 3799, so Authenticator should
-listen also that in addition to RADIUS UDP port 1812.
-As a side note, Diameter protocol would provide server initiated messaging.
-
-
-
-
-
-
-
-
-
-
-
-
-[ Back in track: this can be left here ]
-
-\begin{itemize}
-\item forced logout, like in captive portals, where RADIUS is not used.
-\item no straightforward solution exists within RADIUS
-portal [-> reference to \texttt{No Internet connectivity} link is
-\end{itemize}
-
-
-
-
-To defeat the missing internet connection problem, a simple solution would be
-sending a one-time password to a predefined phone via an SMS, but what
-entity would then check that and who would be authorized to send that message?
-Authenticating server, which has no internet connection should 
-have a predefined way to check that one-time password received via SMS is correct.
-
-Solution for this could be still using a co-existing captive-portal
-for emergency access. As AP is programmable with luci, it could
-provide this portal.  Alternatively, existing programs such as
-\emph{ChilliSpot} or \emph{NoCatAuth} could be used as WWW-portals.  For that to
-success, the WWW-portal would also need an open access without 802.1X
-port based access control.
-
-
-\section{Network traces (EAP, SIM, AUTH traffic analysis)}
-\label{sec-5-4}
 Wireless capture of traffic between WPA2-Supplicant and AP was made at
-WPA2-Supplicant on the wireless card. Capture was
+WPA2-Supplicant on the wireless card. Wired capture between AP and
+RADIUS server was made at wired card. Wireless capture was
 not made in monitoring mode, so not all 802.11 details in
 data packets were captured\cite{wireshark-capture}.
 That was not a problem, because the focus was 
 in the EAP messaging instead of radio channel details.
-Whole conversation is given first here and afterwards analyzed more
+Additionally, the messages between RADIUS server and HLR were recorded.
+Whole conversation is given first here together and afterwards analyzed more
 thoroughly.
 
 [TBD: Capture points in picture.]
-
-
 
 
 The first capture shows tries with normal phones, when SIM secrets were
@@ -2052,8 +2028,8 @@ No. & Time & Src & Dest & Proto & Len & Info\\
 134 & 15:57:17.9924 & smartphone & AP-802.1x & EAP & 70 & Response, GSM Subscriber Identity\\
  &  &  &  &  &  & Modules EAP (EAP-SIM)\\
 135 & 15:57:17.9945 & AP-wired & RADIUS-srv & RADIUS & 272 & Access-Request(1) (id=163, l=230)\\
- &  & RADIUS-hlr & HLR-AuC gw & socket &  & SIM-REQ-AUTH <IMSI> 3\\
- &  & HLR-AuC gw & RADIUS-hlr & socket &  & SIM-RESP-AUTH <IMSI>, 3 triplets\\
+xxx &  & RADIUS-hlr & HLR-AuC gw & socket &  & SIM-REQ-AUTH <IMSI> 3\\
+xxx &  & HLR-AuC gw & RADIUS-hlr & socket &  & SIM-RESP-AUTH <IMSI>, 3 triplets\\
 136 & 15:57:18.0024 & RADIUS-srv & AP-wired & RADIUS & 256 & Access-Challenge(11) (id=163, l=214)\\
 137 & 15:57:18.0040 & AP-802.1x & smartphone & EAP & 186 & Request, GSM Subscriber Identity\\
  &  &  &  &  &  & Modules EAP (EAP-SIM)\\
@@ -2077,7 +2053,7 @@ IMSI is sent the first time already on the second EAP message from
 WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
 This part is presented in Capture \ref{capimsi}.
 
-\lstset{basicstyle=\ttfamily\small,
+\lstset{basicstyle=\ttfamily\scriptsize,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
 \renewcommand{\lstlistingname}{Capture}
@@ -2229,8 +2205,9 @@ Send: SIM-RESP-AUTH 232010000000000
 \end{verbatim}
 \normalsize
 
+
 \section{Simulation on smartphone Jolla}
-\label{sec-5-5}
+\label{sec-5-3}
 
 Because we had source code available, we also tried to move the
 simulated SIM application to the real smartphone.  Jolla is a new
@@ -2270,7 +2247,8 @@ version(s) & component & tested on (machine arch)\\
 
 We have now gone through theory, design and implementation so let's
 discuss some results and findings. We concentrate on security, 
-deployment difficulties and costs, platform issues and cases where we
+deployment difficulties, costs, platform issues, usability of multiple
+APs, and cases where we
 need to extend the number of SSID's. The facts collected in the thesis
 are once more wrapped up in Discussion section.
 Last, we speculate on some alternative design solutions for adding
@@ -3174,7 +3152,7 @@ further to aid in resolving issues in future home networks.
 the body text, remember this! ]
 
 %\thispagestyle{empty}
-\section{shell, logging options}
+\section{Shell, that starts programs and logs}
 \label{sec-7-1}
 \label{app:fulleap}
 \lstset{basicstyle=\ttfamily,columns=fixed,breaklines=true,
@@ -3297,13 +3275,13 @@ EAP-AKA \footnote{DEFINITION NOT FOUND.}, or OTP/token card methods like \footno
 \item Authenticator for example can use either local method or
 pass-through the authentication to external backend, still keeping
 EAP-message in tact(sp?) as of  rfc4137
-\item WPA2 package's hostapd from JM does not perhaps provide EAP-PEAPv0 SIM but
+\item WPA2 package's hostapd from JM does not perhaps provide EAP-PEAPv0
+SIM but wpa-supplicant supports.
 \end{itemize}
-wpa-supplicant supports.
 \begin{itemize}
 \item VLAN itself has an attack vector and some methods exists, but also
 mitigation for them.
-\item rad Authenticator, TLS, RADSEC etc, needs both client\&server in
+\item rad Authenticator, TLS, RADSEC etc, needs both client and server in
 x509 certificate
 \end{itemize}
 % Emacs 24.4.1 (Org mode 8.2.10)
