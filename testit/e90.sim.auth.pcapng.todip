@@ -1,0 +1,10 @@
+1 1.55883  e90 -> AP   EAPOL 18 Start
+2 1.55895  AP  -> e90  EAP 118 Request, Identity
+3 1.56072  AP  -> e90  EAP 117 Request, Identity
+4 1.80559  AP  -> e90  EAP 72 Request, GSM Subscriber Identity Modules EAP (EAP-SIM)
+5 1.80705  AP  -> e90  EAP 71 Request, GSM Subscriber Identity Modules EAP (EAP-SIM)
+6 1.80535  e90 -> AP   EAP 74 Response, Identity
+7 1.80950  e90 -> AP   EAP 106 Response, GSM Subscriber Identity Modules EAP (EAP-SIM)
+8 1.80559  AP  -> e90  EAP 72 Request, GSM Subscriber Identity Modules EAP (EAP-SIM)
+9 1.80705  AP  -> e90  EAP 71 Request, GSM Subscriber Identity Modules EAP (EAP-SIM)
+

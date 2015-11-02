@@ -5,7 +5,7 @@
 # # Export ditaa silent, moved to org-custom-inittiin
 # #+org-confirm-babel-evaluate nil
 # It is possible to inhibit the evaluation of code blocks during export. Setting the org-export-babel-evaluate variable to nil will ensure that no code blocks are evaluated as part of the export process
-#+DATE: 2.11.2015 {1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
+#+DATE: 2a.11.2015 {1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
 #+TITLE:  Smartphone as a trust anchor in home networks
 # en halua orgmoden default title sivua. Siispä tyhjä
 #+LATEX_CLASS: tutclass
@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 
 #+LATEX_HEADER: % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-#+LATEX_HEADER: \thesistype{draft-2.11.2015 Master of Science thesis}
+#+LATEX_HEADER: \thesistype{draft-2b.11.2015 Master of Science thesis}
 #+LATEX_HEADER: \examiner{Jarmo Harju}
 #+LATEX_HEADER: \makeatletter
 #+LATEX_HEADER:\usepackage{svg}
@@ -292,7 +292,7 @@ Teemu Teekkari
 % The abbreviations and symbols used in the thesis are collected into a
 % list in alphabetical order. In addition, they are explained upon
 % first usage in the text.
-
+\newpage
 #+end_latex
 
 # - term :: meaning
@@ -2927,7 +2927,7 @@ featured EAP-SIM by factory, but the Jolla phone missed a crucial
 software library
 and right compilation time configuration set on its WPA-supplicant for SIM.
 
-Jouni Malinen's software package /HostAP/\cite{hostapd} provides
+Jouni Malinen's software /HostAP/\cite{hostapd} provides
 components for WPA2-Supplicant, Wireless Access point (AP),
 HLR-gateway (for GSM networks), and EAP-endpoint with or without
 RADIUS-server. From those, wpa-supplicant, hostapd for wired RADIUS
@@ -3042,23 +3042,39 @@ The first tests were done with hostapd as a wireless AP.
 Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. Despite that it took part in generating
 primary EAP traffic. 
-Examples in appendix [[app:nosim]]   [TBD]
+# Examples in appendix [[app:nosim]]   [TBD]
 
 # Test run with hostapd and simulated HLR_auc_gw
 # [draw picture],
 
-Nokia E90, with a registered SIM had better results. Traces
-# sim2 sim3
-are in folder ~gitdocs/di/testit/~ files ~eap3.pcapng~,
-  ~e90.sim.auth.pcapng~ and ~eap-1.pcapng~  [TBD]
+Nokia E90, with a registered SIM had better results. 
+# Traces are in folder ~gitdocs/di/testit/~ files ~eap3.pcapng~,
+#   ~e90.sim.auth.pcapng~ 
+# and ~eap-1.pcapng~  [TBD]
+This time the capture was made in monitor mode, i.e., 
+the capture interface was mon.wlan0.
+
+#+BEGIN_LaTeX
+\lstset{basicstyle=\ttfamily\scriptsize,
+  columns=fixed,emph={1232010000000000}, 
+  emphstyle={\color{red}\textbf}}
+\lstinputlisting[language=sh,label=cape90,
+  caption={E90 trying to use its internal EAP-SIM}]
+  {testit/e90.sim.auth.pcapng.todip}
+#+END_LaTeX
 
 # After some modifications, 
-Runs got to the authentication phase, but challenge-responses did not
-work because SIM secrets were not known at that point. Nevertheless,
-both SIM cards succeeded to the point, where MNO's message would had next been
-verified with the SIM card.
+Runs got only to the message 7, where a nonce, selected version, and
+an identity 
+were sent from the phone, but RADIUS server did not know how to handle them. 
+#  authentication phase, but challenge-responses did not work because
+# SIM secrets were not known at that point.  Nevertheless, both SIM
+# cards succeeded to the point, where MNO's message would had next
+# been verified with the SIM card. 
+# Really? Did the RADIUS answer with challenge?
 # Show here, that 
-Both, the unregistered SIM and the registered SIM could not verify the
+Both, the unregistered SIM and the registered SIM could not have been
+verified with the
 operator, because it was locally simulated and they both therefore
 correctly  ended the conversation as should regarding
 RFC4186\cite{rfc4186}.
@@ -3098,7 +3114,7 @@ Additionally, the messages between RADIUS server and HLR were recorded.
 Whole conversation is given first here together and afterwards analyzed more
 thoroughly.
 
-[TBD: Capture points in picture.]
+# [TBD: Capture points in picture.]
 
 # Maybe also remote syslog from access point.]
 
@@ -3108,8 +3124,8 @@ Authenticator still received a claim of identification from the
 smartphone. Yet, as there is no AuthN, no proof of identity existed in
 that case.
 
-[Missing trace, demonstrating the use of unknown SIM physical phone,
-include first traces: TBD.]  
+# [Missing trace, demonstrating the use of unknown SIM physical phone,
+# include first traces: TBD.]  
 
 
 Packet capture of successful SIM-authentication with corresponding
@@ -3303,7 +3319,8 @@ against malicious attackers anymore.
 # ap-s150118-141629/hostapdwired-debug alkaa näkyä RADIUS 
 # 
 # 150123-155706 alkaa 2 identityllä
-[see. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
+
+[TBD /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
 
 Meanwhile, HLR simulator was listening requests from Authentication
 server's internal EAP-handler through a local socket. 
@@ -3324,7 +3341,8 @@ While one triplet would equal 64-bit key used for challenges, three
 triplets will make the key 192 bit long. Session keys are derived from
 this keymaterial. Crypto analysis of Patel\cite{patel-sim} noted in
 2003, that achieved session key security lenght would not be even 128
-but 64 bit.  
+but 64 bit, but it is not known to us, whether this was taken in
+account in 2005's version. 
 Format of triplet received is RAND:SRES:Kc.
 
 #+LATEX: \scriptsize
@@ -3349,8 +3367,9 @@ simulated SIM application to the real smartphone.  Jolla is a new
 Finnish smartphone, running on ARMv7 processor, having its root's on
 Nokia's last mobilephone line that used Linux Distribution MeeGo in
 beginning of 2010's.  The OS is called Sailfish and it includes user
-interface code made by Jolla, open source components from Mer (MEego
-Reinvented, or meritocratic community), and some other software
+interface code made by Jolla, open source components from Mer (comes
+from MEego
+Reinvented, or meritocratic community; community driven by merits), and some other software
 components, which are either free or proprietary.  Jolla's base
 WPA-supplicant belongs to Mer core and it was here re-built for
 simulator use. The build process was done inside MerSDK virtual
@@ -3358,7 +3377,8 @@ machine running under Virtualbox, because it provided not only
 simulated Jolla environment on x86 architecture, but also a cross
 compiling environment Scratchbox, that makes porting programs to Armv7
 processor easy.
-[cross compile environment, little bit more, examples. SDK,
+
+[TBD: cross compile environment, little bit more, examples. SDK,
 script,strips ]
 # https://sailfishos.org/develop/tutorials/building-sailfish-os-packages-manually/
 

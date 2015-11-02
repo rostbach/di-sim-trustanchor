@@ -1,4 +1,4 @@
-% Created 2015-11-02 ma 17:50
+% Created 2015-11-02 ma 23:13
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,14 +47,14 @@
 \title{Smartphone as a trust anchor for delegated home net configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-2.11.2015 Master of Science thesis}
+\thesistype{draft-2b.11.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{2.11.2015 \{1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{2a.11.2015 \{1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -310,6 +310,7 @@ Teemu Teekkari
 % The abbreviations and symbols used in the thesis are collected into a
 % list in alphabetical order. In addition, they are explained upon
 % first usage in the text.
+\newpage
 
 \begin{description}
 \item[{802.1X}] port based access control standard
@@ -1892,7 +1893,7 @@ featured EAP-SIM by factory, but the Jolla phone missed a crucial
 software library
 and right compilation time configuration set on its WPA-supplicant for SIM.
 
-Jouni Malinen's software package \emph{HostAP}\cite{hostapd} provides
+Jouni Malinen's software \emph{HostAP}\cite{hostapd} provides
 components for WPA2-Supplicant, Wireless Access point (AP),
 HLR-gateway (for GSM networks), and EAP-endpoint with or without
 RADIUS-server. From those, wpa-supplicant, hostapd for wired RADIUS
@@ -1948,18 +1949,24 @@ The first tests were done with hostapd as a wireless AP.
 Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. Despite that it took part in generating
 primary EAP traffic. 
-Examples in appendix \ref{app:nosim}   [TBD]
 
 
-Nokia E90, with a registered SIM had better results. Traces
-are in folder \verb~gitdocs/di/testit/~ files \verb~eap3.pcapng~,
-  \verb~e90.sim.auth.pcapng~ and \verb~eap-1.pcapng~  [TBD]
+Nokia E90, with a registered SIM had better results. 
+This time the capture was made in monitor mode, i.e., 
+the capture interface was mon.wlan0.
 
-Runs got to the authentication phase, but challenge-responses did not
-work because SIM secrets were not known at that point. Nevertheless,
-both SIM cards succeeded to the point, where MNO's message would had next been
-verified with the SIM card.
-Both, the unregistered SIM and the registered SIM could not verify the
+\lstset{basicstyle=\ttfamily\scriptsize,
+  columns=fixed,emph={1232010000000000}, 
+  emphstyle={\color{red}\textbf}}
+\lstinputlisting[language=sh,label=cape90,
+  caption={E90 trying to use its internal EAP-SIM}]
+  {testit/e90.sim.auth.pcapng.todip}
+
+Runs got only to the message 7, where a nonce, selected version, and
+an identity 
+were sent from the phone, but RADIUS server did not know how to handle them. 
+Both, the unregistered SIM and the registered SIM could not have been
+verified with the
 operator, because it was locally simulated and they both therefore
 correctly  ended the conversation as should regarding
 RFC4186\cite{rfc4186}.
@@ -1993,7 +2000,6 @@ Additionally, the messages between RADIUS server and HLR were recorded.
 Whole conversation is given first here together and afterwards analyzed more
 thoroughly.
 
-[TBD: Capture points in picture.]
 
 
 The first capture shows tries with normal phones, when SIM secrets were
@@ -2002,8 +2008,6 @@ Authenticator still received a claim of identification from the
 smartphone. Yet, as there is no AuthN, no proof of identity existed in
 that case.
 
-[Missing trace, demonstrating the use of unknown SIM physical phone,
-include first traces: TBD.]  
 
 
 Packet capture of successful SIM-authentication with corresponding
@@ -2176,7 +2180,8 @@ corruption. Limited, because it uses MD5-hashing which is not safe
 against malicious attackers anymore.
 
 [Here conversation after identity reveal to HLR part]
-[see. /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
+
+[TBD /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
 
 Meanwhile, HLR simulator was listening requests from Authentication
 server's internal EAP-handler through a local socket. 
@@ -2192,7 +2197,8 @@ While one triplet would equal 64-bit key used for challenges, three
 triplets will make the key 192 bit long. Session keys are derived from
 this keymaterial. Crypto analysis of Patel\cite{patel-sim} noted in
 2003, that achieved session key security lenght would not be even 128
-but 64 bit.  
+but 64 bit, but it is not known to us, whether this was taken in
+account in 2005's version. 
 Format of triplet received is RAND:SRES:Kc.
 
 \scriptsize
@@ -2214,8 +2220,9 @@ simulated SIM application to the real smartphone.  Jolla is a new
 Finnish smartphone, running on ARMv7 processor, having its root's on
 Nokia's last mobilephone line that used Linux Distribution MeeGo in
 beginning of 2010's.  The OS is called Sailfish and it includes user
-interface code made by Jolla, open source components from Mer (MEego
-Reinvented, or meritocratic community), and some other software
+interface code made by Jolla, open source components from Mer (comes
+from MEego
+Reinvented, or meritocratic community; community driven by merits), and some other software
 components, which are either free or proprietary.  Jolla's base
 WPA-supplicant belongs to Mer core and it was here re-built for
 simulator use. The build process was done inside MerSDK virtual
@@ -2223,7 +2230,8 @@ machine running under Virtualbox, because it provided not only
 simulated Jolla environment on x86 architecture, but also a cross
 compiling environment Scratchbox, that makes porting programs to Armv7
 processor easy.
-[cross compile environment, little bit more, examples. SDK,
+
+[TBD: cross compile environment, little bit more, examples. SDK,
 script,strips ]
 
 
