@@ -3041,10 +3041,10 @@ Milenage were not used, because they are not needed in EAP-SIM.
 The first tests were done with hostapd as a wireless AP.
 Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. 
-In testing the authentication
+In testing the authentication,
 # By carefully studying configuration, both documented and
 # un-documented,
-there was no indication of SIM method present in captures, the only
+there was no indication of EAP method present in captures, the only
 indication of security was a message ``Open System'' in application
 logs, which only means that no pre-shared key is used. The reason for
 that was not found.
