@@ -2359,7 +2359,8 @@ of I-IV, but CPE  has first neither trust nor roles. Bootstrapping is discussed 
 Section [[bootstrapping]].
 
 
-** Modification of RADIUS messages [perhaps to security integrity chapter?]
+** Modification of RADIUS messages
+# [perhaps to security integrity chapter?]
 <<sec:radius-macs>>
 # [Analysis of RADIUS, RADIUS Proxies..
 
