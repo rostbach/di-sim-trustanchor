@@ -3416,11 +3416,9 @@ script]
 |   2.2, 2.3 | wpa-supplicant     | laptop(x86_64)           |
 |        2.4 | wpa-supplicant     | Jolla (armv7l)           |
 |   1.1.9.28 | Sailfish           | Jolla (armv7l)           |
-|     1-8.13 | pcsc-lite          | laptop(x86_64)           |
+|     1-8.13 | pcsc-lite          | Jolla(armv7l)            |
 |     1-8.13 | pcsc-lite          | laptop(x86_64)           |
 |------------+--------------------+--------------------------|
-
-
 
 
 * Analysis, Results and Discussion
