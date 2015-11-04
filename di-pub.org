@@ -3040,8 +3040,19 @@ Milenage were not used, because they are not needed in EAP-SIM.
 
 The first tests were done with hostapd as a wireless AP.
 Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
-non-registered SIM card. Despite that it took part in generating
-primary EAP traffic. 
+non-registered SIM card. 
+In testing the implementation, the first tests did not go as
+planned. 
+# By carefully studying configuration, both documented and
+# un-documented,
+There was no indication of SIM method present in captures, the only
+indication of security was a message ``Open System'' in application
+logs, which only means that no pre-shared key is used. The reason for
+that was not found.
+
+
+# Olisiko Open ollutkin 802.11 Open System ilmoitus?
+# with primary EAP traffic. 
 # Examples in appendix [[app:nosim]]   [TBD]
 
 # Test run with hostapd and simulated HLR_auc_gw
@@ -3053,7 +3064,8 @@ Nokia E90, with a registered SIM had better results.
 # and ~eap-1.pcapng~  [TBD]
 This time the capture was made in monitor mode, i.e., 
 the capture interface was mon.wlan0.
-
+Traffic captures revealed some EAP traffic involving some EAP-SIM
+Request--Response pairs.
 #+BEGIN_LaTeX
 \lstset{basicstyle=\ttfamily\scriptsize,
   columns=fixed,emph={1232010000000000}, 
@@ -4391,11 +4403,12 @@ Authenticator or there might be a proxying RADIUS, which resolves the
 AuthZ information and generates an ACCESS-ACCEPT packet. The latter
 has in turn issues with TMSI.
 
-When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
-a beforehand known IMSI identity, there will be problem
+When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead
+of a beforehand known IMSI identity, there will be problem
 # if it had to insert the admin role information in to the RADIUS message.
 because proxying RADIUS knows for sure only the originating server. 
-MNO in turn does not necessary know about the roles.
+MNO in turn does not necessary know about the roles, and can directly
+perform only AuthN.
 
 # , on the other hand, 
 # does not necessary know about roles without the cloud, so a link
@@ -4412,17 +4425,9 @@ These issues are fully avoided only in scenario II presented in Chapter
 [[#cha:design]], where there is local Authentication server in home network.
 Partly avoidance can be reached, if only Full Authentication is
 used, i.e., the authentication is always checked from MNO and no Fast
-Re-authentication is used.
+Re-authentication is used, thus eliminating use of TMSI altogether.
 # explain fast and full authentication
 
-In testing the implementation, the first tests did not go as
-planned. 
-# By carefully studying configuration, both documented and
-# un-documented,
-There was no indication of SIM method present in captures, the only
-indication of security was a message ``Open System'' in application
-logs, which only means that no pre-shared key is used.
-# Olisiko Open ollutkin 802.11 Open System ilmoitus?
 
 # TODO figure xxx
 
