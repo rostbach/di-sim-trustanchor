@@ -3404,8 +3404,8 @@ stripped from debugging symbols and copied to Jolla together with the PCSC-libra
 Jolla phone's file hierarchy is very similar to hierarchy in test
 environment's Linux, which made the operation very easy.
 
-# [TBD: cross compile environment, little bit more, examples. SDK,
-# script,strips ]
+[TBD: cross compile environment, little bit more, examples. SDK,
+script]
 # https://sailfishos.org/develop/tutorials/building-sailfish-os-packages-manually/
 
 
@@ -3416,8 +3416,10 @@ environment's Linux, which made the operation very easy.
 |   2.2, 2.3 | wpa-supplicant     | laptop(x86_64)           |
 |        2.4 | wpa-supplicant     | Jolla (armv7l)           |
 |   1.1.9.28 | Sailfish           | Jolla (armv7l)           |
-|   1.1.9.28 | Sailfish           | Virtualbox (x86/armv7l)  |
-|            | pcsc               |                          |
+|     1-8.13 | pcsc-lite          | laptop(x86_64)           |
+|     1-8.13 | pcsc-lite          | laptop(x86_64)           |
+|------------+--------------------+--------------------------|
+
 
 
 
