@@ -3047,7 +3047,7 @@ In testing the authentication,
 there was no indication of EAP method present in captures, the only
 indication of security was a message ``Open System'' in application
 logs, which only means that no pre-shared key is used. The reason for
-that was not found.
+that was not found, but it may have been problem on hostapd's settings.
 
 
 # Olisiko Open ollutkin 802.11 Open System ilmoitus?
