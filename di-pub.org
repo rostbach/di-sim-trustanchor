@@ -3079,6 +3079,7 @@ Request--Response pairs.
 \lstset{basicstyle=\ttfamily\scriptsize,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
+\renewcommand{\lstlistingname}{Capture}
 \lstinputlisting[language=sh,label=cape90,
   caption={E90 trying to use its internal EAP-SIM}]
   {testit/e90.sim.auth.pcapng.todip}
