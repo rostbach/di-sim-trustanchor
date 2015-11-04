@@ -4307,7 +4307,7 @@ by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
 only in a very light way, but not encrypted.
 
-Altering or addition of  RADIUS messages can be chosen from many
+Altering or adding of  RADIUS messages can be chosen from many
 attributes of RADIUS's vocabulary. They can carry extra information
 for provisioning in AuthZ phase. Exactly which of them are used
 remains to implementer's  decision. 
@@ -4317,7 +4317,7 @@ attributes such as authentication method and identification.
 It also can mean identifying users later and giving
 them more attributes and access rights dynamically.
 Binding a user to a SIM card is also provisioning and that has
-happened earlier.
+happened earlier by MNO.
 
 
 # - [Each component does only limited part of the job.]
@@ -4363,9 +4363,9 @@ happened earlier.
 # Just remember[from where?], that 
 # Email correspondence (2014/Sep) with Karri Huhtanen  revealed
 # another
-Another problem using in-flight alteration of the AuthZ data in RADIUS ACCESS-ACCEPT message
+Another problem using on-fly alteration of the AuthZ data in RADIUS ACCESS-ACCEPT message
 # (\cite{mail-huhtanen-2014} 
-is the mapping of the authentication messages of IMSI and TMSI identities.
+is the mapping between IMSI and TMSI identities.
 # #+BEGIN_QUOTE
 #  ``It is possible to add authorization message in-flight in to the
 # ACCESS-ACCEPT.
@@ -4384,12 +4384,12 @@ is the mapping of the authentication messages of IMSI and TMSI identities.
 #  -K. Huhtanen, 2014 
 # [cite: Karri Huhtanen/ArchRed, email, Sep 10. 2014, translation by author]
 # problem of TMSI
-The Authenticator does know the original user and mapping of TMSI to
-IMSI, but needs to get AuthZ information. That can be received from the
+The Authenticator does know the original user and mapping of IMSI to
+TMSI, but needs AuthZ information. That can be received from the
 remote operator, which would be easier for the
-Authenticator or there might be a proxying RADIUS, which resolves the AuthZ
-information and generates an ACCESS-ACCEPT packet. The latter has issues with
-TMSI.
+Authenticator or there might be a proxying RADIUS, which resolves the
+AuthZ information and generates an ACCESS-ACCEPT packet. The latter
+has in turn issues with TMSI.
 
 When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
 a beforehand known IMSI identity, there will be problem
