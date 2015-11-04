@@ -3114,8 +3114,7 @@ environment also at client's  side was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software at server side  claimed that 
-#+BEGIN_EXAMPLE
-"Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr_auc_gw program."
+/Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr_auc_gw program./
 #+END_EXAMPLE
 # Appendix [[app:hlraucgw]]  shows tthat traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
