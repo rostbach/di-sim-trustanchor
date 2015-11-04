@@ -3160,7 +3160,7 @@ The capture has been done at the WPA2-supplicant.
  label=eap-sim-capture,
  caption{Successful EAP-SIM Authentication}
 ]
-
+----
 No.           Time   Src          Dest         Proto    Len   Info                                  
 129  15:57:17.9830   AP-802.1x    smartphone   EAP       23   Request, Identity                     
 130  15:57:17.9832   smartphone   AP-802.1x    EAP       39   Response, Identity                    
