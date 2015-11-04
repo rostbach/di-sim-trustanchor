@@ -4596,8 +4596,8 @@ Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]].
 # That explains PKI usage in general in bootstrapping.
 
 
-Behringer continues, that this model could be expanded to a full
-ticket enabled 
+# Behringer continues, that 
+This model could be expanded to a full ticket enabled 
 # Kerberos style
 # There is also discussion about using manufacturer provided device certificates as trust anchor.  
 AA, where time-limited tickets (tokens) for both
