@@ -1,4 +1,4 @@
-% Created 2015-11-04 ke 19:50
+% Created 2015-11-04 ke 20:58
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -47,14 +47,14 @@
 \title{Smartphone as a trust anchor for delegated home net configuration management}
 \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-\thesistype{draft-2b.11.2015 Master of Science thesis}
+\thesistype{draft-4.11.2015 Master of Science thesis}
 \examiner{Jarmo Harju}
 \makeatletter
 \usepackage{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[all]{nowidow}
 \author{Riku Itäpuro}
-\date{2a.11.2015 \{1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
+\date{4.11.2015 \{2a,1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)}
 \title{Smartphone as a trust anchor in home networks}
 \hypersetup{
   pdfkeywords={},
@@ -1827,8 +1827,8 @@ entity would then check that and who would be authorized to send that message?
 Authenticating server, which has no internet connection should 
 have a predefined way to check that one-time password received via SMS is correct.
 
-Solution for this could be still using a co-existing captive-portal
-for emergency access. As AP is programmable with luci, it could
+Solution for this could be still using a co-existing captive portal
+for emergency access. As AP is programmable, it could
 provide this portal.  Alternatively, existing programs such as
 \emph{ChilliSpot} or \emph{NoCatAuth} could be used as WWW-portals.  For that to
 success, the WWW-portal would also need an open access without 802.1X
@@ -2059,7 +2059,7 @@ xxx           HLR-AuC  RAD-hlr   socket         SIM-RESP-AUTH <IMSI>, 3 triplets
 
 IMSI is sent the first time already on the second EAP message from 
 WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
-This part is presented in Capture \ref{capimsi}.
+This part is presented in more detail in Capture \ref{capimsi}.
 
 \lstset{basicstyle=\ttfamily\scriptsize,
   columns=fixed,emph={1232010000000000}, 
@@ -2235,8 +2235,14 @@ simulated Jolla environment on x86 architecture, but also a cross
 compiling environment Scratchbox, that makes porting programs to Armv7
 processor easy.
 
-[TBD: cross compile environment, little bit more, examples. SDK,
-script,strips ]
+To compile wpa-supplicant with EAP-SIM simulator, PCSC component was
+needed, as was mentioned in Section\texttt{\#pcsc}. So first pcsc-lite was
+downloaded and cross-compiled in MerSDK. Then wpa-supplicant was compiled
+with correct parameters in same place. Finally, the wpa-supplicant was 
+stripped from debugging symbols and copied to Jolla together with the PCSC-library.
+Jolla phone's file hierarchy is very similar to hierarchy in test
+environment's Linux, which made the operation very easy.
+
 
 
 \begin{center}
@@ -2249,6 +2255,7 @@ version(s) & component & tested on (machine arch)\\
 2.4 & wpa-supplicant & Jolla (armv7l)\\
 1.1.9.28 & Sailfish & Jolla (armv7l)\\
 1.1.9.28 & Sailfish & Virtualbox (x86/armv7l)\\
+ & pcsc & \\
 \end{tabular}
 \end{center}
 
@@ -2672,7 +2679,7 @@ network used 1.8GHz radio channel under an experimental spectrum
 licence,  GSM encryption also could be used, because the SIM-card secrets were known
 to the organizing, private operator.
 On the other hand, empty GSM cards for testing can cost as much as 
-18 euros a piece (webshop-quote\cite{smartjac-testsim}).
+18 euros a piece\cite{smartjac-testsim}.
 
 
 \section{Platform specific issues}
@@ -2684,7 +2691,7 @@ certificate or additionally client certificate present.  There are
 smartphones, that do not have EAP-SIM yet available.  For example
 support for EAP-SIM (and -AKA) methods starts in Android only from
 version 4.x and in iOS from version 5.x.\cite{sim-support}.
-
+\label{pcsc}
 Generally, to support EAP-SIM  with open source software in 
 smartphone, needed components are \emph{pcsc-lite} for accessing SIM card, \emph{wpa\_supplicant} for
 WPA2 client, and possible used connection manager (\emph{connman},
@@ -2698,19 +2705,18 @@ If OpenWRT platform is used for CPE, the memory size (32MB) restricts
 some use.
 WPA2 software included in basic OpenWRT installation is small,
 but that does not yet include RADIUS server part or EAP-SIM handling.
-
-Software has other limitations. Freeradius2 is not yet included  in OpenWRT.
-and if it was, it would also be based heavily on current Perl environment which
-itself needs a lot of space.
-Currently, as of 9.8.2015, Freeradius is running on version 3 and
-EAP-AKA is supported through a module from hostapd project.
-COMP128(versions 1, 2, and 3), which is implementation  of A3/A8
-algorithms, is  supported\cite{freeradius2}, and so EAP-SIM is available.
-Yet, Freeradius can be used as Authentication Center (AuC).
-Diameter (freeDiameter) can be compiled in OpenWRT. That is good,
-because on 3GPP networks Diameter protocol has more support than RADIUS.
-If nothing else works, as a backup old-fashioned WWW-authentication
-portal can be used for offline authentication.
+Freeradius2 is not yet included in OpenWRT and if it was, it would
+also be based heavily on current Perl environment which itself needs a
+lot of space.  Currently, as of August 9th, 2015, Freeradius is
+running on version 3 and EAP-AKA is supported through a module from
+hostapd project.  COMP128(versions 1, 2, and 3), which is
+implementation of A3/A8 algorithms, is supported\cite{freeradius2},
+and so EAP-SIM is available.  Yet, Freeradius can be used as
+Authentication Center (AuC).  Diameter (freeDiameter) can be compiled
+in OpenWRT, which is good, because on 3GPP networks Diameter protocol
+has more support than RADIUS.  If nothing else works, as a backup
+old-fashioned WWW-authentication portal can be used for offline
+authentication.
 
 
 
@@ -2748,11 +2754,11 @@ via normal access network.
 \section{Usability with access points}
 \label{sec-6-4}
 There are three main types of wireless access points: open access
-points without configuration on client's end, access points that
-demand one-time only setup of client such as WPA2-PSK or
-WPA2-Enterprise, and lastly captive portal type access points, where
+points without configuration on client's end, access points 
+demanding one-time only setup of client such as WPA2-PSK or
+WPA2-Enterprise, and lastly access points similar to captive portal, where
 user have to login manually first time through web-page login.
-It is well known, that the usability of the captive-portal Wi-Fi
+It is well known, that the usability of the captive portal Wi-Fi
  network is burden, because a user needs to go through 
 a web portal logins with a username-password authentication 
 procedure and those are different for every network.
@@ -2864,7 +2870,7 @@ the authenticated identity.
 
 
 
-In the design chapter (Chapter \#\texttt{cha:design}) it was questioned whether the proxying RADIUS server
+In the design chapter (Chapter \ref{sec-4}) it was questioned whether the proxying RADIUS server
 can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
@@ -3197,99 +3203,5 @@ the body text, remember this! ]
 \label{app:nosim}
 
 Here capture + analysis from nosim
-
-\chapter{[MISC to be added on right places]}
-\label{sec-8}
-\section{facts TBD.}
-\label{sec-8-1}
-\begin{itemize}
-\item ``most EAP authentication protocols lack two features: identity
-protection and withstanding man- in-the-middle attacks. ''
-\end{itemize}
-source :
-
-Yuh-Min Tseng Department of Mathematics, National Changhua University of Education,
-Jin-De Campus, Chag-Hua City 500, Taiwan, ROC.
-
-``USIM-based EAP-TLS authentication protocol for
-wireless local area networks''
-and 
-
-Wireless (In)Security www-page, where 
-EAP table shows that PEAP has MiTM.
-\url{http://networking.ringofsaturn.com/Security/WirelessInSecurity.php}
-
-\begin{itemize}
-\item re-auth for long-lived sessions or if there is cost for disrupting them
-\item APs provide different authentication suites for different
-\end{itemize}
-SSIDs 
-
-\scriptsize
-\begin{verbatim}
-essid="nurkka"
-          IE: IEEE 802.11i/WPA2 Version 1
-                        Group Cipher : CCMP
-                        Pairwise Ciphers (1) : CCMP
-                        Authentication Suites (1) : PSK
-essid="simtest"
-          IE: IEEE 802.11i/WPA2 Version 1
-                        Group Cipher : CCMP
-                        Pairwise Ciphers (1) : CCMP
-                        Authentication Suites (1) : 802.1x
-\end{verbatim}
-\normalsize
-
-\section{using EAP for other than network access, i.e., for application auth.}
-\label{sec-8-2}
-\begin{itemize}
-\item \url{http://www.rfc-editor.org/rfc/rfc7057.txt}
-\begin{itemize}
-\item EAP
-\end{itemize}
-\item application as an EAP peer
-\item RFC6677: Channel-Binding Support for Extensible Authentication Protocol (EAP)
-\item channel binding must be used
-\end{itemize}
-
-\section{SS7 flaws}
-\label{sec-8-3}
-German researchers discover a flaw that could let anyone listen to
-your cell calls 
-Washigtonpost.com 2014/12/18
-\section{eap-psk rfc4764.txt}
-\label{sec-8-4}
-\begin{itemize}
-\item other limitations than identity protection are password support and Perfect Forward Secrecy (PFS).
-\item eap-psk
-\item only 3 standards track EAP methods per IETF terminology,
-\end{itemize}
-but all of them are deprecated (md5,OTP,GTC ja?)
-\begin{itemize}
-\item some EAP- o  Essentially require additional infrastructure, e.g., EAP-SIM \footnote{DEFINITION NOT FOUND.},
-EAP-AKA \footnote{DEFINITION NOT FOUND.}, or OTP/token card methods like \footnote{DEFINITION NOT FOUND.}.
-\end{itemize}
-
-
-\section{eap-sim acts similar than any other EAP challenge method (or not?)}
-\label{sec-8-5}
-\begin{itemize}
-\item compare eap-sim with other method and point out differences.
-\item privacy already shown
-\item user defined passwd?
-\item how many messages needed? In eap-sim 6+1 (success/failure)
-\item to do comparison, I have to study how EAP in general works
-\item Authenticator for example can use either local method or
-pass-through the authentication to external backend, still keeping
-EAP-message in tact(sp?) as of  rfc4137
-\item WPA2 package's hostapd from JM does not perhaps provide EAP-PEAPv0
-SIM but wpa-supplicant supports.
-\end{itemize}
-\begin{itemize}
-\item VLAN itself has an attack vector and some methods exists, but also
-mitigation for them.
-\item rad Authenticator, TLS, RADSEC etc, needs both client and server in
-x509 certificate
-\end{itemize}
 % Emacs 24.4.1 (Org mode 8.2.10)
 \end{document}
