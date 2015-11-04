@@ -1,3 +1,4 @@
+
 # EAP-SIM with a GSM SIM or USIM
 network={
   ssid="simtest"
@@ -12,7 +13,7 @@ network={
 
 # block used for automatic network selection, not used here.
 cred={                 
-  imsi="1232010000000000"  # format should have been <MCC> | <MNC> | '-' | <MSIN> ,
-			   # i.e., 35840-123456789 so this could not work.
+  imsi="1232010000000000"  # format should be <MCC> | <MNC> | '-' | <MSIN> ,
+			   # i.e., 35840-123456789, so this would not work.
   milenage="90dca4eda45b53cf0f12d7c9c3bc6a89:cb9cccc4b9258e6dca4760379fb82581"
 }
