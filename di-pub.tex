@@ -1,4 +1,4 @@
-% Created 2015-11-04 ke 20:58
+% Created 2015-11-04 ke 22:48
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1605,7 +1605,7 @@ of I-IV, but CPE  has first neither trust nor roles. Bootstrapping is discussed 
 Section \ref{bootstrapping}.
 
 
-\section{Modification of RADIUS messages [perhaps to security integrity chapter?]}
+\section{Modification of RADIUS messages}
 \label{sec-4-3}
 \label{sec:radius-macs}
 
@@ -2243,6 +2243,8 @@ stripped from debugging symbols and copied to Jolla together with the PCSC-libra
 Jolla phone's file hierarchy is very similar to hierarchy in test
 environment's Linux, which made the operation very easy.
 
+[TBD: cross compile environment, little bit more, examples. SDK,
+script]
 
 
 \begin{center}
@@ -2254,11 +2256,11 @@ version(s) & component & tested on (machine arch)\\
 2.2, 2.3 & wpa-supplicant & laptop(x86\_64)\\
 2.4 & wpa-supplicant & Jolla (armv7l)\\
 1.1.9.28 & Sailfish & Jolla (armv7l)\\
-1.1.9.28 & Sailfish & Virtualbox (x86/armv7l)\\
- & pcsc & \\
+1-8.13 & pcsc-lite & Jolla(armv7l)\\
+1-8.13 & pcsc-lite & laptop(x86\_64)\\
+\hline
 \end{tabular}
 \end{center}
-
 
 
 \chapter{Analysis, Results and Discussion}
@@ -2433,13 +2435,12 @@ comes from processing loads\cite{2009-lin-simefficiency}.
 
 
 Traditionally, RADIUS has used connection\-less UDP protocol that is
-light weight. UDP misses reliability that TCP has, and retransmission in UDP is
-tolerable, because the user is ready to wait  several seconds for
-authentication to complete. Today, RADIUS can also run over TCP, which
-has generally more aggressive retransmission
-rate\cite[Section 2.2.1]{rfc5080}. 
-On the other hand, adding an
-alternative UDP RADIUS server can answer faster than waiting for TCP's reliable delivery.
+light weight. Retransmission in UDP is tolerable, because the user is
+ready to wait several seconds for authentication to complete.  
+Today, RADIUS can be also run over TCP, which has generally more
+aggressive retransmission rate.\cite[Section 2.2.1]{rfc5080}.
+UDP misses the reliability that TCP has, but, adding an alternative UDP RADIUS
+server can answer requests faster than waiting for TCP RADIUS's reliable delivery.
 
 
 \subsection{RADIUS weaknesses and strengths in limited use cases}
@@ -2756,7 +2757,7 @@ via normal access network.
 There are three main types of wireless access points: open access
 points without configuration on client's end, access points 
 demanding one-time only setup of client such as WPA2-PSK or
-WPA2-Enterprise, and lastly access points similar to captive portal, where
+WPA2-Enterprise, and access points similar to captive portal, where
 user have to login manually first time through web-page login.
 It is well known, that the usability of the captive portal Wi-Fi
  network is burden, because a user needs to go through 
