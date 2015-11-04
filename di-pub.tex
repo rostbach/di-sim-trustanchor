@@ -1,4 +1,4 @@
-% Created 2015-11-02 ma 23:13
+% Created 2015-11-04 ke 18:46
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -289,7 +289,7 @@ Teemu Teekkari
 \item[CPE] Customer Premise Equipment %, device physically located at customers home.
 \item[EAP] Extensible Authentication Protocol %, extends 802.1X
 \item[GAA] Generic Authentication Architecture % (for SSO)
-\item[GBA] Generic Bootstrapping Architecture, 3GPP standard for user authentication with help of shared key from operator- Åart pf GAA.
+\item[GBA] Generic Bootstrapping Architecture, 3GPP standard for user authentication with help of shared key from operator, part pf GAA.
 \item[GSM] Global System for Mobile Communication (earlier Groupe Spécial Mobile)
 \item[HLR] Home Location Registry, ...
 % \item[ICCID] card serial
@@ -302,7 +302,7 @@ Teemu Teekkari
 \item[SSID] Service Set Identifier, identifies Wi-Fi network
 \item[TMSI] Temporal Mobile Subscriber Identity
 \item[Wi-Fi] Wireless local network, implements IEEE 802.11 standards
-\item[WPA] Wireless Protected Access version 1.
+\item[WPA] Wireless Protected Access version 1
 \item[WPA2] Wireless Protected Access version 2
 \end{termlist} 
 
@@ -1947,14 +1947,22 @@ Milenage were not used, because they are not needed in EAP-SIM.
 
 The first tests were done with hostapd as a wireless AP.
 Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
-non-registered SIM card. Despite that it took part in generating
-primary EAP traffic. 
+non-registered SIM card. 
+In testing the implementation, the first tests did not go as
+planned. 
+There was no indication of SIM method present in captures, the only
+indication of security was a message ``Open System'' in application
+logs, which only means that no pre-shared key is used. The reason for
+that was not found.
+
+
 
 
 Nokia E90, with a registered SIM had better results. 
 This time the capture was made in monitor mode, i.e., 
 the capture interface was mon.wlan0.
-
+Traffic captures revealed some EAP traffic involving some EAP-SIM
+Request--Response pairs.
 \lstset{basicstyle=\ttfamily\scriptsize,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
@@ -1962,7 +1970,8 @@ the capture interface was mon.wlan0.
   caption={E90 trying to use its internal EAP-SIM}]
   {testit/e90.sim.auth.pcapng.todip}
 
-Runs got only to the message 7, where a nonce, selected version, and
+When this is compared with Figure \ref{fig:eap-sim-radius} we see, that the runs got only to the
+message 7, where a nonce, selected version, and
 an identity 
 were sent from the phone, but RADIUS server did not know how to handle them. 
 Both, the unregistered SIM and the registered SIM could not have been
@@ -2860,13 +2869,13 @@ the authenticated identity.
 
 
 
-In the design chapter (Chapter \label{cha:design}) it was questioned whether the proxying RADIUS server
+In the design chapter (Chapter \#\texttt{cha:design}) it was questioned whether the proxying RADIUS server
 can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
 only in a very light way, but not encrypted.
 
-Altering or addition of  RADIUS messages can be chosen from many
+Altering or adding of  RADIUS messages can be chosen from many
 attributes of RADIUS's vocabulary. They can carry extra information
 for provisioning in AuthZ phase. Exactly which of them are used
 remains to implementer's  decision. 
@@ -2875,7 +2884,7 @@ attributes such as authentication method and identification.
 It also can mean identifying users later and giving
 them more attributes and access rights dynamically.
 Binding a user to a SIM card is also provisioning and that has
-happened earlier.
+happened earlier by MNO.
 
 
 
@@ -2889,19 +2898,20 @@ happened earlier.
 
 
 
-Another problem using in-flight alteration of the AuthZ data in RADIUS ACCESS-ACCEPT message
-is the mapping of the authentication messages of IMSI and TMSI identities.
-The Authenticator does know the original user and mapping of TMSI to
-IMSI, but needs to get AuthZ information. That can be received from the
+Another problem using on-fly alteration of the AuthZ data in RADIUS ACCESS-ACCEPT message
+is the mapping between IMSI and TMSI identities.
+The Authenticator does know the original user and mapping of IMSI to
+TMSI, but needs AuthZ information. That can be received from the
 remote operator, which would be easier for the
-Authenticator or there might be a proxying RADIUS, which resolves the AuthZ
-information and generates an ACCESS-ACCEPT packet. The latter has issues with
-TMSI.
+Authenticator or there might be a proxying RADIUS, which resolves the
+AuthZ information and generates an ACCESS-ACCEPT packet. The latter
+has in turn issues with TMSI.
 
-When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead of
-a beforehand known IMSI identity, there will be problem
+When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead
+of a beforehand known IMSI identity, there will be problem
 because proxying RADIUS knows for sure only the originating server. 
-MNO in turn does not necessary know about the roles.
+MNO in turn does not necessary know about the roles, and can directly
+perform only AuthN.
 
 It seems, that AuthZ data must be mapped during the first phase of
 EAP-SIM AuthN, when IMSI still is available, and in some way
@@ -2910,13 +2920,7 @@ These issues are fully avoided only in scenario II presented in Chapter
 \ref{sec-4}, where there is local Authentication server in home network.
 Partly avoidance can be reached, if only Full Authentication is
 used, i.e., the authentication is always checked from MNO and no Fast
-Re-authentication is used.
-
-In testing the implementation, the first tests did not go as
-planned. 
-There was no indication of SIM method present in captures, the only
-indication of security was a message ``Open System'' in application
-logs, which only means that no pre-shared key is used.
+Re-authentication is used, thus eliminating use of TMSI altogether.
 
 
 
@@ -3025,15 +3029,15 @@ device's vendor certificates.
 Behringer\cite{draft-behringer-bootstrap} proposes, that one device
 at home is first chosen as a trust anchor  using its unique properties 
 and this anchored device later becomes home
-network's Certificate Authority (CA) service and the trust anchor,
-upon which the rest of the home network devices would apply for
-certificates from to get under the same trust circle.  Key creation,
+network's Certificate Authority (CA) service. Smart phone would play
+user interface role only, but not the trust anchor role.
+The rest of the home network devices would apply for
+certificates from this trust anchor to get under the same trust circle.  Key creation,
 key exchange and their usage is explained in similar draft from
 Pritikin\cite{draft-pritikin-bootstrap}. 
 
 
-Behringer continues, that this model could be expanded to a full
-ticket enabled 
+This model could be expanded to a full ticket enabled 
 AA, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
 There, the end devices  first try to get AuthN ticket, which 
