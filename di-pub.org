@@ -1038,7 +1038,9 @@ The SIM's storage also includes a unique serial number ICCID
 a composition of digits belonging to Mobile Country Code(MCC, 2
 digits), Mobile Network Code(MNC,2-3 digits) and Mobile Subscriber
 Identification Number(MSIN, 10 digits at most).
-More familiar, it is the user's full international phone number.
+It is not to be mixed with MSISDN (Mobile Station Integrated Services
+Digital Network), which is user's full international phone number.
+# More familiar, it is the user's full international phone number.
 # [ More detailed SIM architecture? Java Card, CPU,?]
 
 
