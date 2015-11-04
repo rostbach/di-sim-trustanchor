@@ -3088,9 +3088,9 @@ Request--Response pairs.
 # After some modifications, 
 # When this is compared with Figure[[ 
 When opening Responses number 6 and 7, we can see that we got to the
-part, where a nonce, selected version, and 
-an identity were sent from the phone (message 7 in Figure[[fig:eap-sim-radius]],
-, but RADIUS server did not know how to handle them. 
+part, where a nonce, selected version, and an identity were sent from
+the phone (message 7 in Figure[[fig:eap-sim-radius]], but RADIUS server
+did not know how to handle them.
 #  authentication phase, but challenge-responses did not work because
 # SIM secrets were not known at that point.  Nevertheless, both SIM
 # cards succeeded to the point, where MNO's message would had next
