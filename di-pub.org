@@ -4585,9 +4585,12 @@ device's vendor certificates.
 Behringer\cite{draft-behringer-bootstrap} proposes, that one device
 at home is first chosen as a trust anchor  using its unique properties 
 and this anchored device later becomes home
-network's Certificate Authority (CA) service and the trust anchor,
-upon which the rest of the home network devices would apply for
-certificates from to get under the same trust circle.  Key creation,
+network's Certificate Authority (CA) service. Smart phone would play
+user interface role only, but not the trust anchor role.
+#  This  and the trust anchor,
+# upon which
+The rest of the home network devices would apply for
+certificates from this trust anchor to get under the same trust circle.  Key creation,
 key exchange and their usage is explained in similar draft from
 Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. 
 # That explains PKI usage in general in bootstrapping.
