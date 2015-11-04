@@ -1,4 +1,4 @@
-% Created 2015-11-04 ke 19:43
+% Created 2015-11-04 ke 19:45
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1993,9 +1993,9 @@ environment also at client's  side was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software at server side  claimed that 
-\begin{verse}
-"Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr\_auc\_gw program." \\
-\end{verse}
+\begin{verbatim}
+"Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr_auc_gw program."
+\end{verbatim}
 This notified, that Hostapd succesfully had received SIM
 card's AuthN request and was going to forward that to simulated HLR
 authentication program. Now it was time to build an
@@ -2031,7 +2031,7 @@ The capture has been done at the WPA2-supplicant.
 
 \begin{lstlisting}[language=bash,label=eap-sim-capture,caption={Successful EAP-SIM Authentication}]
 
-No.    Time   Src        Dest        Proto    Len   Info                                  
+No.  Time     Src      Dest      Proto    Len   Info                                  
 129  7.9830   AP-wifi  phone     EAP       23   Request, Identity                     
 130  7.9832   phone    AP-wifi   EAP       39   Response, Identity                    
 131  7.9887   AP-lan   RADIUS    RADIUS   235   Access-Request(1) (id=162, l=193)     
