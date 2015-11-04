@@ -3112,9 +3112,9 @@ RFC4186\cite{rfc4186}.
 At this point, physical phones were put aside and a simulated SIM-card
 environment also at client's  side was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
-with SIM/USIM protocols, respective EAP-SIM, logging 
-from hostapd software at server side  claimed that 
-"/Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr_auc_gw program./"
+with SIM/USIM protocols, respective EAP-SIM, logging revealed that
+Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr_auc_gw.
+program.
 # Appendix [[app:hlraucgw]]  shows tthat traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
 # finally got AUTH-SUCCESS message from remote RADIUS.
