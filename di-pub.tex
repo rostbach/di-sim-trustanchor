@@ -1,4 +1,4 @@
-% Created 2015-11-04 ke 19:31
+% Created 2015-11-04 ke 19:33
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2032,29 +2032,29 @@ The capture has been done at the WPA2-supplicant.
 \begin{lstlisting}[language=bash,label=eap-sim-capture,caption={Successful EAP-SIM Authentication}]
 
 No.           Time   Src          Dest         Proto    Len   Info                                  
-129  15:57:17.9830   AP-802.1x    smartphone   EAP       23   Request, Identity                     
-130  15:57:17.9832   smartphone   AP-802.1x    EAP       39   Response, Identity                    
-131  15:57:17.9887   AP-wired     RADIUS-srv   RADIUS   235   Access-Request(1) (id=162, l=193)     
-132  15:57:17.9889   RADIUS-srv   AP-wired     RADIUS   108   Access-Challenge(11) (id=162, l=66)   
-133  15:57:17.9908   AP-802.1x    smartphone   EAP       38   Request, GSM Subscriber Identity      
+129  7.9830   AP-802.1x    smartphone   EAP       23   Request, Identity                     
+130  7.9832   smartphone   AP-802.1x    EAP       39   Response, Identity                    
+131  7.9887   AP-wired     RADIUS-srv   RADIUS   235   Access-Request(1) (id=162, l=193)     
+132  7.9889   RADIUS-srv   AP-wired     RADIUS   108   Access-Challenge(11) (id=162, l=66)   
+133  7.9908   AP-802.1x    smartphone   EAP       38   Request, GSM Subscriber Identity      
                                                               Modules EAP (EAP-SIM)                 
-134  15:57:17.9924   smartphone   AP-802.1x    EAP       70   Response, GSM Subscriber Identity     
+134  7.9924   smartphone   AP-802.1x    EAP       70   Response, GSM Subscriber Identity     
                                                               Modules EAP (EAP-SIM)                 
-135  15:57:17.9945   AP-wired     RADIUS-srv   RADIUS   272   Access-Request(1) (id=163, l=230)     
+135  7.9945   AP-wired     RADIUS-srv   RADIUS   272   Access-Request(1) (id=163, l=230)     
 xxx                  RADIUS-hlr   HLR-AuC gw   socket         SIM-REQ-AUTH <IMSI> 3                 
 xxx                  HLR-AuC gw   RADIUS-hlr   socket         SIM-RESP-AUTH <IMSI>, 3 triplets      
-136  15:57:18.0024   RADIUS-srv   AP-wired     RADIUS   256   Access-Challenge(11) (id=163, l=214)  
-137  15:57:18.0040   AP-802.1x    smartphone   EAP      186   Request, GSM Subscriber Identity      
+136  8.0024   RADIUS-srv   AP-wired     RADIUS   256   Access-Challenge(11) (id=163, l=214)  
+137  8.0040   AP-802.1x    smartphone   EAP      186   Request, GSM Subscriber Identity      
                                                               Modules EAP (EAP-SIM)                 
-138  15:57:18.0043   smartphone   AP-802.1x    EAP       46   Response, GSM Subscriber Identity     
+138  8.0043   smartphone   AP-802.1x    EAP       46   Response, GSM Subscriber Identity     
                                                               Modules EAP (EAP-SIM)                 
-139  15:57:18.0063   AP-wired     RADIUS-srv   RADIUS   248   Access-Request(1) (id=164, l=206)     
-140  15:57:18.0065   RADIUS-srv   AP-wired     RADIUS   202   Access-Accept(2) (id=164, l=160)      
-141  15:57:18.0110   AP-802.1x    smartphone   EAP       22   \em{Success}                          
-142  15:57:18.0112   AP-802.1x    smartphone   EAPOL    135   Key (Message 1 of 4)                  
-143  15:57:18.0123   smartphone   AP-802.1x    EAPOL    135   Key (Message 2 of 4)                  
-144  15:57:18.0161   AP-802.1x    smartphone   EAPOL    169   Key (Message 3 of 4)                  
-145  15:57:18.0163   smartphone   AP-802.1x    EAPOL    113   Key (Message 4 of 4)     
+139  8.0063   AP-wired     RADIUS-srv   RADIUS   248   Access-Request(1) (id=164, l=206)     
+140  8.0065   RADIUS-srv   AP-wired     RADIUS   202   Access-Accept(2) (id=164, l=160)      
+141  8.0110   AP-802.1x    smartphone   EAP       22   Success                          
+142  8.0112   AP-802.1x    smartphone   EAPOL    135   Key (Message 1 of 4)                  
+143  8.0123   smartphone   AP-802.1x    EAPOL    135   Key (Message 2 of 4)                  
+144  8.0161   AP-802.1x    smartphone   EAPOL    169   Key (Message 3 of 4)                  
+145  8.0163   smartphone   AP-802.1x    EAPOL    113   Key (Message 4 of 4)     
 \end{lstlisting}
 
 
@@ -2073,7 +2073,7 @@ This part is presented in Capture \ref{capimsi}.
   caption={First indication of IMSI, capture from WPA2-supplicant}
 ]
 
-Frame 129: 15:57:17.983047
+Frame 129: 7.983047
     Type: 802.1X Authentication (0x888e)
     Version: 802.1X-2004 (2)
     Type: EAP Packet (0)
@@ -2084,7 +2084,7 @@ Frame 129: 15:57:17.983047
         Length: 5
         Type: Identity (1)
         Identity: 
-Frame 130: 15:57:17.983223
+Frame 130: 7.983223
     Type: 802.1X Authentication (0x888e)
     Version: 802.1X-2001 (1)
     Type: EAP Packet (0)
@@ -2135,7 +2135,7 @@ in Capture \ref{fig:capture}.
   label={fig:capture}
 ]
 
-Frame3: 15:57:17.988616
+Frame3: 7.988616
 Radius Protocol
     Code: Access-Request (1)
     Packet identifier: 0xa2 (162)
