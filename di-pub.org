@@ -4864,16 +4864,13 @@ the body text, remember this! ]
 # \scriptsize
 #+NAME: app:hlraucgw
 
-** No sim
-<<app:nosim>>
-
-:PROPERTIES:
+# ** No sim
+# <<app:nosim>>
+# :PROPERTIES:
 :CUSTOM_ID: app:nosim
 :END: 
-#+NAME: app:nosim
-Here capture + analysis from nosim
-
-
+# +NAME: app:nosim
+# Here capture + analysis from nosim
 # #+BEGIN_LaTeX
 # \end{otherlanguage} % End on 2nd language part (figures) ((WHY??))
 # #+END_LaTeX
