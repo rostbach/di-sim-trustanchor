@@ -3156,8 +3156,10 @@ The capture has been done at the WPA2-supplicant.
 \lstset{basicstyle=\ttfamily\scriptsize,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
-\begin{lstlisting}[language=bash, label=eap-sim-capture,
-   caption{Successful EAP-SIM Authentication}]
+\begin{lstlisting}[language=bash,
+ label=eap-sim-capture,
+ caption{Successful EAP-SIM Authentication}
+]
 
 No.           Time   Src          Dest         Proto    Len   Info                                  
 129  15:57:17.9830   AP-802.1x    smartphone   EAP       23   Request, Identity                     
