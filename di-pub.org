@@ -3152,8 +3152,14 @@ RADIUS-srv for RADIUS on wire, and finally RADIUS-hlr and HLR-AuC gw
 for simulated MAPS/SS7 traffic.
 The capture has been done at the WPA2-supplicant.
 
+#+BEGIN_LaTeX
+\lstset{basicstyle=\ttfamily\scriptsize,
+  columns=fixed,emph={1232010000000000}, 
+  emphstyle={\color{red}\textbf}}
+\begin{lstlisting}[language=bash, label=eap-sim-capture,
+   caption{Successful EAP-SIM Authentication}]
 
-#+LATEX: \scriptsize
+
 | No. |          Time | Src        | Dest       | Proto  | Len | Info                                 |
 | 129 | 15:57:17.9830 | AP-802.1x  | smartphone | EAP    |  23 | Request, Identity                    |
 | 130 | 15:57:17.9832 | smartphone | AP-802.1x  | EAP    |  39 | Response, Identity                   |
@@ -3178,8 +3184,9 @@ The capture has been done at the WPA2-supplicant.
 | 143 | 15:57:18.0123 | smartphone | AP-802.1x  | EAPOL  | 135 | Key (Message 2 of 4)                 |
 | 144 | 15:57:18.0161 | AP-802.1x  | smartphone | EAPOL  | 169 | Key (Message 3 of 4)                 |
 | 145 | 15:57:18.0163 | smartphone | AP-802.1x  | EAPOL  | 113 | Key (Message 4 of 4)                 |
-#+LATEX: \normalsize
 
+#+END_LaTeX
+# #+LATEX: \normalsize
 # - flow of messages,  timing,  size, attributes 
 
  
