@@ -3066,6 +3066,16 @@ This time the capture was made in monitor mode, i.e.,
 the capture interface was mon.wlan0.
 Traffic captures revealed some EAP traffic involving some EAP-SIM
 Request--Response pairs.
+
+# [TBD: Capture points in picture.]
+# Maybe also remote syslog from access point.]
+# The first capture shows case with a normal phone, when SIM secrets were
+# not known.
+
+
+# [Missing trace, demonstrating the use of unknown SIM physical phone,
+# include first traces: TBD.]  
+
 #+BEGIN_LaTeX
 \lstset{basicstyle=\ttfamily\scriptsize,
   columns=fixed,emph={1232010000000000}, 
@@ -3076,17 +3086,20 @@ Request--Response pairs.
 #+END_LaTeX
 
 # After some modifications, 
-When this is compared with Figure [[fig:eap-sim-radius]] we see, that the runs got only to the
-message 7, where a nonce, selected version, and
-an identity 
-were sent from the phone, but RADIUS server did not know how to handle them. 
+When this is compared with Figure[[fig:eap-sim-radius]], we see that we
+got no further than message 7, where a nonce, selected version, and
+an identity were sent from the phone, but RADIUS server did not know how to handle them. 
 #  authentication phase, but challenge-responses did not work because
 # SIM secrets were not known at that point.  Nevertheless, both SIM
 # cards succeeded to the point, where MNO's message would had next
 # been verified with the SIM card. 
 # Really? Did the RADIUS answer with challenge?
 # Show here, that 
-Both, the unregistered SIM and the registered SIM could not have been
+ Even when authentication conversation would not complete fully,
+Authenticator still received a claim of identification from the
+smartphone. Yet, as there is no full AuthN, no proof of identity existed in
+that case.
+Both the unregistered SIM and the registered SIM could not have been
 verified with the
 operator, because it was locally simulated and they both therefore
 correctly  ended the conversation as should regarding
@@ -3095,7 +3108,7 @@ RFC4186\cite{rfc4186}.
 # trace phone connection, only AP and RADIUS logs.
 
 At this point, physical phones were put aside and a simulated SIM-card
-environment at client side was used.
+environment also at client's  side was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
 with SIM/USIM protocols, respective EAP-SIM, logging 
 from hostapd software at server side  claimed that 
@@ -3107,8 +3120,8 @@ from hostapd software at server side  claimed that
 # finally got AUTH-SUCCESS message from remote RADIUS.
 This notified, that Hostapd succesfully had received SIM
 card's AuthN request and was going to forward that to simulated HLR
-authentication program. Now it was necessary to start building the 
-testing software.
+authentication program. Now it was time to build an
+environment to help automating the tests.
 Tests were run from a shell program (Appendix [[app:fulleap]]), which
 started the needed programs. It also recorded used configurations, logs,
 and traffic captures for later analysis.
@@ -3127,18 +3140,6 @@ Additionally, the messages between RADIUS server and HLR were recorded.
 Whole conversation is given first here together and afterwards analyzed more
 thoroughly.
 
-# [TBD: Capture points in picture.]
-
-# Maybe also remote syslog from access point.]
-
-The first capture shows tries with normal phones, when SIM secrets were
-not known. Even when authentication conversation would not complete fully,
-Authenticator still received a claim of identification from the
-smartphone. Yet, as there is no AuthN, no proof of identity existed in
-that case.
-
-# [Missing trace, demonstrating the use of unknown SIM physical phone,
-# include first traces: TBD.]  
 
 
 Packet capture of successful SIM-authentication with corresponding
