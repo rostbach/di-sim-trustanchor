@@ -3157,7 +3157,7 @@ The capture has been done at the WPA2-supplicant.
 
 \begin{lstlisting}[language=bash,label=eap-sim-capture,caption={Successful EAP-SIM Authentication}]
 
-No.    Time   Src        Dest        Proto    Len   Info                                  
+No.  Time     Src      Dest      Proto    Len   Info                                  
 129  7.9830   AP-wifi  phone     EAP       23   Request, Identity                     
 130  7.9832   phone    AP-wifi   EAP       39   Response, Identity                    
 131  7.9887   AP-lan   RADIUS    RADIUS   235   Access-Request(1) (id=162, l=193)     
