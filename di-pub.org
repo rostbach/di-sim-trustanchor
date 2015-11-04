@@ -3703,8 +3703,7 @@ aggressive retransmission rate.\cite[Section 2.2.1]{rfc5080}.
 UDP misses the reliability that TCP has, but, adding an alternative UDP RADIUS
 server can answer requests faster than waiting for TCP RADIUS's reliable delivery.
 
-
-, but for user, that can suffer from timeout. 
+# , but for user, that can suffer from timeout. 
 # explain this. 
 # adding an alternative RADIUS server can server better in congested
 # network. (But is home network congested?)
