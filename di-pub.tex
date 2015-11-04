@@ -1,4 +1,4 @@
-% Created 2015-11-04 ke 19:47
+% Created 2015-11-04 ke 19:50
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1991,9 +1991,9 @@ RFC4186\cite{rfc4186}.
 At this point, physical phones were put aside and a simulated SIM-card
 environment also at client's  side was used.
 After WPA2-Supplicant run on laptop with simulated SIM-card access 
-with SIM/USIM protocols, respective EAP-SIM, logging 
-from hostapd software at server side  claimed that 
-"\emph{Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr\_auc\_gw program.}"
+with SIM/USIM protocols, respective EAP-SIM, logging revealed that
+Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr\_auc\_gw.
+program.
 This notified, that Hostapd succesfully had received SIM
 card's AuthN request and was going to forward that to simulated HLR
 authentication program. Now it was time to build an
