@@ -271,7 +271,7 @@ Teemu Teekkari
 \item[CPE] Customer Premise Equipment %, device physically located at customers home.
 \item[EAP] Extensible Authentication Protocol %, extends 802.1X
 \item[GAA] Generic Authentication Architecture % (for SSO)
-\item[GBA] Generic Bootstrapping Architecture, 3GPP standard for user authentication with help of shared key from operator- Åart pf GAA.
+\item[GBA] Generic Bootstrapping Architecture, 3GPP standard for user authentication with help of shared key from operator, part pf GAA.
 \item[GSM] Global System for Mobile Communication (earlier Groupe Spécial Mobile)
 \item[HLR] Home Location Registry, ...
 % \item[ICCID] card serial
@@ -284,7 +284,7 @@ Teemu Teekkari
 \item[SSID] Service Set Identifier, identifies Wi-Fi network
 \item[TMSI] Temporal Mobile Subscriber Identity
 \item[Wi-Fi] Wireless local network, implements IEEE 802.11 standards
-\item[WPA] Wireless Protected Access version 1.
+\item[WPA] Wireless Protected Access version 1
 \item[WPA2] Wireless Protected Access version 2
 \end{termlist} 
 
@@ -4301,7 +4301,7 @@ the authenticated identity.
 
 
 
-In the design chapter (Chapter <<cha:design>>) it was questioned whether the proxying RADIUS server
+In the design chapter (Chapter #[[cha:design]]) it was questioned whether the proxying RADIUS server
 can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
