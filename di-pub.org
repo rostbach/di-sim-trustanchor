@@ -3184,7 +3184,8 @@ xxx                  HLR-AuC gw   RADIUS-hlr   socket         SIM-RESP-AUTH <IMS
 142  15:57:18.0112   AP-802.1x    smartphone   EAPOL    135   Key (Message 1 of 4)                  
 143  15:57:18.0123   smartphone   AP-802.1x    EAPOL    135   Key (Message 2 of 4)                  
 144  15:57:18.0161   AP-802.1x    smartphone   EAPOL    169   Key (Message 3 of 4)                  
-145  15:57:18.0163   smartphone   AP-802.1x    EAPOL    113   Key (Message 4 of 4)                  
+145  15:57:18.0163   smartphone   AP-802.1x    EAPOL    113   Key (Message 4 of 4)     
+\end{lstlisting}
 #+END_LaTeX
 # #+LATEX: \normalsize
 # - flow of messages,  timing,  size, attributes 
