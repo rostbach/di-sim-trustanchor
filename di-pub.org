@@ -1463,7 +1463,7 @@ network operator for backup purposes at home, so issues about
 multihoming are added to homenet.
 Lastly, end-to-end access, is in their
 agenda. End-to-end access, i.e., restriction-free access was the key
-element for the internet's success and it enabled many new
+element for the Internet's success and it enabled many new
 applications in the past, but has then had difficulties because of
 firewalls and NATs.
 # 5 tasks:
