@@ -1,4 +1,4 @@
-% Created 2015-11-04 ke 22:51
+% Created 2015-11-04 ke 23:32
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -297,6 +297,7 @@ Teemu Teekkari
 \item[IMSI] International Mobile Subscriber Identity
 \item[ISP] internet service provider
 \item[MNO] mobile network operator, knows SIM secrets
+\item[MSISDN] Mobile Station Integrated Services Digital Network, user's phone number
 \item[RADIUS] Remote Authentication Dial In User Service, protocol and server,  AAA service 
 \item[SIM]  Subscriber Identity Module, a smartcard. Also USIM program running in UICC card (UMTS networks)
 \item[SSID] Service Set Identifier, identifies Wi-Fi network
@@ -804,7 +805,8 @@ and a unique IMSI (International Mobile Subscriber Identity). IMSI is
 a composition of digits belonging to Mobile Country Code(MCC, 2
 digits), Mobile Network Code(MNC,2-3 digits) and Mobile Subscriber
 Identification Number(MSIN, 10 digits at most).
-More familiar, it is the user's full international phone number.
+It is not to be mixed with MSISDN (Mobile Station Integrated Services
+Digital Network), which is user's full international phone number.
 
 
 SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
@@ -1215,7 +1217,7 @@ studied further in another work.
 
 Caller ID as an authentication method uses cellular network's controlling
 channels. When a phone makes a call, the receiving end gets 
-to know callers phone number (IMSI) before it answers the call.
+to know callers phone number (MSISDN) before it answers the call.
 That information is called Caller ID and it has been in use
 successfully for some door locking implementations. 
 It does not cost anything for caller or responder,
