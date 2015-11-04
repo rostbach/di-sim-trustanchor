@@ -3157,30 +3157,30 @@ The capture has been done at the WPA2-supplicant.
 
 \begin{lstlisting}[language=bash,label=eap-sim-capture,caption={Successful EAP-SIM Authentication}]
 
-No.    Time   Src   Dest    Proto    Len   Info                                  
-129  7.9830   AP-wifi   phone   EAP       23   Request, Identity                     
-130  7.9832   phone AP-wifi   EAP       39   Response, Identity                    
-131  7.9887   AP-lan     RADIUS-srv   RADIUS   235   Access-Request(1) (id=162, l=193)     
-132  7.9889   RADIUS-srv   AP-lan     RADIUS   108   Access-Challenge(11) (id=162, l=66)   
-133  7.9908   AP-wifi   phone   EAP       38   Request, GSM Subscriber Identity      
+No.    Time   Src        Dest        Proto    Len   Info                                  
+129  7.9830   AP-wifi    phone       EAP       23   Request, Identity                     
+130  7.9832   phone      AP-wifi     EAP       39   Response, Identity                    
+131  7.9887   AP-lan     RADIUS      RADIUS   235   Access-Request(1) (id=162, l=193)     
+132  7.9889   RADIUS     AP-lan      RADIUS   108   Access-Challenge(11) (id=162, l=66)   
+133  7.9908   AP-wifi    phone       EAP       38   Request, GSM Subscriber Identity      
+                                                                 Modules EAP (EAP-SIM)                 
+134  7.9924   phone       AP-wifi    EAP       70   Response, GSM Subscriber Identity     
+                                                                 Modules EAP (EAP-SIM)                 
+135  7.9945   AP-lan     RADIUS     RADIUS   272   Access-Request(1) (id=163, l=230)     
+xxx           RADIUS-hlr HLR-AuC-gw socket         SIM-REQ-AUTH <IMSI> 3                 
+xxx           HLR-AuC-gw RADIUS-hlr socket         SIM-RESP-AUTH <IMSI>, 3 triplets      
+136  8.0024   RADIUS     AP-lan     RADIUS   256   Access-Challenge(11) (id=163, l=214)  
+137  8.0040   AP-wifi    phone      EAP      186   Request, GSM Subscriber Identity      
                                                               Modules EAP (EAP-SIM)                 
-134  7.9924   phone   AP-wifi   EAP       70   Response, GSM Subscriber Identity     
+138  8.0043   phone      AP-wifi    EAP       46   Response, GSM Subscriber Identity     
                                                               Modules EAP (EAP-SIM)                 
-135  7.9945   AP-lan     RADIUS-srv   RADIUS   272   Access-Request(1) (id=163, l=230)     
-xxx                  RADIUS-hlr   HLR-AuC gw   socket         SIM-REQ-AUTH <IMSI> 3                 
-xxx                  HLR-AuC gw   RADIUS-hlr   socket         SIM-RESP-AUTH <IMSI>, 3 triplets      
-136  8.0024   RADIUS-srv   AP-lan     RADIUS   256   Access-Challenge(11) (id=163, l=214)  
-137  8.0040   AP-wifi   phone   EAP      186   Request, GSM Subscriber Identity      
-                                                              Modules EAP (EAP-SIM)                 
-138  8.0043   phone   AP-wifi   EAP       46   Response, GSM Subscriber Identity     
-                                                              Modules EAP (EAP-SIM)                 
-139  8.0063   AP-lan     RADIUS-srv   RADIUS   248   Access-Request(1) (id=164, l=206)     
-140  8.0065   RADIUS-srv   AP-lan     RADIUS   202   Access-Accept(2) (id=164, l=160)      
-141  8.0110   AP-wifi   phone   EAP       22   Success                          
-142  8.0112   AP-wifi   phone   EAPOL    135   Key (Message 1 of 4)                  
-143  8.0123   phone   AP-wifi   EAPOL    135   Key (Message 2 of 4)                  
-144  8.0161   AP-wifi   phone   EAPOL    169   Key (Message 3 of 4)                  
-145  8.0163   phone   AP-wifi   EAPOL    113   Key (Message 4 of 4)     
+139  8.0063   AP-lan     RADIUS     RADIUS   248   Access-Request(1) (id=164, l=206)     
+140  8.0065   RADIUS     AP-lan     RADIUS   202   Access-Accept(2) (id=164, l=160)      
+141  8.0110   AP-wifi    phone      EAP       22   Success                          
+142  8.0112   AP-wifi    phone      EAPOL    135   Key (Message 1 of 4)                  
+143  8.0123   phone      AP-wifi    EAPOL    135   Key (Message 2 of 4)                  
+144  8.0161   AP-wifi    phone      EAPOL    169   Key (Message 3 of 4)                  
+145  8.0163   phone      AP-wifi    EAPOL    113   Key (Message 4 of 4)     
 \end{lstlisting}
 #+END_LaTeX
 # #+LATEX: \normalsize
