@@ -3076,7 +3076,8 @@ Request--Response pairs.
 #+END_LaTeX
 
 # After some modifications, 
-Runs got only to the message 7, where a nonce, selected version, and
+When this is compared with Figure [[fig:eap-sim-radius]] we see, that the runs got only to the
+message 7, where a nonce, selected version, and
 an identity 
 were sent from the phone, but RADIUS server did not know how to handle them. 
 #  authentication phase, but challenge-responses did not work because
