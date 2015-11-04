@@ -3189,7 +3189,7 @@ xxx           HLR-AuC  RAD-hlr   socket         SIM-RESP-AUTH <IMSI>, 3 triplets
 
 IMSI is sent the first time already on the second EAP message from 
 WPA2-Supplicant to AP (compare with Figure[[fig:eap-sim-radius]], message 2.)
-This part is presented in Capture \ref{capimsi}.
+This part is presented in more detail in Capture \ref{capimsi}.
 # The capture has been done at the WPA2-supplicants end
 # Same in tests made 150123-155714, source:
 # testit/demot/ap-s150123-155714/
