@@ -1,4 +1,4 @@
-% Created 2015-11-04 ke 19:05
+% Created 2015-11-04 ke 19:08
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1948,12 +1948,11 @@ Milenage were not used, because they are not needed in EAP-SIM.
 The first tests were done with hostapd as a wireless AP.
 Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
 non-registered SIM card. 
-In testing the implementation, the first tests did not go as
-planned. 
-There was no indication of SIM method present in captures, the only
+In testing the authentication,
+there was no indication of EAP method present in captures, the only
 indication of security was a message ``Open System'' in application
 logs, which only means that no pre-shared key is used. The reason for
-that was not found.
+that was not found, but it may have been problem on hostapd's settings.
 
 
 
@@ -1970,6 +1969,7 @@ Request--Response pairs.
 \lstset{basicstyle=\ttfamily\scriptsize,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
+\renewcommand{\lstlistingname}{Capture}
 \lstinputlisting[language=sh,label=cape90,
   caption={E90 trying to use its internal EAP-SIM}]
   {testit/e90.sim.auth.pcapng.todip}
