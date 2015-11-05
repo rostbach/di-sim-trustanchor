@@ -77,12 +77,11 @@ cd  $BASE/demot
 cd `ls -d ap-*|tail -1`/
 sleep 1 
 # follow 3 log files, with color coding set separately in file multitail.conf
+# alternatively, start this in own window 
+# xterm -e $BASE/demot/anamulti &
 multitail -F ../multitail.conf -N 10000  -CS eap-sim -ts host*debug -i  wpa*debug 
 
-# alternatively, start this in own window 
-# xterm -e $BASE/demot/anamulti & 
-
-# tests won't take 15 mins, but if they did,somebody had fallen in sleep. Commit logs.
+# if tests take over  15 mins, somebody had fallen in sleep. Commit logs.
 sleep 900
 pkill tshark
 git add $TARGET
