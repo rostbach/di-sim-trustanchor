@@ -4814,8 +4814,8 @@ further to aid in resolving issues in future home networks.
 \addcontentsline{toc}{chapter}{\appA}  % Include this in TOC
 % Note that \label does not work with unnumbered chapter
 
-[Appendices are purely optional.  All appendices must be referred to in
-the body text, remember this! ]
+# [Appendices are purely optional.  All appendices must be referred to in
+# the body text, remember this! ]
 
 %\thispagestyle{empty}
 
