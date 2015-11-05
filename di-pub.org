@@ -163,7 +163,7 @@ only use a simple model of management network. Getting in to management network 
          \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, kotiverkko, älypuhelin, luottamusankkuri, EAP-SIM, RADIUS}\\
 \end{spacing}
 The abstract in Finnish. Foreign students do not need this page.
-TBD
+[*TBD*]
 
 Kirjoita, kun english versio on hyvä(ksytty).
 \end{otherlanguage} % End on 2nd language part
@@ -3406,8 +3406,6 @@ stripped from debugging symbols and copied to Jolla together with the PCSC-libra
 Jolla phone's file hierarchy is very similar to hierarchy in test
 environment's Linux, which made the operation very easy.
 
-[TBD: cross compile environment, little bit more, examples. SDK,
-script]
 # https://sailfishos.org/develop/tutorials/building-sailfish-os-packages-manually/
 
 
@@ -3421,6 +3419,9 @@ script]
 |     1-8.13 | pcsc-lite          | Jolla(armv7l)            |
 |     1-8.13 | pcsc-lite          | laptop(x86_64)           |
 |------------+--------------------+--------------------------|
+
+[*TBD: cross compile environment, little bit more, examples. SDK,
+script*]
 
 
 * Analysis, Results and Discussion
