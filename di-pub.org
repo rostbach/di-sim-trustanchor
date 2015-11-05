@@ -2526,7 +2526,7 @@ Local controller   AP               Managed device (Router)   Authentication Ser
      |             |                         |                          |
      | 1. SSH login|                         |                          |
      |------------>+      2.SSH login on wire|                          |
-     |             |------------------------>+                          |
+     |             +------------------------>+                          |
      |             |                         |                          |
      |                                       | 3."Mgmt allowed ?"       |
      |                                       +------------------------->|
