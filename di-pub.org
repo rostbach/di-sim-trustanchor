@@ -470,8 +470,9 @@ resource graph.
 # ( Figure x.1 TBD). 
 Changes can be planned ahead in the cloud
 and committed (Pushed) later to the home  using configuration 
-tools CoAP and RESTCONF running over CoAP (Constrained Application
-Protocol)
+tools 
+# CoAP and RESTCONF
+running over CoAP (Constrained Application Protocol)
 # tool Restconf
  via a local controller point located at home.
 # (Figure[[fig:localcontroller]]).
