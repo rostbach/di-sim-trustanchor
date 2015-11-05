@@ -2128,6 +2128,9 @@ later proceed to trusted configuration change.
 # do not get such treatment.
 #   more carefully than the others
 # to get basic understanding of flow. Aims to configuration change
+The steps are numbered and explained in detail in Figure[[fig:scenario-I]].
+The configuration change is allowed, if CPE gets ACCEPT message from
+MNO. Allowed users have been inserted earlier to MNO from the Cloud.
 #  (BaaS [def.])
 # or proxy BaaS[def.def.].
 
@@ -2155,10 +2158,6 @@ later proceed to trusted configuration change.
 #+NAME:   fig:scenario-I
 #+RESULTS:
 [[file:scenI.png]]
-
-The steps are numbered and explained in detail in Figure[[fig:scenario-I]].
-The configuration change is allowed, if CPE gets ACCEPT message from
-MNO. Allowed users have been inserted earlier to MNO from the Cloud.
 
 # [ Maybe replace BaaS with CLOUD] 
 # Maybe siplify by 1, 2 out and 3 is The local controller needs to
