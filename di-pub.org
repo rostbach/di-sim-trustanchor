@@ -2325,7 +2325,7 @@ would not work here then because of missing MNO.
    +---=---+           +--------=----------+
 
 
-+------- Home network border ---------------------------+
++-------------- Home network border -------------+
 
 
     +-----+         +---------------------+      
