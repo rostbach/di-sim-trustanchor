@@ -2522,7 +2522,7 @@ devices in need of changes.
 #
 #+begin_src ditaa :file trust-register.png :cmdline -E -r -s 2
   
-Local controller   AP               Managed device (Router)   Authentication Server
+Local controller   AP             Managed device (Router)   Authentication Server
      |             |                         |                          |
      | 1. SSH login|                         |                          |
      +------------>|      2.SSH login on wire|                          |
