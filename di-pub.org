@@ -2541,7 +2541,7 @@ Local controller   AP               Managed device (Router)
      +-------------------------------------->+
      |                                       |
 #+end_src
-#+CAPTION: Challenging trust from a managed device
+#+CAPTION: Managed device trusts AP, who has authorized Local controller
 #+NAME:   fig:trust-register
 #+RESULTS:
 [[file:trust-register.png]]
