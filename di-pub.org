@@ -4275,6 +4275,8 @@ the achieved trusted access point.
 
 ** Discussion
 
+[*Some part to the conclusion chapter*]
+
 Although the core technology has been there for more than ten years and
 the hardware and the applications mostly support it, 
 there can be many reasons why SIM-based methods are not in wider use. 
