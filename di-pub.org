@@ -3335,12 +3335,12 @@ against malicious attackers anymore.
 
 # there to AVP:User-Name. Packet is
 # Frame4: 7.988949
-[Here conversation after identity reveal to HLR part]
+[*Here conversation after identity reveal to HLR part*]
 # ap-s150118-141629/hostapdwired-debug alkaa näkyä RADIUS 
 # 
 # 150123-155706 alkaa 2 identityllä
 
-[TBD /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714]
+[*TBD /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714*]
 
 Meanwhile, HLR simulator was listening requests from Authentication
 server's internal EAP-handler through a local socket. 
