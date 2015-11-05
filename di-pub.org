@@ -2088,7 +2088,7 @@ could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
 
 
- [Put the table maybe after the scenarios?]
+#  [Put the table maybe after the scenarios?]
 
 # This Chapter presents 5 scenarios for possible locations of AuthN and 
 Table[[table-scenarios]] represents the non-inclusive list of locations of
@@ -2163,7 +2163,6 @@ MNO. Allowed users have been inserted earlier to MNO from the Cloud.
 # Maybe siplify by 1, 2 out and 3 is The local controller needs to
 # speak to homenet. Leave also out, what happens in MNO re IMSI and
 # cloud. That part does not even _have_ a number 
-
 1. The model has been changed in the Cloud.
 2. The Cloud send the changes to the Local Controller (phone).
 3. If the changes are privileged, they need to be approved by the phone user.
@@ -2187,7 +2186,6 @@ MNO. Allowed users have been inserted earlier to MNO from the Cloud.
    authorized and it now 
    can send configuration change message to CPE, which recognizes it
    coming from authorized  network.
-
 
 
 # [ alternative presentation of flow, II: textual paragraph. Which one
