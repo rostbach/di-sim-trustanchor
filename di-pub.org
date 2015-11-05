@@ -2533,7 +2533,7 @@ Local controller   AP               Managed device (Router)   Authentication Ser
      |                                       |                          |
      |                                       |   4."Yes, has been AA'd!"|
      |                                       |<-------------------------+
-     |                                       | 
+     |                                       |                          |
      |                                 +-----+-----+
      |                                 | open SSH  |
      |                                 | session   |
