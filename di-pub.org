@@ -2525,7 +2525,7 @@ devices in need of changes.
 Local controller   AP               Managed device (Router)   Authentication Server
      |             |                         |                          |
      | 1. SSH login|                         |                          |
-     |------------>+      2.SSH login on wire|                          |
+     +------------>|      2.SSH login on wire|                          |
      |             +------------------------>+                          |
      |             |                         |                          |
      |                                       | 3."Mgmt allowed ?"       |
@@ -2559,9 +2559,9 @@ Local controller   AP               Managed device (Router)   Authentication Ser
 # 2. AP, as RADIUS client, connects ROUTER (with Lock-and-key) and opens 
 # Now connection from smartphone to configured router is open and 
 # smartphone may try to login there.
-1. Smartphone connects a Router via wireless AP, and needs to login
+1. Smartphone connects a Router via wireless AP and needs to login
 3. Smartphone uses telnet (or ssh) to login to the ROUTER.
-   ( but with which credentials?)
+   with credentials.
 4. ROUTER(as RADIUS client) checks AA from Authentication Server(or 
    proxy) 
 5. AA-server answers based on earlier SIM-authentication that this
