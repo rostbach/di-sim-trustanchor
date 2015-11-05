@@ -7,11 +7,11 @@ network={
   # If uncommented, the REAL SIM would be used instead of simulator
   # pin="1234"   
   # pcsc=""
-  identity="1232010000000000"   #if not working, prefix with 2. Can be pseudonym
+  identity="1232010000000000"   # IMSI. Can also be pseudonym
   password="90dca4eda45b53cf0f12d7c9c3bc6a89:cb9cccc4b9258e6dca4760379fb82581"
 }
 
-# block used for automatic network selection, not used here.
+# credentials can also be presented on their own block. Not used here.
 cred={                 
   imsi="1232010000000000"  # format should be <MCC> | <MNC> | '-' | <MSIN> ,
 			   # i.e., 35840-123456789, so this would not work.
