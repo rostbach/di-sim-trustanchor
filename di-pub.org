@@ -2522,18 +2522,18 @@ devices in need of changes.
 #
 #+begin_src ditaa :file trust-register.png :cmdline -E -r -s 2
   
-Local controller   AP               Managed device (Router)
-     |             |                         |
-     | 1. SSH login|                         |
-     |------------>+      2.SSH login on wire|
-     |             |------------------------>+
-     |             |                         |
-     |             |       3."Mgmt allowed ?"|
-     |             +<------------------------+
-     |             |                         |
-     |             | 4."Yes, has been AA'd!" |
-     |             +------------------------>+
-     |             |                         | 
+Local controller   AP               Managed device (Router)   Authentication Server
+     |             |                         |                          |
+     | 1. SSH login|                         |                          |
+     |------------>+      2.SSH login on wire|                          |
+     |             |------------------------>+                          |
+     |             |                         |                          |
+     |                                       | 3."Mgmt allowed ?"       |
+     |                                       +------------------------->|
+     |                                       |                          |
+     |                                       |   4."Yes, has been AA'd!"|
+     |                                       |<-------------------------+
+     |                                       | 
      |                                 +-----+-----+
      |                                 | open SSH  |
      |                                 | session   |
@@ -2541,7 +2541,7 @@ Local controller   AP               Managed device (Router)
      +-------------------------------------->+
      |                                       |
 #+end_src
-#+CAPTION: Managed device trusts AP
+#+CAPTION: Managed device trusts Autentication Server
 #+NAME:   fig:trust-register
 #+RESULTS:
 [[file:trust-register.png]]
