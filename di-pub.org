@@ -177,6 +177,7 @@ Kirjoita, kun english versio on hyvä(ksytty).
 %
 \chapter*{Preface}
 
+[*TBD*]
 PREFACE TEMPLATE! SKIP.
 
 This document template conforms to Guide to Writing a Thesis at
