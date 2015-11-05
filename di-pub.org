@@ -163,9 +163,8 @@ only use a simple model of management network. Getting in to management network 
          \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, kotiverkko, älypuhelin, luottamusankkuri, EAP-SIM, RADIUS}\\
 \end{spacing}
 The abstract in Finnish. Foreign students do not need this page.
-[*TBD*]
-
 Kirjoita, kun english versio on hyvä(ksytty).
+[*TBD*]
 \end{otherlanguage} % End on 2nd language part
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
