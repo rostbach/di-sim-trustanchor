@@ -5,7 +5,8 @@
 # # Export ditaa silent, moved to org-custom-inittiin
 # #+org-confirm-babel-evaluate nil
 # It is possible to inhibit the evaluation of code blocks during export. Setting the org-export-babel-evaluate variable to nil will ensure that no code blocks are evaluated as part of the export process
-#+DATE: 5.11.2015 {2a,1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
+#+DATE: 5.11.2015
+# history  {2a,1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
 #+TITLE:  Smartphone as a trust anchor in home networks
 # en halua orgmoden default title sivua. Siispä tyhjä
 #+LATEX_CLASS: tutclass
@@ -537,7 +538,7 @@ home network.
 
 Any encryption between devices needs trusted key exchange beforehand,
 and finding and establishing trust is needed for that.  That is called
-the key distribution problem. Public and privat keys solve the key exchange part, but
+the key distribution problem. Public and private keys solve the key exchange part, but
 only partially, because the trust still must be found somewhere.
 The trust can be derived from the facts that already are known.  
 The ultimate trust can be achieved by verifying the trust chains 
@@ -3400,7 +3401,7 @@ compiling environment Scratchbox, that makes porting programs to Armv7
 processor easy.
 
 To compile wpa-supplicant with EAP-SIM simulator, PCSC component was
-needed, as was mentioned in Section[[#pcsc]]. So first pcsc-lite was
+needed, as was mentioned in Section [[sec:pcsc]]. So first pcsc-lite was
 downloaded and cross-compiled in MerSDK. Then wpa-supplicant was compiled
 with correct parameters in same place. Finally, the wpa-supplicant was 
 stripped from debugging symbols and copied to Jolla together with the PCSC-library.
@@ -3731,13 +3732,12 @@ were first time broken by brute force already 20 years ago and today
 they can only be used as a data error detection
 tool\cite[p.2]{rfc6151}.  If a malicious actor imitates RADIUS Proxy
 (i.e. Man in the middle, MiTM), it can try to inject false messages.
-Duplicate MD5-hashes (collisions) are easy to compute today for
+Duplicate MD5-hashes (collisions) are easy to compute today (for 
 example MD5Attack\cite{rfc5176}) and researchers like Xie in
-2013\cite{xie2013fast}.  are even accelerating the speed for
+2013\cite{xie2013fast}  are even accelerating the speed for
 computing.
 
- Because of the weaknesses of MD5 hashing (for example
-MD5Attack\cite{rfc5176}), the transport needs additional protection
+Because of the weaknesses of MD5 hashing, the transport needs additional protection
 like tunneling or IPsec. TLS can be used for encryption and its
 signatures for integrity checking of packet payload.
 
@@ -4076,6 +4076,8 @@ On the other hand, empty GSM cards for testing can cost as much as
 
 
 ** Platform specific issues
+
+<<sec:pcsc>>
 # : eg memory requirements, hardware requirements, computation
 # requirements, one-sid
 
@@ -4086,7 +4088,7 @@ smartphones, that do not have EAP-SIM yet available.  For example
 support for EAP-SIM (and -AKA) methods starts in Android only from
 version 4.x and in iOS from version 5.x.\cite{sim-support}.
 # http://www.ida.gov.sg/Infocomm-Landscape/Infrastructure/Wireless/Wireless-at-SG/For-Consumer/SIM-based-Connection-Guide
-<<pcsc>>
+
 Generally, to support EAP-SIM  with open source software in 
 smartphone, needed components are /pcsc-lite/ for accessing SIM card, /wpa_supplicant/ for
 WPA2 client, and possible used connection manager (/connman/,
@@ -4276,7 +4278,7 @@ the achieved trusted access point.
 
 ** Discussion
 
-[*Some part to the conclusion chapter*]
+[*Some part to be moved to the Conclusion chapter*]
 
 Although the core technology has been there for more than ten years and
 the hardware and the applications mostly support it, 
