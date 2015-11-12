@@ -1749,10 +1749,10 @@ When AuthN and AuthZ comes from outside, one possibility is to use a
 federated Mobile AuthN Service, which then is connected to  MSSP(Mobile
 Signature Service Provider) with ETSI-204. Benefits for ETSI-204
 federation are similar to those with federation of WiFi groups
-mentioned in Section [[sec:radius]] -- no home device must implement it at home,
-but also beneficial for  MNO as it sees the service as just one
-client.  Without the federation, the mobile AuthN services would need to be
-multiplied with number of the separate home networks  needing authentication service.
+mentioned in Section [[sec:radius]]. No home device needs to implement it
+at home, but also MNO benefits as it sees the service as just one
+client instead of all possible clients.  Without the federation, the mobile AuthN services would need to be
+multiplied with the number of the separate home networks needing authentication service.
 
 # [write to sentences, analyze, and open]
 # 
