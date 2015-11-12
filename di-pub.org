@@ -3988,7 +3988,7 @@ directed antenna\cite{SANS-bluetooth-2007}.
 
 ** Deployment difficulty and costs
 
-To deploy the system, modifications must be done to AP and client.
+To deploy the system, modifications must be done to the AP and the client.
 Additionally, a contract must be made with the MNO service
 provider producing AuthN.
 # [while AuthZ is already taken care of with
@@ -4029,7 +4029,7 @@ implemented.
 
 # ** Costs for end-user 
 # What are the costs per authentication from MNO?
-While no service yet exists from MNOs, we estimate their costs based
+While no service exists yet from MNOs, we estimate their costs based
 on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
 clients, if usage is personal, but costs for service providers are
 unknown.  Hardware costs can mostly be eliminated, while users already
