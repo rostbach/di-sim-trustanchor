@@ -1193,7 +1193,7 @@ makes client setup easier with the price of revealing smartphone user's
 identity.  
 
 
-# "Unless your Authentication server is set to accept anonymous
+# "Unless your authentication server is set to accept anonymous
 # connections, ignore that setting." means what?
 
 #+attr_latex: :align=|c|c|c|c|
@@ -1223,7 +1223,7 @@ identity.
 
 ** Analysis of EAP-SIM protocol
 Bird's-eye view to the EAP-SIM protocol messaging between the
-smartphone, AP, Authentication server and MNO with its Home Location
+smartphone, AP, authentication server and MNO with its Home Location
 Registry Authentication Center (HLR_AuC) is described in
 Figure[[fig:eap-sim-bird]].  The traffic is EAP on the left, RADIUS in the
 middle, and MAP/SS7, which is an mobile connection application running
@@ -1255,12 +1255,12 @@ Protocol analysis of full EAP-SIM authentication is described
 in Figure[[fig:eap-sim-radius]].
 Important parameters for this work are IMSI, NONCE, and triplet values
 RAND, SRES, and Kc. 
-# Not shown are the Authentication server, but 
+# Not shown are the authentication server, but 
 #   Figure [[fig:eap-sim-radius]] describes the EAP-SIM authentication
 # sequence.  
 From traffic between Supplicant (here smartphone) and authenticator (in AP)
 we can see that IMSI is used first in message 3. IMSI is the
-identity, which Authentication server would next try to challenge as
+identity, which authentication server would next try to challenge as
 part of the AuthN and for which the AuthZ would be checked.
 
 
@@ -1285,7 +1285,7 @@ The client later checks in the process 13, whether RAND values from
 the operator were digested with the correct nonce and so authenticates
 the operator.
 
-The client in turn is authenticated, when the Authentication server
+The client in turn is authenticated, when the authentication server
 generates a challenge with an aid of a triplet from the MNO and the
 client responses to the challenge correctly after processing it with
 its own /Ki/.  Correct answer would be SRES which the Authentication
@@ -1355,7 +1355,7 @@ Smartphone                           Authenticator (AP)
 
 
 After mutual authentication, the AuthN phase has been completed. The
-Authentication server completes the AuthZ by sending the authenticator either
+authentication server completes the AuthZ by sending the authenticator either
 an Access-Accept or Access-Deny RADIUS message. 
 Accept message triggers 802.1x protocol to open a virtual port in AP
 and lets the WPA2 process continue in exchanging WPA2 session keys. 
@@ -2001,7 +2001,7 @@ attributes that can be used in provisioning in homogeneous environment.
 
 
 # [cite rfcXXX].  
-That way (3rd party) Authentication server can decide which network
+That way (3rd party) authentication server can decide which network
 segment the device would be put in.  In our case, admin users are put in
 to the management network.  Yet, usually RADIUS's ACCESS-ACCEPT message,
 which means AuthN and AuthZ were successful,  puts the user in
@@ -2269,13 +2269,13 @@ conf |                |AuthN
 Similar to the first scenario is scenario III (Figure[[fig:scenario-III]]), 
 but this time there is a service provider between CPE and MNO, so AA is fully outsourced:
 local AP communicates with RADIUS protocol to the external
-Authentication server. That in turn gets AuthN from MNO via its own
+authentication server. That in turn gets AuthN from MNO via its own
 HLR-AuC gateway and AuthZ from the cloud. It can also use alternative
 sources for AuthN.
 #  by CPE.
 Locally there is a cache for roles in case of network disconnectivity.
 
-Here benefit is, that 3rd party Authentication server may have direct
+Here benefit is, that 3rd party authentication server may have direct
 contracts to many alternative MNOs, so the user is free to choose its
 MNO operator. As a bonus,  MNOs already delegate requests to right operator, if
 they happen to get AuthN request which does not belong to them.
@@ -2510,7 +2510,7 @@ and AP. Captive portals are similar to Lock-And-Key.
 # authentication phase. 
 
 
-Both methods, 802.1X and Lock-and-Key (and captive portals) can have RADIUS as an Authentication server. 
+Both methods, 802.1X and Lock-and-Key (and captive portals) can have RADIUS as an authentication server. 
 When RADIUS is not available, for example because internet is down,
 there almost always exist as a failover a local password method in the configurable 
 router.
@@ -2878,7 +2878,7 @@ delivers all changes to target devices.
 The distribution of changes\cite{silverajan2015collaborative} is not
 further described here.  The AP functions both as the authenticator
 and RADIUS client in scenarios I-IV.  Authenticator receives RADIUS
-messages from Authentication server, even when there would be a
+messages from authentication server, even when there would be a
 separate local RADIUS server running as a proxy.
 
 # to speculative part
@@ -3532,7 +3532,7 @@ TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi
 |        |
 +--------+
 #+end_src
-#+CAPTION: Changing TMSI without Authentication server (or MNO)
+#+CAPTION: Changing TMSI without authentication server (or MNO)
 #+NAME:   fig:tmsi
 #+RESULTS:
 [[file:imsi-tmsi.png]]
@@ -3691,10 +3691,10 @@ If PEAP is used, it handles integrity through its usage of
 
 There is also a fraudulent authenticator problem, which is an attack
 against both the integrity and privacy.  The authenticator may present
-some information to the Authentication server and other to the
+some information to the authentication server and other to the
 EAP-peer. Mitigation for that is, that EAP-peer would include some
 characteristics of the authenticator inside its EAP-message, which
-the Authentication server then verified (RFC6677)\cite{rfc6677}.
+the authentication server then verified (RFC6677)\cite{rfc6677}.
 
 
 
@@ -4188,7 +4188,7 @@ management network.
 
 If Lock-and-key method was used instead of EAP-SIM RADIUS, then
 separate manage\-ment SSID would not be needed. Roles were given at
-Authentication server or designated router after the smartphone has done login to it
+authentication server or designated router after the smartphone has done login to it
 via normal access network.
 
 
@@ -4465,7 +4465,7 @@ EAP-SIM AuthN, when IMSI still is available, and in some way
 that map must be forwarded to the proxying RADIUS servers.
 # [order - do we already know here the design?]
 These issues are fully avoided only in scenario II presented in Chapter
-[[#cha:design]], where there is local Authentication server in home network.
+[[#cha:design]], where there is local authentication server in home network.
 Partly avoidance can be reached, if only Full Authentication is
 used, i.e., the authentication is always checked from MNO and no Fast
 Re-authentication is used, thus eliminating use of TMSI altogether.
@@ -4721,7 +4721,7 @@ later than allowed time.
 
 
 # *** this has been said already TB removed.
-# In our work, the Authentication server can be an external
+# In our work, the authentication server can be an external
 # RADIUS server, but usually the final decision point lies at the
 # authenticator in CPE. 
 
