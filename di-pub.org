@@ -4665,7 +4665,8 @@ defined in GBA (General Bootstrapping Architecture)\cite{gba2014}, which
 is 3GPP's technical specification. 
 # \cite{}.
 It benefits from MNO's or any other identity center's  knowledge of user's SIM.
-In GBA, Trusted Third Party authentication center would be setup with the help of MNO.
+In GBA, Trusted Third Party authentication center would be setup with
+the help of an MNO.
 # One could also model home network to use separate authentication 
 # and authorization service in style of Kerberos. That would help
 # on limiting access based on time, role, service and user to name few.
