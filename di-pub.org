@@ -171,7 +171,13 @@ Luotettava toimija on palkattava ja jaettava tälle
 tunnistautumiskeino sekä pääsy kohdelaitteelle ulkoa käsin. Tämä edellyttää etukäteen tehtävää varausta ja tunnistautumisavainten
 jakelua.
 Koska käyttäjä on matkapuhelinliittymällään jo osa luotettua
-tilaajirekisteriä, käytetään tätä ominaisuutta hyväksi työssä.
+tilaajirekisteriä, käytetään tätä ominaisuutta hyväksi työssä luottamuksen rakentajana.
+Matkapuhelintunnistusta hyödynnetään näyttämällä, kuinka
+laajennettavissa oleva tunnistusmenetelmä EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
+
+SIM-pohjaisen tunnistuksen teoria esitetään ja todennetaan käytännössä simuloidussa ympäristössä. Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittana on riippuvuus teleoperaattorista.
+
+käyttämällä 
 
 tilaaja on jo liittynyt  jakelu on jo luonut   olemassa jo 
 
