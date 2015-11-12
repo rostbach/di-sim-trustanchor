@@ -1,4 +1,4 @@
-% Created 2015-11-13 pe 00:55
+% Created 2015-11-13 pe 01:09
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -155,13 +155,13 @@ the authentication is done using an extendable authentication profile (EAP) with
 and how the authorization is checked with a RADIUS protocol.
 A theory, how SIM-authentication works is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
-As results, it is shown, that SIM authentication's benefits are strong
-authentication and existing user-base, while its disadvantages include
-dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications. % [or: balancing the re-authentication]
 The principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA2 Enterprise, which includes RADIUS environment has been chosen.
 To further avoid complexity and granularity, we
 only use a simple model of management network. Getting in to management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
+As results, it is shown, that SIM authentication's benefits are strong
+authentication and existing user-base, while its disadvantages include
+dependency to mobile operator. Additionally, there will remain challenges in keeping SIM's identity private and in disabling unwanted re-authentications. % [or: balancing the re-authentication]
 
 
 
@@ -194,12 +194,13 @@ Koska käyttäjä on matkapuhelinliittymällään jo osa luotettua
 tilaajarekisteriä, käytetään tätä ominaisuutta hyväksi työssä luottamuksen rakentajana.
 Matkapuhelintunnistusta hyödynnetään näyttämällä, kuinka
 laajennettavissa oleva tunnistusmenetelmä EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä simuloitu käyttöympäristö. Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittana on riippuvuus teleoperaattorista, käyttäjän identiteetin
-paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
+SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä simuloitu käyttöympäristö. 
 Periaatteena on ollut käyttää olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin, kuten Homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun hallintaan.
-Tunnistus- ja valtuutustietojen välittämiseen on valittu WPA2 Enterprise, joka sisältää RADIUS ympäristön. Välttääksemme monimutkaisuutta ja hienorakeisuutta käytämme vain yksinkertaista hallintaverkkomallia, rajapintana toimii kotiverkosta muuten
+Tunnistus- ja valtuutustietojen välittämisen hoitaa WPA2 Enterprise sisältäen RADIUS ympäristön. Välttääksemme monimutkaisuutta ja hienorakeisuutta käytämme yksinkertaista hallintaverkkomallia, jonka rajalla toimii kotiverkosta muuten
 erollaan oleva älypuhelin.
 Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin ulkoisen edustajan ja kotiverkon välille.
+Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittoina ovat riippuvuus teleoperaattorista, käyttäjän identiteetin
+paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
 \end{otherlanguage} % End on 2nd language part
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
