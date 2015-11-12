@@ -4478,9 +4478,6 @@ fast re-authentication is used, thus eliminating use of TMSI altogether.
 # . Citations to
 
 
-
-
-
 ** Alternative management models 
 
 If we were to question or evolve the given model of change
