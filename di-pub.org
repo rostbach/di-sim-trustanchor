@@ -318,7 +318,7 @@ Teemu Teekkari
 - 802.1X :: port based access control standard 
 - Access point :: Connects Wi-Fi clients to wired network on. Used
                   here to encapsulate EAP messages to RADIUS and
-                  forward them to Authentication server
+                  forward them to authentication server
 # client connects access point (AP) on 802.11
 #                   layer. AP knows EAP client and encapsulates EAP-message
 #                   to RADIUS-message and forwards that to
@@ -334,7 +334,7 @@ Teemu Teekkari
  - mobile operator :: MNO, Mobile network operator, knows connection between SIM-owner and SIM
 #  - Parse :: one BaaS-cloud provider
  - proxying RADIUS :: RADIUS server standing between RADIUS
-      client and Authentication server, part of RADIUS server chain.
+      client and authentication server, part of RADIUS server chain.
 # - proxying RADIUS operator :: forwards RADIUS message to target based
 #      on hints on user realm. For example it has
 #      connections to diverse MNOs as its backend. Knows
@@ -693,7 +693,7 @@ thesis.
 # [delete items after paragraphs ready]
 # + 1) Different technologies for access control, authentication,
 #    authorization
-# 1.5) wireless (Authenticator, Authentication server, supplicant)
+# 1.5) wireless (Authenticator, authentication server, supplicant)
 # + 2) RADIUS, diameter, (tacacs+)
 # + 3) SIM-based authentication
 # # [TBD? 4) Feature comparison, eg role-based access, time-based
@@ -746,12 +746,12 @@ control. Ports are physical layer ports, not to be mixed to Layer-4 ports such a
 restricted (controlled) from a client (called Supplicant) before
 the client has successfully performed an AA. A 802.1X device, where
 the ports are located, is called an authenticator. Third party in 802.1X is an
-Authentication server. 
+authentication server. 
 
 # picture?
 
 # TO THE WPA2 Chapter 
-# It also can have internal Authentication server, which is used for
+# It also can have internal authentication server, which is used for
 # groups having pre-shared key as a proof of trust
 # (PSK-mode). [pre-shared key]
 
@@ -760,7 +760,7 @@ Authentication server.
 It is easy to mix here terms /authenticator/ and /Authentication
 server/, but their roles are different: authenticator works as a
 gate-keeper to ports between supplicant and network, while
-Authentication server handles the AA processes.
+authentication server handles the AA processes.
 At home, authenticator usually lies inside the access point (AP),
 which functions also as a router, but 
 on large enterprise networks, authenticator may be a centralized unit 
@@ -771,7 +771,7 @@ routing or authenticator properties.
 
 ** RADIUS 
 <<sec:radius>>
-# Here RADIUS-server takes a role of an Authentication server.
+# Here RADIUS-server takes a role of an authentication server.
 RADIUS is the most popular provider for 
 AAA-services\cite[p.75]{radius-popular}.  It was used first with remote terminal
 and dial-up modem users, hence the name Remote Authentication Dial-In
@@ -783,7 +783,7 @@ devices such as switches and routers.
 #  and also TACACS(+)
 # [see rfc2989 for summaries for network access -20150413].
 # Wireless environments include supplicant, authenticator, and
-# Authentication server. Of those, 
+# authentication server. Of those, 
 
 
 # #+BEGIN_QUOTE
@@ -990,7 +990,7 @@ into air. In wired net those EAP messages are translated and encapsulated into R
 
 The encapsulation is described in Figure[[fig:eap-layers]] where it can be
 seen, that EAP messaging happens logically between the EAP peer and
-the Authentication server. On a lower transport layer between them
+the authentication server. On a lower transport layer between them
 there is an EAP authenticator, which transfers EAPOL messaging into
 RADIUS message.
 
