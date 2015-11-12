@@ -165,8 +165,10 @@ only use a simple model of management network. Getting in to management network 
 \end{spacing}
 The abstract in Finnish. Foreign students do not need this page.
 Kirjoita, kun english versio on hyvä(ksytty).
-Tietoverkot kodeissa ovat monimutkaistuneet eivätkä kotikäyttäjät aina osaa tai halua joutua ylläpitämään sitä. Kotiverkkojen säätäminen ei  eroa paljoa yritysympäristöistä. Käyttäjältä vaaditaan pääsy, tunnukset ja tietämys laitteiden operointiin. Jos ylläpito ulkoistettaisiin ja sallittaisiin pääsy ulkoa, näitä vaatimuksia täytyy 
+Tietoverkot kodeissa ovat monimutkaistuneet eivätkä kotikäyttäjät aina osaa tai halua joutua ylläpitämään sitä. Kotiverkkojen säätäminen ei  eroa paljoa yritysympäristöistä. Käyttäjältä vaaditaan pääsy, tunnukset ja tietämys laitteiden operointiin. Näitä vaatimuksia täytyy 
 muokata, jos ylläpito ulkoistettaisiin ja pääsy kotiverkkoihin sallittaisiin ulkoa käsin.
+Luotettava toimija on palkattava,  jaettava tälle
+tunnistautumiskeino ja taattava pääsy kohdelaitteelle ulkoa käsin.
 
 [*TBD*]
 \end{otherlanguage} % End on 2nd language part
