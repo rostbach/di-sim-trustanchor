@@ -316,8 +316,8 @@ Teemu Teekkari
 
 # - term :: meaning
 - 802.1X :: port based access control standard 
-- Access point :: Connects Wi-Fi clients to wired network on. Used
-                  here to encapsulate EAP messages to RADIUS and
+- Access point :: Connects wireless (Wi-Fi) clients to wired network.
+		  Used here to encapsulate EAP messages to RADIUS and
                   forward them to authentication server
 # client connects access point (AP) on 802.11
 #                   layer. AP knows EAP client and encapsulates EAP-message
