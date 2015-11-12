@@ -1964,7 +1964,7 @@ full AuthN and AuthZ but may suffice here, at first.
 
 
 # GOOD   trust bind
-When the home network needs a secure binding to the smartphone, earlier
+When the home network needs a secure link to the smartphone, earlier
 mentioned trust is the first one needed.  The trust is achieved by
 checking, whether the smartphone can access the home management
 network using only its trusted SIM-card providing AuthN. AuthZ in
@@ -4371,7 +4371,7 @@ Term /provisioning/ can mean adding users to home network with correct
 attributes such as authentication method and identification.
 It also can mean identifying users later and giving
 them more attributes and access rights dynamically.
-Binding a user to a SIM card is also provisioning and that has
+Linking a user to a SIM card is also provisioning and that has
 happened earlier by MNO.
 
 
@@ -4768,7 +4768,7 @@ built. A dual-role model, which binds the smartphone to the home network and
 grants it rights to make changes there, has been proposed.  
 # Working with management network is indirect way to approve changes.  
 # [or:
-An indirect way to approve changes is achieved by binding the authorized
+An indirect way to approve changes is achieved by linking the authorized
 access to the management network. After the authorization, the smart
 phone is free to configure the devices with its local application.
 Another way to convince the
