@@ -2310,7 +2310,7 @@ authenticated at the MNO.  It may need some preparation, if SIM
 identities are temporary, i.e., TMSI is used.  Still, IMSI is carried
 out at the first message 
 of full authentication. Later, the server would need to have mapping
-between IMSI and TMSI, but because only full-authentication is used,
+between IMSI and TMSI, but because only full authentication is used,
 there should be no problem.
 # [ That is, it is possible, that not every change needs
 # authentication.]
