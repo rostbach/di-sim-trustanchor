@@ -2277,7 +2277,7 @@ Locally there is a cache for roles in case of network disconnectivity.
 
 Here benefit is, that 3rd party authentication server may have direct
 contracts to many alternative MNOs, so the user is free to choose its
-MNO operator. As a bonus,  MNOs already delegate requests to right operator, if
+MNO operator. As a bonus,  the MNOs already delegate requests to right operator, if
 they happen to get AuthN request which does not belong to them.
 This is similar to federated service.
 
