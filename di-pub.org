@@ -2320,7 +2320,7 @@ there should be no problem.
 
 # IV , with TMSI and cached role , disconnected versio
 If internet connection is down, local AA is still possible, if there
-has been at least a one full AA round.
+has been at least one full AA round.
 # Offline changes include also cases where the smartphone is not
 # available or when internet connection is down. 
 Full authentication uses IMSI, which is the identity of the phone's
