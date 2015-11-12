@@ -1852,7 +1852,7 @@ Before fully explaining our chosen method, we introduce some
 alternative
 approaches for a trust anchor. The trust anchor is part of bootstrapping,
 # need to explain bootstrapping more?
-which is needed because although the smartphone and MNO
+which is needed because although the smartphone and the MNO
 already trust each other, the trust between the smartphone and AP, and
 thus the management network at home, is non-existing in the
 beginning as can be seen from Figure[[fig:trustbegin]].
