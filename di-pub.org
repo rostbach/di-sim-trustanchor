@@ -4856,7 +4856,7 @@ further to aid in resolving trust issues in future home networks.
 #+BEGIN_LaTeX
 \def\appB{APPENDIX B: WPA2-supplicant settings}
 \chapter*{\appB}                       % Create chapter heading
-%\setcounter{chapter}{1} % Start numbering from zero because command
+\setcounter{chapter}{1} % Start numbering from zero because command
 
 \markboth{\appB}{\appB}                % Set page header
 \addcontentsline{toc}{chapter}{\appB}  % Include this in TOC
