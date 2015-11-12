@@ -1,4 +1,4 @@
-% Created 2015-11-05 to 13:36
+% Created 2015-11-12 to 22:51
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -131,7 +131,7 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,\ldots{}
    \textsf{Master's Degree Programme in Information Technology}\\
    \textsf{Major: Information Security}\\
    \textsf{Examiner: Prof. \@examiner}\\ % 
-   \textsf{Keywords: authentication, authorization, AAA, homenet, smartphone, SIM, trust-anchor, EAP-SIM, RADIUS}\\
+   \textsf{Keywords: authentication, authorization, AAA, Homenet, home networks, smartphone, SIM, trust-anchor, EAP-SIM, RADIUS}\\
 \end{spacing}
 
 %---------------------------------------------------------
@@ -178,10 +178,29 @@ only use a simple model of management network. Getting in to management network 
          \textsf{Tietotekniikan koulutusohjelma}\\
          \textsf{Pääaine: tietoturva}\\
          \textsf{Tarkastaja:  Prof. \@examiner}\\ % automated, if just 1 examiner
-         \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, kotiverkko, älypuhelin, luottamusankkuri, EAP-SIM, RADIUS}\\
+         \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, Homenet, kotiverkko, älypuhelin, SIM, luottamusankkuri, EAP-SIM, RADIUS}\\
 \end{spacing}
 The abstract in Finnish. Foreign students do not need this page.
 Kirjoita, kun english versio on hyvä(ksytty).
+Tietoverkot kodeissa ovat monimutkaistuneet eivätkä kotikäyttäjät aina osaa tai halua joutua ylläpitämään sitä. Kotiverkkojen säätäminen ei  eroa paljoa yritysympäristöistä. Käyttäjältä vaaditaan pääsy, tunnukset ja tietämys laitteiden operointiin. Näitä vaatimuksia täytyy 
+muokata, jos ylläpito ulkoistettaisiin ja pääsy kotiverkkoihin sallittaisiin ulkoa käsin.
+Luotettava toimija on palkattava ja jaettava tälle
+tunnistautumiskeino sekä pääsy kohdelaitteelle ulkoa käsin. Tämä edellyttää etukäteen tehtävää varausta ja tunnistautumisavainten
+jakelua.
+Koska käyttäjä on matkapuhelinliittymällään jo osa luotettua
+tilaajirekisteriä, käytetään tätä ominaisuutta hyväksi työssä luottamuksen rakentajana.
+Matkapuhelintunnistusta hyödynnetään näyttämällä, kuinka
+laajennettavissa oleva tunnistusmenetelmä EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
+
+SIM-pohjaisen tunnistuksen teoria esitetään ja todennetaan käytännössä simuloidussa ympäristössä. Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittana on riippuvuus teleoperaattorista, käyttäjän identiteetin
+paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
+Periaatteena on ollut käyttää olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin, kuten Homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun hallintaan.
+Tunnistus- ja valtuutustietojen välittämiseen on valittu WPA2 Enterprise, joka sisältää RADIUS ympäristön. Välttääksemme monimutkaisuutta ja hienorakeisuutta käytämme vain yksinkertaista hallintaverkkomallia, rajapintana toimii kotiverkosta muuten
+erollaan oleva älypuhelin.
+Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin ulkoisen edustajan ja kotiverkon välille.
+
+
+
 [*TBD*]
 \end{otherlanguage} % End on 2nd language part
 
@@ -1059,27 +1078,26 @@ to extend trust.
 
 While home network is any network located at person's home consisting
 of devices and their connections, either wired or wireless,
-this thesis avoids using term \emph{homenet} when meaning those networks
+this thesis avoids using term \emph{homenet} in that context,
 because  homenet  is  reserved to 
 Internet Engineering Task Force Working Group's (IETF
-WG) homenet. IETF is responsible for the most internet technology standards and 
+WG) homenet. IETF is responsible for  most internet technology standards and 
 WG homenet was started in year 2011.
 Current drive in homenet management is towards IPv6 environment
- as it allows future addressing and routing needs. 
+ as it fullfills future routing and addressing needs. 
 Homenet has five tasks to solve at home networks: service discovery, network security, 
 prefix configuration for routers, routing management and name
-resolution.\cite{homenet-charter}.
-As old technology cannot be forgotten, home networks will be heterogeneous having both
+resolution\cite{homenet-charter}.
+As old technologies cannot be forgotten, home networks will be heterogeneous having both
 old and new technology, and their interoperatibility is important in
 planning future home networks. 
 Segmenting home in multiple subnets will also belong
-to homenets and will include areas for home members, guests,
+to homenets and includes areas for home members, guests,
 and management. It will not be so uncommon to have a cheap second
-network operator for backup purposes at home, so issues about
-multihoming are added to homenet.
-Lastly, end-to-end access, is in their
-agenda. End-to-end access, i.e., restriction-free access was the key
-element for the Internet's success and it enabled many new
+network operator for backup purposes at home. Those issues are
+discussed in multihoming parts of homenet WG.
+Lastly, end-to-end access, i.e., restriction-free access is in their agenda. 
+It was the key element for the Internet's success and enabled many new
 applications in the past, but has then had difficulties because of
 firewalls and NATs.
 
@@ -1963,9 +1981,7 @@ Traffic captures revealed some EAP traffic involving some EAP-SIM
 Request--Response pairs.
 
 
-
-
-\lstset{basicstyle=\ttfamily\scriptsize,
+\lstset{basicstyle=\ttfamily\footnotesize,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
 \renewcommand{\lstlistingname}{Capture}
@@ -2024,29 +2040,34 @@ RADIUS-srv for RADIUS on wire, and finally RADIUS-hlr and HLR-AuC gw
 for simulated MAPS/SS7 traffic.
 The capture has been done at the WPA2-supplicant.
 
-\lstset{basicstyle=\ttfamily\scriptsize,columns=fixed,emph={1232010000000000},emphstyle={\color{red}\textbf}}
+\lstset{basicstyle=\ttfamily\footnotesize,columns=fixed,emph={1232010000000000},emphstyle={\color{red}\textbf}}
 
 \begin{lstlisting}[language=bash,label=eap-sim-capture,caption={Successful EAP-SIM Authentication}]
 
 No.  Time     Src      Dest      Proto    Len   Info                                  
 129  7.9830   AP-wifi  phone     EAP       23   Request, Identity                     
 130  7.9832   phone    AP-wifi   EAP       39   Response, Identity                    
-131  7.9887   AP-lan   RADIUS    RADIUS   235   Access-Request(1) (id=162, l=193)     
-132  7.9889   RADIUS   AP-lan    RADIUS   108   Access-Challenge(11) (id=162, l=66)   
-133  7.9908   AP-wifi  phone     EAP       38   Request, GSM Subscriber Identity      
-                                                             Modules EAP (EAP-SIM)                 
-134  7.9924   phone     AP-wifi  EAP       70   Response, GSM Subscriber Identity     
-                                                              Modules EAP (EAP-SIM)                 
-135  7.9945   AP-lan   RADIUS    RADIUS   272   Access-Request(1) (id=163, l=230)     
-xxx           RAD-hlr  HLR-AuC   socket         SIM-REQ-AUTH <IMSI> 3                 
-xxx           HLR-AuC  RAD-hlr   socket         SIM-RESP-AUTH <IMSI>, 3 triplets      
-136  8.0024   RADIUS   AP-lan    RADIUS   256   Access-Challenge(11) (id=163, l=214)  
-137  8.0040   AP-wifi  phone     EAP      186   Request, GSM Subscriber Identity      
-                                                           Modules EAP (EAP-SIM)                 
-138  8.0043   phone    AP-wifi   EAP       46   Response, GSM Subscriber Identity     
-                                                           Modules EAP (EAP-SIM)                 
-139  8.0063   AP-lan   RADIUS    RADIUS   248   Access-Request(1) (id=164, l=206)     
-140  8.0065   RADIUS   AP-lan    RADIUS   202   Access-Accept(2) (id=164, l=160)      
+131  7.9887   AP-lan   RADIUS    RADIUS   235   Access-Request(1) 
+                                                 (id=162, l=193)     
+132  7.9889   RADIUS   AP-lan    RADIUS   108   Access-Challenge(11) 
+                                                 (id=162, l=66)   
+133  7.9908   AP-wifi  phone     EAP       38   Request, GSM 
+                                                 Subscriber Identity 
+                                                 Modules EAP (EAP-SIM)                 
+134  7.9924   phone     AP-wifi  EAP       70   Response, (EAP-SIM)                 
+135  7.9945   AP-lan   RADIUS    RADIUS   272   Access-Request(1)
+                                                 (id=163, l=230)     
+ -            RAD-hlr  HLR-AuC   socket         SIM-REQ-AUTH <IMSI> 3                 
+ -            HLR-AuC  RAD-hlr   socket         SIM-RESP-AUTH <IMSI>,
+                                                 3 triplets      
+136  8.0024   RADIUS   AP-lan    RADIUS   256   Access-Challenge(11)
+                                                 (id=163, l=214)  
+137  8.0040   AP-wifi  phone     EAP      186   Request, (EAP-SIM) 
+138  8.0043   phone    AP-wifi   EAP       46   Response, (EAP-SIM) 
+139  8.0063   AP-lan   RADIUS    RADIUS   248   Access-Request(1)
+                                                 (id=164, l=206)     
+140  8.0065   RADIUS   AP-lan    RADIUS   202   Access-Accept(2)
+                                                 (id=164, l=160)      
 141  8.0110   AP-wifi  phone     EAP       22   Success                          
 142  8.0112   AP-wifi  phone     EAPOL    135   Key (Message 1 of 4)                  
 143  8.0123   phone    AP-wifi   EAPOL    135   Key (Message 2 of 4)                  
@@ -2067,7 +2088,7 @@ This part is presented in more detail in Capture \ref{capimsi}.
 
 \begin{lstlisting}[language=bash,
   label=capimsi,
-  caption={First indication of IMSI, capture from WPA2-supplicant}
+  caption={First detailed indication of IMSI, captured from WPA2-supplicant}
 ]
 
 Frame 129: 7.983047
@@ -2204,7 +2225,7 @@ but 64 bit, but it is not known to us, whether this was taken in
 account in 2005's version. 
 Format of triplet received is RAND:SRES:Kc.
 
-\scriptsize
+\footnotesize
 \begin{verbatim}
 Received: SIM-REQ-AUTH 232010000000000 3
 Send: SIM-RESP-AUTH 232010000000000 
@@ -2252,7 +2273,7 @@ version(s) & component & tested on (machine arch)\\
 2.3 & hlr\_auc\_gw & laptop(x86\_64)\\
 2.2, 2.3 & wpa-supplicant & laptop(x86\_64)\\
 2.4 & wpa-supplicant & Jolla (armv7l)\\
-1.1.9.28 & Sailfish & Jolla (armv7l)\\
+1.1.9.28 & Sailfish OS & Jolla (armv7l)\\
 1-8.13 & pcsc-lite & Jolla(armv7l)\\
 1-8.13 & pcsc-lite & laptop(x86\_64)\\
 \hline
@@ -2556,7 +2577,7 @@ LuCI-interface, which is a web user interface to the Unified
 Preliminary tests showed, that activating new networks in AP also 
 disconnects existing Wi-Fi connections and may even restart AP,
 which certainly would not be wanted. Some other methods need to
-be invented to avoid denial-of service, when an intruder tries to 
+be invented to avoid denial-of-service, when an intruder tries to 
 connect by that method and would cause continuous AP outages.
 
 \label{tag:hidessid}
@@ -3052,8 +3073,8 @@ opens the correct port to change management service from CPE.
 That is very similar to Kerberos AA, which is based on
 Needham-Schroeder protocol.
 Another bootstrapping architecture is 
-defined in GBA (General Bootstrapping Architecture), which 
-is 3GPP's standard. 
+defined in GBA (General Bootstrapping Architecture)\cite{gba2014}, which 
+is 3GPP's technical specification. 
 It benefits from MNO's or any other identity center's  knowledge of user's SIM.
 In GBA, Trusted Third Party authentication center would be setup with the help of MNO.
 One service would then authenticate an entity, here smartphone, and
@@ -3130,7 +3151,7 @@ already own a smartphone, which is an identifiable and trusted object. As a
 positive side effect, the two-factor AuthN from a hardware based SIM would
 strengthen an existing security.  Finally, the cloud management tools
 would benefit from the trust anchor on the smartphone and could be developed
-further to aid in resolving issues in future home networks.
+further to aid in resolving trust issues in future home networks.
 
 \newpage
 %%%%%%%%%%%%%%%
@@ -3157,7 +3178,8 @@ further to aid in resolving issues in future home networks.
 %
 % a) Not-so-handy way, but at least it works
 % 
-\def\appA{APPENDIX A. Scripts, confs, and logs} % Define the name and numbering manually
+%\def\appA{APPENDIX A. Scripts, confs, and logs} % Define the name and numbering manually
+\def\appA{APPENDIX A: Shell, that starts programs and logs}
 \chapter*{\appA}                       % Create chapter heading
 \setcounter{chapter}{1} % Start numbering from zero because command
 
@@ -3169,36 +3191,50 @@ further to aid in resolving issues in future home networks.
 % # the body text, remember this! ]
 
 %\thispagestyle{empty}
-\section{Shell, that starts programs and logs}
-\label{sec-7-1}
+
 \label{app:fulleap}
 \lstset{basicstyle=\ttfamily,columns=fixed,breaklines=true,
   postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}
 # % \lstinputlisting[language=bash]
-\scriptsize
+\footnotesize
 \lstinputlisting[language=bash]{./testit/apd-tty.clean}
 \normalsize
 
+\def\appB{APPENDIX B: WPA2-supplicant settings}
+\chapter*{\appB}                       % Create chapter heading
+%\setcounter{chapter}{1} % Start numbering from zero because command
 
+\markboth{\appB}{\appB}                % Set page header
+\addcontentsline{toc}{chapter}{\appB}  % Include this in TOC
 
-\section{WPA2-supplicant settings}
-\label{sec-7-2}
 \label{app:wpa-conf}
-\scriptsize
+\footnotesize
 \lstinputlisting[language=sh]{testit/wpa-simtest-owrt2.conf.clean}
 \normalsize
 
-\section{RADIUS server configuration}
-\label{sec-7-3}
+
+
+\def\appC{APPENDIX C: RADIUS server configuration}
+\chapter*{\appC}                       % Create chapter heading
+%\setcounter{chapter}{1} % Start numbering from zero because command
+ 
+\markboth{\appC}{\appC}                % Set page header
+\addcontentsline{toc}{chapter}{\appC}  % Include this in TOC
+
 \label{app:radius-conf}
-\scriptsize
+\footnotesize
 \lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
 \normalsize
-\section{hlr\_auc\_gw program's Milenage file}
-\label{sec-7-4}
+
+\def\appD{APPENDIX D: hlr\_auc\_gw program's Milenage file}
+\chapter*{\appD}                       % Create chapter heading
+%\setcounter{chapter}{1} % Start numbering from zero because command
+ 
+\markboth{\appB}{\appD}                % Set page header
+\addcontentsline{toc}{chapter}{\appD}  % Include this in TOC
 
 \label{app:hlraucgw}
-\scriptsize
+\footnotesize
 \lstinputlisting[language=bash]{testit/hlr_auc_gw.milenage_db.clean}
 \normalsize
 % Emacs 24.4.1 (Org mode 8.2.10)
