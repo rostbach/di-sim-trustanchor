@@ -2231,9 +2231,9 @@ MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
 # *** Scenario II: AuthZ from own tables, AuthN from MNO
 <<scenario-ii>>
 
-In second scenario (Figure[[fig:scenario-II]]), AuthN is asked from MNO but
-AuthZ is checked from local database. Local data comes from data model
-i.e. from configuration data and will be saved in CPE, or some other
+In second scenario (Figure[[fig:scenario-II]]), AuthN is asked from an MNO but
+AuthZ is checked from a local database. Local data comes from a data
+model, i.e., from configuration data and will be saved in CPE, or some other
 place within home network. Benefit of local roles is that
 administrative users can be held at local base. Even, if some intruder
 would get positive AuthN result, the AuthZ still would deny him the access.
