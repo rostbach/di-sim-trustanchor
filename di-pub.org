@@ -4053,7 +4053,7 @@ It is difficult to see, if any commercial provider would implement
 SIM-key sharing so, that secret part was divided to a part that
 implements AuthN for an own operator and to a part, that is free to
 use by some other operator.  Instead, the same functionality can be achieved with
-a dual-SIM phone, which allow inserting two SIM cards from different
+a dual-SIM phone, which allows inserting two SIM cards from different
 operators in to the phone. By using menu option in phone, or even a
 specific prefix code before call, alternate SIM card can be chosen
 without booting the phone.
