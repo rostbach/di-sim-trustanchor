@@ -2334,7 +2334,7 @@ so be eliminated.  When the smart phone makes a re-authentication
 request with its temporal TMSI value, the CPE would still know the
 the right mapping to IMSI authorization so this works
 even when there is no internet connectivity, but full authentication
-would not work here then because of missing MNO.
+would not work here then because of the missing MNO.
 
 
 #+begin_src ditaa :file scenIV.png :cmdline  -E -r -s 3
