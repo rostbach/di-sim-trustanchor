@@ -1225,7 +1225,7 @@ identity.
 
 ** Analysis of EAP-SIM protocol
 Bird's-eye view to the EAP-SIM protocol messaging between the
-smartphone, AP, authentication server and MNO with its Home Location
+smartphone, AP, an authentication server and an MNO with its Home Location
 Registry Authentication Center (HLR_AuC) is described in
 Figure[[fig:eap-sim-bird]].  The traffic is EAP on the left, RADIUS in the
 middle, and MAP/SS7, which is an mobile connection application running
