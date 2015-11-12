@@ -1087,8 +1087,9 @@ The most important outcome of this distribution is the achieved trust
 between the client and the MNO.
 
 
-AA services need to trust some entity endpoint and in case of MNO and
-SIM, they already mutually trust each other, and SIM can be used 
+AA services need to trust some entity endpoint and in case of the MNO
+and the
+SIM, they already mutually trust each other, and the SIM can be used 
 to open access to mobile networks.
 # From that point, a trust can be chained all the way to the access decision point. 
 # The trust entity endpoint is called a trust anchor.
