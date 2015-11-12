@@ -2238,7 +2238,7 @@ or some other place within the home network. Benefit of local roles is
 that administrative users can be held at local base. Even, if some
 intruder would get positive AuthN result, the AuthZ still would deny
 him the access. When we think, that local role cache only involves few
-IMSI numbers, this is tolerable administrative burden.
+IMSI numbers, this is administratively tolerable.
 
 # which has received model earlier.
 # If AA is fully outsourced, :
