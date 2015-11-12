@@ -4554,8 +4554,8 @@ have a direct connection to the cloud.
 # *** Scenario IV: AuthN from MNO, AuthZ separate from BaaS.
 # move to discussion and speculations
 Scenario VI (Figure[[fig:scenario-VI]]) is similar to Scenario I presented
-earlier, but now AuthZ is checked direct from the Cloud by CPE instead of
-MNO.  If there is no connection to the cloud, the fall-back is to work
+earlier, but now AuthZ is checked direct from the Cloud by the CPE instead of
+the MNO.  If there is no connection to the cloud, the fall-back is to work
 just like II. So also this scenario needs local store for caching
 admin IMSIs (roles).
 
