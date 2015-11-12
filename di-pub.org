@@ -175,7 +175,8 @@ tilaajirekisteriä, käytetään tätä ominaisuutta hyväksi työssä luottamuk
 Matkapuhelintunnistusta hyödynnetään näyttämällä, kuinka
 laajennettavissa oleva tunnistusmenetelmä EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
 
-SIM-pohjaisen tunnistuksen teoria esitetään ja todennetaan käytännössä simuloidussa ympäristössä. Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittana on riippuvuus teleoperaattorista.
+SIM-pohjaisen tunnistuksen teoria esitetään ja todennetaan käytännössä simuloidussa ympäristössä. Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittana on riippuvuus teleoperaattorista, käyttäjän identiteetin
+paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
 
 
 
