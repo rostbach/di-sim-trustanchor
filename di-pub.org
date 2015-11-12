@@ -2233,12 +2233,12 @@ MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
 
 In second scenario (Figure[[fig:scenario-II]]), AuthN is asked from an MNO but
 AuthZ is checked from a local database. Local data comes from a data
-model, i.e., from configuration data and will be saved in CPE, or some other
-place within home network. Benefit of local roles is that
-administrative users can be held at local base. Even, if some intruder
-would get positive AuthN result, the AuthZ still would deny him the access.
-When we think, that local role cache only involves few numbers, this
-is tolerable administrative burden.
+model, i.e., from the configuration data and it will be saved in CPE,
+or some other place within the home network. Benefit of local roles is
+that administrative users can be held at local base. Even, if some
+intruder would get positive AuthN result, the AuthZ still would deny
+him the access. When we think, that local role cache only involves few
+IMSI numbers, this is tolerable administrative burden.
 
 # which has received model earlier.
 # If AA is fully outsourced, :
