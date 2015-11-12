@@ -3231,7 +3231,6 @@ This part is presented in more detail in Capture \ref{capimsi}.
   label=capimsi,
   caption={First detailed indication of IMSI, captured from WPA2-supplicant}
 ]
-
 Frame 129: 7.983047
     Type: 802.1X Authentication (0x888e)
     Version: 802.1X-2004 (2)
