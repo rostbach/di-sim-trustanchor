@@ -1320,7 +1320,7 @@ Smartphone                               Authenticator (AP)
   |                                             |                                     |                       |
   |                                             |                                     |9.(N∗Req.IMSI triplets)|
   |                                             |                                     +---------------------->|
-  |                                             |                                     |10.   (RAND,SRES,Kc)   |
+  |                                             |                                     |      10.(RAND,SRES,Kc)|
   |                                             |                                     |<----------------------+
   |                                             |11. RADIUS(EAP Request/SIM/Challenge)|                       |
   |                                             |     [N∗(RAND,MAC,Kc)                |
@@ -1329,9 +1329,9 @@ Smartphone                               Authenticator (AP)
   |<--------------------------------------------+                                     |
   |                                             |                                     |
 +-+---------------------------------------+     |                                     |
-|run GSM algorithms, verify MAC with NONCE|     |                                     |
-|derive sess. key Kc, decrypt and save    |     |                                     |
-|save pseudonym X with Kc              13.|     |                                     |
+|13. run GSM algorithms, verify MAC       |     |                                     |
+|    with NONCE, derive session key Kc,   |     |                                     |
+|    decrypt and save pseudonym X with Kc |     |                                     |
 +-+---------------------------------------+     |                                     |
   |                                             |                                     |
   |14. EAP Response/SIM/Challenge (H(SRES))     |                                     |
@@ -1339,8 +1339,8 @@ Smartphone                               Authenticator (AP)
   |                                             |             Challenge (H(SRES)) )   |
   |                                             +------------------------------------>|
   |                                             |                               +-----+--------+ 
-  |                                             |                               | compare with |
-  |                                             |                               | own SRES  16.|
+  |                                             |                               | 16. compare  |
+  |                                             |                               | with own SRES|
   |                                             |                               +-----+--------+ 
   |                                             | 17. RADIUS(EAP Success)             |
   |                                             |<------------------------------------+ 
