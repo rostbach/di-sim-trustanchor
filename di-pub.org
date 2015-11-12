@@ -1132,8 +1132,8 @@ Beginning from 3GPP networks, new types EAP-AKA and AKA' can be used.
 EAP-AKA is defined in RFC4187\cite{rfc4187} and 
 uses 3GPP's AKA (Authentication and Key Agreement) protocol.
 It adds to EAP-SIM additional parameters such as
-sequence numbering from MNO to protect replay attacks and more
-advanced digestion functions instead of SHA-1.\cite{rfc5448}.
+sequence numbering from the MNO to protect replay attacks and more
+advanced digestion functions instead of SHA-1\cite{rfc5448}.
 Otherwise the protocol messaging is same as in  EAP-SIM.
 # , and it increments after each invocation. AMF is used for authentication. 
 # - EAP-AKA :: EAP for UMTS Authentication and Key Agreement
