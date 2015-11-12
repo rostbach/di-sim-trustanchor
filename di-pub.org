@@ -177,9 +177,7 @@ laajennettavissa oleva tunnistusmenetelmä EAP yhdistetään SIM-kortilla olevaa
 
 SIM-pohjaisen tunnistuksen teoria esitetään ja todennetaan käytännössä simuloidussa ympäristössä. Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittana on riippuvuus teleoperaattorista.
 
-käyttämällä 
 
-tilaaja on jo liittynyt  jakelu on jo luonut   olemassa jo 
 
 [*TBD*]
 \end{otherlanguage} % End on 2nd language part
