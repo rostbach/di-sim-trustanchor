@@ -4373,7 +4373,7 @@ attributes such as authentication method and identification.
 It also can mean identifying users later and giving
 them more attributes and access rights dynamically.
 Linking a user to a SIM card is also provisioning and that has
-happened earlier by MNO.
+happened earlier by the MNO.
 
 
 # - [Each component does only limited part of the job.]
