@@ -4747,7 +4747,7 @@ the external cloud service, and the security issues in that environment.
 
 The trust issues between the home network and the cloud are searched
 through a smartphone located in the intersection of both domains.
-# and possess properties to simplify binding of that trust.
+# and possess properties to simplify linking of that trust.
 Home Network's future needs, for example the change of the authority
 and the delegation of the configuration management have been
 described.
