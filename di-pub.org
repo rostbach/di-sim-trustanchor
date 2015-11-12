@@ -4469,7 +4469,7 @@ These issues are fully avoided only in scenario II presented in Chapter
 [[#cha:design]], where there is local authentication server in home network.
 Partly avoidance can be reached, if only full authentication is
 used, i.e., the authentication is always checked from the MNO and no
-fast Re-authentication is used, thus eliminating use of TMSI altogether.
+fast re-authentication is used, thus eliminating use of TMSI altogether.
 # explain fast and full authentication
 
 
