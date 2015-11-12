@@ -1148,7 +1148,7 @@ in the key derivation function, which limits the possibility of using possibly
 compromised network's nodes and keys. 
 
 
-  Using EAP-SIM means using the secret key inside SIM card with A3/A8
+  Using EAP-SIM means using the secret key inside a SIM card with A3/A8
 algorithms to generate valid responses for the challenges coming from 
 MNO and to derive session keys.  The algorithms A3/A8 and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
