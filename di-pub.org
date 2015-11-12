@@ -296,7 +296,7 @@ Teemu Teekkari
 \item[IEEE] Institute of Electrical and Electronics Engineers
 \item[IMSI] International Mobile Subscriber Identity
 \item[ISP] internet service provider
-\item[MNO] mobile network operator, knows SIM secrets
+\item[MNO] mobile network operator
 \item[MSISDN] Mobile Station Integrated Services Digital Network, user's phone number
 \item[RADIUS] Remote Authentication Dial In User Service, protocol and server,  AAA service 
 \item[SIM]  Subscriber Identity Module, a smartcard. Also USIM program running in UICC card (UMTS networks)
@@ -331,7 +331,8 @@ Teemu Teekkari
                     authorization) decision for client based on local and remote
                     claims, part of 802.1X standard.
 #  - cloud :: here, BaaS (Parse) service running Internet
- - mobile operator, MNO :: a mobile network operator, knows connection between SIM-owner and SIM
+ - mobile (network) operator, MNO :: a mobile network operator, knows connection
+      between SIM-owner and SIM secrets
 #  - Parse :: one BaaS-cloud provider
  - proxying RADIUS :: RADIUS server standing between RADIUS
       client and authentication server, part of RADIUS server chain.
