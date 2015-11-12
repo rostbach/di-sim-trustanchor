@@ -2015,7 +2015,7 @@ not all end devices support those provisioning parameters.
 In the first prototype it is enough to identify an authorized
 smartphone's SIM.  The smartphone holding the authorized SIM is granted access to
 the parts of the management network and it is authenticated strong.  User
-management is outsourced to MNO, which
+management is outsourced to the MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
 located on diverse places, as can be seen in Section [[#sec:scenarios]].
