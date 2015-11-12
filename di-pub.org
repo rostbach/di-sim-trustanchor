@@ -132,7 +132,7 @@ Access to an end device must be provided from outside.
 A trustful operator must be hired and login credentials shared to them to make configuration changes.
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
 In this work, an application running on user's mobile phone represent this trustful operator. 
-As there already exists an infrastructure within mobile phone subscribers, that binding is used in the study as a trusted base.
+As there already exists an infrastructure within mobile phone subscribers, that link is used in the study as a trusted base.
 To benefit from the mobile identification, it is shown how
 the authentication is done using an extendable authentication profile (EAP) with a SIM-card
 and how the authorization is checked with a RADIUS protocol.
