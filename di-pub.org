@@ -109,8 +109,8 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 \begin{spacing}{1.0}
   {\bf \textsf{\MakeUppercase{\@author}}}: \@title\\   % use \@titleB when thesis is in Finnish
    \textsf{Tampere University of Technology}\\
-   \textsf{\@thesistype, xx pages, x Appendix pages} \\
-   \textsf{xxxxxx 2015}\\
+   \textsf{\@thesistype, xx pages, 5 Appendix pages} \\
+   \textsf{November 2015}\\
    \textsf{Master's Degree Programme in Information Technology}\\
    \textsf{Major: Information Security}\\
    \textsf{Examiner: Prof. \@examiner}\\ % 
@@ -158,8 +158,8 @@ only use a simple model of management network. Getting in to management network 
 \begin{spacing}{1.0}
          {\bf \textsf{\MakeUppercase{\@author}}}: \@titleB\\  % or use \@title when thesis is in Finnish
          \textsf{Tampereen teknillinen yliopisto}\\
-         \textsf{Diplomityö, xx sivua, x liitesivua}\\ %
-         \textsf{toukokuu 2015}\\
+         \textsf{Diplomityö, xx sivua, 5 liitesivua}\\ %
+         \textsf{marraskuu 2015}\\
          \textsf{Tietotekniikan koulutusohjelma}\\
          \textsf{Pääaine: tietoturva}\\
          \textsf{Tarkastaja:  Prof. \@examiner}\\ % automated, if just 1 examiner
