@@ -4863,6 +4863,10 @@ further to aid in resolving trust issues in future home networks.
 #+END_Latex
 
 <<app:wpa-conf>>
+:PROPERTIES:
+:NAME: app:wpa-conf
+:END: 
+
 # [already in text]
 # If KEYS have been excluded from log or conf files, there will be
 # string ``[REMOVED]''  as a placeholder.
