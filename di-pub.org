@@ -4473,10 +4473,6 @@ fast re-authentication is used, thus eliminating use of TMSI altogether.
 # explain fast and full authentication
 
 
-# TODO figure xxx
-
-
-
 # Technique used is 
 # protected WPA2-enterprise, using EAP-SIM[def] for AA
 # . Citations to
