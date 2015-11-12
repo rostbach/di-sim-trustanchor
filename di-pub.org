@@ -181,10 +181,6 @@ Periaatteena on ollut käyttää olemassaolevia tekniikoita yhdistäen niitä uu
 Tunnistus- ja valtuutustietojen välittämiseen on valittu WPA2 Enterprise, joka sisältää RADIUS ympäristön. Välttääksemme monimutkaisuutta ja hienorakeisuutta käytämme vain yksinkertaista hallintaverkkomallia, rajapintana toimii kotiverkosta muuten
 erollaan oleva älypuhelin.
 Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin ulkoisen edustajan ja kotiverkon välille.
-
-
-
-[*TBD*]
 \end{otherlanguage} % End on 2nd language part
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
