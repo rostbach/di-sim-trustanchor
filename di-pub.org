@@ -2189,23 +2189,21 @@ MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
    The phone user must  authenticate to the management network.
 4. The phone user starts the authentication process to management
    network using EAP-SIM and reveals its IMSI.
-5. CPE (AP) forwards the authentication to MNO's RADIUS server using
+5. A CPE (AP) forwards the authentication to a MNO's RADIUS server using
    RADIUS protocol.
-6. The MNO has RADIUS server which uses HLR-AuC for authentication
-   triplets. 
-   (AuthZ). This RADIUS continues the authentication process until to
-   the end. 
- The MNO also asks from the Cloud, whether IMSI user has an admin role.
+6. The MNO has RADIUS server which uses a HLR-AuC for authentication
+   triplets. This RADIUS continues the authentication process until to
+   the end. The MNO also asks (AuthZ phase) from the Cloud, whether IMSI user has an admin role.
  The MNO returns in a RADIUS message either /ACCESS-ACCEPT/, if user
    is both known AND has admin role,  or /ACCESS-REJECT/, if either
    property fails.
-7. CPE receives this ACCEPT or REJECT. If there were other RADIUSes
-   between CPE and MNO, they would have acted
+7. The CPE receives this ACCEPT or REJECT. If there were other RADIUSes
+   between the CPE and the MNO, they would have acted
    as proxy RADIUS servers.
 8. IF ACCEPTed, then the smartphone is both authenticated and
    authorized and it now 
-   can send configuration change message to CPE, which recognizes it
-   coming from authorized  network.
+   can send configuration change messages to the CPE, which recognizes them
+   coming from an authorized  network.
 
 
 # [ alternative presentation of flow, II: textual paragraph. Which one
