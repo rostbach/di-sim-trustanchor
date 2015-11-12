@@ -2231,7 +2231,7 @@ MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
 # *** Scenario II: AuthZ from own tables, AuthN from MNO
 <<scenario-ii>>
 
-In second scenario (Figure[[fig:scenario-II]]), AuthN is asked from an MNO but
+In the second scenario (Figure[[fig:scenario-II]]), AuthN is asked from an MNO but
 AuthZ is checked from a local database. Local data comes from a data
 model, i.e., from the configuration data and it will be saved in CPE,
 or some other place within the home network. Benefit of local roles is
@@ -2267,9 +2267,9 @@ conf |                |AuthN
 <<scenario-iii>>
 
 Similar to the first scenario is scenario III (Figure[[fig:scenario-III]]), 
-but this time there is a service provider between CPE and MNO, so AA is fully outsourced:
-local AP communicates with RADIUS protocol to the external
-authentication server. That in turn gets AuthN from MNO via its own
+but this time there is a service provider between the CPE and the MNO, so AA is fully outsourced:
+the local AP communicates with RADIUS protocol to the external
+authentication server. That in turn gets AuthN from the MNO via its own
 HLR-AuC gateway and AuthZ from the cloud. It can also use alternative
 sources for AuthN.
 #  by CPE.
