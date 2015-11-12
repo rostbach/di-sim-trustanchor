@@ -2190,7 +2190,7 @@ MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
    network.
 4. The phone user starts the authentication process to management
    network using EAP-SIM and reveals its IMSI.
-5. A CPE (AP) forwards the authentication to a MNO's RADIUS server
+5. A CPE (AP) forwards the authentication to an MNO's RADIUS server
    using RADIUS protocol.
 6. The MNO has RADIUS server which uses a HLR-AuC for authentication
    triplets. This RADIUS continues the authentication process until to
