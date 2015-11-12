@@ -126,7 +126,8 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 Today, home networks have become more complex and the home owner 
 does not necessarily want to administer all aspects of it.
 Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If the configuration is out-sourced to external parties and 
-done remotely, those requirements need adjustment.
+done remotely, those requirements need adaptation.
+% implementationadjustment.
 % adjustment? fulfilling, 
 Access to an end device must be provided from outside. 
 A trustful operator must be hired and login credentials shared to them to make configuration changes.
@@ -168,8 +169,8 @@ only use a simple model of management network. Getting in to management network 
 % The abstract in Finnish. Foreign students do not need this page.
 % Kirjoita, kun english versio on hyvä(ksytty).
 Kun tietoverkot kodeissa monimutkaistuvat, eivät kotikäyttäjät osaa tai halua joutua ylläpitämään niitä. Kotiverkkojen ylläpito ei  eroa nykyisin paljon yritysympäristöistä. Käyttäjältä vaaditaan läsnäolo, tunnukset ja tietämys laitteiden operointiin. Näitä vaatimuksia
-% täytyy muokata?
- täytyy soveltaa, jos ylläpito ulkoistettaisiin ja pääsy kotiverkkoihin sallittaisiin ulkoa käsin.
+% täytyy muokata? soveltaa
+täytyy soveltaa, jos ylläpito ulkoistettaisiin ja pääsy kotiverkkoihin sallittaisiin ulkoa käsin.
 Luotettava toimija on palkattava ja jaettava tälle
 tunnistautumiskeino sekä pääsy kohdelaitteelle ulkoa käsin. Tämä edellyttää ennakkotoimia ja tunnistautumisavainten jakelua.
 Työssä toimijaa kuvastaa sovellus käyttäjän älypuhelimessa.
