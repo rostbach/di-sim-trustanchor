@@ -7,7 +7,7 @@
 # values are not used, but dummy values will need to be
 # included in this file.
 
-# IMSI 		Ki 				                  OPc 				  AMF  SQN
+# IMSI 		Ki 				                  OPc 				   AMF  SQN
 232010000000000 90dca4eda45b53cf0f12d7c9c3bc6a89 cb9cccc4b9258e6dca4760379fb82581 61df 000000000000
 232010000000000 90dca4eda45b53cf0f12d7c9c3bc6a89 cb9cccc4b9258e6dca4760379fb82581 61df 000000000001
 232010000000000 90dca4eda45b53cf0f12d7c9c3bc6a89 cb9cccc4b9258e6dca4760379fb82581 61df 000000000002
