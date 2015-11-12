@@ -1292,9 +1292,9 @@ generates a challenge with an aid of a triplet from the MNO and the
 client responses to the challenge correctly after processing it with
 its own /Ki/.  Correct answer would be SRES which the Authentication
 server received in message 10.
-#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 3
+#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 4
 
-Smartphone                           Authenticator (AP)
+Smartphone                               Authenticator (AP)
   |                                             |
   | 1. EAPOL Start                              |
   +-------------------------------------------->|
@@ -1302,9 +1302,9 @@ Smartphone                           Authenticator (AP)
   |                       2.EAP Request/Identity|
   |<--------------------------------------------+
   |                                             |
-  |3.EAP Response/Identity(IMSI) [later TMSI]   |                                     RADIUS
-  +-------------------------------------------->|                               Authentication Server
-  |                                             |
+  |3.EAP Response/Identity(IMSI) [later TMSI]   |                                RADIUS
+  +-------------------------------------------->|                          Authentication Server
+  |                                             |                                     |
   |                                             |4. RADIUS(EAP Response/Identity)     |
   |                                             +------------------------------------>|
   |                                             |                                     |  
@@ -1315,7 +1315,7 @@ Smartphone                           Authenticator (AP)
   |                                             |                                     |  
   |7. EAP Response/SIM/Start(NONCE,SELECTED_VER)|                                     |
   +-------------------------------------------->|                                     |
-  |                                             |8. RADIUS(EAP Response/SIM/Start)    |                  MNO(HLR_AuC)  
+  |                                             |8. RADIUS(EAP Response/SIM/Start)    |            MNO(HLR_AuC)  
   |                                             +------------------------------------>|                       |
   |                                             |                                     |                       |
   |                                             |                                     |9.(N∗Req.IMSI triplets)|
