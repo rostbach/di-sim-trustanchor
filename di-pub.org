@@ -4055,7 +4055,7 @@ implements AuthN for an own operator and to a part, that is free to
 use by some other operator.  Instead, the same functionality can be achieved with
 a dual-SIM phone, which allows inserting two SIM cards from different
 operators in to the phone. By using menu option in phone, or even a
-specific prefix code before call, alternate SIM card can be chosen
+specific prefix code before call, an alternate SIM card can be chosen
 without booting the phone.
 Dual-SIM thus allows change of ID and IMSI without removing SIM card.
 # , but that would
