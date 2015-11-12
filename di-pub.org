@@ -176,7 +176,7 @@ erollaan oleva älypuhelin.
 Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin ulkoisen edustajan ja kotiverkon välille.
 Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittoina ovat riippuvuus teleoperaattorista, käyttäjän identiteetin
 paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
-\end{otherlanguage} % End on 2nd language part
+\end{otherlanguage}{finnish} % End on 2nd language part
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
 %%% \begin{otherlanguage}{english} %  Following text in in 2nd language
