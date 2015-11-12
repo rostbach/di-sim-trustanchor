@@ -1350,7 +1350,7 @@ Smartphone                               Authenticator (AP)
   |                                             |
 #+end_src
 #+CAPTION: Successful EAP-SIM full authentication with RADIUS
-#+NAME:   fig:eap-sim-radius
+#+NAME: fig:eap-sim-radius
 #+RESULTS:
 [[file:eap-sim-radius.png]]
 
