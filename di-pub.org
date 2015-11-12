@@ -4450,7 +4450,7 @@ has in turn issues with TMSI.
 When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead
 of a beforehand known IMSI identity, there will be problem
 # if it had to insert the admin role information in to the RADIUS message.
-because proxying RADIUS knows for sure only the originating server. 
+because the proxying RADIUS knows for sure only the originating server. 
 MNO in turn does not necessary know about the roles, and can directly
 perform only AuthN.
 
