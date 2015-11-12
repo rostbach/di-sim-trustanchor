@@ -170,7 +170,10 @@ muokata, jos ylläpito ulkoistettaisiin ja pääsy kotiverkkoihin sallittaisiin 
 Luotettava toimija on palkattava ja jaettava tälle
 tunnistautumiskeino sekä pääsy kohdelaitteelle ulkoa käsin. Tämä edellyttää etukäteen tehtävää varausta ja tunnistautumisavainten
 jakelua.
+Koska käyttäjä on matkapuhelinliittymällään jo osa luotettua
+tilaajirekisteriä, käytetään tätä ominaisuutta hyväksi työssä.
 
+tilaaja on jo liittynyt  jakelu on jo luonut   olemassa jo 
 
 [*TBD*]
 \end{otherlanguage} % End on 2nd language part
