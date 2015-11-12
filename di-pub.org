@@ -3221,7 +3221,7 @@ This part is presented in more detail in Capture \ref{capimsi}.
 
 # listingsmääritykset
 #+BEGIN_LaTeX
-\lstset{basicstyle=\ttfamily\scriptsize,
+\lstset{basicstyle=\ttfamily\footnotesize,
   columns=fixed,emph={1232010000000000}, 
   emphstyle={\color{red}\textbf}}
 \renewcommand{\lstlistingname}{Capture}
