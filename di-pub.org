@@ -4041,7 +4041,7 @@ Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
 To further divide possible costs for EAP-SIM usage
 is difficult.
 #  be used for other areas to divide costs?
-EAP-SIM always needs a MNO for the first authentication,
+EAP-SIM always needs an MNO for the first authentication,
 because only MNO and SIM-card manufacturer know 
 what are SIM's Ki and the used A3/A8 algorithm variation
 for GSM/3GPP/LTE authentication.
