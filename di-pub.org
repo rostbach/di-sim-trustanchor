@@ -48,14 +48,6 @@
 #+end_latex
 # Tämä näyttäisi nyt tulevan sisällön jälkeen..
 # 31.7.2015 tämä tuleekin ennen kansilehteä..
-#+begin_latex
-\chapter*{Terminology}
-%\chapter*{Lyhenteet ja merkinn<E4>t}
-\markboth{}{}                                % no headers
-#+end_latex
-
-If not already on vocabulary, expansion of the most important terms like
-authentication, key-exchange, integrity, replay, algorithms, SIM,...
 # [from Cryptoprotocol-course, check that key exchange with 8 different methods)]
 
 #+begin_latex
@@ -314,6 +306,14 @@ Teemu Teekkari
 % first usage in the text.
 \newpage
 #+end_latex
+#+begin_latex
+\chapter*{Terminology}
+%\chapter*{Lyhenteet ja merkinn<E4>t}
+\markboth{}{}                                % no headers
+#+end_latex
+
+If not already on vocabulary, expansion of the most important terms like
+authentication, key-exchange, integrity, replay, algorithms, SIM,...
 
 # - term :: meaning
 - 802.1X :: port based access control standard 
