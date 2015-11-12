@@ -2308,7 +2308,7 @@ conf  |                |AA(RADIUS)        |AuthN
 Allowed users are verified from the cloud's registries and specific IMSI is
 authenticated at the MNO.  It may need some preparation, if SIM
 identities are temporary, i.e., TMSI is used.  Still, IMSI is carried
-out at the first message
+out at the first message 
 of full authentication. Later, the server would need to have mapping
 between IMSI and TMSI, but because only full-authentication is used,
 there should be no problem.
@@ -2319,8 +2319,8 @@ there should be no problem.
 
 
 # IV , with TMSI and cached role , disconnected versio
-If internet connection is down, local AA is still possible, it there
-has been at least once a full AA round.
+If internet connection is down, local AA is still possible, if there
+has been at least a one full AA round.
 # Offline changes include also cases where the smartphone is not
 # available or when internet connection is down. 
 Full authentication uses IMSI, which is the identity of the phone's
