@@ -4057,7 +4057,7 @@ a dual-SIM phone, which allows inserting two SIM cards from different
 operators in to the phone. By using menu option in phone, or even a
 specific prefix code before call, an alternate SIM card can be chosen
 without booting the phone.
-Dual-SIM thus allows change of ID and IMSI without removing SIM card.
+Dual-SIM thus allows change of identity and IMSI without removing SIM card.
 # , but that would
 # It is not known for the author, whether Dual-SIM
 # cards have that kind of architecture. 
