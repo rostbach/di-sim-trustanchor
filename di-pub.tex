@@ -1,4 +1,4 @@
-% Created 2015-11-12 to 23:07
+% Created 2015-11-12 to 23:12
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -148,6 +148,7 @@ done remotely, those requirements need adjustment.
 Access to an end device must be provided from outside. 
 A trustful operator must be hired and login credentials shared to them to make configuration changes.
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
+In this work, an application running on user's mobile phone represent this trustful operator. 
 As there already exists an infrastructure within mobile phone subscribers, that is used in the study as a trusted base.
 To benefit from the mobile identification, it is shown how
 the authentication is done using an extendable authentication profile (EAP) with a SIM-card
@@ -187,10 +188,10 @@ Tietoverkot kodeissa ovat monimutkaistuneet eivätkä kotikäyttäjät aina osaa
 % täytyy muokata?
  täytyy muokata, jos ylläpito ulkoistettaisiin ja pääsy kotiverkkoihin sallittaisiin ulkoa käsin.
 Luotettava toimija on palkattava ja jaettava tälle
-tunnistautumiskeino sekä pääsy kohdelaitteelle ulkoa käsin. Tämä edellyttää etukäteen tehtävää varausta ja tunnistautumisavainten
-jakelua.
+tunnistautumiskeino sekä pääsy kohdelaitteelle ulkoa käsin. Tämä edellyttää ennakkotoimia ja tunnistautumisavainten jakelua.
+Työssä toimijaa kuvastaa sovellus käyttäjän älypuhelimessa.
 Koska käyttäjä on matkapuhelinliittymällään jo osa luotettua
-tilaajirekisteriä, käytetään tätä ominaisuutta hyväksi työssä luottamuksen rakentajana.
+tilaajarekisteriä, käytetään tätä ominaisuutta hyväksi työssä luottamuksen rakentajana.
 Matkapuhelintunnistusta hyödynnetään näyttämällä, kuinka
 laajennettavissa oleva tunnistusmenetelmä EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
 SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä simuloitu käyttöympäristö. Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittana on riippuvuus teleoperaattorista, käyttäjän identiteetin
