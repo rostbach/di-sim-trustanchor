@@ -322,7 +322,7 @@ Teemu Teekkari
 # client connects access point (AP) on 802.11
 #                   layer. AP knows EAP client and encapsulates EAP-message
 #                   to RADIUS-message and forwards that to
-#                   Authenticator.
+#                   authenticator.
 # - BaaS :: Backend as a Service. Type of cloud service, which focuses
 #           on mobile backend.
  - Authentication server :: Server checking identity claims, for
@@ -745,7 +745,7 @@ control. Ports are physical layer ports, not to be mixed to Layer-4 ports such a
  Network access through a specific physical port is
 restricted (controlled) from a client (called Supplicant) before
 the client has successfully performed an AA. A 802.1X device, where
-the ports are located, is called an Authenticator. Third party in 802.1X is an
+the ports are located, is called an authenticator. Third party in 802.1X is an
 Authentication server. 
 
 # picture?
@@ -757,13 +757,13 @@ Authentication server.
 
 # include it inside  and it can function as RADIUS client to
 # consult RADIUS-server for AuthN. 
-It is easy to mix here terms /Authenticator/ and /Authentication
-server/, but their roles are different: Authenticator works as a
+It is easy to mix here terms /authenticator/ and /Authentication
+server/, but their roles are different: authenticator works as a
 gate-keeper to ports between supplicant and network, while
 Authentication server handles the AA processes.
-At home, Authenticator usually lies inside the access point (AP),
+At home, authenticator usually lies inside the access point (AP),
 which functions also as a router, but 
-on large enterprise networks, Authenticator may be a centralized unit 
+on large enterprise networks, authenticator may be a centralized unit 
 and multiple access points function only as radio stations without
 routing or authenticator properties.
 
@@ -782,7 +782,7 @@ devices such as switches and routers.
 
 #  and also TACACS(+)
 # [see rfc2989 for summaries for network access -20150413].
-# Wireless environments include supplicant, Authenticator, and
+# Wireless environments include supplicant, authenticator, and
 # Authentication server. Of those, 
 
 
@@ -854,8 +854,8 @@ on the proxying RADIUS server.
 RADIUS messages are normally not protected from eavesdropping, but they have
 integrity fields to notice if tampering has been done. 
 Integrity field is called a Message Authenticator.
-Notice the use of the term /Authenticator/ in different context here, not
-meaning 802.1X's Authenticator.
+Notice the use of the term /authenticator/ in different context here, not
+meaning 802.1X's authenticator.
 When using RADIUS to AuthN and AuthZ, Requests can only belong to ACCESS-REQUEST messages while
 Responses can be any of ACCESS-ACCEPT, ACCESS-REJECT, or ACCESS-CHALLENGE message.
 The Message Authenticator field is sent as last Attribute Value Pair (AVP)
@@ -934,7 +934,7 @@ while WPA2 is the full implementation, also denoted as IEEE
 802.11i-2004, and the term WPA2 is used throughout the thesis.
 # WPA2 consist of client (WPA2-supplicant), Authenticator, and Authentication Server.
 Client software for 802.11i is called a WPA2-Supplicant and it is used
-in wireless clients to communicate with the Authenticator. 
+in wireless clients to communicate with the authenticator. 
 # The rest of the work will not make a difference between WPA and WPA2
 # versions, but simply denotes them as ``WPA''.
 
@@ -991,7 +991,7 @@ into air. In wired net those EAP messages are translated and encapsulated into R
 The encapsulation is described in Figure[[fig:eap-layers]] where it can be
 seen, that EAP messaging happens logically between the EAP peer and
 the Authentication server. On a lower transport layer between them
-there is an EAP Authenticator, which transfers EAPOL messaging into
+there is an EAP authenticator, which transfers EAPOL messaging into
 RADIUS message.
 
 Further, EAP is used to transfer AuthN messages only.
@@ -1000,12 +1000,12 @@ It includes neither AuthZ information, which is RADIUS's
 responsibility nor session keys, which are negotiated by WPA2.  In the
 end,
 #  (not shown in the Figure[[fig:eap-layers]]) of EAP messaging,
-the Authenticator is the responsible for opening access for EAP peer as 802.1x
+the authenticator is the responsible for opening access for EAP peer as 802.1x
 dictates.
 
 # or session keys.  needed in the following message transfer. Of
 # those, RADIUS is responsible of delivering AuthZ (and also
-# encapsulated AuthN) to the Authenticator (AP) and WPA2 is used to
+# encapsulated AuthN) to the authenticator (AP) and WPA2 is used to
 # negotiate session keys for
 
 
@@ -1013,8 +1013,8 @@ dictates.
 
 
 # layer it is interrupted on transport layer protocol.
-# Supplicant and EAP Authenticator communicate with 802.1X protocol
-# (EAPOL), while EAP Authenticator and RADIUS server communicate with
+# Supplicant and EAP authenticator communicate with 802.1X protocol
+# (EAPOL), while EAP authenticator and RADIUS server communicate with
 # RADIUS protocol. This is shown in 
 
 #+begin_src ditaa :file eap-layer.png :cmdline -E -r -s 2
@@ -1258,7 +1258,7 @@ RAND, SRES, and Kc.
 # Not shown are the Authentication server, but 
 #   Figure [[fig:eap-sim-radius]] describes the EAP-SIM authentication
 # sequence.  
-From traffic between Supplicant (here smartphone) and Authenticator (in AP)
+From traffic between Supplicant (here smartphone) and authenticator (in AP)
 we can see that IMSI is used first in message 3. IMSI is the
 identity, which Authentication server would next try to challenge as
 part of the AuthN and for which the AuthZ would be checked.
@@ -1355,13 +1355,13 @@ Smartphone                           Authenticator (AP)
 
 
 After mutual authentication, the AuthN phase has been completed. The
-Authentication server completes the AuthZ by sending the Authenticator either
+Authentication server completes the AuthZ by sending the authenticator either
 an Access-Accept or Access-Deny RADIUS message. 
 Accept message triggers 802.1x protocol to open a virtual port in AP
 and lets the WPA2 process continue in exchanging WPA2 session keys. 
 
 Both parties have now retrieved the same trusted key /Kc/. The
-Authenticator has received it directly from RADIUS message 10 and the
+authenticator has received it directly from RADIUS message 10 and the
 smartphone has generated it using its own secret /Ki/ key in
 process 13.
 Therefore the derivation of secret session key for WPA2 is possible.
@@ -1442,7 +1442,7 @@ and MNO trust each other hence mutual authentication between them is
 possible and that is later shown to be an important factor.  Also the
 key distribution problem mentioned in Chapter [[cha:intro]] is solved
 already at SIM-card distribution phase.  As AuthN-AuthZ at home
-proceeds through the Authenticator, then the Authenticator must
+proceeds through the authenticator, then the authenticator must
 deliver this information further and use it as a derivation function
 to extend trust.
 # explain this....[TBD]
@@ -1631,9 +1631,9 @@ use today. The secret can also be sent as an SMS.
 # trust and thesis main point
 In this thesis,
 the phone brings trust to the home network by completing a full EAP-SIM
-AA through the local Authenticator. SIM's identity is verified by HLR
+AA through the local authenticator. SIM's identity is verified by HLR
 AuC at the phone operator's end and AuthZ added to it later. The
-verification leaves a trail on the local Authenticator and opens a
+verification leaves a trail on the local authenticator and opens a
 trust channel for a limited period of time for changes from the phone.
 The disconnection, i.e., the revocation of trust has only been been theoretical presented,
 but not tested in simulated environment.
@@ -1778,7 +1778,7 @@ multiplied with number of the separate home networks  needing authentication ser
 Project Moonshot\cite{moonshot}, is in its early phases. Its goal is
 to enable federated access universally to applications and
 services. If it worked and was used together with MSSP, it may offer
-SIM-based SSH access to Authenticator. Modifications are then needed 
+SIM-based SSH access to authenticator. Modifications are then needed 
 both in SSH server and client. Additionally, EAP must be used through
 tunneling, for example as an inner protocol of EAP-TTLS.
 # end of fed services.
@@ -1832,7 +1832,7 @@ This chapter describes, how the smartphone becomes a trust anchor for
 the home network and how the change management can flow after that.
 On its simplest, the smartphone connects with a Wi-Fi link to an
 AP in the home network and authenticates with SIM-card.
-# AP functions here as an Authenticator. 
+# AP functions here as an authenticator. 
 The resulting authorized connection brings a trust relationship
 between the smartphone (a local controller)
 and the home network (managed devices) anchoring the trust to the smartphone so that the 
@@ -1968,7 +1968,7 @@ When the home network needs a secure link to the smartphone, earlier
 mentioned trust is the first one needed.  The trust is achieved by
 checking, whether the smartphone can access the home management
 network using only its trusted SIM-card providing AuthN. AuthZ in
-turn is compared to existing roles of IMSI in the Authenticator.
+turn is compared to existing roles of IMSI in the authenticator.
 
 
 # *** [This has been explained in 802.1X Section in the begin. TBD]
@@ -1976,7 +1976,7 @@ turn is compared to existing roles of IMSI in the Authenticator.
 # WPA2), which includes 802.1X as port based access protocol.  802.11i
 # defines there authentication, authorization, and cryptography key
 # agreement. It uses EAP for selecting authentication mechanism, after
-# Authenticator requests smartphone to identify itself as in Figure
+# authenticator requests smartphone to identify itself as in Figure
 # xxx is shown Messages are carried over 802.1X or RADIUS depending on
 # transport medium as of Figure[[fig:eap-layers]].
 
@@ -2023,7 +2023,7 @@ located on diverse places, as can be seen in Section [[#sec:scenarios]].
 
 After authentication and authorization have succeeded, WPA2 session key
 creation occurs between AP and the smartphone. 
-The Authenticator has opened a port to the smartphone for
+The authenticator has opened a port to the smartphone for
 access. It specifically has opened an access to the management network for
 the configuration changes. 
 The local RADIUS (if existing) and AP have trail of a successful
@@ -2061,7 +2061,7 @@ network. This kind of AA would happen on upper, application layer
 # =user@home= but on EAP-SIM, if user gives IMSI type id.  
 #  [I think that authentication method is chosen before user have
 #  possibility to give any credentials.]  But remembering users choice
-#  of method, Authenticator can act differently: Either using external
+#  of method, authenticator can act differently: Either using external
 #  RADIUS or authenticating direct the user. One good usability issue
 #  is the one click access, where user clicks to choose Network and
 #  does not give any extra credentials, because SIM automatically
@@ -2087,7 +2087,7 @@ available.
 Here, the AuthN component 
 is usually located outside the home, as MNO provides the AuthN, unless
 we are considering offline or recurring AuthN.
-# The Authenticator or 
+# The authenticator or 
 The AuthZ may be placed more freely. It can be at
 home, at an external provider, or at MNO.
 Authenticator on the other hand must stay at home, and it always 
@@ -2329,7 +2329,7 @@ SIM.  Fast re-authentication on the other hand would
 use temporal identity TMSI, which is lighter in operation than full
 authentication, and is shown in Figure[[fig:scenario-IV]]. TMSI can
 change each time the AuthN request had been sent. Mapping of TMSI is
-cached on the Authenticator and the round-trip and handling at HLR can
+cached on the authenticator and the round-trip and handling at HLR can
 so be eliminated.  When the smart phone makes a re-authentication
 request with its temporal IMSI value, the CPE still would know the
 connection to the right mapping to IMSI authorization so this works
@@ -2516,11 +2516,11 @@ there almost always exist as a failover a local password method in the configura
 router.
 
 
-# controlling access to Authenticator while
+# controlling access to authenticator while
 #  in Lock-and-key access is
 # already allowed to router, but actual login there remains  must be 
 # RADIUS instead although also Lock-and-Key allows usage of RADIUS.
-# to log in to router (here Authenticator) 
+# to log in to router (here authenticator) 
 # but instead of using access network it uses 
 # management  network segment. Further, 
 
@@ -2569,7 +2569,7 @@ Local controller   AP             Managed device (Router)   Authentication Serve
 
 # From the beginning of the chapter, now fully described
 
-#  [To more simplify, access the smartphone should try access Authenticator
+#  [To more simplify, access the smartphone should try access authenticator
 #  directly. Authenticator's role then is merely to allow login and
 #  roles within it.]
 
@@ -2676,7 +2676,7 @@ RADIUS Dynamic Authorization or RADIUS Disconnection Message(DM)\cite{rfc5176}, 
 later been brought in to the protocol by diverse
 vendors, but they may not all be implemented on every device.
 #  [rfc5176]
-Disconnect-Request is sent to UDP port 3799, so Authenticator should
+Disconnect-Request is sent to UDP port 3799, so authenticator should
 listen also that in addition to RADIUS UDP port 1812.
 As a side note, Diameter protocol would provide server initiated messaging.
 # [[http://wiki.freeradius.org/protocol/Disconnect-Messages]]
@@ -2783,13 +2783,13 @@ for example routers.
 # 
 # Time limited access can perhaps made with session-timeout parameter
 # in ACCESS-ACCEPT (or ACCESS-CHALLENGE) packet using type field = ``29''.
-# This parameter tells the Authenticator how many second maximal the Supplicant
+# This parameter tells the authenticator how many second maximal the Supplicant
 # can have service. 
 
 # [This cannot be type field 29!]  More specifically, what action
-# Authenticator should do after termination becomes. It has values of
+# authenticator should do after termination becomes. It has values of
 # either 0 (default) or 1 (radius request), which would mean that
-# Authenticator may send new ACCESS-REQUEST to RADIUS server.
+# authenticator may send new ACCESS-REQUEST to RADIUS server.
 
 
 # But that would eliminate direct authenticate-only RADIUS cases
@@ -2798,7 +2798,7 @@ for example routers.
 #  /by this. Maybe that we needed only/
 #  /to have authentication for access/ 
 #  /which in turn enables modifications/ ]
-# Is it then that with value 0, Authenticator does not send
+# Is it then that with value 0, authenticator does not send
 # ACCESS-REQUEST to RADIUS server, but client still can automatically
 # send it without user's acceptance?
 
@@ -2876,7 +2876,7 @@ delivers all changes to target devices.
 # and delivers them to /one, central CPE/, 
 # which handles distribution of changes to other CPEs. 
 The distribution of changes\cite{silverajan2015collaborative} is not
-further described here.  The AP functions both as the Authenticator
+further described here.  The AP functions both as the authenticator
 and RADIUS client in scenarios I-IV.  Authenticator receives RADIUS
 messages from Authentication server, even when there would be a
 separate local RADIUS server running as a proxy.
@@ -3116,7 +3116,7 @@ did not know how to handle them.
 # Really? Did the RADIUS answer with challenge?
 # Show here, that 
  Even when authentication conversation would not complete fully,
-Authenticator still received a claim of identification from the
+authenticator still received a claim of identification from the
 smartphone. Yet, as there is no full AuthN, no proof of identity existed in
 that case.
 Both the unregistered SIM and the registered SIM could not have been
@@ -3281,7 +3281,7 @@ EAP-AKA or EAP-AKA'.
 # [Reminds me of encoding IP addresses as strings in DNS request instead of bytes.]
 
 
-EAP client's identity is transformed at Authenticator
+EAP client's identity is transformed at authenticator
 (Figure[[fig:eap-layers]], Chapter [[#cha:aaa]]) from 802.1X's 
 EAPOL format  into RADIUS format and
 sent to RADIUS server. The captured frame between AP and Radius server is
@@ -3502,7 +3502,7 @@ Recall from Section [[sec:sim-based-auth]], that IMSI is sent in clear
 during the starting phase of 802.1X authentication and that is a privacy 
 issue, because TMSI which hides IMSI cannot be used before a session
 has been set up.\cite[p.66]{rfc4186}.
-After the first full authentication, the client and the Authenticator 
+After the first full authentication, the client and the authenticator 
 know TMSI and can use it in further communication. 
 TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi]].
 
@@ -3540,7 +3540,7 @@ TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi
 
 
 
-The Authenticator is responsible for converting TMSI to IMSI if it
+The authenticator is responsible for converting TMSI to IMSI if it
 later needs to ask for full authentication from the MNO. During that
 time, IMSI can be caught using the device called IMSI-catcher.  The
 very same happens also in a regular GSM network with non-EAP traffic.
@@ -3597,7 +3597,7 @@ AuthN should work for any  smartphone that has existing contract with
 their MNO. 
 # When everything works between the smartphone and MNO via chain of components, 
 # AuthN works for any the smartphone.
-It still is the responsibility of the Authenticator to 
+It still is the responsibility of the authenticator to 
 check AuthZ  and let only admin mobile access the management network.
 
 If SIM is used as the only EAP without EAP-PEAP, then there is no
@@ -3689,11 +3689,11 @@ If PEAP is used, it handles integrity through its usage of
  TLS\cite{peap}.
 # , even when the upper layer RADIUS's integrity would not be handled with
 
-There is also a fraudulent Authenticator problem, which is an attack
-against both the integrity and privacy.  The Authenticator may present
+There is also a fraudulent authenticator problem, which is an attack
+against both the integrity and privacy.  The authenticator may present
 some information to the Authentication server and other to the
 EAP-peer. Mitigation for that is, that EAP-peer would include some
-characteristics of the Authenticator inside its EAP-message, which
+characteristics of the authenticator inside its EAP-message, which
 the Authentication server then verified (RFC6677)\cite{rfc6677}.
 
 
@@ -3715,7 +3715,7 @@ small and middle size companies?
 To answer this we can remember that backends (cloud and operator) are
 designed for thousands or even millions of users, so 
 they hardly are limiting factors. Instead, local
-Authenticator is the one whose performance might suffer, which
+authenticator is the one whose performance might suffer, which
 comes from processing loads\cite{2009-lin-simefficiency}.
 
 
@@ -3778,9 +3778,9 @@ signatures for integrity checking of packet payload.
 
 # provisioning as Delivery of RADIUS attributes in proxying
 # --------------------------------------------------------
-In scenario III(Figure[[fig:scenario-III]]),  there was a proxying RADIUS between Authenticator
-and MNO.  When MNO notifies Authenticator
-that a smartphone has been authenticated, then Authenticator (AP, functioning
+In scenario III(Figure[[fig:scenario-III]]),  there was a proxying RADIUS between authenticator
+and MNO.  When MNO notifies authenticator
+that a smartphone has been authenticated, then authenticator (AP, functioning
 as a RADIUS-client) hooks that message and usually just grants
 smartphone the access to the network. After giving access rights, other
 provisioning parameters can be sent with RADIUS messages, for example
@@ -4168,7 +4168,7 @@ and thus RADIUS server, but at the same time, existing Wi-Fi network at
 home usually has been set using WPA2-PSK.
 # with one Service Set ID (SSID)
 # Two SSID, rationale
-Because it was not found, how Authenticator could use the same network
+Because it was not found, how authenticator could use the same network
 SSID for both WPA2-PSK (or open access) and WPA2-Enterprise, a
 separate SSID for dedicated management network was technically needed.
 Luckily, today's APs allow setting of multiple SSIDs.
@@ -4402,12 +4402,12 @@ happened earlier by MNO.
 # [Remember IMSI-catcher \cite{imsi}. Last chapter might have a Section
 # about this.]
 # AuthZ provides that information
-# and Authenticator model includes authorized roles.
+# and authenticator model includes authorized roles.
 #
 # Only admin mobile will pass the AuthZ phase, so even when
 # AuthN  works for others, as should, when everything works well between
 # mobile and MNO via chain of components, it still is responsibility of
-# Authenticator to decide about access to management net.
+# authenticator to decide about access to management net.
 
 
 # decide about access to management net.
@@ -4430,19 +4430,19 @@ is the mapping between IMSI and TMSI identities.
 # what you can mine from the authentication message is the used operator.''
 # #+END_QUOTE
 # So proxying RADIUS se¤rver cannot know for sure anything but the
-# originating server (operator) if TMSI is used. The Authenticator does
+# originating server (operator) if TMSI is used. The authenticator does
 # know the original user, but needs to get AuthZ information. It can get
 # AuthZ either from the remote operator which would be easier for the
-# Authenticator or there might be a proxying RADIUS, which inserts that
+# authenticator or there might be a proxying RADIUS, which inserts that
 # knowledge into ACCESS-ACCEPT packet. The latter has issues with
 # temporal identities. 
 #  -K. Huhtanen, 2014 
 # [cite: Karri Huhtanen/ArchRed, email, Sep 10. 2014, translation by author]
 # problem of TMSI
-The Authenticator does know the original user and mapping of IMSI to
+The authenticator does know the original user and mapping of IMSI to
 TMSI, but needs AuthZ information. That can be received from the
 remote operator, which would be easier for the
-Authenticator or there might be a proxying RADIUS, which resolves the
+authenticator or there might be a proxying RADIUS, which resolves the
 AuthZ information and generates an ACCESS-ACCEPT packet. The latter
 has in turn issues with TMSI.
 
@@ -4456,7 +4456,7 @@ perform only AuthN.
 # , on the other hand, 
 # does not necessary know about roles without the cloud, so a link
 # is needed between them to get role information inside RADIUS packet.
-# Although Authenticator can map TMSI to ...
+# Although authenticator can map TMSI to ...
 # Even when AuthN succeeds, then how to map that to real user,
 # when only temporary identity is available and that changes every
 # time. Can RADIUS server choose who gets which role? 
@@ -4536,7 +4536,7 @@ III) Besides AP, also CPE would have direct connection to the
    the central management station inside home network, which then
    forwards the configuration changes to other devices.
 
-IV) Variation of III is that when CPE itself is an Authenticator, it
+IV) Variation of III is that when CPE itself is an authenticator, it
    could proceed on propagating changes when it receives
    ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
    drop received changes without forwarding them.
@@ -4546,9 +4546,9 @@ IV) Variation of III is that when CPE itself is an Authenticator, it
 
 In last two planned ways, the smartphone may receive the AuthN token
 with a message explaining what is going to happen in the change.  As
-the CPE and the Authenticator may be separate devices, approving
+the CPE and the authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
-management network where the Authenticator gives access.  Further,
+management network where the authenticator gives access.  Further,
 only the initial bootstrap as well as the change of admin roles and
 some dangerous combination of commands would need AA with the
 smartphone.
@@ -4723,7 +4723,7 @@ later than allowed time.
 # *** this has been said already TB removed.
 # In our work, the Authentication server can be an external
 # RADIUS server, but usually the final decision point lies at the
-# Authenticator in CPE. 
+# authenticator in CPE. 
 
 # ** What prevents modifications of RADIUS messages? Securing message
 # integrity.
