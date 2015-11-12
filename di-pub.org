@@ -331,7 +331,7 @@ Teemu Teekkari
                     authorization) decision for client based on local and remote
                     claims, part of 802.1X standard.
 #  - cloud :: here, BaaS (Parse) service running Internet
- - mobile operator :: MNO, Mobile network operator, knows connection between SIM-owner and SIM
+ - mobile operator :: MNO, a mobile network operator, knows connection between SIM-owner and SIM
 #  - Parse :: one BaaS-cloud provider
  - proxying RADIUS :: RADIUS server standing between RADIUS
       client and authentication server, part of RADIUS server chain.
