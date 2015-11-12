@@ -3532,7 +3532,7 @@ TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi
 |        |
 +--------+
 #+end_src
-#+CAPTION: Changing TMSI without authentication server (or MNO)
+#+CAPTION: Changing TMSI without the authentication server (or MNO)
 #+NAME:   fig:tmsi
 #+RESULTS:
 [[file:imsi-tmsi.png]]
@@ -3778,15 +3778,16 @@ signatures for integrity checking of packet payload.
 
 # provisioning as Delivery of RADIUS attributes in proxying
 # --------------------------------------------------------
-In scenario III(Figure[[fig:scenario-III]]),  there was a proxying RADIUS between authenticator
-and MNO.  When MNO notifies authenticator
-that a smartphone has been authenticated, then authenticator (AP, functioning
-as a RADIUS-client) hooks that message and usually just grants
+In scenario III(Figure[[fig:scenario-III]]),  there was a proxying RADIUS
+between the authenticator
+and the MNO.  When the MNO notifies the authenticator
+that a smartphone has been authenticated, then the authenticator (AP, functioning
+as a RADIUS-client) hooks that message and usually just grants the
 smartphone the access to the network. After giving access rights, other
 provisioning parameters can be sent with RADIUS messages, for example
-session time-out,
+a session time-out,
 # [check Section "Delivery of RADIUS attributes" above]
-current admin user list, state of OTP list, or VLAN id.
+a current admin user list, a state of OTP list, or a VLAN id.
 #  [this was mentioned in 2 ISP cases in reverse path forwarding] 
 # See RADIUS fixes (rfc5080 cite:rfc5080.)
 
