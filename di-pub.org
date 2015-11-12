@@ -2306,8 +2306,8 @@ conf  |                |AA(RADIUS)        |AuthN
 [[file:scenIII.png]]
 
 Allowed users are verified from the cloud's registries and specific IMSI is
-authenticated at MNO.  It may need some preparation, if SIM
-identities are temporary i.e. TMSI is used.  Still, IMSI is carried
+authenticated at the MNO.  It may need some preparation, if SIM
+identities are temporary, i.e., TMSI is used.  Still, IMSI is carried
 out at the first message
 of full authentication. Later, the server would need to have mapping
 between IMSI and TMSI, but because only full-authentication is used,
