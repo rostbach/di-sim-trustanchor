@@ -1296,13 +1296,13 @@ server received in message 10.
 
 Smartphone                               Authenticator (AP)
   |                                             |
-  | 1. EAPOL Start                              |
+  |1. EAPOL Start                               |
   +-------------------------------------------->|
   |                                             |
-  |                       2.EAP Request/Identity|
+  |                      2. EAP Request/Identity|
   |<--------------------------------------------+
   |                                             |
-  |3.EAP Response/Identity(IMSI) [later TMSI]   |                                RADIUS
+  |3. EAP Response/Identity(IMSI) [later TMSI]  |                                RADIUS
   +-------------------------------------------->|                          Authentication Server
   |                                             |                                     |
   |                                             |4. RADIUS(EAP Response/Identity)     |
@@ -1310,22 +1310,22 @@ Smartphone                               Authenticator (AP)
   |                                             |                                     |  
   |                                             |      5. RADIUS(EAP Request/SIM/Start|
   |                                             +<------------------------------------+
-  |     6. EAP Request/SIM/Start(VERSION_LIST)  |                                     |
+  |       6. EAP Request/SIM/Start(VERSION_LIST)|                                     |
   |<--------------------------------------------+                                     |
   |                                             |                                     |  
   |7. EAP Response/SIM/Start(NONCE,SELECTED_VER)|                                     |
   +-------------------------------------------->|                                     |
-  |                                             |8. RADIUS(EAP Response/SIM/Start)    |            MNO(HLR_AuC)  
-  |                                             +------------------------------------>|                       |
-  |                                             |                                     |                       |
-  |                                             |                                     |9.(N∗Req.IMSI triplets)|
-  |                                             |                                     +---------------------->|
-  |                                             |                                     |      10.(RAND,SRES,Kc)|
-  |                                             |                                     |<----------------------+
-  |                                             |11. RADIUS(EAP Request/SIM/Challenge)|                       |
+  |                                             |8. RADIUS(EAP Response/SIM/Start)    |             MNO(HLR_AuC)  
+  |                                             +------------------------------------>|                        |
+  |                                             |                                     |                        |
+  |                                             |                                     |9. (N∗Req.IMSI triplets)|
+  |                                             |                                     +----------------------->|
+  |                                             |                                     |      10. (RAND,SRES,Kc)|
+  |                                             |                                     |<-----------------------+
+  |                                             |11. RADIUS(EAP Request/SIM/Challenge)|                        |
   |                                             |     [N∗(RAND,MAC,Kc)                |
   |                                             |<------------------------------------+
-  | 12. EAP Request/SIM/Challenge(RAND,MAC)     |                                     |
+  |      12. EAP Request/SIM/Challenge(RAND,MAC)|                                     |
   |<--------------------------------------------+                                     |
   |                                             |                                     |
 +-+---------------------------------------+     |                                     |
@@ -1342,9 +1342,9 @@ Smartphone                               Authenticator (AP)
   |                                             |                               | 16. compare  |
   |                                             |                               | with own SRES|
   |                                             |                               +-----+--------+ 
-  |                                             | 17. RADIUS(EAP Success)             |
+  |                                             |              17. RADIUS(EAP Success)|
   |                                             |<------------------------------------+ 
-  | 18.EAP Success                              |                                     |
+  |                               18.EAP Success|                                     |
   |<--------------------------------------------+
   |                                             | 
   |                                             |
