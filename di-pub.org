@@ -127,8 +127,7 @@ Today, home networks have become more complex and the home owner
 does not necessarily want to administer all aspects of it.
 Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If the configuration is out-sourced to external parties and 
 done remotely, those requirements need adaptation.
-% implementationadjustment.
-% adjustment? fulfilling, 
+% implementation,adjustment, fulfilling, 
 Access to an end device must be provided from outside. 
 A trustful operator must be hired and login credentials shared to them to make configuration changes.
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
