@@ -316,7 +316,7 @@ Teemu Teekkari
 
 # - term :: meaning
 - 802.1X :: port based access control standard 
-- Access point :: Connects wireless (Wi-Fi) clients to wired network.
+- access point, AP :: Connects wireless (Wi-Fi) clients to wired network.
 		  Used here to encapsulate EAP messages to RADIUS and
                   forward them to authentication server
 # client connects access point (AP) on 802.11
@@ -325,9 +325,9 @@ Teemu Teekkari
 #                   authenticator.
 # - BaaS :: Backend as a Service. Type of cloud service, which focuses
 #           on mobile backend.
- - Authentication server :: Server checking identity claims, for
+ - authentication server :: Server checking identity claims, for
       example RADIUS server.
- - Authenticator :: local entity, who makes authentication (and
+ - authenticator :: local entity, who makes authentication (and
                     authorization) decision for client based on local and remote
                     claims, part of 802.1X standard.
 #  - cloud :: here, BaaS (Parse) service running Internet
