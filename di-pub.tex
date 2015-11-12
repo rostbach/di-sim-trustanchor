@@ -969,7 +969,7 @@ over signaling system (SS7) used in cellular networks, on the right.
 
 
 Protocol analysis of full EAP-SIM authentication is described 
-in Figure\texttt{fig:eap-sim-radius}.
+in Figure\ref{fig:eap-sim-radius}.
 Important parameters for this work are IMSI, NONCE, and triplet values
 RAND, SRES, and Kc. 
 From traffic between Supplicant (here smartphone) and authenticator (in AP)
@@ -987,7 +987,7 @@ All EAP-SIM derivatives provide mutual authentication.
 An operator (network) is authenticated with help of a nonce,
 which is by definition ``number used only once'' and can
 be thought as a client's challenge to the network.
-The nonce is transmitted in the message 7 in Figure\texttt{fig:eap-sim-radius}.
+The nonce is transmitted in the message 7 in Figure\ref{fig:eap-sim-radius}.
 The client later checks in the process 13, whether RAND values from
 the operator were digested with the correct nonce and so authenticates
 the operator.
@@ -997,7 +997,11 @@ generates a challenge with an aid of a triplet from the MNO and the
 client responses to the challenge correctly after processing it with
 its own \emph{Ki}.  Correct answer would be SRES which the Authentication
 server received in message 10.
+\begin{figure}[htb]
+\centering
 \includegraphics[width=.9\linewidth]{eap-sim-radius.png}
+\caption{\label{fig:eap-sim-radius}Successful EAP-SIM full authentication with RADIUS}
+\end{figure}
 
 
 
@@ -1985,7 +1989,7 @@ Request--Response pairs.
 
 When opening Responses number 6 and 7, we can see that we got to the
 part, where a nonce, selected version, and an identity were sent from
-the phone (message 7 in Figure\texttt{fig:eap-sim-radius}, but RADIUS server
+the phone (message 7 in Figure\ref{fig:eap-sim-radius}, but RADIUS server
 did not know how to handle them.
  Even when authentication conversation would not complete fully,
 authenticator still received a claim of identification from the
@@ -2072,7 +2076,7 @@ No.  Time     Src      Dest      Proto    Len   Info
 
 
 IMSI is sent the first time already on the second EAP message from 
-WPA2-Supplicant to AP (compare with Figure\texttt{fig:eap-sim-radius}, message 2.)
+WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
 This part is presented in more detail in Capture \ref{capimsi}.
 
 \lstset{basicstyle=\ttfamily\scriptsize,
