@@ -2386,7 +2386,7 @@ Section [[bootstrapping]].
 Our model would greatly benefit from the modification of RADIUS messages in proxying
 RADIUS, if that is possible as was mentioned in Section [[sec:radius]](RADIUS).
 The modification is needed, when the proxying RADIUS wants to combine AuthN message
-from MNO to AuthZ decision received from elsewhere.
+from the MNO to AuthZ decision received from elsewhere.
 
 # [ ALT: Is it possible for proxying RADIUS to insert or modify
 # authorization information on authentication reply i.e. in the
