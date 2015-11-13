@@ -1,4 +1,4 @@
-% Created 2015-11-13 pe 01:38
+% Created 2015-11-13 pe 11:42
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -502,8 +502,8 @@ using pre-defined credentials for accessing the local network in general and oth
 credentials for secure SSH-connection from the local
 controller device to configuration
 targets\cite[Chap.4]{silverajan2015collaborative}.
-That does not yet handle the bootstrap of the infrastructure, 
-i.e., the first trust is taken as given. 
+That does not yet handle the bootstrap of the 
+infrastructure, i.e., the first trust is taken as given. 
 
 The smartphone with its SIM and an
 existing key infrastructure to the mobile
@@ -563,20 +563,20 @@ thesis.
 
 Authentication, authorization, and accounting services (AAA) are
 components for access management.  AAA-protocols do not dictate
-policies, i.e., who is granted access or what operations user is
+policies, i.e., who is granted an access or what operations a user is
 allowed to do. They only transport this information between a client
 who needs them and a server authorized to provide them.
-Often, the last 'A' which stands for accounting has been neglected
-and also here only the first two A's are used and later described as AA
-services. Authentication (AuthN) answers how to identify users and
+Often, the last 'A', which stands for accounting, has been neglected
+and also here only the first two 'A's are used and later described as AA
+services. Authentication (AuthN) answers, how to identify users and
 prove that they really are who they claim to be. Authorization (AuthZ)
-answers what operations the identified users are allowed to do and
-forces usage policy. The rest of the thesis uses shortened terms AuthN
+answers, what operations the identified users are allowed to do and
+forces usage policy. The rest of the thesis uses short terms AuthN
 and AuthZ.
 
-On very small environments AA service is built on a static backend such
-as a file on a protected target that an entity wants to access. There AuthN
-is checked against a credentials file and AuthZ from a service
+On very small environments, AA service is built on a static backend such
+as a file on a protected target that an entity wants to access. There, AuthN
+is checked against a credentials file and AuthZ is given from a service
 specific policy file. 
 To be more exact, the identification preceding the authentication is the part,
 where the entity claims and presents its identity to 
@@ -597,13 +597,13 @@ following sections. Last, we expand the term \emph{trust}.
 control. Ports are physical layer ports, not to be mixed to Layer-4 ports such as TCP/UDP ports.
  Network access through a specific physical port is
 restricted (controlled) from a client (called Supplicant) before
-the client has successfully performed an AA. A 802.1X device, where
-the ports are located, is called an authenticator. Third party in 802.1X is an
+the client has successfully performed an AA. An 802.1X device, where
+the ports are located, is called  authenticator. Third party in 802.1X is an
 authentication server. 
 
 
 
-It is easy to mix here terms \emph{authenticator} and \emph{Authentication
+It is easy to mix here terms \emph{authenticator} and \emph{authentication
 server}, but their roles are different: authenticator works as a
 gate-keeper to ports between supplicant and network, while
 authentication server handles the AA processes.
@@ -618,10 +618,10 @@ routing or authenticator properties.
 \section{RADIUS}
 \label{sec-2-2}
 \label{sec:radius}
-RADIUS is the most popular provider for 
+RADIUS is the most popular provider for the 
 AAA-services\cite[p.75]{radius-popular}.  It was used first with remote terminal
 and dial-up modem users, hence the name Remote Authentication Dial-In
-User Service. Later it was used as centralized AAA for networking
+User Service. Later, it was used as a centralized AAA for networking
 devices such as switches and routers.  
 
 
@@ -636,10 +636,10 @@ devices such as switches and routers.
 RADIUS protocol is a stateless, request-response type client-server
 protocol. 
 There are four types of RADIUS messages defined in RFC2865 that are
-used in AA. ACCESS-REQUEST and ACCESS-CHALLENGE cover both AuthN and
-AuthZ messaging while final RADIUS message is either
+used in the AA. ACCESS-REQUEST and ACCESS-CHALLENGE cover both AuthN and
+AuthZ messaging, while final RADIUS message is either
 ACCESS-ACCEPT or ACCESS-REJECT, based on the
-result given by the RADIUS authentication server.
+result given by the final RADIUS  server.
 
 Today, RADIUS has some shortcomings and fixing them is not anymore
 reasonable as developing has shifted to another AAA protocol called
@@ -651,24 +651,24 @@ connections (Wi-Fi) in enterprises and nationwide community
 federations.
 
 
-When local Wi-Fi groups in Finland such as ``SparkNet'', ``Langaton
-Tampere'', or ``Wippies'' started to form in around 2005, they used
+When local Wi-Fi groups  such as ``SparkNet'', ``Langaton
+Tampere'', or ``Wippies'' started to form  in around 2005 in Finland, they used
 802.1X and RADIUS for AA. Those networks did still have as an
-alternative AA method a captive portal technique, where user had to
-first authenticate on WWW-page before getting an access.  802.1X and
+alternative AA method a captive portal technique, where the user had to
+first authenticate on a WWW-page before getting an access.  802.1X and
 RADIUS brought an external, central RADIUS server for authentication
 requests automatically, without burden of the captive portal.
 
-The members of Wi-Fi groups could then use the network anywhere, where
-the same uniform SSID (Service Set IDentifier) was seen, i.e., roaming
+The members of the Wi-Fi groups could then use the network anywhere, where
+the same uniform SSID (Service Set IDentifier) was seen. Roaming
 became possible, if one found a familiar SSID outside the home area.
 Later, there were agreements between different local groups to allow
 roaming and so federations were born.
 
-As seen from federated Wi-Fi groups, RADIUS servers can be chained to
+As seen from the federated Wi-Fi groups, RADIUS servers can be chained to
 form a tree. The reasons for the chaining are load balancing and high
-availability, centralization of locally distant servers, and
-federation of different domains. In RADIUS trees, the messages are
+availability, centralization of distant servers, and
+federation of different domains. With RADIUS hierarchy, the messages
 can be proxied to next RADIUS server in the chain, depending on the settings
 on the proxying RADIUS server.
 
@@ -712,11 +712,11 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 
 
 
-In the following chapters it is discussed how proxying servers take 
-part in AA decisions. Of main interest there is, if it is possible 
+In the following chapters it is discussed how the proxying servers take 
+part in the AA decisions. Of main interest there is, if it is possible 
 to inject or modify AuthZ information in those proxying RADIUSes in
 cases, where AuthN and AuthZ are provided from different
- places\cite{rfc2607}. Secondary goal is to universally divide AA regarding 
+ places\cite{rfc2607}. A secondary goal is to universally divide AA regarding 
 client's domain in the federation.
 
 
@@ -725,22 +725,23 @@ client's domain in the federation.
 \section{WPA2}
 \label{sec-2-3}
 
-Wireless protected access (WPA or WPA2) protects the traffic in a wireless,
+A Wireless Protected Access (WPA or WPA2) protects the traffic in a wireless,
 shared media, where everyone otherwise can simple listen all the radio traffic.
-It enables both authenticated access and message
+It enables both an authenticated access and a message
 encryption between a client device and  a wireless access point (AP)
 by negotiating session keys. This happens 
-after 802.1X has opened the virtual port in AP for the client.
+after 802.1X has opened the virtual port in the AP for the client.
 
-WPA (version 1)  was an early subset of then upcoming 802.11i standard,
-while WPA2 is the full implementation, also denoted as IEEE
+The WPA (version 1)  was an early subset of then upcoming 802.11i standard,
+while the WPA2 is the full implementation, also denoted as IEEE
 802.11i-2004, and the term WPA2 is used throughout the thesis.
 Client software for 802.11i is called a WPA2-Supplicant and it is used
 in wireless clients to communicate with the authenticator. 
 
-WPA2 has two modes of protection: one for groups with common, pre-shared
+The WPA2 has two modes of protection: one for groups with common, pre-shared
 key (WPA2-PSK, also known as WPA2-Personal) and one for individuals
-having own key (WPA2-RADIUS, also known as  WPA2-Enterprise).  With WPA2-RADIUS, revoking
+having own key (WPA2-RADIUS, also known as  WPA2-Enterprise).  With
+WPA2-RADIUS, revoking
 individual access is easier, but client setup slightly more
 complicated than on WPA2-PSK, as seen on Table\ref{psk-enterprise}.
 
@@ -989,7 +990,8 @@ An operator (network) is authenticated with help of a nonce,
 which is by definition ``number used only once'' and can
 be thought as a client's challenge to the network.
 The nonce is transmitted in the message 7 in Figure\ref{fig:eap-sim-radius}.
-The client later checks in the process 13, whether RAND values from
+The client later checks in the process 13, whether RAND values 
+from
 the operator were digested with the correct nonce and so authenticates
 the operator.
 
@@ -1036,9 +1038,9 @@ they bring may decrease, i.e. one must not use the TMSI received from
 \label{sec-2-7}
 
 Secure communication has many layers and on its base lies trust. 
-Only after completing trust setting phase it is meaningful to complete
+Only after completing the trust setting phase, it is meaningful to complete
 the other security layers. For example, secret keys enable encrypted
-communication, but they need to be delivered first through an trusted
+communication, but the keys need to be delivered first through an trusted
 channel. Same applies to public key infrastructure solutions, when
 verifying the public keys and so it can be seen that trust
 really is the first layer to be fixed.
@@ -1053,19 +1055,21 @@ both ends as being the corresponding messaging partner. MitM can
 read and decrypt encrypted messages and forward possibly changed message with
 a correct looking signature.
 With trust set between two devices, i.e.,  if they can securely
-authenticate each other, secret communication is possible. 
+authenticate each other, secret communication is achieved. 
 Secure network configuration and credential exchange is then possible.
 
 
 This trust can be used to include other components under the
 same trust circle in the home network. As mentioned earlier,  SIM
-and the MNO trust each other hence mutual authentication between them is
+and the MNO trust each other, hence mutual authentication between them is
 possible and that is later shown to be an important factor.  Also the
 key distribution problem mentioned in Chapter \ref{cha:intro} is solved
-already at SIM-card distribution phase.  As AuthN-AuthZ at home
+already at a SIM card distribution phase.  As AuthN-AuthZ at home
 proceeds through the authenticator, then the authenticator must
-deliver this information further and use it as a derivation function
-to extend trust.
+use it as a derivation function
+to extend trust 
+ and
+deliver this information further
 
 
 
@@ -1077,7 +1081,7 @@ to extend trust.
 \label{sec-3-1}
 
 
-While home network is any network located at person's home consisting
+While a home network is any network located at person's home consisting
 of devices and their connections, either wired or wireless,
 this thesis avoids using term \emph{homenet} in that context,
 because  homenet  is  reserved to 
@@ -1108,7 +1112,7 @@ Securing home network and its router's configuration can be done for
 example first limiting access to their administrative ports
 with static or dynamic extended access control lists (ACL) in
 routers. To get through administrative ports, i.e., to login and make
-configuration changes, there exists either AAA or local authentication.
+configuration changes, there exists either an AAA or a local authentication.
 Authorized agents can then make changes, either direct in the device or through some
 management protocol such as SNMP or NETCONF[source needed?].  SNMP has been in
 use for over 30 years and is well supported in routers. Yet there are
@@ -1133,7 +1137,7 @@ interface type would make it difficult to connect different realms locally.
 The same document continues stating
 that while home network should self-configure and self-organize itself as
 far as possible, self-configuring unintended devices should be
-avoided and let home network user decide whether device becomes trusted.
+avoided and let the home network user decide whether device becomes trusted.
 So, these statements reveal us that home network environment still needs
 external configuration even with the proposed automation aids.
 
@@ -1149,20 +1153,20 @@ home, is because network devices there often are too heterogeneous, bought at di
 and therefore incompatible with each other and.
 
 To help in moving the management to a more centralized
-model, the home network will see smartphone as a central managing local
+model, the home network will see the smartphone as a central managing local
 controller.
 Usually, home users already have a phone, which can be considered 
 `smart'. Most smartphones have Wi-Fi capabilities and writing programs
 for them is possible even with only little knowledge.
 When we choose a smartphone to be the management point, the other benefits are
 numerous:  a management software can be delivered and
-updated from cloud to diverse smartphone types, existing user
+updated from the cloud to diverse smartphone types, existing user
 base having smartphones is orders of magnitude more than in any single
 organization, and as the most important fact, the trust anchor can be set to the smartphone.
 
 The users already are  centrally located  in operators' user databases
 in HLR-AuC.  To achieve the management paradigm change to a central configured one,
-we still need to bridge the+ home network to that model with a trusted local controller
+we still need to bridge the home network to that model with a trusted local controller
 and then resolve the work-flow of change management.
 
 
@@ -2476,8 +2480,8 @@ Authenticators as described in Section \ref{sec:radius-macs}.  RADIUS uses
 MD5 hashing and shared secrets, but that is not enough.  MD5 hashes
 were first time broken by brute force already 20 years ago and today
 they can only be used as a data error detection
-tool\cite[p.2]{rfc6151}.  If a malicious actor imitates RADIUS Proxy
-(i.e. Man in the middle, MiTM), it can try to inject false messages.
+tool\cite[p.2]{rfc6151}.  If a malicious actor (Man in the middle,
+MiTM) imitates RADIUS proxy, it can try to inject false messages.
 Duplicate MD5-hashes (collisions) are easy to compute today (for 
 example MD5Attack\cite{rfc5176}) and researchers like Xie in
 2013\cite{xie2013fast}  are even accelerating the speed for
@@ -2618,7 +2622,7 @@ APs in protecting privacy of clients and preventing that scenario.
 
 Regarding boundaries of home network, the Wi-Fi coverage gives 
 one natural limit, which is 50 meters indoors or 100 meters outdoors,
-when no extenders (i.e. Wi-Fi repeaters) are in use.
+when no extenders (Wi-Fi repeaters) are in use.
 Proximity brings a minimal extra layer just like network cloaking 
 for preventing attacks, as the attacker must be physically within
 those limits.
