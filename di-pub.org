@@ -3425,7 +3425,7 @@ Jolla's base
 WPA-supplicant belongs to Mer core and it was here re-built for
 simulator use. The build process was done inside MerSDK virtual
 machine running under Virtualbox, because it provided not only
-simulated Jolla environment on x86 architecture, but also a cross
+simulated Jolla environment on x86 processor architecture, but also a cross
 compiling environment Scratchbox, that makes porting programs to Armv7
 processor easy.
 
