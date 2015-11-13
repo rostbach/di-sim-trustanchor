@@ -584,8 +584,8 @@ targets\cite[Chap.4]{silverajan2015collaborative}.
 # % present solution for 
 # % preset trusted and secured key distribution,
 # %
-That does not yet handle the bootstrap of the infrastructure, 
-i.e., the first trust is taken as given. 
+That does not yet handle the bootstrap of the 
+infrastructure, i.e., the first trust is taken as given. 
 
 The smartphone with its SIM and an
 existing key infrastructure to the mobile
@@ -3748,8 +3748,8 @@ Authenticators as described in Section [[sec:radius-macs]].  RADIUS uses
 MD5 hashing and shared secrets, but that is not enough.  MD5 hashes
 were first time broken by brute force already 20 years ago and today
 they can only be used as a data error detection
-tool\cite[p.2]{rfc6151}.  If a malicious actor imitates RADIUS Proxy
-(i.e. Man in the middle, MiTM), it can try to inject false messages.
+tool\cite[p.2]{rfc6151}.  If a malicious actor (Man in the middle,
+MiTM) imitates RADIUS proxy, it can try to inject false messages.
 Duplicate MD5-hashes (collisions) are easy to compute today (for 
 example MD5Attack\cite{rfc5176}) and researchers like Xie in
 2013\cite{xie2013fast}  are even accelerating the speed for
@@ -3948,7 +3948,7 @@ APs in protecting privacy of clients and preventing that scenario.
 # *** Proximity to access point
 Regarding boundaries of home network, the Wi-Fi coverage gives 
 one natural limit, which is 50 meters indoors or 100 meters outdoors,
-when no extenders (i.e. Wi-Fi repeaters) are in use.
+when no extenders (Wi-Fi repeaters) are in use.
 Proximity brings a minimal extra layer just like network cloaking 
 for preventing attacks, as the attacker must be physically within
 those limits.
