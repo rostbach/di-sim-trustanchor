@@ -1284,7 +1284,9 @@ be thought as a client's challenge to the network.
 # The client challenges the operator by sending the nonce 
 # during the start of the negotiation phase in the message
 The nonce is transmitted in the message 7 in Figure[[fig:eap-sim-radius]].
-The client later checks in the process 13, whether RAND values from
+The client later checks in the process 13, whether RAND values 
+# thatare 128-bit in length
+from
 the operator were digested with the correct nonce and so authenticates
 the operator.
 
