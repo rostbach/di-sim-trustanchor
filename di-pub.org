@@ -1431,7 +1431,7 @@ a correct looking signature.
 # without trust,
 # communicating devices are 
 With trust set between two devices, i.e.,  if they can securely
-authenticate each other, secret communication is possible. 
+authenticate each other, secret communication is achieved. 
 Secure network configuration and credential exchange is then possible.
 # [use citation of
 # ( http://static.usenix.org/event/sec04/tech/full_papers/balfanz/balfanz_html/
