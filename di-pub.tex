@@ -1,4 +1,4 @@
-% Created 2015-11-13 pe 11:42
+% Created 2015-11-13 pe 12:06
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -784,7 +784,7 @@ into protected EAP(PEAP)\cite{peap} before sending
 into air. In wired net those EAP messages are translated and encapsulated into RADIUS.
 
 The encapsulation is described in Figure\ref{fig:eap-layers} where it can be
-seen, that EAP messaging happens logically between the EAP peer and
+seen, that the EAP messaging happens logically between the EAP peer and
 the authentication server. On a lower transport layer between them
 there is an EAP authenticator, which transfers EAPOL messaging into
 RADIUS message.
@@ -2204,9 +2204,7 @@ Message-Authenticator, which presents limited safety against message
 corruption. Limited, because it uses MD5-hashing which is not safe
 against malicious attackers anymore.
 
-[*Here conversation after identity reveal to HLR part*]
 
-[*TBD /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714*]
 
 Meanwhile, HLR simulator was listening requests from Authentication
 server's internal EAP-handler through a local socket. 
@@ -2245,14 +2243,16 @@ simulated SIM application to the real smartphone.  Jolla is a new
 Finnish smartphone, running on ARMv7 processor, having its root's on
 Nokia's last mobilephone line that used Linux Distribution MeeGo in
 beginning of 2010's.  The OS is called Sailfish and it includes user
-interface code made by Jolla, open source components from Mer (comes
-from MEego
-Reinvented, or meritocratic community; community driven by merits), and some other software
-components, which are either free or proprietary.  Jolla's base
+interface code made by Jolla, open source components from Mer, and
+some other software components, which are either free or proprietary.
+The name Mer comes from MEego Reinvented, or meritocratic community
+and it is a community driven by merits.
+
+Jolla's base
 WPA-supplicant belongs to Mer core and it was here re-built for
 simulator use. The build process was done inside MerSDK virtual
 machine running under Virtualbox, because it provided not only
-simulated Jolla environment on x86 architecture, but also a cross
+simulated Jolla environment on x86 processor architecture, but also a cross
 compiling environment Scratchbox, that makes porting programs to Armv7
 processor easy.
 
