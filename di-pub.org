@@ -3416,10 +3416,12 @@ simulated SIM application to the real smartphone.  Jolla is a new
 Finnish smartphone, running on ARMv7 processor, having its root's on
 Nokia's last mobilephone line that used Linux Distribution MeeGo in
 beginning of 2010's.  The OS is called Sailfish and it includes user
-interface code made by Jolla, open source components from Mer (comes
-from MEego
-Reinvented, or meritocratic community; community driven by merits), and some other software
-components, which are either free or proprietary.  Jolla's base
+interface code made by Jolla, open source components from Mer, and
+some other software components, which are either free or proprietary.
+The name Mer comes from MEego Reinvented, or meritocratic community
+and it is a community driven by merits.
+
+Jolla's base
 WPA-supplicant belongs to Mer core and it was here re-built for
 simulator use. The build process was done inside MerSDK virtual
 machine running under Virtualbox, because it provided not only
