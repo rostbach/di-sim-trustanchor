@@ -926,16 +926,16 @@ client's domain in the federation.
 
 ** WPA2
 
-Wireless protected access (WPA or WPA2) protects the traffic in a wireless,
+A Wireless Protected Access (WPA or WPA2) protects the traffic in a wireless,
 shared media, where everyone otherwise can simple listen all the radio traffic.
 # simply listen the traffic on radio waves. 
-It enables both authenticated access and message
+It enables both an authenticated access and a message
 encryption between a client device and  a wireless access point (AP)
 by negotiating session keys. This happens 
-after 802.1X has opened the virtual port in AP for the client.
+after 802.1X has opened the virtual port in the AP for the client.
 
-WPA (version 1)  was an early subset of then upcoming 802.11i standard,
-while WPA2 is the full implementation, also denoted as IEEE
+The WPA (version 1)  was an early subset of then upcoming 802.11i standard,
+while the WPA2 is the full implementation, also denoted as IEEE
 802.11i-2004, and the term WPA2 is used throughout the thesis.
 # WPA2 consist of client (WPA2-supplicant), Authenticator, and Authentication Server.
 Client software for 802.11i is called a WPA2-Supplicant and it is used
@@ -943,9 +943,10 @@ in wireless clients to communicate with the authenticator.
 # The rest of the work will not make a difference between WPA and WPA2
 # versions, but simply denotes them as ``WPA''.
 
-WPA2 has two modes of protection: one for groups with common, pre-shared
+The WPA2 has two modes of protection: one for groups with common, pre-shared
 key (WPA2-PSK, also known as WPA2-Personal) and one for individuals
-having own key (WPA2-RADIUS, also known as  WPA2-Enterprise).  With WPA2-RADIUS, revoking
+having own key (WPA2-RADIUS, also known as  WPA2-Enterprise).  With
+WPA2-RADIUS, revoking
 individual access is easier, but client setup slightly more
 complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 
@@ -953,13 +954,14 @@ complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 #+CAPTION: Comparison of WPA2-PSK and WPA2-ENTERPRISE modes
 #+NAME: psk-enterprise
 | Property                     | WPA2-PSK | WPA2-ENTERPRISE |
-|------------------------------+---------+----------------|
-| /                            | <       | <              |
-| suitable for groups          | x       |                |
-| suitable for individual      |         | x              |
-| individual client revocation |         | x              |
-| client setup                 | easy    | intermediate   |
-|------------------------------+---------+----------------|
+|------------------------------+----------+-----------------|
+|------------------------------+----------+-----------------|
+| /                            | <        | <               |
+| suitable for groups          | x        |                 |
+| suitable for individual      |          | x               |
+| individual client revocation |          | x               |
+| client setup                 | easy     | intermediate    |
+|------------------------------+----------+-----------------|
 
 
 ** EAP
