@@ -705,21 +705,21 @@ thesis.
 
 Authentication, authorization, and accounting services (AAA) are
 components for access management.  AAA-protocols do not dictate
-policies, i.e., who is granted access or what operations user is
+policies, i.e., who is granted an access or what operations a user is
 allowed to do. They only transport this information between a client
 who needs them and a server authorized to provide them.
 # client and Authenticator server.
-Often, the last 'A' which stands for accounting has been neglected
-and also here only the first two A's are used and later described as AA
-services. Authentication (AuthN) answers how to identify users and
+Often, the last 'A', which stands for accounting, has been neglected
+and also here only the first two 'A's are used and later described as AA
+services. Authentication (AuthN) answers, how to identify users and
 prove that they really are who they claim to be. Authorization (AuthZ)
-answers what operations the identified users are allowed to do and
-forces usage policy. The rest of the thesis uses shortened terms AuthN
+answers, what operations the identified users are allowed to do and
+forces usage policy. The rest of the thesis uses short terms AuthN
 and AuthZ.
 
-On very small environments AA service is built on a static backend such
-as a file on a protected target that an entity wants to access. There AuthN
-is checked against a credentials file and AuthZ from a service
+On very small environments, AA service is built on a static backend such
+as a file on a protected target that an entity wants to access. There, AuthN
+is checked against a credentials file and AuthZ is given from a service
 specific policy file. 
 #  Examples include ...
 To be more exact, the identification preceding the authentication is the part,
