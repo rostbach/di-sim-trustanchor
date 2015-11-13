@@ -996,7 +996,7 @@ into protected EAP(PEAP)\cite{peap} before sending
 into air. In wired net those EAP messages are translated and encapsulated into RADIUS.
 
 The encapsulation is described in Figure[[fig:eap-layers]] where it can be
-seen, that EAP messaging happens logically between the EAP peer and
+seen, that the EAP messaging happens logically between the EAP peer and
 the authentication server. On a lower transport layer between them
 there is an EAP authenticator, which transfers EAPOL messaging into
 RADIUS message.
@@ -1036,8 +1036,8 @@ dictates.
  +-------------+ over LAN+------+-------+  over   +------------+
  |802.1x client| (EAPOL) |      |RADIUS |  RADIUS | RADIUS     |
  |(Supplicant) +<------->+EAPOL |client +<------->+ server     |
- |             |         |      |       |         |            |
- +-------------+         +------+-------+         +------------+            
+ |             | Link    |      |       |  App    |            |
+ +-------------+ Layer2  +------+-------+  Layer7 +------------+            
 
 #+end_src
 #+CAPTION: EAP-logical layering and encapsulation
