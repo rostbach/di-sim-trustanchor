@@ -159,7 +159,7 @@ the local phone user still in control.
 %  and it is the key element of the thesis.
 SIM authentication's benefits are strong 
 authentication and existing, large user-base, while its disadvantages include
-dependency to the mobile operator. Additionally, there will remain challenges
+dependency to the mobile operator. Additionally, there remain challenges
 in keeping SIM's identity private and in disabling unwanted 
 re-authentications. % [or: balancing the re-authentication]
 
