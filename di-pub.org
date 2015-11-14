@@ -143,7 +143,7 @@ A theory to use EAP-SIM-authentication at home is presented and a simulated test
 to demonstrate that is built, tested and analyzed.
 The principle has been to reuse existing techniques combining them with such new areas as homenet and delegated management.
 % For transporting authentication claims, WPA2 Enterprise including RADIUS environment has been chosen.
-Authentication claims are tranported with WPA2 Enterprise.
+Authentication claims are transported with WPA2 Enterprise.
 To further avoid complexity and granularity, we
 only use a simple model of management network. 
 % Getting in to the management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
@@ -356,8 +356,8 @@ Teemu Teekkari
 \markboth{}{}                                % no headers
 #+end_latex
 
-If not already on vocabulary, expansion of the most important terms like
-authentication, key-exchange, integrity, replay, algorithms, SIM,...
+# %If not already on vocabulary, expansion of the most important terms like
+# % authentication, key-exchange, integrity, replay, algorithms, SIM,...
 
 # - term :: meaning
 - 802.1X :: port based access control standard 
@@ -597,7 +597,7 @@ to the home network, there needs to be a mutual trust between the end
 points, and the research problem here is how to enable the trust between the
 local controller and the home network as the local controller lies at the edge of the
 home network. The connection between the remote and local
-controller is assumpted to already be trusted.
+controller is assumed to already be trusted.
 
 
 
