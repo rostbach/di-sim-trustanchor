@@ -2460,7 +2460,7 @@ must deliver those attributes and that allows us to use larger set of AVPs
 than is in any (proxying) RADIUS server's vocabulary.
 By adding AVPs inside the authorization packet, we achieve extra
 information about validity of the access request.
-That information may include a VLAN parameter or a timestamp for a forced
+That information may include a VLAN parameter or a time stamp for a forced
 logout.
 # that the access point and smartphone would later need.
 RFC2865 \cite{rfc2865} says, that the forwarding RADIUS proxy may alter
