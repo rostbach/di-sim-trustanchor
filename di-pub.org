@@ -2173,7 +2173,7 @@ The AuthZ component may be placed more freely. It can be at
 the MNO (I), at home (II-IV), or at the external provider (III).
 Authenticator on the other hand must stay at home, and it always 
 gives the final decision about the access.
-If the AuthZ decision is made on remote, 3rd party AuthZ server, 
+If the AuthZ decision is made on remote, 3rd party AuthZ server (I,III), 
 then that server needs to have either local AuthZ data or access to 
 cloud service's AuthZ data.
 Further it seems inevitable, that delegating AuthZ function 
