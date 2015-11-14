@@ -1,4 +1,4 @@
-% Created 2015-11-14 la 16:15
+% Created 2015-11-14 la 16:18
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -380,10 +380,8 @@ client and authentication server, part of RADIUS server chain.
                               % 'Luku' in page headers (in 'twoside'
                               % mode)
 
-
-\begin{itemize}
-\item Introduction
-\end{itemize}
+\chapter{Introduction}
+\label{sec-1}
 \label{cha:intro}
 
 
@@ -561,18 +559,25 @@ studied.
 
 
 The thesis is structured as follows: authentication--authorization
-model is explained in Chapter \ref{sec-1}.  Chapter \ref{sec-2}
+model is explained in Chapter \ref{sec-1}.  Chapter \ref{sec-1-7}
 describes security in current home network architecture and 
-practices for configuring it.  Chapter \ref{sec-3} discusses methods
+practices for configuring it.  Chapter \ref{sec-1-10} discusses methods
 to bring a trust anchor in the home network and explains the chosen
 method.
 One specially crafted problem is how the scenarios presented here can be
 tested without knowing the SIM card's secret keys and without real phone
-operator involved.  Those experiments are described in Chapter \ref{sec-4}.
-Results are discussed in Chapter \ref{sec-5} and Chapter \ref{sec-6} concludes the
+operator involved.  Those experiments are described in Chapter \ref{sec-1-17}.
+Results are discussed in Chapter \ref{sec-1-20} and Chapter \ref{sec-1-27} concludes the
 thesis.
-\chapter{Authentication, Authorization, and Trust}
-\label{sec-1}
+
+
+
+
+
+
+\begin{itemize}
+\item Authentication, Authorization, and Trust
+\end{itemize}
 
 
 
@@ -1088,12 +1093,12 @@ deliver this information further
 
 
 
-
-\chapter{Home network architecture}
-\label{sec-2}
+\begin{itemize}
+\item Home network architecture
+\end{itemize}
 
 \section{Home network architecture and IETF}
-\label{sec-2-1}
+\label{sec-1-8}
 
 
 While a home network is any network located at person's home consisting
@@ -1159,7 +1164,7 @@ So, these statements reveal us that home network environment still needs
 external configuration even with the proposed automation aids.
 
 \section{Centralization trends in management}
-\label{sec-2-2}
+\label{sec-1-9}
 
 Traditionally, configuration management of individual network devices has been done
 using each device's console or web interface.  As the number of
@@ -1206,7 +1211,7 @@ authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 
 \section{Methods for introducing trust anchor into the home network}
-\label{sec-2-3}
+\label{sec-1-10}
 \label{sec:altmethods}
 
  Trust information, may it then be a secret or some
@@ -1319,8 +1324,14 @@ dishonest admin could lure users to take part in middle man scenarios.
 
 
 
-\chapter{Design of home network trust anchor and separation of change management}
-\label{sec-3}
+
+
+
+
+
+\begin{itemize}
+\item Design of home network trust anchor and separation of change management
+\end{itemize}
 
 
 
@@ -1356,7 +1367,7 @@ beginning as can be seen from Figure\ref{fig:trustbegin}.
 
 
 \section{Chosen AA design}
-\label{sec-3-1}
+\label{sec-1-11}
 \label{sec:chosendesign}
 
 
@@ -1440,7 +1451,7 @@ the parts of the management network and it is authenticated strongly.  User
 management is outsourced to the MNO, which
 already has provided SIM cards to users. What remains, is the adding
 of the user's IMSI to the authorized users' list. That list can be
-located on diverse places, as can be seen in Section \ref{sec-3-2}.
+located on diverse places, as can be seen in Section \ref{sec-1-12}.
 
 
 After authentication and authorization have succeeded, WPA2 session key
@@ -1465,7 +1476,7 @@ network. This kind of AA would happen on upper, application layer
 (layer 7), while AA discussed here (802.1X) happens already on lower, media layer (layer 2).
 
 \section{AA component location scenarios}
-\label{sec-3-2}
+\label{sec-1-12}
 
 
 The AA components AuthN and AuthZ can be found in diverse location
@@ -1643,7 +1654,7 @@ Section \ref{bootstrapping}.
 
 
 \section{Modification of RADIUS messages}
-\label{sec-3-3}
+\label{sec-1-13}
 \label{sec:radius-macs}
 
 Our model would greatly benefit from the modification of RADIUS messages in proxying
@@ -1674,7 +1685,7 @@ bypassing messages.
 
 
 \section{Similarities with Lock-and-Key method}
-\label{sec-3-4}
+\label{sec-1-14}
 The method is very similar to the concept used on routers to dynamically enable
 access to certain parts of network by first letting the user to log in
 to the router. If the access succeeds, the router dynamically adds
@@ -1747,7 +1758,7 @@ request is correct
 
 
 \section{Chosen management model}
-\label{sec-3-5}
+\label{sec-1-15}
 
 
 
@@ -1836,7 +1847,7 @@ link, because smartphones currently have only one Wi-Fi radio
 available and routing would still prefer Wi-Fi as a default gateway, although
 possible non-Wi-Fi data link still may stay up and operational.
 \section{Disconnecting the local controller and offline changes}
-\label{sec-3-6}
+\label{sec-1-16}
 \label{sec:disconnections}
 
 
@@ -1872,7 +1883,7 @@ success, the WWW-portal would also need an open access without 802.1X
 port based access control.
 
 \section{Summary of the chosen solution}
-\label{sec-3-7}
+\label{sec-1-17}
 
 
 The chosen solution to benefit from SIM is via EAP-profiles, as EAP
@@ -1892,8 +1903,11 @@ separate local RADIUS server running as a proxy.
 
 
 
-\chapter{Implemented Solution}
-\label{sec-4}
+
+
+\begin{itemize}
+\item Implemented Solution
+\end{itemize}
 
 
 To prove that the proposed model works, empirical tests were done.
@@ -1920,7 +1934,7 @@ the local controller with  command line interface (CLI).
 
 
 \section{EAP-SIM authentication test bed}
-\label{sec-4-1}
+\label{sec-1-18}
 
 
 
@@ -1979,7 +1993,7 @@ want to invent their own security algorithms. OPc and Seq parameters from
 Milenage were not used, because they are not needed in EAP-SIM. 
 
 \section{Detailed description of test runs}
-\label{sec-4-2}
+\label{sec-1-19}
 
 
 The first tests were done with hostapd as a wireless AP.
@@ -2253,7 +2267,7 @@ Send: SIM-RESP-AUTH 232010000000000
 
 
 \section{Simulation on smartphone Jolla}
-\label{sec-4-3}
+\label{sec-1-20}
 
 Because we had source code available, we also tried to move the
 simulated SIM application to the real smartphone.  Jolla is a new
@@ -2302,8 +2316,9 @@ version(s) & component & tested on (machine arch)\\
 [*TBD: cross compile environment, little bit more, examples. SDK,
 script*]
 
-\chapter{Analysis, Results and Discussion}
-\label{sec-5}
+\begin{itemize}
+\item Analysis, Results and Discussion
+\end{itemize}
 
 We have now gone through theory, design and implementation so let's
 discuss some results and findings. We concentrate on security, 
@@ -2316,7 +2331,7 @@ trust and management models.
 
 
 \section{Security considerations}
-\label{sec-5-1}
+\label{sec-1-21}
 
 
 
@@ -2325,7 +2340,7 @@ the home network management delegation. Following subsections divide them into
 confidentiality (privacy), integrity, and
 authenticity. Accessibility is also discussed.
 \subsection{Confidentiality (privacy)}
-\label{sec-5-1-1}
+\label{sec-1-21-1}
 
 Confidentiality means that no one else other than message's intended
 recipients may get to know information inside the message.
@@ -2441,9 +2456,9 @@ using temporal identity (TMSI).
 For other parameters, EAP-SIM is confidential.
 Thus, this paper considers TMSI only when using it for recurring
 authentication (re-auth) and offline cases in the implementation Chapter
-\ref{sec-4}.
+\ref{sec-1-17}.
 \subsection{Integrity}
-\label{sec-5-1-2}
+\label{sec-1-21-2}
 
 
 
@@ -2461,7 +2476,7 @@ characteristics of the authenticator inside its EAP-message, which
 the authentication server then verified (RFC6677) \cite{rfc6677}.
 
 \subsection{Accessibility, DoS and scalability}
-\label{sec-5-1-3}
+\label{sec-1-21-3}
 
 Is home network immune against (distributed) denial of service (DoS)
 attacks? Besides DoS, does the solution scale up from home network to
@@ -2483,7 +2498,7 @@ server can answer requests faster than waiting for TCP RADIUS's reliable deliver
 
 
 \subsection{RADIUS weaknesses and strengths in limited use cases}
-\label{sec-5-1-4}
+\label{sec-1-21-4}
 
 
 RADIUS protocol itself is old and not very secure as of current
@@ -2524,7 +2539,7 @@ a current admin user list, a state of OTP list, or a VLAN id.
 
 
 \subsection{Replay, re-use, re-auth, and brute-force challenges}
-\label{sec-5-1-5}
+\label{sec-1-21-5}
 
 Earlier, in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
@@ -2564,7 +2579,7 @@ function anymore at all.
 
 
 \subsection{Hardware tampering}
-\label{sec-5-1-6}
+\label{sec-1-21-6}
 All this time it is assumed, that hardware does not lie. In case
 the hardware has been tampered, we could not trust its claims.
 For example, there have been attacks against SIM to reveal its private
@@ -2580,7 +2595,7 @@ That leads us again to the key distribution problem.
 
 
 \subsection{Mitigation methods against radio capturing}
-\label{sec-5-1-7}
+\label{sec-1-21-7}
 To mitigate risks for radio capturing, two methods are presented: hiding of
 wireless network and proximity. They are not perfect but can
 limit attack vectors in time and place.
@@ -2656,7 +2671,7 @@ directed antenna \cite{SANS-bluetooth-2007}.
 
 
 \section{Deployment difficulty and costs}
-\label{sec-5-2}
+\label{sec-1-22}
 
 To deploy the system, modifications must be done to the AP and the client.
 Additionally, a contract must be made with the MNO service
@@ -2723,7 +2738,7 @@ On the other hand, empty GSM cards for testing can cost as much as
 
 
 \section{Platform specific issues}
-\label{sec-5-3}
+\label{sec-1-23}
 
 \label{sec:pcsc}
 
@@ -2794,7 +2809,7 @@ via normal access network.
 
 
 \section{Usability with access points}
-\label{sec-5-4}
+\label{sec-1-24}
 There are three main types of wireless access points: open access
 points without configuration on client's end, access points 
 demanding one-time only setup of client such as WPA2-PSK or
@@ -2869,7 +2884,7 @@ the achieved trusted access point.
 
 
 \section{Discussion}
-\label{sec-5-5}
+\label{sec-1-25}
 
 [*Some part to be moved to the Conclusion chapter*]
 
@@ -2914,7 +2929,7 @@ the authenticated identity.
 
 
 
-In the design chapter (Chapter \ref{sec-3}) it was questioned whether the proxying RADIUS server
+In the design chapter (Chapter \ref{sec-1-10}) it was questioned whether the proxying RADIUS server
 can read and alter the messages on their way or is the messaging secured
 by encryption, integrity hashes and digital signatures.
 Later it was learned, that the message's integrity is indeed protected, if
@@ -2962,14 +2977,14 @@ It seems, that AuthZ data must be mapped during the first phase of
 EAP-SIM AuthN, when IMSI still is available, and in some way
 that map must be forwarded to the proxying RADIUS servers.
 These issues are fully avoided only in scenario II presented in Chapter
-\ref{sec-3}, where there is local authentication server in home network.
+\ref{sec-1-10}, where there is local authentication server in home network.
 Partly avoidance can be reached, if only full authentication is
 used, i.e., the authentication is always checked from the MNO and no
 fast re-authentication is used, thus eliminating use of TMSI altogether.
 
 
 \section{Alternative management models}
-\label{sec-5-6}
+\label{sec-1-26}
 
 If we were to question or evolve the given model of change
 propagation, the trust anchoring would also need some modifications.
@@ -3047,7 +3062,7 @@ admin IMSIs (roles).
 
 
 \section{Bootstrapping with and without PKI}
-\label{sec-5-7}
+\label{sec-1-27}
 \label{bootstrapping}
 
 
@@ -3114,8 +3129,18 @@ present that when accessing services, here the management network. The
 validity time would automatically disallow the management if applied
 later than allowed time.
 
-\chapter{Conclusion}
-\label{sec-6}
+
+
+
+
+
+
+
+
+
+\begin{itemize}
+\item Conclusion
+\end{itemize}
 
 
 
