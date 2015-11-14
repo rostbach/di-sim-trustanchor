@@ -1998,7 +1998,7 @@ inspection in the interconnects of segments, but even more complex and modern mo
 would be the de-perimeterization trend set originally by Open Group's
 Jericho Work Group \cite{jericho2004} in 2004, that will not leave trust verification to
 perimeters of network (firewalls and application proxies), but 
-always handles traffic as coming from untrusted source.
+always handles traffic as coming from unreliable source.
 One implementation of de-perimeterization is 
 Google's BeyondCorp \cite{2014-beyondcorp}, 
 where traffic always travels through Access Control Engine
