@@ -1,4 +1,4 @@
-% Created 2015-11-14 la 17:04
+% Created 2015-11-14 la 22:13
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -126,7 +126,7 @@
    \textsf{Master's Degree Programme in Information Technology}\\
    \textsf{Major: Information Security}\\
    \textsf{Examiner: Prof. \@examiner}\\ % 
-   \textsf{Keywords: authentication, authorization, AAA, Homenet, home networks, smartphone, SIM, trust-anchor, EAP-SIM, RADIUS}\\
+   \textsf{Keywords: authentication, authorization, AAA, homenet, home networks, smartphone, SIM, trust-anchor, EAP-SIM, RADIUS}\\
 \end{spacing}
 
 %---------------------------------------------------------
@@ -140,18 +140,18 @@ does not necessarily want to administer all aspects of it.
 Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If the configuration is out-sourced to external parties and 
 done remotely, those requirements need adaptation.
 % implementation,adjustment, fulfilling, 
-Access to an end device must be provided from outside, a trustful operator must be hired and login credentials shared.n
+Access to an end device must be provided from outside, a trustful operator must be hired and login credentials shared.
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
 
 In this work, an application running on user's smartphone represent this trustful operator. 
 As there already exists an infrastructure within mobile phone subscribers, that is used in the study as a trusted base.
 To benefit from the mobile identification, it is shown how the authentication
 and authorization are done using an extendable authentication profile (EAP) and SIM-card.
-A theory to use EAP-SIM-authentication at home is presented and a simulated testbed
+A theory to use EAP-SIM-authentication at home is presented and a simulated test bed
 to demonstrate that is built, tested and analyzed.
 The principle has been to reuse existing techniques combining them with such new areas as homenet and delegated management.
 % For transporting authentication claims, WPA2 Enterprise including RADIUS environment has been chosen.
-Authentication claims are tranported with WPA2 Enterprise.
+Authentication claims are transported with WPA2 Enterprise.
 To further avoid complexity and granularity, we
 only use a simple model of management network. 
 % Getting in to the management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
@@ -186,7 +186,7 @@ re-authentications. % [or: balancing the re-authentication]
          \textsf{Tietotekniikan koulutusohjelma}\\
          \textsf{Pääaine: tietoturva}\\
          \textsf{Tarkastaja:  Prof. \@examiner}\\ % automated, if just 1 examiner
-         \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, Homenet, kotiverkko, älypuhelin, SIM, luottamusankkuri, EAP-SIM, RADIUS}\\
+         \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, homenet, kotiverkko, älypuhelin, SIM, luottamusankkuri, EAP-SIM, RADIUS}\\
 \end{spacing}
 % The abstract in Finnish. Foreign students do not need this page.
 % Kirjoita, kun english versio on hyvä(ksytty).
@@ -211,7 +211,7 @@ näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
 EAP-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
 simuloitu käyttöympäristö. Periaatteena on ollut käyttää
 olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin,
-kuten Homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
+kuten homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
 hallintaan. Tunnistus- ja valtuutustietojen välittämisen hoitaa
 WPA2 Enterprise sisältäen RADIUS ympäristön. Välttääksemme 
 monimutkaisuutta ja tarpeetonta hienorakeisuutta, käytämme yksinkertaista 
@@ -361,8 +361,6 @@ Teemu Teekkari
 %\chapter*{Lyhenteet ja merkinn<E4>t}
 \markboth{}{}                                % no headers
 
-If not already on vocabulary, expansion of the most important terms like
-authentication, key-exchange, integrity, replay, algorithms, SIM,\ldots{}
 
 \begin{description}
 \item[{802.1X}] port based access control standard
@@ -511,7 +509,7 @@ to the home network, there needs to be a mutual trust between the end
 points, and the research problem here is how to enable the trust between the
 local controller and the home network as the local controller lies at the edge of the
 home network. The connection between the remote and local
-controller is assumpted to already be trusted.
+controller is assumed to already be trusted.
 
 
 
@@ -1123,7 +1121,7 @@ Internet Engineering Task Force Working Group's (IETF
 WG) homenet. IETF is responsible for  most internet technology standards and 
 WG homenet was started in year 2011.
 Current drive in homenet management is towards IPv6 environment
- as it fullfills future routing and addressing needs. 
+ as it fulfills future routing and addressing needs. 
 Homenet has five tasks to solve at home networks: service discovery, network security, 
 prefix configuration for routers, routing management and name
 resolution \cite{homenet-charter}.
@@ -1138,7 +1136,7 @@ discussed in multihoming parts of homenet WG.
 Lastly, end-to-end access, i.e., restriction-free access is in their agenda. 
 It was the key element for the Internet's success and enabled many new
 applications in the past, but has then had difficulties because of
-firewalls and NATs.
+firewalls and NATs. 
 
 
 
@@ -1246,6 +1244,21 @@ but not tested in simulated environment.
 
 
 
+Before fully explaining this chosen method in the next chapter, we introduce some 
+alternative approaches for a trust anchor using SIM. The trust anchor
+is part of bootstrapping, which is needed because although the
+smartphone and the MNO already trust each other, the trust between the
+smartphone and AP, and thus the management network at home, is
+non-existing in the beginning as can be seen from
+Figure\ref{fig:trustbegin}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{trustcircles.png}
+\caption{\label{fig:trustbegin}Trust circles in the beginning}
+\end{figure}
+
+
 
 Trust can also be requested with help of device's unique
 properties. Recently, devices have appeared on the market, that have
@@ -1331,8 +1344,19 @@ Without need for strong AuthN, that model would indeed be
 simpler, but using SIM also solves initial key distribution problem.
 Additionally, mutual AuthN problem would still need to be solved:
 Who sent that password and where that password should be inserted?
-That is important, because if fake acess point were involved, the 
-dishonest admin could lure users to take part in middle man scenarios.
+
+Mutual AuthN is important, because if fake access point were involved, the 
+dishonest admin could lure users to take part in Man in the Middle scenarios.
+For example, the smartphone user can start the authentication process
+to the AP which is located at neighbor and think that he is using
+his own home AP. 
+The malicious neighbor AP (MitM) allows access to the user and starts 
+listening the traffic on AP's network interface. At that time, 
+MitM may capture from the smartphone  traffic, which may  include
+sensitive  data such as username, passwords, or even configuration data.
+It is not very difficult to even fake an SSH-server, if the 
+client (smartphone here) does not check the server's changed
+fingerprint.
 
 
 
@@ -1355,22 +1379,6 @@ management can happen.
 In essence, the precence of the smartphone at home
 opens the gate for the management, though it needs a little
 interaction on behalf the user.
-
-
-
-Before fully explaining our chosen method, we introduce some 
-alternative
-approaches for a trust anchor. The trust anchor is part of bootstrapping,
-which is needed because although the smartphone and the MNO
-already trust each other, the trust between the smartphone and AP, and
-thus the management network at home, is non-existing in the
-beginning as can be seen from Figure\ref{fig:trustbegin}.
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=.9\linewidth]{trustcircles.png}
-\caption{\label{fig:trustbegin}Trust circles in the beginning}
-\end{figure}
 
 
 \section{Chosen AA design}
@@ -1404,7 +1412,7 @@ inspection in the interconnects of segments, but even more complex and modern mo
 would be the de-perimeterization trend set originally by Open Group's
 Jericho Work Group \cite{jericho2004} in 2004, that will not leave trust verification to
 perimeters of network (firewalls and application proxies), but 
-always handles traffic as coming from untrusted source.
+always handles traffic as coming from unreliable source.
 One implementation of de-perimeterization is 
 Google's BeyondCorp \cite{2014-beyondcorp}, 
 where traffic always travels through Access Control Engine
@@ -1679,7 +1687,7 @@ must deliver those attributes and that allows us to use larger set of AVPs
 than is in any (proxying) RADIUS server's vocabulary.
 By adding AVPs inside the authorization packet, we achieve extra
 information about validity of the access request.
-That information may include a VLAN parameter or a timestamp for a forced
+That information may include a VLAN parameter or a time stamp for a forced
 logout.
 RFC2865 \cite{rfc2865} says, that the forwarding RADIUS proxy may alter
 the packet as it passes it, but because an alteration would invalidate the
@@ -1774,7 +1782,7 @@ request is correct
 The simple way to propagate changes from the cloud (or any outside
 source) is to make them come from the trusted place, here the smartphone,
 where an application takes care of sending them right to the end
-devices. This simplification has some pitfalls. If the smartphone continuosly stays
+devices. This simplification has some pitfalls. If the smartphone continuously stays
 in the management network, then the changes coming later may not be 
 separated from the currently approved.
 If we understood that the change approval belongs to the AA-process, then
@@ -1858,24 +1866,20 @@ possible non-Wi-Fi data link still may stay up and operational.
 \label{sec:disconnections}
 
 
+
+
+
+
+
+
+
+
+
+
+
 After the phone has been successfully connected to the management
 network, changes coming from the phone can reach configurable targets,
 for example routers.  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 To defeat the missing internet connection problem, a simple solution would be
 sending a one-time password to a predefined phone via an SMS, but what
 entity would then check that and who would be authorized to send that message?
@@ -1896,9 +1900,7 @@ port based access control.
 The chosen solution to benefit from SIM is via EAP-profiles, as EAP
 is well known when using WPA2-Enterprise protection in Wi-Fi.
 Design is based on 802.1X and mobile network operator aided
-authentication
-and it is a variation of lock-and-key design.
-
+authentication and it is a variation of lock-and-key design.
 
 It is assumed, that  the local controller (smartphone)
 delivers all changes to target devices.
@@ -1942,7 +1944,8 @@ the local controller with  command line interface (CLI).
 
 
 
-Physical devices used in the tests  were three smartphones, a Wi-Fi accesspoint, and a laptop.
+Physical devices used in the tests  were three smartphones, a Wi-Fi
+access point, and a laptop.
 The smartphones were Nokia E70-1, Nokia E90, and Jolla. The Nokia phones
 featured EAP-SIM by factory, but the Jolla phone missed a crucial
 software library
@@ -1983,7 +1986,7 @@ for ARMv7 architecture.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=.9\linewidth]{demoinfra.png}
-\caption{\label{eap-sim-testbed}EAP-SIM AuthN messaging in simulation testbed}
+\caption{\label{eap-sim-testbed}EAP-SIM AuthN messaging in simulation test bed}
 \end{figure}
 
 
@@ -2047,7 +2050,7 @@ After WPA2-Supplicant run on laptop with simulated SIM-card access
 with SIM/USIM protocols, respective EAP-SIM, logging revealed that
 ``Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr\_auc\_gw.
 program.''
-This notified, that Hostapd succesfully had received SIM
+This notified, that Hostapd successfully had received SIM
 card's AuthN request and was going to forward that to simulated HLR
 authentication program. Now it was time to build an
 environment to help automating the tests.
