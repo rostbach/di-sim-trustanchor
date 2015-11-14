@@ -2913,20 +2913,12 @@ port based access control.
 The chosen solution to benefit from SIM is via EAP-profiles, as EAP
 is well known when using WPA2-Enterprise protection in Wi-Fi.
 Design is based on 802.1X and mobile network operator aided
-authentication
-# RADIUS  [move from above]...
-and it is a variation of lock-and-key design.
-# Abbreviation ..
+authentication and it is a variation of lock-and-key design.
 
 # In this chapter it was mentioned, that the local controller delivers
 # changes to each device.
-
 It is assumed, that  the local controller (smartphone)
 delivers all changes to target devices.
-# On this work, it is first assumed that the local controller (smart
-# phone) only /approves/ changes, 
-# and delivers them to /one, central CPE/, 
-# which handles distribution of changes to other CPEs. 
 The distribution of changes \cite{silverajan2015collaborative} is not
 further described here.  The AP functions both as the authenticator
 and RADIUS client in scenarios I-IV.  Authenticator receives RADIUS
