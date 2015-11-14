@@ -1680,7 +1680,7 @@ authentication (two-factor), and authentication methods
 <<sec:altmethods>>
 # In bootstrapped environment change management can happen.
 
- Trust information, may it then be a secret or some
+ Trust anchor information, may it then be a secret or some
 other evidence, can be delivered to a trust device via physical
 transport channel separate from the actual communicating channel.
 Traditional way to do that is with a password inside a sealed
