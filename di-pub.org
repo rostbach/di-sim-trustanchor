@@ -211,7 +211,7 @@ läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin
 
 Tuloksena näytetään, että matkapuhelimella tehty tunnistautuminen luo 
 luottamusankkurin ulkoisen edustajan ja kotiverkon välille ja 
-avaa hallintayhteyden kotiverkkoon.
+avaa hallintayhteyden kotiverkkoon kotikäyttäjän valvonnassa.
 SIM tunnistuksen hyötyjä ovat vahva tunnistus
  ja laaja olemassaoleva käyttäjäkanta. Haittoina ovat
  riippuvuus teleoperaattorista, käyttäjän identiteetin
