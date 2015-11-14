@@ -1852,9 +1852,25 @@ Without need for strong AuthN, that model would indeed be
 simpler, but using SIM also solves initial key distribution problem.
 Additionally, mutual AuthN problem would still need to be solved:
 Who sent that password and where that password should be inserted?
-That is important, because if fake access point were involved, the 
-dishonest admin could lure users to take part in middle man scenarios.
 
+Mutual AuthN is important, because if fake access point were involved, the 
+dishonest admin could lure users to take part in Man in the Middle scenarios.
+For example, the smartphone user can start the authentication process
+to the AP which is located at neighbor and think that he is using
+his own home AP. 
+The malicious neighbor AP (MitM) allows access to the user and starts 
+listening the traffic on AP's network interface. At that time, 
+MitM may capture from the smartphone  traffic which may be include
+sensitive username, passwords or or even configuration data.
+It is not very difficult to even fake an SSH-server, if the 
+client (smartphone here) does not check the server's changed
+fingerprint.
+
+
+can the neighbor possible authenticate the 
+ thinks, that connection has been
+opened to 
+F
 # Why care? Explain, that fake access point and 
 # captured home network session would allow dishonest admin into managing
 # home network. MiTM or DoS.
