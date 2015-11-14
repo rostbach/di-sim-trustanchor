@@ -1867,10 +1867,7 @@ client (smartphone here) does not check the server's changed
 fingerprint.
 
 
-can the neighbor possible authenticate the 
- thinks, that connection has been
-opened to 
-F
+
 # Why care? Explain, that fake access point and 
 # captured home network session would allow dishonest admin into managing
 # home network. MiTM or DoS.
