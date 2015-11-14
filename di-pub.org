@@ -2322,6 +2322,7 @@ the local AP communicates with RADIUS protocol to the external
 authentication server. That in turn gets AuthN from the MNO via its own
 HLR-AuC gateway and AuthZ from the cloud. It can also use alternative
 sources for AuthN.
+
 #  by CPE.
 Locally there is a cache for roles in case of network disconnectivity.
 
