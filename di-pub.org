@@ -179,24 +179,42 @@ re-authentications. % [or: balancing the re-authentication]
 \end{spacing}
 % The abstract in Finnish. Foreign students do not need this page.
 % Kirjoita, kun english versio on hyvä(ksytty).
-Kun tietoverkot kodeissa monimutkaistuvat, eivät kotikäyttäjät osaa tai halua enää ylläpitää niitä. Kotiverkkojen ylläpito ei  eroa nykyisin paljon yritysympäristöistä. Käyttäjältä vaaditaan läsnäolo, tunnukset ja tietämys laitteiden operointiin. Näitä vaatimuksia
+Kun tietoverkot kodeissa monimutkaistuvat, eivät kotikäyttäjät
+osaa tai halua enää ylläpitää niitä. Kotiverkkojen ylläpito ei
+eroa nykyisin paljon yritysympäristöistä. Käyttäjältä vaaditaan
+läsnäolo, tunnukset ja tietämys laitteiden operointiin. Näitä
+vaatimuksia
 % täytyy muokata? soveltaa
-täytyy soveltaa, jos ylläpito ulkoistettaisiin ja pääsy kotiverkkoihin sallittaisiin.
-Luotettava toimija on palkattava ja jaettava tälle
-tunnistautumiskeino sekä pääsy kohdelaitteelle ulkoa käsin. Tämä edellyttää ennakkotoimia ja tunnistautumisavainten jakelua.
+täytyy soveltaa, jos ylläpito ulkoistettaisiin ja pääsy 
+kotiverkkoihin sallittaisiin. Luotettava toimija on palkattava
+ja jaettava tälle tunnistautumiskeino sekä pääsy kohdelaitteelle
+ulkoa käsin. Tämä edellyttää ennakkotoimia ja tunnistautumisavainten jakelua.
 Tutkielma kuvaa toimijaa sovelluksena käyttäjän älypuhelimessa.
 
 Koska käyttäjä on matkapuhelinliittymällään jo osa luotettua
-tilaajarekisteriä, käytetään tätä ominaisuutta hyväksi työssä luottamuksen rakentajana.
-Matkapuhelintunnistusta hyödynnetään näyttämällä, kuinka
-laajennettavissa oleva tunnistusmenetelmä EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä simuloitu käyttöympäristö. 
-Periaatteena on ollut käyttää olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin, kuten Homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun hallintaan.
-Tunnistus- ja valtuutustietojen välittämisen hoitaa WPA2 Enterprise sisältäen RADIUS ympäristön. Välttääksemme monimutkaisuutta ja hienorakeisuutta käytämme yksinkertaista hallintaverkkomallia, jonka rajalla toimii kotiverkosta muuten
-erollaan oleva älypuhelin.
-Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin ulkoisen edustajan ja kotiverkon välille.
+tilaajarekisteriä, käytetään tätä ominaisuutta hyväksi työssä 
+luottamuksen rakentajana. Matkapuhelintunnistusta hyödynnetään 
+näyttämällä, kuinka laajennettavissa oleva tunnistusmenetelmä
+EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi
+näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
+SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
+simuloitu käyttöympäristö. Periaatteena on ollut käyttää
+olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin,
+kuten Homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
+hallintaan. Tunnistus- ja valtuutustietojen välittämisen hoitaa
+WPA2 Enterprise sisältäen RADIUS ympäristön. Välttääksemme 
+monimutkaisuutta ja tarpeetonta hienorakeisuutta, käytämme yksinkertaista 
+hallintaverkkomallia, jonka rajalla toimii kotiverkosta muuten
+erollaan oleva älypuhelin. Päästäkseen hallintaverkkoon, on älypuhelimen
+läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin 
 
-Tuloksena näytetään, että SIM tunnistuksen hyötyjä ovat vahva tunnistus ja laaja olemassaoleva käyttäjäkanta. Haittoina ovat riippuvuus teleoperaattorista, käyttäjän identiteetin
+
+Tuloksena näytetään, että matkapuhelimella tehty tunnistautuminen luo 
+luottamusankkurin ulkoisen edustajan ja kotiverkon välille ja 
+avaa hallintayhteyden kotiverkkoon.
+SIM tunnistuksen hyötyjä ovat vahva tunnistus
+ ja laaja olemassaoleva käyttäjäkanta. Haittoina ovat
+ riippuvuus teleoperaattorista, käyttäjän identiteetin
 paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
 \end{otherlanguage}{finnish} % End on 2nd language part
 
@@ -709,7 +727,7 @@ thesis.
 
 # ------------------------------------------------
 # AAA 
- * Authentication, Authorization, and Trust
+* Authentication, Authorization, and Trust
 # [Theory Chapter: AAA]
 :PROPERTIES:
 :CUSTOM_ID: cha:aaa
@@ -1485,7 +1503,7 @@ deliver this information further
 
 
 
- * Home network architecture 
+* Home network architecture 
 # or managing home networks
 :PROPERTIES:
 :CUSTOM_ID: cha:management
@@ -1849,7 +1867,7 @@ dishonest admin could lure users to take part in middle man scenarios.
 
 
 
- * Design of home network trust anchor and separation of change management
+* Design of home network trust anchor and separation of change management
 :PROPERTIES:
 :CUSTOM_ID: cha:design
 :END: 
@@ -2932,7 +2950,7 @@ separate local RADIUS server running as a proxy.
 
 
 
- * Implemented Solution
+* Implemented Solution
 :PROPERTIES:
 :CUSTOM_ID: cha:simu
 :END: 
@@ -3481,7 +3499,7 @@ environment's Linux, which made the operation very easy.
 script*]
 # trombone: ~/src/jolla/wpa_supplicant
 
- * Analysis, Results and Discussion
+* Analysis, Results and Discussion
 :PROPERTIES:
 :CUSTOM_ID: cha:discussion
 :END: 
@@ -4759,7 +4777,7 @@ later than allowed time.
 # ** What prevents modifications of RADIUS messages? Securing message
 # integrity.
 
- * Conclusion
+* Conclusion
 :PROPERTIES:
 :CUSTOM_ID: cha:conclusion
 :END: 
