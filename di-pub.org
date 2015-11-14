@@ -150,8 +150,9 @@ only use a simple model of management network.
 % Getting in to the management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
 
 As results, it is shown, that smartphone authentication provides a trust anchor
-between a configuration agent and the home network enabling the 
-home network management from the smartphone. The home owner still holds the control.
+between a configuration agent and the home network. 
+The home owner still holds the control but the 
+home network management can be controlled from the smartphone.
 %  and it is the key element of the thesis.
 SIM authentication's benefits are strong 
 authentication and existing, large user-base, while its disadvantages include
