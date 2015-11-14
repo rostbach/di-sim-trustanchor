@@ -390,7 +390,7 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 # abstract and ToC)
 # -----------------------------------------------------------------
  
- * Introduction 
+* Introduction 
 # (write last)
 <<cha:intro>>
 
