@@ -1702,8 +1702,8 @@ but not tested in simulated environment.
 # reading it.]
 
 
-Before fully explaining this chosen method in the next chapter, we
-introduce some 
+# Before fully explaining this chosen method in the next chapter, we
+# introduce some 
 In the next chapter, this chosen model will be fully explained,
 but before that, we introduce some 
 # this chosen method in the next chapter, 
@@ -1723,6 +1723,7 @@ file:trustcircles.png
 
 # siirrä tämä loppuun alternatives with PKI
 # v vvvvvv
+
 Trust can also be requested with help of device's unique
 properties. Recently, devices have appeared on the market, that have
 vendor-provided certificates inside them and this brings public key
