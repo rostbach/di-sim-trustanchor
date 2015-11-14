@@ -67,7 +67,7 @@
 \maketitle
 %\vspace{7.7cm} % -> 6.7cm if thesis title needs two lines
 \vspace{6.7cm} % -> 6.7cm if thesis title needs two lines
-
+ 
 % Last some additional info to the bottom-right corner
 \begin{flushright}  
   \begin{minipage}[c]{6.8cm}
