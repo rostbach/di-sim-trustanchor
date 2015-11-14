@@ -390,7 +390,7 @@ authentication, key-exchange, integrity, replay, algorithms, SIM,...
 # abstract and ToC)
 # -----------------------------------------------------------------
  
-* Introduction 
+ * Introduction 
 # (write last)
 <<cha:intro>>
 
@@ -709,7 +709,7 @@ thesis.
 
 # ------------------------------------------------
 # AAA 
-* Authentication, Authorization, and Trust
+ * Authentication, Authorization, and Trust
 # [Theory Chapter: AAA]
 :PROPERTIES:
 :CUSTOM_ID: cha:aaa
@@ -1485,8 +1485,7 @@ deliver this information further
 
 
 
-
-* Home network architecture 
+ * Home network architecture 
 # or managing home networks
 :PROPERTIES:
 :CUSTOM_ID: cha:management
@@ -1850,8 +1849,7 @@ dishonest admin could lure users to take part in middle man scenarios.
 
 
 
-
-* Design of home network trust anchor and separation of change management
+ * Design of home network trust anchor and separation of change management
 :PROPERTIES:
 :CUSTOM_ID: cha:design
 :END: 
@@ -2934,7 +2932,7 @@ separate local RADIUS server running as a proxy.
 
 
 
-* Implemented Solution
+ * Implemented Solution
 :PROPERTIES:
 :CUSTOM_ID: cha:simu
 :END: 
@@ -3483,7 +3481,7 @@ environment's Linux, which made the operation very easy.
 script*]
 # trombone: ~/src/jolla/wpa_supplicant
 
-* Analysis, Results and Discussion
+ * Analysis, Results and Discussion
 :PROPERTIES:
 :CUSTOM_ID: cha:discussion
 :END: 
@@ -4761,7 +4759,7 @@ later than allowed time.
 # ** What prevents modifications of RADIUS messages? Securing message
 # integrity.
 
-* Conclusion
+ * Conclusion
 :PROPERTIES:
 :CUSTOM_ID: cha:conclusion
 :END: 
