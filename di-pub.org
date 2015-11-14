@@ -3180,7 +3180,7 @@ program.''
 # Appendix [[app:hlraucgw]]  shows tthat traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
 # finally got AUTH-SUCCESS message from remote RADIUS.
-This notified, that Hostapd succesfully had received SIM
+This notified, that Hostapd successfully had received SIM
 card's AuthN request and was going to forward that to simulated HLR
 authentication program. Now it was time to build an
 environment to help automating the tests.
