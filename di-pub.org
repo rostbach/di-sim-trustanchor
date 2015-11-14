@@ -2379,16 +2379,6 @@ SIM.  Fast re-authentication on the other hand would
 # Light than full, fast re-authentication would
 use temporal identity TMSI, which is lighter in operation than full
 authentication, and is shown in Figure[[fig:scenario-IV]]. 
-
-TMSI can change each time the AuthN request had been sent. Mapping of
-TMSI is cached on the authenticator and the round-trip and handling at
-the HLR can so be eliminated.  When the smartphone makes a
-re-authentication request with its temporal TMSI value, the CPE would
-still know the the right mapping to IMSI authorization so this works
-even when there is no internet connectivity, but full authentication
-would not work here then because of the missing MNO.
-
-
 #+begin_src ditaa :file scenIV.png :cmdline  -E -r -s 3
    +-------+           +-------------------+
    | Cloud |           |MNO (RADIUS server)|
@@ -2404,12 +2394,22 @@ would not work here then because of the missing MNO.
     +-----+         |        |{s}TMSI/IMSI|    
                     +--------+------------+     
                                              
-
 #+end_src
 #+CAPTION: Scenario IV, offline AA 
 #+NAME:   fig:scenario-IV
 #+RESULTS:
 [[file:scenIV.png]]
+
+
+
+TMSI can change each time the AuthN request had been sent. Mapping of
+TMSI is cached on the authenticator and the round-trip and handling at
+the HLR can so be eliminated.  When the smartphone makes a
+re-authentication request with its temporal TMSI value, the CPE would
+still know the the right mapping to IMSI authorization so this works
+even when there is no internet connectivity, but full authentication
+would not work here then because of the missing MNO.
+
 
 # [repeat the same, To be combined]
 # The local CPE may cache AuthZ information. It also 
