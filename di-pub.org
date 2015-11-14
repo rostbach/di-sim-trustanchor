@@ -2675,7 +2675,7 @@ Local controller   AP             Managed device (Router)   Authentication Serve
 The simple way to propagate changes from the cloud (or any outside
 source) is to make them come from the trusted place, here the smartphone,
 where an application takes care of sending them right to the end
-devices. This simplification has some pitfalls. If the smartphone continuosly stays
+devices. This simplification has some pitfalls. If the smartphone continuously stays
 in the management network, then the changes coming later may not be 
 separated from the currently approved.
 # , i.e., the smartphone now is part of the trusted management network, but 
@@ -2819,12 +2819,6 @@ possible non-Wi-Fi data link still may stay up and operational.
 # meraki SIM disconnection graph
 # [[https://documentation.meraki.com/@api/deki/files/2026/=f4df21ff-0c9b-4b50-b6c2-fdf51ab8b876?revision=1]]
 
-After the phone has been successfully connected to the management
-network, changes coming from the phone can reach configurable targets,
-for example routers.  
-
-
-
 # [This reverse path forwarding not needed ?]
 # [from RFC5176 (2008) 
 # #+BEGIN_QUOTE
@@ -2892,7 +2886,9 @@ for example routers.
 #   portal [-> reference to [[text:nointernet][No Internet connectivity]] link is
 # \ref{text:nointernet}. [avoid linking inside document, prefer linearity]
 
-
+After the phone has been successfully connected to the management
+network, changes coming from the phone can reach configurable targets,
+for example routers.  
 To defeat the missing internet connection problem, a simple solution would be
 sending a one-time password to a predefined phone via an SMS, but what
 entity would then check that and who would be authorized to send that message?
