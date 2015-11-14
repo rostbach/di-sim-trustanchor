@@ -1712,7 +1712,7 @@ simulated environment.
 # [This was the most important paragraph of whole work. Thanks for
 # reading it.]
 This chosen model will be fully explained in the next chapter,
-but before that, we introduce four 
+but before that, we introduce 4
 # this chosen method in the next chapter, 
 # real number, instead of some?
 alternative approaches for a trust anchor using SIM.
