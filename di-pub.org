@@ -2985,7 +2985,8 @@ the local controller with  command line interface (CLI).
 #  per scenarios in Scenario Chapter. 
 # "Here" needs reference, but it is already referenced in next Chapter?
 
-Physical devices used in the tests  were three smartphones, a Wi-Fi accesspoint, and a laptop.
+Physical devices used in the tests  were three smartphones, a Wi-Fi
+access point, and a laptop.
 The smartphones were Nokia E70-1, Nokia E90, and Jolla. The Nokia phones
 featured EAP-SIM by factory, but the Jolla phone missed a crucial
 software library
