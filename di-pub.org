@@ -2136,30 +2136,6 @@ The AA components AuthN and AuthZ can be found in diverse location
 combinations
 depending, who provides those services and are there any caching
 available. 
-Here, the AuthN component 
-is usually located outside the home, as the MNO provides AuthN, unless
-we are considering offline or recurring AuthN.
-# The authenticator or 
-The AuthZ component may be placed more freely. It can be at
-home, at an external provider, or at the MNO.
-Authenticator on the other hand must stay at home, and it always 
-gives the final decision about the access.
-
-If the AuthZ decision is made on remote, 3rd party AuthZ server, 
-then that server needs to have either local AuthZ data or access to 
-cloud service's AuthZ data (scenario III, external AuthZ).
-Further it seems inevitable, that delegating AuthZ function 
-would simplify home network management. Because the cloud
-already 
-#   just the same way as the home network model in the cloud
-has AuthZ data of eligible IMSI accounts,
-then instead of putting logic on CPE for AuthZ, CPE
-could just trust the 3rd party service's AuthZ message, which in case
-of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
-
-
-#  [Put the table maybe after the scenarios?]
-
 # This Chapter presents 5 scenarios for possible locations of AuthN and 
 Table[[table-scenarios]] represents the non-inclusive list of locations of
 AuthN and AuthZ in five scenarios. The locations in the table are marked as (i)
@@ -2187,6 +2163,30 @@ and it is always internal, located at home network.
 # | IV        | I             | E     | E[fn:baasprovides] |
 # IV on TMSI,cached
 # [Protocol analysis with the help of BAN-logic?]
+
+
+
+Here, the AuthN component is usually located outside the home, as the MNO provides AuthN, unless
+we are considering offline or recurring AuthN (in Scenario IV).
+# The authenticator or 
+The AuthZ component may be placed more freely. It can be at
+the MNO (I), at home (II-IV), or at the external provider (III).
+Authenticator on the other hand must stay at home, and it always 
+gives the final decision about the access.
+If the AuthZ decision is made on remote, 3rd party AuthZ server, 
+then that server needs to have either local AuthZ data or access to 
+cloud service's AuthZ data.
+Further it seems inevitable, that delegating AuthZ function 
+would simplify home network management. Because the cloud
+already 
+#   just the same way as the home network model in the cloud
+has AuthZ data of eligible IMSI accounts,
+then instead of putting logic on CPE for AuthZ, CPE
+could just trust the 3rd party service's AuthZ message, which in case
+of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
+
+
+#  [Put the table maybe after the scenarios?]
 
 
 # *** Scenario I: AuthN from MNO, which uses cloud for AuthZ
