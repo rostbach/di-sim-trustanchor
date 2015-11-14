@@ -139,7 +139,7 @@ In this work, an application running on user's mobile phone represent this trust
 As there already exists an infrastructure within mobile phone subscribers, that link is used in the study as a trusted base.
 To benefit from the mobile identification, it is shown how
 the authentication is done using an extendable authentication profile (EAP) with a SIM-card
-and how the authorization is checked with a RADIUS protocol.
+and how the authorization is checked with a {RADIUS} protocol.
 A theory, how SIM-authentication can be used at home is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
 The principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
