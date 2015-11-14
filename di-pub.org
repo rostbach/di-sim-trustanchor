@@ -205,13 +205,13 @@ hallintaan. Tunnistus- ja valtuutustietojen välittämisen hoitaa
 WPA2 Enterprise sisältäen RADIUS ympäristön. Välttääksemme 
 monimutkaisuutta ja tarpeetonta hienorakeisuutta, käytämme yksinkertaista 
 hallintaverkkomallia, jonka rajalla toimii kotiverkosta muuten
-erollaan oleva älypuhelin. Päästäkseen hallintaverkkoon, on älypuhelimen
-läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin 
-
+erollaan oleva älypuhelin.
+%  Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä 
+% EAP-SIM tunnistus, mikä luo luottamusankkurin 
 
 Tuloksena näytetään, että matkapuhelimella tehty tunnistautuminen luo 
-luottamusankkurin ulkoisen edustajan ja kotiverkon välille ja 
-avaa hallintayhteyden kotiverkkoon kotikäyttäjän valvonnassa.
+luottamusankkurin ulkoisen edustajan ja kodin hallintaverkon välille ja 
+avaa edustajalle hallintayhteyden kotikäyttäjän valvonnassa.
 SIM tunnistuksen hyötyjä ovat vahva tunnistus
  ja laaja olemassaoleva käyttäjäkanta. Haittoina ovat
  riippuvuus teleoperaattorista, käyttäjän identiteetin
