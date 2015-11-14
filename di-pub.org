@@ -132,8 +132,7 @@ does not necessarily want to administer all aspects of it.
 Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If the configuration is out-sourced to external parties and 
 done remotely, those requirements need adaptation.
 % implementation,adjustment, fulfilling, 
-Access to an end device must be provided from outside. 
-A trustful operator must be hired and login credentials shared to them to make configuration changes.
+Access to an end device must be provided from outside, a trustful operator must be hired and login credentials shared.
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
 In this work, an application running on user's mobile phone represent this trustful operator. 
 
