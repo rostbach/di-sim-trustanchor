@@ -1,4 +1,4 @@
-% Created 2015-11-14 la 22:30
+% Created 2015-11-14 la 22:35
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1232,21 +1232,7 @@ transport channel separate from the actual communicating channel.
 Traditional way to do that is with a password inside a sealed
 envelope or a one-time password list that for example online banks 
 use today. The secret can also be sent as an SMS.
-
-In this thesis,
-the phone brings trust to the home network by completing a full EAP-SIM
-AA through the local authenticator. SIM's identity is verified by HLR
-AuC at the phone operator's end and AuthZ added to it later. The
-verification leaves a trail on the local authenticator and opens a
-trust channel for a limited period of time for changes from the phone.
-The disconnection, i.e., the revocation of trust has only been been theoretically presented,
-but not tested in simulated environment.
-
-
-
-In the next chapter, this chosen model will be fully explained,
-but before that, we introduce some 
-alternative approaches for a trust anchor using SIM. The trust anchor
+ The trust anchor
 is part of bootstrapping, which is needed because although the
 smartphone and the MNO already trust each other, the trust between the
 smartphone and AP, and thus the management network at home, is
@@ -1259,6 +1245,18 @@ Figure\ref{fig:trustbegin}.
 \caption{\label{fig:trustbegin}Trust circles in the beginning}
 \end{figure}
 
+
+In this thesis, the phone brings trust to the home network by
+completing a full EAP-SIM AA through the local authenticator. SIM's
+identity is verified by HLR AuC at the phone operator's end and AuthZ
+added to it later. The verification leaves a trail on the local
+authenticator and opens a trust channel for a limited period of time
+for changes from the phone.  The disconnection, i.e., the revocation
+of trust has only been theoretically presented, but not tested in
+simulated environment.
+This chosen model will be fully explained in the next chapter,
+but before that, we introduce 4 
+alternative approaches for a trust anchor using SIM.
 
 
 
