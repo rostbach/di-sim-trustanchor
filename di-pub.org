@@ -151,8 +151,9 @@ only use a simple model of management network.
 
 As results, it is shown, that smartphone authentication provides a trust anchor
 between a configuration agent and the home network. 
-The home owner still holds the control but the 
-home network management can be controlled from the smartphone.
+% The home owner still holds the control but the 
+The home network management can be controlled from the smartphone keeping
+the local phone user in control.
 %  and it is the key element of the thesis.
 SIM authentication's benefits are strong 
 authentication and existing, large user-base, while its disadvantages include
@@ -218,6 +219,7 @@ SIM tunnistuksen hyötyjä ovat vahva tunnistus
  ja laaja olemassaoleva käyttäjäkanta. Haittoina ovat
  riippuvuus teleoperaattorista, käyttäjän identiteetin
 paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
+
 \end{otherlanguage}{finnish} % End on 2nd language part
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
