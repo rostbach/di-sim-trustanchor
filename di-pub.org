@@ -137,10 +137,8 @@ For that,  some beforehand set provisioning and distribution of authentication k
 
 In this work, an application running on user's smartphone represent this trustful operator. 
 As there already exists an infrastructure within mobile phone subscribers, that is used in the study as a trusted base.
-To benefit from the mobile identification, it is shown how
-the authentication is done using an extendable authentication profile (EAP) and a SIM-card
-and how the authorization is checked with the {RADIUS} protocol.
-% A theory, how EAP-SIM-authentication can be used at home is presented and a simulated environment
+To benefit from the mobile identification, it is shown how the authentication
+and authorization are done using an extendable authentication profile (EAP) and SIM-card.
 A theory to use EAP-SIM-authentication at home is presented and a simulated testbed
 to demonstrate that is built, tested and analyzed.
 The principle has been to reuse existing techniques combining them with such new areas as homenet and delegated management.
