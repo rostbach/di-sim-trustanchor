@@ -1717,13 +1717,12 @@ This chosen model will be fully explained in the next chapter,
 but before that, we introduce 4 
 # this chosen method in the next chapter, 
 # real number, instead of some?
-alternative approaches for a trust anchor using SIM.
- # mobiilivarmenne
-Other techniques  to use SIM's unique properties besides EAP-SIM
-are for example Bluetooth SIM Access Profile(Bluetooth  SAP), 
+alternative approaches to use SIM's unique properties besides EAP-SIM. 
+# for a trust anchor using SIM.
+# mobiilivarmenne
+Other techniques  are  Bluetooth SIM Access Profile(Bluetooth  SAP), 
 direct connection through PC/SC (Personal\- Computer/Smart\- Card),
-CallerID service from phone network, or
-Mobile signing service.
+CallerID service from phone network, and Mobile signing service.
 # *** Bluetooth access
 Bluetooth SIM and PC/SC would need patching of smartphone's software
 to work.  On the other hand, the smartphone would any way need to
