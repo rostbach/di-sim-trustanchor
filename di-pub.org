@@ -140,14 +140,14 @@ As there already exists an infrastructure within mobile phone subscribers, that 
 To benefit from the mobile identification, it is shown how
 the authentication is done using an extendable authentication profile (EAP) with a SIM-card
 and how the authorization is checked with a {RADIUS} protocol.
-A theory, how EAP-SIM-authentication can be used at home is presented and a simulated environment
+% A theory, how EAP-SIM-authentication can be used at home is presented and a simulated environment
 A theory to use EAP-SIM-authentication at home is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
-The principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
- For transporting authentication claims, WPA2 Enterprise including RADIUS environment has been chosen.
+The principle has been to reuse existing techniques combining them with such new areas as homenet and delegated management.
+% For transporting authentication claims, WPA2 Enterprise including RADIUS environment has been chosen.
+Authentication claims are tranported with WPA2 Enterprise which includes RADIUS.
 To further avoid complexity and granularity, we
 only use a simple model of management network. 
-
 % Getting in to the management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
 
 %As results, it is shown, that smartphone authentication provides a trust anchor
