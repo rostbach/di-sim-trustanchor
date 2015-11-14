@@ -1721,7 +1721,8 @@ Figure[[fig:trustbegin]].
 file:trustcircles.png
 
 
-
+# siirrä tämä loppuun alternatives with PKI
+# v vvvvvv
 Trust can also be requested with help of device's unique
 properties. Recently, devices have appeared on the market, that have
 vendor-provided certificates inside them and this brings public key
@@ -1736,6 +1737,8 @@ verification of the vendor.  Root CAs are trust anchors also and can
 be read in the same way from the device's read-only store.  CPE could
 use vendor-issued certificate for AuthN of some earlier unknown
 device.
+# ^^^^^^^^^
+
 
 # [Picture]
 
