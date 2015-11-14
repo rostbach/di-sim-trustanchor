@@ -1,4 +1,4 @@
-% Created 2015-11-14 la 16:29
+% Created 2015-11-14 la 16:46
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -142,13 +142,13 @@ done remotely, those requirements need adaptation.
 % implementation,adjustment, fulfilling, 
 Access to an end device must be provided from outside, a trustful operator must be hired and login credentials shared.n
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
-In this work, an application running on user's mobile phone represent this trustful operator. 
+In this work, an application running on user's smartphone represent this trustful operator. 
 
 As there already exists an infrastructure within mobile phone subscribers, that link is used in the study as a trusted base.
 To benefit from the mobile identification, it is shown how
 the authentication is done using an extendable authentication profile (EAP) with a SIM-card
 and how the authorization is checked with a {RADIUS} protocol.
-A theory, how SIM-authentication can be used at home is presented and a simulated environment
+A theory, how EAP-SIM-authentication can be used at home is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
 The principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA2 Enterprise including RADIUS environment has been chosen.
@@ -157,8 +157,11 @@ only use a simple model of management network.
 
 % Getting in to the management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
 
-As results, it is shown, that 
-getting in to the management network at home can be carried out via EAP-SIM authentication.
+As results, it is shown, that smartphone authentication provides a trust anchor
+between a configuration agent and the home network. 
+% The home owner still holds the control but the 
+The home network management can be controlled from the smartphone keeping
+the local phone user in control.
 %  and it is the key element of the thesis.
 SIM authentication's benefits are strong 
 authentication and existing, large user-base, while its disadvantages include
@@ -205,7 +208,7 @@ luottamuksen rakentajana. Matkapuhelintunnistusta hyödynnetään
 näyttämällä, kuinka laajennettavissa oleva tunnistusmenetelmä
 EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi
 näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
+EAP-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
 simuloitu käyttöympäristö. Periaatteena on ollut käyttää
 olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin,
 kuten Homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
@@ -213,17 +216,18 @@ hallintaan. Tunnistus- ja valtuutustietojen välittämisen hoitaa
 WPA2 Enterprise sisältäen RADIUS ympäristön. Välttääksemme 
 monimutkaisuutta ja tarpeetonta hienorakeisuutta, käytämme yksinkertaista 
 hallintaverkkomallia, jonka rajalla toimii kotiverkosta muuten
-erollaan oleva älypuhelin. Päästäkseen hallintaverkkoon, on älypuhelimen
-läpäistävä EAP-SIM tunnistus, mikä luo luottamusankkurin 
-
+erollaan oleva älypuhelin.
+%  Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä 
+% EAP-SIM tunnistus, mikä luo luottamusankkurin 
 
 Tuloksena näytetään, että matkapuhelimella tehty tunnistautuminen luo 
-luottamusankkurin ulkoisen edustajan ja kotiverkon välille ja 
-avaa hallintayhteyden kotiverkkoon kotikäyttäjän valvonnassa.
+luottamusankkurin ulkoisen edustajan ja kodin hallintaverkon välille ja 
+avaa edustajalle hallintayhteyden kotikäyttäjän valvonnassa.
 SIM tunnistuksen hyötyjä ovat vahva tunnistus
  ja laaja olemassaoleva käyttäjäkanta. Haittoina ovat
  riippuvuus teleoperaattorista, käyttäjän identiteetin
 paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
+
 \end{otherlanguage}{finnish} % End on 2nd language part
 
 % varmuuden vuoksi, sillä esim. captioneissa Kuva tulee muuten suomeksi 
@@ -555,7 +559,7 @@ before delegation in the cloud can happen.
 
 
 
-The goal presented in Figure\ref{fig:intro-goal} is to make the smart phone a central, trusted controlling 
+The goal presented in Figure\ref{fig:intro-goal} is to make the smartphone a central, trusted controlling 
 point for managing purposes. The normal access between the
 Internet and home network should stay unchanged. 
 The human aspect and usability are also important, but the focus will
@@ -1630,7 +1634,7 @@ use temporal identity TMSI, which is lighter in operation than full
 authentication, and is shown in Figure\ref{fig:scenario-IV}. TMSI can
 change each time the AuthN request had been sent. Mapping of TMSI is
 cached on the authenticator and the round-trip and handling at the HLR can
-so be eliminated.  When the smart phone makes a re-authentication
+so be eliminated.  When the smartphone makes a re-authentication
 request with its temporal TMSI value, the CPE would still know the
 the right mapping to IMSI authorization so this works
 even when there is no internet connectivity, but full authentication
@@ -1715,7 +1719,7 @@ has completed, while in the Lock-and-key
 the other parts of network are already open and successful login to the router opens
 access to even more segments through it. In other words, Lock-and-Key
 protects IP-access in layer-3 and though needs IP addressing, while
-802.1x's protection starts already at layer-2 between the smart phone
+802.1x's protection starts already at layer-2 between the smartphone
 and AP. Captive portals are similar to Lock-And-Key.
 
 
@@ -1896,7 +1900,7 @@ authentication
 and it is a variation of lock-and-key design.
 
 
-It is assumed, that  the local controller (smart phone)
+It is assumed, that  the local controller (smartphone)
 delivers all changes to target devices.
 The distribution of changes \cite{silverajan2015collaborative} is not
 further described here.  The AP functions both as the authenticator
@@ -3085,7 +3089,7 @@ device's vendor certificates.
 Behringer \cite{draft-behringer-bootstrap} proposes, that one device
 at home is first chosen as a trust anchor  using its unique properties 
 and this anchored device later becomes home
-network's Certificate Authority (CA) service. Smart phone would play
+network's Certificate Authority (CA) service. smartphone would play
 user interface role only, but not the trust anchor role.
 The rest of the home network devices would apply for
 certificates from this trust anchor to get under the same trust circle.  Key creation,
