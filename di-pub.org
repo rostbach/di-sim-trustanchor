@@ -207,7 +207,7 @@ kuten homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
 hallintaan. Tunnistus- ja valtuutustietojen välittämisen hoitaa
 WPA2 Enterprise sisältäen RADIUS ympäristön. Välttääksemme 
 monimutkaisuutta ja tarpeetonta hienorakeisuutta, käytämme yksinkertaista 
-hallintaverkkomallia, jonka rajalla toimii kotiverkosta muuten
+hallintaverkkomallia, jonka rajalla on kotiverkosta muuten
 erollaan oleva älypuhelin.
 %  Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä 
 % EAP-SIM tunnistus, mikä luo luottamusankkurin 
