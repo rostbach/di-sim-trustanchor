@@ -118,7 +118,7 @@
    \textsf{Master's Degree Programme in Information Technology}\\
    \textsf{Major: Information Security}\\
    \textsf{Examiner: Prof. \@examiner}\\ % 
-   \textsf{Keywords: authentication, authorization, AAA, Homenet, home networks, smartphone, SIM, trust-anchor, EAP-SIM, RADIUS}\\
+   \textsf{Keywords: authentication, authorization, AAA, homenet, home networks, smartphone, SIM, trust-anchor, EAP-SIM, RADIUS}\\
 \end{spacing}
 
 %---------------------------------------------------------
@@ -178,7 +178,7 @@ re-authentications. % [or: balancing the re-authentication]
          \textsf{Tietotekniikan koulutusohjelma}\\
          \textsf{Pääaine: tietoturva}\\
          \textsf{Tarkastaja:  Prof. \@examiner}\\ % automated, if just 1 examiner
-         \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, Homenet, kotiverkko, älypuhelin, SIM, luottamusankkuri, EAP-SIM, RADIUS}\\
+         \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, homenet, kotiverkko, älypuhelin, SIM, luottamusankkuri, EAP-SIM, RADIUS}\\
 \end{spacing}
 % The abstract in Finnish. Foreign students do not need this page.
 % Kirjoita, kun english versio on hyvä(ksytty).
@@ -203,7 +203,7 @@ näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
 EAP-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
 simuloitu käyttöympäristö. Periaatteena on ollut käyttää
 olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin,
-kuten Homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
+kuten homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
 hallintaan. Tunnistus- ja valtuutustietojen välittämisen hoitaa
 WPA2 Enterprise sisältäen RADIUS ympäristön. Välttääksemme 
 monimutkaisuutta ja tarpeetonta hienorakeisuutta, käytämme yksinkertaista 
@@ -1528,7 +1528,7 @@ Internet Engineering Task Force Working Group's (IETF
 WG) homenet. IETF is responsible for  most internet technology standards and 
 WG homenet was started in year 2011.
 Current drive in homenet management is towards IPv6 environment
- as it fullfills future routing and addressing needs. 
+ as it fulfills future routing and addressing needs. 
 Homenet has five tasks to solve at home networks: service discovery, network security, 
 prefix configuration for routers, routing management and name
 resolution \cite{homenet-charter}.
