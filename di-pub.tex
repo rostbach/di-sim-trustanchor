@@ -1,4 +1,4 @@
-% Created 2015-11-14 la 22:13
+% Created 2015-11-14 la 22:30
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1226,7 +1226,7 @@ authentication (two-factor), and authentication methods
 \label{sec-3-3}
 \label{sec:altmethods}
 
- Trust information, may it then be a secret or some
+ Trust anchor information, may it then be a secret or some
 other evidence, can be delivered to a trust device via physical
 transport channel separate from the actual communicating channel.
 Traditional way to do that is with a password inside a sealed
@@ -1244,7 +1244,8 @@ but not tested in simulated environment.
 
 
 
-Before fully explaining this chosen method in the next chapter, we introduce some 
+In the next chapter, this chosen model will be fully explained,
+but before that, we introduce some 
 alternative approaches for a trust anchor using SIM. The trust anchor
 is part of bootstrapping, which is needed because although the
 smartphone and the MNO already trust each other, the trust between the
@@ -1260,20 +1261,6 @@ Figure\ref{fig:trustbegin}.
 
 
 
-Trust can also be requested with help of device's unique
-properties. Recently, devices have appeared on the market, that have
-vendor-provided certificates inside them and this brings public key
-infrastructure as one possible alternative for learning trusted
-identity.  The device proves its identity by presenting a certificate,
-which has been issued by a trusted vendor and which includes device's
-public key.  Private part of a key pair is inside the device's trusted
-hardware store and does not ever leave the hardware. Vendor trust is
-needed for checking the issued certificates and so the trust
-verification of individual devices is merely transferred to trust
-verification of the vendor.  Root CAs are trust anchors also and can
-be read in the same way from the device's read-only store.  CPE could
-use vendor-issued certificate for AuthN of some earlier unknown
-device.
 
 
 Other techniques  to use SIM's unique properties besides EAP-SIM
@@ -3079,11 +3066,11 @@ communication. There they can be used to securely negotiate symmetric
 keys which allows faster cryptographic processing.
 Rest of this section discusses possible PKI usage.
 
-To use PKI for trust anchoring and AuthN in an empty environment, bootstrapping protocols are
-first needed.
-The bootstrapping protocols in trust finding are used to
-bring the first trust anchor in an environment and later use that anchor to
-attach other devices to the same trust circle.  A draft from
+To use PKI for trust anchoring and AuthN in an empty environment,
+bootstrapping protocols are first needed.  The bootstrapping protocols
+in trust finding are used to bring the first trust anchor in an
+environment and later use that anchor to attach other devices to the
+same trust circle.  A draft from
 
 Despite the etymology of name bootstrapping, ``Lift oneself by his own
 bootstraps'', bootstrapping usually needs some input from outside.
@@ -3134,6 +3121,22 @@ The smartphone would hold a token with a validity time and had to
 present that when accessing services, here the management network. The
 validity time would automatically disallow the management if applied
 later than allowed time.
+
+
+Trust can also be requested with help of device's other unique
+properties than SIM. Recently, devices have appeared on the market, that have
+vendor-provided certificates inside them and this brings public key
+infrastructure as one possible alternative for learning trusted
+identity.  The device proves its identity by presenting a certificate,
+which has been issued by a trusted vendor and which includes device's
+public key.  Private part of a key pair is inside the device's trusted
+hardware store and does not ever leave the hardware. Vendor trust is
+needed for checking the issued certificates and so the trust
+verification of individual devices is merely transferred to trust
+verification of the vendor.  Root CAs are trust anchors also and can
+be read in the same way from the device's read-only store.  CPE could
+use vendor-issued certificate for AuthN of some earlier unknown
+device.
 
 \chapter{Conclusion}
 \label{sec-7}
