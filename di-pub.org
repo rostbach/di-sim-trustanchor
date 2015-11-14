@@ -1702,7 +1702,11 @@ but not tested in simulated environment.
 # reading it.]
 
 
-Before fully explaining this chosen method in the next chapter, we introduce some 
+Before fully explaining this chosen method in the next chapter, we
+introduce some 
+In the next chapter, this chosen model will be fully explained,
+but before that, 
+# this chosen method in the next chapter, we introduce some 
 # real number, instead of some?
 alternative approaches for a trust anchor using SIM. The trust anchor
 is part of bootstrapping, which is needed because although the
