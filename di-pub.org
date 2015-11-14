@@ -1702,6 +1702,21 @@ but not tested in simulated environment.
 # reading it.]
 
 
+Before fully explaining this chosen method in the next chapter, we introduce some 
+# real number, instead of some?
+alternative approaches for a trust anchor using SIM. The trust anchor
+is part of bootstrapping, which is needed because although the
+smartphone and the MNO already trust each other, the trust between the
+smartphone and AP, and thus the management network at home, is
+non-existing in the beginning as can be seen from
+Figure[[fig:trustbegin]].
+
+# kuva? 
+#+CAPTION: Trust circles in the beginning
+#+NAME:   fig:trustbegin
+file:trustcircles.png
+
+
 
 Trust can also be requested with help of device's unique
 properties. Recently, devices have appeared on the market, that have
@@ -1916,20 +1931,6 @@ interaction on behalf the user.
 
 
 
-Before fully explaining our chosen method, we introduce some 
-# real number, instead of some?
-alternative
-approaches for a trust anchor. The trust anchor is part of bootstrapping,
-# need to explain bootstrapping more?
-which is needed because although the smartphone and the MNO
-already trust each other, the trust between the smartphone and AP, and
-thus the management network at home, is non-existing in the
-beginning as can be seen from Figure[[fig:trustbegin]].
-
-# kuva? 
-#+CAPTION: Trust circles in the beginning
-#+NAME:   fig:trustbegin
-file:trustcircles.png
 
 # must do this with svg export 
 # graphs exproted to pdf but text with latex
