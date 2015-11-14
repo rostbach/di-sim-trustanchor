@@ -132,7 +132,7 @@ does not necessarily want to administer all aspects of it.
 Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If the configuration is out-sourced to external parties and 
 done remotely, those requirements need adaptation.
 % implementation,adjustment, fulfilling, 
-Access to an end device must be provided from outside, a trustful operator must be hired and login credentials shared.
+Access to an end device must be provided from outside, a trustful operator must be hired and login credentials shared.n
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
 In this work, an application running on user's mobile phone represent this trustful operator. 
 
@@ -140,15 +140,20 @@ As there already exists an infrastructure within mobile phone subscribers, that 
 To benefit from the mobile identification, it is shown how
 the authentication is done using an extendable authentication profile (EAP) with a SIM-card
 and how the authorization is checked with a RADIUS protocol.
-A theory, how SIM-authentication works is presented and a simulated environment
+A theory, how SIM-authentication can be used at home is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
 The principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
- For transporting authentication claims, WPA2 Enterprise, which includes RADIUS environment has been chosen.
+ For transporting authentication claims, WPA2 Enterprise including RADIUS environment has been chosen.
 To further avoid complexity and granularity, we
-only use a simple model of management network. Getting in to the management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
+only use a simple model of management network. 
 
-As results, it is shown, that SIM authentication's benefits are strong 
-authentication and existing user-base, while its disadvantages include
+% Getting in to the management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
+
+As results, it is shown, that 
+getting in to the management network at home can be carried out via EAP-SIM authentication.
+%  and it is the key element of the thesis.
+SIM authentication's benefits are strong 
+authentication and existing, large user-base, while its disadvantages include
 dependency to the mobile operator. Additionally, there will remain challenges
 in keeping SIM's identity private and in disabling unwanted 
 re-authentications. % [or: balancing the re-authentication]
