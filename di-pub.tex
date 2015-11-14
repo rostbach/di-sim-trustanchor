@@ -1,4 +1,4 @@
-% Created 2015-11-14 la 23:10
+% Created 2015-11-14 la 23:11
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1621,6 +1621,13 @@ Full authentication uses IMSI, which is the identity of the phone's
 SIM.  Fast re-authentication on the other hand would 
 use temporal identity TMSI, which is lighter in operation than full
 authentication, and is shown in Figure\ref{fig:scenario-IV}. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{scenIV.png}
+\caption{\label{fig:scenario-IV}Scenario IV, offline AA}
+\end{figure}
+
+
 
 TMSI can change each time the AuthN request had been sent. Mapping of
 TMSI is cached on the authenticator and the round-trip and handling at
@@ -1630,12 +1637,6 @@ still know the the right mapping to IMSI authorization so this works
 even when there is no internet connectivity, but full authentication
 would not work here then because of the missing MNO.
 
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=.9\linewidth]{scenIV.png}
-\caption{\label{fig:scenario-IV}Scenario IV, offline AA}
-\end{figure}
 
 
 
