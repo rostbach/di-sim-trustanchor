@@ -1543,7 +1543,7 @@ discussed in multihoming parts of homenet WG.
 Lastly, end-to-end access, i.e., restriction-free access is in their agenda. 
 It was the key element for the Internet's success and enabled many new
 applications in the past, but has then had difficulties because of
-firewalls and NATs.
+firewalls and NATs. 
 # 5 tasks:
 # o service discovery, 
 # o network security
@@ -1852,7 +1852,7 @@ Without need for strong AuthN, that model would indeed be
 simpler, but using SIM also solves initial key distribution problem.
 Additionally, mutual AuthN problem would still need to be solved:
 Who sent that password and where that password should be inserted?
-That is important, because if fake acess point were involved, the 
+That is important, because if fake access point were involved, the 
 dishonest admin could lure users to take part in middle man scenarios.
 
 # Why care? Explain, that fake access point and 
