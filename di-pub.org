@@ -134,13 +134,13 @@ done remotely, those requirements need adaptation.
 % implementation,adjustment, fulfilling, 
 Access to an end device must be provided from outside, a trustful operator must be hired and login credentials shared.n
 For that,  some beforehand set provisioning and distribution of authentication keys is needed.
-In this work, an application running on user's mobile phone represent this trustful operator. 
+In this work, an application running on user's smartphone represent this trustful operator. 
 
 As there already exists an infrastructure within mobile phone subscribers, that link is used in the study as a trusted base.
 To benefit from the mobile identification, it is shown how
 the authentication is done using an extendable authentication profile (EAP) with a SIM-card
 and how the authorization is checked with a {RADIUS} protocol.
-A theory, how SIM-authentication can be used at home is presented and a simulated environment
+A theory, how EAP-SIM-authentication can be used at home is presented and a simulated environment
 to demonstrate that is built, tested and analyzed.
 The principle has been to reuse existing techniques when combining them to such new areas as homenet and delegated management.
  For transporting authentication claims, WPA2 Enterprise including RADIUS environment has been chosen.
@@ -149,8 +149,9 @@ only use a simple model of management network.
 
 % Getting in to the management network is carried out at home network via EAP-SIM authentication and it is the key element of the thesis.
 
-As results, it is shown, that 
-getting in to the management network at home can be carried out via EAP-SIM authentication.
+As results, it is shown, that smartphone authentication provides a trust anchor
+between a configuration agent and the home network enabling the 
+home network management from the smartphone. The home owner still holds the control.
 %  and it is the key element of the thesis.
 SIM authentication's benefits are strong 
 authentication and existing, large user-base, while its disadvantages include
@@ -197,7 +198,7 @@ luottamuksen rakentajana. Matkapuhelintunnistusta hyödynnetään
 näyttämällä, kuinka laajennettavissa oleva tunnistusmenetelmä
 EAP yhdistetään SIM-kortilla olevaan tilaajatietoon. Lisäksi
 näytetään, kuinka pääsynvalvonta hoidetaan RADIUS-protokollalla.
-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
+EAP-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
 simuloitu käyttöympäristö. Periaatteena on ollut käyttää
 olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin,
 kuten Homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
@@ -661,7 +662,7 @@ before delegation in the cloud can happen.
 
 
 
-The goal presented in Figure[[fig:intro-goal]] is to make the smart phone a central, trusted controlling 
+The goal presented in Figure[[fig:intro-goal]] is to make the smartphone a central, trusted controlling 
 point for managing purposes. The normal access between the
 Internet and home network should stay unchanged. 
 The human aspect and usability are also important, but the focus will
@@ -2382,7 +2383,7 @@ use temporal identity TMSI, which is lighter in operation than full
 authentication, and is shown in Figure[[fig:scenario-IV]]. TMSI can
 change each time the AuthN request had been sent. Mapping of TMSI is
 cached on the authenticator and the round-trip and handling at the HLR can
-so be eliminated.  When the smart phone makes a re-authentication
+so be eliminated.  When the smartphone makes a re-authentication
 request with its temporal TMSI value, the CPE would still know the
 the right mapping to IMSI authorization so this works
 even when there is no internet connectivity, but full authentication
@@ -2555,7 +2556,7 @@ has completed, while in the Lock-and-key
 the other parts of network are already open and successful login to the router opens
 access to even more segments through it. In other words, Lock-and-Key
 protects IP-access in layer-3 and though needs IP addressing, while
-802.1x's protection starts already at layer-2 between the smart phone
+802.1x's protection starts already at layer-2 between the smartphone
 and AP. Captive portals are similar to Lock-And-Key.
 # Difference here is that 802.1X protects access to the network already in Layer
 # 2 while Lock-and-Key needs to first have a functional Layer 3 to conduct
@@ -2674,7 +2675,7 @@ where an application takes care of sending them right to the end
 devices. This simplification has some pitfalls. If the smartphone continuosly stays
 in the management network, then the changes coming later may not be 
 separated from the currently approved.
-# , i.e., the smart phone now is part of the trusted management network, but 
+# , i.e., the smartphone now is part of the trusted management network, but 
 If we understood that the change approval belongs to the AA-process, then
 the later approvals would also need an AA.
 
@@ -2921,7 +2922,7 @@ and it is a variation of lock-and-key design.
 # In this chapter it was mentioned, that the local controller delivers
 # changes to each device.
 
-It is assumed, that  the local controller (smart phone)
+It is assumed, that  the local controller (smartphone)
 delivers all changes to target devices.
 # On this work, it is first assumed that the local controller (smart
 # phone) only /approves/ changes, 
@@ -4681,7 +4682,7 @@ device's vendor certificates.
 Behringer \cite{draft-behringer-bootstrap} proposes, that one device
 at home is first chosen as a trust anchor  using its unique properties 
 and this anchored device later becomes home
-network's Certificate Authority (CA) service. Smart phone would play
+network's Certificate Authority (CA) service. smartphone would play
 user interface role only, but not the trust anchor role.
 #  This  and the trust anchor,
 # upon which
