@@ -1,0 +1,166 @@
+afeafadeöäpå
+
+
+On rpm source package (SRPM) there
+
+
+ab2 builds packages on $HOME/rpmbuils
+
+There we have to have directory SOURCES for source packages
+
+
+A specification file wpa_supplicant.spec defines, how the 
+source is to be built, where it is installed, what components
+it needs to build and to run etc.
+
+Specification, how to build is 
+rpm build -ba rpm/wpa_supplicant.spec 
+
+Name:       wpa_supplicant
+
+Summary:    WPA/WPA2/IEEE 802.1X Supplicant
+Version:    2.4
+Release:    1
+Group:      System Environment/Base
+License:    GPLv2
+URL:        http://w1.fi/wpa_supplicant/
+Source0:    %{name}-%{version}.tar.gz
+Source1:    build-config
+Source2:    %{name}.conf
+Source3:    %{name}.service
+Source4:    %{name}.sysconfig
+BuildRequires:  pkgconfig(libnl-3.0)
+BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  readline-devel
+# Required for systemctl
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd
+# Required for rm
+Requires(post): coreutils
+
+%description
+wpa_supplicant is a WPA Supplicant for Linux, BSD and Windows with support
+for WPA and WPA2 (IEEE 802.11i / RSN). Supplicant is the IEEE 802.1X/WPA
+component that is used in the client stations. It implements key negotiation
+with a WPA Authenticator and it controls the roaming and IEEE 802.11
+authentication/association of the wlan driver.
+
+%prep
+%setup -q -n %{name}-%{version}
+/hostap
+
+%build
+
+[..]
+
+muokataan wpa_supplicant.spe fileä
+
+.......
+Yritetään rakentaa 2.5-1 versiota, ensin x86_64 alustalla
+(miksi 2.5-1?) 
+src/jolla:ssa on 2.4
+error: Failed build dependencies:
+        pkgconfig(libnl-3.0) is needed by wpa_supplicant-2.5-1.x86_64
+        pkgconfig(dbus-1) is needed by wpa_supplicant-2.5-1.x86_64
+        pkgconfig(openssl) is needed by wpa_supplicant-2.5-1.x86_64
+        readline-devel is needed by wpa_supplicant-2.5-1.x86_64
+%                                                                 
+.......
+
+Joten ainakin nämä libnl-3.0, dbus-1, openssl ja readline-devel tarvitaan.
+i
+erot alkuperäiseen build-config:iin
+% diff build-config.orig build-config      ~/src/jolla/wpa_supplicant/rpm
+38a39,42
+> CONFIG_EAP_SIM=y
+> CONFIG_SIM_SIMULATOR=y
+> CONFIG_USIM_SIMULATOR=y
+> CONFIG_PCSC=y
+
+
+
+
+kirjaudutaan jollaan
+% ssh jolla 
+Last login: Sun Oct 11 17:44:37 2015 from 192.168.2.1
+,---
+| SailfishOS 1.1.9.28 (Eineheminlampi) (armv7hl)
+'---
+[nemo@Jolla ~]$ pwd
+/home/nemo
+[nemo@Jolla ~]$ find / -name "*spec"
+
+
+Varmuuden vuoksi sammutetaan systeemin oma wpa_supplicant service
+systemctl disable wpa_supplicant
+WPASUPP = /home/nemo/wpa-pscs/wpa_supplicant-pcsc-stripped
+Sailfish 2.0:ssa versio on edelleen 2.4, siksi käytetään sitä.
+
+LD_LIBRARY_PATH=/usr/local/lib ${WPASUPP} -v
+v2.4 (malinen 2003-2015)
+
+cross compile tapahtuu niin, että käynnistetään virtuaalikone
+
+...
+
+
+kirjaudutaan ssh:llä käyttäen ssh-avainta localhostin portiin XXXX
+.../
+
+ssh -i sailfish/mersdk/ssh/mersdk/authorized_keys localhost:XXXX
+
+tämän voi nopeuttaa laittamalla omaan ~/.ssh/config tiedostoon pätkän
+Host mer
+Hostname localhost
+User mersdk
+Port 2222
+IdentityFile ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk
+
+
+% ssh mer                                                       ~
+Last login: Sun Nov 15 09:50:47 2015 from 10.0.2.2
+[mersdk@SailfishSDK ~]$  
+
+## isäntäkoneen kotihakemisto on liitetty virtuaalikoneeseen hakemistoksi  share/
+
+
+Q1: miten haettu source rpm:llä 
+
+ zypper in openssl
+ rpmbuild -ba rpm/wpa_supplicant.spec
+# selvisi, mitkä kirjastot puuttuvat
+ zypper in readline-devel libnl-3.0
+ rpmbuild -ba rpm/wpa_supplicant.spec
+# pkgconfig:ssa vielä mätää
+   18  zypper in pkgconfig
+# se olikin, mutta se ei löytänyt jotain.
+zypper install libnl
+
+   38  pkg-config  --exists openssl
+
+# oikea olikin sourcet openssl:ään
+   71  zypper in openssl-dev
+
+ kirjasto kirjastn libnl-3
+
+  100  cd hostap
+# tänne purettu aiemmin wpa_supplicant srpm
+  109  cp -a wpa_supplicant/ /home/mersdk/rpmbuild/SOURCES/
+
+ cd ;  rpmbuild -ba rpm/wpa_supplicant.spec
+
+ 131  cd /home/mersdk/
+  132  cd rpmbuild/SOURCES/
+  133  ls
+  134  rm -rf wpa_supplicant
+  135  mv /home/mersdk/share/Downloads/wpa_supplicant-2.4.tar.gz .
+
+ 148  rpmbuild -ba rpm/wpa_supplicant.spec
+  149  tar tf /home/mersdk/rpmbuild/SOURCES/wpa_supplicant-2.4.tar.gz
+  150  cd /home/mersdk/rpmbuild/BUILD
+  153  ln -s wpa_supplicant-master-d948daecc827a2b4aac707a685a5be7119e597a3/ wpa_supplicant-2.4
+
+
+ 
