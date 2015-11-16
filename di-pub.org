@@ -5,7 +5,7 @@
 # # Export ditaa silent, moved to org-custom-inittiin
 # #+org-confirm-babel-evaluate nil
 # It is possible to inhibit the evaluation of code blocks during export. Setting the org-export-babel-evaluate variable to nil will ensure that no code blocks are evaluated as part of the export process
-#+DATE: 14a.11.2015
+#+DATE: 16.11.2015
 # history  {2a,1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
 # #+TITLE:  Smartphone as a trust anchor in home networks
 #+TITLE:  
@@ -20,11 +20,12 @@
 #+LATEX_HEADER: \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 
 #+LATEX_HEADER: % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-#+LATEX_HEADER: \thesistype{draft-14a.11.2015 Master of Science thesis}
+#+LATEX_HEADER: \thesistype{draft-16.11.2015 Master of Science thesis}
 #+LATEX_HEADER: \examiner{Jarmo Harju}
 #+LATEX_HEADER: \makeatletter
 #+LATEX_HEADER:\usepackage{svg}
 #+LATEX_HEADER:\usepackage[utf8]{inputenc}
+#+LATEX_HEADER:\usepackage{lastpage}
 
 # widow-pages
 #+LATEX_HEADER:\usepackage[all]{nowidow}
@@ -113,7 +114,8 @@
 \begin{spacing}{1.0}
   {\bf \textsf{\MakeUppercase{\@author}}}: \@title\\   % use \@titleB when thesis is in Finnish
    \textsf{Tampere University of Technology}\\
-   \textsf{\@thesistype, xx pages, 5 Appendix pages} \\
+%   \textsf{\@thesistype, \pageref{LastPage}-5 pages, 5 Appendix pages} \\
+   \textsf{\@thesistype, 63 pages, 5 Appendix pages} \\
    \textsf{November 2015}\\
    \textsf{Master's Degree Programme in Information Technology}\\
    \textsf{Major: Information Security}\\
@@ -173,7 +175,7 @@ re-authentications. % [or: balancing the re-authentication]
 \begin{spacing}{1.0}
          {\bf \textsf{\MakeUppercase{\@author}}}: \@titleB\\  % or use \@title when thesis is in Finnish
          \textsf{Tampereen teknillinen yliopisto}\\
-         \textsf{Diplomityö, xx sivua, 5 liitesivua}\\ %
+         \textsf{Diplomityö, 63 sivua, 5 liitesivua}\\ %
          \textsf{marraskuu 2015}\\
          \textsf{Tietotekniikan koulutusohjelma}\\
          \textsf{Pääaine: tietoturva}\\
@@ -316,8 +318,8 @@ Teemu Teekkari
 % \item [CC license] Creative Commons license
 % \item [LaTeX]      Typesetting system for scientific documentation
 % \item [SI system]  Syst\`eme international d'unit's, International System of Units
-\item [TUT]    Tampere University of Technology
-\item [URL]    Uniform Resource Locator
+
+% \item [URL]    Uniform Resource Locator
 \item[3GPP] $3^{rd}$ Generation Partnership Project
 \item[AAA] Authentication, Authorization, Accounting
 \item[AKA] Authentication and Key Agreement %, used in 3GPP mobile networks 
@@ -338,6 +340,7 @@ Teemu Teekkari
 \item[SIM]  Subscriber Identity Module, a smartcard. Also USIM program running in UICC card (UMTS networks)
 \item[SSID] Service Set Identifier, identifies Wi-Fi network
 \item[TMSI] Temporal Mobile Subscriber Identity
+\item [TUT] Tampere University of Technology
 \item[Wi-Fi] Wireless local network, implements IEEE 802.11 standards
 \item[WPA] Wireless Protected Access version 1
 \item[WPA2] Wireless Protected Access version 2
@@ -2224,7 +2227,7 @@ MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
   |  +-----+               +-------+    |
   +=------------------------------------+
 #+end_src
-#+CAPTION: General scenario I with 3 separate domains: Cloud, MNO and home net
+#+CAPTION: Scenario I with 3 separate domains: Cloud, MNO and home net
 #+NAME:   fig:scenario-I
 #+RESULTS:
 [[file:scenI.png]]
@@ -3461,19 +3464,17 @@ compiling environment Scratchbox, that makes porting programs to Armv7
 processor easy.
 
 To compile wpa_supplicant with EAP-SIM simulator, PCSC component was
-needed.
-# THIS IS in future chapter!
-# as was mentioned in Section [[sec:pcsc]]. 
-So first pcsc-lite was
-downloaded and cross-compiled in MerSDK. Then wpa-supplicant was compiled
-with correct parameters in same place. Finally, the wpa-supplicant was 
-stripped from debugging symbols and copied to Jolla together with the PCSC-library.
-Jolla phone's file hierarchy is very similar to hierarchy in test
+needed. So first pcsc-lite was downloaded and cross-compiled in
+MerSDK. Then wpa-supplicant was compiled with correct parameters in
+same place. Finally, the wpa-supplicant was stripped from debugging
+symbols and copied to Jolla together with the PCSC-library.  Jolla
+phone's file hierarchy is very similar to hierarchy in test
 environment's Linux, which made the operation very easy.
-
+Table[[version-table]] describes the components and their versions that were used in the tests.
 # https://sailfishos.org/develop/tutorials/building-sailfish-os-packages-manually/
 
-
+#+CAPTION: Versions of components in tests and their architecture.
+#+NAME: version-table
 | version(s) | component          | tested on (machine arch) |
 |------------+--------------------+--------------------------|
 |        2.3 | hostap(RADIUS-EAP) | laptop(x86_64)           |
@@ -3485,8 +3486,94 @@ environment's Linux, which made the operation very easy.
 |     1-8.13 | pcsc-lite          | laptop(x86_64)           |
 |------------+--------------------+--------------------------|
 
-[*TBD: cross compile environment, little bit more, examples. SDK,
-script*]
+# [*TBD: cross compile environment, little bit more, examples. SDK, script*]
+
+*** Cross-compile the programs inside a virtual machine
+
+MerSDK is shipped as a virtual image which runs inside Virtualbox.
+Starting the image opens an ssh server, which by default listens on
+port 2222 on localhost. One can use an SSH keypair authentication to get there.
+(mersdk in following represent the private SSH key of type RSA)
+#+BEGIN_EXAMPLE
+# ssh -l mersdk -p 2222 \
+    -i ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk
+     localhost
+Last login: Sun Nov 15 09:50:47 2015 from 10.0.2.2
+[mersdk@SailfishSDK ~]$ uname -rm
+3.6.11-10.1.17.jolla i686
+#+END_EXAMPLE
+We moved to sandboxed armv7hl architecture (armv7hl) with
+sb2 command and changed the user id to a virtualized root user.
+Earlier retrieved pcsc-lite package was compiled and installed. 
+#+BEGIN_EXAMPLE
+[mersdk@SailfishSDK ~]$ sb2 -t SailfishOS-armv7hl -R
+[SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # uname -rm
+3.6.11-10.1.17.jolla armv7l
+[SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # cd \
+   /home/mersdk/rpmbuild/SOURCES/pcsc-lite-1.8.13
+[SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # ./configure ; 
+[SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # make install
+#+END_EXAMPLE
+The wpa_supplicant was compiled similar way. The needed option were
+added to configuration file before compiling.
+#+BEGIN_EXAMPLE
+ CONFIG_EAP_SIM=y
+ CONFIG_SIM_SIMULATOR=y
+ CONFIG_USIM_SIMULATOR=y
+ CONFIG_PCSC=y
+#+END_EXAMPLE
+After wpa-supplicant was compiled and linked, it was stripped from
+debugging symbols to make its size to merely 15% of the original size.
+#+BEGIN_EXAMPLE
+# ls -s wpa_supplicant-pscs
+5788 wpa_supplicant-pcsc
+# strip wpa_supplicant-pcsc ; ls -s wpa_supplicant-pscs
+876 wpa_supplicant-pcsc
+#+END_EXAMPLE
+Finally programs wpa_supplicant-pcsc and corresponding
+libpcsclite.so.1 library were copied to jolla phone, which was
+connected to the computer with an USB cable.
+#+BEGIN_EXAMPLE
+scp wpa_supplicant-pcsc nemo@jolla:
+scp libpcsclite.so* nemo@jolla:/usr/local/lib
+#+END_EXAMPLE
+
+
+*** Running the new binary on real smartphone.
+
+We now can use inside the real physical smartphone this newly compiled
+version which uses uses a configuration file instead of a SIM card.  To make
+sure, that it does not conflict with an existing wpa_supplicant on the phone,
+we first disable the system version and use manually our version.
+
+#+BEGIN_EXAMPLE
+% ssh nemo@jolla
+Last login: Sun Oct 11 17:44:37 2015 from 192.168.2.1
+,---
+| SailfishOS 1.1.9.28 (Eineheminlampi) (armv7hl)
+'---
+[nemo@Jolla ~]$ systemctl disable wpa_supplicant
+#+END_EXAMPLE
+
+Last thing to notice, is that because the /libpcsclite/ libraries are in non-standard
+place (in /usr/local/lib), we must start wpa_supplicant with the correct
+dynamic library path environment value otherwise an error occurs.
+
+#+BEGIN_EXAMPLE
+[nemo@Jolla ~]$ export \
+             WPASUPP=/home/nemo/wpa-pscs/wpa_supplicant-pcsc-stripped
+[nemo@Jolla ~]$ ${WPASUPP} -v
+./wpa_supplicant-pcsc-stripped: error while loading shared libraries:
+libpcsclite.so.1: cannot open shared object file: No such file or 
+directory
+[nemo@Jolla ~]$ LD_LIBRARY_PATH=/usr/local/lib ${WPASUPP} -v
+v2.4 (malinen 2003-2015)
+#+END_EXAMPLE
+From here the same tests could be now run on the smartphone that
+earlier needed the computer. Even now, we did not use the real SIM card, but it
+probably would have been possible, if the configuration file did not give
+the secrets but instead a PIN to unlock the smartcard.
+
 # trombone: ~/src/jolla/wpa_supplicant
 
 * Analysis, Results and Discussion
@@ -4864,7 +4951,8 @@ further to aid in resolving trust issues in future home networks.
 %%%%%%%%%%%%%%%
 \bibliographystyle{IEEEtranS}   % already on org header 
 
-\renewcommand{\bibname}{Bibliography}     % Otherwise bilingual babel uses Finnish ``Kirjallisutta''. Strange...
+%\renewcommand{\bibname}{Bibliography}     % Otherwise bilingual babel uses Finnish ``Kirjallisutta''. Strange...
+\renewcommand{\bibname}{References}     % Otherwise bilingual babel uses Finnish ``Kirjallisutta''. Strange...
 \bibliography{refs}    % already on org header
 
 \addcontentsline{toc}{chapter}{\bibname}  % Include this in TOC
@@ -4878,6 +4966,8 @@ further to aid in resolving trust issues in future home networks.
 %% APPENDIX
 %%%%%%%%%%%%
 % if needed, appendix
+% resets thepagenumber and fools lastpage
+%\renewcommand{\thepage}{\arabic{apppage}}
 \appendix
 \pagestyle{headings}
 %
