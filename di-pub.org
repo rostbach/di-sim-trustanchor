@@ -1135,8 +1135,8 @@ They
 # MNO distributes SIM card and
 provide the mobile network connectivity to the customers of the MNO.  The
 secret keys are used for authenticating an IMSI to an MNO, and this
-enables MNOs to identify their customer in the network and charge them
-correspondingly.  Client's identity is verified when SIM is delivered.
+enables MNOs to identify their customer in the network and to charge them
+accordingly.  The client's identity is verified when the SIM is delivered.
 It is assumed, that SIM card represent its owner, but in reality
 nothing prevents an identity thief to steal someone's SIM
 card. Although the 4-digit PIN tries to prevent the usage of the
