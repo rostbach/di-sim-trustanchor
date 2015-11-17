@@ -1530,9 +1530,9 @@ because  homenet  is  reserved to
 # denotes home network as homenet, although the name 'homenet'
 # is reserved  to
 Internet Engineering Task Force Working Group's (IETF
-WG) homenet. IETF is responsible for  most internet technology standards and 
+WG) homenet. IETF is responsible for  most internet technology standards, and 
 WG homenet was started in year 2011.
-Current drive in homenet management is towards IPv6 environment
+The current drive in homenet management is towards IPv6 environment
  as it fulfills future routing and addressing needs. 
 Homenet has five tasks to solve at home networks: service discovery, network security, 
 prefix configuration for routers, routing management and name
