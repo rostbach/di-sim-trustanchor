@@ -719,7 +719,7 @@ operator involved.  Those experiments are described in Chapter [[#cha:simu]].
 # [Simulation of authentication between SIM-card and mobile operator
 # is shown and analyzed on Chapter [[#cha:simu]].
 # Security analysis is
-Results are discussed in Chapter [[#cha:discussion]] and Chapter [[#cha:conclusion]] concludes the
+Results are discussed in Chapter [[#cha:discussion]], and Chapter [[#cha:conclusion]] concludes the
 thesis.
 
 
@@ -759,42 +759,42 @@ who needs them and a server authorized to provide them.
 # client and Authenticator server.
 Often, the last 'A', which stands for accounting, has been neglected
 and also here only the first two 'A's are used and later described as AA
-services. Authentication (AuthN) answers, how to identify users and
+services. Authentication (AuthN) answers the question of how to identify users and
 prove that they really are who they claim to be. Authorization (AuthZ)
-answers, what operations the identified users are allowed to do and
-forces usage policy. The rest of the thesis uses short terms AuthN
+answers the question of what operations the identified users are allowed to do and
+enforces the usage policy. The rest of the thesis uses short terms AuthN
 and AuthZ.
 
-On very small environments, AA service is built on a static backend such
+In very small environments, AA service is built on a static backend, such
 as a file on a protected target that an entity wants to access. There, AuthN
-is checked against a credentials file and AuthZ is given from a service
+is checked against a credentials file, and AuthZ is given from a service
 specific policy file. 
 #  Examples include ...
-To be more exact, the identification preceding the authentication is the part,
+To be more exact, the identification preceding the authentication is the part
 # of the access control process. Identification is part of AuthN
 # and it is the process
-where the entity claims and presents its identity to 
-access controlling system. That can involve sending username, login
-name or other identifier. Authentication in turn is the part where
-those facts are verified. AuthZ involves checking, which rights are 
-available for authenticated entity. 
+where the entity claims and presents its identity to the 
+access controlling system. That can involve sending a username, login
+name, or other identifier. Authentication in turn is the part where
+those facts are verified. AuthZ involves checking which rights are 
+available for the authenticated entity. 
 # [[access control]]
 # explain TRUST
 
 
 Before we introduce SIM-based authentication used throughout the
 thesis, protocols 802.1X, WPA2, EAP and RADIUS are described in the
-following sections. Last, we expand the term /trust/.
+following sections. After this, we expand the term /trust/.
 
 ** 802.1X
 
-802.1X \cite{8021X} is an IEEE standard protocol for port based access
-control. Ports are physical layer ports, not to be mixed to Layer-4 ports such as TCP/UDP ports.
+802.1X \cite{8021X} is an IEEE standard protocol for port-based access
+control. Ports are physical layer ports, not to be mixed with Layer-4 ports such as TCP/UDP ports.
 # explain physical vs. virtual port and source
 # Port means logical port instead of physical port can be .
  Network access through a specific physical port is
-restricted (controlled) from a client (called Supplicant) before
-the client has successfully performed an AA. An 802.1X device, where
+restricted (controlled) from a client (called Supplicant) until
+the client has successfully performed AA. An 802.1X device, where
 the ports are located, is called  authenticator. Third party in 802.1X is an
 authentication server. 
 
@@ -807,13 +807,15 @@ authentication server.
 
 # include it inside  and it can function as RADIUS client to
 # consult RADIUS-server for AuthN. 
-It is easy to mix here terms /authenticator/ and /authentication
-server/, but their roles are different: authenticator works as a
-gate-keeper to ports between supplicant and network, while
-authentication server handles the AA processes.
-At home, authenticator usually lies inside the access point (AP),
-which functions also as a router, but 
-on large enterprise networks, authenticator may be a centralized unit 
+# It is easy to mix here terms /authenticator/ and /authentication
+# server/, but their roles are different: authenticator works as a
+The terms /authenticator/ and /authentication server/ are easily
+mixed, but their roles are different: an authenticator works as a
+gate-keeper to the ports between a supplicant and the network, while
+an authentication server handles the AA processes.
+At home the, authenticator usually lies inside the access point (AP),
+which functions also as a router. However, in large enterprise
+networks, the authenticator may be a centralized unit, 
 and multiple access points function only as radio stations without
 routing or authenticator properties.
 
