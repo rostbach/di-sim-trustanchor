@@ -865,32 +865,34 @@ protocol.
 # not needed, changed word <2015-08-09 su>
 There are four types of RADIUS messages defined in RFC2865 that are
 used in the AA. ACCESS-REQUEST and ACCESS-CHALLENGE cover both AuthN and
-AuthZ messaging, while final RADIUS message is either
+AuthZ messaging, while the final RADIUS message is either
 ACCESS-ACCEPT or ACCESS-REJECT, based on the
 result given by the final RADIUS  server.
 
-Today, RADIUS has some shortcomings and fixing them is not anymore
-reasonable as developing has shifted to another AAA protocol called
+# not anymore -> no longer
+Today, RADIUS has some shortcomings and fixing them is no longer
+reasonable as development has shifted to another AAA protocol called
 Diameter, which is already in use in 3GPP and 4G
 networks \cite{diameter}.  Nevertheless, as RADIUS is so wide-spread,
-it is still used in lots of places instead of Diameter.  Currently,
-the main environment of RADIUS, besides AA in network managing, is wireless
+# lots of places - puhekielistä
+it is still used in many places instead of Diameter.  Currently,
+the main environment of RADIUS, besides AA in network managing, are wireless
 connections (Wi-Fi) in enterprises and nationwide community
 federations.
 
 
 When local Wi-Fi groups  such as ``SparkNet'', ``Langaton
-Tampere'', or ``Wippies'' started to form  in around 2005 in Finland, they used
+Tampere'', or ``Wippies'' started to form  around 2005 in Finland, they used
 802.1X and RADIUS for AA. Those networks did still have as an
 alternative AA method a captive portal technique, where the user had to
 first authenticate on a WWW-page before getting an access.  802.1X and
-RADIUS brought an external, central RADIUS server for authentication
-requests automatically, without burden of the captive portal.
+RADIUS brought an external, central RADIUS server for the automatic authentication
+of requests, without the burden of the captive portal.
 
-The members of the Wi-Fi groups could then use the network anywhere, where
-the same uniform SSID (Service Set IDentifier) was seen. Roaming
-became possible, if one found a familiar SSID outside the home area.
-Later, there were agreements between different local groups to allow
+The members of the Wi-Fi groups could then use the network in any location where
+the same uniform SSID (Service Set Identifier) was seen. Roaming
+became possible if one found a familiar SSID outside the home area.
+Later,  agreements were made between different local groups to allow
 roaming and so federations were born.
 
 As seen from the federated Wi-Fi groups, RADIUS servers can be chained to
