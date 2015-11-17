@@ -1038,7 +1038,7 @@ it adds some overhead to AuthN \cite{pereniguez10}.
 Different authentication methods, such as  hashed passwords, TLS
  certificates, or SIM/AKA using smartphone's SIM card,  can
 be used with EAP.
-This work uses EAP-SIM authentication method.
+This work uses the EAP-SIM authentication method.
 
 
 EAP describes only the messaging form, so EAP messages needs to
