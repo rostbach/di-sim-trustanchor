@@ -1220,14 +1220,14 @@ is not used here, but that would be a third  possible factor.
 # No need to explain strong authN, i.e., what you own, what you know,
 # what you are. well known fact?
 # Comparing these to
-Software based certificates, while stronger than regular passwords,
-on the other hand do not possess the properties /non-copiable/ or
-/unique/, so they can only be considered as strong passwords and 
-do not full-fill the requirements for two-factor AuthN.  If we nonetheless
-were using software certificates with a method such as EAP-TLS, then the
-certificates (for CA and client) and the private key should still be
-provisioned first, which would defeat what we want to achieve in
-easy user experience.
+Software-based certificates, while stronger than regular passwords, do
+not, on the other hand, possess the properties /non-copiable/ or
+/unique/, so they can only be considered as strong passwords and do
+not fulfill the requirements for two-factor AuthN.  If we
+nonetheless were using software certificates with a method such as
+EAP-TLS, then the certificates (for CA and client) and the private key
+should still be provisioned first, which would defeat what we want to
+achieve in easy user experience.
 
 
 Disadvantages with SIM are dependency on mobile operator and internet
