@@ -5028,7 +5028,8 @@ further to aid in resolving trust issues in future home networks.
 # string ``[REMOVED]''  as a placeholder.
 #+BEGIN_LaTeX
 \footnotesize
-\lstinputlisting[language=sh]{testit/wpa-simtest-owrt2.conf.clean}
+\lstinputlisting[language=sh]{wpa-simtest.conf}
+%\lstinputlisting[language=sh]{testit/wpa-simtest-owrt2.conf.clean}
 \normalsize
 #+END_LaTeX
 
@@ -5046,7 +5047,8 @@ further to aid in resolving trust issues in future home networks.
 <<app:radius-conf>>
 #+BEGIN_LaTeX
 \footnotesize
-\lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
+%\lstinputlisting[language=sh]{testit/hostapd-jmdemo.conf.clean}
+\lstinputlisting[language=sh]{hostapd.conf}
 \normalsize
 #+END_LaTeX
 
@@ -5062,7 +5064,8 @@ further to aid in resolving trust issues in future home networks.
 <<app:hlraucgw>>
 #+BEGIN_LaTeX
 \footnotesize
-\lstinputlisting[language=bash]{testit/hlr_auc_gw.milenage_db.clean}
+%\lstinputlisting[language=bash]{testit/hlr_auc_gw.milenage_db.clean}
+\lstinputlisting[language=bash]{hlr_auc_gw.milenage_db}
 \normalsize
 #+END_LaTeX
 
