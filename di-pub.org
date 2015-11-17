@@ -1631,7 +1631,7 @@ and therefore incompatible with each other.
 # The full benefit from the centralization would need  
 # Fully benefit from the centralization 
 
-To help in moving the management to a more centrally
+To help in moving the management into a more centralized
 model, the home network will see the smartphone as a central managing local
 controller.
 # cloud service of type Backend-as-a-Service (BaaS) is used here for
@@ -1641,16 +1641,18 @@ controller.
 # central management device for the home network.
 Usually, home users already have a phone, which can be considered 
 `smart'. Most smartphones have Wi-Fi capabilities and writing programs
-for them is possible even with only little knowledge.
+for them is possible even with only a little knowledge.
 #  so they well suited as being the local controller.
 # Maybe adding "between cloud and home network."
 #
 # Here we want to set the smartphone as management point between cloud and home network.
 When we choose a smartphone to be the management point, the other benefits are
 numerous:  a management software can be delivered and
-updated from the cloud to diverse smartphone types, existing user
-base having smartphones is orders of magnitude more than in any single
-organization, and as the most important fact, the trust anchor can be set to the smartphone.
+updated from the cloud to diverse smartphone types, 
+there are many users having smartphones,
+# existing user base having smartphones is orders of magnitude more than in any single
+# organization,
+and as the most important fact, the trust anchor can be set to the smartphone.
 
 # 1.Updating the running software has become an import fact in computer
 # security, since non-patched software, which still there has been running 
