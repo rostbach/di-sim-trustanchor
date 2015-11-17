@@ -2409,11 +2409,11 @@ authentication, and is shown in Figure[[fig:scenario-IV]].
 
 
 TMSI can change each time the AuthN request had been sent. Mapping of
-TMSI is cached on the authenticator and the round-trip and handling at
+TMSI is cached on the authenticator and the round-trip, and handling at
 the HLR can so be eliminated.  When the smartphone makes a
-re-authentication request with its temporal TMSI value, the CPE would
-still know the the right mapping to IMSI authorization so this works
-even when there is no internet connectivity, but full authentication
+re-authentication request with its temporal TMSI value, the CPE 
+still knows the  right mapping to IMSI authorization, so this method works
+even when there is no Internet connectivity. However, full authentication
 would not work here then because of the missing MNO.
 
 
