@@ -1106,7 +1106,7 @@ SIM associates a physical card used in smartphones to
 a subscriber of the Mobile Network Operator (MNO).
 SIM here means the secret keys and the application in mobile phone's
 SIM or USIM inside UICC (Universal Integrated Circuit Card).
-The secret keys are hardware protected and only usable to applications
+The secret keys are hardware-protected and only usable for applications
 in SIM card.
 The SIM's storage also includes a unique serial number ICCID 
 (Integrated Circuit Card Identifier) which identifies SIM globally
