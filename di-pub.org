@@ -893,7 +893,7 @@ The members of the Wi-Fi groups could then use the network in any location where
 the same uniform SSID (Service Set Identifier) was seen. Roaming
 became possible if one found a familiar SSID outside the home area.
 Later,  agreements were made between different local groups to allow
-roaming and so federations were born.
+roaming, and so federations were born.
 
 As seen from the federated Wi-Fi groups, RADIUS servers can be chained to
 form a tree. The reasons for the chaining are load balancing and high
