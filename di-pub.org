@@ -1053,7 +1053,7 @@ the authentication server. On a lower transport layer between them,
 there is an EAP authenticator, which transfers EAPOL messaging into a
 RADIUS message.
 
-Further, EAP is used to transfer AuthN messages only.
+Furthermore, EAP is used to transfer AuthN messages only.
 # , which happen between the Supplicant and the Authentication Server.
 It includes neither AuthZ information, which is RADIUS's
 responsibility nor session keys, which are negotiated by WPA2.  In the
