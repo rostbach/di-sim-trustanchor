@@ -1115,7 +1115,7 @@ The SIM's storage also includes a unique serial number ICCID
  and a unique IMSI (International Mobile Subscriber Identity). The IMSI is
 # IMSI is 14 or 15 digit long number and presented as 
 a composition of digits belonging to the Mobile Country Code (MCC, 2
-digits), Mobile Network Code(MNC,2-3 digits) and Mobile Subscriber
+digits), Mobile Network Code (MNC,2-3 digits) and Mobile Subscriber
 Identification Number(MSIN, 10 digits at most).
 It is not to be mixed with MSISDN (Mobile Station Integrated Services
 Digital Network), which is user's full international phone number.
