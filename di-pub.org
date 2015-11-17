@@ -1468,8 +1468,8 @@ Secure communication has many layers, and on its base lies trust.
 Only after completing the trust setting phase, it is meaningful to complete
 the other security layers. For example, secret keys enable encrypted
 communication, but the keys need to be delivered through a trusted
-channel first. Same applies to public key infrastructure solutions, when
-verifying the public keys and so it can be seen that trust
+channel first. The same applies to public key infrastructure solutions when
+verifying the public keys. Thus, we can see that trust
 really is the first layer to be fixed.
 
 # [ Trusted communication works, but need FIRST to nail trust
@@ -1479,7 +1479,7 @@ really is the first layer to be fixed.
 
 Even without trust, some form of secure asymmetric key-exchange is achievable
 with Diffie-Hellman key-exchange \cite{diffie1976new}. Unfortunately, it is vulnerable
-to Man-in-the-middle(MitM) attacks, where the protocol does not notice, 
+to Man-in-the-middle (MitM) attacks, where the protocol does not notice, 
 if messaging has gone through a third party, which impersonates itself to 
 both ends as being the corresponding messaging partner. MitM can
 read and decrypt encrypted messages and forward possibly changed message with
