@@ -1107,7 +1107,7 @@ a subscriber of the Mobile Network Operator (MNO).
 SIM here means the secret keys and the application in mobile phone's
 SIM or USIM inside UICC (Universal Integrated Circuit Card).
 The secret keys are hardware-protected and only usable for applications
-in SIM card.
+in a SIM card.
 The SIM's storage also includes a unique serial number ICCID 
 (Integrated Circuit Card Identifier) which identifies SIM globally
 #  A full ICCID is 19 or 20 
