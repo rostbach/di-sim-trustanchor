@@ -1425,10 +1425,10 @@ Both parties have now retrieved the same trusted key /Kc/. The
 authenticator has received it directly from the RADIUS message 10, and the
 smartphone has generated it using its own secret /Ki/ key in
 the process 13.
-Therefore the derivation of secret session key for WPA2 is possible.
+Therefore the derivation of a secret session key for WPA2 is possible.
 
-After the session has been set, IMSI may be left out and a temporal IMSI
-(TMSI) can be used instead to hide client's identity, for example in
+After the session has been set, the IMSI may be left out and a temporal IMSI
+(TMSI) can be used instead to hide the client's identity, for example in
 fast re-authentication case to reduce the risk of exposing the client's
 IMSI unnecessarily. Unfortunately, at that point, IMSI has already
 been exposed at least once in plain text, namely in message 3.
