@@ -1317,9 +1317,9 @@ RAND, SRES, and Kc.
 # Not shown are the authentication server, but 
 #   Figure [[fig:eap-sim-radius]] describes the EAP-SIM authentication
 # sequence.  
-From traffic between Supplicant (here smartphone) and authenticator (in AP)
-we can see that IMSI is used first in message 3. IMSI is the
-identity, which authentication server would next try to challenge as
+From the traffic between the Supplicant (here smartphone) and the authenticator (in AP)
+we can see that IMSI is first  used  in message 3. IMSI is the
+identity which the authentication server would next try to challenge as
 part of the AuthN and for which the AuthZ would be checked.
 
 
@@ -1334,22 +1334,22 @@ part of the AuthN and for which the AuthZ would be checked.
 All EAP-SIM derivatives provide mutual authentication.
 #  using a NONCE value.
 # in message 4, that would not be possible.
-An operator (network) is authenticated with help of a nonce,
-which is by definition ``number used only once'' and can
-be thought as a client's challenge to the network.
+An operator (network) is authenticated with the help of a nonce,
+which is by definition ``a number used only once'' and can
+be thought of as a client's challenge to the network.
 # The client challenges the operator by sending the nonce 
 # during the start of the negotiation phase in the message
 The nonce is transmitted in the message 7 in Figure[[fig:eap-sim-radius]].
-The client later checks in the process 13, whether RAND values 
+The client later checks in the process 13 whether the RAND values 
 # thatare 128-bit in length
 from
 the operator were digested with the correct nonce and so authenticates
 the operator.
 
-The client in turn is authenticated, when the authentication server
+The client in turn is authenticated when the authentication server
 generates a challenge with an aid of a triplet from the MNO and the
 client responses to the challenge correctly after processing it with
-its own /Ki/.  Correct answer would be SRES which the Authentication
+its own /Ki/.  The correct answer would be SRES which the Authentication
 server received in message 10.
 #+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 4
 
@@ -1418,13 +1418,13 @@ Smartphone                               Authenticator (AP)
 After mutual authentication, the AuthN phase has been completed. The
 authentication server completes the AuthZ by sending the authenticator either
 an Access-Accept or Access-Deny RADIUS message. 
-Accept message triggers 802.1x protocol to open a virtual port in AP
-and lets the WPA2 process continue in exchanging WPA2 session keys. 
+An accept message triggers 802.1x protocol to open a virtual port in the AP
+and lets the WPA2 process continue exchanging WPA2 session keys. 
 
 Both parties have now retrieved the same trusted key /Kc/. The
-authenticator has received it directly from RADIUS message 10 and the
+authenticator has received it directly from the RADIUS message 10, and the
 smartphone has generated it using its own secret /Ki/ key in
-process 13.
+the process 13.
 Therefore the derivation of secret session key for WPA2 is possible.
 
 After the session has been set, IMSI may be left out and a temporal IMSI
