@@ -1600,14 +1600,14 @@ home networks \cite{tr069rachidi2011}.
 # about border 
 RFC7368 \cite{rfc7368} from Arkko about IPv6 Home Networking Architecture Principles 
 defines the borders of the home network and states that
-internal borders in home network should possibly be automatically
-discovered. Limiting those borders to specific
+internal borders in a home network should possibly be automatically
+discovered. Limiting those borders to a specific
 interface type would make it difficult to connect different realms locally.
 The same document continues stating
-that while home network should self-configure and self-organize itself as
+that while a home network should self-configure and self-organize itself as
 far as possible, self-configuring unintended devices should be
-avoided and let the home network user decide whether device becomes trusted.
-So, these statements reveal us that home network environment still needs
+avoided, and the home network user should be let to decide whether a device becomes trusted.
+So, these statements show that the home network environment still needs
 external configuration even with the proposed automation aids.
 
 
