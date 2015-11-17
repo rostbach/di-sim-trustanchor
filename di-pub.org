@@ -565,9 +565,9 @@ file:localcontroller.png
 # service running in internet, and it is often referenced as a cloud
 # service.  
 The delegated service provider therefore does not need to have a direct data
-access to the home but only to the cloud based service in order to be able to
+access to the home but only to the cloud-based service in order to be able to
 manage the home network devices.
-Consultant service is not the only possible delegation for home network.
+Consultant service is not the only possible delegation for a home network.
 # toisen kerran jo..
 # phys precence moved to earlier part
 
