@@ -1,4 +1,4 @@
-% Created 2015-11-17 ti 17:50
+% Created 2015-11-17 ti 23:02
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1182,43 +1182,42 @@ Traditionally, configuration management of individual network devices has been d
 using each device's console or web interface.  As the number of
 devices has increased, it would have been reasonable to rationalize
 the process by utilizing a central management, not least to prevent human
-errors for repetitive tasks.  The reason, why this has not happened at
-home, is because network devices there often are too heterogeneous, bought at different times from different vendors
+errors in repetitive tasks.  The reason why this has not happened in
+homes, is that network devices there often are too heterogeneous, bought at different times from different vendors,
 and therefore incompatible with each other.
 
-To help in moving the management to a more centrally
+To help in moving the management into a more centralized
 model, the home network will see the smartphone as a central managing local
 controller.
 Usually, home users already have a phone, which can be considered 
 `smart'. Most smartphones have Wi-Fi capabilities and writing programs
-for them is possible even with only little knowledge.
+for them is possible even with only a little knowledge.
 When we choose a smartphone to be the management point, the other benefits are
 numerous:  a management software can be delivered and
-updated from the cloud to diverse smartphone types, existing user
-base having smartphones is orders of magnitude more than in any single
-organization, and as the most important fact, the trust anchor can be set to the smartphone.
+updated from the cloud to diverse smartphone types, 
+there are many users having smartphones,
+and as the most important fact, the trust anchor can be set to the smartphone.
 
-The users already are  centrally located  in operators' user databases
-in HLR-AuC.  To achieve the management paradigm change to a central configured one,
-we still need to bridge the home network to that model with a trusted local controller
+The users are already  centrally located  in operators' user databases
+in HLR-AuC.  To achieve the management paradigm change to a centrally configured one,
+we still need to bridge the home network to that model with a trusted local controller,
 and then resolve the work-flow of change management.
 
 
 Home network change management itself is mostly excluded from this work.
-For example, 
-it is desirable, that changes in home network are done only through
-local controller, not at local device because of
-synchronization issues, even 
+For example, because of synchronization issues,
+it is desirable that changes in a home network are done only through
+a local controller, not at a local device, even 
 if synchronizing algorithms such as Trickle \cite{rfc6206} were used in
-home network for configuration propagation. As another example,
+the home network for configuration propagation. As another example,
 configuration also includes
-power level settings of devices to save electricity based on usage
-profile. For example at nights or when there is nobody home, some
-devices do not need to be working at their maximum capacity, and
-details of how this scheduled is out of scope.
+power level settings in devices to save electricity based on the usage
+profile. For example, during the nighttime or when nobody is at home, some
+devices do not need to be working at their maximum capacity. The 
+details of how this is scheduled is out of scope of this thesis.
 
-Instead, we study interfaces of AA.  Main points here are an existing
-infrastructure (phones, internet access, Wi-Fi access points),  a strong
+Instead, we study interfaces of AA.  The main points here are the existing
+infrastructure (phones, internet access, Wi-Fi access points),  strong
 authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 
@@ -1226,17 +1225,17 @@ authentication (two-factor), and authentication methods
 \label{sec-3-3}
 \label{sec:altmethods}
 
- Trust anchor information, may it then be a secret or some
-other evidence, can be delivered to a trust device via physical
+ Trust anchor information, be it a secret or some
+other evidence, can be delivered to a trust device via a physical
 transport channel separate from the actual communicating channel.
-Traditional way to do that is with a password inside a sealed
-envelope or a one-time password list that for example online banks 
+The traditional way to do that is with a password inside a sealed
+envelope or a one-time password list that, for example, online banks 
 use today. The secret can also be sent as an SMS.
  The trust anchor
 is part of bootstrapping, which is needed because although the
 smartphone and the MNO already trust each other, the trust between the
-smartphone and AP, and thus the management network at home, is
-non-existing in the beginning as can be seen from
+smartphone and the AP, and thus the management network at home, is
+non-existing in the beginning, as can be seen from
 Figure\ref{fig:trustbegin}.
 
 \begin{figure}[htb]
@@ -1249,7 +1248,7 @@ Figure\ref{fig:trustbegin}.
 In this thesis, the phone brings trust to the home network by
 completing a full EAP-SIM AA through the local authenticator. SIM's
 identity is verified by HLR AuC at the phone operator's end and AuthZ
-added to it later. The verification leaves a trail on the local
+is added to it later. The verification leaves a trail on the local
 authenticator and opens a trust channel for a limited period of time
 for changes from the phone.  The disconnection, i.e., the revocation
 of trust has only been theoretically presented, but not tested in
@@ -1257,27 +1256,28 @@ simulated environment.
 
 
 This chosen model will be fully explained in the next chapter,
-but before that, we introduce 4 
-alternative approaches to use SIM's unique properties besides EAP-SIM. 
+but before that, we introduce four 
+alternative approaches for using  SIM's unique properties besides EAP-SIM. 
 Other techniques  are  Bluetooth SIM Access Profile(Bluetooth  SAP), 
 direct connection through PC/SC (Personal\- Computer/Smart\- Card),
-CallerID service from phone network, and Mobile signing service.
+Caller ID service from phone network, and Mobile signing service.
 Bluetooth SIM and PC/SC would need patching of smartphone's software
-to work.  On the other hand, the smartphone would any way need to
+to work.  On the other hand, the smartphone would anyway need to
 download  a controlling application
 in the beginning for advanced use, so these techniques could be
 studied further in another work.
 
-Caller ID as an authentication method uses cellular network's controlling
+Caller ID as an authentication method uses a cellular network's controlling
 channels. When a phone makes a call, the receiving end gets 
-to know caller's phone number (MSISDN) before it answers the call.
-That information is called Caller ID and it has been in use
+to know the caller's phone number (MSISDN) before it answers the call.
+That information is called Caller ID, and it has been in use
 successfully for some door locking implementations. 
-It does not cost anything for caller or responder,
-because after receiving the CallerID  information, responder can hang
-up upcoming call and no call expenses are created.
- It can also be made safe at least in Finland
-by limiting which teleoperators are allowed to connect.
+It does not cost anything either the caller or the responder,
+because after receiving the Caller ID  information, the responder can hang
+up the upcoming call and no call expenses are created.
+ It can also be made safe, at least in Finland,
+by limiting which teleoperators are allowed to connect. That
+can eliminate some Caller ID forgeries.
 
 
 
@@ -1292,48 +1292,48 @@ by limiting which teleoperators are allowed to connect.
 
 
 
-SIM card can also benefit from electronic signatures.
+A SIM card can also benefit from electronic signatures.
 European Telecommunications Standards Institute (ETSI) has defined a
 standard for mobile signature services (MSS) in ETSI TS 102 204.
 MNOs in Finland have diverse implementations for this. The universal 
 service is called ``Mobiilivarmenne'', but MNO Sonera's brand for it
 is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
 
-When AuthN and AuthZ comes from outside, one possibility is to use a
-federated Mobile AuthN Service, which then is connected to  MSSP(Mobile
-Signature Service Provider) with ETSI-204. Benefits for ETSI-204
-federation are similar to those with federation of Wi-Fi groups
+When AuthN and AuthZ comes from the outside, one possibility is to use a
+federated Mobile AuthN Service, which then is connected to  MSSP (Mobile
+Signature Service Provider) with ETSI-204. The benefits of ETSI-204
+federation are similar to those of a federation of Wi-Fi groups
 mentioned in Section \ref{sec:radius}. No home device needs to implement it
 at home, but also MNO benefits as it sees the service as just one
-client instead of all possible clients.  Without the federation, the mobile AuthN services would need to be
+client instead of all the possible clients.  Without the federation, the mobile AuthN services would need to be
 multiplied with the number of the separate home networks needing authentication service.
 
 
 
 Project Moonshot \cite{moonshot}, is in its early phases. Its goal is
 to enable federated access universally to applications and
-services. If it worked and was used together with MSSP, it may offer
+services. If it works and is used together with MSSP, it may offer
 SIM-based SSH access to authenticator. Modifications are then needed 
-both in SSH server and client. Additionally, EAP must be used through
-tunneling, for example as an inner protocol of EAP-TTLS.
+both in the SSH server and the client. Additionally, EAP must be used through
+tunneling, for example, as an inner protocol of EAP-TTLS.
 
-At this point a question might rise, why these external service
+At this point, one might rise why these external service
 providers are needed. Is it not easier and simpler to just send 
-an SMS with password code to the smartphone, when access confirmation is needed?
-Mobile SIM provides two-way AuthN part as discussed earlier.
-Without need for strong AuthN, that model would indeed be 
-simpler, but using SIM also solves initial key distribution problem.
-Additionally, mutual AuthN problem would still need to be solved:
-Who sent that password and where that password should be inserted?
+an SMS with a password code to the smartphone, when access confirmation is needed?
+Mobile SIM provides a two-way AuthN part as discussed earlier.
+Without the need for strong AuthN, that model would indeed be 
+simpler, but using SIM also solves the initial key distribution problem.
+Additionally, the mutual AuthN problem would still need to be solved:
+Who sent that password, and where that password should be inserted?
 
-Mutual AuthN is important, because if fake access point were involved, the 
-dishonest admin could lure users to take part in Man in the Middle scenarios.
-For example, the smartphone user can start the authentication process
-to the AP which is located at neighbor and think that he is using
+Mutual AuthN is important because if a fake access point were involved, the 
+dishonest admin could lure users to take part in Man-in-the-Middle scenarios.
+For example, the smartphone user could start the authentication process
+to the AP located at the neighbor and think that he is using
 his own home AP. 
 The malicious neighbor AP (MitM) allows access to the user and starts 
-listening the traffic on AP's network interface. At that time, 
-MitM may capture from the smartphone  traffic, which may  include
+listening the traffic on the AP's network interface. At that time, 
+MitM may capture smartphone's  traffic, which may  include
 sensitive  data such as username, passwords, or even configuration data.
 It is not very difficult to even fake an SSH-server, if the 
 client (smartphone here) does not check the server's changed
@@ -1349,17 +1349,17 @@ fingerprint.
 
 
 
-This chapter describes, how the smartphone becomes a trust anchor for
-the home network and how the change management happens after that.
-On its simplest, the smartphone connects with a Wi-Fi link to an
-AP in the home network and authenticates with SIM-card.
+This chapter describes how the smartphone becomes a trust anchor for
+the home network and how the change management takes place after that.
+At its simplest, the smartphone connects with a Wi-Fi link to an
+AP in the home network and authenticates with a SIM card.
 The resulting authorized connection brings a trust relationship
 between the smartphone (a local controller)
 and the home network (managed devices) anchoring the trust to the smartphone so that the 
-management can happen. 
-In essence, the precence of the smartphone at home
-opens the gate for the management, though it needs a little
-interaction on behalf the user.
+management can take place. 
+In essence, the presence of the smartphone at home
+opens the gate for the management, although it needs a little
+interaction on behalf of the user.
 
 
 \section{Chosen AA design}
@@ -1368,32 +1368,32 @@ interaction on behalf the user.
 
 
 
-Network can be divided into separate segments based on user's role and
-needs, such as guest or home members segment. The segments provide
+A network can be divided into separate segments based on the user's role and
+needs, such as guest or home members segment. The segments provide a
 base connectivity layer and simple separation. Different services,
-like disk storage, can force their own policy on application level.
-It is not defined here, if the segmentation is made physical or
+like disk storage, can force their own policy on the application level.
+It is not defined here if the segmentation is made physical or
 virtual (VLAN, Virtual LAN).  There is also a segment for devices
-management.  An analogy to the real world would be a hotel, where
+management.  An analogy to the real world would be a hotel where
 customers use public access corridors and doors, and service personnel
 privileged corridors and doors.
 
 
-Router devices know, how to connect different segments and how the
+Router devices know, how to connect the different segments and how the
 path goes from segment A to segment B. Normally, they can also control
 access to the segments with the aid of access control lists (ACL), where
-decision is made based on current configuration or user's role.
-Decision can happen at the border of network or specific segment.
+the decision is made based on the current configuration or the user's role.
+The decision can take place at the border of the network or a specific segment.
 
 
 
 
 An example of a deeper access controlling  solution would be a traditional firewall and packet
-inspection in the interconnects of segments, but even more complex and modern model
+inspection in the interconnects of segments, but even a more complex and modern model
 would be the de-perimeterization trend set originally by Open Group's
 Jericho Work Group \cite{jericho2004} in 2004, that will not leave trust verification to
-perimeters of network (firewalls and application proxies), but 
-always handles traffic as coming from unreliable source.
+the perimeters of the network (firewalls and application proxies), but 
+always handles traffic as coming from an unreliable source.
 One implementation of de-perimeterization is 
 Google's BeyondCorp \cite{2014-beyondcorp}, 
 where traffic always travels through Access Control Engine
@@ -1404,70 +1404,70 @@ inside networks.
 
 On our chosen model, on the other hand, once a user has been authorized into a management network, access
 will stay open for him, at least for a (predefined) limited time.
-So, instead of checking user's credentials each time data is received,
-this model only checks, from where data is received. 
+So, instead of checking a user's credentials each time data is received,
+this model only checks where data is received from. 
 Data received from the management network is allowed for changes.
 It is arguably a lighter method than to always make 
 full AuthN and AuthZ but may suffice here, at first.
 
 
-When the home network needs a secure link to the smartphone, earlier
-mentioned trust is the first one needed.  The trust is achieved by
-checking, whether the smartphone can access the home management
-network using only its trusted SIM-card providing AuthN. AuthZ in
-turn is compared to existing roles of IMSI in the authenticator.
+When the home network needs a secure link to the smartphone, the trust
+mentioned earlier is the first one needed.  The trust is achieved by
+checking whether the smartphone can access the home management
+network using only its trusted SIM card providing AuthN. AuthZ in
+turn is compared to the existing roles of IMSI in the authenticator.
 
 
 
 
-When AP forwards authentication request to the next RADIUS server, it
+When an AP forwards an authentication request to the next RADIUS server, it
 can ask or receive, beside AuthN and AuthZ, other service parameters,
 such as provisioning. RADIUS can carry those extra attributes in its
 ACCESS-ACCEPT message.  In essence, AuthZ part itself can be thought
-as a one type of service provisioning.  That would then allow the
+as  one type of service provisioning.  That would then allow the
 smartphone to connect to a specific management network and access the
 devices either via command line interfaces, SNMP, or
 similar \cite[p.4]{rfc5608}.
-There exists RADIUS attribute types for directing user into specific
+There exist RADIUS attribute types for directing user into a specific
 VLAN. If those do not suffice, there are also special Vendor Specified
-Attributes (VSA). VSAs allow vendors to define up to 255 own
-attributes that can be used in provisioning in homogeneous environment. 
+Attributes (VSA). VSAs allow vendors to define up to 255 
+attributes of their own that can be used in provisioning in a homogeneous environment. 
 
 
 That way (3rd party) authentication server can decide which network
-segment the device would be put in.  In our case, admin users are put in
+segment the device will be put in.  In our case, admin users are put in
 to the management network.  Yet, usually RADIUS's ACCESS-ACCEPT message,
 which means AuthN and AuthZ were successful,  puts the user in
-default network, i.e., it just gives basic access, because 
+the default network, i.e., it just gives basic access, because 
 not all end devices support those provisioning parameters.
 
 In the first prototype it is enough to identify an authorized
 smartphone's SIM.  The smartphone holding the authorized SIM is granted access to
-the parts of the management network and it is authenticated strongly.  User
+ parts of the management network and it is authenticated strongly.  User
 management is outsourced to the MNO, which
-already has provided SIM cards to users. What remains, is the adding
+already has provided SIM cards to users. What remains is the adding
 of the user's IMSI to the authorized users' list. That list can be
-located on diverse places, as can be seen in Section \ref{sec-4-2}.
+located in diverse places, as can be seen in Section \ref{sec-4-2}.
 
 
 After authentication and authorization have succeeded, WPA2 session key
-creation occurs between AP and the smartphone. 
+creation occurs between the AP and the smartphone. 
 The authenticator has opened a port to the smartphone for
 access. It specifically has opened an access to the management network for
 the configuration changes. 
-The local RADIUS (if existing) and AP have trail of a successful
+The local RADIUS (if existing) and AP have a trail of a successful
 authentication and they know which IMSI has successfully authenticated in
 the home network. They also know the mapping between IMSI and temporal TMSI for
-cases when the smartphone later would need re-authentication.
+cases where the smartphone later would need re-authentication.
 
 
 Even though the AP now has authenticated the smartphone user, the managed devices still 
 need to have their own access control.
 They may consult a local RADIUS server, which tells whether there currently is an
-authenticated smartphone present and then the changes going
+authenticated smartphone present, and then the changes going
 to the management network would be allowed. Smartphone could also have
 received the login credentials to devices through earlier 
-configuration information and use them after getting into management
+configuration information and use them after getting into the management
 network. This kind of AA would happen on upper, application layer
 (layer 7), while AA discussed here (802.1X) happens already on lower, media layer (layer 2).
 
@@ -1477,9 +1477,9 @@ network. This kind of AA would happen on upper, application layer
 
 The AA components AuthN and AuthZ can be found in diverse location
 combinations
-depending, who provides those services and are there any caching
+depending on who provides those services and whether there is any caching
 available. 
-Table\ref{table-scenarios} represents the non-inclusive list of locations of
+Table\ref{table-scenarios} presents the non-inclusive list of locations of
 AuthN and AuthZ in 5 scenarios. The locations in the table are marked as (i)
 for internal or (e) for external and the scenarios are
 described in detail after the table. Authenticator is the entity which
@@ -1503,19 +1503,19 @@ Here, the AuthN component is usually located outside the home, as the MNO provid
 we are considering offline or recurring AuthN (in Scenario IV).
 The AuthZ component may be placed more freely. It can be at
 the MNO (I), at home (II-IV), or at the external provider (III).
-Authenticator on the other hand must stay at home, and it always 
+The authenticator, on the other hand, must stay at home, and it always 
 gives the final decision about the access.
-If the AuthZ decision is made on remote, 3rd party AuthZ server (I,III), 
+If the AuthZ decision is made on a remote 3rd party AuthZ server (I,III), 
 then that server needs to have either local AuthZ data or access to 
 cloud service's AuthZ data.
-Further it seems inevitable, that delegating AuthZ function 
+Further it seems inevitable that delegating AuthZ function 
 would simplify home network management. Because the cloud
 already has AuthZ data of eligible IMSI accounts,
-then instead of putting logic on CPE for AuthZ, CPE
+then, instead of putting logic on CPE for AuthZ, CPE
 could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either \emph{ACCESS-ACCEPT} or \emph{ACCESS-REJECT}.
-The last scenario (V) represents the case, when the environment has
-not yet been bootstrapped so neither AuthN nor AuthZ is ready yet.
+The last scenario (V) presents the case, where the environment has
+not yet been bootstrapped, so neither AuthN nor AuthZ is ready yet.
 
 
 
@@ -1523,9 +1523,9 @@ not yet been bootstrapped so neither AuthN nor AuthZ is ready yet.
 \label{scenario-i}
 The first AA-scenario is presented here thoroughly as an example.
 The goal is to make the smartphone trusted to the home network and
-later proceed to trusted configuration change.
+later proceed to  a trusted configuration change.
 The steps are numbered and explained in detail in Figure\ref{fig:scenario-I}.
-The configuration change is allowed, if CPE gets ACCEPT message from
+The configuration change is allowed if CPE gets an ACCEPT message from
 MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
 
 
@@ -1546,17 +1546,17 @@ network using EAP-SIM and reveals its IMSI.
 \item A CPE (AP) forwards the authentication to an MNO's RADIUS server
 using RADIUS protocol.
 \item The MNO has RADIUS server which uses a HLR-AuC for authentication
-triplets. This RADIUS continues the authentication process until to
-the end. The MNO also asks (AuthZ phase) from the Cloud, whether
+triplets. This RADIUS continues the authentication process until 
+the end. The MNO also asks (AuthZ phase)  the Cloud whether
 IMSI user has an admin role.  The MNO returns in a RADIUS message
 either \emph{ACCESS-ACCEPT}, if user is both known AND has admin role,
 or \emph{ACCESS-REJECT}, if either property fails.
 \item The CPE receives this ACCEPT or REJECT. If there were other
 RADIUSes between the CPE and the MNO, they would have acted as
 proxy RADIUS servers.
-\item IF ACCEPTed, then the smartphone is both authenticated and
-authorized and it now can send configuration change messages to the
-CPE, which recognizes them coming from an authorized network.
+\item If ACCEPTed,  the smartphone is both authenticated and
+authorized and can now send configuration change messages to the
+CPE, which recognizes them as coming from an authorized network.
 \end{enumerate}
 
 
@@ -1566,13 +1566,13 @@ CPE, which recognizes them coming from an authorized network.
 
 \label{scenario-ii}
 
-In the second scenario (Figure\ref{fig:scenario-II}), AuthN is asked from an MNO but
+In the second scenario (Figure\ref{fig:scenario-II}), AuthN is asked from an MNO, but
 AuthZ is checked from a local database. Local data comes from a data
-model, i.e., from the configuration data and it will be saved in CPE,
-or some other place within the home network. Benefit of local roles is
-that administrative users can be held at local base. Even, if some
-intruder would get positive AuthN result, the AuthZ still would deny
-him the access. When we think, that local role cache only involves few
+model, i.e., from the configuration data, and it will be saved in CPE
+or some other place within the home network. The benefit of local roles is
+that administrative users can be held at a local base. Even if some
+intruder got a positive AuthN result, the AuthZ  would still deny
+him the access. When we think that a local role cache  involves only a few
 IMSI numbers, this is administratively tolerable.
 
 
@@ -1591,12 +1591,11 @@ the local AP communicates with RADIUS protocol to the external
 authentication server. That in turn gets AuthN from the MNO via its own
 HLR-AuC gateway and AuthZ from the cloud. It can also use alternative
 sources for AuthN.
+Locally, there is a cache for roles in case of network disconnectivity.
 
-Locally there is a cache for roles in case of network disconnectivity.
-
-Here benefit is, that 3rd party authentication server may have direct
+Here the benefit is that the 3rd party authentication server may have direct
 contracts to many alternative MNOs, so the user is free to choose its
-MNO operator. As a bonus,  the MNOs already delegate requests to right
+MNO operator. As a bonus,  the MNOs already delegate requests to the right
 operator, if they happen to get AuthN request which does not belong to
 them. This is similar to federated service.
 
@@ -1606,9 +1605,9 @@ them. This is similar to federated service.
 \caption{\label{fig:scenario-III}Scenario III with outsourced AA and backup cache for AuthZ}
 \end{figure}
 
-Allowed users are verified from the cloud's registries and specific IMSI is
-authenticated at the MNO.  It may need some preparation, if SIM
-identities are temporary, i.e., TMSI is used.  Still, IMSI is carried
+Allowed users are verified from the cloud's registries, and the specific IMSI is
+authenticated at the MNO.  It may need some preparation if the SIM
+identities are temporary, i.e., if TMSI is used.  Still, IMSI is carried
 out at the first message 
 of full authentication. Later, the server would need to have mapping
 between IMSI and TMSI, but because only full authentication is used,
@@ -1616,7 +1615,7 @@ there should be no problem.
 
 
 
-If internet connection is down, local AA is still possible, if there
+If the Internet connection is down, local AA is still possible, if there
 has been at least one full AA round.
 Full authentication uses IMSI, which is the identity of the phone's
 SIM.  Fast re-authentication on the other hand would 
@@ -1631,11 +1630,11 @@ authentication, and is shown in Figure\ref{fig:scenario-IV}.
 
 
 TMSI can change each time the AuthN request had been sent. Mapping of
-TMSI is cached on the authenticator and the round-trip and handling at
+TMSI is cached on the authenticator and the round-trip, and handling at
 the HLR can so be eliminated.  When the smartphone makes a
-re-authentication request with its temporal TMSI value, the CPE would
-still know the the right mapping to IMSI authorization so this works
-even when there is no internet connectivity, but full authentication
+re-authentication request with its temporal TMSI value, the CPE 
+still knows the  right mapping to IMSI authorization, so this method works
+even when there is no Internet connectivity. However, full authentication
 would not work here then because of the missing MNO.
 
 
@@ -1646,10 +1645,10 @@ would not work here then because of the missing MNO.
 
 
 Scenario V represents the case when nothing has been configured in
-network, there are no admin users, and APs are set to factory default.
-CPE has first neither trust nor roles. Scenario therefore needs
+a network, there are no admin users, and APs are set to factory default.
+CPE has first neither trust nor roles. The scenario therefore needs
 pre-configuring and bootstrapping after which it can become any of
-scenarios I-IV. Bootstrapping is discussed later in 
+the scenarios I-IV. Bootstrapping is discussed later in 
 Section \ref{bootstrapping}.
 
 
