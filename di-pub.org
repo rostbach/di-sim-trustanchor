@@ -1479,11 +1479,13 @@ really is the first layer to be fixed.
 
 Even without trust, some form of secure asymmetric key-exchange is achievable
 with Diffie-Hellman key-exchange \cite{diffie1976new}. Unfortunately, it is vulnerable
-to Man-in-the-middle (MitM) attacks, where the protocol does not notice, 
-if messaging has gone through a third party, which impersonates itself to 
-both ends as being the corresponding messaging partner. MitM can
-read and decrypt encrypted messages and forward possibly changed message with
-a correct looking signature.
+to Man-in-the-middle (MitM) attacks, where the protocol does not
+notice if messaging has gone through a third party impersonating as
+the corresponding messaging partner to both ends.
+# , which impersonates itself to both ends as being the corresponding
+# messaging partner. 
+MitM can read and decrypt encrypted messages and forward the possibly changed message with
+a correct-looking signature.
 #  [MiTM discussed on IMSI-catching section]
 # [explain or cite], but
 # without trust,
@@ -1499,15 +1501,13 @@ Secure network configuration and credential exchange is then possible.
 # Now, how this trust could be used to include other components under
 This trust can be used to include other components under the
 same trust circle in the home network. As mentioned earlier,  SIM
-and the MNO trust each other, hence mutual authentication between them is
-possible and that is later shown to be an important factor.  Also the
+and the MNO trust each other; hence mutual authentication between them is
+possible. That is later shown to be an important factor.  Also the
 key distribution problem mentioned in Chapter [[cha:intro]] is solved
 already at a SIM card distribution phase.  As AuthN-AuthZ at home
-proceeds through the authenticator, then the authenticator must
-use it as a derivation function
-to extend trust 
- and
-deliver this information further
+proceeds through the authenticator, the authenticator must
+use it as a derivation function to extend trust 
+ and deliver this information further.
 # explain this....[TBD]
 
 
