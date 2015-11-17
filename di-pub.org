@@ -995,11 +995,11 @@ in wireless clients to communicate with the authenticator.
 # The rest of the work will not make a difference between WPA and WPA2
 # versions, but simply denotes them as ``WPA''.
 
-The WPA2 has two modes of protection: one for groups with common, pre-shared
+The WPA2 has two modes of protection: one for groups with a common, pre-shared
 key (WPA2-PSK, also known as WPA2-Personal) and one for individuals
-having own key (WPA2-RADIUS, also known as  WPA2-Enterprise).  With
+having their own key (WPA2-RADIUS, also known as  WPA2-Enterprise).  With
 WPA2-RADIUS, revoking
-individual access is easier, but client setup slightly more
+individual access is easier, but client setup is slightly more
 complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 
 # [Maybe comparing in table] 
@@ -1010,7 +1010,7 @@ complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 |------------------------------+----------+-----------------|
 | /                            | <        | <               |
 | suitable for groups          | x        |                 |
-| suitable for individual      |          | x               |
+| suitable for individuals     |          | x               |
 | individual client revocation |          | x               |
 | client setup                 | easy     | intermediate    |
 |------------------------------+----------+-----------------|
