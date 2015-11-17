@@ -1686,17 +1686,17 @@ authentication (two-factor), and authentication methods
 <<sec:altmethods>>
 # In bootstrapped environment change management can happen.
 
- Trust anchor information, may it then be a secret or some
-other evidence, can be delivered to a trust device via physical
+ Trust anchor information, be it a secret or some
+other evidence, can be delivered to a trust device via a physical
 transport channel separate from the actual communicating channel.
-Traditional way to do that is with a password inside a sealed
-envelope or a one-time password list that for example online banks 
+The traditional way to do that is with a password inside a sealed
+envelope or a one-time password list that, for example, online banks 
 use today. The secret can also be sent as an SMS.
  The trust anchor
 is part of bootstrapping, which is needed because although the
 smartphone and the MNO already trust each other, the trust between the
-smartphone and AP, and thus the management network at home, is
-non-existing in the beginning as can be seen from
+smartphone and the AP, and thus the management network at home, is
+non-existing in the beginning, as can be seen from
 Figure[[fig:trustbegin]].
 
 # kuva? 
@@ -1709,7 +1709,7 @@ file:trustcircles.png
 In this thesis, the phone brings trust to the home network by
 completing a full EAP-SIM AA through the local authenticator. SIM's
 identity is verified by HLR AuC at the phone operator's end and AuthZ
-added to it later. The verification leaves a trail on the local
+is added to it later. The verification leaves a trail on the local
 authenticator and opens a trust channel for a limited period of time
 for changes from the phone.  The disconnection, i.e., the revocation
 of trust has only been theoretically presented, but not tested in
@@ -1720,30 +1720,30 @@ simulated environment.
 
 
 This chosen model will be fully explained in the next chapter,
-but before that, we introduce 4 
+but before that, we introduce four 
 # this chosen method in the next chapter, 
 # real number, instead of some?
-alternative approaches to use SIM's unique properties besides EAP-SIM. 
+alternative approaches for using  SIM's unique properties besides EAP-SIM. 
 # for a trust anchor using SIM.
 # mobiilivarmenne
 Other techniques  are  Bluetooth SIM Access Profile(Bluetooth  SAP), 
 direct connection through PC/SC (Personal\- Computer/Smart\- Card),
-CallerID service from phone network, and Mobile signing service.
+Caller ID service from phone network, and Mobile signing service.
 # *** Bluetooth access
 Bluetooth SIM and PC/SC would need patching of smartphone's software
-to work.  On the other hand, the smartphone would any way need to
+to work.  On the other hand, the smartphone would anyway need to
 download  a controlling application
 # from the cloud 
 in the beginning for advanced use, so these techniques could be
 studied further in another work.
 
-Caller ID as an authentication method uses cellular network's controlling
+Caller ID as an authentication method uses a cellular network's controlling
 channels. When a phone makes a call, the receiving end gets 
-to know caller's phone number (MSISDN) before it answers the call.
+to know the caller's phone number (MSISDN) before it answers the call.
 That information is called Caller ID and it has been in use
 successfully for some door locking implementations. 
 It does not cost anything for caller or responder,
-because after receiving the CallerID  information, responder can hang
+because after receiving the Caller ID  information, responder can hang
 up upcoming call and no call expenses are created.
  It can also be made safe at least in Finland
 by limiting which teleoperators are allowed to connect.
