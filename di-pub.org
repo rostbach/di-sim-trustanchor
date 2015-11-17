@@ -1109,7 +1109,7 @@ SIM or USIM inside UICC (Universal Integrated Circuit Card).
 The secret keys are hardware-protected and only usable for applications
 in a SIM card.
 The SIM's storage also includes a unique serial number ICCID 
-(Integrated Circuit Card Identifier) which identifies SIM globally
+(Integrated Circuit Card Identifier) which identifies the SIM globally
 #  A full ICCID is 19 or 20 
 # +358 50 3075923
  and a unique IMSI (International Mobile Subscriber Identity). IMSI is
