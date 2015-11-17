@@ -1131,9 +1131,9 @@ they may have different keys and codes.
 
 
 The passwords, keys, and cards are distributed by the MNO.
- and they 
+They 
 # MNO distributes SIM card and
-provide the mobile network connectivity to customers of the MNO.  The
+provide the mobile network connectivity to the customers of the MNO.  The
 secret keys are used for authenticating an IMSI to an MNO and that
 enables MNOs to identify their customer in the network and charge them
 correspondingly.  Client's identity is verified when SIM is delivered.
