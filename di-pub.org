@@ -1625,8 +1625,8 @@ Traditionally, configuration management of individual network devices has been d
 using each device's console or web interface.  As the number of
 devices has increased, it would have been reasonable to rationalize
 the process by utilizing a central management, not least to prevent human
-errors for repetitive tasks.  The reason, why this has not happened at
-home, is because network devices there often are too heterogeneous, bought at different times from different vendors
+errors in repetitive tasks.  The reason why this has not happened in
+homes, is that network devices there often are too heterogeneous, bought at different times from different vendors,
 and therefore incompatible with each other.
 # The full benefit from the centralization would need  
 # Fully benefit from the centralization 
