@@ -908,7 +908,7 @@ on the proxying RADIUS server.
 RADIUS messages are normally not protected from eavesdropping, but they have
 integrity fields to notice if they have been tampered with.
 # \cite[p.13 vai 131?]{nakhiri-AAA}
-Integrity field is called a Message Authenticator.
+The integrity field is called a Message Authenticator.
 Notice the use of the term /authenticator/ in different context here, not
 meaning 802.1X's authenticator.
 When using RADIUS to AuthN and AuthZ, Requests can only belong to ACCESS-REQUEST messages while
