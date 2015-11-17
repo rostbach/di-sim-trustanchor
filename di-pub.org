@@ -963,13 +963,13 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 
 
 In the following chapters, it is discussed how the proxying servers take 
-part in the AA decisions. Of main interest there is, if it is possible 
+part in the AA decisions. Of main interest there is whether it is possible 
 # If RADIUS has been chained, it was not clear in the beginning of this
 # study, is it possible
 to inject or modify AuthZ information in those proxying RADIUSes in
 cases, where AuthN and AuthZ are provided from different
  places \cite{rfc2607}. A secondary goal is to universally divide AA regarding 
-client's domain in the federation.
+the client's domain in the federation.
 # tää viimeinen lause kaipaa selvennystä.
 # for "Proxy Chaining and Policy in Roaming,June 1999]
 
