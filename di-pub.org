@@ -2430,10 +2430,10 @@ would not work here then because of the missing MNO.
 
 
 Scenario V represents the case when nothing has been configured in
-network, there are no admin users, and APs are set to factory default.
-CPE has first neither trust nor roles. Scenario therefore needs
+a network, there are no admin users, and APs are set to factory default.
+CPE has first neither trust nor roles. The scenario therefore needs
 pre-configuring and bootstrapping after which it can become any of
-scenarios I-IV. Bootstrapping is discussed later in 
+the scenarios I-IV. Bootstrapping is discussed later in 
 Section [[bootstrapping]].
 
 
