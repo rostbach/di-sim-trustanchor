@@ -1740,13 +1740,14 @@ studied further in another work.
 Caller ID as an authentication method uses a cellular network's controlling
 channels. When a phone makes a call, the receiving end gets 
 to know the caller's phone number (MSISDN) before it answers the call.
-That information is called Caller ID and it has been in use
+That information is called Caller ID, and it has been in use
 successfully for some door locking implementations. 
-It does not cost anything for caller or responder,
-because after receiving the Caller ID  information, responder can hang
-up upcoming call and no call expenses are created.
- It can also be made safe at least in Finland
-by limiting which teleoperators are allowed to connect.
+It does not cost anything either the caller or the responder,
+because after receiving the Caller ID  information, the responder can hang
+up the upcoming call and no call expenses are created.
+ It can also be made safe, at least in Finland
+by limiting which teleoperators are allowed to connect. That
+eliminates Caller ID forgeries.
 
 
 # *** smart-card readers PC/SC access
