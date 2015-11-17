@@ -1532,19 +1532,19 @@ because  homenet  is  reserved to
 Internet Engineering Task Force Working Group's (IETF
 WG) homenet. IETF is responsible for  most internet technology standards, and 
 WG homenet was started in year 2011.
-The current drive in homenet management is towards IPv6 environment
- as it fulfills future routing and addressing needs. 
-Homenet has five tasks to solve at home networks: service discovery, network security, 
-prefix configuration for routers, routing management and name
+The current drive in homenet management is towards the IPv6 environment
+ as it fulfills the future routing and addressing needs. 
+Regarding home networks, homenet has five issues to solve: service discovery, network security, 
+prefix configuration for routers, routing management, and name
 resolution \cite{homenet-charter}.
-As old technologies cannot be forgotten, home networks will be heterogeneous having both
-old and new technology, and their interoperatibility is important in
-planning future home networks. 
-Segmenting home in multiple subnets will also belong
-to homenets and includes areas for home members, guests,
-and management. It will not be so uncommon to have a cheap second
-network operator for backup purposes at home. Those issues are
-discussed in multihoming parts of homenet WG.
+As old technologies cannot be forgotten, home networks will be heterogeneous, having both
+old and new technology, and their interoperatibility is an important
+issue when planning future home networks. 
+Segmenting a home into multiple subnets will also be part of planning
+ homenets; for example, the home network can include areas for home members, guests,
+and management. It will not be uncommon to have an inexpensive second
+network operator subscription for backup purposes at home. Those issues are
+discussed in the  multihoming parts of homenet WG.
 Lastly, end-to-end access, i.e., restriction-free access is in their agenda. 
 It was the key element for the Internet's success and enabled many new
 applications in the past, but has then had difficulties because of
