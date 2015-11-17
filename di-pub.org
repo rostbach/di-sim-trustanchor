@@ -1745,7 +1745,7 @@ successfully for some door locking implementations.
 It does not cost anything either the caller or the responder,
 because after receiving the Caller ID  information, the responder can hang
 up the upcoming call and no call expenses are created.
- It can also be made safe, at least in Finland
+ It can also be made safe, at least in Finland,
 by limiting which teleoperators are allowed to connect. That
 can eliminate some Caller ID forgeries.
 
@@ -1792,7 +1792,7 @@ can eliminate some Caller ID forgeries.
 #   - uses SATU id.
 
 # *** fed services. VERY draft
-SIM card can also benefit from electronic signatures.
+A SIM card can also benefit from electronic signatures.
 European Telecommunications Standards Institute (ETSI) has defined a
 standard for mobile signature services (MSS) in ETSI TS 102 204.
 MNOs in Finland have diverse implementations for this. The universal 
@@ -1805,8 +1805,8 @@ is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
 # organization both AuthN and some attributes such as person's name
 # and based on that AuthZ was achieved.
 
-When AuthN and AuthZ comes from outside, one possibility is to use a
-federated Mobile AuthN Service, which then is connected to  MSSP(Mobile
+When AuthN and AuthZ comes from the outside, one possibility is to use a
+federated Mobile AuthN Service, which then is connected to  MSSP (Mobile
 Signature Service Provider) with ETSI-204. Benefits for ETSI-204
 federation are similar to those with federation of Wi-Fi groups
 mentioned in Section [[sec:radius]]. No home device needs to implement it
