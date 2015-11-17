@@ -1214,7 +1214,7 @@ interest in this work. They can be MNO specific or known reference algorithms.
 
 
 EAP-SIM variants provide strong AuthN, which here means  two-factor
-AuthN.  One factor  is something you own (the physical SIM) while another
+AuthN.  One factor  is something you own (the physical SIM card) while another
 is  something you know (the SIM card's PIN). Biometric factor, i.e., what you are,
 is not used here, but that would be a third  possible factor.
 # No need to explain strong authN, i.e., what you own, what you know,
