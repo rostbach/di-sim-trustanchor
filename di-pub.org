@@ -1863,7 +1863,7 @@ to the AP located at the neighbor and think that he is using
 his own home AP. 
 The malicious neighbor AP (MitM) allows access to the user and starts 
 listening the traffic on the AP's network interface. At that time, 
-MitM may capture from the smartphone  traffic, which may  include
+MitM may capture smartphone's  traffic, which may  include
 sensitive  data such as username, passwords, or even configuration data.
 It is not very difficult to even fake an SSH-server, if the 
 client (smartphone here) does not check the server's changed
