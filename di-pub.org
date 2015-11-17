@@ -5005,7 +5005,8 @@ further to aid in resolving trust issues in future home networks.
   postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}
 # % \lstinputlisting[language=bash]
 \footnotesize
-\lstinputlisting[language=bash]{./testit/apd-tty.clean}
+\lstinputlisting[language=bash]{./apd-tty}
+%\lstinputlisting[language=bash]{./testit/apd-tty.clean}
 \normalsize
 #+END_Latex
 
