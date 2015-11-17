@@ -5,7 +5,7 @@
 # # Export ditaa silent, moved to org-custom-inittiin
 # #+org-confirm-babel-evaluate nil
 # It is possible to inhibit the evaluation of code blocks during export. Setting the org-export-babel-evaluate variable to nil will ensure that no code blocks are evaluated as part of the export process
-#+DATE: 16.11.2015
+#+DATE: 17.11.2015
 # history  {2a,1, 30., 12., 8, 3.10., 28.,2.9., 20.,18.8.,27.7,11.5,7.5.to the github,28.4, 16.4, 13.4.2015 new-framing, 4.4, 27.3,  20.3, 7.3)
 # #+TITLE:  Smartphone as a trust anchor in home networks
 #+TITLE:  
@@ -20,7 +20,7 @@
 #+LATEX_HEADER: \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 
 #+LATEX_HEADER: % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-#+LATEX_HEADER: \thesistype{draft-16.11.2015 Master of Science thesis}
+#+LATEX_HEADER: \thesistype{draft-17.11.2015 Master of Science thesis}
 #+LATEX_HEADER: \examiner{Jarmo Harju}
 #+LATEX_HEADER: \makeatletter
 #+LATEX_HEADER:\usepackage{svg}
@@ -362,27 +362,27 @@ Teemu Teekkari
 # % authentication, key-exchange, integrity, replay, algorithms, SIM,...
 
 # - term :: meaning
-- 802.1X :: port based access control standard 
-- access point, AP :: Connects wireless (Wi-Fi) clients to a wired network.
-		  Used here to encapsulate EAP messages to RADIUS and
-                  forward them to authentication server
+- 802.1X :: port-based access control standard 
+- access point, AP :: connects wireless (Wi-Fi) clients to a wired network,
+		  used here to encapsulate EAP messages to RADIUS and
+                  to forward them to an authentication server
 # client connects access point (AP) on 802.11
 #                   layer. AP knows EAP client and encapsulates EAP-message
 #                   to RADIUS-message and forwards that to
 #                   authenticator.
 # - BaaS :: Backend as a Service. Type of cloud service, which focuses
 #           on mobile backend.
- - authentication server :: Server checking identity claims, for
-      example RADIUS server.
- - authenticator :: local entity, who makes authentication (and
-                    authorization) decision for client based on local and remote
-                    claims, part of 802.1X standard.
+ - authentication server :: a server checking identity claims, for
+      example RADIUS server
+ - authenticator :: a local entity that makes the authentication (and
+                    authorization) decision for a client based on local and remote
+                    claims, part of 802.1X standard
 #  - cloud :: here, BaaS (Parse) service running Internet
- - mobile (network) operator, MNO :: a mobile network operator, knows connection
-      between SIM-owner and SIM secrets
+ - mobile (network) operator, MNO :: a mobile network operator, knows the connection
+      between a SIM-owner and SIM secrets
 #  - Parse :: one BaaS-cloud provider
- - proxying RADIUS :: RADIUS server standing between RADIUS
-      client and authentication server, part of RADIUS server chain.
+ - proxying RADIUS :: RADIUS server standing between a RADIUS
+      client and an authentication server, part of RADIUS server chain
 # - proxying RADIUS operator :: forwards RADIUS message to target based
 #      on hints on user realm. For example it has
 #      connections to diverse MNOs as its backend. Knows
@@ -427,10 +427,11 @@ Teemu Teekkari
 # Home 
 
 Managing computer and network devices can be hard.  Modern homes have
-become similar to small offices regarding the equipment present there.
+become similar to small offices regarding the equipment present in them.
 Earlier, it was sufficient to make just minimal settings at home to a
-modem (cable, phone or radio) and connect it to the home computer to
-get a fully working home network with internet connectivity.  Now, home
+modem (cable, phone or radio) and to connect it to the home computer to
+get a fully working home network with internet connectivity.  Today,
+the home
 network has expanded with countless devices available. 
 Entertainment centers (AV-amplifiers, media players, game consoles),
 manageable network devices (switches/routers), and mobile phones
@@ -444,13 +445,12 @@ network afterwards has become challenging and complex.
 
 # 1. issue of separate areas 
 There might be separate areas in homes that have different needs regarding
-connectivity, resources, and access. Not only that, but devices in
-separate segments might not belong to the home owner anymore, hence needing
-# 2.Home network can be divided to multiple segments that each have
+connectivity, resources, and access. In addition, devices in
+separate segments may not belong to the home owner anymore, hence needing
 their own administrative parties. For example, an electricity company may
 have a sensor and controller network, which physically uses the home network, but
 is logically separated from the other parts of the home network. It is therefore
-important to keep track of who is allowed to access different parts of the
+important to keep track of who is allowed to access the different parts of the
 home network. 
 
 
@@ -465,11 +465,11 @@ remotely manage the home network.
 # 5. exporting managing, i.e., delegated configuration
 # physical presence
 Remote management eliminates the consultant's 
-physical precence at home and so reduces external actors' costs, but adds many questions
+physical presence at home and so reduces external actors' costs, but adds many questions
 regarding security, not only to overcome firewalls, NATs, and
 the disconnectivity from the Internet.
 Persons who are allowed to make configuration changes are today
-often authenticated only by a simple password and physical precence at home.
+often authenticated only by a simple password and physical presence at home.
 # , and if physical precence would be away 
 #  What then, when the person is not
 # physically present, but tries to connect remotely?
@@ -530,8 +530,8 @@ One model to solve these problems is to separate the management and
 control functions from the connectivity and routing
 issues. Silverajan et al. \cite{silverajan2015collaborative} proposes
 a model where the management is achieved through a service in a cloud.
-The cloud service is of type Backend-as-a-Service (BaaS) which is suited
-well for mobile app usage. The
+The cloud service is of type Backend-as-a-Service (BaaS) which is well
+suited for mobile application usage. The
 configuration model of devices in a home is mirrored to the cloud as a
 resource graph.
 # ( Figure x.1 TBD). 
@@ -3493,7 +3493,7 @@ Table[[version-table]] describes the components and their versions that were use
 MerSDK is shipped as a virtual image which runs inside Virtualbox.
 Starting the image opens an ssh server, which by default listens on
 port 2222 on localhost. One can use an SSH keypair authentication to get there.
-(mersdk in following represent the private SSH key of type RSA)
+In following example, file /mersdk/ represent the private SSH key of type RSA.
 #+BEGIN_EXAMPLE
 # ssh -l mersdk -p 2222 \
     -i ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk
@@ -3502,6 +3502,8 @@ Last login: Sun Nov 15 09:50:47 2015 from 10.0.2.2
 [mersdk@SailfishSDK ~]$ uname -rm
 3.6.11-10.1.17.jolla i686
 #+END_EXAMPLE
+As can be seen, the virtual machine's architecture is i686, i.e.,
+32-bit x86.
 We moved to sandboxed armv7hl architecture (armv7hl) with
 sb2 command and changed the user id to a virtualized root user.
 Earlier retrieved pcsc-lite package was compiled and installed. 
@@ -3530,8 +3532,8 @@ debugging symbols to make its size to merely 15% of the original size.
 # strip wpa_supplicant-pcsc ; ls -s wpa_supplicant-pscs
 876 wpa_supplicant-pcsc
 #+END_EXAMPLE
-Finally programs wpa_supplicant-pcsc and corresponding
-libpcsclite.so.1 library were copied to jolla phone, which was
+Finally, programs wpa_supplicant-pcsc and corresponding
+libpcsclite.so.1 library were copied to the jolla phone, which was
 connected to the computer with an USB cable.
 #+BEGIN_EXAMPLE
 scp wpa_supplicant-pcsc nemo@jolla:
@@ -3541,10 +3543,10 @@ scp libpcsclite.so* nemo@jolla:/usr/local/lib
 
 *** Running the new binary on real smartphone.
 
-We now can use inside the real physical smartphone this newly compiled
-version which uses uses a configuration file instead of a SIM card.  To make
+We now could use inside the real physical smartphone this modified
+wpa_supplicant, which uses uses a configuration file instead of a SIM card.  To make
 sure, that it does not conflict with an existing wpa_supplicant on the phone,
-we first disable the system version and use manually our version.
+we first disabled the system version and used our version manually.
 
 #+BEGIN_EXAMPLE
 % ssh nemo@jolla
@@ -3555,9 +3557,10 @@ Last login: Sun Oct 11 17:44:37 2015 from 192.168.2.1
 [nemo@Jolla ~]$ systemctl disable wpa_supplicant
 #+END_EXAMPLE
 
-Last thing to notice, is that because the /libpcsclite/ libraries are in non-standard
-place (in /usr/local/lib), we must start wpa_supplicant with the correct
-dynamic library path environment value otherwise an error occurs.
+Because the /libpcsclite/ libraries are in non-standard
+place (in /usr/local/lib), we had to start wpa_supplicant with the correct
+dynamic library path environment value otherwise an error occured.
+
 
 #+BEGIN_EXAMPLE
 [nemo@Jolla ~]$ export \
@@ -3569,7 +3572,7 @@ directory
 [nemo@Jolla ~]$ LD_LIBRARY_PATH=/usr/local/lib ${WPASUPP} -v
 v2.4 (malinen 2003-2015)
 #+END_EXAMPLE
-From here the same tests could be now run on the smartphone that
+From here the same tests could now be run on the smartphone that
 earlier needed the computer. Even now, we did not use the real SIM card, but it
 probably would have been possible, if the configuration file did not give
 the secrets but instead a PIN to unlock the smartcard.
