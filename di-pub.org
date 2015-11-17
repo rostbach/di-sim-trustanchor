@@ -1747,7 +1747,7 @@ because after receiving the Caller ID  information, the responder can hang
 up the upcoming call and no call expenses are created.
  It can also be made safe, at least in Finland
 by limiting which teleoperators are allowed to connect. That
-eliminates Caller ID forgeries.
+can eliminate some Caller ID forgeries.
 
 
 # *** smart-card readers PC/SC access
