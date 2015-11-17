@@ -1981,8 +1981,8 @@ privileged corridors and doors.
 Router devices know, how to connect the different segments and how the
 path goes from segment A to segment B. Normally, they can also control
 access to the segments with the aid of access control lists (ACL), where
-decision is made based on current configuration or user's role.
-Decision can happen at the border of network or specific segment.
+the decision is made based on the current configuration or the user's role.
+The decision can take place at the border of the network or a specific segment.
 
 
 # What have I thought here?
