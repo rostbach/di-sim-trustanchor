@@ -612,8 +612,8 @@ The ultimate trust can be achieved by verifying the trust chains
 until the chain reaches a trust anchor.
 # The place where a trust is no longer derived or built upon any other fact
 # but is assumed to be present is called a trust anchor.  
-The trust anchor is the fact, state or place,
-where derivation of trust is done no more, but accepted per se.
+The trust anchor is the fact, state, or place,
+where the derivation of trust is no longer done, but accepted per se.
 Combining existing techniques, this thesis presents one possible way
 to bind the home network's trust to the smartphone's unique, existing
 secret keys inside the smart card's Subscriber Identify Module (SIM),
@@ -622,8 +622,8 @@ which then would function as a trust anchor.
 
 
 The above mentioned cloud solution for delegated home network
-management currently has preliminary authentication and access model
-using pre-defined credentials for accessing the local network in general and other
+management currently has a preliminary authentication and access model
+using pre-defined credentials for accessing the local network in general, and other
 credentials for secure SSH-connection from the local
 controller device to configuration
 targets \cite[Chap.4]{silverajan2015collaborative}.
@@ -640,7 +640,7 @@ existing key infrastructure to the mobile
 network operator (MNO) would later eliminate the requirement for an
 additional credential distribution. That issue is studied in this
 thesis.  Although the smartphone provides an alternative authentication
-method with its SIM key, usual methods to authenticate still are plain
+method with its SIM key, usual methods to authenticate are still plain
 username-password combinations.  This security issue must be solved
 before delegation in the cloud can happen.
 #  Anchoring must be set somewhere, 
@@ -669,9 +669,9 @@ before delegation in the cloud can happen.
 
 The goal presented in Figure[[fig:intro-goal]] is to make the smartphone a central, trusted controlling 
 point for managing purposes. The normal access between the
-Internet and home network should stay unchanged. 
+Internet and the home network should stay unchanged. 
 The human aspect and usability are also important, but the focus will
-still be on authentication and authorization part of the home net
+still be on the authentication and authorization part of the home net
 management with smartphone as a trust anchor.  The proposed model
 should nevertheless require less effort than the currently used methods
 on distributing user credentials, finding the right place for them to be
