@@ -1678,7 +1678,7 @@ devices do not need to be working at their maximum capacity. The
 details of how this is scheduled is out of scope of this thesis.
 
 Instead, we study interfaces of AA.  The main points here are the existing
-infrastructure (phones, internet access, Wi-Fi access points),  a strong
+infrastructure (phones, internet access, Wi-Fi access points),  strong
 authentication (two-factor), and authentication methods
 (EAP-SIM, EAP-AKA, EAP-AKA').
 
