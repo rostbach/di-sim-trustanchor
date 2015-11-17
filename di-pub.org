@@ -2054,42 +2054,42 @@ similar \cite[p.4]{rfc5608}.
 #  or similar ``getting into VLAN'' attribute
 # if standard RADIUS messages do not suffice.  VSAs allow a vendor to use
 # extra 255 attributes as they wish. 
-There exists RADIUS attribute types for directing user into specific
+There exist RADIUS attribute types for directing user into a specific
 VLAN. If those do not suffice, there are also special Vendor Specified
-Attributes (VSA). VSAs allow vendors to define up to 255 own
-attributes that can be used in provisioning in homogeneous environment. 
+Attributes (VSA). VSAs allow vendors to define up to 255 
+attributes of their own that can be used in provisioning in a homogeneous environment. 
 
 
 # [cite rfcXXX].  
 That way (3rd party) authentication server can decide which network
-segment the device would be put in.  In our case, admin users are put in
+segment the device will be put in.  In our case, admin users are put in
 to the management network.  Yet, usually RADIUS's ACCESS-ACCEPT message,
 which means AuthN and AuthZ were successful,  puts the user in
-default network, i.e., it just gives basic access, because 
+the default network, i.e., it just gives basic access, because 
 # As for other
 # provisioning parameters, 
 not all end devices support those provisioning parameters.
 
 In the first prototype it is enough to identify an authorized
 smartphone's SIM.  The smartphone holding the authorized SIM is granted access to
-the parts of the management network and it is authenticated strongly.  User
+ parts of the management network and it is authenticated strongly.  User
 management is outsourced to the MNO, which
-already has provided SIM cards to users. What remains, is the adding
+already has provided SIM cards to users. What remains is the adding
 of the user's IMSI to the authorized users' list. That list can be
-located on diverse places, as can be seen in Section [[#sec:scenarios]].
+located in diverse places, as can be seen in Section [[#sec:scenarios]].
 # ### 
 
 # explain provisioning? 20150702
 
 After authentication and authorization have succeeded, WPA2 session key
-creation occurs between AP and the smartphone. 
+creation occurs between the AP and the smartphone. 
 The authenticator has opened a port to the smartphone for
 access. It specifically has opened an access to the management network for
 the configuration changes. 
-The local RADIUS (if existing) and AP have trail of a successful
+The local RADIUS (if existing) and AP have a trail of a successful
 authentication and they know which IMSI has successfully authenticated in
 the home network. They also know the mapping between IMSI and temporal TMSI for
-cases when the smartphone later would need re-authentication.
+cases where the smartphone later would need re-authentication.
 
 
 Even though the AP now has authenticated the smartphone user, the managed devices still 
@@ -2097,10 +2097,10 @@ need to have their own access control.
 # [2015/05/11 NEW! This must be told everywhere, devices still have
 # their own access control! 
 They may consult a local RADIUS server, which tells whether there currently is an
-authenticated smartphone present and then the changes going
+authenticated smartphone present, and then the changes going
 to the management network would be allowed. Smartphone could also have
 received the login credentials to devices through earlier 
-configuration information and use them after getting into management
+configuration information and use them after getting into the management
 network. This kind of AA would happen on upper, application layer
 (layer 7), while AA discussed here (802.1X) happens already on lower, media layer (layer 2).
 
@@ -2142,10 +2142,10 @@ network. This kind of AA would happen on upper, application layer
 
 The AA components AuthN and AuthZ can be found in diverse location
 combinations
-depending, who provides those services and are there any caching
+depending on who provides those services and whether there is any caching
 available. 
 # This Chapter presents 5 scenarios for possible locations of AuthN and 
-Table[[table-scenarios]] represents the non-inclusive list of locations of
+Table[[table-scenarios]] presents the non-inclusive list of locations of
 AuthN and AuthZ in 5 scenarios. The locations in the table are marked as (i)
 for internal or (e) for external and the scenarios are
 described in detail after the table. Authenticator is the entity which
@@ -2179,19 +2179,19 @@ we are considering offline or recurring AuthN (in Scenario IV).
 # The authenticator or 
 The AuthZ component may be placed more freely. It can be at
 the MNO (I), at home (II-IV), or at the external provider (III).
-Authenticator on the other hand must stay at home, and it always 
+The authenticator, on the other hand, must stay at home, and it always 
 gives the final decision about the access.
-If the AuthZ decision is made on remote, 3rd party AuthZ server (I,III), 
+If the AuthZ decision is made on a remote 3rd party AuthZ server (I,III), 
 then that server needs to have either local AuthZ data or access to 
 cloud service's AuthZ data.
-Further it seems inevitable, that delegating AuthZ function 
+Further it seems inevitable that delegating AuthZ function 
 would simplify home network management. Because the cloud
 already has AuthZ data of eligible IMSI accounts,
-then instead of putting logic on CPE for AuthZ, CPE
+then, instead of putting logic on CPE for AuthZ, CPE
 could just trust the 3rd party service's AuthZ message, which in case
 of RADIUS is either /ACCESS-ACCEPT/ or /ACCESS-REJECT/.
-The last scenario (V) represents the case, when the environment has
-not yet been bootstrapped so neither AuthN nor AuthZ is ready yet.
+The last scenario (V) presents the case, where the environment has
+not yet been bootstrapped, so neither AuthN nor AuthZ is ready yet.
 
 
 #  [Put the table maybe after the scenarios?]
