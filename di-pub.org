@@ -1807,11 +1807,11 @@ is ``Sonera ID'' while MNO Elisa calls it ``Elisa Mobiilivarmenne''.
 
 When AuthN and AuthZ comes from the outside, one possibility is to use a
 federated Mobile AuthN Service, which then is connected to  MSSP (Mobile
-Signature Service Provider) with ETSI-204. Benefits for ETSI-204
-federation are similar to those with federation of Wi-Fi groups
+Signature Service Provider) with ETSI-204. The benefits of ETSI-204
+federation are similar to those of a federation of Wi-Fi groups
 mentioned in Section [[sec:radius]]. No home device needs to implement it
 at home, but also MNO benefits as it sees the service as just one
-client instead of all possible clients.  Without the federation, the mobile AuthN services would need to be
+client instead of all the possible clients.  Without the federation, the mobile AuthN services would need to be
 multiplied with the number of the separate home networks needing authentication service.
 
 # [write to sentences, analyze, and open]
@@ -1839,20 +1839,20 @@ multiplied with the number of the separate home networks needing authentication 
 # source:https://wiki.moonshot.ja.net/display/HOME/Home
 Project Moonshot \cite{moonshot}, is in its early phases. Its goal is
 to enable federated access universally to applications and
-services. If it worked and was used together with MSSP, it may offer
+services. If it works and is used together with MSSP, it may offer
 SIM-based SSH access to authenticator. Modifications are then needed 
-both in SSH server and client. Additionally, EAP must be used through
-tunneling, for example as an inner protocol of EAP-TTLS.
+both in the SSH server and the client. Additionally, EAP must be used through
+tunneling, for example, as an inner protocol of EAP-TTLS.
 # end of fed services.
 
 # *** Web portal with SMS passwd
 # Did'nt I just explain these external providers are needed?
-At this point a question might rise, why these external service
+At this point, one might rise why these external service
 providers are needed. Is it not easier and simpler to just send 
-an SMS with password code to the smartphone, when access confirmation is needed?
-Mobile SIM provides two-way AuthN part as discussed earlier.
-Without need for strong AuthN, that model would indeed be 
-simpler, but using SIM also solves initial key distribution problem.
+an SMS with a password code to the smartphone, when access confirmation is needed?
+Mobile SIM provides a two-way AuthN part as discussed earlier.
+Without the need for strong AuthN, that model would indeed be 
+simpler, but using SIM also solves the initial key distribution problem.
 Additionally, mutual AuthN problem would still need to be solved:
 Who sent that password and where that password should be inserted?
 
