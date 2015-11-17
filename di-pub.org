@@ -909,23 +909,23 @@ RADIUS messages are normally not protected from eavesdropping, but they have
 integrity fields to notice if they have been tampered with.
 # \cite[p.13 vai 131?]{nakhiri-AAA}
 The integrity field is called a Message Authenticator.
-Notice the use of the term /authenticator/ in different context here, not
+Notice the use of the term /authenticator/ in a different context here, not
 meaning 802.1X's authenticator.
 When using RADIUS to AuthN and AuthZ, Requests can only belong to ACCESS-REQUEST messages while
-Responses can be any of ACCESS-ACCEPT, ACCESS-REJECT, or ACCESS-CHALLENGE message.
+Responses can be either an ACCESS-ACCEPT, ACCESS-REJECT, or ACCESS-CHALLENGE message.
 The Message Authenticator field is sent as last Attribute Value Pair (AVP)
-of each RADIUS message and it can belong 
+of each RADIUS message, and it can belong 
 to either Request or Response. \cite[p.20]{radiusbook}.
 
 # Random value is used in /Request/ Authenticators and  
 # MD5 hash in /Response/ Authenticators.
-The Request Authenticator is 16 octet long, random number in
-ACCESS-REQUEST message but the Response Authenticator for it is achieved
-by one-way MD5 digestion function. 
+The Request Authenticator is a 16-octet long, random number in an
+ACCESS-REQUEST message, but the Response Authenticator for it is achieved
+with a one-way MD5 digestion function. 
 # The Message Authenticator with MD5 digesting
 # might help in detecting those attacks.
-The digest is taken from concatenation of Code, ID, Length, corresponding
-Request\-Auth, Attributes, and a Secret and can look like 
+The digest is taken from the concatenation of Code, ID, Length, corresponding
+Request\-Auth, Attributes, and a Secret, and can look like 
 #+BEGIN_LaTeX
 $3fef65608\ldots 2a79$. 
 \begin{verbatim}
@@ -935,15 +935,15 @@ $3fef65608\ldots 2a79$.
 #+END_LaTeX
 The Secret is the shared secret which has been configured between
 RADIUS client-server pairs,
-and it protects some parts of traffic. 
+and it protects some parts of the traffic. 
 Different RADIUS client-server pairs may use different
-shared secrets and RADIUS server must separate them by client's IP address to
+shared secrets, and the RADIUS server must separate them according to the client's IP address to
 manage proxied RADIUS requests \cite{radiusbook}.
 
 # to the radius Security?
-An exception to above mentioned plain-text messaging are the user passwords.
+An exception to the above-mentioned plain-text messaging are the user passwords.
 If the user password was to be transmitted in RADIUS, it would be sent first
-through exclusive OR (XOR) function together with MD5 digested Secret
+through an exclusive OR (XOR) function together with an MD5 digested Secret
 and Request Authenticator.
 # \cite[p.133]{nakhiri-AAA}
 # padding?
@@ -962,7 +962,7 @@ User-Password = XOR(password, MD5(Secret | Request Authenticator))}
 # strings, and deliver messages
 
 
-In the following chapters it is discussed how the proxying servers take 
+In the following chapters, it is discussed how the proxying servers take 
 part in the AA decisions. Of main interest there is, if it is possible 
 # If RADIUS has been chained, it was not clear in the beginning of this
 # study, is it possible
