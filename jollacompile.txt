@@ -1,13 +1,6 @@
 afeafadeöäpå
 
-
-On rpm source package (SRPM) there
-
-
-ab2 builds packages on $HOME/rpmbuils
-
 There we have to have directory SOURCES for source packages
-
 
 A specification file wpa_supplicant.spec defines, how the 
 source is to be built, where it is installed, what components
@@ -57,6 +50,7 @@ authentication/association of the wlan driver.
 
 muokataan wpa_supplicant.spe fileä
 
+--turhaa--^^
 .......
 Yritetään rakentaa 2.5-1 versiota, ensin x86_64 alustalla
 (miksi 2.5-1?) 
@@ -71,61 +65,46 @@ error: Failed build dependencies:
 
 Joten ainakin nämä libnl-3.0, dbus-1, openssl ja readline-devel tarvitaan.
 i
+
 erot alkuperäiseen build-config:iin
-% diff build-config.orig build-config      ~/src/jolla/wpa_supplicant/rpm
-38a39,42
-> CONFIG_EAP_SIM=y
-> CONFIG_SIM_SIMULATOR=y
-> CONFIG_USIM_SIMULATOR=y
-> CONFIG_PCSC=y
+.......................
 
 
 
 
-kirjaudutaan jollaan
-% ssh jolla 
-Last login: Sun Oct 11 17:44:37 2015 from 192.168.2.1
-,---
-| SailfishOS 1.1.9.28 (Eineheminlampi) (armv7hl)
-'---
-[nemo@Jolla ~]$ pwd
-/home/nemo
-[nemo@Jolla ~]$ find / -name "*spec"
 
+Login to Mer Virtual machine to cross compile
 
-Varmuuden vuoksi sammutetaan systeemin oma wpa_supplicant service
-systemctl disable wpa_supplicant
-WPASUPP = /home/nemo/wpa-pscs/wpa_supplicant-pcsc-stripped
-Sailfish 2.0:ssa versio on edelleen 2.4, siksi käytetään sitä.
+1. Start Mer Virtual Machine image inside Virtualbox program.
 
-LD_LIBRARY_PATH=/usr/local/lib ${WPASUPP} -v
-v2.4 (malinen 2003-2015)
+This opens an ssh server which by default listens on port 2222 on
+localhost. One can use SSH keypair authentication to get there. 
+(mersdk is an SSH private key of type PEM RSA)
 
-cross compile tapahtuu niin, että käynnistetään virtuaalikone
+ssh -l mersdk -p 2222 \
+    -i ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk 
+     localhost
 
-...
-
-
-kirjaudutaan ssh:llä käyttäen ssh-avainta localhostin portiin XXXX
-.../
-
-ssh -i sailfish/mersdk/ssh/mersdk/authorized_keys localhost:XXXX
-
-tämän voi nopeuttaa laittamalla omaan ~/.ssh/config tiedostoon pätkän
-Host mer
-Hostname localhost
-User mersdk
-Port 2222
-IdentityFile ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk
-
-
-% ssh mer                                                       ~
 Last login: Sun Nov 15 09:50:47 2015 from 10.0.2.2
 [mersdk@SailfishSDK ~]$  
 
-## isäntäkoneen kotihakemisto on liitetty virtuaalikoneeseen hakemistoksi  share/
+# User's home directory from the host machine is connected to virtual machines
+# folder /home/mer/share 
+
+# This virtual machine's architecture is x86.
+[mersdk@SailfishSDK ~]$ uname -rvm
+3.6.11-10.1.17.jolla #1 SMP PREEMPT Sat Jun 20 01:53:22 UTC 2015 i686
+
+# Move to sandboxed armv7hl architecture (armv7hl) for compiling
+[mersdk@SailfishSDK ~]$ sb2 -t SailfishOS-armv7hl -R
+
+# Now we are running (with virtual root-user) in armv7l architecture
+[SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # uname -rvm
+3.6.11-10.1.17.jolla #1 SMP PREEMPT Sat Jun 20 01:53:22 UTC 2015 armv7l
 
 
+
+i.................COMPILE................
 Q1: miten haettu source rpm:llä 
 
  zypper in openssl
@@ -163,4 +142,99 @@ zypper install libnl
   153  ln -s wpa_supplicant-master-d948daecc827a2b4aac707a685a5be7119e597a3/ wpa_supplicant-2.4
 
 
+  154  cd -
+  155  rpmbuild -ba rpm/wpa_supplicant.spec 
+  # sääntö wpa_supplicantin käännökseen oikeaan paikkaan
+
+  165  cp rpm/build-config /home/mersdk/rpmbuild/SOURCES/build-config
+  166  rpmbuild -ba rpm/wpa_supplicant.spec
  
+  170  zypper in pcsc-lite
+
+  191  vim /home/mersdk/rpmbuild/SPECS/wpa_supplicant.spec
+
+----
+sb2 osuus
+
+[SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # 
+
+
+cd /home/mersdk/rpmbuild/SOURCES/pcsc-lite-1.8.13
+./configure ; make ; make install
+
+# This installed the pcsc-libraries into /usr/local/lib of virtual image.
+
+wpa_supplicant was also compiled in similar way. The needed option were 
+added to configuration file before compiling:
+
+> CONFIG_EAP_SIM=y
+> CONFIG_SIM_SIMULATOR=y
+> CONFIG_USIM_SIMULATOR=y
+> CONFIG_PCSC=y
+
+Then the configure and make programs took care of the rest.
+./configure ; make ; make install
+
+When wpa-supplicant was compiled and linked, it was stripped from
+debugging symbols to make its size to merely 15% of the original size.
+<<<<<<<<<<<<<<<<< 
+#ls -s wpa_supplicant-pscs
+5788 wpa_supplicant-pcsc
+
+# strip wpa_supplicant-pcsc
+# ls -s wpa_supplicant-pscs
+876 wpa_supplicant-pcsc
+>>>>>>>>>>>>>>>>>>>>
+
+Finally programs wpa_supplicant-pcsc and corresponding libpcsclite.so.1 library were copied to jolla phone, which was connected to the computer with an USB cable.
+
+scp wpa_supplicant-pcsc nemo@jolla:
+scp libpcsclite.so* nemo@jolla:/usr/local/lib
+
+
+# kopioidaan trombonen kotihakemistoon käännetty (tai alkup?) wpa_supp and from there
+  331  cp rpmbuild/RPMS/armv7hl/wpa_supplicant-2.4+git3-1.15.1.armv7hl.rpm /home/mersdk/share/
+
+.................COMPILE.ENDS...............
+
+
+===========================================
+Running the new binary on real smartphone.
+
+1. login to Jolla phone
+
+% ssh jolla 
+Last login: Sun Oct 11 17:44:37 2015 from 192.168.2.1
+,---
+| SailfishOS 1.1.9.28 (Eineheminlampi) (armv7hl)
+'---
+[nemo@Jolla ~]$ pwd
+/home/nemo
+
+
+# We now can use inside the real physical smartphone this newly compiled
+# version which uses uses a configuration file instead of a SIM card.  To make
+# sure, that it does not conflict with an existing wpa_supplicant on the phone,
+# we first disable the system version and use manually our version. 
+
+<<<<<
+[nemo@Jolla ~]$ systemctl disable wpa_supplicant
+>>>>>
+
+Last thing to notice, is that because the /libpcsclite/ libraries are in non-standard
+place (in /usr/local/lib), we must start wpa_supplicant with the correct
+dynamic library path environment value otherwise an error occurs.
+
+...............
+## An example of running program gives out the version information without and with 
+ 
+[nemo@Jolla ~]$ export WPASUPP=/home/nemo/wpa-pscs/wpa_supplicant-pcsc-stripped
+
+[nemo@Jolla ~]$ ${WPASUPP} -v
+./wpa_supplicant-pcsc-stripped: error while loading shared libraries: 
+libpcsclite.so.1: cannot open shared object file: No such file or directory
+
+[nemo@Jolla ~]$ LD_LIBRARY_PATH=/usr/local/lib ${WPASUPP} -v
+v2.4 (malinen 2003-2015)
+...............
+
