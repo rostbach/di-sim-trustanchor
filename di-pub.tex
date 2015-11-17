@@ -1,4 +1,4 @@
-% Created 2015-11-17 ti 17:09
+% Created 2015-11-17 ti 17:50
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -937,23 +937,23 @@ should still be provisioned first, which would defeat what we want to
 achieve in easy user experience.
 
 
-Disadvantages with SIM are dependency on mobile operator and internet
+Disadvantages with SIM are the dependency on the mobile operator and internet
 connection, although disconnectivity issues are later addressed
 partly in Section \ref{sec:disconnections}.
-Using smartphone may cost money, either to client or to service
-provider, but costs could be lower than using SMS, because 
-the network  used is IP network instead of cellular phone network.
+Using a smartphone may cost money, either to the client or to the service
+provider, but the costs could be lower than using an SMS, because 
+the network  used is an IP network instead of a cellular phone network.
 
 In many parts, SIM variants of EAP are simpler than other EAP
-variants to mobile client.  Table\ref{table-peapsim} compares the setup of Wi-Fi
+variants to the mobile client.  Table\ref{table-peapsim} compares the setup of Wi-Fi
 in clients of one existing organization to EAP-SIM. The example 
 is taken from setting up Nokia Communicator model E90, but in general,
-same options are also needed for other clients, also with laptops. It
-is noteworthy, that plain EAP-SIM will not support identity hiding and
-that will be later discussed further. If we added PEAP
-also to EAP-SIM (in last column of Table\ref{table-peapsim}), comparison would be more fair.
+the same options are also needed for other clients, also with laptops. It
+is noteworthy that plain EAP-SIM will not support identity
+hiding. This will be  discussed further later on. If we also added PEAP
+ to EAP-SIM (in last column of Table\ref{table-peapsim}), the comparison would be more fair.
 As can be seen from the table, leaving certificates out from the environment
-makes client setup easier with the price of revealing smartphone user's
+makes the client setup easier with the price of revealing the smartphone user's
 identity.  
 
 
@@ -987,12 +987,12 @@ Identity hiding: &  &  &  & \\
 
 \section{Analysis of EAP-SIM protocol}
 \label{sec-2-6}
-Bird's-eye view to the EAP-SIM protocol messaging between the
-smartphone, AP, an authentication server and an MNO with its Home Location
+A bird's-eye view to the EAP-SIM protocol messaging between the
+smartphone, an AP, an authentication server, and an MNO with its Home Location
 Registry Authentication Center (HLR\_AuC) is described in
 Figure\ref{fig:eap-sim-bird}.  The traffic is EAP on the left, RADIUS in the
-middle, and MAP/SS7, which is an mobile connection application running
-over signaling system (SS7) used in cellular networks, on the right.
+middle, and MAP/SS7, which is a mobile connection application running
+over a signaling system (SS7) used in cellular networks, on the right.
 
 
 \begin{figure}[htb]
@@ -1009,9 +1009,9 @@ Protocol analysis of full EAP-SIM authentication is described
 in Figure\ref{fig:eap-sim-radius}.
 Important parameters for this work are IMSI, NONCE, and triplet values
 RAND, SRES, and Kc. 
-From traffic between Supplicant (here smartphone) and authenticator (in AP)
-we can see that IMSI is used first in message 3. IMSI is the
-identity, which authentication server would next try to challenge as
+From the traffic between the Supplicant (here smartphone) and the authenticator (in AP)
+we can see that IMSI is first  used  in message 3. IMSI is the
+identity which the authentication server would next try to challenge as
 part of the AuthN and for which the AuthZ would be checked.
 
 
@@ -1021,19 +1021,19 @@ part of the AuthN and for which the AuthZ would be checked.
 
 
 All EAP-SIM derivatives provide mutual authentication.
-An operator (network) is authenticated with help of a nonce,
-which is by definition ``number used only once'' and can
-be thought as a client's challenge to the network.
+An operator (network) is authenticated with the help of a nonce,
+which is by definition ``a number used only once'' and can
+be thought of as a client's challenge to the network.
 The nonce is transmitted in the message 7 in Figure\ref{fig:eap-sim-radius}.
-The client later checks in the process 13, whether RAND values 
+The client later checks in the process 13 whether the RAND values 
 from
 the operator were digested with the correct nonce and so authenticates
 the operator.
 
-The client in turn is authenticated, when the authentication server
+The client in turn is authenticated when the authentication server
 generates a challenge with an aid of a triplet from the MNO and the
 client responses to the challenge correctly after processing it with
-its own \emph{Ki}.  Correct answer would be SRES which the Authentication
+its own \emph{Ki}.  The correct answer would be SRES which the Authentication
 server received in message 10.
 \begin{figure}[htb]
 \centering
@@ -1046,49 +1046,49 @@ server received in message 10.
 After mutual authentication, the AuthN phase has been completed. The
 authentication server completes the AuthZ by sending the authenticator either
 an Access-Accept or Access-Deny RADIUS message. 
-Accept message triggers 802.1x protocol to open a virtual port in AP
-and lets the WPA2 process continue in exchanging WPA2 session keys. 
+An accept message triggers 802.1x protocol to open a virtual port in the AP
+and lets the WPA2 process continue exchanging WPA2 session keys. 
 
 Both parties have now retrieved the same trusted key \emph{Kc}. The
-authenticator has received it directly from RADIUS message 10 and the
+authenticator has received it directly from the RADIUS message 10, and the
 smartphone has generated it using its own secret \emph{Ki} key in
-process 13.
-Therefore the derivation of secret session key for WPA2 is possible.
+the process 13.
+Therefore the derivation of a secret session key for WPA2 is possible.
 
-After the session has been set, IMSI may be left out and a temporal IMSI
-(TMSI) can be used instead to hide client's identity, for example in
-fast re-authentication case to reduce the risk of exposing the client's
-IMSI unnecessarily. Unfortunately, at that point, IMSI has already
+After the session has been set, the IMSI may be left out and a temporal IMSI
+(TMSI) can be used instead to hide the client's identity, for example, 
+in a  fast re-authentication case to reduce the risk of exposing the client's
+IMSI unnecessarily. Unfortunately, at that point, the IMSI has already
 been exposed at least once in plain text, namely in message 3.
 
 TMSI is composed of a pseudonym and a realm part and can be a
 string. So, one can send 
 \texttt{my-string-which-can-change@…operator.domain} instead of 
-IMSI number as an identity. 
-It must be noted, that TMSI used here differs from TMSI used in 3GPP
+the IMSI number as an identity. 
+It must be noted that the  TMSI used here differs from the TMSI used in 3GPP
 networks. Those context must not be mixed, otherwise the security that
 they bring may decrease, i.e. one must not use the TMSI received from
-3GPP as TMSI in EAP-SIM.
+3GPP as a TMSI in EAP-SIM.
 \section{Trust}
 \label{sec-2-7}
 
-Secure communication has many layers and on its base lies trust. 
+Secure communication has many layers, and on its base lies trust. 
 Only after completing the trust setting phase, it is meaningful to complete
 the other security layers. For example, secret keys enable encrypted
-communication, but the keys need to be delivered first through a trusted
-channel. Same applies to public key infrastructure solutions, when
-verifying the public keys and so it can be seen that trust
+communication, but the keys need to be delivered through a trusted
+channel first. The same applies to public key infrastructure solutions when
+verifying the public keys. Thus, we can see that trust
 really is the first layer to be fixed.
 
 
 
 Even without trust, some form of secure asymmetric key-exchange is achievable
 with Diffie-Hellman key-exchange \cite{diffie1976new}. Unfortunately, it is vulnerable
-to Man-in-the-middle(MitM) attacks, where the protocol does not notice, 
-if messaging has gone through a third party, which impersonates itself to 
-both ends as being the corresponding messaging partner. MitM can
-read and decrypt encrypted messages and forward possibly changed message with
-a correct looking signature.
+to Man-in-the-middle (MitM) attacks, where the protocol does not
+notice if messaging has gone through a third party impersonating as
+the corresponding messaging partner to both ends.
+MitM can read and decrypt encrypted messages and forward the possibly changed message with
+a correct-looking signature.
 With trust set between two devices, i.e.,  if they can securely
 authenticate each other, secret communication is achieved. 
 Secure network configuration and credential exchange is then possible.
@@ -1096,15 +1096,13 @@ Secure network configuration and credential exchange is then possible.
 
 This trust can be used to include other components under the
 same trust circle in the home network. As mentioned earlier,  SIM
-and the MNO trust each other, hence mutual authentication between them is
-possible and that is later shown to be an important factor.  Also the
+and the MNO trust each other; hence mutual authentication between them is
+possible. That is later shown to be an important factor.  Also the
 key distribution problem mentioned in Chapter \ref{cha:intro} is solved
 already at a SIM card distribution phase.  As AuthN-AuthZ at home
-proceeds through the authenticator, then the authenticator must
-use it as a derivation function
-to extend trust 
- and
-deliver this information further
+proceeds through the authenticator, the authenticator must
+use it as a derivation function to extend trust 
+ and deliver this information further.
 
 
 
@@ -1115,66 +1113,66 @@ deliver this information further
 \label{sec-3-1}
 
 
-While a home network is any network located at person's home consisting
+While a home network is any network located at a person's home consisting
 of devices and their connections, either wired or wireless,
-this thesis avoids using term \emph{homenet} in that context,
+this thesis avoids using the term \emph{homenet} in that context
 because  homenet  is  reserved to 
 Internet Engineering Task Force Working Group's (IETF
-WG) homenet. IETF is responsible for  most internet technology standards and 
+WG) homenet. IETF is responsible for  most internet technology standards, and 
 WG homenet was started in year 2011.
-Current drive in homenet management is towards IPv6 environment
- as it fulfills future routing and addressing needs. 
-Homenet has five tasks to solve at home networks: service discovery, network security, 
-prefix configuration for routers, routing management and name
+The current drive in homenet management is towards the IPv6 environment
+ as it fulfills the future routing and addressing needs. 
+Regarding home networks, homenet has five issues to solve: service discovery, network security, 
+prefix configuration for routers, routing management, and name
 resolution \cite{homenet-charter}.
-As old technologies cannot be forgotten, home networks will be heterogeneous having both
-old and new technology, and their interoperatibility is important in
-planning future home networks. 
-Segmenting home in multiple subnets will also belong
-to homenets and includes areas for home members, guests,
-and management. It will not be so uncommon to have a cheap second
-network operator for backup purposes at home. Those issues are
-discussed in multihoming parts of homenet WG.
-Lastly, end-to-end access, i.e., restriction-free access is in their agenda. 
+As old technologies cannot be forgotten, home networks will be heterogeneous, having both
+old and new technology, and their interoperatibility is an important
+issue when planning future home networks. 
+Segmenting a home into multiple subnets will also be part of planning
+ homenets; for example, the home network can include areas for home members, guests,
+and management. It will not be uncommon to have an inexpensive second
+network operator subscription for backup purposes at home. Those issues are
+discussed in the  multihoming parts of homenet WG.
+Lastly, end-to-end access, i.e., restriction-free access is in IETF's agenda. 
 It was the key element for the Internet's success and enabled many new
-applications in the past, but has then had difficulties because of
+applications in the past, but has since  then faced difficulties because of
 firewalls and NATs. 
 
 
 
-Securing home network and its router's configuration can be done for
-example first limiting access to their administrative ports
+Securing a home network and its router's configuration can be done, for
+example by first limiting access to their administrative ports
 with static or dynamic extended access control lists (ACL) in
 routers. To get through administrative ports, i.e., to login and make
-configuration changes, there exists either an AAA or a local authentication.
-Authorized agents can then make changes, either direct in the device
-or through some management protocol such as SNMP or NETCONF (RFC6241
+configuration changes, there exists either an AAA or  local authentication.
+Authorized agents can then make changes, either directly in the device
+or through some management protocol, such as SNMP or NETCONF (RFC6241
 \cite{rfc6241}).  SNMP has been in use for over 30 years and is well
-supported in routers. Yet there are multiple version for this
+supported in routers. Yet there are multiple versions for this
 protocol. While earlier versions (v1, v2) did not provide any
-encryption of messages, version 3 knows for example about public keys
-and is secure enough when used correctly. NETCONF is modern protocol
-and runs over for example SSH or CoAP protocols.
+encryption of messages, version 3 knows, for example, about public keys
+and is secure enough when used correctly. NETCONF is a modern protocol
+and runs over SSH or CoAP protocols, for example.
 
 
-Customer Premises Equipments (CPE) such as ADSL broadband routers or
-set-top boxes, connect customer's network to operator's network.
-Management of CPEs on the border of home network and operator has 
-existing protocols. For example, TR-069 standard \cite{iptvtr069} for CPEs
+Customer Premises Equipment (CPE), such as ADSL broadband routers or
+set-top boxes, connect the customer's network to the operator's network.
+There are existing protocols for managing  CPEs on the border of home
+network and operator. For example,  TR-069 standard \cite{iptvtr069} for CPEs
 has been used to implement self-configuration archi\-tecture in
 home networks \cite{tr069rachidi2011}.
 
 
 RFC7368 \cite{rfc7368} from Arkko about IPv6 Home Networking Architecture Principles 
 defines the borders of the home network and states that
-internal borders in home network should possibly be automatically
-discovered. Limiting those borders to specific
+internal borders in a home network should possibly be automatically
+discovered. Limiting those borders to a specific
 interface type would make it difficult to connect different realms locally.
 The same document continues stating
-that while home network should self-configure and self-organize itself as
+that while a home network should self-configure and self-organize itself as
 far as possible, self-configuring unintended devices should be
-avoided and let the home network user decide whether device becomes trusted.
-So, these statements reveal us that home network environment still needs
+avoided, and the home network user should be let to decide whether a device becomes trusted.
+So, these statements show that the home network environment still needs
 external configuration even with the proposed automation aids.
 
 \section{Centralization trends in management}
