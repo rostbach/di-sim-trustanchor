@@ -548,9 +548,9 @@ CoAP is suitable for IoT devices having constrained resources.
 The managers operate in the cloud with the configuration data and the
 cloud verifies those managers,
 # The cloud has already verified the operators in the cloud
-but the question that remains, is how to connect the cloud service to the home network
+but the question that remains is how to connect the cloud service to the home network
 through the local controller securely. The local controller at home
-would approve the changes and a smartphone is assumed to function in
+would approve the changes, and a smartphone is assumed to function in
 the local controller role. It will operate as a bridge between the cloud and the home network.
 See Figure[[fig:localcontroller]] for the design of this architecture.
 
