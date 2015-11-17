@@ -2201,13 +2201,13 @@ not yet been bootstrapped, so neither AuthN nor AuthZ is ready yet.
 <<scenario-i>>
 The first AA-scenario is presented here thoroughly as an example.
 The goal is to make the smartphone trusted to the home network and
-later proceed to trusted configuration change.
+later proceed to  a trusted configuration change.
 # Other scenarios 
 # do not get such treatment.
 #   more carefully than the others
 # to get basic understanding of flow. Aims to configuration change
 The steps are numbered and explained in detail in Figure[[fig:scenario-I]].
-The configuration change is allowed, if CPE gets ACCEPT message from
+The configuration change is allowed if CPE gets an ACCEPT message from
 MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
 #  (BaaS [def.])
 # or proxy BaaS[def.def.].
@@ -2251,17 +2251,17 @@ MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
 5. A CPE (AP) forwards the authentication to an MNO's RADIUS server
    using RADIUS protocol.
 6. The MNO has RADIUS server which uses a HLR-AuC for authentication
-   triplets. This RADIUS continues the authentication process until to
-   the end. The MNO also asks (AuthZ phase) from the Cloud, whether
+   triplets. This RADIUS continues the authentication process until 
+   the end. The MNO also asks (AuthZ phase)  the Cloud whether
    IMSI user has an admin role.  The MNO returns in a RADIUS message
    either /ACCESS-ACCEPT/, if user is both known AND has admin role,
    or /ACCESS-REJECT/, if either property fails.
 7. The CPE receives this ACCEPT or REJECT. If there were other
    RADIUSes between the CPE and the MNO, they would have acted as
    proxy RADIUS servers.
-8. IF ACCEPTed, then the smartphone is both authenticated and
-   authorized and it now can send configuration change messages to the
-   CPE, which recognizes them coming from an authorized network.
+8. If ACCEPTed,  the smartphone is both authenticated and
+   authorized and can now send configuration change messages to the
+   CPE, which recognizes them as coming from an authorized network.
 
 
 # [ alternative presentation of flow, II: textual paragraph. Which one
@@ -2289,13 +2289,13 @@ MNO. Allowed users have been inserted earlier to the MNO from the Cloud.
 # *** Scenario II: AuthZ from own tables, AuthN from MNO
 <<scenario-ii>>
 
-In the second scenario (Figure[[fig:scenario-II]]), AuthN is asked from an MNO but
+In the second scenario (Figure[[fig:scenario-II]]), AuthN is asked from an MNO, but
 AuthZ is checked from a local database. Local data comes from a data
-model, i.e., from the configuration data and it will be saved in CPE,
-or some other place within the home network. Benefit of local roles is
-that administrative users can be held at local base. Even, if some
-intruder would get positive AuthN result, the AuthZ still would deny
-him the access. When we think, that local role cache only involves few
+model, i.e., from the configuration data, and it will be saved in CPE
+or some other place within the home network. The benefit of local roles is
+that administrative users can be held at a local base. Even if some
+intruder got a positive AuthN result, the AuthZ  would still deny
+him the access. When we think that a local role cache  involves only a few
 IMSI numbers, this is administratively tolerable.
 
 # which has received model earlier.
