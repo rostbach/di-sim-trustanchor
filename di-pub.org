@@ -1996,11 +1996,11 @@ The decision can take place at the border of the network or a specific segment.
 # every other router. But is that not then circular reasoning? 
 
 An example of a deeper access controlling  solution would be a traditional firewall and packet
-inspection in the interconnects of segments, but even more complex and modern model
+inspection in the interconnects of segments, but even a more complex and modern model
 would be the de-perimeterization trend set originally by Open Group's
 Jericho Work Group \cite{jericho2004} in 2004, that will not leave trust verification to
-perimeters of network (firewalls and application proxies), but 
-always handles traffic as coming from unreliable source.
+the perimeters of the network (firewalls and application proxies), but 
+always handles traffic as coming from an unreliable source.
 One implementation of de-perimeterization is 
 Google's BeyondCorp \cite{2014-beyondcorp}, 
 where traffic always travels through Access Control Engine
@@ -2016,19 +2016,19 @@ inside networks.
 
 On our chosen model, on the other hand, once a user has been authorized into a management network, access
 will stay open for him, at least for a (predefined) limited time.
-So, instead of checking user's credentials each time data is received,
-this model only checks, from where data is received. 
+So, instead of checking a user's credentials each time data is received,
+this model only checks where data is received from. 
 Data received from the management network is allowed for changes.
 It is arguably a lighter method than to always make 
 full AuthN and AuthZ but may suffice here, at first.
 
 
 # GOOD   trust bind
-When the home network needs a secure link to the smartphone, earlier
-mentioned trust is the first one needed.  The trust is achieved by
-checking, whether the smartphone can access the home management
-network using only its trusted SIM-card providing AuthN. AuthZ in
-turn is compared to existing roles of IMSI in the authenticator.
+When the home network needs a secure link to the smartphone, the trust
+mentioned earlier is the first one needed.  The trust is achieved by
+checking whether the smartphone can access the home management
+network using only its trusted SIM card providing AuthN. AuthZ in
+turn is compared to the existing roles of IMSI in the authenticator.
 
 
 # *** [This has been explained in 802.1X Section in the begin. TBD]
@@ -2042,11 +2042,11 @@ turn is compared to existing roles of IMSI in the authenticator.
 
 # *** "provisioning of service": [combine :: v1 ::]
 
-When AP forwards authentication request to the next RADIUS server, it
+When an AP forwards an authentication request to the next RADIUS server, it
 can ask or receive, beside AuthN and AuthZ, other service parameters,
 such as provisioning. RADIUS can carry those extra attributes in its
 ACCESS-ACCEPT message.  In essence, AuthZ part itself can be thought
-as a one type of service provisioning.  That would then allow the
+as  one type of service provisioning.  That would then allow the
 smartphone to connect to a specific management network and access the
 devices either via command line interfaces, SNMP, or
 similar \cite[p.4]{rfc5608}.
