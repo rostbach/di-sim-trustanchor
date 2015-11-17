@@ -1461,14 +1461,14 @@ they bring may decrease, i.e. one must not use the TMSI received from
 ** Trust
 
 # Trust is the base.
-Secure communication has many layers and on its base lies trust. 
+Secure communication has many layers, and on its base lies trust. 
 # Without trust, any added encryption or secrecy loses its value. 
 # there is little help with any added encryption or secrecy. 
 # Setting trust is usually not an easy task, but only after
 Only after completing the trust setting phase, it is meaningful to complete
 the other security layers. For example, secret keys enable encrypted
-communication, but the keys need to be delivered first through a trusted
-channel. Same applies to public key infrastructure solutions, when
+communication, but the keys need to be delivered through a trusted
+channel first. Same applies to public key infrastructure solutions, when
 verifying the public keys and so it can be seen that trust
 really is the first layer to be fixed.
 
