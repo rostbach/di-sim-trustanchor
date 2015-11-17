@@ -1130,7 +1130,7 @@ signature application Mobiilivarmenne (see Section [[sec:altmethods]]),
 they may have different keys and codes.
 
 
-The passwords, keys and cards are distributed by the MNO.
+The passwords, keys, and cards are distributed by the MNO.
  and they 
 # MNO distributes SIM card and
 provide the mobile network connectivity to customers of the MNO.  The
