@@ -4725,7 +4725,7 @@ admin IMSIs (roles).
 
 # [Description of General Bootstrapping architecture (GBA) vs. yet
 # another custom architecture. Maybe parts of architecture
-# such as using SIM-auth (EAP-SIM) or CallerID, how they differ. 
+# such as using SIM-auth (EAP-SIM) or Caller ID, how they differ. 
 # What is needed? How GBA could be used here?]
 
 # [SIM card's anatomy: it has private key, MNO
