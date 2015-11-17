@@ -1048,7 +1048,7 @@ into a protected EAP(PEAP) \cite{peap} before sending
 it into air. In a wired network, those EAP messages are translated and encapsulated into RADIUS.
 
 The encapsulation is described in Figure[[fig:eap-layers]] where it can be
-seen, that the EAP messaging happens logically between the EAP peer and
+seen that the EAP messaging takes place logically between the EAP peer and
 the authentication server. On a lower transport layer between them
 there is an EAP authenticator, which transfers EAPOL messaging into
 RADIUS message.
