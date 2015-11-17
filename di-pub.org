@@ -990,7 +990,7 @@ The WPA (version 1)  was an early subset of then upcoming 802.11i standard,
 while the WPA2 is the full implementation, also denoted as IEEE
 802.11i-2004. The term WPA2 is used throughout the thesis.
 # WPA2 consist of client (WPA2-supplicant), Authenticator, and Authentication Server.
-Client software for 802.11i is called a WPA2-Supplicant and it is used
+Client software for 802.11i is called a WPA2-Supplicant, and it is used
 in wireless clients to communicate with the authenticator. 
 # The rest of the work will not make a difference between WPA and WPA2
 # versions, but simply denotes them as ``WPA''.
