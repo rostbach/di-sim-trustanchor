@@ -1428,19 +1428,19 @@ the process 13.
 Therefore the derivation of a secret session key for WPA2 is possible.
 
 After the session has been set, the IMSI may be left out and a temporal IMSI
-(TMSI) can be used instead to hide the client's identity, for example in
-fast re-authentication case to reduce the risk of exposing the client's
-IMSI unnecessarily. Unfortunately, at that point, IMSI has already
+(TMSI) can be used instead to hide the client's identity, for example, 
+in a  fast re-authentication case to reduce the risk of exposing the client's
+IMSI unnecessarily. Unfortunately, at that point, the IMSI has already
 been exposed at least once in plain text, namely in message 3.
 
 TMSI is composed of a pseudonym and a realm part and can be a
 string. So, one can send 
 =my-string-which-can-change@…operator.domain= instead of 
-IMSI number as an identity. 
-It must be noted, that TMSI used here differs from TMSI used in 3GPP
+the IMSI number as an identity. 
+It must be noted that the  TMSI used here differs from the TMSI used in 3GPP
 networks. Those context must not be mixed, otherwise the security that
 they bring may decrease, i.e. one must not use the TMSI received from
-3GPP as TMSI in EAP-SIM.
+3GPP as a TMSI in EAP-SIM.
 
 
 # [find the source or remove. ] 
