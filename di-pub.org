@@ -1156,7 +1156,7 @@ Access to Wi-Fi networks still needs a separate access credential,
 and that was the reason for developing EAP-SIM and later the
 derivatives EAP-AKA and EAP-AKA'.  The goal was to combine 
 the existing keys used in  GSM (Global system for Mobile communication)
-in a secure way to Wi-Fi access. Existing general purpose EAP-methods in 2004 were not
+in a secure way to Wi-Fi access. The general purpose EAP-methods existing in 2004 were not
 compatible with GSM protocols for this purpose. \cite[p.93]{hav-doc}
 # [More security stuff, operator-specific parts in AKA', explained here
 # if not already compared earlier. Just clarify the main points,
@@ -1174,7 +1174,7 @@ EAP-AKA'(AKA-PRIME).
 EAP-SIM is the original type created for GSM networks and defined 
 in RFC4186 \cite{rfc4186}.
 It is a challenge-response method and similar to AuthN used in GSM, 
-but it adds mutual AuthN, i.e., also the network is authenticated.
+but it adds mutual AuthN; i.e., also the network is authenticated.
 # received from MNO to authenticate SIM
 # GSM authentication protocol is used, but additionally client
 # adds a nonce, which must be received back from network in right form 
@@ -1186,10 +1186,10 @@ but it adds mutual AuthN, i.e., also the network is authenticated.
 #              protocol, network AuthN verified, if AP knows right
 #             session key. Test cases on this work.
 # based on right triplets. [Does not check AuthN Request itself??]
-Beginning from 3GPP networks, new types EAP-AKA and AKA' can be used.
+Beginning from 3GPP networks, the new types EAP-AKA and AKA' can be used.
 EAP-AKA is defined in RFC4187 \cite{rfc4187} and 
-uses 3GPP's AKA (Authentication and Key Agreement) protocol.
-It adds to EAP-SIM additional parameters \cite{rfc5448} such as
+uses the 3GPP's AKA (Authentication and Key Agreement) protocol.
+It adds to EAP-SIM additional parameters \cite{rfc5448}, such as
 sequence numbering from the MNO to protect replay attacks and more
 advanced digestion functions instead of SHA-1.
 Otherwise the protocol messaging is same as in  EAP-SIM.
@@ -1200,7 +1200,7 @@ Otherwise the protocol messaging is same as in  EAP-SIM.
 #             EAP-request/AKA-Challenge. Values SQN and AMF from SIM
 #             used for that. Incrementing SQN values eliminates replay
 #             attacks.  This is not tested here.
-Last, there exists EAP-AKA' that enhances AKA by including Service Set
+Finally, there exists EAP-AKA' that enhances AKA by including Service Set
 Identifier (SSID) 
 in the key derivation function, which limits the possibility of using possibly
 compromised network's nodes and keys. 
