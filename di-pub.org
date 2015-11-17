@@ -1545,9 +1545,9 @@ Segmenting a home into multiple subnets will also be part of planning
 and management. It will not be uncommon to have an inexpensive second
 network operator subscription for backup purposes at home. Those issues are
 discussed in the  multihoming parts of homenet WG.
-Lastly, end-to-end access, i.e., restriction-free access is in their agenda. 
+Lastly, end-to-end access, i.e., restriction-free access is in IETF's agenda. 
 It was the key element for the Internet's success and enabled many new
-applications in the past, but has then had difficulties because of
+applications in the past, but has since  then faced difficulties because of
 firewalls and NATs. 
 # 5 tasks:
 # o service discovery, 
