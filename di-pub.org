@@ -1853,16 +1853,16 @@ an SMS with a password code to the smartphone, when access confirmation is neede
 Mobile SIM provides a two-way AuthN part as discussed earlier.
 Without the need for strong AuthN, that model would indeed be 
 simpler, but using SIM also solves the initial key distribution problem.
-Additionally, mutual AuthN problem would still need to be solved:
-Who sent that password and where that password should be inserted?
+Additionally, the mutual AuthN problem would still need to be solved:
+Who sent that password, and where that password should be inserted?
 
-Mutual AuthN is important, because if fake access point were involved, the 
-dishonest admin could lure users to take part in Man in the Middle scenarios.
-For example, the smartphone user can start the authentication process
-to the AP which is located at neighbor and think that he is using
+Mutual AuthN is important because if a fake access point were involved, the 
+dishonest admin could lure users to take part in Man-in-the-Middle scenarios.
+For example, the smartphone user could start the authentication process
+to the AP located at the neighbor and think that he is using
 his own home AP. 
 The malicious neighbor AP (MitM) allows access to the user and starts 
-listening the traffic on AP's network interface. At that time, 
+listening the traffic on the AP's network interface. At that time, 
 MitM may capture from the smartphone  traffic, which may  include
 sensitive  data such as username, passwords, or even configuration data.
 It is not very difficult to even fake an SSH-server, if the 
