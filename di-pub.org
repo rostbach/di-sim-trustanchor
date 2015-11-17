@@ -1200,24 +1200,23 @@ Otherwise the protocol messaging is same as in  EAP-SIM.
 #             EAP-request/AKA-Challenge. Values SQN and AMF from SIM
 #             used for that. Incrementing SQN values eliminates replay
 #             attacks.  This is not tested here.
-Finally, there exists EAP-AKA' that enhances AKA by including Service Set
+Finally, there exists EAP-AKA' that enhances AKA by including a Service Set
 Identifier (SSID) 
 in the key derivation function, which limits the possibility of using possibly
 compromised network's nodes and keys. 
 
 
-  Using EAP-SIM means using the secret key inside SIM card with A3/A8
+  Using EAP-SIM means using the secret key inside a SIM card with A3/A8
 algorithms to generate valid responses for the challenges coming from 
 an MNO and to derive session keys.  The algorithms A3/A8 and their
 possible implementations (COMP128, COMP128v2, COMPv3) are not of
-interest in this work other than they are MNO specific or known reference algorithms.
+interest in this work. They can be MNO specific or known reference algorithms.
 
 
-EAP-SIM variants provide strong AuthN which means here two-factor
-AuthN.  One factor  is something you own (physical SIM) while  
-the another
-is  something you know (SIM card's PIN). Biometric factor, i.e., what you are,
-is not used here, but that would be a third different possible factor.
+EAP-SIM variants provide strong AuthN, which here means  two-factor
+AuthN.  One factor  is something you own (the physical SIM) while another
+is  something you know (the SIM card's PIN). Biometric factor, i.e., what you are,
+is not used here, but that would be a third  possible factor.
 # No need to explain strong authN, i.e., what you own, what you know,
 # what you are. well known fact?
 # Comparing these to
