@@ -1523,9 +1523,9 @@ use it as a derivation function to extend trust
 
 # [home network also in Chapter [[#cha:management]] ]
 
-While a home network is any network located at person's home consisting
+While a home network is any network located at a person's home consisting
 of devices and their connections, either wired or wireless,
-this thesis avoids using term /homenet/ in that context,
+this thesis avoids using the term /homenet/ in that context
 because  homenet  is  reserved to 
 # denotes home network as homenet, although the name 'homenet'
 # is reserved  to
