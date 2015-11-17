@@ -1561,30 +1561,30 @@ firewalls and NATs.
 # belongs also routing devices that segment network to diverse
 # domains.
 
-Securing home network and its router's configuration can be done for
-example first limiting access to their administrative ports
+Securing a home network and its router's configuration can be done, for
+example by first limiting access to their administrative ports
 with static or dynamic extended access control lists (ACL) in
 routers. To get through administrative ports, i.e., to login and make
-configuration changes, there exists either an AAA or a local authentication.
+configuration changes, there exists either an AAA or  local authentication.
 # ACLs in turn are defined  are secured from change by AAA. 
-Authorized agents can then make changes, either direct in the device
-or through some management protocol such as SNMP or NETCONF (RFC6241
+Authorized agents can then make changes, either directly in the device
+or through some management protocol, such as SNMP or NETCONF (RFC6241
 \cite{rfc6241}).  SNMP has been in use for over 30 years and is well
-supported in routers. Yet there are multiple version for this
+supported in routers. Yet there are multiple versions for this
 protocol. While earlier versions (v1, v2) did not provide any
-encryption of messages, version 3 knows for example about public keys
-and is secure enough when used correctly. NETCONF is modern protocol
-and runs over for example SSH or CoAP protocols.
+encryption of messages, version 3 knows, for example, about public keys
+and is secure enough when used correctly. NETCONF is a modern protocol
+and runs over SSH or CoAP protocols, for example.
 # NETCONF is...
 
 # two main class
 #  - in premises (console-access either local or remote)
 # - protocol-based (SNMP, NETCONF, etc.)
 
-Customer Premises Equipments (CPE) such as ADSL broadband routers or
-set-top boxes, connect customer's network to operator's network.
-Management of CPEs on the border of home network and operator has 
-existing protocols. For example, TR-069 standard \cite{iptvtr069} for CPEs
+Customer Premises Equipment (CPE), such as ADSL broadband routers or
+set-top boxes, connect the customer's network to the operator's network.
+There are existing protocols for managing  CPEs on the border of home
+network and operator. For example,  TR-069 standard \cite{iptvtr069} for CPEs
 # lähde ehkä ei ihan kerro TR-069 perusasioita..
 has been used to implement self-configuration archi\-tecture in
 home networks \cite{tr069rachidi2011}.
