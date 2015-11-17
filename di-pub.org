@@ -1035,7 +1035,7 @@ provides flexibility independent from underlying technology, whether
 wireless or wired,  and integration with AAA infrastructures, although
 it adds some overhead to AuthN \cite{pereniguez10}.
 # re-auth method to solve "amount of time" problem
-Different authentication methods, for example hashed passwords, TLS
+Different authentication methods, such as  hashed passwords, TLS
  certificates, or SIM/AKA using smartphone's SIM card,  can
 be used with EAP.
 This work uses EAP-SIM authentication method.
