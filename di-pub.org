@@ -1902,20 +1902,20 @@ fingerprint.
 #  after the
 # home network has received a trust anchor in the smartphone.  
 
-This chapter describes, how the smartphone becomes a trust anchor for
-the home network and how the change management happens after that.
-On its simplest, the smartphone connects with a Wi-Fi link to an
-AP in the home network and authenticates with SIM-card.
+This chapter describes how the smartphone becomes a trust anchor for
+the home network and how the change management takes place after that.
+At its simplest, the smartphone connects with a Wi-Fi link to an
+AP in the home network and authenticates with a SIM card.
 # AP functions here as an authenticator. 
 The resulting authorized connection brings a trust relationship
 between the smartphone (a local controller)
 and the home network (managed devices) anchoring the trust to the smartphone so that the 
 # configuration changes
-management can happen. 
+management can take place. 
 #  as long as the smartphone is present. 
-In essence, the precence of the smartphone at home
-opens the gate for the management, though it needs a little
-interaction on behalf the user.
+In essence, the presence of the smartphone at home
+opens the gate for the management, although it needs a little
+interaction on behalf of the user.
 
 
 
@@ -1966,19 +1966,19 @@ interaction on behalf the user.
 
    
 # segments
-Network can be divided into separate segments based on user's role and
-needs, such as guest or home members segment. The segments provide
+A network can be divided into separate segments based on the user's role and
+needs, such as guest or home members segment. The segments provide a
 base connectivity layer and simple separation. Different services,
-like disk storage, can force their own policy on application level.
-It is not defined here, if the segmentation is made physical or
+like disk storage, can force their own policy on the application level.
+It is not defined here if the segmentation is made physical or
 virtual (VLAN, Virtual LAN).  There is also a segment for devices
-management.  An analogy to the real world would be a hotel, where
+management.  An analogy to the real world would be a hotel where
 customers use public access corridors and doors, and service personnel
 privileged corridors and doors.
 
 
 # Access to the network segments is checked in routers with
-Router devices know, how to connect different segments and how the
+Router devices know, how to connect the different segments and how the
 path goes from segment A to segment B. Normally, they can also control
 access to the segments with the aid of access control lists (ACL), where
 decision is made based on current configuration or user's role.
