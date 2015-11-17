@@ -1657,26 +1657,25 @@ and as the most important fact, the trust anchor can be set to the smartphone.
 # 1.Updating the running software has become an import fact in computer
 # security, since non-patched software, which still there has been running 
 # 2.
-The users already are  centrally located  in operators' user databases
-in HLR-AuC.  To achieve the management paradigm change to a central configured one,
-we still need to bridge the home network to that model with a trusted local controller
+The users are already  centrally located  in operators' user databases
+in HLR-AuC.  To achieve the management paradigm change to a centrally configured one,
+we still need to bridge the home network to that model with a trusted local controller,
 and then resolve the work-flow of change management.
 
 
 Home network change management itself is mostly excluded from this work.
-For example, 
+For example, because of synchronization issues,
 # moved here from 4.3 (chosen design section)
-it is desirable, that changes in home network are done only through
-local controller, not at local device because of
-synchronization issues, even 
+it is desirable that changes in a home network are done only through
+a local controller, not at a local device, even 
 # but that will rise question for further studies
 if synchronizing algorithms such as Trickle \cite{rfc6206} were used in
-home network for configuration propagation. As another example,
+the home network for configuration propagation. As another example,
 configuration also includes
-power level settings of devices to save electricity based on usage
-profile. For example at nights or when there is nobody home, some
-devices do not need to be working at their maximum capacity, and
-details of how this scheduled is out of scope.
+power level settings in devices to save electricity based on the usage
+profile. For example, during the nighttime or when nobody is at home, some
+devices do not need to be working at their maximum capacity. The 
+details of how this is scheduled is out of scope of this thesis.
 
 Instead, we study interfaces of AA.  Main points here are an existing
 infrastructure (phones, internet access, Wi-Fi access points),  a strong
