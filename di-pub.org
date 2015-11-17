@@ -1109,12 +1109,12 @@ SIM or USIM inside UICC (Universal Integrated Circuit Card).
 The secret keys are hardware-protected and only usable for applications
 in a SIM card.
 The SIM's storage also includes a unique serial number ICCID 
-(Integrated Circuit Card Identifier) which identifies the SIM globally
+(Integrated Circuit Card Identifier) which identifies the SIM globally,
 #  A full ICCID is 19 or 20 
 # +358 50 3075923
- and a unique IMSI (International Mobile Subscriber Identity). IMSI is
+ and a unique IMSI (International Mobile Subscriber Identity). The IMSI is
 # IMSI is 14 or 15 digit long number and presented as 
-a composition of digits belonging to Mobile Country Code(MCC, 2
+a composition of digits belonging to the Mobile Country Code(MCC, 2
 digits), Mobile Network Code(MNC,2-3 digits) and Mobile Subscriber
 Identification Number(MSIN, 10 digits at most).
 It is not to be mixed with MSISDN (Mobile Station Integrated Services
