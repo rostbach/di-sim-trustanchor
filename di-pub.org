@@ -967,7 +967,7 @@ part in the AA decisions. Of main interest there is whether it is possible
 # If RADIUS has been chained, it was not clear in the beginning of this
 # study, is it possible
 to inject or modify AuthZ information in those proxying RADIUSes in
-cases, where AuthN and AuthZ are provided from different
+cases where AuthN and AuthZ are provided from different
  places \cite{rfc2607}. A secondary goal is to universally divide AA regarding 
 the client's domain in the federation.
 # tää viimeinen lause kaipaa selvennystä.
