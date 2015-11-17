@@ -1123,8 +1123,8 @@ Digital Network), which is the user's full international phone number.
 # [ More detailed SIM architecture? Java Card, CPU,?]
 
 
-SIM card usage can be controlled by two passwords: PIN and PUK.  PUK
-is used as a remedy, if PIN has been inserted wrong too many times.
+SIM card usage can be controlled with two passwords: PIN and PUK.  PUK
+is used as a remedy if PIN has been entered incorrectly too many times.
 If the card has other applications, for example mobile electrical
 signature application Mobiilivarmenne (see Section [[sec:altmethods]]),
 they may have different keys and codes.
