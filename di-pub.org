@@ -4769,7 +4769,8 @@ To use PKI for trust anchoring and AuthN in an empty environment,
 bootstrapping protocols are first needed.  The bootstrapping protocols
 in trust finding are used to bring the first trust anchor in an
 environment and later use that anchor to attach other devices to the
-same trust circle.  A draft from
+same trust circle.  
+# A draft from ... oli jo alussa
 
 Despite the etymology of name bootstrapping, ``Lift oneself by his own
 bootstraps'', bootstrapping usually needs some input from outside.
