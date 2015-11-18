@@ -3501,7 +3501,7 @@ Table[[version-table]] describes the components and their versions that were use
 MerSDK is shipped as a virtual image which runs inside Virtualbox.
 Starting the image opens an ssh server, which by default listens on
 port 2222 on localhost. One can use an SSH keypair authentication to get there.
-In following example, file /mersdk/ represent the private SSH key of type RSA.
+In the following example, file /mersdk/ represent the private SSH key of type RSA.
 #+BEGIN_EXAMPLE
 # ssh -l mersdk -p 2222 \
     -i ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk
@@ -3512,9 +3512,9 @@ Last login: Sun Nov 15 09:50:47 2015 from 10.0.2.2
 #+END_EXAMPLE
 As can be seen, the virtual machine's architecture is i686, i.e.,
 32-bit x86.
-We moved to sandboxed armv7hl architecture (armv7hl) with
-sb2 command and changed the user id to a virtualized root user.
-Earlier retrieved pcsc-lite package was compiled and installed. 
+We moved into the sandboxed armv7hl architecture (armv7hl) with
+sb2 command, and changed the user id into a virtualized root user.
+A  pcsc-lite package retrieved  earlier  was compiled and installed. 
 #+BEGIN_EXAMPLE
 [mersdk@SailfishSDK ~]$ sb2 -t SailfishOS-armv7hl -R
 [SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # uname -rm
@@ -3524,24 +3524,24 @@ Earlier retrieved pcsc-lite package was compiled and installed.
 [SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # ./configure ; 
 [SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # make install
 #+END_EXAMPLE
-The wpa_supplicant was compiled similar way. The needed option were
-added to configuration file before compiling.
+The wpa_supplicant was compiled in a similar way. The needed options were
+added to the configuration file before compiling.
 #+BEGIN_EXAMPLE
  CONFIG_EAP_SIM=y
  CONFIG_SIM_SIMULATOR=y
  CONFIG_USIM_SIMULATOR=y
  CONFIG_PCSC=y
 #+END_EXAMPLE
-After wpa-supplicant was compiled and linked, it was stripped from
-debugging symbols to make its size to merely 15% of the original size.
+After wpa-supplicant was compiled and linked, it was stripped of 
+debugging symbols to reduce its size to merely 15% of the original size.
 #+BEGIN_EXAMPLE
 # ls -s wpa_supplicant-pscs
 5788 wpa_supplicant-pcsc
 # strip wpa_supplicant-pcsc ; ls -s wpa_supplicant-pscs
 876 wpa_supplicant-pcsc
 #+END_EXAMPLE
-Finally, programs wpa_supplicant-pcsc and corresponding
-libpcsclite.so.1 library were copied to the jolla phone, which was
+Finally, the program wpa_supplicant-pcsc and a corresponding
+libpcsclite.so.1 library were copied to the Jolla phone, which was
 connected to the computer with an USB cable.
 #+BEGIN_EXAMPLE
 scp wpa_supplicant-pcsc nemo@jolla:
@@ -3549,11 +3549,11 @@ scp libpcsclite.so* nemo@jolla:/usr/local/lib
 #+END_EXAMPLE
 
 
-*** Running the new binary on real smartphone.
+*** Running the new binary on a real smartphone.
 
-We now could use inside the real physical smartphone this modified
-wpa_supplicant, which uses uses a configuration file instead of a SIM card.  To make
-sure, that it does not conflict with an existing wpa_supplicant on the phone,
+At this point, we were able to use inside the real physical smartphone this modified
+wpa_supplicant, which uses  a configuration file instead of a SIM card.  To make
+sure that it does not conflict with an existing wpa_supplicant on the phone,
 we first disabled the system version and used our version manually.
 
 #+BEGIN_EXAMPLE
