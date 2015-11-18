@@ -3713,21 +3713,21 @@ end-user hiding.
 This feature can be achieved with PEAP (Protected EAP) or TTLS, which
 chains different EAP-methods together and protects the inner EAP with
 an outer EAP. 
-The outer identity tells just the realm, where AuthN can be checked
-and inner identity reveals the real identity.  The inner identity is
+The outer identity tells just the realm where AuthN can be checked,
+and the inner identity reveals the real identity.  The inner identity is
 encapsulated inside the outer identity which functions as an
 envelope. 
-For example EAP-MSCHAPv2 (Microsoft's Challenge
+For example, EAP-MSCHAPv2 (Microsoft's Challenge
 Handshake Authentication Protocol, version 2) can be used inside PEAP.
 # [TBD: speak more with protocol terms?]
 
 
 # Used method to authenticate depends on the inability to fake IMSI.
-EAP-SIM would provide identity protection, if it was used together
+EAP-SIM would provide identity protection if it was used together
 with PEAP. There PEAP would anonymize the outer identification  and
-EAP-SIM was used in inner authentication.
-Currently, it is not known for the author that such implementations exists for
-EAP-SIM  except Tseng's proposition \cite{tseng-usim} for a new EAP type
+EAP-SIM would be used in inner authentication.
+Currently, it is not known for the author that such an implementations exists for
+EAP-SIM,  except for Tseng's proposition \cite{tseng-usim} for a new EAP type
 EAP-USIM, which would extend EAP-TLS type.
 # Yuh-Min Tseng
 
