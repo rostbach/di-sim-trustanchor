@@ -3921,13 +3921,13 @@ signatures for integrity checking of packet payload.
 
 # provisioning as Delivery of RADIUS attributes in proxying
 # --------------------------------------------------------
-In scenario III(Figure[[fig:scenario-III]]),  there was a proxying RADIUS
+In scenario III (Figure[[fig:scenario-III]]),  there was a proxying RADIUS
 between the authenticator
 and the MNO.  When the MNO notifies the authenticator
 that a smartphone has been authenticated, then the authenticator (AP, functioning
 as a RADIUS-client) hooks that message and usually just grants the
 smartphone the access to the network. After giving access rights, other
-provisioning parameters can be sent with RADIUS messages, for example
+provisioning parameters can be sent with RADIUS messages, for example,
 a session time-out,
 # [check Section "Delivery of RADIUS attributes" above]
 a current admin user list, a state of OTP list, or a VLAN id.
