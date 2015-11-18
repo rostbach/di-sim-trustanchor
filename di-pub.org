@@ -4759,10 +4759,10 @@ admin IMSIs (roles).
 
 Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
 home. The public key cryptography is processor intensive and its
-asymmetric keys are usually used just in the beginning of
+asymmetric keys are usually used just at the beginning of
 communication. There they can be used to securely negotiate symmetric
 keys which allows faster cryptographic processing.
-Rest of this section discusses possible PKI usage.
+The rest of this section discusses possible PKI usage.
 # [source not needed. is well known fact]
 
 To use PKI for trust anchoring and AuthN in an empty environment,
