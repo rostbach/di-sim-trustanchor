@@ -4218,7 +4218,7 @@ provide a private GSM network for the attendees of the camp
 # free phone and messaging net
 by distributing them separate SIM cards for 2 euros.  Even when a GSM
 network used 1.8GHz radio channel under an experimental spectrum
-license,  GSM encryption could also be used, because the SIM-card secrets were known
+license,  GSM encryption could also be used, because the SIM card secrets were known
 to the organizing, private operator.
 #  [cite:28C3
 On the other hand, empty GSM cards for testing can cost as much as 
