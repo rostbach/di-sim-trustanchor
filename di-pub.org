@@ -238,14 +238,14 @@ It took time approximately 9 months to start these final words on preface,
 taking into account my part time job.
 Although I had some earlier experience on some of the techniques involved in this paper, 
 other techniques were quite new to me, not to mention writing a longer
-scientifical related paper. Writing and studying this was equally fun,
+science related paper. Writing and studying all this was equally fun,
 but now it is time to let go.
 
 There were many people involved in the creation process of this thesis.
-Bilhananan Silverajan took care of introducing me in to this 
+Bilhanan Silverajan took care of introducing me in to this 
 home networking and worked as my supervising instructor. 
 Jarmo Harju as the examiner, helped in technical proofreading and
-corrected some of my speling errors, but Pirkko was the ultimate inspiration
+corrected some of my speling errors, but Pirkko, my friend,  was the ultimate inspiration
 and the aid for the rest of the forgotten articles and misplaced commas. 
 Antti, Axu, Joona, Lauri, Mava, Pekka,  and Tiina among others were
 the uplifting spirit at work. 
