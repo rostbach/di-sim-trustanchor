@@ -4450,14 +4450,14 @@ the achieved trusted access point.
 Although the core technology has been there for more than ten years and
 the hardware and the applications mostly support it, 
 there can be many reasons why SIM-based methods are not in wider use. 
-One can guess, that the reasons are similar that happened for example with 
-WiMax technology, which was used for broadband network connections to
-rural areas. Technically that was well enough, but demand was not so
-large. Additionally lower speed technologies that were cheaper at that
-time, such as cellular modems were thought to be sufficient, even when
-inferior technically.
-It could also be, that market is waiting for future products, and does 
-not want to invest on existing technology, which can be seen as ``old''.
+One can guess that the reasons are similar to what happened, for example, with 
+WiMax technology, which was used for broadband network connections in
+rural areas. Technically, WiMax was good enough, but the demand was not so
+high. Additionally, lower speed technologies that were cheaper at the
+time, such as cellular modems, were thought to be sufficient, even when
+ technically inferior.
+It could also be that the market is waiting for future products, and does 
+not want to invest in existing technology, which can be seen as ``old''.
 # [compare with future usage, such as embedded SIMs, and past technology 
 # failures WiMax, which had no technical problems, but wifi and good
 # cellular networks overtook it.]
