@@ -4507,22 +4507,24 @@ the authenticated identity.
 
 
 In the design chapter (Chapter [[#cha:design]]) it was questioned whether the proxying RADIUS server
-can read and alter the messages on their way or is the messaging secured
-by encryption, integrity hashes and digital signatures.
-Later it was learned, that the message's integrity is indeed protected, if
+can read and alter the messages on their way or whether the messaging
+is secured
+by encryption, integrity hashes, and digital signatures.
+Later it was learned that the message's integrity is indeed protected, if
 only in a very light way, but not encrypted.
 
 Altering or adding of  RADIUS messages can be chosen from many
 attributes of RADIUS's vocabulary. They can carry extra information
-for provisioning in AuthZ phase. Exactly which of them are used
-remains to implementer's  decision. 
+for provisioning in the AuthZ phase. Exactly which of them are used
+remains for the implementer to decide.
 # jump to term "provisioning"
-Term /provisioning/ can mean adding users to home network with correct
-attributes such as authentication method and identification.
-It also can mean identifying users later and giving
+The term /provisioning/ can mean adding users to the home network with
+the correct
+attributes, such as authentication method and identification.
+It can also mean identifying users later and giving
 them more attributes and access rights dynamically.
-Linking a user to a SIM card is also provisioning and that has
-happened earlier by the MNO.
+Linking a user to a SIM card is also provisioning, and that has
+been done earlier by the MNO.
 
 
 # - [Each component does only limited part of the job.]
