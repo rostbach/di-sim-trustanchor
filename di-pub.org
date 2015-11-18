@@ -2593,7 +2593,7 @@ This thesis suggests a mix of these methods: EAP-SIM 802.1x WPA2 for
 authenticating and encrypting in the local network with SIM and
 Lock-and-key type modification in the AP to further access the 
 management network. Finally, RADIUS protocol is used to transfer 
-parameters, that the smartphone would need in communicating with 
+the parameters that the smartphone  needs in communicating with 
 devices in need of changes.
 
 #
@@ -2636,13 +2636,13 @@ Local controller   AP             Managed device (Router)   Authentication Serve
 # 2. AP, as RADIUS client, connects ROUTER (with Lock-and-key) and opens 
 # Now connection from smartphone to configured router is open and 
 # smartphone may try to login there.
-1. Smartphone connects a Router via wireless AP and needs to login
-3. Smartphone uses telnet (or ssh) to login to the ROUTER.
+1. Smartphone connects a Router via wireless AP and needs to login.
+2. Smartphone uses telnet (or ssh) to login to the ROUTER
    with credentials.
-4. ROUTER(as RADIUS client) checks AA from Authentication Server(or 
-   proxy) 
-5. AA-server answers based on earlier SIM-authentication that this
-   request is correct
+3. ROUTER ( as RADIUS client) checks AA from Authentication Server (or 
+   proxy).
+4. AA-server answers based on earlier SIM-authentication that this
+   request is correct.
 # AP knows what? It wants to give access, but can it map this request to
 #   earlier facts such as IMSI/TMSI with respect to VLAN or session?
  
@@ -2693,15 +2693,15 @@ original idea and should be kept in mind when the final implementation
 is made.
 
 The session time and the logout can be handled in AP directly with
-an timer. After a specific time, AP simple drops the connection
-(WPA2-session) to the phone. This needs modification to the AP
-software, if there is not already such method.
+a timer. After a specific time, AP simply drops the connection
+(WPA2-session) to the phone. This needs modification in the AP
+software, if there is no such method already.
 
 # There should be a way to close the session after the changes has
 # been applied. 
-Other solution would be for AP to listen for a command from an external
-AuthZ server, where similar timer would trigger a notification event. 
-That also needed modifications;  a listening process to the AP and 
+Another solution would be for AP to listen for a command from an external
+AuthZ server, where a similar timer would trigger a notification event. 
+This also requires modifications:  a listening process to the AP and 
 the timer into the AuthZ server. 
 
 # Originally it was thought, that the
@@ -2725,18 +2725,18 @@ the timer into the AuthZ server.
 # #+END_QUOTE
 # [end of merge part 1 of CoA]
 
-Later it was learned \cite{rfc2865}, that terminating a session is not
-included in the original RADIUS protocol.  The root cause is, that
+Later it was learned \cite{rfc2865} that terminating a session is not
+included in the original RADIUS protocol.  The root cause is that
 messages originating from the RADIUS server are not defined in the
-RADIUS protocol and so AP as RADIUS client cannot receive RADIUS
+RADIUS protocol, and so an AP as a RADIUS client cannot receive RADIUS
 server initiated disconnection messages.  Additional extensions such
 as Disconnect and Change-of-Authorization (CoA) packets, also known as
-RADIUS Dynamic Authorization or RADIUS Disconnection Message(DM) \cite{rfc5176}, have
+RADIUS Dynamic Authorization or RADIUS Disconnection Message (DM) \cite{rfc5176}, have
 later been brought in to the protocol by diverse
 vendors, but they may not all be implemented on every device.
 #  [rfc5176]
-Disconnect-Request is sent to UDP port 3799, so authenticator should
-listen also that in addition to RADIUS UDP port 1812.
+Disconnect-Request is sent to UDP port 3799, so the  authenticator should
+also listen for  that in addition to RADIUS UDP port 1812.
 As a side note, Diameter protocol would provide server initiated messaging.
 # [[http://wiki.freeradius.org/protocol/Disconnect-Messages]]
 
@@ -2751,11 +2751,11 @@ As a side note, Diameter protocol would provide server initiated messaging.
 # -----
 
 To demonstrate how the model works, we present the case of adding a
-new admin user. Let's first suppose, for case of simplicity, that the
-home network has been already configured(bootstrapped) and it is
-functioning properly.  To further make the case simpler, let's think,
+new admin user. Let us first suppose, for the sake  of simplicity, that the
+home network has been already configured (bootstrapped) and that it is
+functioning properly.  To further make the case simpler, let us assume
 that the Local Controller is the sole administrative source for the
-configuration changes, and leave the cloud outside, 
+configuration changes, and ignore the cloud, 
 because we know that there already exists a configuration framework in the cloud.
 
 # In the real world the home configuration model would have been copied
@@ -2765,38 +2765,38 @@ because we know that there already exists a configuration framework in the cloud
 # magic here, plain configuration change, just this time externally
 # initiated.
 
-Now, let's think what happens, when the cloud operator (or owner of
-home network) tries to modify attributes, which give access to a new actor,
-such as a new operator, who would want to have access to separate
-segments of home network.  First, we need to have that segment separation
-change approved and after that we want to allow the newcomer account
+Now, let us consider what happens when the cloud operator (or the owner of
+the home network) tries to modify the attributes that give access to a new actor,
+such as a new operator, who wants to have access to separate
+segments of the home network.  First, we need to have that segment separation
+change approved, and after that we want to allow the newcomer account
 to have access to that segment and only to that. For the first part,
-which is normal operation, approving would perhaps yet not be
+which is normal operation, approving would perhaps not yet be
 necessary, but for the second part we need some checking unless our
-trust to cloud operator is ultimate.  
+trust to the cloud operator is ultimate.  
 
 # to be needed for AA.
-When CPE of home network is about to input configuration changes which
+When the CPE of the home network is about to input configuration changes which
 would change the balance of authors or roles, it needs to check that
 the change is permitted.  Permission needs to be asked from a trusted
 point, here mobile SIM. Instead of that, the CPE checks from its own
-state database, whether mobile SIM has been given access to management
+state database whether mobile SIM has been given access to the management
 network.
 # [How is this PULL asking triggered? In reality it is not asked, but
 # changes are accepted from admin roles. How admin role is checked?]
 This thesis justifies the management and therefore the changes to be
-allowed, if the smartphone user is currently logged in to the
+allowed, if the smartphone user is currently logged into the
 management network.
 After the AA is ready, the smartphone has all means to connect the
-configured targets
+configured targets.
 
-It must be noted, that the smartphone can already have an association
-to a non-management network with Wi-Fi. If that is the case, it first
-must disconnect from there and then connect, i.e., do the  AA in the correct management
-network. This implies disconnection from other services using Wi-Fi
+It must be noted that the smartphone can already have an association
+to a non-management network with Wi-Fi. If that is the case, it
+must  first disconnect from there and then connect, i.e., do the  AA in the correct management
+network. This implies disconnection from other services using the Wi-Fi
 link, because smartphones currently have only one Wi-Fi radio
 available and routing would still prefer Wi-Fi as a default gateway, although
-possible non-Wi-Fi data link still may stay up and operational.
+a possible non-Wi-Fi data link still may stay up and operational.
 # It is not tested, whether 3G-data link could be active still at the
 # same time.
 
