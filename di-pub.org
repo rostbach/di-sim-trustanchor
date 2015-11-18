@@ -4903,16 +4903,16 @@ device.
 
 # •  What could be achieved based on obtained results in future
 
-The environment described in thesis is a modern complex home network
+The environment described in this thesis is modern complex home network
 management, whose configuration management tools are external in the
 cloud.  The thesis concentrates on three main parts:
 # kokonaisuus
-the smartphone driven authorization and authentication at the home
+the smartphone-driven authorization and authentication in home
 networks, the connection to the existing change management model from
 the external cloud service, and the security issues in that environment.
 
 The trust issues between the home network and the cloud are searched
-through a smartphone located in the intersection of both domains.
+through a smartphone located at the intersection of both domains.
 # and possess properties to simplify linking of that trust.
 Home network's future needs, for example the change of the authority
 and the delegation of the configuration management have been
