@@ -259,18 +259,11 @@ She allowed and encouraged me, time after time, to work on this thesis (and this
 degree). Pirkko, my friend, was the inspiration and the aid for the forgotten articles and 
 mis-placed commas. 
 
-
-
-
-
-
-
-
 ~ 
 % Tilde ~ makes an non-breakable spce in LaTeX. Here it is used to get
 % two consecutive paragraph breaks
 
-Tampere, 18.11.2015
+Tampere, (18).11.2015
 ~
 
 
