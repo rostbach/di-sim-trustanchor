@@ -4914,13 +4914,13 @@ the external cloud service, and the security issues in that environment.
 The trust issues between the home network and the cloud are searched
 through a smartphone located at the intersection of both domains.
 # and possess properties to simplify linking of that trust.
-Home network's future needs, for example the change of the authority
-and the delegation of the configuration management have been
+The home network's future needs, such as the change of the authority
+and the delegation of the configuration management, have been
 described.
 # have they? thoroughly? or just the AA? How about delegation.
 To solve those needs, a method to approve changes indirectly has been
 proposed. The approval follows from a successful authentication and
-authorization with EAP-SIM method by the smartphone and that also sets
+authorization with EAP-SIM method by the smartphone, and that also sets
 a trust anchor to the smartphone.
 # [ Connection to research work done on TUT pervasive department's IoT
 # project on home networks has also been presented. :TBD]
@@ -4935,16 +4935,16 @@ grants it rights to make changes there, has been proposed.
 # Working with management network is indirect way to approve changes.  
 # [or:
 An indirect way to approve changes is achieved by linking the authorized
-access to the management network. After the authorization, the smart
-phone is free to configure the devices with its local application.
+access to the management network. After the authorization, the 
+smartphone is free to configure the devices with its local application.
 Another way to convince the
-devices about trusted source is to send approval tickets that can
+devices about a trusted source is to send approval tickets that can
 be verified on reception, but that would involve a more complex setup.
  
 # [Benefits and disadvantages]
 # MOTIVATION
 # interworkin of what?
-Complexity of existing models in interworking was one motivator for
+The complexity of the existing models in interworking was one motivator for
 the work. The research  on the subject did reveal some reasons 
 for the complexity, that are difficult to overcome with simplistic 
 methods shown here without losing security at the same time.
