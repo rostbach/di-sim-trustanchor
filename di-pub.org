@@ -241,7 +241,7 @@ other techniques were quite new to me, not to mention writing a longer
 scientifical related paper. Writing and studying this was equally fun,
 but now it is time to let go.
 
-There are many people involved in the creation process of this thesis.
+There were many people involved in the creation process of this thesis.
 Bilhananan Silverajan took care of introducing me in to this 
 home networking and worked as my supervising instructor. 
 Jarmo Harju as the examiner, helped in technical proofreading and
@@ -251,9 +251,8 @@ Antti, Axu, Joona, Lauri, Mava, Pekka,  and Tiina among others were
 the uplifting spirit at work. 
 Those pervs made my working in the Pervasive Computing unit a pleasure.
 At home frontier the one power cell, my beloved wife Päivi,
-is the one who kept me going and always encouraged to finish my studies, 
-She allowed and encouraged me, time after time, to work on this thesis (and this
-degree).  
+was the one who kept me going and always encouraged me.
+
 
 Thank you all!
 
