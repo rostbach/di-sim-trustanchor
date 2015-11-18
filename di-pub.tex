@@ -1,4 +1,4 @@
-% Created 2015-11-18 ke 13:14
+% Created 2015-11-18 ke 14:46
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1333,7 +1333,7 @@ to the AP located at the neighbor and think that he is using
 his own home AP. 
 The malicious neighbor AP (MitM) allows access to the user and starts 
 listening the traffic on the AP's network interface. At that time, 
-MitM may capture smartphone's  traffic, which may  include
+MitM may capture data from the  smartphone's  traffic, which may  include
 sensitive  data such as username, passwords, or even configuration data.
 It is not very difficult to even fake an SSH-server, if the 
 client (smartphone here) does not check the server's changed
@@ -1715,7 +1715,7 @@ protects access in layer-3 and though needs first access to the router, while
 and AP. Captive portals are similar to Lock-And-Key.
 
 Both methods - 802.1X and Lock-and-Key (and captive portals) - can have RADIUS as an authentication server. 
-When RADIUS is not available, for example because internet is down,
+When RADIUS is not available, for example, because the Internet is down,
 there almost always exists as a failover a local password method in the configurable 
 router.
 
@@ -2310,7 +2310,7 @@ version(s) & component & tested on (machine arch)\\
 MerSDK is shipped as a virtual image which runs inside Virtualbox.
 Starting the image opens an ssh server, which by default listens on
 port 2222 on localhost. One can use an SSH keypair authentication to get there.
-In following example, file \emph{mersdk} represent the private SSH key of type RSA.
+In the following example, file \emph{mersdk} represent the private SSH key of type RSA.
 \begin{verbatim}
 # ssh -l mersdk -p 2222 \
     -i ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk
@@ -2321,9 +2321,9 @@ Last login: Sun Nov 15 09:50:47 2015 from 10.0.2.2
 \end{verbatim}
 As can be seen, the virtual machine's architecture is i686, i.e.,
 32-bit x86.
-We moved to sandboxed armv7hl architecture (armv7hl) with
-sb2 command and changed the user id to a virtualized root user.
-Earlier retrieved pcsc-lite package was compiled and installed. 
+We moved into the sandboxed armv7hl architecture (armv7hl) with
+sb2 command, and changed the user id into a virtualized root user.
+A  pcsc-lite package retrieved  earlier  was compiled and installed. 
 \begin{verbatim}
 [mersdk@SailfishSDK ~]$ sb2 -t SailfishOS-armv7hl -R
 [SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # uname -rm
@@ -2333,24 +2333,24 @@ Earlier retrieved pcsc-lite package was compiled and installed.
 [SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # ./configure ; 
 [SB2 sdk-build SailfishOS-armv7hl] root@SailfishSDK ~ # make install
 \end{verbatim}
-The wpa\_supplicant was compiled similar way. The needed option were
-added to configuration file before compiling.
+The wpa\_supplicant was compiled in a similar way. The needed options were
+added to the configuration file before compiling.
 \begin{verbatim}
 CONFIG_EAP_SIM=y
 CONFIG_SIM_SIMULATOR=y
 CONFIG_USIM_SIMULATOR=y
 CONFIG_PCSC=y
 \end{verbatim}
-After wpa-supplicant was compiled and linked, it was stripped from
-debugging symbols to make its size to merely 15\% of the original size.
+After wpa-supplicant was compiled and linked, it was stripped of 
+debugging symbols to reduce its size to merely 15\% of the original size.
 \begin{verbatim}
 # ls -s wpa_supplicant-pscs
 5788 wpa_supplicant-pcsc
 # strip wpa_supplicant-pcsc ; ls -s wpa_supplicant-pscs
 876 wpa_supplicant-pcsc
 \end{verbatim}
-Finally, programs wpa\_supplicant-pcsc and corresponding
-libpcsclite.so.1 library were copied to the jolla phone, which was
+Finally, the program wpa\_supplicant-pcsc and a corresponding
+libpcsclite.so.1 library were copied to the Jolla phone, which was
 connected to the computer with an USB cable.
 \begin{verbatim}
 scp wpa_supplicant-pcsc nemo@jolla:
@@ -2358,12 +2358,12 @@ scp libpcsclite.so* nemo@jolla:/usr/local/lib
 \end{verbatim}
 
 
-\subsection{Running the new binary on real smartphone.}
+\subsection{Running the new binary on a real smartphone}
 \label{sec-5-3-2}
 
-We now could use inside the real physical smartphone this modified
-wpa\_supplicant, which uses uses a configuration file instead of a SIM card.  To make
-sure, that it does not conflict with an existing wpa\_supplicant on the phone,
+At this point, we were able to use inside the real physical smartphone this modified
+wpa\_supplicant, which uses  a configuration file instead of a SIM card.  To make
+sure that it does not conflict with an existing wpa\_supplicant on the phone,
 we first disabled the system version and used our version manually.
 
 \begin{verbatim}
@@ -2375,9 +2375,9 @@ Last login: Sun Oct 11 17:44:37 2015 from 192.168.2.1
 [nemo@Jolla ~]$ systemctl disable wpa_supplicant
 \end{verbatim}
 
-Because the \emph{libpcsclite} libraries are in non-standard
-place (in /usr/local/lib), we had to start wpa\_supplicant with the correct
-dynamic library path environment value otherwise an error occured.
+Because the \emph{libpcsclite} libraries are in a non-standard
+place (in /usr/local/lib), we had to start wpa\_supplicant with the
+correct dynamic library path environment value; otherwise, an error occured.
 
 
 \begin{verbatim}
@@ -2390,10 +2390,9 @@ directory
 [nemo@Jolla ~]$ LD_LIBRARY_PATH=/usr/local/lib ${WPASUPP} -v
 v2.4 (malinen 2003-2015)
 \end{verbatim}
-From here the same tests could now be run on the smartphone that
-earlier needed the computer. Even now, we did not use the real SIM card, but it
-probably would have been possible, if the configuration file did not give
-the secrets but instead a PIN to unlock the smartcard.
+From this point on, the  tests that earlier needed the computer could now be run on the smartphone. Even now, we did not use a real SIM card, but it
+probably would have been possible, if the configuration file had not
+given the secrets but instead a PIN to unlock the smartcard.
 
 \chapter{Analysis, Results, and Discussion}
 \label{sec-6}
@@ -2970,65 +2969,68 @@ the achieved trusted access point.
 \section{Discussion}
 \label{sec-6-5}
 
-[*Some part to be moved to the Conclusion chapter*]
 
 Although the core technology has been there for more than ten years and
 the hardware and the applications mostly support it, 
 there can be many reasons why SIM-based methods are not in wider use. 
-One can guess, that the reasons are similar that happened for example with 
-WiMax technology, which was used for broadband network connections to
-rural areas. Technically that was well enough, but demand was not so
-large. Additionally lower speed technologies that were cheaper at that
-time, such as cellular modems were thought to be sufficient, even when
-inferior technically.
-It could also be, that market is waiting for future products, and does 
-not want to invest on existing technology, which can be seen as ``old''.
+One can guess that the reasons are similar to what happened, for example, with 
+WiMax technology, which was used for broadband network connections in
+rural areas. Technically, WiMax was good enough, but the demand was not so
+high. Additionally, lower speed technologies that were cheaper at the
+time, such as cellular modems, were thought to be sufficient, even when
+ technically inferior.
+It could also be that the market is waiting for future products, and does 
+not want to invest in existing technology, which can be seen as ``old''.
 
 
 
-SIM card of the smartphone, used together with Wi-Fi access to home network 
+The SIM card of the smartphone, used together with Wi-Fi access to a home network, 
 helps in verifying the changes, and for that we have presented some options.
-Location of AuthN and AuthZ components may vary depending on state of process.
-Always in the beginning, AuthN lies outside the home network, but
-later it can also use local point. AuthZ, on the other hand, may be located more freely.
+The location of AuthN and AuthZ components may vary depending on the
+state of the process.
+In the beginning, AuthN always lies outside the home network, but
+later it can also use a local point. AuthZ, on the other hand, may be located more freely.
 
 Based on 802.1X standard, the management port is activated and
-RADIUS transfers the orders for correct AA.
-The smartphone traffic is directed in to an own virtual LAN segment (VLAN),
+RADIUS transfers the orders for the correct AA.
+The smartphone traffic is directed into its own virtual LAN segment (VLAN),
 which is dedicated to management.
-Thesis thus uses an old, yet simple method for problem risen in a modern environment home network.
+Thus, this thesis  uses an old, yet simple method for solving a
+problem risen in a modern home network environment.
 
-Disconnection from a normal (Wi-Fi) access network must happens, before phone can get
-into the management network. It means, that all stateful network
+Disconnection from a normal (Wi-Fi) access network must happen before a phone can get
+into the management network. This means that all stateful network
 connections using Wi-Fi will close at that point. Smartphones do not
 have multiple wireless connections, but mobile data connections may 
 stay up. Even then, the default routing in the smartphone may change.
 
 
-EAP does by definition only AuthN part although the successful
+By definition, EAP only performs the AuthN part, although the successful
 authentication often precedes ad hoc AuthZ if nothing else is demanded.
-EAP-SIM handles this part, but for AuthZ something else is needed
+EAP-SIM handles this part, but for AuthZ, something else is needed,
 and so some methods have been presented to add the right role to 
 the authenticated identity.
 
 
 
 In the design chapter (Chapter \ref{sec-4}) it was questioned whether the proxying RADIUS server
-can read and alter the messages on their way or is the messaging secured
-by encryption, integrity hashes and digital signatures.
-Later it was learned, that the message's integrity is indeed protected, if
+can read and alter the messages on their way or whether the messaging
+is secured
+by encryption, integrity hashes, and digital signatures.
+Later it was learned that the message's integrity is indeed protected, if
 only in a very light way, but not encrypted.
 
 Altering or adding of  RADIUS messages can be chosen from many
 attributes of RADIUS's vocabulary. They can carry extra information
-for provisioning in AuthZ phase. Exactly which of them are used
-remains to implementer's  decision. 
-Term \emph{provisioning} can mean adding users to home network with correct
-attributes such as authentication method and identification.
-It also can mean identifying users later and giving
+for provisioning in the AuthZ phase. Exactly which of them are used
+remains for the implementer to decide.
+The term \emph{provisioning} can mean adding users to the home network with
+the correct
+attributes, such as authentication method and identification.
+It can also mean identifying users later and giving
 them more attributes and access rights dynamically.
-Linking a user to a SIM card is also provisioning and that has
-happened earlier by the MNO.
+Linking a user to a SIM card is also provisioning, and that has
+been done earlier by the MNO.
 
 
 
@@ -3044,82 +3046,82 @@ happened earlier by the MNO.
 
 Another problem using on-fly alteration of the AuthZ data in RADIUS ACCESS-ACCEPT message
 is the mapping between IMSI and TMSI identities.
-The authenticator does know the original user and mapping of IMSI to
+The authenticator does know the original user and the mapping of IMSI to
 TMSI, but needs AuthZ information. That can be received from the
-remote operator, which would be easier for the
-authenticator or there might be a proxying RADIUS, which resolves the
-AuthZ information and generates an ACCESS-ACCEPT packet. The latter
-has in turn issues with TMSI.
+remote operator, which is easier for the
+authenticator, or there may be a proxying RADIUS, which resolves the
+AuthZ information and generates an ACCESS-ACCEPT packet. The latter,
+in turn, has issues with TMSI.
 
 When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead
-of a beforehand known IMSI identity, there will be problem
-because the proxying RADIUS knows for sure only the originating
-server.  The MNO in turn does not necessary know about the roles, and
+of a previously known IMSI identity, there will be a problem
+because the proxying RADIUS knows  only the originating
+server for sure.  The MNO in turn does not necessary know about the roles, and
 it can directly perform only AuthN.
 
-It seems, that AuthZ data must be mapped during the first phase of
+It seems that AuthZ data must be mapped during the first phase of
 EAP-SIM AuthN, when IMSI still is available, and in some way
 that map must be forwarded to the proxying RADIUS servers.
 These issues are fully avoided only in scenario II presented in Chapter
-\ref{sec-4}, where there is local authentication server in home network.
-Partly avoidance can be reached, if only full authentication is
-used, i.e., the authentication is always checked from the MNO and no
-fast re-authentication is used, thus eliminating use of TMSI altogether.
+\ref{sec-4}, where there is a local authentication server in home network.
+Partial avoidance can be reached if only full authentication is
+used, i.e., the authentication is always checked with the MNO and no
+fast re-authentication is used, thus eliminating the use of TMSI altogether.
 
 
 \section{Alternative management models}
 \label{sec-6-6}
 
-If we were to question or evolve the given model of change
+If we were to question or develop the given model of change
 propagation, the trust anchoring would also need some modifications.
-Alternative method is that the changes could be marked some way, so
-that they need approving and then there could be a specific
+An alternative method is that the changes could be marked in some way, so
+that they need approval, and then there could be a specific
 change-approval message, which must be sent through the management
-network. That approval would be akin to \emph{commit} in database actions
+network. That approval would be akin to \emph{commit} in database actions,
 and its form could perhaps include a digest of change message as a verification.
-Because smartphone is not actively listening to the CPE, it cannot input
+Because a smartphone is not actively listening to the CPE, it cannot input
 those request. Together with the chosen method, there are four planned
 methods to distribute changes. The first uses the smartphone as a
 direct commander and it is the one described throughout the thesis.
-The second would not involve smartphone at all but depended on
-earlier set trust. The remaining two would depend on more complex
-setups involving tokens and are presented here just as ideas.
+The second would not involve a smartphone at all but would  depend on
+earlier set trust. The remaining two methods would depend on more complex
+setups involving tokens, and are presented here just as ideas.
 
 
-I) Changes are delivered from cloud to smartphone, which forwards them
-   to devices located at management network after the
+I) Changes are delivered from the cloud to the smartphone, which forwards them
+   to devices located at the management network after the
    authentication has succeeded. This is the method chosen here and
    already explained.
 
-II) Changes are delivered normally from cloud to CPE (CPEs) without
-   interaction from the smartphone. Such changes would not need AA at
-   all or changes include credentials to login to targets. An example
-   of change is a modification in network segment, which does not
+II) Changes are delivered normally from the cloud to CPE (CPEs) without
+   interaction with the smartphone. Such changes would not need AA at
+   all, or changes would include credentials to login to targets. An example
+   of a change is a modification in network segment, which does not
    change network topology of other domains.  It is still unclear to
-   the author which type of changes represents majority of the
+   the author which type of changes represents the majority of the
    requests: those that need approval, or those that may proceed
-   without approval. An educated guess is, that every change set needs
-   to check the trust anchor's precence.
+   without approval. An educated guess is that every change set needs
+   to check the trust anchor's presence.
 
 
 
-III) Besides AP, also CPE would have direct connection to the
-   Cloud. Changes are then delivered from cloud to CPE functioning as a central
-   management station without interaction from the smartphone.  Digest
-   of what is going to happen would be sent to smartphone from the
-   cloud over the air (OtA). Smartphone would authenticate in to the
+III) Besides AP, also CPE would have a direct connection to the
+   cloud. Changes are then delivered from the cloud to the CPE functioning as a central
+   management station without interaction with the smartphone. A digest
+   of what is going to happen would be sent to the smartphone from the
+   cloud over the air (OtA). The smartphone would authenticate into the
    management network (if not already there) and send through it the
    digest token it received from the cloud as an approval message to
-   the central management station inside home network, which then
-   forwards the configuration changes to other devices.
+   the central management station inside the home network, which would then
+   forward the configuration changes to other devices.
 
 IV) Variation of III is that when CPE itself is an authenticator, it
    could proceed on propagating changes when it receives
    ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
-   drop received changes without forwarding them.
+   drop the received changes without forwarding them.
 
 
-In last two planned ways, the smartphone may receive the AuthN token
+In the last two planned ways, the smartphone may receive the AuthN token
 with a message explaining what is going to happen in the change.  As
 the CPE and the authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
@@ -3129,13 +3131,13 @@ some dangerous combination of commands would need AA with the
 smartphone.
 
 
-\label{scenario-iv} 
+\label{scenario-vi} 
 In the future, other components than  the  local controller might 
 have a direct connection to the cloud. 
 Scenario VI (Figure\ref{fig:scenario-VI}) is similar to Scenario I presented
-earlier, but now AuthZ is checked direct from the Cloud by the CPE instead of
+earlier, but now AuthZ is checked directly with the cloud by the CPE instead of
 the MNO.  If there is no connection to the cloud, the fall-back is to work
-just like II. So also this scenario needs local store for caching
+just like in Scenario II. So also this scenario needs  a local store for caching
 admin IMSIs (roles).
 
 \begin{figure}[htb]
@@ -3152,81 +3154,85 @@ admin IMSIs (roles).
 
 Homenet WG proposes the use of Public Key Infrastructure (PKI) at 
 home. The public key cryptography is processor intensive and its
-asymmetric keys are usually used just in the beginning of
+asymmetric keys are usually used just at the beginning of
 communication. There they can be used to securely negotiate symmetric
-keys which allows faster cryptographic processing.
-Rest of this section discusses possible PKI usage.
+keys,  which allows faster cryptographic processing.
+The rest of this section discusses possible PKI usage.
 
 To use PKI for trust anchoring and AuthN in an empty environment,
 bootstrapping protocols are first needed.  The bootstrapping protocols
-in trust finding are used to bring the first trust anchor in an
-environment and later use that anchor to attach other devices to the
-same trust circle.  A draft from
+in trust finding are used to bring the first trust anchor into an
+environment, and later use that anchor to attach other devices to the
+same trust circle.  
 
-Despite the etymology of name bootstrapping, ``Lift oneself by his own
-bootstraps'', bootstrapping usually needs some input from outside.
-For that, AuthN of the trust anchor device would happen by checking
-device's vendor certificates. 
-Behringer \cite{draft-behringer-bootstrap} proposes, that one device
-at home is first chosen as a trust anchor  using its unique properties 
-and this anchored device later becomes home
-network's Certificate Authority (CA) service. smartphone would play
-user interface role only, but not the trust anchor role.
+Despite the etymology of the name bootstrapping ``Lift oneself by
+one's own bootstraps'', bootstrapping usually needs some input from
+the outside.
+For that, AuthN of the trust anchor device  happens by checking
+the device's vendor certificates. 
+Behringer \cite{draft-behringer-bootstrap} proposes that one device
+at home should be first chosen as a trust anchor  using its unique properties,
+and this anchored device should later become the home
+network's Certificate Authority (CA) service. A smartphone would only play
+the user interface role, not the trust anchor role.
 The rest of the home network devices would apply for
 certificates from this trust anchor to get under the same trust circle.  Key creation,
-key exchange and their usage is explained in similar draft from
+key exchange, and their usage is explained in a similar draft from
 Pritikin\cite{draft-pritikin-bootstrap}. 
 
 
 This model could be expanded to a full ticket enabled 
 AA, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
-There, the end devices  first try to get AuthN ticket, which 
-does not include yet the AuthZ.
-With that ticket, the device may later apply for AuthZ ticket, which
+There, the end devices  first try to get an AuthN ticket, which 
+does not yet include  the AuthZ.
+With that ticket, the device may later apply for an AuthZ ticket, which
 opens the correct port to change management service from CPE.
-That is very similar to Kerberos AA, which is based on
-Needham-Schroeder protocol.
+This is very similar to Kerberos AA, which is based on
+the Needham-Schroeder protocol.
 Another bootstrapping architecture is 
-defined in GBA (General Bootstrapping Architecture) \cite{gba2014}, which 
-is 3GPP's technical specification. 
+defined in GBA (General Bootstrapping Architecture) \cite{gba2014},
+which a technical specification of 3GPP. 
 It benefits from MNO's or any other identity center's  knowledge of user's SIM.
-In GBA, Trusted Third Party authentication center would be setup with
+In GBA, Trusted Third Party authentication center would be set up with
 the help of an MNO.
 One service would then authenticate an entity, here smartphone, and
 give it a time-limited ticket as a proof that the entity has been authenticated.
-When the entity wants to connect to the service, it asks from the central 
-server again for ticket, but this time for the service by presenting
-the authentication ticket. In return it receives a service ticket which
-it can present to the wanted service, who verifies the access based
+When the entity wants to connect to the service, it again asks 
+for a ticket from the central 
+server, but this time for the service by presenting
+the authentication ticket. In return, it receives a service ticket which
+it can present to the desired service, which verifies the access based
 on the ticket. 
 
 
 
 As can be seen, no public key infrastructure (PKI) is used before
-setup phase is ready.  If EAP-SIM was applied in such environment, it
-would be used only once, namely in the bootstrapping phase to setup
-the CA trust anchor.  Only after that, can the CA start delivering
+the setup phase is ready.  If EAP-SIM was applied in such an environment, it
+would be used only once, namely in the bootstrapping phase to set up
+the CA trust anchor.  Only after that can the CA start delivering
 PKI. Kerberos needs shared keys, and EAP-SIM helps in providing those.
-The smartphone would hold a token with a validity time and had to
+The smartphone would hold a token with a validity time and would have
+to 
 present that when accessing services, here the management network. The
 validity time would automatically disallow the management if applied
-later than allowed time.
+after the allowed time has expired.
 
 
-Trust can also be requested with help of device's other unique
-properties than SIM. Recently, devices have appeared on the market, that have
-vendor-provided certificates inside them and this brings public key
+Trust can also be requested with the help of the device's other unique
+properties than SIM. Recently, devices
+with vendor-provided certificates inside them
+have appeared on the market. These bring public key
 infrastructure as one possible alternative for learning trusted
-identity.  The device proves its identity by presenting a certificate,
-which has been issued by a trusted vendor and which includes device's
-public key.  Private part of a key pair is inside the device's trusted
+identity.  The device proves its identity by presenting a certificate
+which has been issued by a trusted vendor and which includes the
+device's public key. The private part of a key pair is inside the device's trusted
 hardware store and does not ever leave the hardware. Vendor trust is
-needed for checking the issued certificates and so the trust
+needed for checking the issued certificates, and so the trust
 verification of individual devices is merely transferred to trust
-verification of the vendor.  Root CAs are trust anchors also and can
+verification of the vendor.  Root CAs are also trust anchors and can
 be read in the same way from the device's read-only store.  CPE could
-use vendor-issued certificate for AuthN of some earlier unknown
+use a vendor-issued certificate for AuthN of some earlier unknown
 device.
 
 \chapter{Conclusion}
@@ -3234,21 +3240,21 @@ device.
 
 
 
-The environment described in thesis is a modern complex home network
+The environment described in this thesis is modern complex home network
 management, whose configuration management tools are external in the
 cloud.  The thesis concentrates on three main parts:
-the smartphone driven authorization and authentication at the home
+the smartphone-driven authorization and authentication in home
 networks, the connection to the existing change management model from
 the external cloud service, and the security issues in that environment.
 
 The trust issues between the home network and the cloud are searched
-through a smartphone located in the intersection of both domains.
-Home network's future needs, for example the change of the authority
-and the delegation of the configuration management have been
+through a smartphone located at the intersection of both domains.
+The home network's future needs, such as the change of the authority
+and the delegation of the configuration management, have been
 described.
 To solve those needs, a method to approve changes indirectly has been
 proposed. The approval follows from a successful authentication and
-authorization with EAP-SIM method by the smartphone and that also sets
+authorization with EAP-SIM method by the smartphone, and that also sets
 a trust anchor to the smartphone.
 
 
@@ -3257,31 +3263,32 @@ a fake mobile operator representing EAP-SIM authentication flow was
 built. A dual-role model, which binds the smartphone to the home network and
 grants it rights to make changes there, has been proposed.  
 An indirect way to approve changes is achieved by linking the authorized
-access to the management network. After the authorization, the smart
-phone is free to configure the devices with its local application.
+access to the management network. After the authorization, the 
+smartphone is free to configure the devices with its local application.
 Another way to convince the
-devices about trusted source is to send approval tickets that can
+devices about a trusted source is to send approval tickets that can
 be verified on reception, but that would involve a more complex setup.
 
-Complexity of existing models in interworking was one motivator for
+The complexity of the existing models in interworking was one motivator for
 the work. The research  on the subject did reveal some reasons 
-for the complexity, that are difficult to overcome with simplistic 
+for the complexity that are difficult to overcome with simplistic 
 methods shown here without losing security at the same time.
-There are some obvious weaknesses in the proposed solution such as 
+There are some obvious weaknesses in the proposed solution, such as 
 missing continuous authorization after management access has been
 granted. The application for the smartphone is yet to be fully implemented.
-Possible usage must carefully check the safety limits even when for
-example the RADIUS protocol still
-has strengths in security today. The thesis only scratches bootstrapping
-problems and the issues in the home network bootstrapping need to be studied
-more thoroughly. A one promising lead would be to use tickets in Kerberized way as in GBA.
+Possible usage must carefully check the safety limits even when, for
+example, the RADIUS protocol still
+has strengths in security today. The thesis only scratches the surface
+of bootstrapping
+problems, and the issues in the home network bootstrapping need to be studied
+more thoroughly. One promising lead would be to use tickets in Kerberized way as in GBA.
 
 
-After those shortcoming, the provisioning of manager users at home
-networks still would minimize with the proposed technique, as the users
+Even though these shortcomings exist, the provisioning of manager users at home
+networks would still be  minimized with the proposed technique, as the users
 already own a smartphone, which is an identifiable and trusted object. As a
-positive side effect, the two-factor AuthN from a hardware based SIM would
-strengthen an existing security.  Finally, the cloud management tools
+positive side effect, the two-factor AuthN from a hardware-based SIM would
+strengthen the existing security.  Finally, the cloud management tools
 would benefit from the trust anchor on the smartphone and could be developed
 further to aid in resolving trust issues in future home networks.
 
