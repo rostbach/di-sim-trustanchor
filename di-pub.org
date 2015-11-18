@@ -4612,15 +4612,15 @@ it can directly perform only AuthN.
 # Even when AuthN succeeds, then how to map that to real user,
 # when only temporary identity is available and that changes every
 # time. Can RADIUS server choose who gets which role? 
-It seems, that AuthZ data must be mapped during the first phase of
+It seems that AuthZ data must be mapped during the first phase of
 EAP-SIM AuthN, when IMSI still is available, and in some way
 that map must be forwarded to the proxying RADIUS servers.
 # [order - do we already know here the design?]
 These issues are fully avoided only in scenario II presented in Chapter
-[[#cha:design]], where there is local authentication server in home network.
-Partly avoidance can be reached, if only full authentication is
-used, i.e., the authentication is always checked from the MNO and no
-fast re-authentication is used, thus eliminating use of TMSI altogether.
+[[#cha:design]], where there is a local authentication server in home network.
+Partial avoidance can be reached if only full authentication is
+used, i.e., the authentication is always checked with the MNO and no
+fast re-authentication is used, thus eliminating the use of TMSI altogether.
 # explain fast and full authentication
 
 
