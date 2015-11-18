@@ -2916,16 +2916,16 @@ port-based access control.
 The chosen solution to benefit from SIM is via EAP-profiles, as EAP
 is well known when using WPA2-Enterprise protection in Wi-Fi.
 Design is based on 802.1X and mobile network operator aided
-authentication and it is a variation of lock-and-key design.
+authentication and it is a variation of the lock-and-key design.
 
 # In this chapter it was mentioned, that the local controller delivers
 # changes to each device.
-It is assumed, that  the local controller (smartphone)
+It is assumed that  the local controller (smartphone)
 delivers all changes to target devices.
 The distribution of changes \cite{silverajan2015collaborative} is not
 further described here.  The AP functions both as the authenticator
-and RADIUS client in scenarios I-IV.  Authenticator receives RADIUS
-messages from authentication server, even when there would be a
+and RADIUS client in scenarios I-IV.  The authenticator receives RADIUS
+messages from authentication server even when there would be a
 separate local RADIUS server running as a proxy.
 
 # to speculative part
@@ -2959,11 +2959,11 @@ separate local RADIUS server running as a proxy.
 To prove that the proposed model works, empirical tests were done.
 A preliminary plan to benefit from SIM-authentication at home is
 presented in Figure[[fig:sim-pre]]. The real operator (MNO) and its HLR were 
-planned to be replaced with a gateway at home network and the real phone
+planned to be replaced with a gateway in the home network and the real phone
 with its simulated counterpart. HSS would replace HLR in 3G/UMTS
 networks. 
 Only the Local Controller's interaction with the home network is
-tested and Cloud part set away.
+tested and the Cloud part set away.
 
 #+CAPTION: Plan to benefit from SIM-authentication at home
 #+NAME: fig:sim-pre
@@ -2973,9 +2973,9 @@ tested and Cloud part set away.
 First it is shown how EAP-SIM authentication works in a simulated
 environment with different clients.
 # Then a use case for disconnection is discussed, but not further analyzed.
-This is further analyzed with aid of network traces.
+This is further analyzed with the aid of network traces.
 # for adding an admin user is reported.
-In the end, it is shown, that the changes in the management network are possible from
+In the end, it is shown that the changes in the management network are possible from
 the local controller with  command line interface (CLI).
 
 
@@ -2991,14 +2991,14 @@ the local controller with  command line interface (CLI).
 Physical devices used in the tests  were three smartphones, a Wi-Fi
 access point, and a laptop.
 The smartphones were Nokia E70-1, Nokia E90, and Jolla. The Nokia phones
-featured EAP-SIM by factory, but the Jolla phone missed a crucial
+featured EAP-SIM by default, but the Jolla phone missed a crucial
 software library
-and right compilation time configuration set on its WPA-supplicant for SIM.
+and the right compilation time configuration set on its WPA-supplicant for SIM.
 
 Jouni Malinen's software package /HostAP/ \cite{hostapd} provides
-components for WPA2-Supplicant, Wireless Access point (AP),
-HLR-gateway (for GSM networks), and EAP-endpoint with or without
-RADIUS-server. From those, executable binary programs  wpa_supplicant, hostapd (for wired RADIUS
+components for WPA2-Supplicant, a Wireless Access point (AP),
+an HLR-gateway (for GSM networks), and an EAP-endpoint with or without
+a RADIUS-server. From those, executable binary programs  wpa_supplicant, hostapd (for wired RADIUS
 server), and hlr_auc_gw  were used.  
 The versions of /HostAP/ used in the tests were 2.2 and later 2.3,
 while version 2.4 was published on March 2015 and 2.5 on September 2015. The software
