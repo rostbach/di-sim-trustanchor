@@ -1,4 +1,4 @@
-% Created 2015-11-18 ke 11:52
+% Created 2015-11-18 ke 13:14
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2470,40 +2470,40 @@ end-user hiding.
 This feature can be achieved with PEAP (Protected EAP) or TTLS, which
 chains different EAP-methods together and protects the inner EAP with
 an outer EAP. 
-The outer identity tells just the realm, where AuthN can be checked
-and inner identity reveals the real identity.  The inner identity is
+The outer identity tells just the realm where AuthN can be checked,
+and the inner identity reveals the real identity.  The inner identity is
 encapsulated inside the outer identity which functions as an
 envelope. 
-For example EAP-MSCHAPv2 (Microsoft's Challenge
+For example, EAP-MSCHAPv2 (Microsoft's Challenge
 Handshake Authentication Protocol, version 2) can be used inside PEAP.
 
 
-EAP-SIM would provide identity protection, if it was used together
+EAP-SIM would provide identity protection if it was used together
 with PEAP. There PEAP would anonymize the outer identification  and
-EAP-SIM was used in inner authentication.
-Currently, it is not known for the author that such implementations exists for
-EAP-SIM  except Tseng's proposition \cite{tseng-usim} for a new EAP type
+EAP-SIM would be used in inner authentication.
+Currently, it is not known for the author that such an implementations exists for
+EAP-SIM,  except for Tseng's proposition \cite{tseng-usim} for a new EAP type
 EAP-USIM, which would extend EAP-TLS type.
 
-If it was possible to use anonymous identity on outer EAP
-authentication, then EAP-SIM AuthZ must also be done at HLR AuC.
-AuthZ cannot else be connected to the corresponding
-identity and AuthN itself is not enough because it only defines the users'
-authenticity, not their admin roles and so 
-AuthN should work for any  smartphone that has existing contract with
-their MNO. 
+If it was possible to use anonymous identity on the outer EAP
+authentication, then EAP-SIM AuthZ would also have to be done at HLR AuC.
+AuthZ cannot otherwise be connected to the corresponding
+identity, and AuthN itself is not enough because it only defines the users'
+authenticity, not their admin roles. Thus, 
+AuthN should work for any  smartphone that has an existing contract with
+an MNO. 
 It still is the responsibility of the authenticator to 
 check AuthZ  and let only admin mobile access the management network.
 
 If SIM is used as the only EAP without EAP-PEAP, then there is no
-mitigation for revealing the IMSI on the first message and it leads to
-privacy issue.  If there was an IMSI-catcher involved, only IMSI would
+mitigation for revealing the IMSI on the first message, and this leads to
+a privacy issue.  If there was an IMSI-catcher involved, only IMSI would
 be revealed.  The other parameters or encryption are not in danger in
-EAP-SIM authentication, because EAP-SIM will stop conversation, if it
+EAP-SIM authentication, because EAP-SIM will stop the conversation if it
 does not receive the correct MNO authentication message.  EAP-SIM
-protocol, as do most of the other EAP-variants, provides a secure way
-to generate session parameters to WPA2-session and those are not
-leaked outside, because they are created individually on both
+protocol, like most of the other EAP-variants, provides a secure way
+to generate session parameters for a WPA2-session. These parameters are not
+leaked outside because they are created individually on both
 endpoints: at the smartphone and at the Authentication Server.
 Finally, the fact that the secret key Ki stays inside the SIM makes it
 difficult to attack the session by pretending to be the smartphone.
@@ -2513,11 +2513,11 @@ difficult to attack the session by pretending to be the smartphone.
 
 
 
-RADIUS messaging in the wire is vulnerable too, because IMSI is transmitted in clear 
-in EAP. IMSI is copied in to RADIUS's user-name attribute from EAP's identity field.
-RADIUS runs over UDP, but can be used also with TCP. With TCP, RADIUS
+RADIUS messaging in the wire is vulnerable, too, because IMSI is transmitted in clear 
+in EAP. IMSI is copied in to RADIUS's user-name attribute from the EAP's identity field.
+RADIUS runs over UDP, but can also be used with TCP. With TCP, RADIUS
 may use RadSec extension, which features TLS-based message encryption,
-integrity checking and more advanced digesting functions than plain
+integrity checking, and more advanced digesting functions than plain
 RADIUS.
 RadSec is also expandable and open 
 for negotiating more secure ciphersuites that future 
@@ -2541,39 +2541,39 @@ authentication (re-auth) and offline cases in the implementation Chapter
 
 
 
-The integrity issues were parly handled in Section \ref{sec:radius-macs} describing
+The integrity issues were partly handled in Section \ref{sec:radius-macs} describing
 RADIUS message modification.
-Message digestion codes provide integrity for RADIUS protocol.
+Message digestion codes provide integrity for the RADIUS protocol.
 If PEAP is used, it handles integrity through its usage of
  TLS \cite{peap}.
 
 There is also a fraudulent authenticator problem, which is an attack
 against both the integrity and privacy.  The authenticator may present
 some information to the authentication server and other to the
-EAP-peer. Mitigation for that is, that EAP-peer would include some
+EAP-peer. Mitigation for that would be that EAP-peer would include some
 characteristics of the authenticator inside its EAP-message, which
-the authentication server then verified (RFC6677) \cite{rfc6677}.
+the authentication server then would verify (RFC6677) \cite{rfc6677}.
 
 \subsection{Accessibility, DoS and scalability}
 \label{sec-6-1-3}
 
-Is home network immune against (distributed) denial of service (DoS)
-attacks? Besides DoS, does the solution scale up from home network to
-small and middle size companies?
-To answer this we can remember that backends (cloud and operator) are
+Is a home network immune against (distributed) denial of service (DoS)
+attacks? Besides DoS, does the solution scale up from a home network to
+small and middle-size companies?
+To answer these questions, we must remember that backends (cloud and operator) are
 designed for thousands or even millions of users, so 
-they hardly are limiting factors. Instead, local
+they hardly are limiting factors. Instead, the local
 authenticator is the one whose performance might suffer, which
-comes from processing loads \cite{2009-lin-simefficiency}.
+could happen because of processing loads \cite{2009-lin-simefficiency}.
 
 
-Traditionally, RADIUS has used connection\-less UDP protocol that is
-light weight. Retransmission in UDP is tolerable, because the user is
-ready to wait several seconds for authentication to complete.  
-Today, RADIUS can be also run over TCP, which has generally more
+Traditionally, RADIUS has used connection\-less UDP protocol which  is
+light-weight. Retransmission in UDP is tolerable because the user is
+ready to wait for several seconds for authentication to complete.  
+Today, RADIUS can be also run over TCP, which generally has a more
 aggressive retransmission rate. \cite[Section 2.2.1]{rfc5080}.
-UDP misses the reliability that TCP has, but, adding an alternative UDP RADIUS
-server can answer requests faster than waiting for TCP RADIUS's reliable delivery.
+UDP misses the reliability that TCP has, but adding an alternative UDP RADIUS
+server can make answering the requests faster than waiting for TCP RADIUS's reliable delivery.
 
 
 \subsection{RADIUS weaknesses and strengths in limited use cases}
@@ -2581,18 +2581,18 @@ server can answer requests faster than waiting for TCP RADIUS's reliable deliver
 
 
 RADIUS protocol itself is old and not very secure as of current
-standards(2015), because messages are not encrypted and they are
+standards (2015) because messages are not encrypted and they are
 transported on datagrams (UDP). Alternative RADSEC protocol uses TLS, and 
 is backwards compatible with RADIUS protocol, so it can be used
-as secure RADIUS proxy such as \emph{radproxy} \cite{uninett-radproxy}.
+as a secure RADIUS proxy such as \emph{radproxy} \cite{uninett-radproxy}.
 
-RADIUS protocol provides some integrity checks with Message
+The RADIUS protocol provides some integrity checks with Message
 Authenticators as described in Section \ref{sec:radius-macs}.  RADIUS uses
 MD5 hashing and shared secrets, but that is not enough.  MD5 hashes
-were first time broken by brute force already 20 years ago and today
+were broken for the first time  by brute force already 20 years ago, and today
 they can only be used as a data error detection
-tool \cite[p.2]{rfc6151}.  If a malicious actor (Man in the middle,
-MiTM) imitates RADIUS proxy, it can try to inject false messages.
+tool \cite[p.2]{rfc6151}.  If a malicious actor (Man-in-the-middle,
+MiTM) imitates a RADIUS proxy, it can try to inject false messages.
 Duplicate MD5-hashes (collisions) are easy to compute today (for 
 example MD5Attack \cite{rfc5176}) and researchers like Xie in
 2013 \cite{xie2013fast}  are even accelerating the speed for
@@ -2606,13 +2606,13 @@ signatures for integrity checking of packet payload.
 
 
 
-In scenario III(Figure\ref{fig:scenario-III}),  there was a proxying RADIUS
+In scenario III (Figure\ref{fig:scenario-III}),  there was a proxying RADIUS
 between the authenticator
 and the MNO.  When the MNO notifies the authenticator
 that a smartphone has been authenticated, then the authenticator (AP, functioning
 as a RADIUS-client) hooks that message and usually just grants the
 smartphone the access to the network. After giving access rights, other
-provisioning parameters can be sent with RADIUS messages, for example
+provisioning parameters can be sent with RADIUS messages, for example,
 a session time-out,
 a current admin user list, a state of OTP list, or a VLAN id.
 
@@ -2622,53 +2622,54 @@ a current admin user list, a state of OTP list, or a VLAN id.
 
 Earlier, in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
-considered bad because mixing secrets between usage
+considered unsafe practise because mixing secrets between usage
 domains weakens the security.  In GSM networks, IMSI identifies the subscriber on
-the first contact, later TMSI is used for call and SMS.  In EAP-SIM those
+the first contact, and later TMSI is used for call and SMS.  In EAP-SIM those
 values are also used. IMSI naturally is the same, but TMSI should be
 different for call and EAP.  Haverinen \cite{hav-doc} explains how
 special RAND numbers can be used to differentiate the use of TMSI in 3GPP and Wi-Fi
 contexts.
 
 Re-authentication and termination can bring unexpected results.
-Even, when sessions can be terminated, the client side may have 
-option set to login automatically, transparent and without users control.
+Even when sessions can be terminated, the client side may have 
+the option of  setting to login automatically, transparent and without
+the user's control.
 Automatic re-authentication after disconnection  must be considered
-here as harmful as well as automatic login when nearby suitable AP. An
-example from harmful behaviour was a case with  Swiss mobile operator Swisscom, who
- provided two networks ``Mobile'' and ``Mobile Eapsim''  for its
+here as harmful, as well as automatic login near a suitable AP. An
+example of harmful behaviour was a case with the  Swiss mobile operator Swisscom, which
+ provided two networks, ``Mobile'' and ``Mobile Eapsim'' , for its
 customers. 
-The latter network did not ask each time customers' permission for
-connection but used their smartphone's SIM
+The latter network did not ask for the customers' permission for
+a connection each time, but used their smartphone's SIM
 automatically. Unfortunately, it also charged users for using Wi-Fi
 connections without users' knowledge. \cite{swisscom}
 
 
 
 Although a direct connection to SIM card's memory is restricted,
-if one can read and write data through SIM card's API,
+if one can read and write data through the SIM card's API,
 one could still try to get information (SRES, Kc) by brute-force. 
 Fortunately SRES and Kc are never sent in clear, but inside
 a digested MAC.
- Additionally SIM card can be programmed to answer only
-limited number of challenge request, for example 65535 times.
+Additionally, a SIM card can be programmed to answer only to a
+limited number of challenge requests, for example, 65,535 times.
 For normal use that would be enough, but in brute-force challenges 
-it would soon be exhausted and SIM card would lock itself and not
+it would soon be exhausted, and the SIM card would lock itself and not
 function anymore at all.
 
 
 \subsection{Hardware tampering}
 \label{sec-6-1-6}
-All this time it is assumed, that hardware does not lie. In case
-the hardware has been tampered, we could not trust its claims.
+All this time it is assumed that hardware does not lie. In the case
+that the hardware has been tampered, we cannot trust its claims.
 For example, there have been attacks against SIM to reveal its private
-key after SIM have been copied.  To verify, that a device has not been
-tampered, a method called attestation can be used.
+key after the SIM has been copied.  To verify that a device has not been
+tampered with, a method called attestation can be used.
 
-A device, which has attestation capability such as 
+A device which has attestation capability such as 
 hardware certificates or Trusted Platform Module (TPM) technology
 can function as a trust anchor.
-Such a device could be sent direct to customer with pre-configured
+Such a device could be sent directly to the customer with pre-configured
 secrets and methods to take a place as a trust anchor. 
 That leads us again to the key distribution problem.
 
@@ -2676,55 +2677,55 @@ That leads us again to the key distribution problem.
 \subsection{Mitigation methods against radio capturing}
 \label{sec-6-1-7}
 To mitigate risks for radio capturing, two methods are presented: hiding of
-wireless network and proximity. They are not perfect but can
+wireless network and proximity. They are not perfect, but can
 limit attack vectors in time and place.
 
 
 Recall that the access to management network from the smartphone is
  needed only then when changes
 are made. Why then not just enable management radio network
-during those times? Then there were less networks for users to choose from.
+during those times? Then there would be fewer networks for users to choose from.
 Enabling management network could be programmed through 
 LuCI-interface, which is a web user interface to the Unified
  Configuration Interface used in OpenWRT routers.
-Preliminary tests showed, that activating new networks in AP also 
-disconnects existing Wi-Fi connections and may even restart AP,
+Preliminary tests showed that activating new networks in an AP also 
+disconnects the existing Wi-Fi connections and may even restart the AP,
 which certainly would not be wanted. Some other methods need to
-be invented to avoid denial-of-service, when an intruder tries to 
-connect by that method and would cause continuous AP outages.
+be invented to avoid denial-of-service when an intruder tries to 
+connect by that method and causes continuous AP outages.
 
 \label{tag:hidessid}
 One could also think of hiding the network by disabling the
 advertisement of manage\-ment network SSID. That is called ``network
-cloaking''.  Smartphone would then need to know the exact target SSID name.
-Does disabling or hiding the management network bring real security or
-is it just security by obscurity?  Security by obscurity means here,
-that hiding network 
+cloaking''. The smartphone would then need to know the exact target SSID name.
+Does disabling or hiding the management network bring real security, or
+is it just security by obscurity?  Security by obscurity means here
+that hiding the network 
 as a security method would filter out only some casual crackers, while
 at the same time it still is trivial for any serious crackers.
 Disabling or hiding  merely gives one security layer more so it is not
 a real security method.
 
-The SSID could also be renamed always, in essence to implement
-one-time-only network, but then the smartphone would need to get that
-secret somewhere, perhaps via an SMS and that would defeat the purpose
+The SSID could also be always renamed, in essence to implement
+a one-time-only network, but then the smartphone would need to get that
+secret somewhere, perhaps via an SMS, and that would defeat the purpose
 of easy access.  If that method nevertheless would be used, then
 hiding the one-time-only network name actually could add security. 
 If the client knows beforehand the name of SSID
-(and maybe also checks AP's MAC), then AP does not reveal any information,
-before the client has tried to connect to it and that would minimize
+(and maybe also checks AP's MAC), then AP does not reveal any information
+before the client has tried to connect to it, and that would minimize
 the time window for attacks. 
-Because RFC5448 \cite[p.12]{rfc5448} forbids the change of network name between full and
+Because RFC5448 \cite[p.12]{rfc5448} forbids the change of the network name between full and
 fast authentication to prevent usage of compromised keys, the client
-and server should use full authentification, when they notice, that
-network name has changed.
+and server should use full authentification when they notice that
+the network name has changed.
 
 
 
 
- Hiding can also have privacy enhancing effects.
-While Wi-Fi client's normal action is to probe for SSIDs of lately visited
-and learned APs, anyone can analyze those probes and reveal client's
+ Hiding can also have privacy-enhancing effects.
+While a Wi-Fi client's normal action is to probe for SSIDs of lately visited
+and learned APs, anyone can analyze those probes and reveal the client's
 earlier locations without very much effort.
 Lindqvist et.al. \cite{hidden-wlan} present usage of hidden
 APs in protecting privacy of clients and preventing that scenario.
@@ -2739,12 +2740,13 @@ for preventing attacks, as the attacker must be physically within
 those limits.
 This can be considered as an added factor in multifactor
 authentication or reputation, but it will not be enough, because
-attackers will have more sensitive  radios available than normal users
+attackers will have more sensitive  radios available than normal users'
 devices have. 
-Also, if SIM-profile was used through Bluetooth, there were also
+In addition, if a SIM-profile was used through Bluetooth, there would
+also be
 range limits, but even shorter. Despite the claimed distance limits
-on Bluetooth, receiving can be extended with even to one mile with
-directed antenna \cite{SANS-bluetooth-2007}.
+on Bluetooth, receiving can be extended up to one mile with
+a directed antenna \cite{SANS-bluetooth-2007}.
 
 
 
@@ -2752,86 +2754,86 @@ directed antenna \cite{SANS-bluetooth-2007}.
 \section{Deployment difficulty and costs}
 \label{sec-6-2}
 
-To deploy the system, modifications must be done to the AP and the client.
+To deploy the system, modifications must be made to the AP and the client.
 Additionally, a contract must be made with the MNO service
 provider producing AuthN.
 
-Requirement for home network can be as small as having WPA2 Enterprise capable
+The requirements for a home network can be as small as having a WPA2 Enterprise capable
 AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
-has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
-WPA2-enterprise setting involves setting IP-address of RADIUS server providing 
-AA and corresponding shared secret.
+has been distributed to many homes by the cable modem operator Elisa, was found to have only WPA2-PSK mode.
+WPA2-enterprise setting involves configuring the IP-address of the RADIUS server providing 
+AA and a corresponding shared secret.
 For  the client, a Wi-Fi profile must be added: used management SSID,
 protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
-Smartphone can have different profiles, also with a same SSID, but
-then the user needs to choose manually, which profile is wanted.
+A smartphone can have different profiles, even with the same SSID, but
+then the user needs to choose manually which profile is wanted.
 
-Additionally, the initial admin user's SIM-card has to be registered as an
-admin user in some way in home network 
-configuration, i.e., IMSI must belong to the admin group.
-In this implementation, no extra application is needed in smartphone
-for primitive trust, but later for more serious use some application is needed.
-For added functionality, for example for logging admins out, OpenWRT
-based software can be used, although those functions have not yet been
+Additionally, the initial admin user's SIM card has to be registered as an
+admin user in some way in the home network 
+configuration, i.e., the IMSI must belong to the admin group.
+In this implementation, no extra application is needed in the smartphone
+for primitive trust, but later, for more serious use, some application is needed.
+For added functionality, such as logging admins out, OpenWRT-based
+software can be used, although those functions have not yet been
 implemented.
 
 
 
 
 
-While no service exists yet from MNOs, we estimate their costs based
+While no such service is yet provided by MNOs, we estimate their costs based
 on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
-clients, if usage is personal, but costs for service providers are
-unknown.  Hardware costs can mostly be eliminated, while users already
-have smartphones and for infrastructure, existing hardware such as APs
+clients if usage is personal, but costs for service providers are
+unknown.  Hardware costs can mostly be eliminated because users already
+have smartphones and for the infrastructure, existing hardware such as APs
 can be used.
 
-Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
+Using SIM for local Wi-Fi AA adds value to the smartphone ecosystem.
 To further divide possible costs for EAP-SIM usage
 is difficult.
 EAP-SIM always needs an MNO for the first authentication,
-because only the MNO and a SIM-card manufacturer know 
-what are SIM's Ki and the used A3/A8 algorithm variation
+because only the MNO and a SIM card manufacturer know 
+the SIM's Ki and the used A3/A8 algorithm variation
 for GSM/3GPP/LTE authentication.
 
-It is difficult to see, if any commercial provider would implement
-SIM-key sharing so, that secret part was divided to a part that
-implements AuthN for an own operator and to a part, that is free to
+It is difficult to see if any commercial provider would implement
+the SIM key sharing so that the secret part would be divided into a part that
+implements AuthN for the user's own operator and into a part that is free to
 use by some other operator.  Instead, the same functionality can be achieved with
 a dual-SIM phone, which allows inserting two SIM cards from different
-operators in to the phone. By using menu option in phone, or even a
-specific prefix code before call, an alternate SIM card can be chosen
+operators into the phone. By using a menu option in phone, or even a
+specific prefix code before a call, an alternate SIM card can be chosen
 without booting the phone.
 Dual-SIM thus allows change of identity and IMSI without removing the SIM card.
 
-There exists also private GSM networks. An interesting use case
-of them  has been Chaos Computer Club's international 
-CCC-camps \cite{ccc}, where organizers 
-provide private GSM network for attendees of conference
-by distributing them separate SIM cards for 2 euros.  Even, when GSM
+There also exist private GSM networks. An interesting use case
+of them  are Chaos Computer Club's international 
+CCC-camps \cite{ccc}, where the organizers 
+provide a private GSM network for the attendees of the camp
+by distributing them separate SIM cards for 2 euros.  Even when a GSM
 network used 1.8GHz radio channel under an experimental spectrum
-licence,  GSM encryption also could be used, because the SIM-card secrets were known
+license,  GSM encryption could also be used, because the SIM card secrets were known
 to the organizing, private operator.
 On the other hand, empty GSM cards for testing can cost as much as 
 18 euros a piece \cite{smartjac-testsim}.
 
 
-\section{Platform specific issues}
+\section{Platform-specific issues}
 \label{sec-6-3}
 
 \label{sec:pcsc}
 
 For clients, there is no need for public key infrastructure (PKI)
-unless EAP-PEAP is used. Under PEAP there are either server
-certificate or additionally client certificate present.  There are
-smartphones, that do not have EAP-SIM yet available.  For example
+unless EAP-PEAP is used. Under PEAP there is either a server
+certificate or an additional client certificate present.  There are
+smartphones that do not have EAP-SIM  available yet.  For example,
 support for EAP-SIM (and -AKA) methods starts in Android only from
 version 4.x and in iOS from version 5.x. \cite{sim-support}.
 
 Generally, to support EAP-SIM  with open source software in 
-smartphone, needed components are \emph{pcsc-lite} for accessing SIM card, \emph{wpa\_supplicant} for
-WPA2 client, and possible used connection manager (\emph{connman},
-\emph{wicd}, or \emph{Network Manager} in Linux). This is in line, what was done in testing without \emph{pcsc-lite},
+a smartphone, the needed components are \emph{pcsc-lite} for accessing the SIM card, \emph{wpa\_supplicant} for
+WPA2 client, and possibly used connection manager (\emph{connman},
+\emph{wicd}, or \emph{Network Manager} in Linux). This is in line with what was done in testing without \emph{pcsc-lite},
 because a file backend was used instead of a SIM card.
 
 
@@ -2840,18 +2842,19 @@ because a file backend was used instead of a SIM card.
 If OpenWRT platform is used for CPE, the memory size (32MB) restricts
 some use.
 WPA2 software included in basic OpenWRT installation is small,
-but that does not yet include RADIUS server part or EAP-SIM handling.
-Freeradius2 is not yet included in OpenWRT and if it was, it would
-also be based heavily on current Perl environment which itself needs a
+but that does not yet include the RADIUS server part or EAP-SIM handling.
+Freeradius2 is not yet included in OpenWRT, and even if it was, it would
+also be heavily based  on the current Perl environment which itself needs a
 lot of space.  Currently, as of August 9th, 2015, Freeradius is
-running on version 3 and EAP-AKA is supported through a module from
-hostapd project.  COMP128(versions 1, 2, and 3), which is
-implementation of A3/A8 algorithms, is supported \cite{freeradius2},
+running on version 3 and EAP-AKA is supported through a module from the
+hostapd project.  COMP128 (versions 1, 2, and 3), which is
+an implementation of A3/A8 algorithms, is supported \cite{freeradius2},
 and so EAP-SIM is available.  Yet, Freeradius can be used as
-Authentication Center (AuC).  Diameter (freeDiameter) can be compiled
-in OpenWRT, which is good, because on 3GPP networks Diameter protocol
-has more support than RADIUS.  If nothing else works, as a backup
-old-fashioned WWW-authentication portal can be used for offline
+an Authentication Center (AuC).  Diameter (freeDiameter) can be compiled
+in OpenWRT, which is good because 
+ Diameter protocol has more support on 3GPP networks 
+than RADIUS has.  If nothing else works, as a backup,
+an old-fashioned WWW-authentication portal can be used for offline
 authentication.
 
 
@@ -2863,47 +2866,49 @@ authentication.
 
 
 
-To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
-and thus RADIUS server, but at the same time, existing Wi-Fi network at
+To enable EAP-SIM method, it is necessary to use the WPA2-Enterprise
+mode and, thus,
+ RADIUS server, but at the same time, the existing Wi-Fi network at
 home usually has been set using WPA2-PSK.
-Because it was not found, how authenticator could use the same network
+Because it was not found out how the authenticator could use the same network
 SSID for both WPA2-PSK (or open access) and WPA2-Enterprise, a
 separate SSID for dedicated management network was technically needed.
-Luckily, today's APs allow setting of multiple SSIDs.
+Luckily, today's APs allow the setting of multiple SSIDs.
 
 Nevertheless, if Wi-Fi was limited to only one SSID, then we would
 need another 
-way to indicate that user wants to get in to management network. 
-Separation can be done for example at client's  end by using different realm on
-AuthN identity. It also can be done by adding hints for different destination to
-username (username decoration) or by using different authentication
-method. All these methods allow Authentication Server to distinguish, what the user
-wants to do; get normal access to home network or make trust anchor claim to 
-management network.
+way to indicate that the user wants to get into the management network. 
+Separation can be done, for example, at the client's  end by using a different realm on
+AuthN identity. It can also be done by adding hints for a different
+destination to the
+username (username decoration) or by using a different authentication
+method. All these methods allow the Authentication Server to distinguish what the user
+wants to do; to get normal access to the home network, or to make a trust anchor claim to 
+the management network.
 
-If Lock-and-key method was used instead of EAP-SIM RADIUS, then
-separate manage\-ment SSID would not be needed. Roles were given at
-authentication server or designated router after the smartphone has done login to it
-via normal access network.
+If the Lock-and-key method was used instead of EAP-SIM RADIUS, then
+a separate manage\-ment SSID would not be needed. Roles are given at
+authentication server or designated router after the smartphone has
+logged into it via the normal access network.
 
 
 \section{Usability with access points}
 \label{sec-6-4}
 There are three main types of wireless access points: open access
-points without configuration on client's end, access points 
-demanding one-time only setup of client such as WPA2-PSK or
-WPA2-Enterprise, and access points similar to captive portal, where
-user have to login manually first time through web-page login.
-It is well known, that the usability of the captive portal Wi-Fi
- network is burden, because a user needs to go through 
-a web portal logins with a username-password authentication 
-procedure and those are different for every network.
-Additionally, the user is often required to switch 
+points without configuration on the client's end, access points 
+demanding one-time-only setup of a client such as WPA2-PSK or
+WPA2-Enterprise, and access points similar to a captive portal, where
+users on the first time have to login manually through web-page login.
+It is well known that the usability of the captive portal Wi-Fi
+ network is a burden, because a user needs to go through 
+a web portal login with a username-password authentication 
+procedure, and those credentials are different for every network.
+Additionally, the users are often required to switch 
 between cellular and  Wi-Fi data access when they change their
- location, and that would disrupt the network connection.
+ location, and that disrupts the network connection.
 
 An industry brand  Hotspot 2.0 (HS2.0) addresses those issues and tries to
-simplify user's switch between Wi-Fi and cellular to automate the
+simplify the user's switch between Wi-Fi and cellular to automate the
 roaming experience.  HS2.0 is driven by two alliances:
 Wi-Fi Alliance has a certification program (Passpoint)
 for HS2.0 compatible devices, while the Wireless Broadband
@@ -2914,8 +2919,8 @@ HS2.0
 enables the selection of the network based on the ownership, services and
 performance characteristics \emph{before} a Wi-Fi client has been associated
 to a HS2.0 AP. The technology is built on IEEE 802.11u specification. 
-In its second release version the operator would
-have control on which network the smartphone would carry its data
+In its second release version the operator will
+have control over which network the smartphone carries its data
 transmission. 
 
 
@@ -2925,35 +2930,35 @@ transmission.
 Ericsson's technology journal ``Review'' revealed in 2012, that their 
 HS2.0 goal is ``to make roaming between Wi-Fi and 3GPP/LTE networks smoother
 and to bring operator-grade to Wi-Fi by putting control in operators side''. More
-than offloading traffic, plans were to bring to Wi-Fi other services too \cite{er-seamless}.
+than offloading traffic, plans were to bring to Wi-Fi other services, too \cite{er-seamless}.
 Developing HS2.0 a few steps further would add mobile traffic and internet
-off-loading on to Wi-Fi networks and that would be the missing link in
+off-loading onto Wi-Fi networks, and that would be the missing link in
 interworking those two worlds.
 
 
 
 In HS2.0, the cellular network may signal the smartphone and
-propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
-access point and continue using Wi-Fi instead of cellular network.
-In a similar way, the smartphone could receive signal from the cellular
-network, when controlling changes need to be approved. The smartphone
+propose it to switch to Wi-Fi. The smartphone then tries to find a HS2.0 capable
+access point and continue using Wi-Fi instead of the cellular network.
+In a similar way, the smartphone could receive a signal from the cellular
+network when controlling changes need to be approved. The smartphone
 would then make some tests to proof the local AP's suitability for 
 HS2.0. If those succeed, then the cellular network would continue and order the 
 phone to make a switch to the Wi-Fi network, authenticate there with 
-EAP-SIM (or -AKA) and transfer services to Wi-Fi not forgetting 
-the transfer in to the management network. This scenario could be 
+EAP-SIM (or -AKA), and transfer services to Wi-Fi, not forgetting 
+the transfer into the management network. This scenario could be 
 studied further.
 
 
-If HS2.0 was used here to automate the part, where
+If HS2.0 was used here to automate the part where
 the smartphone needs to change from cellular to local
-management Wi-Fi network and back, we probably would
+management Wi-Fi network and back, we would probably 
 miss the user decision part. The user, not the operator,
  must give his consent to access the management network, so
-it is important, that the switch would not be automatic or forced.
+it is important that the switch is not automatic or forced.
 In a way, operator aided roaming between Wi-Fi and cellular
-works in a different level than here described trust-anchor method.
-The operator is interested on the access network, while
+works on a different level than the trust-anchor method described here.
+The operator is interested in the access network, while
 we are interested in the side result of getting access, namely 
 the achieved trusted access point.
 
