@@ -3784,12 +3784,12 @@ difficult to attack the session by pretending to be the smartphone.
 #  - eavesdropping
 #  - replay attack, see Section "MitM, Reused secrets, Reply attacks"
 
-RADIUS messaging in the wire is vulnerable too, because IMSI is transmitted in clear 
-in EAP. IMSI is copied in to RADIUS's user-name attribute from EAP's identity field.
+RADIUS messaging in the wire is vulnerable, too, because IMSI is transmitted in clear 
+in EAP. IMSI is copied in to RADIUS's user-name attribute from the EAP's identity field.
 # may be filtered out?
-RADIUS runs over UDP, but can be used also with TCP. With TCP, RADIUS
+RADIUS runs over UDP, but can also be used with TCP. With TCP, RADIUS
 may use RadSec extension, which features TLS-based message encryption,
-integrity checking and more advanced digesting functions than plain
+integrity checking, and more advanced digesting functions than plain
 RADIUS.
 RadSec is also expandable and open 
 #   with larger possibility of  digesting functions
@@ -3825,9 +3825,9 @@ authentication (re-auth) and offline cases in the implementation Chapter
 
 
 
-The integrity issues were parly handled in Section [[sec:radius-macs]] describing
+The integrity issues were partly handled in Section [[sec:radius-macs]] describing
 RADIUS message modification.
-Message digestion codes provide integrity for RADIUS protocol.
+Message digestion codes provide integrity for the RADIUS protocol.
 If PEAP is used, it handles integrity through its usage of
  TLS \cite{peap}.
 # , even when the upper layer RADIUS's integrity would not be handled with
@@ -3835,9 +3835,9 @@ If PEAP is used, it handles integrity through its usage of
 There is also a fraudulent authenticator problem, which is an attack
 against both the integrity and privacy.  The authenticator may present
 some information to the authentication server and other to the
-EAP-peer. Mitigation for that is, that EAP-peer would include some
+EAP-peer. Mitigation for that would be that EAP-peer would include some
 characteristics of the authenticator inside its EAP-message, which
-the authentication server then verified (RFC6677) \cite{rfc6677}.
+the authentication server then would verify (RFC6677) \cite{rfc6677}.
 
 
 
@@ -3852,14 +3852,14 @@ the authentication server then verified (RFC6677) \cite{rfc6677}.
 
 *** Accessibility, DoS and scalability
 
-Is home network immune against (distributed) denial of service (DoS)
-attacks? Besides DoS, does the solution scale up from home network to
-small and middle size companies?
-To answer this we can remember that backends (cloud and operator) are
+Is a home network immune against (distributed) denial of service (DoS)
+attacks? Besides DoS, does the solution scale up from a home network to
+small and middle-size companies?
+To answer these questions, we must remember that backends (cloud and operator) are
 designed for thousands or even millions of users, so 
-they hardly are limiting factors. Instead, local
+they hardly are limiting factors. Instead, the local
 authenticator is the one whose performance might suffer, which
-comes from processing loads \cite{2009-lin-simefficiency}.
+could happen because of processing loads \cite{2009-lin-simefficiency}.
 
 
 Traditionally, RADIUS has used connection\-less UDP protocol that is
