@@ -3882,18 +3882,18 @@ server can make answering the requests faster than waiting for TCP RADIUS's reli
 
 # *** MitM, Reused secrets, Reply attacks
 RADIUS protocol itself is old and not very secure as of current
-standards(2015), because messages are not encrypted and they are
+standards (2015) because messages are not encrypted and they are
 transported on datagrams (UDP). Alternative RADSEC protocol uses TLS, and 
 is backwards compatible with RADIUS protocol, so it can be used
-as secure RADIUS proxy such as /radproxy/ \cite{uninett-radproxy}.
+as a secure RADIUS proxy such as /radproxy/ \cite{uninett-radproxy}.
 
-RADIUS protocol provides some integrity checks with Message
+The RADIUS protocol provides some integrity checks with Message
 Authenticators as described in Section [[sec:radius-macs]].  RADIUS uses
 MD5 hashing and shared secrets, but that is not enough.  MD5 hashes
-were first time broken by brute force already 20 years ago and today
+were broken for the first time  by brute force already 20 years ago, and today
 they can only be used as a data error detection
-tool \cite[p.2]{rfc6151}.  If a malicious actor (Man in the middle,
-MiTM) imitates RADIUS proxy, it can try to inject false messages.
+tool \cite[p.2]{rfc6151}.  If a malicious actor (Man-in-the-middle,
+MiTM) imitates a RADIUS proxy, it can try to inject false messages.
 Duplicate MD5-hashes (collisions) are easy to compute today (for 
 example MD5Attack \cite{rfc5176}) and researchers like Xie in
 2013 \cite{xie2013fast}  are even accelerating the speed for
