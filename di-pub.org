@@ -259,7 +259,7 @@ Thank you all!
 % Tilde ~ makes an non-breakable spce in LaTeX. Here it is used to get
 % two consecutive paragraph breaks
 
-Tampere, (18).11.2015
+Tampere, November 18th, 2015
 ~
 
 
