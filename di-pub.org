@@ -4276,21 +4276,22 @@ some use.
 # - OpenWRT is environment for embedded system.
 #   When software is not fully optimized, memory is one of the limits which come first.
 WPA2 software included in basic OpenWRT installation is small,
-but that does not yet include RADIUS server part or EAP-SIM handling.
+but that does not yet include the RADIUS server part or EAP-SIM handling.
 #  is less than 128k, but 
  #   To compile and install RADIUS server package into OpenWRT .   
 # Software has other limitations. 
-Freeradius2 is not yet included in OpenWRT and if it was, it would
-also be based heavily on current Perl environment which itself needs a
+Freeradius2 is not yet included in OpenWRT, and even if it was, it would
+also be heavily based  on the current Perl environment which itself needs a
 lot of space.  Currently, as of August 9th, 2015, Freeradius is
-running on version 3 and EAP-AKA is supported through a module from
-hostapd project.  COMP128(versions 1, 2, and 3), which is
-implementation of A3/A8 algorithms, is supported \cite{freeradius2},
+running on version 3 and EAP-AKA is supported through a module from the
+hostapd project.  COMP128 (versions 1, 2, and 3), which is
+an implementation of A3/A8 algorithms, is supported \cite{freeradius2},
 and so EAP-SIM is available.  Yet, Freeradius can be used as
-Authentication Center (AuC).  Diameter (freeDiameter) can be compiled
-in OpenWRT, which is good, because on 3GPP networks Diameter protocol
-has more support than RADIUS.  If nothing else works, as a backup
-old-fashioned WWW-authentication portal can be used for offline
+an Authentication Center (AuC).  Diameter (freeDiameter) can be compiled
+in OpenWRT, which is good because 
+ Diameter protocol has more support on 3GPP networks 
+than RADIUS has.  If nothing else works, as a backup,
+an old-fashioned WWW-authentication portal can be used for offline
 authentication.
 
 
@@ -4308,8 +4309,9 @@ authentication.
 
 
 
-To enable EAP-SIM method, it is necessary to use WPA2-Enterprise mode
-and thus RADIUS server, but at the same time, existing Wi-Fi network at
+To enable EAP-SIM method, it is necessary to use the WPA2-Enterprise
+mode and, thus,
+ RADIUS server, but at the same time, the existing Wi-Fi network at
 home usually has been set using WPA2-PSK.
 # with one Service Set ID (SSID)
 # Two SSID, rationale
