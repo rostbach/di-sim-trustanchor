@@ -4467,11 +4467,12 @@ not want to invest in existing technology, which can be seen as ``old''.
 
 
 # [do not jump in with so short flash messages. This looks like conclusion.] 
-SIM card of the smartphone, used together with Wi-Fi access to home network 
+The SIM card of the smartphone, used together with Wi-Fi access to a home network, 
 helps in verifying the changes, and for that we have presented some options.
-Location of AuthN and AuthZ components may vary depending on state of process.
-Always in the beginning, AuthN lies outside the home network, but
-later it can also use local point. AuthZ, on the other hand, may be located more freely.
+The location of AuthN and AuthZ components may vary depending on the
+state of the process.
+In the beginning, AuthN always lies outside the home network, but
+later it can also use a local point. AuthZ, on the other hand, may be located more freely.
 # RADIUS protocol is used to open management port. 
 # It is not used to traditional user authentication.
 # RADIUS protocol is here not used for 
@@ -4479,26 +4480,27 @@ later it can also use local point. AuthZ, on the other hand, may be located more
 # RADIUS, but opening access to separated network. 
 
 Based on 802.1X standard, the management port is activated and
-RADIUS transfers the orders for correct AA.
-The smartphone traffic is directed in to an own virtual LAN segment (VLAN),
+RADIUS transfers the orders for the correct AA.
+The smartphone traffic is directed into its own virtual LAN segment (VLAN),
 which is dedicated to management.
 # Similar use case is traditional separate user to own network segment
 # based on RADIUS message.
 # is used to open management port. 
 # It is not used to traditional user authentication.
 # lets configuration changes be 
-Thesis thus uses an old, yet simple method for problem risen in a modern environment home network.
+Thus, this thesis  uses an old, yet simple method for solving a
+problem risen in a modern home network environment.
 
-Disconnection from a normal (Wi-Fi) access network must happens, before phone can get
-into the management network. It means, that all stateful network
+Disconnection from a normal (Wi-Fi) access network must happen before a phone can get
+into the management network. This means that all stateful network
 connections using Wi-Fi will close at that point. Smartphones do not
 have multiple wireless connections, but mobile data connections may 
 stay up. Even then, the default routing in the smartphone may change.
 
 
-EAP does by definition only AuthN part although the successful
+By definition, EAP only performs the AuthN part, although the successful
 authentication often precedes ad hoc AuthZ if nothing else is demanded.
-EAP-SIM handles this part, but for AuthZ something else is needed
+EAP-SIM handles this part, but for AuthZ, something else is needed,
 and so some methods have been presented to add the right role to 
 the authenticated identity.
 
