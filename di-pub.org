@@ -2998,13 +2998,13 @@ and the right compilation time configuration set on its WPA-supplicant for SIM.
 Jouni Malinen's software package /HostAP/ \cite{hostapd} provides
 components for WPA2-Supplicant, a Wireless Access point (AP),
 an HLR-gateway (for GSM networks), and an EAP-endpoint with or without
-a RADIUS-server. From those, executable binary programs  wpa_supplicant, hostapd (for wired RADIUS
+a RADIUS server. From those, executable binary programs  wpa_supplicant, hostapd (for wired RADIUS
 server), and hlr_auc_gw  were used.  
 The versions of /HostAP/ used in the tests were 2.2 and later 2.3,
-while version 2.4 was published on March 2015 and 2.5 on September 2015. The software
-may be distributed, used, and modified under the terms of BSD license.
+while version 2.4 was published in March 2015 and 2.5 in September 2015. The software
+may be distributed, used, and modified under the terms of a BSD license.
 
-For a more realistic test, additional hardware AP running OpenWRT
+For a more realistic test, an additional hardware AP running OpenWRT
 firmware was used instead of hostapd's AP. OpenWRT AP worked as a
 RADIUS client connecting to the RADIUS server still provided by the
 hostapd.  OpenWRT AP did not try to open EAP-messages, but just
@@ -3012,16 +3012,16 @@ encapsulated them into RADIUS packets.  RADIUS server's configuration
 file can be seen in Appendix [[app:radius-conf]].
 
 
-Laptop's role was therefore physically split-brain; it asked for AA in
-the end from itself.
+The laptop's role was therefore physically split-brain; in the end, it asked for AA
+from itself.
 Figure[[eap-sim-testbed]] shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
-To make thing more interesting, laptop's WPA2-supplicant with known
+To make thing more interesting, the laptop's WPA2-supplicant with a known
 software SIM part was later implemented inside Jolla. This was
 possible thanks to open software and similarity of Jolla's environment to
-the one used in laptop. Modification involved compiling PCSC-libraries and
+the one used in the laptop. Modification involved compiling PCSC-libraries and
 recompiling the WPA-supplicant used in Jolla with simulator options 
 for ARMv7 architecture.
 
@@ -3077,9 +3077,9 @@ which handles EAP-SIM beside EAP-AKA.
 #  A3/A8, although it was possible to use
 # also newer algorithm MILENAGE,
 # A3/A8 algorithm used in demo is called MILENAGE, 
-Milenage is a reference implementation and as such suitable for operators, who do not 
+Milenage is a reference implementation and as such suitable for operators who do not 
 want to invent their own security algorithms. OPc and Seq parameters from
-Milenage were not used, because they are not needed in EAP-SIM. 
+Milenage were not used because they are not needed in EAP-SIM. 
 
 # In configuration files,
 # parameters for MILENAGE can be seen, but they were not used.
@@ -3106,15 +3106,15 @@ Milenage were not used, because they are not needed in EAP-SIM.
 # devices. For testing home network, Internet IPv6 SA is not tested here.
 
 The first tests were done with hostapd as a wireless AP.
-Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
+Test run with Nokia E70-1 with the Symbian 60 Series OS (2006) had a
 non-registered SIM card. 
 In testing the authentication,
 # By carefully studying configuration, both documented and
 # un-documented,
-there was no indication of EAP method present in captures, the only
+there was no indication of EAP method present in captures. The only
 indication of security was a message ``Open System'' in application
 logs, which only means that no pre-shared key is used. The reason for
-that was not found, but it may have been problem on hostapd's settings.
+that was not found, but it may have been a problem on hostapd's settings.
 
 
 # Olisiko Open ollutkin 802.11 Open System ilmoitus?
@@ -3124,7 +3124,7 @@ that was not found, but it may have been problem on hostapd's settings.
 # Test run with hostapd and simulated HLR_auc_gw
 # [draw picture],
 
-Nokia E90, with a registered SIM had better results. 
+Nokia E90 with a registered SIM had better results. 
 # Traces are in folder ~gitdocs/di/testit/~ files ~eap3.pcapng~,
 #   ~e90.sim.auth.pcapng~ 
 # and ~eap-1.pcapng~  [TBD]
@@ -3153,8 +3153,8 @@ Request--Response pairs.
 # After some modifications, 
 # When this is compared with Figure[[ 
 When opening Responses number 6 and 7, we can see that we got to the
-part, where a nonce, selected version, and an identity were sent from
-the phone (message 7 in Figure[[fig:eap-sim-radius]], but RADIUS server
+part where a nonce, selected version, and an identity were sent from
+the phone (message 7 in Figure[[fig:eap-sim-radius]]), but the RADIUS server
 did not know how to handle them.
 #  authentication phase, but challenge-responses did not work because
 # SIM secrets were not known at that point.  Nevertheless, both SIM
@@ -3162,11 +3162,13 @@ did not know how to handle them.
 # been verified with the SIM card. 
 # Really? Did the RADIUS answer with challenge?
 # Show here, that 
- Even when authentication conversation would not complete fully,
+ Even when authentication conversation did  not complete fully, the
 authenticator still received a claim of identification from the
 smartphone. Yet, as there is no full AuthN, no proof of identity existed in
 that case.
-Both the unregistered SIM and the registered SIM could not have been
+# Both the unregistered SIM and the registered SIM could not have been
+# verified with the
+Neither the unregistered SIM nor the registered SIM could have been
 verified with the
 operator, because it was locally simulated and they both therefore
 correctly  ended the conversation as should regarding
