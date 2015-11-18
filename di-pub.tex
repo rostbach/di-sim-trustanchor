@@ -1,4 +1,4 @@
-% Created 2015-11-18 ke 11:36
+% Created 2015-11-18 ke 11:51
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -2267,23 +2267,23 @@ the beginning of 2010's.  The OS is called Sailfish and it includes user
 interface code created by Jolla, open source base components from Mer, and
 some other software components, which are either free or proprietary.
 Mer is a community driven by merits; its name comes from the words 
-`MEego Reinvented', or `meritocratic community'
+`Meego Reinvented', or `meritocratic community'
 There are also other OSs based on Mer, such as Tizen.
 
 Jolla's base
-WPA-supplicant belongs to Mer core and it was here re-built for
-simulator use. The build process was done inside MerSDK virtual
-machine running under Virtualbox, because it provided not only
-simulated Jolla environment on x86 processor architecture, but also a cross
-compiling environment Scratchbox, that makes porting programs to Armv7
+WPA-supplicant belongs to Mer core, and it was here re-built for
+simulator use. The build process was done inside the MerSDK virtual
+machine running under Virtualbox because it provided not only
+a simulated Jolla environment on x86 processor architecture, but also a cross
+compiling environment Scratchbox, which makes porting programs to Armv7
 processor easy.
 
-To compile wpa\_supplicant with EAP-SIM simulator, PCSC component was
+To compile wpa\_supplicant with EAP-SIM simulator, a PCSC component was
 needed. So first pcsc-lite was downloaded and cross-compiled in
 MerSDK. Then wpa-supplicant was compiled with correct parameters in
-same place. Finally, the wpa-supplicant was stripped from debugging
+the same place. Finally, the wpa\_supplicant was stripped of debugging
 symbols and copied to Jolla together with the PCSC-library.  Jolla
-phone's file hierarchy is very similar to hierarchy in test
+phone's file hierarchy is very similar to hierarchy in the test
 environment's Linux, which made the operation very easy.
 Table\ref{version-table} describes the components and their versions that were used in the tests.
 
@@ -2395,11 +2395,12 @@ earlier needed the computer. Even now, we did not use the real SIM card, but it
 probably would have been possible, if the configuration file did not give
 the secrets but instead a PIN to unlock the smartcard.
 
-\chapter{Analysis, Results and Discussion}
+\chapter{Analysis, Results, and Discussion}
 \label{sec-6}
 
-We have now gone through theory, design and implementation so let's
-discuss some results and findings. We concentrate on security, 
+We have now gone through the theory, design, and implementation. Next,
+let us
+discuss some of the results and findings. We will concentrate on security, 
 deployment difficulties, costs, platform issues, usability of multiple
 APs, and cases where we
 need to extend the number of SSID's. The facts collected in the thesis
@@ -2414,26 +2415,26 @@ trust and management models.
 
 
 There can be multiple ways to attack the described methods of
-the home network management delegation. Following subsections divide them into
+the home network management delegation. The following subsections divide them into
 confidentiality (privacy), integrity, and
 authenticity. Accessibility is also discussed.
 \subsection{Confidentiality (privacy)}
 \label{sec-6-1-1}
 
-Confidentiality means that no one else other than message's intended
-recipients may get to know information inside the message.
-The purpose of the message confidentiality in authentication phase is
+Confidentiality means that no one except the message's intended
+recipients may get to know the information inside the message.
+The purpose of the message confidentiality in the authentication phase is
 to hide the identity of the smartphone and possibly the delivered
 secrets from eavesdroppers. Hiding IMSI enhances the privacy of the smartphone user. 
 
 
-Recall from Section \ref{sec:sim-based-auth}, that IMSI is sent in clear 
-during the starting phase of 802.1X authentication and that is a privacy 
-issue, because TMSI which hides IMSI cannot be used before a session
+As discussed in Section \ref{sec:sim-based-auth},  IMSI is sent in clear 
+during the starting phase of 802.1X authentication. This is a privacy 
+issue because TMSI which hides IMSI cannot be used before a session
 has been set up. \cite[p.66]{rfc4186}.
 After the first full authentication, the client and the authenticator 
-know TMSI and can use it in further communication. 
-TMSI can even be re-changed using re-authentication as shown in Figure\ref{fig:tmsi}.
+know the TMSI and can use it in further communication. 
+The TMSI can even be re-changed using re-authentication as shown in Figure\ref{fig:tmsi}.
 
 \begin{figure}[htb]
 \centering
@@ -2446,13 +2447,13 @@ TMSI can even be re-changed using re-authentication as shown in Figure\ref{fig:t
 
 The authenticator is responsible for converting TMSI to IMSI if it
 later needs to ask for full authentication from the MNO. During that
-time, IMSI can be caught using the device called IMSI-catcher.  The
+time, IMSI can be caught using a device called IMSI-catcher.  The
 very same happens also in a regular GSM network with non-EAP traffic.
-IMSI can be caught by listening the GSM network for phones that are
+IMSI can be caught by listening to the GSM network for phones that are
 registering themselves to the operator when they are powering on.  The
-fault lies there, that GSM specification does not require the mobile
-network to authenticate itself to the phone and so GSM allows man in
-the middle attack.  The attack follows, when the IMSI-catcher
+fault lies in that the GSM specification does not require the mobile
+network to authenticate itself to the phone, and so GSM allows a 
+man-in-the-middle attack.  The attack follows when the IMSI-catcher
 impersonates itself as a (cellular) base station.  When the smartphone
 tries to attach to the fake base station, the smartphone reveals its
 IMSI number. Further, because the base station is responsible for
