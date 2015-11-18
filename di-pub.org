@@ -3737,7 +3737,7 @@ AuthZ cannot otherwise be connected to the corresponding
 identity, and AuthN itself is not enough because it only defines the users'
 authenticity, not their admin roles. Thus, 
 AuthN should work for any  smartphone that has an existing contract with
-their MNO. 
+an MNO. 
 # When everything works between the smartphone and MNO via chain of components, 
 # AuthN works for any the smartphone.
 It still is the responsibility of the authenticator to 
