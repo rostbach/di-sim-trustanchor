@@ -4814,11 +4814,11 @@ the Needham-Schroeder protocol.
 # such as
 # Behringers work-in-progress bootstrapping \cite{draft-behringer-bootstrap}.  
 Another bootstrapping architecture is 
-defined in GBA (General Bootstrapping Architecture) \cite{gba2014}, which 
-is 3GPP's technical specification. 
+defined in GBA (General Bootstrapping Architecture) \cite{gba2014},
+which a technical specification of 3GPP. 
 # \cite{}.
 It benefits from MNO's or any other identity center's  knowledge of user's SIM.
-In GBA, Trusted Third Party authentication center would be setup with
+In GBA, Trusted Third Party authentication center would be set up with
 the help of an MNO.
 # One could also model home network to use separate authentication 
 # and authorization service in style of Kerberos. That would help
@@ -4831,10 +4831,11 @@ the help of an MNO.
 One service would then authenticate an entity, here smartphone, and
 give it a time-limited ticket as a proof that the entity has been authenticated.
 # With this [...] (Ticket-Granting-Ticket) together with TGS session key.
-When the entity wants to connect to the service, it asks from the central 
-server again for ticket, but this time for the service by presenting
-the authentication ticket. In return it receives a service ticket which
-it can present to the wanted service, who verifies the access based
+When the entity wants to connect to the service, it again asks 
+for a ticket from the central 
+server, but this time for the service by presenting
+the authentication ticket. In return, it receives a service ticket which
+it can present to the desired service, which verifies the access based
 on the ticket. 
 
 # If GBA architecture was chosen, then . 
