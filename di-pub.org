@@ -4376,7 +4376,7 @@ enables the selection of the network based on the ownership, services and
 performance characteristics /before/ a Wi-Fi client has been associated
 to a HS2.0 AP. The technology is built on IEEE 802.11u specification. 
 In its second release version the operator will
-have control on which network the smartphone would carry its data
+have control over which network the smartphone carries its data
 transmission. 
 
 #  and 802.11u specs. HS2.0 WPA2 has portions for this,
@@ -4394,18 +4394,18 @@ transmission.
 Ericsson's technology journal ``Review'' revealed in 2012, that their 
 HS2.0 goal is ``to make roaming between Wi-Fi and 3GPP/LTE networks smoother
 and to bring operator-grade to Wi-Fi by putting control in operators side''. More
-than offloading traffic, plans were to bring to Wi-Fi other services too \cite{er-seamless}.
+than offloading traffic, plans were to bring to Wi-Fi other services, too \cite{er-seamless}.
 Developing HS2.0 a few steps further would add mobile traffic and internet
-off-loading on to Wi-Fi networks and that would be the missing link in
+off-loading onto Wi-Fi networks, and that would be the missing link in
 interworking those two worlds.
 
 
 
 In HS2.0, the cellular network may signal the smartphone and
-propose it to switch to Wi-Fi. The smartphone then would try to find a HS2.0 capable
-access point and continue using Wi-Fi instead of cellular network.
-In a similar way, the smartphone could receive signal from the cellular
-network, when controlling changes need to be approved. The smartphone
+propose it to switch to Wi-Fi. The smartphone then tries to find a HS2.0 capable
+access point and continue using Wi-Fi instead of the cellular network.
+In a similar way, the smartphone could receive a signal from the cellular
+network when controlling changes need to be approved. The smartphone
 would then make some tests to proof the local AP's suitability for 
 HS2.0. If those succeed, then the cellular network would continue and order the 
 phone to make a switch to the Wi-Fi network, authenticate there with 
