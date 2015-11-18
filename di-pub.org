@@ -4140,13 +4140,13 @@ provider producing AuthN.
 
 The requirements for a home network can be as small as having a WPA2 Enterprise capable
 AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
-has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
-WPA2-enterprise setting involves setting IP-address of RADIUS server providing 
-AA and corresponding shared secret.
+has been distributed to many homes by the cable modem operator Elisa, was found to have only WPA2-PSK mode.
+WPA2-enterprise setting involves configuring the IP-address of the RADIUS server providing 
+AA and a corresponding shared secret.
 For  the client, a Wi-Fi profile must be added: used management SSID,
 protection mode 802.1X (or WPA2-Enterprise), and AuthN method EAP-SIM.
-Smartphone can have different profiles, also with a same SSID, but
-then the user needs to choose manually, which profile is wanted.
+A smartphone can have different profiles, even with the same SSID, but
+then the user needs to choose manually which profile is wanted.
 
 # The initial admin user IMSI has to be registered in some way 
 Additionally, the initial admin user's SIM-card has to be registered as an
