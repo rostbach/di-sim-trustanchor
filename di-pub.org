@@ -3170,41 +3170,41 @@ that case.
 # verified with the
 Neither the unregistered SIM nor the registered SIM could have been
 verified with the
-operator, because it was locally simulated and they both therefore
-correctly  ended the conversation as should regarding
-RFC4186 \cite{rfc4186}.
+operator because it was locally simulated and they both therefore
+correctly  ended the conversation as supposed to according to RFC4186 \cite{rfc4186}.
 # i.e., what is the difference btw. those. REMEMBER: you cannot packet
 # trace phone connection, only AP and RADIUS logs.
 
-At this point, physical phones were put aside and a simulated SIM-card
-environment also at client's  side was used.
-After WPA2-Supplicant run on laptop with simulated SIM-card access 
+At this point, the physical phones were put aside and a simulated SIM card
+environment was used at the client's  side, too.
+After WPA2-Supplicant run on the laptop with simulated SIM card access 
 with SIM/USIM protocols, respective EAP-SIM, logging revealed that
 ``Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr_auc_gw.
 program.''
 # Appendix [[app:hlraucgw]]  shows tthat traffic.
 # + Breakthrough of EAP-SIM authentication  after simulated SIM card
 # finally got AUTH-SUCCESS message from remote RADIUS.
-This notified, that Hostapd successfully had received SIM
-card's AuthN request and was going to forward that to simulated HLR
+This revealed, that Hostapd had  successfully received the SIM
+card's AuthN request and was going to forward that to the simulated HLR
 authentication program. Now it was time to build an
-environment to help automating the tests.
-Tests were run from a shell program (Appendix [[app:fulleap]]), which
+environment to help automate the tests.
+The tests were run from a shell program (Appendix [[app:fulleap]]), which
 started the needed programs. It also recorded used configurations, logs,
 and traffic captures for later analysis.
 
 
 
 # ** Network traces (EAP, SIM, AUTH traffic analysis)
-Wireless capture of traffic between WPA2-Supplicant and AP was made at
-WPA2-Supplicant on the wireless card. Wired capture between AP and
-RADIUS server was made at wired card. Wireless capture was
+The wireless capture of traffic between the WPA2-Supplicant and the AP was made at
+the WPA2-Supplicant on the wireless card. The wired capture between
+the AP and the 
+RADIUS server was made at a  wired card. Wireless capture was
 not made in monitoring mode, so not all 802.11 details in
 data packets were captured \cite{wireshark-capture}.
-That was not a problem, because the focus was 
+That was not a problem because the focus was 
 in the EAP messaging instead of radio channel details.
-Additionally, the messages between RADIUS server and HLR were recorded.
-Whole conversation is given first here together and afterwards analyzed more
+Additionally, the messages between the RADIUS server and the HLR were recorded.
+The whole conversation is first  given  here, and later on analyzed more
 thoroughly.
 
 
