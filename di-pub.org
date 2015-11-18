@@ -3960,8 +3960,8 @@ here as harmful, as well as automatic login near a suitable AP. An
 example of harmful behaviour was a case with the  Swiss mobile operator Swisscom, which
  provided two networks, ``Mobile'' and ``Mobile Eapsim'' , for its
 customers. 
-The latter network did not ask each time customers' permission for
-connection but used their smartphone's SIM
+The latter network did not ask for the customers' permission for
+a connection each time, but used their smartphone's SIM
 automatically. Unfortunately, it also charged users for using Wi-Fi
 connections without users' knowledge. \cite{swisscom}
 # http://www.wireless-forum.ch/forum/viewtopic.php?t=24071 Swisscom provides
