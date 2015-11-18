@@ -4946,26 +4946,27 @@ be verified on reception, but that would involve a more complex setup.
 # interworkin of what?
 The complexity of the existing models in interworking was one motivator for
 the work. The research  on the subject did reveal some reasons 
-for the complexity, that are difficult to overcome with simplistic 
+for the complexity that are difficult to overcome with simplistic 
 methods shown here without losing security at the same time.
-There are some obvious weaknesses in the proposed solution such as 
+There are some obvious weaknesses in the proposed solution, such as 
 missing continuous authorization after management access has been
 granted. The application for the smartphone is yet to be fully implemented.
-Possible usage must carefully check the safety limits even when for
-example the RADIUS protocol still
-has strengths in security today. The thesis only scratches bootstrapping
-problems and the issues in the home network bootstrapping need to be studied
-more thoroughly. A one promising lead would be to use tickets in Kerberized way as in GBA.
+Possible usage must carefully check the safety limits even when, for
+example, the RADIUS protocol still
+has strengths in security today. The thesis only scratches the surface
+of bootstrapping
+problems, and the issues in the home network bootstrapping need to be studied
+more thoroughly. One promising lead would be to use tickets in Kerberized way as in GBA.
 # More roles and multiuser cases could be added. 
 
 # There are MIF[def] and Provision Domains WGs on IETF. Their work partly
 # overlaps this.
 
-After those shortcoming, the provisioning of manager users at home
-networks still would minimize with the proposed technique, as the users
+Even though these shortcomings exist, the provisioning of manager users at home
+networks would still be  minimized with the proposed technique, as the users
 already own a smartphone, which is an identifiable and trusted object. As a
-positive side effect, the two-factor AuthN from a hardware based SIM would
-strengthen an existing security.  Finally, the cloud management tools
+positive side effect, the two-factor AuthN from a hardware-based SIM would
+strengthen the existing security.  Finally, the cloud management tools
 would benefit from the trust anchor on the smartphone and could be developed
 further to aid in resolving trust issues in future home networks.
 
