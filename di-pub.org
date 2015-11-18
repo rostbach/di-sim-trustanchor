@@ -4858,15 +4858,15 @@ properties than SIM. Recently, devices
 with vendor-provided certificates inside them
 have appeared on the market. These bring public key
 infrastructure as one possible alternative for learning trusted
-identity.  The device proves its identity by presenting a certificate,
-which has been issued by a trusted vendor and which includes device's
-public key.  Private part of a key pair is inside the device's trusted
+identity.  The device proves its identity by presenting a certificate
+which has been issued by a trusted vendor and which includes the
+device's public key. The private part of a key pair is inside the device's trusted
 hardware store and does not ever leave the hardware. Vendor trust is
-needed for checking the issued certificates and so the trust
+needed for checking the issued certificates, and so the trust
 verification of individual devices is merely transferred to trust
-verification of the vendor.  Root CAs are trust anchors also and can
+verification of the vendor.  Root CAs are also trust anchors and can
 be read in the same way from the device's read-only store.  CPE could
-use vendor-issued certificate for AuthN of some earlier unknown
+use a vendor-issued certificate for AuthN of some earlier unknown
 device.
 # ^ ^^^^^^^^
 
