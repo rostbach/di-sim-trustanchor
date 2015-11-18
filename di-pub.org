@@ -4444,7 +4444,7 @@ the achieved trusted access point.
 
 ** Discussion
 
-[*Some part to be moved to the Conclusion chapter*]
+# [*TBDfinal Some part to be moved to the Conclusion chapter*]
 
 Although the core technology has been there for more than ten years and
 the hardware and the applications mostly support it, 
