@@ -3694,7 +3694,7 @@ network to authenticate itself to the phone, and so GSM allows a
 man-in-the-middle attack.  The attack follows when the IMSI-catcher
 impersonates itself as a (cellular) base station.  When the smartphone
 tries to attach to the fake base station, the smartphone reveals its
-IMSI number. Further, because the base station is responsible for
+IMSI number. Further, because the base station is responsible for the
 chosen encryption, the base station can order the phone to not encrypt
 traffic at all or to use only weak encryption thus revealing all data,
 calls, and texts. Mitigation for IMSI-catching would be to disable GSM
