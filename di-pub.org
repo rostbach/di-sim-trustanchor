@@ -3976,14 +3976,14 @@ connections without users' knowledge. \cite{swisscom}
 # SIM api bruteforce protection
 # --------------------------------------------------------
 Although a direct connection to SIM card's memory is restricted,
-if one can read and write data through SIM card's API,
+if one can read and write data through the SIM card's API,
 one could still try to get information (SRES, Kc) by brute-force. 
 # or using the card as an oracle[def]. 
 Fortunately SRES and Kc are never sent in clear, but inside
 a digested MAC.
 # (AT_MAC). AT syntax not used in thesis.
- Additionally SIM card can be programmed to answer only
-limited number of challenge request, for example 65535 times.
+Additionally, a SIM card can be programmed to answer only to a
+limited number of challenge requests, for example, 65,535 times.
 For normal use that would be enough, but in brute-force challenges 
 it would soon be exhausted and SIM card would lock itself and not
 function anymore at all.
