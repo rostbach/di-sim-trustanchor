@@ -1,4 +1,4 @@
-% Created 2015-11-17 ti 23:02
+% Created 2015-11-18 ke 10:07
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1656,25 +1656,25 @@ Section \ref{bootstrapping}.
 \label{sec-4-3}
 \label{sec:radius-macs}
 
-Our model would greatly benefit from the modification of RADIUS messages in proxying
-RADIUS, if that is possible as was mentioned in Section \ref{sec:radius}(RADIUS).
-The modification is needed, when the proxying RADIUS wants to combine AuthN message
+Our model greately benefits   from the modification of RADIUS messages in proxying
+RADIUS, if that is possible as was mentioned in Section \ref{sec:radius} (RADIUS).
+The modification is needed when the proxying RADIUS wants to combine an AuthN message
 from the MNO to AuthZ decision received from elsewhere.
 
 
 
 
 RADIUS servers may implement different vocabulary in their AVP set.
-RFC6929 \cite{rfc6929} reminds, that even when
+RFC6929 \cite{rfc6929} points out that even when
 the RADIUS proxies do not understand all AVPs inside RADIUS message, they
-must deliver those attributes and that allows us to use larger set of AVPs 
+must deliver those attributes, and that allows us to use a larger set of AVPs 
 than is in any (proxying) RADIUS server's vocabulary.
 By adding AVPs inside the authorization packet, we achieve extra
-information about validity of the access request.
+information about the validity of the access request.
 That information may include a VLAN parameter or a time stamp for a forced
 logout.
-RFC2865 \cite{rfc2865} says, that the forwarding RADIUS proxy may alter
-the packet as it passes it, but because an alteration would invalidate the
+RFC2865 \cite{rfc2865} says that the forwarding RADIUS proxy may alter
+the packet as it passes the proxy, but because an alteration would invalidate the
 packet's signature, the proxy has to re-sign the packet.
 In the end, proxying RADIUS can technically insert some data into 
 bypassing messages.
@@ -1686,8 +1686,8 @@ bypassing messages.
 \section{Similarities with Lock-and-Key method}
 \label{sec-4-4}
 The method is very similar to the concept used on routers to dynamically enable
-access to certain parts of network by first letting the user to log in
-to the router. If the access succeeds, the router dynamically adds
+access to certain parts of a network by first letting the user to log in
+to the router. If the access succeeds, the router dynamically adds the
 route to the management (or other restricted) part from the 
 users network.
 
@@ -1707,15 +1707,15 @@ Device provider Cisco calls this  ``Lock-and-Key''
 access and uses dynamic access list to implement it \cite[p.117]{lockandkeybook}.
 Lock-and-key is presented on Figure\ref{fig:lock-and-view}.
  Smartphone has only limited access to the network before AA
-has completed, while in the Lock-and-key
-the other parts of network are already open and successful login to the router opens
+is completed, while in the Lock-and-key
+the other parts of network are already open, and successful login to the router opens
 access to even more segments through it. In other words, Lock-and-Key
-protects IP-access in layer-3 and though needs IP addressing, while
+protects access in layer-3 and though needs first access to the router, while
 802.1x's protection starts already at layer-2 between the smartphone
 and AP. Captive portals are similar to Lock-And-Key.
 
 
-Both methods, 802.1X and Lock-and-Key (and captive portals) can have RADIUS as an authentication server. 
+Both methods - 802.1X and Lock-and-Key (and captive portals) - can have RADIUS as an authentication server. 
 When RADIUS is not available, for example because internet is down,
 there almost always exist as a failover a local password method in the configurable 
 router.
