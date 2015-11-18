@@ -4631,37 +4631,37 @@ fast re-authentication is used, thus eliminating the use of TMSI altogether.
 
 ** Alternative management models 
 
-If we were to question or evolve the given model of change
+If we were to question or develop the given model of change
 propagation, the trust anchoring would also need some modifications.
 # what are those modifications? -ri24.10.2015
-Alternative method is that the changes could be marked some way, so
-that they need approving and then there could be a specific
+An alternative method is that the changes could be marked in some way, so
+that they need approval, and then there could be a specific
 change-approval message, which must be sent through the management
-network. That approval would be akin to /commit/ in database actions
+network. That approval would be akin to /commit/ in database actions,
 and its form could perhaps include a digest of change message as a verification.
-Because smartphone is not actively listening to the CPE, it cannot input
+Because a smartphone is not actively listening to the CPE, it cannot input
 those request. Together with the chosen method, there are four planned
 methods to distribute changes. The first uses the smartphone as a
 direct commander and it is the one described throughout the thesis.
-The second would not involve smartphone at all but depended on
-earlier set trust. The remaining two would depend on more complex
-setups involving tokens and are presented here just as ideas.
+The second would not involve a smartphone at all but would  depend on
+earlier set trust. The remaining two methods would depend on more complex
+setups involving tokens, and are presented here just as ideas.
 
 
-I) Changes are delivered from cloud to smartphone, which forwards them
-   to devices located at management network after the
+I) Changes are delivered from the cloud to the smartphone, which forwards them
+   to devices located at the management network after the
    authentication has succeeded. This is the method chosen here and
    already explained.
 
-II) Changes are delivered normally from cloud to CPE (CPEs) without
-   interaction from the smartphone. Such changes would not need AA at
-   all or changes include credentials to login to targets. An example
-   of change is a modification in network segment, which does not
+II) Changes are delivered normally from the cloud to CPE (CPEs) without
+   interaction with the smartphone. Such changes would not need AA at
+   all, or changes would include credentials to login to targets. An example
+   of a change is a modification in network segment, which does not
    change network topology of other domains.  It is still unclear to
-   the author which type of changes represents majority of the
+   the author which type of changes represents the majority of the
    requests: those that need approval, or those that may proceed
-   without approval. An educated guess is, that every change set needs
-   to check the trust anchor's precence.
+   without approval. An educated guess is that every change set needs
+   to check the trust anchor's presence.
 
 # In production, some changes in local controller can be propagated to
 # the home network via management network without need for an extra
@@ -4671,25 +4671,25 @@ II) Changes are delivered normally from cloud to CPE (CPEs) without
 # every change needs to go
 
 
-III) Besides AP, also CPE would have direct connection to the
-   Cloud. Changes are then delivered from cloud to CPE functioning as a central
-   management station without interaction from the smartphone.  Digest
-   of what is going to happen would be sent to smartphone from the
-   cloud over the air (OtA). Smartphone would authenticate in to the
+III) Besides AP, also CPE would have a direct connection to the
+   cloud. Changes are then delivered from the cloud to the CPE functioning as a central
+   management station without interaction with the smartphone. A digest
+   of what is going to happen would be sent to the smartphone from the
+   cloud over the air (OtA). The smartphone would authenticate into the
    management network (if not already there) and send through it the
    digest token it received from the cloud as an approval message to
-   the central management station inside home network, which then
-   forwards the configuration changes to other devices.
+   the central management station inside the home network, which would then
+   forward the configuration changes to other devices.
 
 IV) Variation of III is that when CPE itself is an authenticator, it
    could proceed on propagating changes when it receives
    ACCESS-ACCEPT. Otherwise it must timeout waiting for phone's AA and
-   drop received changes without forwarding them.
+   drop the received changes without forwarding them.
 
 # see automatic re-login issues
 #   [this was the question somewhere, ``triggering'']
 
-In last two planned ways, the smartphone may receive the AuthN token
+In the last two planned ways, the smartphone may receive the AuthN token
 with a message explaining what is going to happen in the change.  As
 the CPE and the authenticator may be separate devices, approving
 happens by sending the token from the smartphone to the CPE via the
@@ -4699,7 +4699,7 @@ some dangerous combination of commands would need AA with the
 smartphone.
 
 
-<<scenario-iv>> 
+<<scenario-vi>> 
 In the future, other components than  the  local controller might 
 have a direct connection to the cloud. 
 # *** Scenario IV: AuthN from MNO, AuthZ separate from BaaS.
