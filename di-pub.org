@@ -4767,20 +4767,21 @@ The rest of this section discusses possible PKI usage.
 
 To use PKI for trust anchoring and AuthN in an empty environment,
 bootstrapping protocols are first needed.  The bootstrapping protocols
-in trust finding are used to bring the first trust anchor in an
-environment and later use that anchor to attach other devices to the
+in trust finding are used to bring the first trust anchor into an
+environment, and later use that anchor to attach other devices to the
 same trust circle.  
 # A draft from ... oli jo alussa
 
-Despite the etymology of name bootstrapping, ``Lift oneself by his own
-bootstraps'', bootstrapping usually needs some input from outside.
-For that, AuthN of the trust anchor device would happen by checking
-device's vendor certificates. 
-Behringer \cite{draft-behringer-bootstrap} proposes, that one device
-at home is first chosen as a trust anchor  using its unique properties 
-and this anchored device later becomes home
-network's Certificate Authority (CA) service. smartphone would play
-user interface role only, but not the trust anchor role.
+Despite the etymology of the name bootstrapping ``Lift oneself by
+one's own bootstraps'', bootstrapping usually needs some input from
+the outside.
+For that, AuthN of the trust anchor device  happens by checking
+the device's vendor certificates. 
+Behringer \cite{draft-behringer-bootstrap} proposes that one device
+at home should be first chosen as a trust anchor  using its unique properties,
+and this anchored device should later become the home
+network's Certificate Authority (CA) service. A smartphone would only play
+the user interface role, not the trust anchor role.
 #  This  and the trust anchor,
 # upon which
 The rest of the home network devices would apply for
