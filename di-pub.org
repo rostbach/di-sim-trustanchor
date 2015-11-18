@@ -3580,7 +3580,7 @@ directory
 [nemo@Jolla ~]$ LD_LIBRARY_PATH=/usr/local/lib ${WPASUPP} -v
 v2.4 (malinen 2003-2015)
 #+END_EXAMPLE
-From this point on, the same tests that earlier needed the computer could now be run on the smartphone. Even now, we did not use a real SIM card, but it
+From this point on, the  tests that earlier needed the computer could now be run on the smartphone. Even now, we did not use a real SIM card, but it
 probably would have been possible, if the configuration file had not
 given the secrets but instead a PIN to unlock the smartcard.
 
