@@ -4239,16 +4239,16 @@ On the other hand, empty GSM cards for testing can cost as much as
 # - Outsourcing to cloud
 
 
-** Platform specific issues
+** Platform-specific issues
 
 <<sec:pcsc>>
 # : eg memory requirements, hardware requirements, computation
 # requirements, one-sid
 
 For clients, there is no need for public key infrastructure (PKI)
-unless EAP-PEAP is used. Under PEAP there are either server
-certificate or additionally client certificate present.  There are
-smartphones, that do not have EAP-SIM yet available.  For example
+unless EAP-PEAP is used. Under PEAP there is either a server
+certificate or an additional client certificate present.  There are
+smartphones that do not have EAP-SIM  available yet.  For example,
 support for EAP-SIM (and -AKA) methods starts in Android only from
 version 4.x and in iOS from version 5.x. \cite{sim-support}.
 # http://www.ida.gov.sg/Infocomm-Landscape/Infrastructure/Wireless/Wireless-at-SG/For-Consumer/SIM-based-Connection-Guide
