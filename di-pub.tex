@@ -1,4 +1,4 @@
-% Created 2015-11-18 ke 10:07
+% Created 2015-11-18 ke 11:36
 \documentclass[12pt,a4paper,english]{tutthesis}
 % Note that you must choose either Finnish or English here and there in this
 % file.
@@ -1714,10 +1714,9 @@ protects access in layer-3 and though needs first access to the router, while
 802.1x's protection starts already at layer-2 between the smartphone
 and AP. Captive portals are similar to Lock-And-Key.
 
-
 Both methods - 802.1X and Lock-and-Key (and captive portals) - can have RADIUS as an authentication server. 
 When RADIUS is not available, for example because internet is down,
-there almost always exist as a failover a local password method in the configurable 
+there almost always exists as a failover a local password method in the configurable 
 router.
 
 
@@ -1731,7 +1730,7 @@ This thesis suggests a mix of these methods: EAP-SIM 802.1x WPA2 for
 authenticating and encrypting in the local network with SIM and
 Lock-and-key type modification in the AP to further access the 
 management network. Finally, RADIUS protocol is used to transfer 
-parameters, that the smartphone would need in communicating with 
+the parameters that the smartphone  needs in communicating with 
 devices in need of changes.
 
 \begin{figure}[htb]
@@ -1745,13 +1744,13 @@ devices in need of changes.
 
 
 \begin{enumerate}
-\item Smartphone connects a Router via wireless AP and needs to login
-\item Smartphone uses telnet (or ssh) to login to the ROUTER.
+\item Smartphone connects a Router via wireless AP and needs to login.
+\item Smartphone uses telnet (or ssh) to login to the ROUTER
 with credentials.
-\item ROUTER(as RADIUS client) checks AA from Authentication Server(or 
-proxy)
+\item ROUTER ( as RADIUS client) checks AA from Authentication Server (or 
+proxy).
 \item AA-server answers based on earlier SIM-authentication that this
-request is correct
+request is correct.
 \end{enumerate}
 
 
@@ -1780,71 +1779,71 @@ original idea and should be kept in mind when the final implementation
 is made.
 
 The session time and the logout can be handled in AP directly with
-an timer. After a specific time, AP simple drops the connection
-(WPA2-session) to the phone. This needs modification to the AP
-software, if there is not already such method.
+a timer. After a specific time, AP simply drops the connection
+(WPA2-session) to the phone. This needs modification in the AP
+software, if there is no such method already.
 
-Other solution would be for AP to listen for a command from an external
-AuthZ server, where similar timer would trigger a notification event. 
-That also needed modifications;  a listening process to the AP and 
+Another solution would be for AP to listen for a command from an external
+AuthZ server, where a similar timer would trigger a notification event. 
+This also requires modifications:  a listening process to the AP and 
 the timer into the AuthZ server. 
 
 
 
 
-Later it was learned \cite{rfc2865}, that terminating a session is not
-included in the original RADIUS protocol.  The root cause is, that
+Later it was learned \cite{rfc2865} that terminating a session is not
+included in the original RADIUS protocol.  The root cause is that
 messages originating from the RADIUS server are not defined in the
-RADIUS protocol and so AP as RADIUS client cannot receive RADIUS
+RADIUS protocol, and so an AP as a RADIUS client cannot receive RADIUS
 server initiated disconnection messages.  Additional extensions such
 as Disconnect and Change-of-Authorization (CoA) packets, also known as
-RADIUS Dynamic Authorization or RADIUS Disconnection Message(DM) \cite{rfc5176}, have
+RADIUS Dynamic Authorization or RADIUS Disconnection Message (DM) \cite{rfc5176}, have
 later been brought in to the protocol by diverse
 vendors, but they may not all be implemented on every device.
-Disconnect-Request is sent to UDP port 3799, so authenticator should
-listen also that in addition to RADIUS UDP port 1812.
+Disconnect-Request is sent to UDP port 3799, so the  authenticator should
+also listen for  that in addition to RADIUS UDP port 1812.
 As a side note, Diameter protocol would provide server initiated messaging.
 
 
 
 To demonstrate how the model works, we present the case of adding a
-new admin user. Let's first suppose, for case of simplicity, that the
-home network has been already configured(bootstrapped) and it is
-functioning properly.  To further make the case simpler, let's think,
+new admin user. Let us first suppose, for the sake  of simplicity, that the
+home network has been already configured (bootstrapped) and that it is
+functioning properly.  To further make the case simpler, let us assume
 that the Local Controller is the sole administrative source for the
-configuration changes, and leave the cloud outside, 
+configuration changes, and ignore the cloud, 
 because we know that there already exists a configuration framework in the cloud.
 
 
-Now, let's think what happens, when the cloud operator (or owner of
-home network) tries to modify attributes, which give access to a new actor,
-such as a new operator, who would want to have access to separate
-segments of home network.  First, we need to have that segment separation
-change approved and after that we want to allow the newcomer account
+Now, let us consider what happens when the cloud operator (or the owner of
+the home network) tries to modify the attributes that give access to a new actor,
+such as a new operator, who wants to have access to separate
+segments of the home network.  First, we need to have that segment separation
+change approved, and after that we want to allow the newcomer account
 to have access to that segment and only to that. For the first part,
-which is normal operation, approving would perhaps yet not be
+which is normal operation, approving would perhaps not yet be
 necessary, but for the second part we need some checking unless our
-trust to cloud operator is ultimate.  
+trust to the cloud operator is ultimate.  
 
-When CPE of home network is about to input configuration changes which
+When the CPE of the home network is about to input configuration changes which
 would change the balance of authors or roles, it needs to check that
 the change is permitted.  Permission needs to be asked from a trusted
 point, here mobile SIM. Instead of that, the CPE checks from its own
-state database, whether mobile SIM has been given access to management
+state database whether mobile SIM has been given access to the management
 network.
 This thesis justifies the management and therefore the changes to be
-allowed, if the smartphone user is currently logged in to the
+allowed, if the smartphone user is currently logged into the
 management network.
 After the AA is ready, the smartphone has all means to connect the
-configured targets
+configured targets.
 
-It must be noted, that the smartphone can already have an association
-to a non-management network with Wi-Fi. If that is the case, it first
-must disconnect from there and then connect, i.e., do the  AA in the correct management
-network. This implies disconnection from other services using Wi-Fi
+It must be noted that the smartphone can already have an association
+to a non-management network with Wi-Fi. If that is the case, it
+must  first disconnect from there and then connect, i.e., do the  AA in the correct management
+network. This implies disconnection from other services using the Wi-Fi
 link, because smartphones currently have only one Wi-Fi radio
 available and routing would still prefer Wi-Fi as a default gateway, although
-possible non-Wi-Fi data link still may stay up and operational.
+a possible non-Wi-Fi data link still may stay up and operational.
 \section{Disconnecting the local controller and offline changes}
 \label{sec-4-6}
 \label{sec:disconnections}
@@ -1864,18 +1863,18 @@ possible non-Wi-Fi data link still may stay up and operational.
 After the phone has been successfully connected to the management
 network, changes coming from the phone can reach configurable targets,
 for example routers.  
-To defeat the missing internet connection problem, a simple solution would be
-sending a one-time password to a predefined phone via an SMS, but what
+To solve the missing Internet connection problem, a simple solution would be
+sending a one-time password to a predefined phone via an SMS, but which
 entity would then check that and who would be authorized to send that message?
-Authenticating server, which has no internet connection should 
-have a predefined way to check that one-time password received via SMS is correct.
+An authenticating server which has no internet connection should 
+have a predefined way to check that a one-time password received via SMS is correct.
 
-Solution for this could be still using a co-existing captive portal
-for emergency access. As AP is programmable, it could
+One solution to this problem could be to still use a co-existing captive portal
+for emergency access. As the AP is programmable, it could
 provide this portal.  Alternatively, existing programs such as
 \emph{ChilliSpot} or \emph{NoCatAuth} could be used as WWW-portals.  For that to
-success, the WWW-portal would also need an open access without 802.1X
-port based access control.
+succeed, the WWW-portal would also need an open access without 802.1X
+port-based access control.
 
 \section{Summary of the chosen solution}
 \label{sec-4-7}
@@ -1884,14 +1883,14 @@ port based access control.
 The chosen solution to benefit from SIM is via EAP-profiles, as EAP
 is well known when using WPA2-Enterprise protection in Wi-Fi.
 Design is based on 802.1X and mobile network operator aided
-authentication and it is a variation of lock-and-key design.
+authentication and it is a variation of the lock-and-key design.
 
-It is assumed, that  the local controller (smartphone)
+It is assumed that  the local controller (smartphone)
 delivers all changes to target devices.
 The distribution of changes \cite{silverajan2015collaborative} is not
 further described here.  The AP functions both as the authenticator
-and RADIUS client in scenarios I-IV.  Authenticator receives RADIUS
-messages from authentication server, even when there would be a
+and RADIUS client in scenarios I-IV.  The authenticator receives RADIUS
+messages from authentication server even when there would be a
 separate local RADIUS server running as a proxy.
 
 
@@ -1903,11 +1902,11 @@ separate local RADIUS server running as a proxy.
 To prove that the proposed model works, empirical tests were done.
 A preliminary plan to benefit from SIM-authentication at home is
 presented in Figure\ref{fig:sim-pre}. The real operator (MNO) and its HLR were 
-planned to be replaced with a gateway at home network and the real phone
+planned to be replaced with a gateway in the home network and the real phone
 with its simulated counterpart. HSS would replace HLR in 3G/UMTS
 networks. 
 Only the Local Controller's interaction with the home network is
-tested and Cloud part set away.
+tested and the Cloud part set away.
 
 \begin{figure}[htb]
 \centering
@@ -1917,8 +1916,8 @@ tested and Cloud part set away.
 
 First it is shown how EAP-SIM authentication works in a simulated
 environment with different clients.
-This is further analyzed with aid of network traces.
-In the end, it is shown, that the changes in the management network are possible from
+This is further analyzed with the aid of network traces.
+In the end, it is shown that the changes in the management network are possible from
 the local controller with  command line interface (CLI).
 
 
@@ -1931,20 +1930,20 @@ the local controller with  command line interface (CLI).
 Physical devices used in the tests  were three smartphones, a Wi-Fi
 access point, and a laptop.
 The smartphones were Nokia E70-1, Nokia E90, and Jolla. The Nokia phones
-featured EAP-SIM by factory, but the Jolla phone missed a crucial
+featured EAP-SIM by default, but the Jolla phone missed a crucial
 software library
-and right compilation time configuration set on its WPA-supplicant for SIM.
+and the right compilation time configuration set on its WPA-supplicant for SIM.
 
 Jouni Malinen's software package \emph{HostAP} \cite{hostapd} provides
-components for WPA2-Supplicant, Wireless Access point (AP),
-HLR-gateway (for GSM networks), and EAP-endpoint with or without
-RADIUS-server. From those, executable binary programs  wpa\_supplicant, hostapd (for wired RADIUS
+components for WPA2-Supplicant, a Wireless Access point (AP),
+an HLR-gateway (for GSM networks), and an EAP-endpoint with or without
+a RADIUS server. From those, executable binary programs  wpa\_supplicant, hostapd (for wired RADIUS
 server), and hlr\_auc\_gw  were used.  
 The versions of \emph{HostAP} used in the tests were 2.2 and later 2.3,
-while version 2.4 was published on March 2015 and 2.5 on September 2015. The software
-may be distributed, used, and modified under the terms of BSD license.
+while version 2.4 was published in March 2015 and 2.5 in September 2015. The software
+may be distributed, used, and modified under the terms of a BSD license.
 
-For a more realistic test, additional hardware AP running OpenWRT
+For a more realistic test, an additional hardware AP running OpenWRT
 firmware was used instead of hostapd's AP. OpenWRT AP worked as a
 RADIUS client connecting to the RADIUS server still provided by the
 hostapd.  OpenWRT AP did not try to open EAP-messages, but just
@@ -1952,16 +1951,16 @@ encapsulated them into RADIUS packets.  RADIUS server's configuration
 file can be seen in Appendix \ref{app:radius-conf}.
 
 
-Laptop's role was therefore physically split-brain; it asked for AA in
-the end from itself.
+The laptop's role was therefore physically split-brain; in the end, it asked for AA
+from itself.
 Figure\ref{eap-sim-testbed} shows how EAP-SIM AuthN messages (dashed
 and solid arrowed lines) flow when using 
 simulated WPA2-Supplicant and HLR-AuC as simulation environment.
 
-To make thing more interesting, laptop's WPA2-supplicant with known
+To make thing more interesting, the laptop's WPA2-supplicant with a known
 software SIM part was later implemented inside Jolla. This was
 possible thanks to open software and similarity of Jolla's environment to
-the one used in laptop. Modification involved compiling PCSC-libraries and
+the one used in the laptop. Modification involved compiling PCSC-libraries and
 recompiling the WPA-supplicant used in Jolla with simulator options 
 for ARMv7 architecture.
 
@@ -1979,27 +1978,27 @@ for ARMv7 architecture.
 
 The algorithm used in the demo was an internal GSM-Milenage,
 which handles EAP-SIM beside EAP-AKA.
-Milenage is a reference implementation and as such suitable for operators, who do not 
+Milenage is a reference implementation and as such suitable for operators who do not 
 want to invent their own security algorithms. OPc and Seq parameters from
-Milenage were not used, because they are not needed in EAP-SIM. 
+Milenage were not used because they are not needed in EAP-SIM. 
 
 \section{Detailed description of test runs}
 \label{sec-5-2}
 
 
 The first tests were done with hostapd as a wireless AP.
-Test run with Nokia E70-1 with Symbian 60 Series OS (2006) had a
+Test run with Nokia E70-1 with the Symbian 60 Series OS (2006) had a
 non-registered SIM card. 
 In testing the authentication,
-there was no indication of EAP method present in captures, the only
+there was no indication of EAP method present in captures. The only
 indication of security was a message ``Open System'' in application
 logs, which only means that no pre-shared key is used. The reason for
-that was not found, but it may have been problem on hostapd's settings.
+that was not found, but it may have been a problem on hostapd's settings.
 
 
 
 
-Nokia E90, with a registered SIM had better results. 
+Nokia E90 with a registered SIM had better results. 
 This time the capture was made in monitor mode, i.e., 
 the capture interface was mon.wlan0.
 Traffic captures revealed some EAP traffic involving some EAP-SIM
@@ -2015,49 +2014,49 @@ Request--Response pairs.
   {testit/e90.sim.auth.pcapng.todip}
 
 When opening Responses number 6 and 7, we can see that we got to the
-part, where a nonce, selected version, and an identity were sent from
-the phone (message 7 in Figure\ref{fig:eap-sim-radius}, but RADIUS server
+part where a nonce, selected version, and an identity were sent from
+the phone (message 7 in Figure\ref{fig:eap-sim-radius}), but the RADIUS server
 did not know how to handle them.
- Even when authentication conversation would not complete fully,
+ Even when authentication conversation did  not complete fully, the
 authenticator still received a claim of identification from the
 smartphone. Yet, as there is no full AuthN, no proof of identity existed in
 that case.
-Both the unregistered SIM and the registered SIM could not have been
+Neither the unregistered SIM nor the registered SIM could have been
 verified with the
-operator, because it was locally simulated and they both therefore
-correctly  ended the conversation as should regarding
-RFC4186 \cite{rfc4186}.
+operator because it was locally simulated and they both therefore
+correctly  ended the conversation as supposed to according to RFC4186 \cite{rfc4186}.
 
-At this point, physical phones were put aside and a simulated SIM-card
-environment also at client's  side was used.
-After WPA2-Supplicant run on laptop with simulated SIM-card access 
+At this point, the physical phones were put aside and a simulated SIM card
+environment was used at the client's  side, too.
+After WPA2-Supplicant run on the laptop with simulated SIM card access 
 with SIM/USIM protocols, respective EAP-SIM, logging revealed that
 ``Hostapd will send SIM/AKA authentication queries over a UNIX domain socket to an external hlr\_auc\_gw.
 program.''
-This notified, that Hostapd successfully had received SIM
-card's AuthN request and was going to forward that to simulated HLR
+This revealed, that Hostapd had  successfully received the SIM
+card's AuthN request and was going to forward that to the simulated HLR
 authentication program. Now it was time to build an
-environment to help automating the tests.
-Tests were run from a shell program (Appendix \ref{app:fulleap}), which
+environment to help automate the tests.
+The tests were run from a shell program (Appendix \ref{app:fulleap}), which
 started the needed programs. It also recorded used configurations, logs,
 and traffic captures for later analysis.
 
 
 
-Wireless capture of traffic between WPA2-Supplicant and AP was made at
-WPA2-Supplicant on the wireless card. Wired capture between AP and
-RADIUS server was made at wired card. Wireless capture was
+The wireless capture of traffic between the WPA2-Supplicant and the AP was made at
+the WPA2-Supplicant on the wireless card. The wired capture between
+the AP and the 
+RADIUS server was made at a  wired card. Wireless capture was
 not made in monitoring mode, so not all 802.11 details in
 data packets were captured \cite{wireshark-capture}.
-That was not a problem, because the focus was 
+That was not a problem because the focus was 
 in the EAP messaging instead of radio channel details.
-Additionally, the messages between RADIUS server and HLR were recorded.
-Whole conversation is given first here together and afterwards analyzed more
+Additionally, the messages between the RADIUS server and the HLR were recorded.
+The whole conversation is first  given  here, and later on analyzed more
 thoroughly.
 
 
 
-Packet capture of successful SIM-authentication with corresponding
+The packet capture of successful SIM-authentication with corresponding
 parts of logs at WPA2-Supplicant, RADIUS server and packet captures
 802.1X, RADIUS and HLR is shown below.  Communicating partners are
 denoted as AP and phone for Wi-Fi traffic, AP-wired and
@@ -2101,7 +2100,7 @@ No.  Time     Src      Dest      Proto    Len   Info
 
 
 
-IMSI is sent the first time already on the second EAP message from 
+IMSI is sent for the first time already on the second EAP message from 
 WPA2-Supplicant to AP (compare with Figure\ref{fig:eap-sim-radius}, message 2.)
 This part is presented in more detail in Capture \ref{capimsi}.
 
@@ -2139,31 +2138,31 @@ Frame 130: 7.983223
 \end{lstlisting}
 \normalsize
 
-We might notice the difference on used 802.1X versions: AP uses version
-802.1X-2004 in its request while the smartphone uses 802.1X-2001. Here
+There is a difference between the used 802.1X versions: the AP uses version
+802.1X-2004 in its request, while the smartphone uses 802.1X-2001. Here
 it does not have any  noticeable effect.
 
-The last line has the important identity field received from the SIM.
-Its length cannot directly be seen, but when EAP message's length (21
-octets) is reduced by fixed space needed for Code(1), ID(1),
-Lenght(2), and Type(1), it yields 16 octets for the
+The last line contains the important identity field received from the SIM.
+Its length cannot  be seen directly, but when the EAP message's length (21
+octets) is reduced by a fixed space needed for Code (1), ID (1),
+Length (2), and Type (1), it yields 16 octets for the
 identity. Therefore the identity is not coded as a 
-numeral but instead as a string and that brings more flexibility in
-the protocol as the identity can include alphabets too. It also
-minimizes misunderstandings, if context gets lost. 
-When we remember from Section \ref{sec:sim-based-auth}, that IMSI can not be
-be more than 15 octets, the extra prefix '1' has an extra meaning.
-Here it denotes that we are talking  now about EAP-SIM identity instead of
+numeral but instead as a string, and that brings more flexibility into
+the protocol as the identity can include alphabets, too. It also
+minimizes the chance for  misunderstandings in case the context gets lost. 
+When we remember from Section \ref{sec:sim-based-auth}, that IMSI can be
+no longer than 15 octets, the extra prefix '1' has an extra meaning.
+Here it denotes that we are now talking  about EAP-SIM identity instead of
 EAP-AKA or EAP-AKA'.
 
 
 
 
 
-EAP client's identity is transformed at authenticator
+The EAP client's identity is transformed at the authenticator
 (Figure\ref{fig:eap-layers}, Chapter \ref{sec-2}) from 802.1X's 
 EAPOL format  into RADIUS format and
-sent to RADIUS server. The captured frame between AP and Radius server is
+sent to the RADIUS server. The captured frame between AP and Radius server is
 shown
 in Capture \ref{fig:capture}.
 
@@ -2205,46 +2204,46 @@ Radius Protocol
 \normalsize
 
 
-Here interesting part is the first RADIUS AVP.
-While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
-field, it was surprising that RADIUS has captured that field and 
-filled its User-Name field to the very same, ``1232010000000000''. 
+Here the interesting part is the first RADIUS AVP.
+While the encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
+field, it was surprising that RADIUS had captured that field and 
+filled its User-Name field with the very same ``1232010000000000''. 
 IMSI is ``232010000000000'' and it is prefixed with
-an '1' as earlier explained.
+an '1' as  explained earlier.
 
-In WPA2-Supplicant configuration file (see Appendix \ref{app:wpa-conf}) both the identity and
+In  the WPA2-Supplicant configuration file (see Appendix \ref{app:wpa-conf}) both the identity and
 credential section had the identity field, but the latter creds block
-was later learnt to belong to cases, where the same credentials would
-be used to multiple networks and therefore it would save to trouble of
+was later learnt to belong to cases where the same credentials would
+be used in multiple networks and therefore it would save the trouble of
 always rewriting that block.
-Another thing to be noted is, that AP has followed conventions on
-converting EAP into RADIUS message and put identity field into
-User-Name Attribute Value Pair (AVP) too.
-Similar convention can be seen when analyzing EAP encapsulation and
-message size. The last RADIUS (AVP) is 
+Another thing to be noted is that the AP has followed conventions on
+converting EAP into a RADIUS message, and put identity field into
+User-Name Attribute Value Pair (AVP), too.
+A similar convention can be seen when analyzing the EAP encapsulation and
+the message size. The last RADIUS (AVP) is 
 Message-Authenticator, which presents limited safety against message 
-corruption. Limited, because it uses MD5-hashing which is not safe
+corruption. Limited, because it uses MD5-hashing, which is not safe
 against malicious attackers anymore.
 
 
 
-Meanwhile, HLR simulator was listening requests from Authentication
+Meanwhile, the HLR simulator was listening requests from the Authentication
 server's internal EAP-handler through a local socket. 
 Its configuration is shown in
-Appendix \ref{app:hlraucgw} and there one can see the simulated Milenage parameters including SIM secrets.
+Appendix \ref{app:hlraucgw}. There one can see the simulated Milenage parameters including SIM secrets.
 
 
 
 The AuthN request (SIM-REQ-AUTH), which in production version would go
-to real HLR-AuC, included the IMSI and parameter "3", which indicates,
+to real HLR-AuC, included the IMSI and parameter "3", which indicates
 that the requester wants three triplets.  
-While one triplet would equal 64-bit key used for challenges, three
-triplets will make the key 192 bit long. Session keys are derived from
-this keymaterial. Crypto analysis of Patel \cite{patel-sim} noted in
-2003, that achieved session key security lenght would not be even 128
-but 64 bit, but it is not known to us, whether this was taken in
-account in 2005's version. 
-Format of triplet received is RAND:SRES:Kc.
+While one triplet would equal a 64-bit key used for challenges, three
+triplets will make the key 192-bit long. Session keys are derived from
+this key material. Crypto analysis of Patel \cite{patel-sim} noted in
+2003 that the achieved session key security length would be not  even 128
+but 64 bits; however,  it is not known to us whether this was taken into
+account in the 2005 version. The 
+format of the triplet received is RAND:SRES:Kc.
 
 \footnotesize
 \begin{verbatim}
@@ -2260,15 +2259,16 @@ Send: SIM-RESP-AUTH 232010000000000
 \section{Simulation on smartphone Jolla}
 \label{sec-5-3}
 
-Because we had source code available, we also tried to move the
+Since we had source the code available, we also tried to move the
 simulated SIM application to the real smartphone.  Jolla is a new
-Finnish smartphone, running on ARMv7 processor, having its root's on
-Nokia's last mobilephone line that used Linux Distribution MeeGo in
-beginning of 2010's.  The OS is called Sailfish and it includes user
-interface code made by Jolla, open source components from Mer, and
+Finnish smartphone that runs on ARMv7 processor and has its roots in
+Nokia's last mobile phone line that used Linux Distribution MeeGo at
+the beginning of 2010's.  The OS is called Sailfish and it includes user
+interface code created by Jolla, open source base components from Mer, and
 some other software components, which are either free or proprietary.
-The name Mer comes from MEego Reinvented, or meritocratic community
-and it is a community driven by merits.
+Mer is a community driven by merits; its name comes from the words 
+`MEego Reinvented', or `meritocratic community'
+There are also other OSs based on Mer, such as Tizen.
 
 Jolla's base
 WPA-supplicant belongs to Mer core and it was here re-built for
