@@ -4591,18 +4591,18 @@ is the mapping between IMSI and TMSI identities.
 #  -K. Huhtanen, 2014 
 # [cite: Karri Huhtanen/ArchRed, email, Sep 10. 2014, translation by author]
 # problem of TMSI
-The authenticator does know the original user and mapping of IMSI to
+The authenticator does know the original user and the mapping of IMSI to
 TMSI, but needs AuthZ information. That can be received from the
-remote operator, which would be easier for the
-authenticator or there might be a proxying RADIUS, which resolves the
-AuthZ information and generates an ACCESS-ACCEPT packet. The latter
-has in turn issues with TMSI.
+remote operator, which is easier for the
+authenticator, or there may be a proxying RADIUS, which resolves the
+AuthZ information and generates an ACCESS-ACCEPT packet. The latter,
+in turn, has issues with TMSI.
 
 When a proxying RADIUS gets the temporary SIM-identity (TMSI) instead
-of a beforehand known IMSI identity, there will be problem
+of a previously known IMSI identity, there will be a problem
 # if it had to insert the admin role information in to the RADIUS message.
-because the proxying RADIUS knows for sure only the originating
-server.  The MNO in turn does not necessary know about the roles, and
+because the proxying RADIUS knows  only the originating
+server for sure.  The MNO in turn does not necessary know about the roles, and
 it can directly perform only AuthN.
 
 # , on the other hand, 
