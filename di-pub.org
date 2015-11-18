@@ -3460,23 +3460,23 @@ the beginning of 2010's.  The OS is called Sailfish and it includes user
 interface code created by Jolla, open source base components from Mer, and
 some other software components, which are either free or proprietary.
 Mer is a community driven by merits; its name comes from the words 
-`MEego Reinvented', or `meritocratic community'
+`Meego Reinvented', or `meritocratic community'
 There are also other OSs based on Mer, such as Tizen.
 
 Jolla's base
-WPA-supplicant belongs to Mer core and it was here re-built for
-simulator use. The build process was done inside MerSDK virtual
-machine running under Virtualbox, because it provided not only
-simulated Jolla environment on x86 processor architecture, but also a cross
-compiling environment Scratchbox, that makes porting programs to Armv7
+WPA-supplicant belongs to Mer core, and it was here re-built for
+simulator use. The build process was done inside the MerSDK virtual
+machine running under Virtualbox because it provided not only
+a simulated Jolla environment on x86 processor architecture, but also a cross
+compiling environment Scratchbox, which makes porting programs to Armv7
 processor easy.
 
-To compile wpa_supplicant with EAP-SIM simulator, PCSC component was
+To compile wpa_supplicant with EAP-SIM simulator, a PCSC component was
 needed. So first pcsc-lite was downloaded and cross-compiled in
 MerSDK. Then wpa-supplicant was compiled with correct parameters in
-same place. Finally, the wpa-supplicant was stripped from debugging
+the same place. Finally, the wpa_supplicant was stripped of debugging
 symbols and copied to Jolla together with the PCSC-library.  Jolla
-phone's file hierarchy is very similar to hierarchy in test
+phone's file hierarchy is very similar to hierarchy in the test
 environment's Linux, which made the operation very easy.
 Table[[version-table]] describes the components and their versions that were used in the tests.
 # https://sailfishos.org/develop/tutorials/building-sailfish-os-packages-manually/
@@ -3587,7 +3587,7 @@ the secrets but instead a PIN to unlock the smartcard.
 
 # trombone: ~/src/jolla/wpa_supplicant
 
-* Analysis, Results and Discussion
+* Analysis, Result and Discussion
 :PROPERTIES:
 :CUSTOM_ID: cha:discussion
 :END: 
