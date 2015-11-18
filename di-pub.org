@@ -3940,9 +3940,9 @@ a current admin user list, a state of OTP list, or a VLAN id.
 # same context problems
 Earlier, in RADIUS analysis, prevention of replied messages was
 mentioned. Reusing the same secret in different security context is also
-considered bad because mixing secrets between usage
+considered unsafe practise because mixing secrets between usage
 domains weakens the security.  In GSM networks, IMSI identifies the subscriber on
-the first contact, later TMSI is used for call and SMS.  In EAP-SIM those
+the first contact, and later TMSI is used for call and SMS.  In EAP-SIM those
 values are also used. IMSI naturally is the same, but TMSI should be
 different for call and EAP.  Haverinen \cite{hav-doc} explains how
 special RAND numbers can be used to differentiate the use of TMSI in 3GPP and Wi-Fi
@@ -3952,12 +3952,13 @@ contexts.
 Re-authentication and termination can bring unexpected results.
 #
 # 
-Even, when sessions can be terminated, the client side may have 
-option set to login automatically, transparent and without users control.
+Even when sessions can be terminated, the client side may have 
+the option of  setting to login automatically, transparent and without
+the user's control.
 Automatic re-authentication after disconnection  must be considered
-here as harmful as well as automatic login when nearby suitable AP. An
-example from harmful behaviour was a case with  Swiss mobile operator Swisscom, who
- provided two networks ``Mobile'' and ``Mobile Eapsim''  for its
+here as harmful, as well as automatic login near a suitable AP. An
+example of harmful behaviour was a case with the  Swiss mobile operator Swisscom, which
+ provided two networks, ``Mobile'' and ``Mobile Eapsim'' , for its
 customers. 
 The latter network did not ask each time customers' permission for
 connection but used their smartphone's SIM
