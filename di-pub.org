@@ -3985,7 +3985,7 @@ a digested MAC.
 Additionally, a SIM card can be programmed to answer only to a
 limited number of challenge requests, for example, 65,535 times.
 For normal use that would be enough, but in brute-force challenges 
-it would soon be exhausted and SIM card would lock itself and not
+it would soon be exhausted, and the SIM card would lock itself and not
 function anymore at all.
 
 
