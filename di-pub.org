@@ -4409,8 +4409,8 @@ network when controlling changes need to be approved. The smartphone
 would then make some tests to proof the local AP's suitability for 
 HS2.0. If those succeed, then the cellular network would continue and order the 
 phone to make a switch to the Wi-Fi network, authenticate there with 
-EAP-SIM (or -AKA) and transfer services to Wi-Fi not forgetting 
-the transfer in to the management network. This scenario could be 
+EAP-SIM (or -AKA), and transfer services to Wi-Fi, not forgetting 
+the transfer into the management network. This scenario could be 
 studied further.
 
 
