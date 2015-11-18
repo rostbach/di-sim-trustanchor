@@ -236,8 +236,6 @@ This thesis is dedicated to my father.
 I wrote this thesis during my research assistant period at TUT.
 It took time approximately 9 months to start these final words on preface,
 taking into account my part time job.
-
-
 Although I had some earlier experience on some of the techniques involved in this paper, 
 other techniques were quite new to me, not to mention writing a longer
 scientifical related paper. Writing and studying this was equally fun,
@@ -247,8 +245,10 @@ There are many people involving in the creation process of this paper and
 I want to thank them here. 
 Bilhananan Silverajan took care of introducing me in to this 
 home networking and worked as supervising instructor. 
-Jarmo Harju as the examiner helped in technical proof reading and
-corrected some of my speling errors.
+Jarmo Harju as the examiner helped in technical proofreading and
+corrected some of my speling errors, but Pirkko was the ultimate inspiration
+and the aid for all the forgotten articles and misplaced commas. 
+
 Antti, Axu, Joona, Lauri, Mava, Pekka,  and Tiina among others were
 the uplifting spirit at work. 
 Those pervs made my working in the Pervasive Computing unit a pleasure.
@@ -256,8 +256,8 @@ Those pervs made my working in the Pervasive Computing unit a pleasure.
 At home frontier the one power cell, my beloved wife Päivi,
 is the one who kept me going and always encouraged to finish my studies, 
 She allowed and encouraged me, time after time, to work on this thesis (and this
-degree). Pirkko, my friend, was the inspiration and the aid for the forgotten articles and 
-mis-placed commas. 
+degree). Pirkko, my friend, 
+
 
 ~ 
 % Tilde ~ makes an non-breakable spce in LaTeX. Here it is used to get
