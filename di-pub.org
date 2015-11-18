@@ -3731,12 +3731,12 @@ EAP-SIM,  except for Tseng's proposition \cite{tseng-usim} for a new EAP type
 EAP-USIM, which would extend EAP-TLS type.
 # Yuh-Min Tseng
 
-If it was possible to use anonymous identity on outer EAP
-authentication, then EAP-SIM AuthZ must also be done at HLR AuC.
-AuthZ cannot else be connected to the corresponding
-identity and AuthN itself is not enough because it only defines the users'
-authenticity, not their admin roles and so 
-AuthN should work for any  smartphone that has existing contract with
+If it was possible to use anonymous identity on the outer EAP
+authentication, then EAP-SIM AuthZ would also have to be done at HLR AuC.
+AuthZ cannot otherwise be connected to the corresponding
+identity, and AuthN itself is not enough because it only defines the users'
+authenticity, not their admin roles. Thus, 
+AuthN should work for any  smartphone that has an existing contract with
 their MNO. 
 # When everything works between the smartphone and MNO via chain of components, 
 # AuthN works for any the smartphone.
