@@ -2568,10 +2568,10 @@ and AP. Captive portals are similar to Lock-And-Key.
 # 2 while Lock-and-Key needs to first have a functional Layer 3 to conduct
 # authentication phase. 
 
-
+# howto describe the correct form of -
 Both methods - 802.1X and Lock-and-Key (and captive portals) - can have RADIUS as an authentication server. 
 When RADIUS is not available, for example because internet is down,
-there almost always exist as a failover a local password method in the configurable 
+there almost always exists as a failover a local password method in the configurable 
 router.
 
 
