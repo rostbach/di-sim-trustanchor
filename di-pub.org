@@ -4132,13 +4132,13 @@ a directed antenna \cite{SANS-bluetooth-2007}.
 
 ** Deployment difficulty and costs
 
-To deploy the system, modifications must be done to the AP and the client.
+To deploy the system, modifications must be made to the AP and the client.
 Additionally, a contract must be made with the MNO service
 provider producing AuthN.
 # [while AuthZ is already taken care of with
 # the cloud service contract.]  [TBD, leave cloud out ]
 
-Requirement for home network can be as small as having WPA2 Enterprise capable
+The requirements for a home network can be as small as having a WPA2 Enterprise capable
 AP. Almost any AP will do, but as an exception, cable modem Bewan, which 
 has been distributed to many homes from the cable modem operator Elisa, was found to have only WPA2-PSK mode.
 WPA2-enterprise setting involves setting IP-address of RADIUS server providing 
