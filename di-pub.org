@@ -2892,11 +2892,11 @@ a possible non-Wi-Fi data link still may stay up and operational.
 After the phone has been successfully connected to the management
 network, changes coming from the phone can reach configurable targets,
 for example routers.  
-To defeat the missing internet connection problem, a simple solution would be
-sending a one-time password to a predefined phone via an SMS, but what
+To solve the missing Internet connection problem, a simple solution would be
+sending a one-time password to a predefined phone via an SMS, but which
 entity would then check that and who would be authorized to send that message?
-Authenticating server, which has no internet connection should 
-have a predefined way to check that one-time password received via SMS is correct.
+An authenticating server which has no internet connection should 
+have a predefined way to check that a one-time password received via SMS is correct.
 
 Solution for this could be still using a co-existing captive portal
 for emergency access. As AP is programmable, it could
