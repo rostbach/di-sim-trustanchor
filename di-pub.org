@@ -4064,10 +4064,10 @@ the time window for attacks.
 # If SSID changing introduced  in mitigation Section([[tag:hidessid]])
 # was in use, fast re-authentication after full-authentication
 # must be forbidden \cite[p.12]{rfc5448}.
-Because RFC5448 \cite[p.12]{rfc5448} forbids the change of network name between full and
+Because RFC5448 \cite[p.12]{rfc5448} forbids the change of the network name between full and
 fast authentication to prevent usage of compromised keys, the client
-and server should use full authentification, when they notice, that
-network name has changed.
+and server should use full authentification when they notice that
+the network name has changed.
 
 # scan_ssid: When set to 1, this will add the SSID to the probe
 # requests, in case you're connecting to a hidden network or an AP with
