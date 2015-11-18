@@ -3549,7 +3549,7 @@ scp libpcsclite.so* nemo@jolla:/usr/local/lib
 #+END_EXAMPLE
 
 
-*** Running the new binary on a real smartphone.
+*** Running the new binary on a real smartphone
 
 At this point, we were able to use inside the real physical smartphone this modified
 wpa_supplicant, which uses  a configuration file instead of a SIM card.  To make
@@ -3565,9 +3565,9 @@ Last login: Sun Oct 11 17:44:37 2015 from 192.168.2.1
 [nemo@Jolla ~]$ systemctl disable wpa_supplicant
 #+END_EXAMPLE
 
-Because the /libpcsclite/ libraries are in non-standard
-place (in /usr/local/lib), we had to start wpa_supplicant with the correct
-dynamic library path environment value otherwise an error occured.
+Because the /libpcsclite/ libraries are in a non-standard
+place (in /usr/local/lib), we had to start wpa_supplicant with the
+correct dynamic library path environment value; otherwise, an error occured.
 
 
 #+BEGIN_EXAMPLE
@@ -3580,10 +3580,9 @@ directory
 [nemo@Jolla ~]$ LD_LIBRARY_PATH=/usr/local/lib ${WPASUPP} -v
 v2.4 (malinen 2003-2015)
 #+END_EXAMPLE
-From here the same tests could now be run on the smartphone that
-earlier needed the computer. Even now, we did not use the real SIM card, but it
-probably would have been possible, if the configuration file did not give
-the secrets but instead a PIN to unlock the smartcard.
+From this point on, the same tests that earlier needed the computer could now be run on the smartphone. Even now, we did not use a real SIM card, but it
+probably would have been possible, if the configuration file had not
+given the secrets but instead a PIN to unlock the smartcard.
 
 # trombone: ~/src/jolla/wpa_supplicant
 
