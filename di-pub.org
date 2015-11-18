@@ -4358,10 +4358,10 @@ users on the first time have to login manually through web-page login.
 It is well known that the usability of the captive portal Wi-Fi
  network is a burden, because a user needs to go through 
 a web portal login with a username-password authentication 
-procedure and those credentials are different for every network.
-Additionally, the user is often required to switch 
+procedure, and those credentials are different for every network.
+Additionally, the users are often required to switch 
 between cellular and  Wi-Fi data access when they change their
- location, and that would disrupt the network connection.
+ location, and that disrupts the network connection.
 
 An industry brand  Hotspot 2.0 (HS2.0) addresses those issues and tries to
 simplify user's switch between Wi-Fi and cellular to automate the
