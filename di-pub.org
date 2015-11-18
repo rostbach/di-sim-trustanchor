@@ -4786,7 +4786,7 @@ the user interface role, not the trust anchor role.
 # upon which
 The rest of the home network devices would apply for
 certificates from this trust anchor to get under the same trust circle.  Key creation,
-key exchange and their usage is explained in similar draft from
+key exchange, and their usage is explained in a similar draft from
 Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. 
 # That explains PKI usage in general in bootstrapping.
 
@@ -4798,17 +4798,17 @@ This model could be expanded to a full ticket enabled
 AA, where time-limited tickets (tokens) for both
 AuthN and AuthZ exist for different services.
 # Behringer continues, that   end devices could
-There, the end devices  first try to get AuthN ticket, which 
-does not include yet the AuthZ.
+There, the end devices  first try to get an AuthN ticket, which 
+does not yet include  the AuthZ.
 # AA,  where they would get a ticket from a successful AuthN,
 # but that
 # also benefit from
 # # but only a authentication ticket, with which the end device may later
 #  request  for service tickets for AuthZ.
-With that ticket, the device may later apply for AuthZ ticket, which
+With that ticket, the device may later apply for an AuthZ ticket, which
 opens the correct port to change management service from CPE.
-That is very similar to Kerberos AA, which is based on
-Needham-Schroeder protocol.
+This is very similar to Kerberos AA, which is based on
+the Needham-Schroeder protocol.
 # Regarding
 # Using tickets has a connection to earlier homenet studies, 
 # such as
