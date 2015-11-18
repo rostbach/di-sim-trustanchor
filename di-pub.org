@@ -4254,9 +4254,9 @@ version 4.x and in iOS from version 5.x. \cite{sim-support}.
 # http://www.ida.gov.sg/Infocomm-Landscape/Infrastructure/Wireless/Wireless-at-SG/For-Consumer/SIM-based-Connection-Guide
 
 Generally, to support EAP-SIM  with open source software in 
-smartphone, needed components are /pcsc-lite/ for accessing SIM card, /wpa_supplicant/ for
-WPA2 client, and possible used connection manager (/connman/,
-/wicd/, or /Network Manager/ in Linux). This is in line, what was done in testing without /pcsc-lite/,
+a smartphone, the needed components are /pcsc-lite/ for accessing the SIM card, /wpa_supplicant/ for
+WPA2 client, and possibly used connection manager (/connman/,
+/wicd/, or /Network Manager/ in Linux). This is in line with what was done in testing without /pcsc-lite/,
 because a file backend was used instead of a SIM card.
 
 # From t.j.c: (jolla), what is to smartphone Jolla:
