@@ -3587,13 +3587,14 @@ the secrets but instead a PIN to unlock the smartcard.
 
 # trombone: ~/src/jolla/wpa_supplicant
 
-* Analysis, Result and Discussion
+* Analysis, Results, and Discussion
 :PROPERTIES:
 :CUSTOM_ID: cha:discussion
 :END: 
 
-We have now gone through theory, design and implementation so let's
-discuss some results and findings. We concentrate on security, 
+We have now gone through the theory, design, and implementation. Next,
+let us
+discuss some of the results and findings. We will concentrate on security, 
 deployment difficulties, costs, platform issues, usability of multiple
 APs, and cases where we
 need to extend the number of SSID's. The facts collected in the thesis
@@ -3625,7 +3626,7 @@ trust and management models.
 # and use sources as for the rest.]
 
 There can be multiple ways to attack the described methods of
-the home network management delegation. Following subsections divide them into
+the home network management delegation. The following subsections divide them into
 confidentiality (privacy), integrity, and
 authenticity. Accessibility is also discussed.
 
@@ -3633,20 +3634,20 @@ authenticity. Accessibility is also discussed.
 # ** Confidentiality, Integrity, and Authenticity
 *** Confidentiality (privacy)
 
-Confidentiality means that no one else other than message's intended
-recipients may get to know information inside the message.
-The purpose of the message confidentiality in authentication phase is
+Confidentiality means that no one except the message's intended
+recipients may get to know the information inside the message.
+The purpose of the message confidentiality in the authentication phase is
 to hide the identity of the smartphone and possibly the delivered
 secrets from eavesdroppers. Hiding IMSI enhances the privacy of the smartphone user. 
 
 
-Recall from Section [[sec:sim-based-auth]], that IMSI is sent in clear 
-during the starting phase of 802.1X authentication and that is a privacy 
-issue, because TMSI which hides IMSI cannot be used before a session
+As discussed in Section [[sec:sim-based-auth]],  IMSI is sent in clear 
+during the starting phase of 802.1X authentication. This is a privacy 
+issue because TMSI which hides IMSI cannot be used before a session
 has been set up. \cite[p.66]{rfc4186}.
 After the first full authentication, the client and the authenticator 
-know TMSI and can use it in further communication. 
-TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi]].
+know the TMSI and can use it in further communication. 
+The TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi]].
 
 #+begin_src ditaa :file imsi-tmsi.png :cmdline -E -r -s 2
 
