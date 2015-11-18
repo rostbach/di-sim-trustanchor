@@ -4075,9 +4075,9 @@ the network name has changed.
 
 
 
- Hiding can also have privacy enhancing effects.
-While Wi-Fi client's normal action is to probe for SSIDs of lately visited
-and learned APs, anyone can analyze those probes and reveal client's
+ Hiding can also have privacy-enhancing effects.
+While a Wi-Fi client's normal action is to probe for SSIDs of lately visited
+and learned APs, anyone can analyze those probes and reveal the client's
 earlier locations without very much effort.
 Lindqvist et.al. \cite{hidden-wlan} present usage of hidden
 APs in protecting privacy of clients and preventing that scenario.
