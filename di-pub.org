@@ -4414,15 +4414,15 @@ the transfer into the management network. This scenario could be
 studied further.
 
 
-If HS2.0 was used here to automate the part, where
+If HS2.0 was used here to automate the part where
 the smartphone needs to change from cellular to local
-management Wi-Fi network and back, we probably would
+management Wi-Fi network and back, we would probably 
 miss the user decision part. The user, not the operator,
  must give his consent to access the management network, so
-it is important, that the switch would not be automatic or forced.
+it is important that the switch is not automatic or forced.
 In a way, operator aided roaming between Wi-Fi and cellular
-works in a different level than here described trust-anchor method.
-The operator is interested on the access network, while
+works on a different level than the trust-anchor method described here.
+The operator is interested in the access network, while
 we are interested in the side result of getting access, namely 
 the achieved trusted access point.
 
