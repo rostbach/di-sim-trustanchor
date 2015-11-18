@@ -4315,19 +4315,19 @@ mode and, thus,
 home usually has been set using WPA2-PSK.
 # with one Service Set ID (SSID)
 # Two SSID, rationale
-Because it was not found, how authenticator could use the same network
+Because it was not found out how the authenticator could use the same network
 SSID for both WPA2-PSK (or open access) and WPA2-Enterprise, a
 separate SSID for dedicated management network was technically needed.
-Luckily, today's APs allow setting of multiple SSIDs.
+Luckily, today's APs allow the setting of multiple SSIDs.
 
 # , while only management network is
 # configured to use external RADIUS.  
 # it was either WPA2-Enterprise (RADIUS) or WPA2-PSK for access.
 Nevertheless, if Wi-Fi was limited to only one SSID, then we would
 need another 
-way to indicate that user wants to get in to management network. 
-Separation can be done for example at client's  end by using different realm on
-AuthN identity. It also can be done by adding hints for different destination to
+way to indicate that the user wants to get into the management network. 
+Separation can be done, for example, at the client's  end by using a different realm on
+AuthN identity. It can also be done by adding hints for different destination to
 username (username decoration) or by using different authentication
 method. All these methods allow Authentication Server to distinguish, what the user
 wants to do; get normal access to home network or make trust anchor claim to 
