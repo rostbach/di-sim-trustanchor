@@ -4042,25 +4042,24 @@ connect by that method and causes continuous AP outages.
 <<tag:hidessid>>
 One could also think of hiding the network by disabling the
 advertisement of manage\-ment network SSID. That is called ``network
-cloaking''.  Smartphone would then need to know the exact target SSID name.
-Does disabling or hiding the management network bring real security or
-is it just security by obscurity?  Security by obscurity means here,
-that hiding network 
-# would be the only security method
+cloaking''. The smartphone would then need to know the exact target SSID name.
+Does disabling or hiding the management network bring real security, or
+is it just security by obscurity?  Security by obscurity means here
+that hiding the network 
 as a security method would filter out only some casual crackers, while
 at the same time it still is trivial for any serious crackers.
 Disabling or hiding  merely gives one security layer more so it is not
 a real security method.
 
 # always changing vs. hidden
-The SSID could also be renamed always, in essence to implement
-one-time-only network, but then the smartphone would need to get that
-secret somewhere, perhaps via an SMS and that would defeat the purpose
+The SSID could also be always renamed, in essence to implement
+a one-time-only network, but then the smartphone would need to get that
+secret somewhere, perhaps via an SMS, and that would defeat the purpose
 of easy access.  If that method nevertheless would be used, then
 hiding the one-time-only network name actually could add security. 
 If the client knows beforehand the name of SSID
-(and maybe also checks AP's MAC), then AP does not reveal any information,
-before the client has tried to connect to it and that would minimize
+(and maybe also checks AP's MAC), then AP does not reveal any information
+before the client has tried to connect to it, and that would minimize
 the time window for attacks. 
 # If SSID changing introduced  in mitigation Section([[tag:hidessid]])
 # was in use, fast re-authentication after full-authentication
