@@ -3209,7 +3209,7 @@ thoroughly.
 
 
 
-Packet capture of successful SIM-authentication with corresponding
+The packet capture of successful SIM-authentication with corresponding
 parts of logs at WPA2-Supplicant, RADIUS server and packet captures
 802.1X, RADIUS and HLR is shown below.  Communicating partners are
 denoted as AP and phone for Wi-Fi traffic, AP-wired and
@@ -3258,7 +3258,7 @@ No.  Time     Src      Dest      Proto    Len   Info
  
 # (see sequence, and explain why) [TBD]
 
-IMSI is sent the first time already on the second EAP message from 
+IMSI is sent for the first time already on the second EAP message from 
 WPA2-Supplicant to AP (compare with Figure[[fig:eap-sim-radius]], message 2.)
 This part is presented in more detail in Capture \ref{capimsi}.
 # The capture has been done at the WPA2-supplicants end
@@ -3304,21 +3304,23 @@ Frame 130: 7.983223
 #+END_LaTeX
 #+LATEX: \normalsize
 
-We might notice the difference on used 802.1X versions: AP uses version
-802.1X-2004 in its request while the smartphone uses 802.1X-2001. Here
+# We might notice the difference on used 802.1X versions: AP uses
+# version
+There is a difference between the used 802.1X versions: the AP uses version
+802.1X-2004 in its request, while the smartphone uses 802.1X-2001. Here
 it does not have any  noticeable effect.
 
-The last line has the important identity field received from the SIM.
-Its length cannot directly be seen, but when EAP message's length (21
-octets) is reduced by fixed space needed for Code(1), ID(1),
-Lenght(2), and Type(1), it yields 16 octets for the
+The last line contains the important identity field received from the SIM.
+Its length cannot  be seen directly, but when the EAP message's length (21
+octets) is reduced by a fixed space needed for Code (1), ID (1),
+Length (2), and Type (1), it yields 16 octets for the
 identity. Therefore the identity is not coded as a 
-numeral but instead as a string and that brings more flexibility in
-the protocol as the identity can include alphabets too. It also
-minimizes misunderstandings, if context gets lost. 
-When we remember from Section [[sec:sim-based-auth]], that IMSI can not be
-be more than 15 octets, the extra prefix '1' has an extra meaning.
-Here it denotes that we are talking  now about EAP-SIM identity instead of
+numeral but instead as a string, and that brings more flexibility into
+the protocol as the identity can include alphabets, too. It also
+minimizes the chance for  misunderstandings in case the context gets lost. 
+When we remember from Section [[sec:sim-based-auth]], that IMSI can be
+no longer than 15 octets, the extra prefix '1' has an extra meaning.
+Here it denotes that we are now talking  about EAP-SIM identity instead of
 EAP-AKA or EAP-AKA'.
 
 #  Other information is also needed, for example
