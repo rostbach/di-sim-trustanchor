@@ -3452,15 +3452,16 @@ Send: SIM-RESP-AUTH 232010000000000
 
 ** Simulation on smartphone Jolla
 
-Because we had source code available, we also tried to move the
+Since we had source the code available, we also tried to move the
 simulated SIM application to the real smartphone.  Jolla is a new
-Finnish smartphone, running on ARMv7 processor, having its root's on
-Nokia's last mobilephone line that used Linux Distribution MeeGo in
-beginning of 2010's.  The OS is called Sailfish and it includes user
-interface code made by Jolla, open source components from Mer, and
+Finnish smartphone that runs on ARMv7 processor and has its roots in
+Nokia's last mobile phone line that used Linux Distribution MeeGo at
+the beginning of 2010's.  The OS is called Sailfish and it includes user
+interface code created by Jolla, open source base components from Mer, and
 some other software components, which are either free or proprietary.
-The name Mer comes from MEego Reinvented, or meritocratic community
-and it is a community driven by merits.
+Mer is a community driven by merits; its name comes from the words 
+`MEego Reinvented', or `meritocratic community'
+There are also other OSs based on Mer, such as Tizen.
 
 Jolla's base
 WPA-supplicant belongs to Mer core and it was here re-built for
