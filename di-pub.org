@@ -4364,7 +4364,7 @@ between cellular and  Wi-Fi data access when they change their
  location, and that disrupts the network connection.
 
 An industry brand  Hotspot 2.0 (HS2.0) addresses those issues and tries to
-simplify user's switch between Wi-Fi and cellular to automate the
+simplify the user's switch between Wi-Fi and cellular to automate the
 roaming experience.  HS2.0 is driven by two alliances:
 Wi-Fi Alliance has a certification program (Passpoint)
 for HS2.0 compatible devices, while the Wireless Broadband
@@ -4375,7 +4375,7 @@ HS2.0
 enables the selection of the network based on the ownership, services and
 performance characteristics /before/ a Wi-Fi client has been associated
 to a HS2.0 AP. The technology is built on IEEE 802.11u specification. 
-In its second release version the operator would
+In its second release version the operator will
 have control on which network the smartphone would carry its data
 transmission. 
 
