@@ -3412,10 +3412,10 @@ against malicious attackers anymore.
 
 # [*TBD /home/itapuro/gitdocs/di/testit/demot/ap-s150123-155714*]
 
-Meanwhile, HLR simulator was listening requests from Authentication
+Meanwhile, the HLR simulator was listening requests from the Authentication
 server's internal EAP-handler through a local socket. 
 Its configuration is shown in
-Appendix [[app:hlraucgw]] and there one can see the simulated Milenage parameters including SIM secrets.
+Appendix [[app:hlraucgw]]. There one can see the simulated Milenage parameters including SIM secrets.
 
 
 
@@ -3425,15 +3425,15 @@ Appendix [[app:hlraucgw]] and there one can see the simulated Milenage parameter
 # #+END_EXAMPLE
 # #+LATEX: \normalsize
 The AuthN request (SIM-REQ-AUTH), which in production version would go
-to real HLR-AuC, included the IMSI and parameter "3", which indicates,
+to real HLR-AuC, included the IMSI and parameter "3", which indicates
 that the requester wants three triplets.  
-While one triplet would equal 64-bit key used for challenges, three
-triplets will make the key 192 bit long. Session keys are derived from
-this keymaterial. Crypto analysis of Patel \cite{patel-sim} noted in
-2003, that achieved session key security lenght would not be even 128
-but 64 bit, but it is not known to us, whether this was taken in
-account in 2005's version. 
-Format of triplet received is RAND:SRES:Kc.
+While one triplet would equal a 64-bit key used for challenges, three
+triplets will make the key 192-bit long. Session keys are derived from
+this key material. Crypto analysis of Patel \cite{patel-sim} noted in
+2003 that the achieved session key security length would be not  even 128
+but 64 bits; however,  it is not known to us whether this was taken into
+account in the 2005 version. The 
+format of the triplet received is RAND:SRES:Kc.
 
 #+LATEX: \footnotesize
 #+BEGIN_EXAMPLE
