@@ -3997,7 +3997,7 @@ function anymore at all.
 *** Hardware tampering
 # here attest
 All this time it is assumed that hardware does not lie. In the case
-that the hardware has been tampered, we can not trust its claims.
+that the hardware has been tampered, we cannot trust its claims.
 For example, there have been attacks against SIM to reveal its private
 key after the SIM has been copied.  To verify that a device has not been
 tampered with, a method called attestation can be used.
@@ -4015,7 +4015,7 @@ That leads us again to the key distribution problem.
 
 *** Mitigation methods against radio capturing
 To mitigate risks for radio capturing, two methods are presented: hiding of
-wireless network and proximity. They are not perfect but can
+wireless network and proximity. They are not perfect, but can
 limit attack vectors in time and place.
 
 #  *** Activation or hiding the Management network
@@ -4023,17 +4023,17 @@ limit attack vectors in time and place.
 Recall that the access to management network from the smartphone is
  needed only then when changes
 are made. Why then not just enable management radio network
-during those times? Then there were less networks for users to choose from.
+during those times? Then there would be fewer networks for users to choose from.
 Enabling management network could be programmed through 
 # OpenWRT router's 
 LuCI-interface, which is a web user interface to the Unified
  Configuration Interface used in OpenWRT routers.
-Preliminary tests showed, that activating new networks in AP also 
+Preliminary tests showed that activating new networks in an AP also 
 # [RESULT]
-disconnects existing Wi-Fi connections and may even restart AP,
+disconnects the existing Wi-Fi connections and may even restart the AP,
 which certainly would not be wanted. Some other methods need to
-be invented to avoid denial-of-service, when an intruder tries to 
-connect by that method and would cause continuous AP outages.
+be invented to avoid denial-of-service when an intruder tries to 
+connect by that method and causes continuous AP outages.
 #  To avoid circular decision,
 # opening management network must be allowed without being in management
 # network, but to complete circle, that would open access for 
