@@ -275,7 +275,7 @@ Tampere, 18.11.2015
 
 
 Riku Itäpuro
-OpenPGP fingerprint: A4B2 936C E01E 9FEC 10FE  441F 7F09 442C 236D 9400
+%OpenPGP fingerprint: A4B2 936C E01E 9FEC 10FE  441F 7F09 442C 236D 9400
 
 %
 % Add the table of contents, optionally also the lists of figures,
