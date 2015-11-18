@@ -3330,10 +3330,10 @@ EAP-AKA or EAP-AKA'.
 # [Reminds me of encoding IP addresses as strings in DNS request instead of bytes.]
 
 
-EAP client's identity is transformed at authenticator
+The EAP client's identity is transformed at the authenticator
 (Figure[[fig:eap-layers]], Chapter [[#cha:aaa]]) from 802.1X's 
 EAPOL format  into RADIUS format and
-sent to RADIUS server. The captured frame between AP and Radius server is
+sent to the RADIUS server. The captured frame between AP and Radius server is
 shown
 in Capture \ref{fig:capture}.
 # in Capture \ref{fig:capture}.
@@ -3379,28 +3379,28 @@ Radius Protocol
 #+LATEX: \normalsize
 
 
-Here interesting part is the first RADIUS AVP.
-While encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
-field, it was surprising that RADIUS has captured that field and 
-filled its User-Name field to the very same, ``1232010000000000''. 
+Here the interesting part is the first RADIUS AVP.
+While the encapsulated EAP fragment naturally carries the Identity=``1232010000000000''
+field, it was surprising that RADIUS had captured that field and 
+filled its User-Name field with the very same ``1232010000000000''. 
 IMSI is ``232010000000000'' and it is prefixed with
-an '1' as earlier explained.
+an '1' as  explained earlier.
 
-In WPA2-Supplicant configuration file (see Appendix [[app:wpa-conf]]) both the identity and
+In  the WPA2-Supplicant configuration file (see Appendix [[app:wpa-conf]]) both the identity and
 credential section had the identity field, but the latter creds block
-was later learnt to belong to cases, where the same credentials would
-be used to multiple networks and therefore it would save to trouble of
+was later learnt to belong to cases where the same credentials would
+be used in multiple networks and therefore it would save the trouble of
 always rewriting that block.
 # Maybe this has something to do with identity
 # values above, or then 
-Another thing to be noted is, that AP has followed conventions on
-converting EAP into RADIUS message and put identity field into
-User-Name Attribute Value Pair (AVP) too.
+Another thing to be noted is that the AP has followed conventions on
+converting EAP into a RADIUS message, and put identity field into
+User-Name Attribute Value Pair (AVP), too.
 # why similar convention can be seen?
-Similar convention can be seen when analyzing EAP encapsulation and
-message size. The last RADIUS (AVP) is 
+A similar convention can be seen when analyzing the EAP encapsulation and
+the message size. The last RADIUS (AVP) is 
 Message-Authenticator, which presents limited safety against message 
-corruption. Limited, because it uses MD5-hashing which is not safe
+corruption. Limited, because it uses MD5-hashing, which is not safe
 against malicious attackers anymore.
 
 # there to AVP:User-Name. Packet is
