@@ -4327,11 +4327,12 @@ Nevertheless, if Wi-Fi was limited to only one SSID, then we would
 need another 
 way to indicate that the user wants to get into the management network. 
 Separation can be done, for example, at the client's  end by using a different realm on
-AuthN identity. It can also be done by adding hints for different destination to
-username (username decoration) or by using different authentication
-method. All these methods allow Authentication Server to distinguish, what the user
-wants to do; get normal access to home network or make trust anchor claim to 
-management network.
+AuthN identity. It can also be done by adding hints for a different
+destination to the
+username (username decoration) or by using a different authentication
+method. All these methods allow the Authentication Server to distinguish what the user
+wants to do; to get normal access to the home network, or to make a trust anchor claim to 
+the management network.
 
 If Lock-and-key method was used instead of EAP-SIM RADIUS, then
 separate manage\-ment SSID would not be needed. Roles were given at
