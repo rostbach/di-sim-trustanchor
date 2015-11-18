@@ -233,6 +233,32 @@ paljastumisen uhka ja ei-toivottu automaattinen tunnistautuminen.
 [*TBD*]
 PREFACE TEMPLATE! SKIP.
 
+I wrote this thesis during my period of research assistant at TUT.
+It took approximately 9 months, considering my part time job to 
+start these final word on preface. 
+
+Although I had some earlier experience on some of the techniques involved in this paper, 
+other techniques were quite new to me, not to mention writing a longer
+scientifical related paper.
+
+There are many people involving in the creation process of this paper.
+Bilhananan Silverajan took care of introducing me in to this 
+home networking and worked as supervising instructor. 
+Jarmo Harju as the examiner helped in technical proof reading and
+corrected some of my speling errors.
+Antti, Axu, Joona, Lauri, Mava and Tiina among others were
+the uplifting spirit at work. 
+Those pervs made my working in the Pervasive Computing unit a pleasure.
+At home frontier the one power cell, my beloved wife Päivi,
+is the one who kept me going and always encouraged to finish my studies, 
+She allowed and encouraged me, time after time, to work on this thesis (and this
+degree). Pirkko, my friend, was the inspiration and the aid for the forgotten articles and 
+mis-placed commas.
+
+This thesis is dedicated to my father. 
+
+
+
 This document template conforms to Guide to Writing a Thesis at
 Tampere University of Technology (2014) and is based on the previous
 template. The main purpose is to show how the theses are formatted
