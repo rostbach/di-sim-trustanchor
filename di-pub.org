@@ -4149,13 +4149,13 @@ A smartphone can have different profiles, even with the same SSID, but
 then the user needs to choose manually which profile is wanted.
 
 # The initial admin user IMSI has to be registered in some way 
-Additionally, the initial admin user's SIM-card has to be registered as an
-admin user in some way in home network 
-configuration, i.e., IMSI must belong to the admin group.
-In this implementation, no extra application is needed in smartphone
-for primitive trust, but later for more serious use some application is needed.
-For added functionality, for example for logging admins out, OpenWRT
-based software can be used, although those functions have not yet been
+Additionally, the initial admin user's SIM card has to be registered as an
+admin user in some way in the home network 
+configuration, i.e., the IMSI must belong to the admin group.
+In this implementation, no extra application is needed in the smartphone
+for primitive trust, but later, for more serious use, some application is needed.
+For added functionality, such as logging admins out, OpenWRT-based
+software can be used, although those functions have not yet been
 implemented.
 
 
@@ -4173,33 +4173,33 @@ implemented.
 
 # ** Costs for end-user 
 # What are the costs per authentication from MNO?
-While no service exists yet from MNOs, we estimate their costs based
+While no such service is yet provided by MNOs, we estimate their costs based
 on Mobiilivarmenne. Using Mobiilivarmenne is currently free for
-clients, if usage is personal, but costs for service providers are
-unknown.  Hardware costs can mostly be eliminated, while users already
-have smartphones and for infrastructure, existing hardware such as APs
+clients if usage is personal, but costs for service providers are
+unknown.  Hardware costs can mostly be eliminated because users already
+have smartphones and for the infrastructure, existing hardware such as APs
 can be used.
 # - Hardware. Phones included.
 
-Using SIM to local Wi-Fi AA adds value to the smartphone ecosystem.
+Using SIM for local Wi-Fi AA adds value to the smartphone ecosystem.
 To further divide possible costs for EAP-SIM usage
 is difficult.
 #  be used for other areas to divide costs?
 EAP-SIM always needs an MNO for the first authentication,
-because only the MNO and a SIM-card manufacturer know 
-what are SIM's Ki and the used A3/A8 algorithm variation
+because only the MNO and a SIM card manufacturer know 
+the SIM's Ki and the used A3/A8 algorithm variation
 for GSM/3GPP/LTE authentication.
 
 # Even, if SIM card technically had multiple identities,
 # Ideally, SIM card could have also part that 
 # No one else h
-It is difficult to see, if any commercial provider would implement
-SIM-key sharing so, that secret part was divided to a part that
-implements AuthN for an own operator and to a part, that is free to
+It is difficult to see if any commercial provider would implement
+the SIM key sharing so that the secret part would be divided into a part that
+implements AuthN for the user's own operator and into a part that is free to
 use by some other operator.  Instead, the same functionality can be achieved with
 a dual-SIM phone, which allows inserting two SIM cards from different
-operators in to the phone. By using menu option in phone, or even a
-specific prefix code before call, an alternate SIM card can be chosen
+operators into the phone. By using a menu option in phone, or even a
+specific prefix code before a call, an alternate SIM card can be chosen
 without booting the phone.
 Dual-SIM thus allows change of identity and IMSI without removing the SIM card.
 # , but that would
@@ -4211,14 +4211,14 @@ Dual-SIM thus allows change of identity and IMSI without removing the SIM card.
 # If that second SIM was meant for only authentication and operator for
 # that was found, then costs would be minimal. 
 # SIM (GSM) cards can be distributed for as low as 2€. 
-There exists also private GSM networks. An interesting use case
-of them  has been Chaos Computer Club's international 
-CCC-camps \cite{ccc}, where organizers 
-provide private GSM network for attendees of conference
+There also exist private GSM networks. An interesting use case
+of them  are Chaos Computer Club's international 
+CCC-camps \cite{ccc}, where the organizers 
+provide a private GSM network for the attendees of the camp
 # free phone and messaging net
-by distributing them separate SIM cards for 2 euros.  Even, when GSM
+by distributing them separate SIM cards for 2 euros.  Even when a GSM
 network used 1.8GHz radio channel under an experimental spectrum
-licence,  GSM encryption also could be used, because the SIM-card secrets were known
+license,  GSM encryption could also be used, because the SIM-card secrets were known
 to the organizing, private operator.
 #  [cite:28C3
 On the other hand, empty GSM cards for testing can cost as much as 
