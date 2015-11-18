@@ -2898,12 +2898,12 @@ entity would then check that and who would be authorized to send that message?
 An authenticating server which has no internet connection should 
 have a predefined way to check that a one-time password received via SMS is correct.
 
-Solution for this could be still using a co-existing captive portal
-for emergency access. As AP is programmable, it could
+One solution to this problem could be to still use a co-existing captive portal
+for emergency access. As the AP is programmable, it could
 provide this portal.  Alternatively, existing programs such as
 /ChilliSpot/ or /NoCatAuth/ could be used as WWW-portals.  For that to
-success, the WWW-portal would also need an open access without 802.1X
-port based access control.
+succeed, the WWW-portal would also need an open access without 802.1X
+port-based access control.
 
 
 # [Full authentication vs. Fast re-authentication]
