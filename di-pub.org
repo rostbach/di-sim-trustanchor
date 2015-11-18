@@ -3744,14 +3744,14 @@ It still is the responsibility of the authenticator to
 check AuthZ  and let only admin mobile access the management network.
 
 If SIM is used as the only EAP without EAP-PEAP, then there is no
-mitigation for revealing the IMSI on the first message and it leads to
-privacy issue.  If there was an IMSI-catcher involved, only IMSI would
+mitigation for revealing the IMSI on the first message, and this leads to
+a privacy issue.  If there was an IMSI-catcher involved, only IMSI would
 be revealed.  The other parameters or encryption are not in danger in
-EAP-SIM authentication, because EAP-SIM will stop conversation, if it
+EAP-SIM authentication, because EAP-SIM will stop the conversation if it
 does not receive the correct MNO authentication message.  EAP-SIM
-protocol, as do most of the other EAP-variants, provides a secure way
-to generate session parameters to WPA2-session and those are not
-leaked outside, because they are created individually on both
+protocol, like most of the other EAP-variants, provides a secure way
+to generate session parameters for a WPA2-session. These parameters are not
+leaked outside because they are created individually on both
 endpoints: at the smartphone and at the Authentication Server.
 Finally, the fact that the secret key Ki stays inside the SIM makes it
 difficult to attack the session by pretending to be the smartphone.
