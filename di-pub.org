@@ -197,7 +197,7 @@ Tutkielma kuvaa tätä toimijaa sovelluksena käyttäjän älypuhelimessa.
 Käyttäjä on matkapuhelinliittymällään jo osa luotettua
 tilaajarekisteriä, ja tätä ominaisuutta käytetään hyväksi työssä 
 luottamuksen rakentajana. Matkapuhelintunnistuksena käytetään
-SIM-kortilla olevaa tilaajatietoa EAP menetelmällä. 
+SIM-kortin tilaajatietoa EAP menetelmällä. 
 % Pääsynvalvonta hoidetaan RADIUS-protokollalla.
 EAP-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
 simuloitu käyttöympäristö. Periaatteena on ollut käyttää
