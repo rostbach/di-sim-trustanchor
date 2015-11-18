@@ -193,7 +193,7 @@ kotiverkkoihin sallittaisiin. Luotettava toimija on palkattava
 ja jaettava tälle tunnistautumiskeino sekä pääsy kohdelaitteelle
 ulkoa käsin. Tämä edellyttää ennakkotoimia ja tunnistautumisavainten jakelua.
 
-Tutkielma kuvaa toimijaa sovelluksena käyttäjän älypuhelimessa.
+Tutkielma kuvaa tätä toimijaa sovelluksena käyttäjän älypuhelimessa.
 Koska käyttäjä on matkapuhelinliittymällään jo osa luotettua
 tilaajarekisteriä, käytetään tätä ominaisuutta hyväksi työssä 
 luottamuksen rakentajana. Matkapuhelintunnistusta hyödynnetään 
