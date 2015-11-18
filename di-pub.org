@@ -4099,13 +4099,14 @@ those limits.
 # [ add source (not good one this) [[http://compnetworking.about.com/cs/wirelessproducts/f/wifirange.htm]] ]
 This can be considered as an added factor in multifactor
 authentication or reputation, but it will not be enough, because
-attackers will have more sensitive  radios available than normal users
+attackers will have more sensitive  radios available than normal users'
 devices have. 
 # (source?)
-Also, if SIM-profile was used through Bluetooth, there were also
+In addition, if a SIM-profile was used through Bluetooth, there would
+also be
 range limits, but even shorter. Despite the claimed distance limits
-on Bluetooth, receiving can be extended with even to one mile with
-directed antenna \cite{SANS-bluetooth-2007}.
+on Bluetooth, receiving can be extended up to one mile with
+a directed antenna \cite{SANS-bluetooth-2007}.
 
 
 # - WPS  :: despite its PIN method flaw, could work with its 'push button'-method
