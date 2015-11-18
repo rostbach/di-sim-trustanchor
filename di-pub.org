@@ -3996,19 +3996,19 @@ function anymore at all.
 
 *** Hardware tampering
 # here attest
-All this time it is assumed, that hardware does not lie. In case
-the hardware has been tampered, we could not trust its claims.
+All this time it is assumed that hardware does not lie. In the case
+that the hardware has been tampered, we can not trust its claims.
 For example, there have been attacks against SIM to reveal its private
-key after SIM have been copied.  To verify, that a device has not been
-tampered, a method called attestation can be used.
+key after the SIM has been copied.  To verify that a device has not been
+tampered with, a method called attestation can be used.
 # [cite]! [something from attestation techniques]
 # - Attestation methods for proofing,   TPM-part, to avoid tampering. [
 # Check Antti's work]
 
-A device, which has attestation capability such as 
+A device which has attestation capability such as 
 hardware certificates or Trusted Platform Module (TPM) technology
 can function as a trust anchor.
-Such a device could be sent direct to customer with pre-configured
+Such a device could be sent directly to the customer with pre-configured
 secrets and methods to take a place as a trust anchor. 
 That leads us again to the key distribution problem.
 
