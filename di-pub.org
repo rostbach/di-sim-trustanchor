@@ -4334,10 +4334,10 @@ method. All these methods allow the Authentication Server to distinguish what th
 wants to do; to get normal access to the home network, or to make a trust anchor claim to 
 the management network.
 
-If Lock-and-key method was used instead of EAP-SIM RADIUS, then
-separate manage\-ment SSID would not be needed. Roles were given at
-authentication server or designated router after the smartphone has done login to it
-via normal access network.
+If the Lock-and-key method was used instead of EAP-SIM RADIUS, then
+a separate manage\-ment SSID would not be needed. Roles are given at
+authentication server or designated router after the smartphone has
+logged into it via the normal access network.
 
 
 # Management through Wi-Fi has then three
