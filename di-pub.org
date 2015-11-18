@@ -3685,13 +3685,13 @@ The TMSI can even be re-changed using re-authentication as shown in Figure[[fig:
 
 The authenticator is responsible for converting TMSI to IMSI if it
 later needs to ask for full authentication from the MNO. During that
-time, IMSI can be caught using the device called IMSI-catcher.  The
+time, IMSI can be caught using a device called IMSI-catcher.  The
 very same happens also in a regular GSM network with non-EAP traffic.
-IMSI can be caught by listening the GSM network for phones that are
+IMSI can be caught by listening to the GSM network for phones that are
 registering themselves to the operator when they are powering on.  The
-fault lies there, that GSM specification does not require the mobile
-network to authenticate itself to the phone and so GSM allows man in
-the middle attack.  The attack follows, when the IMSI-catcher
+fault lies in that the GSM specification does not require the mobile
+network to authenticate itself to the phone, and so GSM allows a 
+man-in-the-middle attack.  The attack follows when the IMSI-catcher
 impersonates itself as a (cellular) base station.  When the smartphone
 tries to attach to the fake base station, the smartphone reveals its
 IMSI number. Further, because the base station is responsible for
