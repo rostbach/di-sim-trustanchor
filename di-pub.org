@@ -242,7 +242,7 @@ science related paper. Writing and studying all this was equally fun,
 but now it is time to let go.
 
 There were many people involved in the creation process of this thesis.
-Bilhanan Silverajan took care of introducing me in to this 
+Bilhanan Silverajan took care of introducing me in to  this topic of 
 home networking and worked as my supervising instructor. 
 Jarmo Harju as the examiner, helped in technical proofreading and
 corrected some of my speling errors, but Pirkko, my friend,  was the ultimate inspiration
