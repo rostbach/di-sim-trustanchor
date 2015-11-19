@@ -1530,6 +1530,11 @@ use it as a derivation function to extend trust
 :CUSTOM_ID: cha:management
 :END:
 # [ keep this security oriented, Forget sections & subsections style.]
+The home networks have been researched by the same organization that built
+the Internet. This chapter presents  the homenet working group
+and their architectural goals. Finally, several methods for importing the trust are presented.
+
+
 
 ** Home network architecture and IETF
 
@@ -1900,17 +1905,13 @@ fingerprint.
 
 
 
-Home networks have been researched by the same organization that built
-the Internet. This chapter presents  the homenet working group
-and their architectural goals. Finally, several methods for importing the trust are presented.
-
-* Design of home network trust anchor and separation of change management
+* Design of home network trust anchor and change management
 :PROPERTIES:
 :CUSTOM_ID: cha:design
 :END: 
 
 
-# IDEA: 
+  # IDEA: 
 #  - Changing home network management style from console-style
 #   management to app-style management) 
 
@@ -1977,7 +1978,7 @@ interaction on behalf of the user.
 # what happens when accessing home network?
 
 
-** Chosen AA design 
+** AA design 
 <<sec:chosendesign>>
 
 
@@ -2069,26 +2070,90 @@ ACCESS-ACCEPT message.  In essence, AuthZ part itself can be thought
 as  one type of service provisioning.  That would then allow the
 smartphone to connect to a specific management network and access the
 devices either via command line interfaces, SNMP, or
-similar \cite[p.4]{rfc5608}.
+similar \cite[p.4]{rfc5608}. Yet, usually RADIUS's ACCESS-ACCEPT message,
+which means AuthN and AuthZ were successful,  puts the user in
+the default network, i.e., it just gives basic access, because 
+not all end devices support those provisioning parameters. 
 # Specific VLAN attributes can alternatively be delivered via
 #  or similar ``getting into VLAN'' attribute
 # if standard RADIUS messages do not suffice.  VSAs allow a vendor to use
 # extra 255 attributes as they wish. 
-There exist RADIUS attribute types for directing user into a specific
-VLAN. If those do not suffice, there are also special Vendor Specified
+
+# That way (3rd party) authentication server can decide which network
+# segment the device will be put in.  In our case, admin users are put in
+# to the management network.  
+
+
+# TÄHÄN 1 radius
+If RADIUS AVPs do not suffice, there are also special Vendor Specified
 Attributes (VSA). VSAs allow vendors to define up to 255 
 attributes of their own that can be used in provisioning in a homogeneous environment. 
+Besides VSAs, RADIUS servers may implement different vocabulary in their AVP set.
+RFC6929 \cite{rfc6929} points out that even when
+the RADIUS proxies do not understand all AVPs inside RADIUS message, they
+must deliver those attributes, and that allows us to use a larger set of AVPs 
+than is in any (proxying) RADIUS server's vocabulary.
+RFC2865 \cite{rfc2865} says that the forwarding RADIUS proxy may alter
+the packet as it passes the proxy, but because an alteration would invalidate the
+packet's signature, the proxy has to re-sign the packet.
+In the end, proxying RADIUS can technically insert some data into 
+bypassing messages.
+
+# AA now done. How about change propagation? section here with disconnects?
+** Management design
+The simple way to propagate changes from the cloud (or any outside
+source) is to make them come from the trusted place, here the smartphone,
+where an application takes care of sending them right to the end
+devices. This simplification has some pitfalls. If the smartphone continuously stays
+in the management network, then the changes coming later may not be 
+separated from the currently approved.
+# , i.e., the smartphone now is part of the trusted management network, but 
+If we understood that the change approval belongs to the AA-process, then
+the later approvals would also need an AA.
 
 
-# [cite rfcXXX].  
-That way (3rd party) authentication server can decide which network
-segment the device will be put in.  In our case, admin users are put in
-to the management network.  Yet, usually RADIUS's ACCESS-ACCEPT message,
-which means AuthN and AuthZ were successful,  puts the user in
-the default network, i.e., it just gives basic access, because 
-# As for other
-# provisioning parameters, 
-not all end devices support those provisioning parameters.
+
+
+AVP can also tell when the administrative right ends, i.e., when to
+log the user out from the management network.
+# By adding AVPs inside the authorization packet, we achieve extra
+# information about the validity of the access request.
+# That information may include a VLAN parameter or a time stamp for a forced
+# logout.
+Our design assumes that 
+the smartphone should be dropped out forcibly from the management
+network either right after the changes have been sent or after a
+predefined timeout period during which more changes can be send.  That
+period can be called a management session and the time stamp can be
+delivered with a specific AVP RADIUS message. Timeout method was the
+original idea and should be kept in mind when the final implementation
+is made.
+The session time and the logout can be handled in AP directly with
+a timer. After a specific time, AP simply drops the connection
+(WPA2-session) to the phone. This needs modification in the AP
+software, if there is no such method already.
+# There should be a way to close the session after the changes has
+# been applied. 
+Another solution for logout would be for AP to listen for a command from an external
+AuthZ server, where a similar timer would trigger a notification event. 
+This also requires modifications:  a listening process to the AP and 
+the timer into the AuthZ server. 
+
+Later it was learned \cite{rfc2865} that terminating a session is not
+included in the original RADIUS protocol.  The root cause is that
+messages originating from the RADIUS server are not defined in the
+RADIUS protocol, and so an AP as a RADIUS client cannot receive RADIUS
+server initiated disconnection messages.  Additional extensions such
+as Disconnect and Change-of-Authorization (CoA) packets, also known as
+RADIUS Dynamic Authorization or RADIUS Disconnection Message (DM) \cite{rfc5176}, have
+later been brought in to the protocol by diverse
+vendors, but they may not all be implemented on every device.
+#  [rfc5176]
+Disconnect-Request is sent to UDP port 3799, so the  authenticator should
+also listen for  that in addition to RADIUS UDP port 1812.
+As a side note, Diameter protocol would provide server initiated messaging.
+# [[http://wiki.freeradius.org/protocol/Disconnect-Messages]]
+
 
 In the first prototype it is enough to identify an authorized
 smartphone's SIM.  The smartphone holding the authorized SIM is granted access to
@@ -2111,18 +2176,28 @@ authentication and they know which IMSI has successfully authenticated in
 the home network. They also know the mapping between IMSI and temporal TMSI for
 cases where the smartphone later would need re-authentication.
 
-
+After the phone has been successfully connected to the management
+network, changes coming from the phone can reach configurable targets,
+for example routers.  
 Even though the AP now has authenticated the smartphone user, the managed devices still 
 need to have their own access control.
 # [2015/05/11 NEW! This must be told everywhere, devices still have
 # their own access control! 
 They may consult a local RADIUS server, which tells whether there currently is an
 authenticated smartphone present, and then the changes going
-to the management network would be allowed. Smartphone could also have
-received the login credentials to devices through earlier 
+to the management network would be allowed. 
+This is an example where the smartphone has become the trust anchor
+for a device from the home network.
+Smartphone could also have received the login credentials to devices through earlier 
 configuration information and use them after getting into the management
 network. This kind of AA would happen on upper, application layer
 (layer 7), while AA discussed here (802.1X) happens already on lower, media layer (layer 2).
+
+
+
+# solution for missing internet connection is 
+
+
 
 # If they were integrated to same RADIUS server as used earlier, then
 # smart AA could be consulted from Or do they use RADIUS? Now RADIUS
@@ -2152,6 +2227,7 @@ network. This kind of AA would happen on upper, application layer
 
 
 # ** Change management possibilities [TBD already above, FIX THIS section]
+
 
 ** AA component location scenarios
 :PROPERTIES:
@@ -2437,6 +2513,20 @@ still knows the  right mapping to IMSI authorization, so this method works
 even when there is no Internet connectivity. However, full authentication
 would not work here then because of the missing MNO.
 
+<<sec:disconnections>>
+To solve the missing Internet connection problem, a simple solution would be
+sending a one-time password to a predefined phone via an SMS, but which
+entity would then check that and who would be authorized to send that message?
+An authenticating server which has no internet connection should 
+have a predefined way to check that a one-time password received via SMS is correct.
+
+One solution to this problem could be to still use a co-existing captive portal
+for emergency access. As the AP is programmable, it could
+provide this portal.  Alternatively, existing programs such as
+/ChilliSpot/ or /NoCatAuth/ could be used as WWW-portals.  For that to
+succeed, the WWW-portal would also need an open access without 802.1X
+port-based access control.
+
 
 # [repeat the same, To be combined]
 # The local CPE may cache AuthZ information. It also 
@@ -2458,15 +2548,11 @@ the scenarios I-IV. Bootstrapping is discussed later in
 Section [[bootstrapping]].
 
 
-** Modification of RADIUS messages
+# ** Modification of RADIUS messages
 # [perhaps to security integrity chapter?]
-<<sec:radius-macs>>
+# <<sec:radius-macs>>
 # [Analysis of RADIUS, RADIUS Proxies..
 
-Our model greatly benefits   from the modification of RADIUS messages in proxying
-RADIUS, if that is possible as was mentioned in Section [[sec:radius]] (RADIUS).
-The modification is needed when the proxying RADIUS wants to combine an AuthN message
-from the MNO to AuthZ decision received from elsewhere.
 
 # [ ALT: Is it possible for proxying RADIUS to insert or modify
 # authorization information on authentication reply i.e. in the
@@ -2512,6 +2598,222 @@ bypassing messages.
 #      scope of this document.
 # #+END_QUOTE
 # [source https://tools.ietf.org/html/rfc2865]
+
+
+
+** Model in action
+   
+# Wanted: 
+#  + separate MGMT net exists
+#  + SIM authentication to MGMT net is proven
+# - changes are authorized if they come from MGMT net
+# - log-out from MGMT net
+# - (spare connection, if internet link down)
+# - (fast-reauth, without MNO)
+
+# Implications are, that when someone has access to MGMT channel,
+# everything is permitted. No security limiting as default 
+# [Basically 2. and 3. is like traditional corporate network with firewall.]
+
+# a. AuthN is proven
+# b. AuthZ decision has challenges
+# c. Change approving has three cases:
+#     1. Changes are allowed, when port is open
+#    2. Confirmation message from MGMT-net authorizes changes.
+#       Message must belong to configuration and can be example a digested signature.
+#    3. FULL: changes may come only from MGMT net.
+
+
+# move this below bootstrapped
+# moved to 4.1
+# The session time and the logout can be handled in AP directly with
+# a timer. After a specific time, AP simply drops the connection
+# (WPA2-session) to the phone. This needs modification in the AP
+# software, if there is no such method already.
+
+# There should be a way to close the session after the changes has
+# been applied. 
+# Another solution would be for AP to listen for a command from an external
+# AuthZ server, where a similar timer would trigger a notification event. 
+# This also requires modifications:  a listening process to the AP and 
+# the timer into the AuthZ server. 
+
+# Originally it was thought, that the
+# session would stay open only for a limited time, after which the
+# phone
+# would be forced to logout or thrown away from the management network
+
+
+# [begin of merge part 1 of CoA]
+# RFC3576:
+# #+BEGIN_QUOTE
+# "The RADIUS protocol, defined in [RFC2865], does not support
+#  unsolicited messages sent from the RADIUS server to the Network
+# Access Server (NAS).
+# [..]
+#  This document describes a currently deployed extension to the Remote
+# Authentication Dial-In User Service (RADIUS) protocol, allowing
+# dynamic changes to a user session, as implemented by network access
+# server products.  This includes support for disconnecting users and
+# changing authorizations applicable to a user session."
+# #+END_QUOTE
+# [end of merge part 1 of CoA]
+
+
+
+# If, on the other hand, the smartphone must send the changes itself, then it
+# would be possible that the access in to the management network has short
+# period of time, when phone holds that status or acceptance token. For
+# example, during 10 minutes the connection would be open for changes. Then
+# changes would not go directly to CPE but instead to X, but they would
+# include some token to phone, which is needed for approval message.
+
+# end of disconnect after change discussion
+# -----
+
+To demonstrate how the model works, we present the case of adding a
+new admin user. Let us first suppose, for the sake  of simplicity, that the
+home network has been already configured (bootstrapped) and that it is
+functioning properly.  To further make the case simpler, let us assume
+that the Local Controller is the sole administrative source for the
+configuration changes, and ignore the cloud, 
+because we know that there already exists a configuration framework in the cloud.
+
+# In the real world the home configuration model would have been copied
+# to the cloud and the changes are made to the cloud model through
+# authorized cloud administrator users (operators) and those changes are
+# later also committed in to the production in home network. There is no
+# magic here, plain configuration change, just this time externally
+# initiated.
+
+Now, let us consider what happens when the cloud operator (or the owner of
+the home network) tries to modify the attributes that give access to a new actor,
+such as a new operator, who wants to have access to separate
+segments of the home network.  First, we need to have that segment separation
+change approved, and after that we want to allow the newcomer account
+to have access to that segment and only to that. For the first part,
+which is normal operation, approving would perhaps not yet be
+necessary, but for the second part we need some checking unless our
+trust to the cloud operator is ultimate.  
+
+# to be needed for AA.
+When the CPE of the home network is about to input configuration changes which
+would change the balance of authors or roles, it needs to check that
+the change is permitted.  Permission needs to be asked from a trusted
+point, here mobile SIM. Instead of that, the CPE checks from its own
+state database whether mobile SIM has been given access to the management
+network.
+# [How is this PULL asking triggered? In reality it is not asked, but
+# changes are accepted from admin roles. How admin role is checked?]
+This thesis justifies the management and therefore the changes to be
+allowed, if the smartphone user is currently logged into the
+management network.
+After the AA is ready, the smartphone has all means to connect the
+configured targets.
+
+It must be noted that the smartphone can already have an association
+to a non-management network with Wi-Fi. If that is the case, it
+must  first disconnect from there and then connect, i.e., do the  AA in the correct management
+network. This implies disconnection from other services using the Wi-Fi
+link, because smartphones currently have only one Wi-Fi radio
+available and routing would still prefer Wi-Fi as a default gateway, although
+a possible non-Wi-Fi data link still may stay up and operational.
+# It is not tested, whether 3G-data link could be active still at the
+# same time.
+
+ 
+# Q:Why enumeration needed? Why smaller set? 
+# A: To explicit tell, when authorization is needed and rest can be
+# left out. Alternatively, if free changes are only minimal (what are
+# those? Invent. 
+# I) Case: segment (device) owner makes modification inside own domain. No need
+# to ask authentication from Network owner.
+# II) CasE: segment owner wants to modify network topology change,
+# which would add network segment belonging to someone else.
+# )In our case the latter is smaller.
+# Q: if almost every change needs to have authentication, then 
+# free changes
+# - enumeration ::  complete, ordered listing of all the items in a
+#  collection.
+# ** Disconnecting the local controller and offline changes
+
+# [Limiting time and forced logout, for how long access provided to
+# management operations, or use fast-auth on following accesses TBD]
+
+# meraki SIM disconnection graph
+# [[https://documentation.meraki.com/@api/deki/files/2026/=f4df21ff-0c9b-4b50-b6c2-fdf51ab8b876?revision=1]]
+
+# [This reverse path forwarding not needed ?]
+# [from RFC5176 (2008) 
+# #+BEGIN_QUOTE
+# "Existing implementations of this protocol do not support
+#    authorization checks, so that an ISP sharing a NAS with another ISP
+#   could disconnect or change authorizations for another ISP's users.
+#   In order to remedy this problem, a "Reverse Path Forwarding" check
+#   is recommended."
+# #+END_QUOTE
+
+# [ Following AWAY. left from early phases]
+# 
+# Time limited access can perhaps made with session-timeout parameter
+# in ACCESS-ACCEPT (or ACCESS-CHALLENGE) packet using type field = ``29''.
+# This parameter tells the authenticator how many second maximal the Supplicant
+# can have service. 
+
+# [This cannot be type field 29!]  More specifically, what action
+# authenticator should do after termination becomes. It has values of
+# either 0 (default) or 1 (radius request), which would mean that
+# authenticator may send new ACCESS-REQUEST to RADIUS server.
+
+
+# But that would eliminate direct authenticate-only RADIUS cases
+#  [ /were there/
+#  /any? I do not remember what I meant/
+#  /by this. Maybe that we needed only/
+#  /to have authentication for access/ 
+#  /which in turn enables modifications/ ]
+# Is it then that with value 0, authenticator does not send
+# ACCESS-REQUEST to RADIUS server, but client still can automatically
+# send it without user's acceptance?
+
+
+
+# Model does not allow role changes if smartphone is not at home (in
+# proximity of access point), unless there is for example OTP[def]
+# implemented. Recall, that setuping OTP still needs the 
+# Key Distribution Problem mentioned at [beginning,xxx]
+#  [OTP technique short, not to be misunderstood as OTP - one time pad.]
+# Benefit of OTP is that is is not vulnerable to replay attack,
+# (unless it has not been used but blocked )
+# - Hash chains are more secure than pseudo-random generated OTP
+# - list distribution becomes key distribution problem
+
+# [ check how OTP's are made]
+# Adding OTP could go like this: [ NO, NOT THIS WAY!]
+# 1. First AuthN through AP CPE at home
+# 2. AP receives list of OTP's from CLOUD service or from 3rd party 
+# 3. ... 
+
+# Then comes 
+# - A. Change Request from Parse
+# - B. Smartphone gets message, need to connect to MGMT net, which is
+#  not available. Can still connect with HTTPS to server and send next
+#  OTP to 3rd party or use similar procedure like GBA HTTP-digest login
+#  (compare that again here). 
+#
+
+# [ No Internet connectivity ]
+# +LABEL: text:nointernet
+# [ Back in track: this can be left here ]
+# - forced logout, like in captive portals, where RADIUS is not used.
+# - no straightforward solution exists within RADIUS
+#   portal [-> reference to [[text:nointernet][No Internet connectivity]] link is
+# \ref{text:nointernet}. [avoid linking inside document, prefer linearity]
+
+
+
+# [Full authentication vs. Fast re-authentication]
+# [fast-reauth is one parameter on wpa-supplicant configuration: enable/disable]
 
 
 
@@ -2671,265 +2973,6 @@ Local controller   AP             Managed device (Router)   Authentication Serve
 # + tokens
 
 
-
-** Chosen management model
-   
-# Wanted: 
-#  + separate MGMT net exists
-#  + SIM authentication to MGMT net is proven
-# - changes are authorized if they come from MGMT net
-# - log-out from MGMT net
-# - (spare connection, if internet link down)
-# - (fast-reauth, without MNO)
-
-# Implications are, that when someone has access to MGMT channel,
-# everything is permitted. No security limiting as default 
-# [Basically 2. and 3. is like traditional corporate network with firewall.]
-
-# a. AuthN is proven
-# b. AuthZ decision has challenges
-# c. Change approving has three cases:
-#     1. Changes are allowed, when port is open
-#    2. Confirmation message from MGMT-net authorizes changes.
-#       Message must belong to configuration and can be example a digested signature.
-#    3. FULL: changes may come only from MGMT net.
-
-
-# move this below bootstrapped
-The simple way to propagate changes from the cloud (or any outside
-source) is to make them come from the trusted place, here the smartphone,
-where an application takes care of sending them right to the end
-devices. This simplification has some pitfalls. If the smartphone continuously stays
-in the management network, then the changes coming later may not be 
-separated from the currently approved.
-# , i.e., the smartphone now is part of the trusted management network, but 
-If we understood that the change approval belongs to the AA-process, then
-the later approvals would also need an AA.
-
- The smartphone should be dropped out forcibly from the management
-network either right after the changes have been sent or after a
-predefined timeout period during which more changes can be send.  That
-period can be called a management session.  Timeout method was the
-original idea and should be kept in mind when the final implementation
-is made.
-
-The session time and the logout can be handled in AP directly with
-a timer. After a specific time, AP simply drops the connection
-(WPA2-session) to the phone. This needs modification in the AP
-software, if there is no such method already.
-
-# There should be a way to close the session after the changes has
-# been applied. 
-Another solution would be for AP to listen for a command from an external
-AuthZ server, where a similar timer would trigger a notification event. 
-This also requires modifications:  a listening process to the AP and 
-the timer into the AuthZ server. 
-
-# Originally it was thought, that the
-# session would stay open only for a limited time, after which the
-# phone
-# would be forced to logout or thrown away from the management network
-
-
-# [begin of merge part 1 of CoA]
-# RFC3576:
-# #+BEGIN_QUOTE
-# "The RADIUS protocol, defined in [RFC2865], does not support
-#  unsolicited messages sent from the RADIUS server to the Network
-# Access Server (NAS).
-# [..]
-#  This document describes a currently deployed extension to the Remote
-# Authentication Dial-In User Service (RADIUS) protocol, allowing
-# dynamic changes to a user session, as implemented by network access
-# server products.  This includes support for disconnecting users and
-# changing authorizations applicable to a user session."
-# #+END_QUOTE
-# [end of merge part 1 of CoA]
-
-Later it was learned \cite{rfc2865} that terminating a session is not
-included in the original RADIUS protocol.  The root cause is that
-messages originating from the RADIUS server are not defined in the
-RADIUS protocol, and so an AP as a RADIUS client cannot receive RADIUS
-server initiated disconnection messages.  Additional extensions such
-as Disconnect and Change-of-Authorization (CoA) packets, also known as
-RADIUS Dynamic Authorization or RADIUS Disconnection Message (DM) \cite{rfc5176}, have
-later been brought in to the protocol by diverse
-vendors, but they may not all be implemented on every device.
-#  [rfc5176]
-Disconnect-Request is sent to UDP port 3799, so the  authenticator should
-also listen for  that in addition to RADIUS UDP port 1812.
-As a side note, Diameter protocol would provide server initiated messaging.
-# [[http://wiki.freeradius.org/protocol/Disconnect-Messages]]
-
-# If, on the other hand, the smartphone must send the changes itself, then it
-# would be possible that the access in to the management network has short
-# period of time, when phone holds that status or acceptance token. For
-# example, during 10 minutes the connection would be open for changes. Then
-# changes would not go directly to CPE but instead to X, but they would
-# include some token to phone, which is needed for approval message.
-
-# end of disconnect after change discussion
-# -----
-
-To demonstrate how the model works, we present the case of adding a
-new admin user. Let us first suppose, for the sake  of simplicity, that the
-home network has been already configured (bootstrapped) and that it is
-functioning properly.  To further make the case simpler, let us assume
-that the Local Controller is the sole administrative source for the
-configuration changes, and ignore the cloud, 
-because we know that there already exists a configuration framework in the cloud.
-
-# In the real world the home configuration model would have been copied
-# to the cloud and the changes are made to the cloud model through
-# authorized cloud administrator users (operators) and those changes are
-# later also committed in to the production in home network. There is no
-# magic here, plain configuration change, just this time externally
-# initiated.
-
-Now, let us consider what happens when the cloud operator (or the owner of
-the home network) tries to modify the attributes that give access to a new actor,
-such as a new operator, who wants to have access to separate
-segments of the home network.  First, we need to have that segment separation
-change approved, and after that we want to allow the newcomer account
-to have access to that segment and only to that. For the first part,
-which is normal operation, approving would perhaps not yet be
-necessary, but for the second part we need some checking unless our
-trust to the cloud operator is ultimate.  
-
-# to be needed for AA.
-When the CPE of the home network is about to input configuration changes which
-would change the balance of authors or roles, it needs to check that
-the change is permitted.  Permission needs to be asked from a trusted
-point, here mobile SIM. Instead of that, the CPE checks from its own
-state database whether mobile SIM has been given access to the management
-network.
-# [How is this PULL asking triggered? In reality it is not asked, but
-# changes are accepted from admin roles. How admin role is checked?]
-This thesis justifies the management and therefore the changes to be
-allowed, if the smartphone user is currently logged into the
-management network.
-After the AA is ready, the smartphone has all means to connect the
-configured targets.
-
-It must be noted that the smartphone can already have an association
-to a non-management network with Wi-Fi. If that is the case, it
-must  first disconnect from there and then connect, i.e., do the  AA in the correct management
-network. This implies disconnection from other services using the Wi-Fi
-link, because smartphones currently have only one Wi-Fi radio
-available and routing would still prefer Wi-Fi as a default gateway, although
-a possible non-Wi-Fi data link still may stay up and operational.
-# It is not tested, whether 3G-data link could be active still at the
-# same time.
-
- 
-# Q:Why enumeration needed? Why smaller set? 
-# A: To explicit tell, when authorization is needed and rest can be
-# left out. Alternatively, if free changes are only minimal (what are
-# those? Invent. 
-# I) Case: segment (device) owner makes modification inside own domain. No need
-# to ask authentication from Network owner.
-# II) CasE: segment owner wants to modify network topology change,
-# which would add network segment belonging to someone else.
-# )In our case the latter is smaller.
-# Q: if almost every change needs to have authentication, then 
-# free changes
-# - enumeration ::  complete, ordered listing of all the items in a
-#  collection.
-** Disconnecting the local controller and offline changes
-<<sec:disconnections>>
-# [Limiting time and forced logout, for how long access provided to
-# management operations, or use fast-auth on following accesses TBD]
-
-# meraki SIM disconnection graph
-# [[https://documentation.meraki.com/@api/deki/files/2026/=f4df21ff-0c9b-4b50-b6c2-fdf51ab8b876?revision=1]]
-
-# [This reverse path forwarding not needed ?]
-# [from RFC5176 (2008) 
-# #+BEGIN_QUOTE
-# "Existing implementations of this protocol do not support
-#    authorization checks, so that an ISP sharing a NAS with another ISP
-#   could disconnect or change authorizations for another ISP's users.
-#   In order to remedy this problem, a "Reverse Path Forwarding" check
-#   is recommended."
-# #+END_QUOTE
-
-# [ Following AWAY. left from early phases]
-# 
-# Time limited access can perhaps made with session-timeout parameter
-# in ACCESS-ACCEPT (or ACCESS-CHALLENGE) packet using type field = ``29''.
-# This parameter tells the authenticator how many second maximal the Supplicant
-# can have service. 
-
-# [This cannot be type field 29!]  More specifically, what action
-# authenticator should do after termination becomes. It has values of
-# either 0 (default) or 1 (radius request), which would mean that
-# authenticator may send new ACCESS-REQUEST to RADIUS server.
-
-
-# But that would eliminate direct authenticate-only RADIUS cases
-#  [ /were there/
-#  /any? I do not remember what I meant/
-#  /by this. Maybe that we needed only/
-#  /to have authentication for access/ 
-#  /which in turn enables modifications/ ]
-# Is it then that with value 0, authenticator does not send
-# ACCESS-REQUEST to RADIUS server, but client still can automatically
-# send it without user's acceptance?
-
-
-
-# Model does not allow role changes if smartphone is not at home (in
-# proximity of access point), unless there is for example OTP[def]
-# implemented. Recall, that setuping OTP still needs the 
-# Key Distribution Problem mentioned at [beginning,xxx]
-#  [OTP technique short, not to be misunderstood as OTP - one time pad.]
-# Benefit of OTP is that is is not vulnerable to replay attack,
-# (unless it has not been used but blocked )
-# - Hash chains are more secure than pseudo-random generated OTP
-# - list distribution becomes key distribution problem
-
-# [ check how OTP's are made]
-# Adding OTP could go like this: [ NO, NOT THIS WAY!]
-# 1. First AuthN through AP CPE at home
-# 2. AP receives list of OTP's from CLOUD service or from 3rd party 
-# 3. ... 
-
-# Then comes 
-# - A. Change Request from Parse
-# - B. Smartphone gets message, need to connect to MGMT net, which is
-#  not available. Can still connect with HTTPS to server and send next
-#  OTP to 3rd party or use similar procedure like GBA HTTP-digest login
-#  (compare that again here). 
-#
-
-# [ No Internet connectivity ]
-# +LABEL: text:nointernet
-# [ Back in track: this can be left here ]
-# - forced logout, like in captive portals, where RADIUS is not used.
-# - no straightforward solution exists within RADIUS
-#   portal [-> reference to [[text:nointernet][No Internet connectivity]] link is
-# \ref{text:nointernet}. [avoid linking inside document, prefer linearity]
-
-After the phone has been successfully connected to the management
-network, changes coming from the phone can reach configurable targets,
-for example routers.  
-To solve the missing Internet connection problem, a simple solution would be
-sending a one-time password to a predefined phone via an SMS, but which
-entity would then check that and who would be authorized to send that message?
-An authenticating server which has no internet connection should 
-have a predefined way to check that a one-time password received via SMS is correct.
-
-One solution to this problem could be to still use a co-existing captive portal
-for emergency access. As the AP is programmable, it could
-provide this portal.  Alternatively, existing programs such as
-/ChilliSpot/ or /NoCatAuth/ could be used as WWW-portals.  For that to
-succeed, the WWW-portal would also need an open access without 802.1X
-port-based access control.
-
-
-# [Full authentication vs. Fast re-authentication]
-# [fast-reauth is one parameter on wpa-supplicant configuration: enable/disable]
-
 ** Summary of the chosen solution
 
 # [wrap up of solution]
@@ -2938,6 +2981,11 @@ The chosen solution to benefit from SIM is via EAP-profiles, as EAP
 is well known when using WPA2-Enterprise protection in Wi-Fi.
 Design is based on 802.1X and mobile network operator aided
 authentication and it is a variation of the lock-and-key design.
+
+Our model greatly benefits   from the modification of RADIUS messages in proxying
+RADIUS, whenthat is possible as was mentioned in Section [[sec:radius]] (RADIUS).
+The modification is needed when the proxying RADIUS wants to combine an AuthN message
+from the MNO to AuthZ decision received from elsewhere.
 
 # In this chapter it was mentioned, that the local controller delivers
 # changes to each device.
@@ -4449,7 +4497,7 @@ miss the user decision part. The user, not the operator,
  must give his consent to access the management network, so
 it is important that the switch is not automatic or forced.
 In a way, operator aided roaming between Wi-Fi and cellular
-works on a different level than the trust-anchor method described here.
+works on a different level than the trust anchor method described here.
 The operator is interested in the access network, while
 we are interested in the side result of getting access, namely 
 the achieved trusted access point.
