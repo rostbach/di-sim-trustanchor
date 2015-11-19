@@ -93,6 +93,7 @@
       %\textsf{xxxxxxx tiedekuntaneuvoston}\\
       %\textsf{kokouksessa 4.2.2015}\\
       \textsf{Examiner: Prof. \@examiner}\\
+      \textsf{Supervisor: M.Sc. Bilhanan Silverajan}\\
       \textsf{Examiner and topic approved by the}\\ 
       \textsf{Faculty Council of the Faculty of} \\
       \textsf{Computing and Electrical Engineering} \\
@@ -115,7 +116,7 @@
 \chapter*{Abstract}
 
 \begin{spacing}{1.0}
-  {\bf \textsf{\MakeUppercase{\@author}}}: \@title\\   % use \@titleB when thesis is in Finnish
+  {\bf \textsf{\MakeUppercase{\@author}}}: \textsf{\@title}\\   % use \@titleB when thesis is in Finnish
    \textsf{Tampere University of Technology}\\
 %   \textsf{\@thesistype, \pageref{LastPage}-5 pages, 5 Appendix pages} \\
    \textsf{\@thesistype, 63 pages, 5 Appendix pages} \\
@@ -123,6 +124,7 @@
    \textsf{Master's Degree Programme in Information Technology}\\
    \textsf{Major: Information Security}\\
    \textsf{Examiner: Prof. \@examiner}\\ % 
+   \textsf{Supervisor: M.Sc. Bilhanan Silverajan}\\ % 
    \textsf{Keywords: authentication, authorization, AAA, homenet, home networks, smartphone, SIM, trust-anchor, EAP-SIM, RADIUS}\\
 \end{spacing}
 
@@ -133,8 +135,8 @@
 % Do not include charts or tables in the abstract.
 
 Today, home networks are complex, and the home owners 
-do not necessarily want to administer all their aspects.
-Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If the configuration is out-sourced to external parties and 
+do not necessarily want to administer all  aspects of their networks.
+Configuring home network devices does not differ much from configuring enterprise devices. One needs access, credentials to login and knowledge to operate the device. If the configuration is outsourced to external parties and 
 done remotely, those requirements need adaptation.
 % implementation,adjustment, fulfilling, 
 Access to an end device from the outside must be provided, a trusted operator must be hired, and login credentials shared.
@@ -145,8 +147,9 @@ The fact that the mobile phone subscribers already are part of a reliable infras
 is used in the study as a trusted base.
 To benefit from the mobile identification, it is shown how the authentication
 and authorization are done using an extendable authentication profile (EAP) and a SIM card.
-A theory to use EAP-SIM authentication at home is presented, and a simulated test bed
-to demonstrate that is built, tested, and analyzed.
+A theory to use EAP-SIM authentication at home is presented, and 
+to demonstrate that it works, a simulated testbed
+ is built, tested, and analyzed.
 The idea is to reuse existing techniques by combining them with such new areas as homenet and delegated management.
 % For transporting authentication claims, WPA2 Enterprise including RADIUS environment has been chosen.
 Authentication claims are transported with WPA2 Enterprise.
@@ -161,8 +164,9 @@ between a configuration agent and the home network.
 The home network management can be controlled via the smartphone while keeping
 the local phone user still in control.
 %  and it is the key element of the thesis.
-The benefits of the SIM authentication are strong 
-authentication and a large existing  user base, while its disadvantages include
+The benefits of using the SIM  are that it is considered strong, and it has a
+%The benefits of using the SIM  are strong authentication and a
+large existing  user base, while its disadvantages include
 dependency onto the mobile operator. Additionally, there remain challenges
 in keeping the SIM's identity private and in disabling unwanted 
 re-authentications.
@@ -174,13 +178,16 @@ re-authentications.
 \chapter*{Tiivistelmä}         % Asterisk * turns numbering off
 
 \begin{spacing}{1.0}
-         {\bf \textsf{\MakeUppercase{\@author}}}: \@titleB\\  % or use \@title when thesis is in Finnish
+%         {\bf \textsf{\MakeUppercase{\@author}}}: \@titleB\\  % or use \@title when thesis is in Finnish
+         {\bf \textsf{\MakeUppercase{\@author}}}: \textsf{\@titleB}\\  % or use \@title when thesis is in Finnish
+%{Älypuhelin kotiverkkojen luottamusankkurina}
          \textsf{Tampereen teknillinen yliopisto}\\
          \textsf{Diplomityö, 63 sivua, 5 liitesivua}\\ %
          \textsf{marraskuu 2015}\\
          \textsf{Tietotekniikan koulutusohjelma}\\
          \textsf{Pääaine: tietoturva}\\
          \textsf{Tarkastaja:  Prof. \@examiner}\\ % automated, if just 1 examiner
+         \textsf{Ohjaaja: M.Sc. Bilhanan Silverajan}\\
          \textsf{Avainsanat: tunnistaminen, valtuutus, AAA, homenet, kotiverkko, älypuhelin, SIM, luottamusankkuri, EAP-SIM, RADIUS}\\
 \end{spacing}
 % The abstract in Finnish. Foreign students do not need this page.
@@ -196,21 +203,23 @@ kotiverkkoihin sallittaisiin. Luotettava toimija on palkattava
 ja jaettava tälle tunnistautumiskeino sekä pääsy kohdelaitteelle
 ulkoa käsin. Tämä edellyttää ennakkotoimia ja tunnistautumisavainten jakelua.
 
-Tutkielma kuvaa tätä toimijaa sovelluksena käyttäjän älypuhelimessa.
-Käyttäjä on matkapuhelinliittymällään jo osa luotettua
+Käyttäjän älypuhelimessa toimiva sovellus toimii tässä luotettuna toimijana. 
+% Tutkielma kuvaa tätä toimijaa sovelluksena käyttäjän älypuhelimessa.
+Matkapuhelinliittymällään käyttäjä on jo osa luotettua
 tilaajarekisteriä, ja tätä ominaisuutta käytetään hyväksi työssä 
 luottamuksen rakentajana. Matkapuhelintunnistuksena käytetään
-SIM-kortin tilaajatietoa EAP menetelmällä. 
+SIM-kortin tilaajatietoa EAP-menetelmällä. 
 % Pääsynvalvonta hoidetaan RADIUS-protokollalla.
-EAP-SIM-pohjaisen tunnistuksen teorian tueksi esitetään käytännössä
-simuloitu käyttöympäristö. Periaatteena on ollut käyttää
+EAP-SIM-pohjaisen tunnistuksen toimivuus esitetään
+käyttöympäristössä, jossa on simuloitu SIM-kortti ja matkapuhelinoperaattori.
+Periaatteena on ollut käyttää
 olemassaolevia tekniikoita yhdistäen niitä uusiin alueisiin,
 kuten homenet-määritysten kotiverkkoihin ja edustajalle ulkoistettuun
 hallintaan. Tunnistus- ja valtuutustietojen välittämisen hoitaa
-WPA2 Enterprise RADIUS ympäristössä. Välttääksemme 
+WPA2 Enterprise RADIUS-ympäristössä. Välttääksemme 
 monimutkaisuutta ja tarpeetonta hienorakeisuutta, käytämme yksinkertaista 
 hallintaverkkomallia, jonka rajalla on kotiverkosta muuten
-erollaan oleva älypuhelin.
+erillään oleva älypuhelin.
 %  Päästäkseen hallintaverkkoon, on älypuhelimen läpäistävä 
 % EAP-SIM tunnistus, mikä luo luottamusankkurin 
 
@@ -262,7 +271,7 @@ Thank you all!
 % Tilde ~ makes an non-breakable spce in LaTeX. Here it is used to get
 % two consecutive paragraph breaks
 
-Tampere, November 18th, 2015
+Tampere, November 20th, 2015
 ~
 
 
@@ -324,21 +333,26 @@ Riku Itäpuro
 \item[AuC] Authentication Center
 \item[CPE] Customer Premise Equipment %, device physically located at customers home.
 \item[EAP] Extensible Authentication Protocol %, extends 802.1X
+\item[ETSI] European Telecommunications Standards Institute
 \item[GAA] Generic Authentication Architecture % (for SSO)
 \item[GBA] Generic Bootstrapping Architecture, 3GPP standard for user authentication with help of shared key from operator, part pf GAA.
 \item[GSM] Global System for Mobile Communication (earlier Groupe Spécial Mobile)
-\item[HLR] Home Location Registry, ...
+\item[HLR] Home Location Registry
 % \item[ICCID] card serial
 \item[IEEE] Institute of Electrical and Electronics Engineers
 \item[IMSI] International Mobile Subscriber Identity
-\item[ISP] internet service provider
-\item[MNO] mobile network operator
+\item[ISP] Internet Service Provider
+\item[MITM] Man-in-the-Middle
+\item[MNO] Mobile Network Operator
+\item[MSS] Mobile Signature Services
 \item[MSISDN] Mobile Station Integrated Services Digital Network, user's phone number
 \item[RADIUS] Remote Authentication Dial In User Service, protocol and server,  AAA service 
 \item[SIM]  Subscriber Identity Module, a smartcard. Also USIM program running in UICC card (UMTS networks)
 \item[SSID] Service Set Identifier, identifies Wi-Fi network
 \item[TMSI] Temporal Mobile Subscriber Identity
 \item [TUT] Tampere University of Technology
+\item[USIM] Universal Subscriber Identity Module
+\item[UICC] Universal Integrated Circuit Card
 \item[Wi-Fi] Wireless local network, implements IEEE 802.11 standards
 \item[WPA] Wireless Protected Access version 1
 \item[WPA2] Wireless Protected Access version 2
@@ -486,7 +500,7 @@ Mutual trust
 safely. 
 # 
 # Mieti olisko joku muu sana kuin summarized,. in a nutshell käy
-Summarized, the problems are the delegated network management, remote
+In summary, the problems are the delegated network management, remote
 provisioning, and trust finding. At its roots, this is an authentication
 and authorization problem.
 
@@ -731,7 +745,7 @@ thesis.
 
 # ------------------------------------------------
 # AAA 
-* Authentication, Authorization, and Trust
+* Authentication, authorization, and trust
 # [Theory Chapter: AAA]
 :PROPERTIES:
 :CUSTOM_ID: cha:aaa
@@ -1846,7 +1860,7 @@ tunneling, for example, as an inner protocol of EAP-TTLS.
 
 # *** Web portal with SMS passwd
 # Did'nt I just explain these external providers are needed?
-At this point, one might rise why these external service
+At this point, one might ask why these external service
 providers are needed. Is it not easier and simpler to just send 
 an SMS with a password code to the smartphone, when access confirmation is needed?
 Mobile SIM provides a two-way AuthN part as discussed earlier.
@@ -1885,6 +1899,10 @@ fingerprint.
 
 
 
+
+Home networks have been researched by the same organization that built
+the Internet. This chapter presents  the homenet working group
+and their architectural goals. Finally, several methods for importing the trust are presented.
 
 * Design of home network trust anchor and separation of change management
 :PROPERTIES:
@@ -1994,8 +2012,11 @@ The decision can take place at the border of the network or a specific segment.
 # by other means. Breaking one router would otherwise let open access to 
 # every other router. But is that not then circular reasoning? 
 
-An example of a deeper access controlling  solution would be a traditional firewall and packet
-inspection in the interconnects of segments, but even a more complex and modern model
+An example of a stricter access control 
+# solution 
+would be a traditional firewall and packet inspection model
+# packet inspection
+ in the interconnects of segments. However, an even more complex and modern model
 would be the de-perimeterization trend set originally by Open Group's
 Jericho Work Group \cite{jericho2004} in 2004, that will not leave trust verification to
 the perimeters of the network (firewalls and application proxies), but 
@@ -2158,13 +2179,14 @@ and it is always internal, located at home network.
 :END:
 #+CAPTION: Location of AA, AuthN and AuthZ in scenarios I-V
 #+NAME: table-scenarios
-| scene no: | AuthN | AuthZ         |
-|-----------+-------+---------------|
-| I         | e     | e             |
-| II        | e     | i             |
-| III       | e     | i/e (proxied) |
-| IV        | i     | i             |
-| V         | -     | -             |
+| scenario no: | AuthN | AuthZ         |
+|--------------+-------+---------------|
+| /            | <     | <             |
+| I            | e     | e             |
+| II           | e     | i             |
+| III          | e     | i/e (proxied) |
+| IV           | i     | i             |
+| V            | -     | -             |
 [fn:baasprovides] Cloud provides
 
 # | IV        | I             | E     | E[fn:baasprovides] |
@@ -2441,7 +2463,7 @@ Section [[bootstrapping]].
 <<sec:radius-macs>>
 # [Analysis of RADIUS, RADIUS Proxies..
 
-Our model greately benefits   from the modification of RADIUS messages in proxying
+Our model greatly benefits   from the modification of RADIUS messages in proxying
 RADIUS, if that is possible as was mentioned in Section [[sec:radius]] (RADIUS).
 The modification is needed when the proxying RADIUS wants to combine an AuthN message
 from the MNO to AuthZ decision received from elsewhere.
@@ -2944,12 +2966,12 @@ separate local RADIUS server running as a proxy.
 
 
 
-* Implemented Solution
+* Implemented solution
 :PROPERTIES:
 :CUSTOM_ID: cha:simu
 :END: 
 
-# +  Setup and Test bed
+# +  Setup and Testbed
 # - Example use case (show eg introducing a new change into the router,
 #    adding visitor access etc)
 # - Message sequences
@@ -2979,7 +3001,7 @@ the local controller with  command line interface (CLI).
 
 
 
-** EAP-SIM authentication test bed
+** EAP-SIM authentication testbed
 # RADIUS server is located either on local network or hosted on remote
 # server.
 
@@ -3056,7 +3078,7 @@ for ARMv7 architecture.
                    <-=---WiFi------=-> 
                    <-----Wired------->      
 #+end_src
-#+CAPTION: EAP-SIM AuthN messaging in simulation test bed
+#+CAPTION: EAP-SIM AuthN messaging in simulation testbed
 #+NAME: eap-sim-testbed
 #+RESULTS:
 [[file:demoinfra.png]]
@@ -3451,19 +3473,24 @@ Send: SIM-RESP-AUTH 232010000000000
 
 ** Simulation on smartphone Jolla
 
-Since we had source the code available, we also tried to move the
-simulated SIM application to the real smartphone.  Jolla is a new
-Finnish smartphone that runs on ARMv7 processor and has its roots in
-Nokia's last mobile phone line that used Linux Distribution MeeGo at
-the beginning of 2010's.  The OS is called Sailfish and it includes user
-interface code created by Jolla, open source base components from Mer, and
-some other software components, which are either free or proprietary.
-Mer is a community driven by merits; its name comes from the words 
-`Meego Reinvented', or `meritocratic community'
-There are also other OSs based on Mer, such as Tizen.
+Since we had the source  code available, we also tried to move the
+simulated SIM application to a real smartphone.  Jolla is a
+Finnish smartphone that runs on ARMv7 processor, has 16 GB of storage
+space, and 1 GB RAM. Its operating system Sailfish is derived from
+Linux MeeGo Distribution and includes open source componentes from Mer
+project. It was chosen from all the alternative phones mainly because
+we were familiar with Linux and because we had the phone
+available. 
 
-Jolla's base
-WPA-supplicant belongs to Mer core, and it was here re-built for
+# The OS is called Sailfish and it includes user
+# interface code created by Jolla, open source base components from Mer, and
+# some other software components, which are either free or proprietary.
+# Mer is a community driven by merits; its name comes from the words 
+# `Meego Reinvented', or `meritocratic community'
+# There are also other OSs based on Mer, such as Tizen.
+
+Jolla features Android app compatibility, but instead of it, we used
+Jolla's base  WPA-supplicant (wpa_supplicant) belongs to Mer core software, and it was here re-built for
 simulator use. The build process was done inside the MerSDK virtual
 machine running under Virtualbox because it provided not only
 a simulated Jolla environment on x86 processor architecture, but also a cross
@@ -3472,7 +3499,7 @@ processor easy.
 
 To compile wpa_supplicant with EAP-SIM simulator, a PCSC component was
 needed. So first pcsc-lite was downloaded and cross-compiled in
-MerSDK. Then wpa-supplicant was compiled with correct parameters in
+MerSDK. Then wpa_supplicant was compiled with correct parameters in
 the same place. Finally, the wpa_supplicant was stripped of debugging
 symbols and copied to Jolla together with the PCSC-library.  Jolla
 phone's file hierarchy is very similar to hierarchy in the test
@@ -3585,14 +3612,16 @@ given the secrets but instead a PIN to unlock the smartcard.
 
 # trombone: ~/src/jolla/wpa_supplicant
 
-* Analysis, Results, and Discussion
+* Analysis, results, and discussion
 :PROPERTIES:
 :CUSTOM_ID: cha:discussion
 :END: 
 
-We have now gone through the theory, design, and implementation. Next,
-let us
-discuss some of the results and findings. We will concentrate on security, 
+# We have now gone through the theory, design, and implementation. Next,
+# let us
+# discuss some of the results and findings. We will
+In this chapter, the results and findings 
+ concentrate on security, 
 deployment difficulties, costs, platform issues, usability of multiple
 APs, and cases where we
 need to extend the number of SSID's. The facts collected in the thesis
@@ -3899,7 +3928,8 @@ computing.
 
 Because of the weaknesses of MD5 hashing, the transport needs additional protection
 like tunneling or IPsec. TLS can be used for encryption and its
-signatures for integrity checking of packet payload.
+signatures for integrity checking of packet payload. Based on these
+facts, suitability of DIAMETER instead of RADIUS should be studied further.
 
 # Unfortunately MD5 can not be thought computationally
 # secure, because 
@@ -3956,7 +3986,7 @@ the user's control.
 Automatic re-authentication after disconnection  must be considered
 here as harmful, as well as automatic login near a suitable AP. An
 example of harmful behaviour was a case with the  Swiss mobile operator Swisscom, which
- provided two networks, ``Mobile'' and ``Mobile Eapsim'' , for its
+ provided two networks, ``Mobile'' and ``Mobile Eapsim'', for its
 customers. 
 The latter network did not ask for the customers' permission for
 a connection each time, but used their smartphone's SIM
@@ -4269,8 +4299,8 @@ because a file backend was used instead of a SIM card.
 # (source t.j.c peremen (Jan 27 '14)"
 
 
-If OpenWRT platform is used for CPE, the memory size (32MB) restricts
-some use.
+If OpenWRT platform is used for CPE, its internal memory size (32MB)
+can restrict some use, unless USB sticks are used.
 # - OpenWRT is environment for embedded system.
 #   When software is not fully optimized, memory is one of the limits which come first.
 WPA2 software included in basic OpenWRT installation is small,
@@ -4926,7 +4956,7 @@ a trust anchor to the smartphone.
  
 # WHAT HAS BEEN DONE
 # As results,
-For testing purposes, a real working EAP-SIM test bed with fake credentials and
+For testing purposes, a real working EAP-SIM testbed with fake credentials and
 a fake mobile operator representing EAP-SIM authentication flow was
 built. A dual-role model, which binds the smartphone to the home network and
 grants it rights to make changes there, has been proposed.  
