@@ -16,16 +16,18 @@
 # Toinen tarpeellinen ehkä reftexiä varten
 # \bibliography{refs.bib}
 #+LATEX_HEADER: \author{Riku Itäpuro}
-#+LATEX_HEADER: \title{Smartphone as a trust anchor for delegated home net configuration management}
+# #+LATEX_HEADER: \title{Smartphone as a trust anchor for delegated home net configuration management}
+
 #+LATEX_HEADER: \titleB{Älypuhelin kotiverkkojen luottamusankkurina}
 
 #+LATEX_HEADER: % Ensure the correct Pdf size (not needed in all #+LATEX_HEADER: \special{papersize=210mm,297mm}
-#+LATEX_HEADER: \thesistype{18.11.2015 Master of Science thesis}
+#+LATEX_HEADER: \thesistype{Master of Science thesis}
 #+LATEX_HEADER: \examiner{Jarmo Harju}
 #+LATEX_HEADER: \makeatletter
 #+LATEX_HEADER:\usepackage{svg}
 #+LATEX_HEADER:\usepackage[utf8]{inputenc}
 #+LATEX_HEADER:\usepackage{lastpage}
+
 
 # widow-pages
 #+LATEX_HEADER:\usepackage[all]{nowidow}
@@ -46,7 +48,7 @@
  \hypersetup{  
  pdfkeywords={authentication, authorization, AAA, homenet, smartphone, trust anchor, EAP-SIM, RADIUS}
 }
-
+\title{Smartphone as home network's trust anchor}
 #+end_latex
 # Tämä näyttäisi nyt tulevan sisällön jälkeen..
 # 31.7.2015 tämä tuleekin ennen kansilehteä..
@@ -71,9 +73,10 @@
 % \begin{document}
 %  title page 
  \thispagestyle{empty}
-\date\today
+%%%\date\today
  \vspace*{-.5cm}\noindent
  \includegraphics[width=8cm]{tty_tut_logo}   % Bilingual logo
+%\title{Smartphone as a trust anchor for delegated home net  configuration management}
 
 % lay out author, title and type 
 \vspace{6.8cm}
@@ -302,7 +305,8 @@ Riku Itäpuro
 % Term and symbol exaplanations use a special list type
 %
 
-\chapter*{List of abbreviations and symbols}
+%\chapter*{List of abbreviations and symbols}
+\chapter*{List of abbreviations}
 %\chapter*{Lyhenteet ja merkinn<E4>t}
 \markboth{}{}                                % no headers
 
@@ -909,7 +913,7 @@ When using RADIUS to AuthN and AuthZ, Requests can only belong to ACCESS-REQUEST
 Responses can be either an ACCESS-ACCEPT, ACCESS-REJECT, or ACCESS-CHALLENGE message.
 The Message Authenticator field is sent as last Attribute Value Pair (AVP)
 of each RADIUS message, and it can belong 
-to either Request or Response. \cite[p.20]{radiusbook}.
+to either Request or Response \cite[p.20]{radiusbook}.
 
 # Random value is used in /Request/ Authenticators and  
 # MD5 hash in /Response/ Authenticators.
@@ -1120,7 +1124,7 @@ Digital Network), which is the user's full international phone number.
 SIM card usage can be controlled with two passwords: PIN and PUK.  PUK
 is used as a remedy if PIN has been entered incorrectly too many times.
 If the card has other applications, such as a mobile electrical
-signature application Mobiilivarmenne (see Section [[sec:altmethods]]),
+signature application (see Section [[sec:altmethods]]),
 they may have different keys and codes.
 
 
@@ -1151,7 +1155,7 @@ and that was the reason for developing EAP-SIM and later the
 derivatives EAP-AKA and EAP-AKA'.  The goal was to combine 
 the existing keys used in  GSM (Global system for Mobile communication)
 in a secure way to Wi-Fi access. The general purpose EAP-methods existing in 2004 were not
-compatible with GSM protocols for this purpose. \cite[p.93]{hav-doc}
+compatible with GSM protocols for this purpose \cite[p.93]{hav-doc}.
 # [More security stuff, operator-specific parts in AKA', explained here
 # if not already compared earlier. Just clarify the main points,
 # compare weaknesses with strengths]
@@ -1539,7 +1543,8 @@ Segmenting a home into multiple subnets will also be part of planning
 and management. It will not be uncommon to have an inexpensive second
 network operator subscription for backup purposes at home. Those issues are
 discussed in the  multihoming parts of homenet WG.
-Lastly, end-to-end access, i.e., restriction-free access is in IETF's agenda. 
+Lastly, end-to-end access, i.e., restriction-free access is in homenet
+WG's agenda. 
 It was the key element for the Internet's success and enabled many new
 applications in the past, but has since  then faced difficulties because of
 firewalls and NATs. 
@@ -2395,7 +2400,7 @@ authentication, and is shown in Figure[[fig:scenario-IV]].
                     +--------+------------+     
                                              
 #+end_src
-#+CAPTION: Scenario IV, offline AA 
+#+CAPTION: Scenario IV with offline AA 
 #+NAME:   fig:scenario-IV
 #+RESULTS:
 [[file:scenIV.png]]
@@ -3498,7 +3503,7 @@ port 2222 on localhost. One can use an SSH keypair authentication to get there.
 In the following example, file /mersdk/ represent the private SSH key of type RSA.
 #+BEGIN_EXAMPLE
 # ssh -l mersdk -p 2222 \
-    -i ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk
+    -i ~/emu/sailfish/vmshare/ssh/private_keys/engine/mersdk \
      localhost
 Last login: Sun Nov 15 09:50:47 2015 from 10.0.2.2
 [mersdk@SailfishSDK ~]$ uname -rm
@@ -3637,7 +3642,7 @@ secrets from eavesdroppers. Hiding IMSI enhances the privacy of the smartphone u
 As discussed in Section [[sec:sim-based-auth]],  IMSI is sent in clear 
 during the starting phase of 802.1X authentication. This is a privacy 
 issue because TMSI which hides IMSI cannot be used before a session
-has been set up. \cite[p.66]{rfc4186}.
+has been set up \cite[p.66]{rfc4186}.
 After the first full authentication, the client and the authenticator 
 know the TMSI and can use it in further communication. 
 The TMSI can even be re-changed using re-authentication as shown in Figure[[fig:tmsi]].
@@ -3692,7 +3697,7 @@ chosen encryption, the base station can order the phone to not encrypt
 traffic at all or to use only weak encryption thus revealing all data,
 calls, and texts. Mitigation for IMSI-catching would be to disable GSM
 (2G) usage altogether from phone if that is
-possible\cite{imsi-heise}. Some development has been done to detect
+possible \cite{imsi-heise}. Some development has been done to detect
 IMSI-catchers, most notably by the project AIMSICD \cite{aimcid}.
 
 
@@ -3859,7 +3864,7 @@ Traditionally, RADIUS has used connection\-less UDP protocol which  is
 light-weight. Retransmission in UDP is tolerable because the user is
 ready to wait for several seconds for authentication to complete.  
 Today, RADIUS can be also run over TCP, which generally has a more
-aggressive retransmission rate. \cite[Section 2.2.1]{rfc5080}.
+aggressive retransmission rate  \cite[Section 2.2.1]{rfc5080}.
 UDP misses the reliability that TCP has, but adding an alternative UDP RADIUS
 server can make answering the requests faster than waiting for TCP RADIUS's reliable delivery.
 
@@ -3956,7 +3961,7 @@ customers.
 The latter network did not ask for the customers' permission for
 a connection each time, but used their smartphone's SIM
 automatically. Unfortunately, it also charged users for using Wi-Fi
-connections without users' knowledge. \cite{swisscom}
+connections without users' knowledge \cite{swisscom}.
 # http://www.wireless-forum.ch/forum/viewtopic.php?t=24071 Swisscom provides
 # [ Is it then the same as normal pre-configured WPA2-enterprise? Just that we
 # have not been used for paying for using eduroam or LANGATONWPA networks.]
@@ -4072,7 +4077,7 @@ the network name has changed.
 While a Wi-Fi client's normal action is to probe for SSIDs of lately visited
 and learned APs, anyone can analyze those probes and reveal the client's
 earlier locations without very much effort.
-Lindqvist et.al. \cite{hidden-wlan} present usage of hidden
+Lindqvist et al. \cite{hidden-wlan} present usage of hidden
 APs in protecting privacy of clients and preventing that scenario.
 
 # while 
@@ -4780,7 +4785,7 @@ the user interface role, not the trust anchor role.
 The rest of the home network devices would apply for
 certificates from this trust anchor to get under the same trust circle.  Key creation,
 key exchange, and their usage is explained in a similar draft from
-Pritikin[[cite:draft-pritikin-bootstrap][I-D.pritikin]]. 
+Pritikin [[cite:draft-pritikin-bootstrap][I-D.pritikin]]. 
 # That explains PKI usage in general in bootstrapping.
 
 
@@ -4808,7 +4813,7 @@ the Needham-Schroeder protocol.
 # Behringers work-in-progress bootstrapping \cite{draft-behringer-bootstrap}.  
 Another bootstrapping architecture is 
 defined in GBA (General Bootstrapping Architecture) \cite{gba2014},
-which a technical specification of 3GPP. 
+which is a technical specification of 3GPP. 
 # \cite{}.
 It benefits from MNO's or any other identity center's  knowledge of user's SIM.
 In GBA, Trusted Third Party authentication center would be set up with
@@ -5018,7 +5023,7 @@ further to aid in resolving trust issues in future home networks.
   postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}
 # % \lstinputlisting[language=bash]
 \footnotesize
-\lstinputlisting[language=bash]{./apd-tty}
+\lstinputlisting[language=bash]{apd-tty}
 %\lstinputlisting[language=bash]{./testit/apd-tty.clean}
 \normalsize
 #+END_Latex
