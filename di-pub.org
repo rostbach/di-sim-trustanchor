@@ -1017,10 +1017,12 @@ individual access is easier, but client setup is slightly more
 complicated than on WPA2-PSK, as seen on Table[[psk-enterprise]].
 
 # [Maybe comparing in table] 
+# #+ATTR_LATEX: :environment longtable :align l|lp{3cm}r|l
+# align c|c|c
 #+CAPTION: Comparison of WPA2-PSK and WPA2-ENTERPRISE modes
 #+NAME: psk-enterprise
+#+ATTR_LATEX: :center
 | Property                     | WPA2-PSK | WPA2-ENTERPRISE |
-|------------------------------+----------+-----------------|
 |------------------------------+----------+-----------------|
 | /                            | <        | <               |
 | suitable for groups          | x        |                 |
