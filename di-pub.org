@@ -31,6 +31,8 @@
 
 # widow-pages
 #+LATEX_HEADER:\usepackage[all]{nowidow}
+# url breaks
+#+LATEX_HEADER:\usepackage{url}
 # 2-palsta lukua varten,  muista myös tutclassin 
 #   importit (org latex class customization group, List: Latex class: tutclass
 # +LATEX_HEADER:\usepackage[landscape,twocolumn]{geometry}
@@ -1270,27 +1272,29 @@ identity.
 #+attr_latex: :align=|c|c|c|c|
 #+CAPTION: WPA2-Enterprise client setup with EAP-PEAP-MSCHAPv2 and EAP-SIM
 #+NAME: table-peapsim
-|---+--------------------------------------------+----------+---------+----------+---|
-|   |                                            | EAP-PEAP | EAP-SIM | EAP-PEAP |   |
-|   | Task:                                      | with     |         | with     |   |
-|   | (x)=``needed'', (N/A)= ``not available''   | MSCHAPv2 |         | EAP-SIM  |   |
-| / | <                                          | <        | <       | <        | > |
-|---+--------------------------------------------+----------+---------+----------+---|
-|   | CA settings:                               |          |         |          |   |
-|   | - choose CA for the RADIUS                 | x        |         | x        |   |
-|   | - if CA-key not known, fetch /securely/    | x        |         | x        |   |
-|---+--------------------------------------------+----------+---------+----------+---|
-|   | Other settings:                            |          |         |          |   |
-|   | - used EAP-method                          | x        | x       | x        |   |
-|   | - validation of RADIUS server's name       | x        |         | x        |   |
-|   | - encapsulation (WPA2/802.1X)              | x        |         |          |   |
-|   | - password                                 | x        | x(PIN)  |          |   |
-|---+--------------------------------------------+----------+---------+----------+---|
-|   | Identity hiding:                           |          |         |          |   |
-|   | - enable PEAP                              | x        | N/A     | x        |   |
-|   | - outer identity                           | x        | N/A     | x        |   |
-|   | - inner identity                           | x        | N/A     |          |   |
-|---+--------------------------------------------+----------+---------+----------+---|
+
+|                                          | EAP-PEAP | EAP-SIM | EAP-PEAP |
+| Task:                                    | with     |         | with     |
+| (x)=``needed'', (N/A)= ``not available'' | MSCHAPv2 |         | EAP-SIM  |
+| /                                        | <        | <       | <        |
+|------------------------------------------+----------+---------+----------|
+| CA settings:                             |          |         |          |
+| - choose CA for the RADIUS               | x        |         | x        |
+| - if CA-key not known, fetch /securely/  | x        |         | x        |
+|------------------------------------------+----------+---------+----------|
+| Other settings:                          |          |         |          |
+| - used EAP-method                        | x        | x       | x        |
+| - validation of RADIUS server's name     | x        |         | x        |
+| - encapsulation (WPA2/802.1X)            | x        |         |          |
+| - password                               | x        | x(PIN)  |          |
+|------------------------------------------+----------+---------+----------|
+| Identity hiding:                         |          |         |          |
+| - enable PEAP                            | x        | N/A     | x        |
+| - outer identity                         | x        | N/A     | x        |
+| - inner identity                         | x        | N/A     |          |
+|------------------------------------------+----------+---------+----------|
+
+
 
 ** Analysis of EAP-SIM protocol
 A bird's-eye view to the EAP-SIM protocol messaging between the
@@ -2066,7 +2070,7 @@ turn is compared to the existing roles of IMSI in the authenticator.
 When an AP forwards an authentication request to the next RADIUS server, it
 can ask or receive, beside AuthN and AuthZ, other service parameters,
 such as provisioning. RADIUS can carry those extra attributes in its
-ACCESS-ACCEPT message.  In essence, AuthZ part itself can be thought
+ACCESS-ACCEPT message as AVPs.  In essence, AuthZ part itself can be thought
 as  one type of service provisioning.  That would then allow the
 smartphone to connect to a specific management network and access the
 devices either via command line interfaces, SNMP, or
@@ -2085,10 +2089,11 @@ not all end devices support those provisioning parameters.
 
 
 # TÄHÄN 1 radius
-If RADIUS AVPs do not suffice, there are also special Vendor Specified
+
+RADIUS servers may implement different vocabulary in their AVP set,
+and if RADIUS AVPs do not suffice, there are also special Vendor Specified
 Attributes (VSA). VSAs allow vendors to define up to 255 
 attributes of their own that can be used in provisioning in a homogeneous environment. 
-Besides VSAs, RADIUS servers may implement different vocabulary in their AVP set.
 RFC6929 \cite{rfc6929} points out that even when
 the RADIUS proxies do not understand all AVPs inside RADIUS message, they
 must deliver those attributes, and that allows us to use a larger set of AVPs 
@@ -2263,6 +2268,8 @@ and it is always internal, located at home network.
 | III          | e     | i/e (proxied) |
 | IV           | i     | i             |
 | V            | -     | -             |
+|--------------+-------+---------------|
+
 [fn:baasprovides] Cloud provides
 
 # | IV        | I             | E     | E[fn:baasprovides] |
