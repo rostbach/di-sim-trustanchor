@@ -25,6 +25,7 @@
 #+LATEX_HEADER: \examiner{Jarmo Harju}
 #+LATEX_HEADER: \makeatletter
 #+LATEX_HEADER:\usepackage{svg}
+#+LATEX_HEADER:\usepackage{pstricks}
 #+LATEX_HEADER:\usepackage[utf8]{inputenc}
 #+LATEX_HEADER:\usepackage{lastpage}
 
@@ -1274,7 +1275,6 @@ identity.
 #+attr_latex: :align=|c|c|c|c|
 #+CAPTION: WPA2-Enterprise client setup with EAP-PEAP-MSCHAPv2 and EAP-SIM
 #+NAME: table-peapsim
-
 |                                          | EAP-PEAP | EAP-SIM | EAP-PEAP |
 | Task:                                    | with     |         | with     |
 | (x)=``needed'', (N/A)= ``not available'' | MSCHAPv2 |         | EAP-SIM  |
@@ -1369,8 +1369,7 @@ generates a challenge with an aid of a triplet from the MNO and the
 client responses to the challenge correctly after processing it with
 its own /Ki/.  The correct answer would be SRES which the Authentication
 server received in message 10.
-#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 4
-
+#+begin_src ditaa :file eap-sim-radius.png :cmdline -E -r -s 8
 Smartphone                               Authenticator (AP)
   |                                             |
   |1. EAPOL Start                               |
@@ -1426,8 +1425,8 @@ Smartphone                               Authenticator (AP)
   |                                             | 
   |                                             |
 #+end_src
-#+CAPTION: Successful EAP-SIM full authentication with RADIUS
-#+NAME: fig:eap-sim-radius
+#+CAPTION:Successful EAP-SIM full authentication with RADIUS
+#+NAME:fig:eap-sim-radius
 #+RESULTS:
 [[file:eap-sim-radius.png]]
 
@@ -1537,7 +1536,7 @@ use it as a derivation function to extend trust
 :END:
 # [ keep this security oriented, Forget sections & subsections style.]
 The home networks have been researched by the same organization that built
-the Internet. This chapter presents  the homenet working group
+the Internet, i.e., IETF. This chapter presents  the homenet working group
 and their architectural goals. Finally, several methods for importing the trust are presented.
 
 
@@ -1727,6 +1726,12 @@ Figure[[fig:trustbegin]].
 #+CAPTION: Trust circles in the beginning
 #+NAME:   fig:trustbegin
 file:trustcircles.png
+
+# kokeilu 20.11.2015
+#+BEGIN_LaTeX
+
+\include{trusted11}
+#+END_LaTeX
 
 
 # trust and thesis main point
